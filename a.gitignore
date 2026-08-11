@@ -1,0 +1,22 @@
+# Operating system / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node / test output
+node_modules/
+coverage/
+*.log
+
+# Local secrets or deployment settings
+.env
+.env.*
+!.env.example
+.clasp.json
+
+# Never commit exported student data or local backups
+student-data/
+private-data/
+backups/
+*Reports_Backup*
