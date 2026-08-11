@@ -1,0 +1,10 @@
+{
+  "name": "youngs-physics-review-comprehensive-analysis",
+  "version": "2.1.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/run-tests.mjs",
+    "serve": "python3 -m http.server 8080 -d site"
+  },
+  "description": "Young's Physics weekly review and comprehensive assessment analysis system with logo-based blue/white responsive branding"
+}

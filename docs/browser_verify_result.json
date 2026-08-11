@@ -1,0 +1,16 @@
+{
+  "page_load": true,
+  "teacher_key_elements": true,
+  "save_button_flow": true,
+  "report_load": true,
+  "history_section": true,
+  "solution_hidden_before_submit": true,
+  "solution_revealed_after_submit": true,
+  "similar_locked_before_original": true,
+  "similar_revealed_after_submit": true,
+  "docx_downloaded": true,
+  "console_errors": [],
+  "page_errors": [],
+  "failed_requests": [],
+  "report_url": "http://127.0.0.1:8000/report.html#id=demo-total-mechanics&fp=demo-fp-total-mechanics"
+}

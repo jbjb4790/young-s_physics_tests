@@ -1,0 +1,36 @@
+{
+  "no": 1,
+  "maxPoints": 5,
+  "type": "objective",
+  "unit": "",
+  "topic": "",
+  "difficulty": "중",
+  "image": {
+    "page": 1,
+    "crop": [
+      0,
+      0,
+      1200,
+      600
+    ]
+  },
+  "reviewStatus": "needs-review",
+  "correctionNote": "",
+  "answer": "",
+  "explanation": [],
+  "formulas": [],
+  "commonMistakes": [],
+  "rubric": [
+    {
+      "criterion": "",
+      "points": 5
+    }
+  ],
+  "similarProblem": {
+    "prompt": "",
+    "answer": "",
+    "explanation": "",
+    "inputMode": "text",
+    "acceptableAnswers": []
+  }
+}

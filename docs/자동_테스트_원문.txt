@@ -1,0 +1,314 @@
+
+> youngs-physics-review-comprehensive-analysis@2.1.0 test
+> node --test tests/run-tests.mjs
+
+TAP version 13
+# Subtest: 카탈로그 스키마 2.0과 총 39개 시험
+ok 1 - 카탈로그 스키마 2.0과 총 39개 시험
+  ---
+  duration_ms: 0.844663
+  type: 'test'
+  ...
+# Subtest: 주간 34개와 총괄 5개로 분리
+ok 2 - 주간 34개와 총괄 5개로 분리
+  ---
+  duration_ms: 0.088842
+  type: 'test'
+  ...
+# Subtest: 물리1 주간 회차는 2~8, 10~16
+ok 3 - 물리1 주간 회차는 2~8, 10~16
+  ---
+  duration_ms: 0.496807
+  type: 'test'
+  ...
+# Subtest: 물리1심화 주간 회차는 2~7
+ok 4 - 물리1심화 주간 회차는 2~7
+  ---
+  duration_ms: 0.110524
+  type: 'test'
+  ...
+# Subtest: 물리2 주간 회차는 1~9, 11~15
+ok 5 - 물리2 주간 회차는 1~9, 11~15
+  ---
+  duration_ms: 0.191975
+  type: 'test'
+  ...
+# Subtest: 의도적 제외 회차는 물리1 1·9회, 물리2 10회
+ok 6 - 의도적 제외 회차는 물리1 1·9회, 물리2 10회
+  ---
+  duration_ms: 0.122582
+  type: 'test'
+  ...
+# Subtest: 총괄평가 연결 범위가 요구사항과 일치
+ok 7 - 총괄평가 연결 범위가 요구사항과 일치
+  ---
+  duration_ms: 0.189591
+  type: 'test'
+  ...
+# Subtest: 현재 자료가 있는 물리1 역학·전자기 총괄만 준비 완료
+ok 8 - 현재 자료가 있는 물리1 역학·전자기 총괄만 준비 완료
+  ---
+  duration_ms: 0.165846
+  type: 'test'
+  ...
+# Subtest: 각 물리1 총괄은 25문항·100점
+ok 9 - 각 물리1 총괄은 25문항·100점
+  ---
+  duration_ms: 0.268368
+  type: 'test'
+  ...
+# Subtest: 총괄 객관식 40문항은 binary, 서술형 10문항은 points
+ok 10 - 총괄 객관식 40문항은 binary, 서술형 10문항은 points
+  ---
+  duration_ms: 0.312493
+  type: 'test'
+  ...
+# Subtest: 총괄 객관식 0은 0점, 1은 4점
+ok 11 - 총괄 객관식 0은 0점, 1은 4점
+  ---
+  duration_ms: 0.814638
+  type: 'test'
+  ...
+# Subtest: 총괄 객관식은 0·1 외 값을 차단
+ok 12 - 총괄 객관식은 0·1 외 값을 차단
+  ---
+  duration_ms: 0.098856
+  type: 'test'
+  ...
+# Subtest: 총괄 서술형의 1은 만점이 아니라 실제 1점
+ok 13 - 총괄 서술형의 1은 만점이 아니라 실제 1점
+  ---
+  duration_ms: 0.076063
+  type: 'test'
+  ...
+# Subtest: 총괄 서술형 4점은 만점, 4.5점은 차단
+ok 14 - 총괄 서술형 4점은 만점, 4.5점은 차단
+  ---
+  duration_ms: 0.065747
+  type: 'test'
+  ...
+# Subtest: 총괄 예시 정오표·서술형 점수 계산
+ok 15 - 총괄 예시 정오표·서술형 점수 계산
+  ---
+  duration_ms: 0.30371
+  type: 'test'
+  ...
+# Subtest: 기존 주간 입력의 1·P1 규칙은 유지
+ok 16 - 기존 주간 입력의 1·P1 규칙은 유지
+  ---
+  duration_ms: 0.216812
+  type: 'test'
+  ...
+# Subtest: 탭 붙여넣기에서 빈 셀 위치 보존
+ok 17 - 탭 붙여넣기에서 빈 셀 위치 보존
+  ---
+  duration_ms: 0.133238
+  type: 'test'
+  ...
+# Subtest: 총괄은 같은 과정·학교·이름의 지정 회차만 연결
+ok 18 - 총괄은 같은 과정·학교·이름의 지정 회차만 연결
+  ---
+  duration_ms: 0.764504
+  type: 'test'
+  ...
+# Subtest: 학교·이름 정규화는 공백·대소문자·기호 차이를 흡수
+ok 19 - 학교·이름 정규화는 공백·대소문자·기호 차이를 흡수
+  ---
+  duration_ms: 0.075652
+  type: 'test'
+  ...
+# Subtest: 복습 누적 성취율은 회차 만점으로 가중 계산
+ok 20 - 복습 누적 성취율은 회차 만점으로 가중 계산
+  ---
+  duration_ms: 0.536165
+  type: 'test'
+  ...
+# Subtest: 통합 코멘트에 복습 연결 회차와 총괄-복습 비교가 포함
+ok 21 - 통합 코멘트에 복습 연결 회차와 총괄-복습 비교가 포함
+  ---
+  duration_ms: 11.445556
+  type: 'test'
+  ...
+# Subtest: 50개 총괄 문항에 답·풀이·공식·실수·루브릭·재도전·동형 문제가 있음
+ok 22 - 50개 총괄 문항에 답·풀이·공식·실수·루브릭·재도전·동형 문제가 있음
+  ---
+  duration_ms: 0.266836
+  type: 'test'
+  ...
+# Subtest: 모든 총괄 문항 루브릭 합은 4점
+ok 23 - 모든 총괄 문항 루브릭 합은 4점
+  ---
+  duration_ms: 0.123453
+  type: 'test'
+  ...
+# Subtest: 객관식 정답키는 1~5 중 하나
+ok 24 - 객관식 정답키는 1~5 중 하나
+  ---
+  duration_ms: 0.153929
+  type: 'test'
+  ...
+# Subtest: 역학 1번 복수오답 원문을 교정하고 평균가속도 2 m/s² 적용
+ok 25 - 역학 1번 복수오답 원문을 교정하고 평균가속도 2 m/s² 적용
+  ---
+  duration_ms: 0.075893
+  type: 'test'
+  ...
+# Subtest: 역학 19번 단열 팽창의 내부에너지 감소를 교정
+ok 26 - 역학 19번 단열 팽창의 내부에너지 감소를 교정
+  ---
+  duration_ms: 0.092407
+  type: 'test'
+  ...
+# Subtest: 전자기 5번은 금속 격자 이온 열진동으로 교정
+ok 27 - 전자기 5번은 금속 격자 이온 열진동으로 교정
+  ---
+  duration_ms: 0.061612
+  type: 'test'
+  ...
+# Subtest: 전자기 9번 승압 송전은 공식 해설과 일치하여 verified
+ok 28 - 전자기 9번 승압 송전은 공식 해설과 일치하여 verified
+  ---
+  duration_ms: 0.058877
+  type: 'test'
+  ...
+# Subtest: 전자기 15번은 진행파 입자속도와 a=-ω²y를 적용
+ok 29 - 전자기 15번은 진행파 입자속도와 a=-ω²y를 적용
+  ---
+  duration_ms: 0.115311
+  type: 'test'
+  ...
+# Subtest: 전자기 서술 21번은 렌즈2 중간상 방향 표현을 교정
+ok 30 - 전자기 서술 21번은 렌즈2 중간상 방향 표현을 교정
+  ---
+  duration_ms: 0.066899
+  type: 'test'
+  ...
+# Subtest: 총괄 문항 원문 crop은 실제 페이지 이미지 범위 안
+ok 31 - 총괄 문항 원문 crop은 실제 페이지 이미지 범위 안
+  ---
+  duration_ms: 6.294315
+  type: 'test'
+  ...
+# Subtest: 원문 시험지·해설지 PDF 4개가 프로젝트에 포함
+ok 32 - 원문 시험지·해설지 PDF 4개가 프로젝트에 포함
+  ---
+  duration_ms: 0.18888
+  type: 'test'
+  ...
+# Subtest: 물리 재계산: 역학 7번 예시 가속도 2.5, 장력 22.5
+ok 33 - 물리 재계산: 역학 7번 예시 가속도 2.5, 장력 22.5
+  ---
+  duration_ms: 0.076773
+  type: 'test'
+  ...
+# Subtest: 물리 재계산: 역학 23번 v=1, e=5/16, Q=154
+ok 34 - 물리 재계산: 역학 23번 v=1, e=5/16, Q=154
+  ---
+  duration_ms: 0.064095
+  type: 'test'
+  ...
+# Subtest: 물리 재계산: 전자기 21번 최종 위치 20/3 cm, 크기 4 cm
+ok 35 - 물리 재계산: 전자기 21번 최종 위치 20/3 cm, 크기 4 cm
+  ---
+  duration_ms: 0.068462
+  type: 'test'
+  ...
+# Subtest: 물리 재계산: 전자기 24번 R=3Ω, 10Ω 전류 0.6A
+ok 36 - 물리 재계산: 전자기 24번 R=3Ω, 10Ω 전류 0.6A
+  ---
+  duration_ms: 0.058898
+  type: 'test'
+  ...
+# Subtest: 학생 리포트는 원문 답 제출 전 정답·해설을 hidden 처리
+ok 37 - 학생 리포트는 원문 답 제출 전 정답·해설을 hidden 처리
+  ---
+  duration_ms: 0.190943
+  type: 'test'
+  ...
+# Subtest: 동형 문제는 원문 제출 전 locked, 동형 제출 후 정답·해설 공개
+ok 38 - 동형 문제는 원문 제출 전 locked, 동형 제출 후 정답·해설 공개
+  ---
+  duration_ms: 0.162351
+  type: 'test'
+  ...
+# Subtest: 확인 필요 문항은 정답 자동 공개를 차단
+ok 39 - 확인 필요 문항은 정답 자동 공개를 차단
+  ---
+  duration_ms: 0.177353
+  type: 'test'
+  ...
+# Subtest: 총괄 저장은 학교 입력을 요구하고 한 버튼으로 링크 복사
+ok 40 - 총괄 저장은 학교 입력을 요구하고 한 버튼으로 링크 복사
+  ---
+  duration_ms: 0.281518
+  type: 'test'
+  ...
+# Subtest: 데모 데이터는 동일 학생의 7개 복습+역학 총괄을 포함
+ok 41 - 데모 데이터는 동일 학생의 7개 복습+역학 총괄을 포함
+  ---
+  duration_ms: 0.231173
+  type: 'test'
+  ...
+# Subtest: 데모 API도 historyRecords를 반환
+ok 42 - 데모 API도 historyRecords를 반환
+  ---
+  duration_ms: 0.117103
+  type: 'test'
+  ...
+# Subtest: Apps Script에 총괄 메타·InputMode·OriginalRetry·StudentKey 열이 있음
+ok 43 - Apps Script에 총괄 메타·InputMode·OriginalRetry·StudentKey 열이 있음
+  ---
+  duration_ms: 0.208769
+  type: 'test'
+  ...
+# Subtest: Apps Script는 기존 헤더 이름으로 행을 재배치해 스키마를 안전 마이그레이션
+ok 44 - Apps Script는 기존 헤더 이름으로 행을 재배치해 스키마를 안전 마이그레이션
+  ---
+  duration_ms: 0.179096
+  type: 'test'
+  ...
+# Subtest: Apps Script 총괄 점수 파서는 binary와 points를 구분
+ok 45 - Apps Script 총괄 점수 파서는 binary와 points를 구분
+  ---
+  duration_ms: 0.161269
+  type: 'test'
+  ...
+# Subtest: Apps Script 학생 연결키는 과정·학교·이름 SHA-256
+ok 46 - Apps Script 학생 연결키는 과정·학교·이름 SHA-256
+  ---
+  duration_ms: 0.88998
+  type: 'test'
+  ...
+# Subtest: Apps Script 결과 링크는 토큰·지문·학생 식별 다이제스트를 모두 검증
+ok 47 - Apps Script 결과 링크는 토큰·지문·학생 식별 다이제스트를 모두 검증
+  ---
+  duration_ms: 0.20906
+  type: 'test'
+  ...
+# Subtest: Apps Script 재계산 열 번호는 새 Reports 17열 스키마와 일치
+ok 48 - Apps Script 재계산 열 번호는 새 Reports 17열 스키마와 일치
+  ---
+  duration_ms: 0.235159
+  type: 'test'
+  ...
+# Subtest: Word 모듈은 통합 분석·내부 media·실제 OOXML DOCX를 생성
+ok 49 - Word 모듈은 통합 분석·내부 media·실제 OOXML DOCX를 생성
+  ---
+  duration_ms: 0.213077
+  type: 'test'
+  ...
+# Subtest: Word 모듈 실제 생성 smoke: ZIP·통합 표·내장 로고
+ok 50 - Word 모듈 실제 생성 smoke: ZIP·통합 표·내장 로고
+  ---
+  duration_ms: 19.279073
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 111.604436

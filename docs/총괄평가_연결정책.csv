@@ -1,0 +1,6 @@
+﻿총괄평가 ExamId,과정,파트,연결 복습 범위,연결 ExamId,학생 식별,현재 상태
+physics1-basic-total-mechanics,물리1,역학 총괄평가,물리1 2~8회 복습 테스트,"physics1-basic-r02,physics1-basic-r03,physics1-basic-r04,physics1-basic-r05,physics1-basic-r06,physics1-basic-r07,physics1-basic-r08",과정+학교 정규화+학생 이름 정규화,ready
+physics1-basic-total-electromagnetism,물리1,전자기·파동 총괄평가,물리1 10~16회 복습 테스트,"physics1-basic-r10,physics1-basic-r11,physics1-basic-r12,physics1-basic-r13,physics1-basic-r14,physics1-basic-r15,physics1-basic-r16",과정+학교 정규화+학생 이름 정규화,ready
+physics2-basic-total-mechanics,물리2,역학 총괄평가,물리2 2~9회 복습 테스트,"physics2-basic-r02,physics2-basic-r03,physics2-basic-r04,physics2-basic-r05,physics2-basic-r06,physics2-basic-r07,physics2-basic-r08,physics2-basic-r09",과정+학교 정규화+학생 이름 정규화,coming-soon
+physics2-basic-total-electromagnetism,물리2,전자기·파동 총괄평가,물리2 11~15회 복습 테스트,"physics2-basic-r11,physics2-basic-r12,physics2-basic-r13,physics2-basic-r14,physics2-basic-r15",과정+학교 정규화+학생 이름 정규화,coming-soon
+physics1-advanced-total,물리1심화,심화 총괄평가,물리1심화 2~7회 복습 테스트,"physics1-advanced-r02,physics1-advanced-r03,physics1-advanced-r04,physics1-advanced-r05,physics1-advanced-r06,physics1-advanced-r07",과정+학교 정규화+학생 이름 정규화,coming-soon

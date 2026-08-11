@@ -1,0 +1,24 @@
+{
+  "examId": "physics1-basic-r10",
+  "courseId": "physics1-basic",
+  "round": 10,
+  "title": "물리1 10회차 복습 테스트",
+  "status": "coming-soon",
+  "examDate": "",
+  "questionCount": 0,
+  "maxScore": 0,
+  "pdf": "assets/documents/physics1/r10.pdf",
+  "pages": [],
+  "reviewStatus": "not-uploaded",
+  "configVersion": "YYYY.MM.DD-1",
+  "sourceTitle": "",
+  "sourceNote": "",
+  "coreNote": {
+    "summary": "",
+    "concepts": [],
+    "formulas": [],
+    "mistakes": [],
+    "checklist": []
+  },
+  "questions": []
+}

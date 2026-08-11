@@ -1,0 +1,36 @@
+{
+  "project_version": "2.1.0",
+  "index_title": "Young's Physics 복습·총괄 통합 성적 분석",
+  "index_content": 3279,
+  "save_visible": true,
+  "logo_natural": [
+    1000,
+    383
+  ],
+  "sample_score": "78 / 100",
+  "sample_percent": "78.0%",
+  "score_ring": "280.8deg",
+  "index_no_horizontal_overflow": true,
+  "report_title": "물리1 역학 총괄평가",
+  "report_score": "74",
+  "radar_visible": true,
+  "history_visible": true,
+  "report_logo_natural": [
+    1000,
+    383
+  ],
+  "solution_hidden_before": true,
+  "report_no_horizontal_overflow": true,
+  "solution_visible_after": true,
+  "similar_unlocked_after": true,
+  "q20_canvas_size": [
+    1000,
+    804
+  ],
+  "mobile_index_no_horizontal_overflow": true,
+  "mobile_save_visible": true,
+  "mobile_report_no_horizontal_overflow": true,
+  "mobile_word_visible": true,
+  "console_errors": [],
+  "failed_requests": []
+}

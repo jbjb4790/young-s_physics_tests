@@ -1,0 +1,51 @@
+﻿ExamId,문항,유형,입력모드,배점,단원,개념,정답,검수상태,교정메모,루브릭합
+physics1-basic-total-mechanics,1,objective,binary,4,운동의 기술,시간기록계와 평균 가속도,⑤,corrected,원문에서 A가 첫 점이면 운동 방향은 오른쪽이다. ①을 “오른쪽”으로 교정해야 객관식 정답이 하나(⑤)가 된다. 공식 해설의 0.2 m/s² 표기는 2 m/s²로 교정하였다.,4
+physics1-basic-total-mechanics,2,objective,binary,4,열역학,P-V 그래프와 상태함수,②,verified,,4
+physics1-basic-total-mechanics,3,objective,binary,4,운동의 기술,속도-시간 그래프 해석,③,verified,,4
+physics1-basic-total-mechanics,4,objective,binary,4,운동의 기술,속력-시간 그래프와 이동거리,⑤,verified,,4
+physics1-basic-total-mechanics,5,objective,binary,4,운동의 기술,등가속도 운동,①,verified,,4
+physics1-basic-total-mechanics,6,objective,binary,4,힘과 운동,접촉력과 알짜힘,③,verified,,4
+physics1-basic-total-mechanics,7,objective,binary,4,힘과 운동,마찰이 있는 연결 물체,②,corrected,동마찰력이 작용하며 m이 아래로 움직이는 상황을 보장하려면 m>μM 조건이 필요하다.,4
+physics1-basic-total-mechanics,8,objective,binary,4,힘과 운동,애트우드 장치와 용수철저울,③,corrected,"문제의 A, B는 물체 이름과 저울 눈금 기호로 중복 사용된다. 눈금의 단위는 kg이 아니라 N으로 명시하는 것이 정확하다.",4
+physics1-basic-total-mechanics,9,objective,binary,4,힘과 운동,힘의 평형과 성분,①,verified,,4
+physics1-basic-total-mechanics,10,objective,binary,4,운동량,분열과 운동량 보존,③,verified,,4
+physics1-basic-total-mechanics,11,objective,binary,4,진동과 에너지,용수철 직렬·병렬,④,verified,,4
+physics1-basic-total-mechanics,12,objective,binary,4,역학적 에너지,마찰이 한 일,④,verified,,4
+physics1-basic-total-mechanics,13,objective,binary,4,진동과 에너지,단진동 에너지,④,verified,,4
+physics1-basic-total-mechanics,14,objective,binary,4,일과 에너지,일률,⑤,verified,,4
+physics1-basic-total-mechanics,15,objective,binary,4,힘과 운동,연결 물체의 가속도,③,verified,,4
+physics1-basic-total-mechanics,16,objective,binary,4,일과 에너지,힘·마찰·수직항력의 일,②,verified,,4
+physics1-basic-total-mechanics,17,objective,binary,4,역학적 에너지,용수철 에너지 보존,③,verified,,4
+physics1-basic-total-mechanics,18,objective,binary,4,운동량,충격량과 충격력,②,verified,,4
+physics1-basic-total-mechanics,19,objective,binary,4,열역학,단열 팽창,②,corrected,공식 해설의 “내부 에너지는 온도가 증가하므로 증가”는 단열 팽창과 모순된다. 내부 에너지와 온도는 감소한다.,4
+physics1-basic-total-mechanics,20,objective,binary,4,역학적 에너지,롤러코스터 에너지 보존,②,verified,,4
+physics1-basic-total-mechanics,21,subjective,points,4,역학적 에너지,두 지점을 이용한 에너지 보존,h_C=7h/3,verified,,4
+physics1-basic-total-mechanics,22,subjective,points,4,힘과 운동,세 물체 연결계,"a=(m₃-m₁)g/(m₁+m₂+m₃), T₁=m₁(m₂+2m₃)g/(m₁+m₂+m₃)",verified,,4
+physics1-basic-total-mechanics,23,subjective,points,4,운동량,충돌·반발계수·에너지 손실,"v_B=1 m/s, e=5/16, Q=154 J",verified,,4
+physics1-basic-total-mechanics,24,subjective,points,4,힘과 운동,카트-추 연결과 가속도 변화,k=2mM/(M-m) (M>m),corrected,가속도를 정확히 두 배로 만들 수 있는 양의 추 질량을 위해 M>m 조건을 명시해야 한다.,4
+physics1-basic-total-mechanics,25,subjective,points,4,힘과 운동,사람-판자 계의 수직항력,"N₁=Mg-F, N=(M+m)g-2F",verified,,4
+physics1-basic-total-electromagnetism,1,objective,binary,4,전류와 전하,전하 이동과 전류 방향,③,verified,,4
+physics1-basic-total-electromagnetism,2,objective,binary,4,자기장,전류가 받는 자기력과 장의 합성,④,verified,,4
+physics1-basic-total-electromagnetism,3,objective,binary,4,빛,프리즘 분산,①,verified,,4
+physics1-basic-total-electromagnetism,4,objective,binary,4,전기장과 전위,점전하의 전위,⑤,corrected,보기 ㄴ의 “전위 세기”는 물리적으로 “전위”로 교정하였다.,4
+physics1-basic-total-electromagnetism,5,objective,binary,4,전기 회로,저항과 비저항,④,corrected,공식 해설의 “양성자의 진동”은 “금속 격자 이온의 열진동”으로 교정하였다.,4
+physics1-basic-total-electromagnetism,6,objective,binary,4,전기 회로,전구 정격과 소비전력,④,verified,,4
+physics1-basic-total-electromagnetism,7,objective,binary,4,전기 회로,합성저항,②,verified,,4
+physics1-basic-total-electromagnetism,8,objective,binary,4,정전기,유도 대전과 접지,②,verified,,4
+physics1-basic-total-electromagnetism,9,objective,binary,4,전력,승압 송전,③,verified,,4
+physics1-basic-total-electromagnetism,10,objective,binary,4,전기 회로,스위치와 전구 밝기,②,verified,,4
+physics1-basic-total-electromagnetism,11,objective,binary,4,전기장과 전위,전위 그래프와 전기장,④,verified,,4
+physics1-basic-total-electromagnetism,12,objective,binary,4,자기장,여러 직선도선의 자기장 합성,⑤,verified,,4
+physics1-basic-total-electromagnetism,13,objective,binary,4,전자기 유도,패러데이·렌츠 법칙,②,verified,,4
+physics1-basic-total-electromagnetism,14,objective,binary,4,자기장,자기장 상쇄 조건,①,verified,,4
+physics1-basic-total-electromagnetism,15,objective,binary,4,파동,진행파에서 매질의 운동,②,corrected,공식 해설의 “가속도가 가장 큰 점은 양 끝”은 정확하지 않다. 매질 가속도 크기는 변위의 절댓값이 최대인 마루·골에서 최대이다.,4
+physics1-basic-total-electromagnetism,16,objective,binary,4,파동,반대 위상 두 파원의 간섭,④,verified,,4
+physics1-basic-total-electromagnetism,17,objective,binary,4,파동,같은 위상 두 점원의 원형 경로 간섭,②,corrected,"원형 경로가 두 파원 S₁, S₂를 지난다는 그림 조건을 함께 사용해야 4개의 극대점이 확정된다.",4
+physics1-basic-total-electromagnetism,18,objective,binary,4,파동,양끝 고정 정상파,②,verified,,4
+physics1-basic-total-electromagnetism,19,objective,binary,4,파동,물결파 굴절,⑤,verified,,4
+physics1-basic-total-electromagnetism,20,objective,binary,4,빛,오목거울 상의 변화,③,verified,,4
+physics1-basic-total-electromagnetism,21,subjective,points,4,빛,두 볼록렌즈의 연속 결상,"렌즈 2 오른쪽 20/3 cm, 확대된 도립 실상, 크기 4 cm",corrected,"공식 해설에서 렌즈 2의 배율 m₂=+2/3을 계산하면서 중간상을 “도립”이라고 표현한 부분을 교정하였다. 렌즈 2가 만드는 상은 첫 번째 상에 대해서는 정립이며, 원래 물체에 대한 최종상은 확대된 도립 실상이다.",4
+physics1-basic-total-electromagnetism,22,subjective,points,4,빛,굴절에 의한 겉보기 거리와 평면거울,거울면 아래 512.5 cm,verified,,4
+physics1-basic-total-electromagnetism,23,subjective,points,4,파동,줄의 정상파와 소리 파장,"f=25 Hz, λ_sound=14 m",verified,,4
+physics1-basic-total-electromagnetism,24,subjective,points,4,전기 회로,평형 브리지와 병렬회로,"R=3 Ω, 10 Ω 저항 전류=0.6 A",verified,,4
+physics1-basic-total-electromagnetism,25,subjective,points,4,전기장과 전위,두 점전하의 전기장 벡터합,E_D/E_C=8,verified,,4
