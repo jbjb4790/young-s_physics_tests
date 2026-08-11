@@ -1,0 +1,399 @@
+{
+  "examId": "physics1-basic-r06",
+  "courseId": "physics1-basic",
+  "round": 6,
+  "title": "물리1 6회차 복습 테스트",
+  "status": "ready",
+  "examDate": "",
+  "questionCount": 6,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics1/r06.pdf",
+  "pages": [
+    "assets/pages/physics1/r06-p1.png"
+  ],
+  "reviewStatus": "corrected",
+  "configVersion": "2026.08.10-1",
+  "sourceTitle": "물리1 6회차 복습 테스트",
+  "sourceNote": "",
+  "coreNote": {
+    "summary": "운동량 보존, 충격량, 평균 충격력과 탄성 충돌",
+    "concepts": [
+      "충돌 전후 전체 운동량 보존",
+      "충격량은 운동량 변화량",
+      "힘-시간 그래프 넓이는 충격량",
+      "충돌 시간을 늘리면 같은 충격량에서 평균힘 감소"
+    ],
+    "formulas": [
+      "Σp_i=Σp_f",
+      "I=Δp=∫Fdt",
+      "F_avg=I/Δt",
+      "K=½mv²"
+    ],
+    "mistakes": [
+      "반대 방향 속도 부호 누락",
+      "속력만 비교해 충격량 0으로 계산",
+      "삼각형 F-t 넓이에서 1/2 누락"
+    ],
+    "checklist": [
+      "양의 방향을 표시했는가?",
+      "kg·m/s와 N·s가 같은 단위임을 확인했는가?",
+      "탄성 여부를 운동에너지로 검증했는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "운동량과 충격량",
+      "topic": "운동량 보존",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          180,
+          675,
+          430
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "오른쪽을 +로 두면 충돌 전 운동량은 2·5+3·2=16 kg·m/s. 충돌 후는 2·2+3v. 운동량 보존으로 16=4+3v이므로 v=4 m/s(오른쪽)이다.",
+      "explanation": [
+        "외력이 무시되는 짧은 충돌 동안 전체 운동량이 보존된다."
+      ],
+      "formulas": [
+        "m_Au_A+m_Bu_B=m_Av_A+m_Bv_B"
+      ],
+      "commonMistakes": [
+        "질량을 빼먹고 속도만 보존하는 것",
+        "충돌 후 A 속도 2 m/s를 충돌 전 값으로 잘못 읽는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "2 kg 물체가 6 m/s, 4 kg 물체가 1 m/s로 같은 방향 운동한다. 충돌 후 2 kg 물체가 2 m/s이면 4 kg 물체 속도는?",
+        "answer": "3 m/s",
+        "explanation": "초기 운동량 16, 최종 4+4v. v=3 m/s.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "3",
+          "3m/s",
+          "3 m/s"
+        ]
+      }
+    },
+    {
+      "no": 2,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "운동량과 충격량",
+      "topic": "반대 방향 충돌",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          590,
+          675,
+          390
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "오른쪽을 +로 두면 초기 운동량은 2·10+4·(-6)=-4. 충돌 후 A가 왼쪽 4 m/s이므로 -8+4v=-4, 따라서 v=1 m/s(오른쪽)이다.",
+      "explanation": [
+        "방향이 반대인 속도는 부호가 반대다."
+      ],
+      "formulas": [
+        "Σp_before=Σp_after"
+      ],
+      "commonMistakes": [
+        "6 m/s를 양수로 두는 것",
+        "충돌 후 A의 왼쪽 속도에 음수 부호를 빼먹는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "3 kg A가 오른쪽 8 m/s, 5 kg B가 왼쪽 2 m/s로 충돌한다. 이후 A가 왼쪽 2 m/s이면 B의 속도는?",
+        "answer": "4 m/s 오른쪽",
+        "explanation": "초기 p=24-10=14, 최종=-6+5v. v=4 m/s.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "4",
+          "4m/s 오른쪽",
+          "오른쪽 4"
+        ]
+      }
+    },
+    {
+      "no": 3,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "운동량과 충격량",
+      "topic": "충격량·평균힘·탄성충돌",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          950,
+          675,
+          940
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "오른쪽을 +로 잡으면 Δp=2(-3)-2(3)=-12 kg·m/s=-12 N·s, 즉 공이 받은 충격량은 왼쪽 12 N·s. 평균힘 크기는 |I|/Δt=12/0.2=60 N. 충돌 전후 공의 속력과 운동에너지가 같아 이상적인 벽과의 완전 탄성 충돌로 본다.",
+      "explanation": [
+        "충격량은 운동량의 변화량이며 벡터다.",
+        "공이 벽에 가한 힘은 벽이 공에 가한 힘과 크기가 같다."
+      ],
+      "formulas": [
+        "I=Δp=m(v_f-v_i)",
+        "F_avg=I/Δt",
+        "K=½mv²"
+      ],
+      "commonMistakes": [
+        "3-3=0으로 계산하는 것",
+        "공이 받은 충격량과 공이 벽에 준 충격량의 방향을 같게 쓰는 것",
+        "튕겨 나왔다는 이유만으로 무조건 완전 탄성이라 하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "충격량 -12 N·s",
+          "points": 5
+        },
+        {
+          "criterion": "평균힘 60 N",
+          "points": 5
+        },
+        {
+          "criterion": "완전 탄성 충돌 선택",
+          "points": 4
+        },
+        {
+          "criterion": "운동에너지 보존 근거",
+          "points": 6
+        }
+      ],
+      "similarProblem": {
+        "prompt": "0.5 kg 공이 오른쪽 12 m/s로 벽에 부딪혀 0.1 s 뒤 왼쪽 8 m/s로 튕겼다. 공이 받은 충격량과 평균힘 크기, 운동에너지 손실을 구하시오.",
+        "answer": "충격량 -10 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J",
+        "explanation": "Δp=0.5(-8-12)=-10. 평균힘 10/0.1=100. K_i=36 J, K_f=16 J라 손실 20 J.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "-10,100,20",
+          "왼쪽10Ns,100N,20J"
+        ]
+      }
+    },
+    {
+      "no": 4,
+      "maxPoints": 10,
+      "type": "objective",
+      "unit": "운동량과 충격량",
+      "topic": "뉴턴의 요람",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          180,
+          670,
+          440
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "이상적인 동일 질량·탄성 충돌에서는 들어 올린 구의 개수와 같은 4개가 반대편에서 튀어나온다.",
+      "explanation": [
+        "운동량과 운동에너지를 동시에 보존해야 한다."
+      ],
+      "formulas": [
+        "동일 질량 이상적 탄성충돌: 입력 구 수=출력 구 수"
+      ],
+      "commonMistakes": [
+        "1개만 매우 빠르게 나간다고 보는 것",
+        "7개 전부 움직인다고 보는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "동일한 금속구 9개인 뉴턴의 요람에서 3개를 들어 놓았다가 놓으면 반대편에서 주로 몇 개가 튀어나오는가?",
+        "answer": "3개",
+        "explanation": "이상적인 경우 운동량과 에너지 보존을 동시에 만족하는 동일 개수 3개가 나온다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "3개",
+          "3"
+        ],
+        "choices": [
+          "1개",
+          "2개",
+          "3개",
+          "6개"
+        ]
+      }
+    },
+    {
+      "no": 5,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "운동량과 충격량",
+      "topic": "힘-시간 그래프와 충격량",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          590,
+          670,
+          450
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "삼각형 넓이로 충격량 I=½·4·8=16 N·s. 질량 2 kg이므로 Δv=I/m=8 m/s. 처음속도 2 m/s가 힘 방향이라면 최종속도는 10 m/s이다.",
+      "explanation": [
+        "F-t 그래프 아래 넓이가 충격량이다."
+      ],
+      "formulas": [
+        "I=∫Fdt",
+        "I=m(v_f-v_i)"
+      ],
+      "commonMistakes": [
+        "최대힘 8 N을 4초 내내 곱해 32 N·s로 하는 것",
+        "처음속도 조건을 무시하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "충격량 16 N·s",
+          "points": 10
+        },
+        {
+          "criterion": "최종속도 10 m/s",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "prompt": "3 kg 물체에 0~6 s 동안 밑변 6 s, 높이 12 N인 삼각형 모양 힘이 작용한다. 처음속도 1 m/s가 힘 방향일 때 최종속도는?",
+        "answer": "13 m/s",
+        "explanation": "충격량 36 N·s, Δv=12 m/s, 최종 13 m/s.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "13",
+          "13m/s",
+          "13 m/s"
+        ]
+      }
+    },
+    {
+      "no": 6,
+      "maxPoints": 30,
+      "type": "subjective",
+      "unit": "운동량과 충격량",
+      "topic": "충돌 시간과 충격력",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          1010,
+          670,
+          900
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "원문 3번은 '콘크리트 바닥으로부터 받은 평균 충격력의 크기를 각각'이라고 되어 있어 표현이 모순된다. A와 B 각각의 평균 충격력을 묻는 것으로 교정한다. g=10 m/s²와 충돌 중 중력 충격량 무시도 보완한다.",
+      "answer": "낙하 속력은 √(2gh)=10 m/s이고 계란 운동량 크기는 0.1·10=1 kg·m/s이다. A는 짧고 큰 힘이므로 콘크리트, B는 길고 작은 힘이므로 쿠션이다. 두 경우 모두 정지한다면 충격량 크기는 약 1 N·s로 같다. 평균힘은 A:1/0.01=100 N, B:1/0.02=50 N이다(충돌 중 중력 충격량은 무시).",
+      "explanation": [
+        "충격량이 같아도 충돌 시간을 늘리면 평균힘이 작아진다.",
+        "힘-시간 그래프의 넓이는 운동량 변화량이다."
+      ],
+      "formulas": [
+        "v=√(2gh)",
+        "I=Δp",
+        "F_avg=I/Δt"
+      ],
+      "commonMistakes": [
+        "A와 B의 그래프 높이만 보고 충격량도 다르다고 하는 것",
+        "쿠션에서 충돌 시간이 길어져 힘이 커진다고 하는 것",
+        "중력가속도 조건이 없는 것을 놓치는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "A=콘크리트, B=쿠션",
+          "points": 10
+        },
+        {
+          "criterion": "두 충격량 각각 1 N·s",
+          "points": 10
+        },
+        {
+          "criterion": "평균힘 A 100 N, B 50 N",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "prompt": "0.2 kg 공이 5 m/s로 바닥에 닿아 정지한다. 딱딱한 바닥에서는 0.02 s, 매트에서는 0.10 s 걸렸다. 평균 충격력 크기를 각각 구하시오.",
+        "answer": "딱딱한 바닥 50 N, 매트 10 N",
+        "explanation": "충격량 크기 0.2·5=1 N·s. 시간으로 나누면 50 N과 10 N.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "50,10",
+          "50N,10N"
+        ]
+      }
+    }
+  ]
+}

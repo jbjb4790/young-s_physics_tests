@@ -1,0 +1,572 @@
+{
+  "examId": "physics1-basic-r04",
+  "courseId": "physics1-basic",
+  "round": 4,
+  "title": "물리1 4회차 복습 테스트",
+  "status": "ready",
+  "examDate": "",
+  "questionCount": 9,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics1/r04.pdf",
+  "pages": [
+    "assets/pages/physics1/r04-p1.png"
+  ],
+  "reviewStatus": "corrected",
+  "configVersion": "2026.08.10-1",
+  "sourceTitle": "물리1 4회차 복습 테스트",
+  "sourceNote": "",
+  "coreNote": {
+    "summary": "뉴턴 운동 법칙, 힘의 합성, 작용·반작용, 평형과 경사면",
+    "concepts": [
+      "등속운동이면 알짜힘 0",
+      "작용·반작용은 서로 다른 물체",
+      "평형 힘은 같은 물체에 작용",
+      "경사면에서는 중력을 평행·수직 성분으로 분해"
+    ],
+    "formulas": [
+      "ΣF=ma",
+      "F_net=√(F_x²+F_y²)",
+      "mg∥=mgsinθ",
+      "mg⊥=mgcosθ"
+    ],
+    "mistakes": [
+      "작용·반작용과 평형을 같은 개념으로 봄",
+      "각도의 기준선 확인 없이 sin·cos 선택",
+      "마찰 조건이 없는 문제를 그대로 수치화"
+    ],
+    "checklist": [
+      "자유물체도를 그렸는가?",
+      "각 힘이 어느 물체에 작용하는지 썼는가?",
+      "수평·연직 또는 경사면 축으로 나눴는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "힘과 운동",
+      "topic": "자유낙하",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          185,
+          675,
+          215
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "원문에 중력가속도와 공기 저항 무시 조건이 빠져 있다. 수업 표준 조건 g=10 m/s², 공기 저항 무시를 보완해 적용한다.",
+      "answer": "공기 저항을 무시하고 g=10 m/s²로 두면 320=½·10·t²이므로 t²=64, t=8 s이다.",
+      "explanation": [
+        "자유낙하에서 처음속도가 0이면 h=½gt²이다."
+      ],
+      "formulas": [
+        "h=½gt²",
+        "t=√(2h/g)"
+      ],
+      "commonMistakes": [
+        "320/10=32 s로 계산하는 것",
+        "문제에 없는 수평 운동을 고려하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "높이 180 m에서 물체를 가만히 떨어뜨렸다. g=10 m/s², 공기 저항 무시. 바닥까지 걸리는 시간을 구하시오.",
+        "answer": "6 s",
+        "explanation": "180=5t²이므로 t²=36, t=6 s이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "6",
+          "6s",
+          "6 s"
+        ]
+      }
+    },
+    {
+      "no": 2,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "힘과 운동",
+      "topic": "힘의 평형",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          385,
+          675,
+          230
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "비행기가 등속운동하므로 수평방향 알짜힘은 0이다. 따라서 추진력 5000 N과 반대 방향의 공기 저항력은 5000 N이다.",
+      "explanation": [
+        "등속 직선운동이면 가속도가 0이고 알짜힘도 0이다.",
+        "무게 10000 N은 수직방향 양력과 평형을 이룬다."
+      ],
+      "formulas": [
+        "ΣF=ma=0"
+      ],
+      "commonMistakes": [
+        "무게와 추진력을 합성하는 것",
+        "등속운동인데 알짜힘이 추진력과 같다고 보는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "자동차가 수평 도로에서 20 m/s로 등속 주행하며 엔진이 1800 N의 추진력을 낸다. 저항력의 크기를 구하시오.",
+        "answer": "1800 N",
+        "explanation": "등속운동이므로 수평 알짜힘이 0이라 추진력과 저항력이 같다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "1800",
+          "1800N",
+          "1800 N"
+        ]
+      }
+    },
+    {
+      "no": 3,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "힘과 운동",
+      "topic": "벡터 합력과 가속도",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          600,
+          675,
+          285
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "두 힘이 서로 수직이므로 합력은 √(6²+8²)=10 N이다. 질량이 2 kg이므로 a=F_net/m=10/2=5 m/s²이다.",
+      "explanation": [
+        "수직인 두 힘은 피타고라스 정리로 합성한다."
+      ],
+      "formulas": [
+        "F_net=√(F₁²+F₂²)",
+        "a=F_net/m"
+      ],
+      "commonMistakes": [
+        "힘 6+8=14 N로 단순 합산하는 것",
+        "질량을 곱하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "질량 5 kg 물체에 서로 수직인 9 N과 12 N의 힘이 작용한다. 가속도 크기를 구하시오.",
+        "answer": "3 m/s²",
+        "explanation": "합력은 15 N이고 a=15/5=3 m/s²이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "3",
+          "3m/s2",
+          "3 m/s²"
+        ]
+      }
+    },
+    {
+      "no": 4,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "힘과 운동",
+      "topic": "작용·반작용과 운동량",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          865,
+          675,
+          360
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "두 사람이 서로 미는 동안 받은 충격량의 크기가 같으므로 운동량 크기도 같다. t=2 s에서 철수 8 m/s, 영희 12 m/s이므로 m_철수·8=50·12. 따라서 m_철수=75 kg이다.",
+      "explanation": [
+        "서로 미는 힘은 작용·반작용으로 크기가 같고 작용 시간도 같아 충격량 크기가 같다."
+      ],
+      "formulas": [
+        "m₁v₁=m₂v₂ (처음 전체 운동량 0)"
+      ],
+      "commonMistakes": [
+        "속력이 큰 사람이 질량도 크다고 판단하는 것",
+        "그래프의 두 속력을 바꾸어 읽는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "정지한 두 스케이트 선수가 서로 밀었다. 60 kg인 A가 3 m/s, B가 2 m/s로 반대 방향으로 움직였다. B의 질량을 구하시오.",
+        "answer": "90 kg",
+        "explanation": "처음 운동량이 0이므로 60·3=m_B·2, m_B=90 kg이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "90",
+          "90kg",
+          "90 kg"
+        ]
+      }
+    },
+    {
+      "no": 5,
+      "maxPoints": 15,
+      "type": "subjective",
+      "unit": "힘과 운동",
+      "topic": "작용·반작용과 힘의 평형",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          1210,
+          675,
+          700
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "작용·반작용 관계는 가-다(책상이 물체를 미는 힘 ↔ 물체가 책상을 누르는 힘), 나-라(지구가 물체를 당기는 힘 ↔ 물체가 지구를 당기는 힘)이다. 물체에 작용하면서 서로 평형을 이루는 힘은 가-나이다.",
+      "explanation": [
+        "작용·반작용은 서로 다른 물체에 작용한다.",
+        "힘의 평형은 같은 물체에 작용하는 힘들의 합이 0인 상태이다."
+      ],
+      "formulas": [
+        "작용·반작용: F_AB=-F_BA",
+        "평형: ΣF=0"
+      ],
+      "commonMistakes": [
+        "가와 나를 작용·반작용이라고 쓰는 것",
+        "다와 라처럼 서로 관련 없는 힘을 묶는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "가-다 작용·반작용",
+          "points": 5
+        },
+        {
+          "criterion": "나-라 작용·반작용",
+          "points": 5
+        },
+        {
+          "criterion": "가-나 힘의 평형",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "천장에 매달린 전등에 대해 ① 줄이 전등을 위로 당기는 힘 ② 지구가 전등을 아래로 당기는 힘 ③ 전등이 줄을 아래로 당기는 힘 ④ 전등이 지구를 위로 당기는 힘이 있다. 작용·반작용 쌍과 평형 쌍을 쓰시오.",
+        "answer": "작용·반작용: ①-③, ②-④. 평형: ①-②.",
+        "explanation": "서로 다른 물체에 작용하는 쌍은 작용·반작용이고, 전등 하나에 작용해 합이 0인 ①과 ②가 평형이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "1-3,2-4,1-2",
+          "①③ ②④ 평형①②"
+        ]
+      }
+    },
+    {
+      "no": 6,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "힘과 운동",
+      "topic": "평형과 장력",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          185,
+          670,
+          420
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "실이 연직과 60°이므로 장력의 연직성분은 Tcos60°. 평형에서 Tcos60°=12 N이므로 T=24 N이다.",
+      "explanation": [
+        "수평 힘 F는 장력의 수평성분과 평형을 이룬다.",
+        "무게는 장력의 연직성분과 평형을 이룬다."
+      ],
+      "formulas": [
+        "Tcos60°=W"
+      ],
+      "commonMistakes": [
+        "60°를 수평선과의 각으로 해석해 sin, cos를 바꾸는 것",
+        "T=12 N로 쓰는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "무게 20 N인 물체가 실에 매달려 있고, 수평 힘 때문에 실이 연직과 60°를 이룬 채 정지했다. 장력을 구하시오.",
+        "answer": "40 N",
+        "explanation": "Tcos60°=20이므로 T=40 N이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "40",
+          "40N",
+          "40 N"
+        ]
+      }
+    },
+    {
+      "no": 7,
+      "maxPoints": 15,
+      "type": "subjective",
+      "unit": "힘과 운동",
+      "topic": "두 줄의 장력 평형",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          590,
+          670,
+          405
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "왼쪽 장력을 T_A, 오른쪽 장력을 T_B라 하면 수평평형에서 T_Acos60°=T_Bcos30°, 따라서 T_A=√3T_B. 연직평형에서 T_Asin60°+T_Bsin30°=40. 대입하면 2T_B=40이므로 T_B=20 N, T_A=20√3 N이다.",
+      "explanation": [
+        "각도는 수평 천장과 이루는 각이다.",
+        "수평성분은 상쇄되고 연직성분 합이 무게와 같다."
+      ],
+      "formulas": [
+        "T_Acos60=T_Bcos30",
+        "T_Asin60+T_Bsin30=40"
+      ],
+      "commonMistakes": [
+        "두 줄의 장력이 같다고 두는 것",
+        "각도에 대한 sin과 cos 성분을 바꾸는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "수평 평형식",
+          "points": 4
+        },
+        {
+          "criterion": "연직 평형식",
+          "points": 4
+        },
+        {
+          "criterion": "A줄 20√3 N",
+          "points": 4
+        },
+        {
+          "criterion": "B줄 20 N",
+          "points": 3
+        }
+      ],
+      "similarProblem": {
+        "prompt": "무게 60 N인 물체를 두 줄이 수평선과 각각 30°, 60°를 이루며 지지한다. 30° 줄의 장력과 60° 줄의 장력을 구하시오.",
+        "answer": "30° 줄: 30 N, 60° 줄: 30√3 N",
+        "explanation": "수평평형과 연직평형을 연립한다. 60° 줄의 장력이 √3배 크고, 연직성분 합이 60 N이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "30,30sqrt3",
+          "30N,30√3N"
+        ]
+      }
+    },
+    {
+      "no": 8,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "힘과 운동",
+      "topic": "경사면의 힘 분해",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          980,
+          670,
+          500
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "원문에는 마찰 유무가 명시되지 않았다. 그림과 예상 답이 하나로 정해지도록 '경사면은 매끄럽다(마찰 없음)'를 보완해 적용한다.",
+      "answer": "마찰이 없는 경사면에서 정지하므로 경사면 방향으로 T=mg sinθ, 경사면에 수직한 방향으로 N=mg cosθ이다.",
+      "explanation": [
+        "중력을 경사면 평행·수직 성분으로 분해한다."
+      ],
+      "formulas": [
+        "mg∥=mg sinθ",
+        "mg⊥=mg cosθ"
+      ],
+      "commonMistakes": [
+        "T와 N을 서로 바꾸는 것",
+        "마찰력 가능성을 고려하지 않고도 조건이 충분하다고 보는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "장력 mg sinθ",
+          "points": 5
+        },
+        {
+          "criterion": "수직항력 mg cosθ",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "마찰 없는 30° 경사면에 질량 4 kg 물체를 경사면과 나란한 줄로 묶어 정지시켰다. g=10 m/s². 장력과 수직항력을 구하시오.",
+        "answer": "T=20 N, N=20√3 N",
+        "explanation": "T=mg sin30=20 N, N=mg cos30=20√3 N이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "20,20sqrt3",
+          "20N,20√3N"
+        ]
+      }
+    },
+    {
+      "no": 9,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "힘과 운동",
+      "topic": "접촉력",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          1470,
+          670,
+          450
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "원문에 마찰 조건이 없다. 수치가 하나로 정해지도록 수평면은 매끄럽다고 보완한다.",
+      "answer": "수평면이 매끄럽다고 보면 전체 질량은 3 kg, 가속도는 6/3=2 m/s²이다. 1 kg 물체를 가속시키는 수평힘은 접촉력뿐이므로 접촉력은 1·2=2 N이다.",
+      "explanation": [
+        "전체를 한 덩어리로 보아 가속도를 먼저 구한다.",
+        "접촉력은 한 물체만 떼어 자유물체도로 구한다."
+      ],
+      "formulas": [
+        "a=F/(m₁+m₂)",
+        "F_contact=m₂a"
+      ],
+      "commonMistakes": [
+        "접촉력을 6 N이라고 하는 것",
+        "2 kg 물체의 질량을 곱해 4 N이라고 하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "매끄러운 수평면에서 3 kg과 2 kg 상자가 붙어 있다. 3 kg 상자를 15 N으로 민다. 두 상자 사이 접촉력을 구하시오.",
+        "answer": "6 N",
+        "explanation": "전체 가속도는 15/5=3 m/s²이고, 2 kg 상자에 필요한 힘은 2·3=6 N이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "6",
+          "6N",
+          "6 N"
+        ]
+      }
+    }
+  ]
+}

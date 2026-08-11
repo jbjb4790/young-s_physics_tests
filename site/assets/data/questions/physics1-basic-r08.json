@@ -1,0 +1,379 @@
+{
+  "examId": "physics1-basic-r08",
+  "courseId": "physics1-basic",
+  "round": 8,
+  "title": "물리1 8회차 복습 테스트",
+  "status": "ready",
+  "examDate": "",
+  "questionCount": 6,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics1/r08.pdf",
+  "pages": [
+    "assets/pages/physics1/r08-p1.png"
+  ],
+  "reviewStatus": "verified",
+  "configVersion": "2026.08.10-1",
+  "sourceTitle": "물리1 8회차 복습 테스트",
+  "sourceNote": "",
+  "coreNote": {
+    "summary": "일-에너지 정리와 역학적 에너지 보존, 용수철 에너지와 마찰열",
+    "concepts": [
+      "누적 일은 운동에너지 변화",
+      "진자의 높이차가 속력을 결정",
+      "용수철 F-x 그래프 기울기는 k, 넓이는 탄성에너지",
+      "최대 압축에서는 낙하 h+x 전체를 고려"
+    ],
+    "formulas": [
+      "W=ΔK",
+      "U_s=½kx²",
+      "mgh+½mv²+½kx²=일정",
+      "Q_loss=E_i-E_f"
+    ],
+    "mistakes": [
+      "F-x 넓이에서 1/2 누락",
+      "압축 중 중력의 추가 일을 빼먹음",
+      "J와 cal 변환 방향 오류",
+      "에너지비를 속력비로 착각"
+    ],
+    "checklist": [
+      "기준 위치를 명확히 정했는가?",
+      "처음과 끝의 속도가 0인지 확인했는가?",
+      "마찰열을 구한 뒤 단위를 변환했는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 25,
+      "type": "subjective",
+      "unit": "일과 에너지",
+      "topic": "힘-거리 그래프",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          180,
+          675,
+          600
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "① 0~5 m에서 일 10·5=50 J, 5~10 m에서 20·5=100 J이므로 총 150 J. ② 5 m에서 K=50 J=½·1·v² → v=10 m/s. ③ 10 m에서 K=150 J → v=10√3 m/s이므로 5 m 때의 √3배이다.",
+      "explanation": [
+        "F-s 그래프 아래 넓이가 힘이 한 일이다.",
+        "처음 정지했고 마찰이 없으므로 누적 일이 곧 운동에너지다."
+      ],
+      "formulas": [
+        "W=∫Fds",
+        "W=½mv²"
+      ],
+      "commonMistakes": [
+        "10 m 지점에서 마지막 5 m의 일 100 J만 쓰는 것",
+        "속력비를 에너지비 3으로 쓰는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "총 일 150 J",
+          "points": 5
+        },
+        {
+          "criterion": "5 m 속력 10 m/s",
+          "points": 10
+        },
+        {
+          "criterion": "10 m 속력비 √3배",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "prompt": "정지한 2 kg 물체에 0~4 m에서는 8 N, 4~10 m에서는 12 N 힘이 작용한다. 10 m까지 한 일, 4 m와 10 m에서 속력, 속력비를 구하시오.",
+        "answer": "104 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2",
+        "explanation": "W₄=32 J, W₁₀=32+72=104 J. v=√(2W/m)=√W이므로 v₄=√32=4√2, v₁₀=√104=2√26.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "104,4sqrt2,2sqrt26,sqrt13/2"
+        ]
+      }
+    },
+    {
+      "no": 2,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "일과 에너지",
+      "topic": "진자와 역학적 에너지",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          760,
+          675,
+          370
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "A에서 B까지 높이 1 m만큼 내려온다. mgh=½mv²에서 v=√(2gh)=√20=2√5 m/s이다.",
+      "explanation": [
+        "질량은 약분되어 속력에 영향을 주지 않는다."
+      ],
+      "formulas": [
+        "mgh=½mv²"
+      ],
+      "commonMistakes": [
+        "실 길이 1 m를 이동거리로만 보고 높이차를 2 m로 쓰는 것",
+        "질량 2 kg을 약분하지 못하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "길이 0.8 m 진자를 수평 위치에서 놓았다. 최하점 속력을 g=10으로 구하시오.",
+        "answer": "4 m/s",
+        "explanation": "높이차 0.8 m이므로 v=√(2·10·0.8)=4 m/s.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "4",
+          "4m/s",
+          "4 m/s"
+        ]
+      }
+    },
+    {
+      "no": 3,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "일과 에너지",
+      "topic": "용수철 상수와 탄성에너지",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          1110,
+          675,
+          780
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "그래프에서 x=0.4 m일 때 F=10 N이므로 k=F/x=25 N/m. 탄성 위치에너지는 F-x 그래프 아래 삼각형 넓이 또는 ½kx²이므로 2 J이다.",
+      "explanation": [
+        "후크 법칙 구간에서 F=kx이다.",
+        "탄성에너지는 힘-변형량 그래프 아래 넓이다."
+      ],
+      "formulas": [
+        "F=kx",
+        "U_s=½kx²"
+      ],
+      "commonMistakes": [
+        "k=10/4=2.5로 cm처럼 계산하는 것",
+        "U=Fx=4 J로 계산해 1/2를 빼먹는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "용수철 상수 25 N/m",
+          "points": 10
+        },
+        {
+          "criterion": "탄성에너지 2 J",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "prompt": "용수철 F-x 그래프가 원점과 (0.30 m, 18 N)을 잇는 직선이다. k와 0.20 m 늘어났을 때 탄성에너지를 구하시오.",
+        "answer": "k=60 N/m, U=1.2 J",
+        "explanation": "k=18/0.3=60. U=½·60·0.2²=1.2 J.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "60,1.2",
+          "60N/m,1.2J"
+        ]
+      }
+    },
+    {
+      "no": 4,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "일과 에너지",
+      "topic": "용수철 에너지 보존",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          180,
+          670,
+          680
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "A에서 x=1 m이므로 U=½·20·1²=10 J. O에서 U=0이라 ½·1·v²=10 → v=2√5 m/s. O에서 0.5 m 압축되면 U=½·20·0.5²=2.5 J, K=10-2.5=7.5 J이므로 v=√15 m/s이다.",
+      "explanation": [
+        "마찰이 없으면 총 역학적 에너지 10 J가 보존된다.",
+        "평형점 양쪽에서 같은 압축/신장량이면 같은 탄성에너지다."
+      ],
+      "formulas": [
+        "E=½kx²+½mv²"
+      ],
+      "commonMistakes": [
+        "평형점에서 속력이 0이라고 하는 것",
+        "0.5 m 위치에서 남은 에너지를 5 J로 계산하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "A점 탄성에너지 10 J",
+          "points": 5
+        },
+        {
+          "criterion": "O점 속력 2√5 m/s",
+          "points": 5
+        },
+        {
+          "criterion": "0.5 m 압축 시 속력 √15 m/s",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "prompt": "k=50 N/m, m=2 kg인 수평 용수철을 평형점에서 0.4 m 당겨 놓는다. 평형점 속력과 0.2 m 압축 시 속력을 구하시오.",
+        "answer": "2 m/s, √3 m/s",
+        "explanation": "총 E=½·50·0.16=4 J. O에서 ½·2v²=4 →2. 0.2 m에서 U=1 J, K=3 J → v=√3.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "2,sqrt3",
+          "2m/s,√3m/s"
+        ]
+      }
+    },
+    {
+      "no": 5,
+      "maxPoints": 15,
+      "type": "subjective",
+      "unit": "일과 에너지",
+      "topic": "마찰과 열",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          850,
+          670,
+          570
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "빗면 길이 2 m, 각 30°이므로 높이차 h=1 m. 위치에너지 감소는 10 J, B에서 운동에너지는 ½·1·4²=8 J이므로 마찰로 생긴 열은 2 J=0.5 cal. 마찰력은 2 J/2 m=1 N. N=mgcos30=5√3 N이므로 μ=1/(5√3)=√3/15≈0.115이다.",
+      "explanation": [
+        "소실된 역학적 에너지가 열로 전환된다.",
+        "마찰계수 계산은 J 단위의 일과 힘을 사용한다."
+      ],
+      "formulas": [
+        "Q=mgh-½mv²",
+        "W_f=fd",
+        "μ=f/(mgcosθ)"
+      ],
+      "commonMistakes": [
+        "2 J를 8 cal로 바꾸는 것(4 J=1 cal)",
+        "마찰력이 2 N이라고 하는 것",
+        "N=mg로 두는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "발생 열 2 J=0.5 cal",
+          "points": 10
+        },
+        {
+          "criterion": "마찰계수 √3/15≈0.115",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "질량 2 kg 물체가 37° 빗면을 5 m 내려가 속력 6 m/s가 되었다. 처음 정지, sin37=0.6, cos37=0.8, g=10, 4 J/cal. 발생 열량과 마찰계수를 구하시오.",
+        "answer": "열 6 cal, μ=0.3",
+        "explanation": "높이차 3 m라 위치에너지 감소 60 J, 운동에너지 36 J. 열은 24 J=6 cal. 마찰력은 24/5=4.8 N, N=2·10·0.8=16 N이므로 μ=0.3.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "6,0.3",
+          "6cal,0.3"
+        ]
+      }
+    },
+    {
+      "no": 6,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "일과 에너지",
+      "topic": "낙하와 용수철 최대 압축",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          1410,
+          670,
+          490
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "처음과 최대 압축 순간 모두 속력 0이다. 물체는 낙하 높이 h뿐 아니라 용수철이 x만큼 압축되는 동안에도 중력이 일을 하므로 mg(h+x)=½kx². 0.8·10(0.25+x)=4.5x². 정리하면 9x²-16x-4=0, 양의 해 x=2 m이다.",
+      "explanation": [
+        "중력 위치에너지 기준을 최대 압축 위치에 두면 낙하 높이는 h+x이다."
+      ],
+      "formulas": [
+        "mg(h+x)=½kx²"
+      ],
+      "commonMistakes": [
+        "mgh=½kx²로 압축 중 추가 낙하 x를 빼먹는 것",
+        "평형 압축량 mg/k를 최대 압축량으로 쓰는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "0.5 kg 물체를 k=20 N/m 용수철 위 0.30 m 높이에서 떨어뜨린다. g=10. 최대 압축량을 구하시오.",
+        "answer": "약 0.711 m",
+        "explanation": "5(0.3+x)=10x² → 10x²-5x-1.5=0, 양의 해 x=(5+√85)/20≈0.711 m.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "0.711",
+          "(5+sqrt85)/20"
+        ]
+      }
+    }
+  ]
+}

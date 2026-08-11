@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#075fdb">
+<title>Young's Physics 복습·총괄 통합 성적 리포트</title>
+<link rel="icon" href="assets/images/favicon.png">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="report-page">
+<div id="demoBanner" class="demo-banner hidden">데모 리포트입니다. 실제 운영에서는 Google Sheets에서 총괄평가와 동일 학생의 기존 복습 테스트를 함께 불러옵니다.</div>
+<header class="topbar report-topbar"><div class="topbar-inner">
+ <a class="brand" href="index.html" aria-label="Young's Physics 교사용 화면"><img src="assets/images/logo.png" alt="Young's Physics 로고"></a>
+ <nav class="main-nav report-nav" aria-label="리포트 메뉴"><a href="#reportRoot" class="active">성적 분석</a><a href="#unitAnalysis">단원 분석</a><a href="#questionAnalysis">문항 분석</a><a href="#retryLearning">오답 학습</a></nav>
+ <div class="top-actions"><a class="btn btn-light" href="index.html">교사용 화면</a></div>
+</div></header>
+<main id="reportRoot" class="report-shell"><div class="card error-box"><h2>성적표를 불러오는 중입니다.</h2><p class="muted">학생 토큰과 지문을 확인하고 있습니다.</p></div></main>
+<footer class="site-footer report-footer"><div><img src="assets/images/logo-mark.png" alt=""><b>Young's Physics</b><span>검증된 데이터와 맞춤 학습으로 성장을 설계합니다.</span></div><small>서버 토큰·학생 지문을 함께 검증한 학부모용 통합 리포트</small></footer>
+<div id="toast" class="toast hidden"></div>
+<script src="assets/config.js"></script>
+<script src="assets/data/catalog.js"></script>
+<script src="assets/data/demo-data.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/api.js"></script>
+<script src="assets/vendor/docx-export.bundle.js"></script>
+<script src="assets/report.js"></script>
+</body></html>

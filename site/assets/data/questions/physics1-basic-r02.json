@@ -1,0 +1,511 @@
+{
+  "examId": "physics1-basic-r02",
+  "courseId": "physics1-basic",
+  "round": 2,
+  "title": "물리1 2회차 복습 테스트",
+  "status": "ready",
+  "examDate": "",
+  "questionCount": 8,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics1/r02.pdf",
+  "pages": [
+    "assets/pages/physics1/r02-p1.png"
+  ],
+  "reviewStatus": "verified",
+  "configVersion": "2026.08.10-1",
+  "sourceTitle": "물리1 2회차 복습 테스트",
+  "sourceNote": "",
+  "coreNote": {
+    "summary": "변위·이동 거리·속도·가속도를 그래프의 높이, 기울기, 넓이로 구분하는 회차",
+    "concepts": [
+      "s-t 그래프의 기울기는 속도",
+      "이동 거리 그래프의 기울기는 속력",
+      "방향 전환 시 속도는 0이지만 이동 거리는 감소하지 않음",
+      "평균 속력과 평균 속도의 분모는 같아도 분자가 다름"
+    ],
+    "formulas": [
+      "v_avg=총 변위/총 시간",
+      "평균 속력=총 이동 거리/총 시간",
+      "a_avg=Δv/Δt",
+      "Δv=∫a dt, Δs=∫v dt"
+    ],
+    "mistakes": [
+      "그래프 높이와 기울기를 혼동",
+      "왕복 평균 속력을 산술평균으로 계산",
+      "가속도 그래프 넓이를 곧바로 변위로 해석"
+    ],
+    "checklist": [
+      "방향을 먼저 +/−로 정했는가?",
+      "이동 거리와 변위를 구분했는가?",
+      "그래프에서 묻는 양이 높이·기울기·넓이 중 무엇인지 확인했는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 15,
+      "type": "subjective",
+      "unit": "운동의 기술",
+      "topic": "변위-시간 그래프와 이동 거리",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          190,
+          675,
+          500
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "이동 거리는 시간에 따라 계속 증가한다. 변위가 증가하는 구간에서는 이동 거리 그래프가 원래 s-t 그래프와 같은 기울기로 상승하고, 변위가 최대가 되는 순간에는 기울기가 0이 된다. 이후 물체가 되돌아오므로 이동 거리는 다시 증가하며 기울기의 크기는 |v|만큼 커진다.",
+      "explanation": [
+        "이동 거리의 순간 변화율은 속력이므로 dL/dt=|v|이다.",
+        "처음부터 변위의 꼭짓점까지는 한 방향으로 움직이므로 L=s이다.",
+        "꼭짓점 이후에는 반대 방향으로 움직이지만 이동 거리는 줄지 않는다. 따라서 꼭짓점에서 수평 접선을 가진 뒤 다시 위로 증가하는 그래프가 된다."
+      ],
+      "formulas": [
+        "dL/dt = |v|",
+        "방향 전환 순간: v=0 → 이동 거리 그래프의 기울기 0"
+      ],
+      "commonMistakes": [
+        "되돌아오는 구간에서 이동 거리가 감소한다고 그리는 것",
+        "변위 그래프를 그대로 복사해 아래로 내려가게 그리는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "이동 거리가 전 구간에서 감소하지 않음",
+          "points": 4
+        },
+        {
+          "criterion": "방향 전환점에서 수평 접선",
+          "points": 4
+        },
+        {
+          "criterion": "전환 전·후 기울기가 각각 |v|와 일치",
+          "points": 5
+        },
+        {
+          "criterion": "축·라벨·연결의 완성도",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "어떤 물체의 위치가 처음 0 m에서 증가하다가 t=3 s에 12 m로 최대가 된 뒤, t=5 s에 7 m가 되었다. 이동 거리-시간 그래프의 핵심 점 (0 s, 3 s, 5 s)의 이동 거리를 쓰고 그래프 모양을 설명하시오.",
+        "answer": "(0 s, 0 m), (3 s, 12 m), (5 s, 17 m). 3 s까지 증가하다가 기울기가 0이 된 뒤, 다시 증가한다.",
+        "explanation": "3 s까지 12 m 이동했고, 이후 12 m에서 7 m로 5 m 되돌아왔으므로 총 이동 거리는 17 m이다. 이동 거리는 방향이 바뀌어도 감소하지 않는다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "0,12,17",
+          "0m,12m,17m",
+          "17m"
+        ]
+      }
+    },
+    {
+      "no": 2,
+      "maxPoints": 15,
+      "type": "subjective",
+      "unit": "운동의 기술",
+      "topic": "속도-시간 그래프의 적분",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          700,
+          675,
+          600
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "0~첫 점선: 속력이 일정하게 증가하므로 이동 거리 그래프는 기울기가 커지는 아래로 볼록한 곡선. 첫~둘째 점선: 속력이 일정하므로 직선. 둘째 점선 이후: 속력이 일정하게 감소하여 0이 되므로 기울기가 줄어드는 위로 볼록한 곡선이며 마지막에는 수평 접선.",
+      "explanation": [
+        "이동 거리 그래프의 기울기는 속력이다.",
+        "v-t 그래프가 상승하는 동안에는 이동 거리 그래프의 기울기가 증가한다.",
+        "v가 일정한 동안에는 이동 거리가 시간에 비례하여 증가한다.",
+        "v가 0으로 감소하는 동안에는 이동 거리는 계속 증가하지만 기울기는 0으로 줄어든다."
+      ],
+      "formulas": [
+        "dL/dt=v (그림에서는 v≥0)",
+        "이동 거리 = v-t 그래프 아래 넓이"
+      ],
+      "commonMistakes": [
+        "감속 구간에서 이동 거리도 감소한다고 그리는 것",
+        "등속 구간을 곡선으로 그리는 것",
+        "구간 경계에서 그래프를 끊는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "가속 구간의 아래로 볼록한 곡선",
+          "points": 5
+        },
+        {
+          "criterion": "등속 구간의 직선",
+          "points": 5
+        },
+        {
+          "criterion": "감속 구간의 위로 볼록한 곡선과 마지막 수평 접선",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "속력이 0~2 s 동안 0에서 6 m/s까지 일정하게 증가하고, 2~5 s 동안 6 m/s로 일정하며, 5~7 s 동안 0까지 일정하게 감소한다. 이동 거리 그래프의 세 구간 모양과 7 s까지 이동 거리를 구하시오.",
+        "answer": "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 30 m.",
+        "explanation": "v-t 넓이는 첫 삼각형 6 m, 직사각형 18 m, 마지막 삼각형 6 m이므로 합은 30 m이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "30",
+          "30m",
+          "30 m"
+        ]
+      }
+    },
+    {
+      "no": 3,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "운동의 기술",
+      "topic": "평균 가속도와 방향",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          1300,
+          675,
+          210
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "오른쪽을 +로 잡으면 v_i=+3 m/s, v_f=-6 m/s이다. a=(v_f-v_i)/Δt=(-6-3)/3=-3 m/s². 따라서 가속도 크기는 3 m/s², 방향은 왼쪽이다.",
+      "explanation": [
+        "속도의 방향을 부호로 나타낸다.",
+        "평균 가속도는 속도 변화량을 시간으로 나눈 값이다."
+      ],
+      "formulas": [
+        "a=(v_f-v_i)/Δt"
+      ],
+      "commonMistakes": [
+        "속력의 차 6-3만 계산하는 것",
+        "방향이 바뀌었는데 두 속도를 같은 부호로 두는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "동쪽으로 4 m/s로 달리던 물체가 2 s 뒤 서쪽으로 8 m/s가 되었다. 평균 가속도의 크기와 방향을 구하시오.",
+        "answer": "6 m/s², 서쪽",
+        "explanation": "동쪽을 +로 두면 a=(-8-4)/2=-6 m/s²이므로 크기는 6 m/s²이고 방향은 서쪽이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "6",
+          "6m/s2",
+          "6 m/s²",
+          "서쪽 6",
+          "6 서쪽"
+        ]
+      }
+    },
+    {
+      "no": 4,
+      "maxPoints": 10,
+      "type": "objective",
+      "unit": "운동의 기술",
+      "topic": "변위-시간 그래프의 기울기",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          55,
+          1490,
+          675,
+          420
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "s는 증가하고, v는 감소한다.",
+      "explanation": [
+        "시간이 지날수록 s 값은 0→4→7→9→10으로 커진다.",
+        "같은 1초 동안의 변위가 4, 3, 2, 1 m로 줄어들므로 그래프의 기울기인 속도는 감소한다."
+      ],
+      "formulas": [
+        "v = Δs/Δt (짧은 구간에서 그래프의 기울기)"
+      ],
+      "commonMistakes": [
+        "s가 증가하므로 v도 반드시 증가한다고 판단하는 것",
+        "그래프 높이와 기울기를 혼동하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "s의 변화: 증가",
+          "points": 5
+        },
+        {
+          "criterion": "v의 변화: 감소",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "1초 간격으로 위치가 0, 6, 10, 12, 13 m로 측정되었다. 위치와 속도가 각각 증가·일정·감소 중 무엇인지 고르시오.",
+        "answer": "위치는 증가, 속도는 감소",
+        "explanation": "위치는 계속 커지지만 1초당 변위가 6, 4, 2, 1 m로 줄어들어 속도는 감소한다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "위치 증가·속도 감소",
+          "3"
+        ],
+        "choices": [
+          "위치 증가·속도 증가",
+          "위치 증가·속도 일정",
+          "위치 증가·속도 감소",
+          "위치 감소·속도 감소"
+        ]
+      }
+    },
+    {
+      "no": 5,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "운동의 기술",
+      "topic": "평균 속력과 평균 속도",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          205,
+          670,
+          440
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "총 이동 거리는 20 m, 총 시간은 10 s이므로 평균 속력은 2 m/s이다. 출발점으로 돌아와 총 변위가 0이므로 평균 속도의 크기는 0 m/s이다.",
+      "explanation": [
+        "평균 속력은 총 이동 거리/총 시간이다.",
+        "평균 속도는 총 변위/총 시간이다."
+      ],
+      "formulas": [
+        "평균 속력=총 이동 거리/총 시간",
+        "평균 속도=총 변위/총 시간"
+      ],
+      "commonMistakes": [
+        "왕복 거리 20 m 대신 한쪽 거리 10 m만 쓰는 것",
+        "평균 속력과 평균 속도를 같은 값으로 쓰는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "평균 속력 2 m/s",
+          "points": 5
+        },
+        {
+          "criterion": "평균 속도 크기 0 m/s",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "A와 B가 15 m 떨어져 있다. A에서 B까지 3 s, B에서 A까지 2 s가 걸렸다. 왕복 평균 속력과 평균 속도의 크기를 구하시오.",
+        "answer": "평균 속력 6 m/s, 평균 속도 크기 0 m/s",
+        "explanation": "총 이동 거리 30 m, 총 시간 5 s이므로 6 m/s이다. 최종 위치가 출발점과 같아 변위는 0이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "6,0",
+          "6 m/s, 0 m/s",
+          "평균속력 6 평균속도 0"
+        ]
+      }
+    },
+    {
+      "no": 6,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "운동의 기술",
+      "topic": "왕복 평균 속력",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          620,
+          670,
+          310
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "왕복 거리를 편도 d라 두면 전체 시간은 d/10+d/30=2d/15이다. 총 거리는 2d이므로 평균 속력은 2d÷(2d/15)=15 m/s이다.",
+      "explanation": [
+        "같은 거리를 서로 다른 속력으로 왕복할 때는 산술평균이 아니라 조화평균을 사용한다."
+      ],
+      "formulas": [
+        "v_avg=2v₁v₂/(v₁+v₂)"
+      ],
+      "commonMistakes": [
+        "(10+30)/2=20 m/s로 계산하는 것",
+        "시간이 느린 구간에서 더 오래 걸린다는 점을 무시하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "같은 거리를 갈 때 12 m/s, 돌아올 때 24 m/s로 이동했다. 왕복 평균 속력을 구하시오.",
+        "answer": "16 m/s",
+        "explanation": "2×12×24/(12+24)=576/36=16 m/s이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "16",
+          "16m/s",
+          "16 m/s"
+        ]
+      }
+    },
+    {
+      "no": 7,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "운동의 기술",
+      "topic": "순간속도와 평균속도의 그래프 비교",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          920,
+          670,
+          570
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "t₁에서 접선의 기울기는 A가 가장 크고 C가 가장 작으므로 순간속도는 A>B>C이다. 세 물체는 0에서 출발해 t₁에서 같은 위치에 있으므로 0~t₁ 평균속도는 A=B=C이다.",
+      "explanation": [
+        "s-t 그래프의 순간 기울기=순간속도",
+        "평균속도=두 끝점을 잇는 할선의 기울기"
+      ],
+      "formulas": [
+        "v(t₁)=ds/dt",
+        "v_avg=[s(t₁)-s(0)]/t₁"
+      ],
+      "commonMistakes": [
+        "곡선의 높이만 보고 순간속도를 비교하는 것",
+        "평균속도를 곡선 아래 넓이로 계산하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "순간속도 A>B>C",
+          "points": 10
+        },
+        {
+          "criterion": "평균속도 A=B=C",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "prompt": "세 물체 P,Q,R의 s-t 그래프가 원점에서 시작해 t=4 s에 모두 s=20 m에서 만난다. 그 순간 접선 기울기는 각각 8, 5, 2 m/s이다. 순간속도와 0~4 s 평균속도를 비교하시오.",
+        "answer": "순간속도 P>Q>R, 평균속도 P=Q=R=5 m/s",
+        "explanation": "순간속도는 주어진 접선 기울기이고, 평균속도는 모두 20/4=5 m/s이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "P>Q>R, P=Q=R",
+          "P>Q>R 평균 같음"
+        ]
+      }
+    },
+    {
+      "no": 8,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "운동의 기술",
+      "topic": "가속도-시간 그래프 적분",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          760,
+          1490,
+          670,
+          430
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "0~2 s: a=2이므로 v는 0→4 m/s, 변위는 (0+4)/2×2=4 m. 2~4 s: v=4 m/s로 변위 8 m. 4~6 s: a=-4이므로 v는 4→-4 m/s, 평균속도가 0이라 순변위는 0. 총 변위는 12 m이다.",
+      "explanation": [
+        "a-t 그래프를 적분하면 속도 변화량이다.",
+        "각 구간 변위는 v-t 그래프의 부호 있는 넓이이다."
+      ],
+      "formulas": [
+        "Δv=∫a dt",
+        "Δs=∫v dt"
+      ],
+      "commonMistakes": [
+        "마지막 구간의 이동 거리를 변위에 그대로 더하는 것",
+        "가속도 그래프의 넓이를 바로 변위로 보는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "방향·부호·적용 조건 설정",
+          "points": 2
+        },
+        {
+          "criterion": "핵심 식 전개",
+          "points": 3
+        },
+        {
+          "criterion": "수치 계산",
+          "points": 3
+        },
+        {
+          "criterion": "최종값·단위·해석",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "정지한 물체의 가속도가 0~3 s에는 2 m/s², 3~5 s에는 0, 5~7 s에는 -3 m/s²이다. 7 s까지 총 변위를 구하시오.",
+        "answer": "27 m",
+        "explanation": "0~3 s 변위 9 m, 3~5 s 변위 12 m, 5~7 s 속도 6→0이므로 변위 6 m. 합은 27 m이다.",
+        "inputMode": "text",
+        "acceptableAnswers": [
+          "27",
+          "27m",
+          "27 m"
+        ]
+      }
+    }
+  ]
+}
