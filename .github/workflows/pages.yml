@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages
+name: Deploy Young's Physics to GitHub Pages
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: github-pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -21,18 +21,146 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      - name: Verify project files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f site/index.html
+          test -f site/report.html
+          test -f site/assets/runtime-config.js
+          test -f site/assets/data/catalog.js
+          echo "Young's Physics static site files verified."
+
+      - name: Prepare site and inject Apps Script URL
+        shell: bash
+        env:
+          YP_API_URL: ${{ vars.YP_API_URL }}
+          LEGACY_APPS_SCRIPT_URL: ${{ vars.APPS_SCRIPT_URL }}
+          YP_BUILD_REF: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          import pathlib
+          import shutil
+          import sys
+
+          # YP_API_URL is the canonical variable. APPS_SCRIPT_URL is accepted so
+          # repositories created from an earlier package keep working.
+          url = (os.environ.get("YP_API_URL") or os.environ.get("LEGACY_APPS_SCRIPT_URL") or "").strip()
+          if not url:
+              print("::error title=Apps Script URL 미설정::Settings → Secrets and variables → Actions → Variables에서 YP_API_URL에 Apps Script 웹 앱 /exec 주소를 등록하세요.")
+              sys.exit(1)
+          if not (url.startswith("https://script.google.com/macros/s/") and url.endswith("/exec")):
+              print("::error title=YP_API_URL 형식 오류::https://script.google.com/macros/s/.../exec 형식의 운영 배포 주소가 필요합니다.")
+              sys.exit(1)
+
+          source = pathlib.Path("site")
+          target = pathlib.Path(".pages-dist")
+          if target.exists():
+              shutil.rmtree(target)
+          shutil.copytree(source, target)
+
+          config = {
+              "apiUrl": url,
+              "buildVersion": "3.2.0-excel-batch-import",
+              "buildRef": os.environ.get("YP_BUILD_REF", "")[:12],
+          }
+          out = target / "assets" / "runtime-config.js"
+          out.write_text(
+              "/** GitHub Actions가 자동 생성한 공개 배포 설정입니다. PIN·세션·WRITE_KEY는 포함하지 않습니다. */\n"
+              + "window.YP_RUNTIME_CONFIG = Object.freeze("
+              + json.dumps(config, ensure_ascii=False, indent=2)
+              + ");\n",
+              encoding="utf-8",
+          )
+          print(f"Apps Script automatic connection injected: {out}")
+          PY
+
+      - name: Ensure GitHub Pages is enabled
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PAGES_ADMIN_TOKEN: ${{ secrets.PAGES_ADMIN_TOKEN }}
+        run: |
+          set -euo pipefail
+          API="https://api.github.com/repos/${GITHUB_REPOSITORY}/pages"
+          ACCEPT="Accept: application/vnd.github+json"
+          VERSION="X-GitHub-Api-Version: 2022-11-28"
+
+          get_pages() {
+            curl -sS -o /tmp/pages.json -w "%{http_code}" \
+              -H "$ACCEPT" -H "$VERSION" \
+              -H "Authorization: Bearer $GITHUB_TOKEN" \
+              "$API"
+          }
+
+          STATUS="$(get_pages)"
+          BUILD_TYPE=""
+          if [ "$STATUS" = "200" ]; then
+            BUILD_TYPE="$(python3 - <<'PY'
+          import json
+          try:
+              print(json.load(open('/tmp/pages.json', encoding='utf-8')).get('build_type', ''))
+          except Exception:
+              print('')
+          PY
+          )"
+          fi
+
+          if [ "$STATUS" = "200" ] && [ "$BUILD_TYPE" = "workflow" ]; then
+            echo "GitHub Pages is enabled with GitHub Actions."
+            exit 0
+          fi
+
+          # Optional: a fine-grained PAT with Administration:write and Pages:write
+          # can enable or switch Pages automatically. Most users can simply select
+          # Settings → Pages → Source → GitHub Actions once instead.
+          if [ -n "${PAGES_ADMIN_TOKEN:-}" ]; then
+            if [ "$STATUS" = "404" ]; then
+              METHOD="POST"
+            else
+              METHOD="PUT"
+            fi
+            ADMIN_STATUS="$(curl -sS -o /tmp/pages-admin.json -w "%{http_code}" \
+              -X "$METHOD" -H "$ACCEPT" -H "$VERSION" \
+              -H "Authorization: Bearer $PAGES_ADMIN_TOKEN" \
+              -H "Content-Type: application/json" \
+              "$API" -d '{"build_type":"workflow"}')"
+            case "$ADMIN_STATUS" in
+              201|204)
+                echo "GitHub Pages was enabled automatically with PAGES_ADMIN_TOKEN."
+                exit 0
+                ;;
+              409)
+                echo "GitHub Pages already exists; continuing."
+                exit 0
+                ;;
+              *)
+                echo "::error title=GitHub Pages 자동 활성화 실패::PAGES_ADMIN_TOKEN 권한을 확인하세요. HTTP ${ADMIN_STATUS}: $(cat /tmp/pages-admin.json)"
+                exit 1
+                ;;
+            esac
+          fi
+
+          echo "::error title=GitHub Pages가 아직 활성화되지 않았습니다::저장소 Settings → Pages → Build and deployment → Source에서 GitHub Actions를 선택하고 저장한 뒤 이 workflow를 다시 실행하세요. GitHub Free의 비공개 저장소라면 저장소를 Public으로 바꾸거나 Pages를 지원하는 요금제가 필요합니다."
+          exit 1
+
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload static site artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
-          path: ./site
+          path: ./.pages-dist
+          include-hidden-files: true
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
