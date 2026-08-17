@@ -12,7 +12,8 @@
  YP.statusLabel=s=>({full:"만점",partial:"부분점수",wrong:"0점",ungraded:"미입력",invalid:"오류"}[s]||s);
  YP.reviewLabel=s=>({verified:"검증 완료",corrected:"교정 적용",ambiguous:"확인 필요","needs-review":"확인 필요","not-uploaded":"자료 준비 중"}[s]||s);
  YP.normalizeIdentity=s=>String(s??"").trim().toLowerCase().replace(/\s+/g,"").replace(/[()\[\]{}\-_.]/g,"");
- YP.studentKey=(courseId,school,name)=>[courseId,YP.normalizeIdentity(school||"미입력"),YP.normalizeIdentity(name)].join("|");
+ YP.normalizeSchool=s=>{const v=String(s??"").trim();return !v||v==="미입력"||v==="미기입"?"미기입":v};
+ YP.studentKey=(courseId,school,name)=>[courseId,YP.normalizeIdentity(YP.normalizeSchool(school)),YP.normalizeIdentity(name)].join("|");
 
  YP.parseScoreInput=function(raw,maxPoints,partialMode=false){
    const original=raw==null?"":String(raw),value=original.trim();
@@ -57,7 +58,7 @@
  YP.copyText=async function(text){try{await navigator.clipboard.writeText(text);return true}catch(e){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();return ok}};
  YP.toast=function(message,ms=3000){const el=document.getElementById("toast");if(!el)return;el.textContent=message;el.classList.remove("hidden");clearTimeout(YP._toastTimer);YP._toastTimer=setTimeout(()=>el.classList.add("hidden"),ms)};
 
- YP.normalizeRecord=function(record){const exam=YP.getExam(record.examId);if(!exam)return record;const result=YP.calculateResult(exam,record.resultInputs||[],record.partialModes||[]);return {...record,courseId:exam.courseId,score:result.score,maxScore:exam.maxScore,percent:result.percent,scoring:result.scoring,counts:result.counts,studentKey:record.studentKey||YP.studentKey(exam.courseId,record.school,record.name)}};
+ YP.normalizeRecord=function(record){const exam=YP.getExam(record.examId),school=YP.normalizeSchool(record.school);if(!exam)return {...record,school};const result=YP.calculateResult(exam,record.resultInputs||[],record.partialModes||[]);return {...record,school,courseId:exam.courseId,score:result.score,maxScore:exam.maxScore,percent:result.percent,scoring:result.scoring,counts:result.counts,studentKey:YP.studentKey(exam.courseId,school,record.name)}};
  YP.computeStats=function(exam,records){
    const valid=(records||[]).map(YP.normalizeRecord).filter(r=>r.examId===exam.examId&&r.scoring&&Number.isFinite(Number(r.score))),n=valid.length;
    const scores=valid.map(r=>Number(r.score)).sort((a,b)=>a-b),average=n?scores.reduce((a,b)=>a+b,0)/n:0,median=n?(n%2?scores[(n-1)/2]:(scores[n/2-1]+scores[n/2])/2):0;
@@ -66,7 +67,7 @@
    return {count:n,average,averagePercent:exam.maxScore?average/exam.maxScore*100:0,median,highest:n?Math.max(...scores):0,lowest:n?Math.min(...scores):0,scoreList:scores,perQuestion,units};
  };
  YP.computeStudentUnits=function(exam,record,stats){return [...new Set(exam.questions.map(q=>q.unit))].map(unit=>{const idx=exam.questions.map((q,i)=>q.unit===unit?i:-1).filter(i=>i>=0),max=idx.reduce((a,i)=>a+exam.questions[i].maxPoints,0),score=idx.reduce((a,i)=>a+Number(record.scoring[i]?.score??0),0),avg=stats?.units?.find(u=>u.unit===unit)?.averagePercent??0,percent=max?score/max*100:0;return {unit,score,maxPoints:max,percent,averagePercent:avg,questionCount:idx.length,level:percent>=85?"강점":percent>=65?"안정":percent>=45?"보완":"우선 보완"}})};
- YP.getLinkedHistory=function(exam,record,records){if(!YP.isComprehensive(exam)||!exam.historyExamIds?.length)return [];const key=record.studentKey||YP.studentKey(exam.courseId,record.school,record.name);return (records||[]).map(YP.normalizeRecord).filter(r=>exam.historyExamIds.includes(r.examId)&&(r.studentKey||YP.studentKey(r.courseId,r.school,r.name))===key).sort((a,b)=>{const ea=YP.getExam(a.examId),eb=YP.getExam(b.examId);return (ea?.round||0)-(eb?.round||0)})};
+ YP.getLinkedHistory=function(exam,record,records){if(!YP.isComprehensive(exam)||!exam.historyExamIds?.length)return [];const key=YP.studentKey(exam.courseId,record.school,record.name);return (records||[]).map(YP.normalizeRecord).filter(r=>exam.historyExamIds.includes(r.examId)&&YP.studentKey(r.courseId,r.school,r.name)===key).sort((a,b)=>{const ea=YP.getExam(a.examId),eb=YP.getExam(b.examId);return (ea?.round||0)-(eb?.round||0)})};
  YP.computeHistorySummary=function(exam,record,records){
    const linked=YP.getLinkedHistory(exam,record,records);let earned=0,max=0;const unitMap=new Map();
    linked.forEach(r=>{earned+=Number(r.score||0);max+=Number(r.maxScore||0);const ex=YP.getExam(r.examId);(ex?.questions||[]).forEach((q,i)=>{const u=unitMap.get(q.unit)||{unit:q.unit,score:0,maxPoints:0,questionCount:0};u.score+=Number(r.scoring?.[i]?.score??0);u.maxPoints+=q.maxPoints;u.questionCount++;unitMap.set(q.unit,u)})});

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body class="app-page">
-<div id="demoBanner" class="demo-banner hidden">현재 데모 모드입니다. Apps Script URL을 설정하면 Google Sheets 원본 저장 모드로 전환됩니다.</div>
+<div id="demoBanner" class="demo-banner hidden">Apps Script 자동 연결 주소가 배포에 설정되지 않아 현재 데모 모드입니다. GitHub 저장소 변수 <code>YP_API_URL</code>을 확인하세요.</div>
 <header class="topbar app-topbar">
  <div class="topbar-inner">
   <a class="brand" href="#home" aria-label="Young's Physics 홈">
@@ -24,7 +24,7 @@
   </nav>
   <div class="top-actions">
    <a class="btn btn-light" href="guide.html"><span aria-hidden="true">▤</span> 설치·운영 안내</a>
-   <button class="btn btn-primary" id="settingsBtn"><span aria-hidden="true">⚙</span> 서버 설정</button>
+   <button class="btn btn-primary connection-button" id="settingsBtn"><span class="connection-dot" aria-hidden="true"></span><span id="settingsBtnText">교사 연결 확인 중</span></button>
   </div>
  </div>
 </header>
@@ -72,7 +72,7 @@
   <div class="field"><label for="courseSelect">과정 *</label><select id="courseSelect"></select></div>
   <div class="field"><label for="examSelect">회차 *</label><select id="examSelect"></select></div>
   <div class="field"><label for="studentName">학생 이름 *</label><input id="studentName" autocomplete="off" placeholder="예: 김물리"></div>
-  <div class="field"><label for="school">학교 <span class="total-required">* 총괄평가 필수</span></label><input id="school" placeholder="예: 영스고등학교"></div>
+  <div class="field"><label for="school">학교 <span class="optional-note">선택 · 미기입 시 ‘미기입’</span></label><input id="school" placeholder="미기입 시 자동으로 ‘미기입’"></div>
   <div class="field"><label for="grade">학년</label><select id="grade"><option value="">선택</option><option>1</option><option>2</option><option>3</option></select></div>
   <div class="field"><label for="classNo">반·번호</label><input id="classNo" placeholder="예: 2반 12번"></div>
   <div class="field span-2"><label for="teacherMemo">교사 메모</label><input id="teacherMemo" placeholder="학생 리포트에는 기본적으로 공개되지 않습니다."></div>
@@ -97,12 +97,18 @@
 <section id="batchInput" class="card panel section-card">
  <div class="section-title-row">
   <div class="section-icon">03</div>
-  <div><div class="section-kicker">BATCH IMPORT</div><h2>CSV 일괄 입력</h2><p class="section-desc">현재 시험의 동적 Q1~Qn 헤더로 여러 학생을 미리 검증한 뒤 저장합니다.</p></div>
+  <div><div class="section-kicker">EXCEL & CSV BATCH IMPORT</div><h2>Excel·CSV 일괄 입력</h2><p class="section-desc">첨부한 성적 Excel을 자동 해석하거나, Q1~Qn CSV를 미리 검증한 뒤 Google Sheets에 한 번에 저장합니다.</p></div>
   <button class="btn btn-light" id="downloadCsvTemplateBtn">CSV 템플릿</button>
  </div>
- <div class="upload-box"><div class="upload-icon">⇧</div><div><b>CSV 파일 선택</b><span>저장 전 학생별 계산 점수와 오류를 미리 확인합니다.</span></div><div class="field"><input type="file" id="csvFile" accept=".csv,text/csv"></div></div>
+ <label class="upload-box batch-drop-zone" id="batchDropZone" for="csvFile">
+  <div class="upload-icon">⇧</div>
+  <div><b>Excel(.xlsx) 또는 CSV 파일 첨부</b><span>물리1 역학 총괄평가 결과표 형식은 시트·학생 행·문항 열을 자동으로 찾습니다. 파일을 여기에 끌어놓아도 됩니다.</span></div>
+  <div class="field"><input type="file" id="csvFile" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.csv,text/csv"></div>
+ </label>
+ <div class="notice small batch-import-note"><b>자동 변환 기준</b><br>학교 열이 없거나 빈칸이면 <b>미기입</b>으로 저장합니다. 객관식 1~20번의 선택 번호는 사이트의 검수된 정답표와 비교해 0/1 정오표로 바꾸고, 서술형 21~25번은 Excel의 실제 점수를 그대로 사용합니다. 같은 시험·학교·이름을 다시 첨부하면 기존 링크를 유지한 채 성적을 수정합니다.</div>
+ <div id="batchImportSummary" class="batch-import-summary hidden"></div>
  <div id="csvPreview" class="table-wrap hidden" style="margin-top:12px"></div>
- <button id="saveBatchBtn" class="btn btn-success hidden" style="margin-top:12px">미리보기 학생 일괄 저장</button>
+ <button id="saveBatchBtn" class="btn btn-success hidden" style="margin-top:12px">검증된 학생 기록 일괄 저장</button>
 </section>
 
 <section id="savedReports" class="card panel section-card">
@@ -136,21 +142,38 @@
 
 <footer class="site-footer"><div><img src="assets/images/logo-mark.png" alt=""><b>Young's Physics</b><span>데이터 기반 맞춤 학습으로 한 단계 더 성장합니다.</span></div><small>공개 GitHub 저장소에는 실제 학생 정보와 비밀키를 저장하지 마세요.</small></footer>
 
-<div id="settingsModal" class="modal-backdrop hidden"><div class="modal">
- <div class="modal-title-row"><div class="section-icon">⚙</div><div><div class="section-kicker">SERVER SETTINGS</div><h2>서버·교사용 설정</h2></div></div>
- <div class="field"><label>Apps Script 웹 앱 /exec URL</label><input id="apiUrlInput" placeholder="https://script.google.com/macros/s/.../exec"></div>
- <div class="field" style="margin-top:12px"><label>WRITE_KEY</label><input id="writeKeyInput" type="password" autocomplete="off"></div>
- <div class="notice warn small">WRITE_KEY는 이 교사 브라우저에만 저장되며 학생 링크에는 포함되지 않습니다. GitHub 공개 파일에도 입력하지 마세요.</div>
- <div class="toolbar"><button class="btn btn-light" id="pingBtn">연결 확인</button><button class="btn btn-light" id="syncCatalogBtn">시험 설정 서버 동기화</button><button class="btn btn-danger" id="clearKeyBtn">저장 키 지우기</button></div>
- <div id="settingsStatus" class="small muted" style="margin-top:10px"></div>
- <div class="modal-actions"><button class="btn btn-light" id="closeSettingsBtn">닫기</button><button class="btn btn-primary" id="saveSettingsBtn">설정 저장</button></div>
+<div id="settingsModal" class="modal-backdrop hidden"><div class="modal auth-modal">
+ <div class="modal-title-row"><div class="section-icon">🔐</div><div><div class="section-kicker">SECURE AUTO CONNECTION</div><h2>교사 자동 연결</h2></div></div>
+ <div class="connection-summary" id="connectionSummary">
+  <div class="connection-state-icon" id="connectionStateIcon">…</div>
+  <div><b id="connectionStateTitle">Apps Script 연결 확인 중</b><p id="connectionStateDescription">배포에 저장된 서버 주소를 자동으로 확인하고 있습니다.</p></div>
+ </div>
+ <div id="loginPanel">
+  <div class="field"><label for="teacherPinInput">교사 PIN</label><input id="teacherPinInput" type="password" autocomplete="current-password" placeholder="Apps Script 설치 시 생성된 PIN"></div>
+  <div class="notice small">Apps Script 주소는 GitHub 배포에서 자동 적용됩니다. 새 컴퓨터에서는 교사 PIN을 한 번 입력하거나, 기존 컴퓨터에서 만든 10분짜리 1회용 연결 링크를 열면 됩니다.</div>
+  <button class="btn btn-primary btn-block" id="teacherLoginBtn" style="margin-top:12px">이 컴퓨터를 교사용으로 연결</button>
+ </div>
+ <div id="authenticatedPanel" class="hidden">
+  <div class="notice success small"><b>교사 연결 완료</b><br><span id="sessionExpiryText">이 브라우저에서 학생 점수 입력과 Google Sheets 저장을 사용할 수 있습니다.</span></div>
+  <div class="auth-action-grid">
+   <button class="btn btn-primary" id="newDeviceLinkBtn">새 컴퓨터 연결 링크 복사</button>
+   <button class="btn btn-light" id="syncCatalogBtn">시험 설정 서버 동기화</button>
+   <button class="btn btn-light" id="pingBtn">연결 상태 다시 확인</button>
+   <button class="btn btn-danger" id="logoutBtn">이 컴퓨터 연결 해제</button>
+  </div>
+  <div class="notice warn small">새 컴퓨터 연결 링크는 10분 동안 한 번만 사용할 수 있습니다. 링크를 받은 컴퓨터에서는 PIN 입력 없이 자동 연결됩니다.</div>
+ </div>
+ <div id="settingsStatus" class="small muted settings-status"></div>
+ <div class="modal-actions"><button class="btn btn-light" id="closeSettingsBtn">닫기</button></div>
 </div></div>
 <div id="toast" class="toast hidden"></div>
 
+<script src="assets/runtime-config.js"></script>
 <script src="assets/config.js"></script>
 <script src="assets/data/catalog.js"></script>
 <script src="assets/data/demo-data.js"></script>
 <script src="assets/core.js"></script>
 <script src="assets/api.js"></script>
+<script src="assets/xlsx-import.js"></script>
 <script src="assets/app.js"></script>
 </body></html>

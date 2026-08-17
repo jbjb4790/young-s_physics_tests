@@ -53,7 +53,7 @@
    ]],[3000,6200],{noBorders:true}));
    body.push(p("데이터 기반 맞춤 분석으로, 정확히 이해하고 확실히 성장합니다.","",{align:"center",color:"66758E",size:18}));
    body.push(table([
-     [{content:p("학생","",{bold:true,color:"06265D"}),fill:"F0F6FD"},p(record.name),{content:p("학교","",{bold:true,color:"06265D"}),fill:"F0F6FD"},p(record.school)],
+     [{content:p("학생","",{bold:true,color:"06265D"}),fill:"F0F6FD"},p(record.name),{content:p("학교","",{bold:true,color:"06265D"}),fill:"F0F6FD"},p((YP.normalizeSchool?YP.normalizeSchool(record.school):(record.school||"미기입")))],
      [{content:p("과정·회차","",{bold:true,color:"06265D"}),fill:"F0F6FD"},p(YP.roundLabel(exam)),{content:p("학년·반","",{bold:true,color:"06265D"}),fill:"F0F6FD"},p(`${record.grade||"-"}학년 ${record.classNo||""}`)]
    ],[1300,3000,1500,3000]));
    body.push(table([[

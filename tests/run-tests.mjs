@@ -13,6 +13,12 @@ const context={window:{YP_CATALOG:catalog,YP_CONFIG:{}},console,TextEncoder,Text
 vm.createContext(context);
 vm.runInContext(read("site/assets/core.js"),context);
 const YP=context.window.YP;
+
+const xlsxContext={console,TextEncoder,TextDecoder,URL,Blob,Response,DecompressionStream,globalThis:null};
+xlsxContext.globalThis=xlsxContext;
+vm.createContext(xlsxContext);
+vm.runInContext(read("site/assets/xlsx-import.js"),xlsxContext);
+const YP_XLSX=xlsxContext.YP_XLSX;
 const mech=YP.getExam("physics1-basic-total-mechanics");
 const em=YP.getExam("physics1-basic-total-electromagnetism");
 const comprehensive=catalog.exams.filter(e=>e.assessmentType==="comprehensive");
@@ -112,7 +118,14 @@ test("물리 재계산: 전자기 24번 R=3Ω, 10Ω 전류 0.6A",()=>{const R=3,
 test("학생 리포트는 원문 답 제출 전 정답·해설을 hidden 처리",()=>{const src=read("site/assets/report.js");assert.match(src,/solution-reveal hidden/);assert.match(src,/답 제출 후 해설 보기/);assert.match(src,/reveal\.classList\.remove\("hidden"\)/)});
 test("동형 문제는 원문 제출 전 locked, 동형 제출 후 정답·해설 공개",()=>{const src=read("site/assets/report.js");assert.match(src,/similar-card locked/);assert.match(src,/원문 답을 먼저 제출하면 활성화/);assert.match(src,/동형 답 제출/);assert.match(src,/<b>정답<\/b>/)});
 test("확인 필요 문항은 정답 자동 공개를 차단",()=>assert.match(read("site/assets/report.js"),/\["ambiguous","needs-review"\]\.includes\(q\.reviewStatus\)/));
-test("총괄 저장은 학교 입력을 요구하고 한 버튼으로 링크 복사",()=>{const src=read("site/assets/app.js");assert.match(src,/총괄평가는 기존 복습 기록 연결을 위해 학교를 반드시 입력/);assert.match(read("site/index.html"),/저장·성적 분석·링크 복사/);assert.match(src,/await YP\.copyText\(url\)/)});
+test("학교 미기입은 '미기입'으로 저장하고 한 버튼으로 링크 복사",()=>{const src=read("site/assets/app.js"),html=read("site/index.html"),core=read("site/assets/core.js");assert.doesNotMatch(src,/학교를 반드시 입력/);assert.match(src,/YP\.normalizeSchool\(\$\("school"\)\.value\)/);assert.match(core,/v==="미입력"\|\|v==="미기입"\?"미기입"/);assert.match(html,/미기입 시 자동으로 ‘미기입’/);assert.match(html,/저장·성적 분석·링크 복사/);assert.match(src,/await YP\.copyText\(url\)/)});
+test("빈 학교와 구버전 '미입력' 기록은 '미기입'으로 정규화",()=>{for(const school of ["","미입력","미기입"]){const r=YP.normalizeRecord({examId:mech.examId,name:"학생",school,resultInputs:Array(25).fill("1"),partialModes:Array(25).fill(false)});assert.equal(r.school,"미기입");assert.equal(r.studentKey,YP.studentKey(mech.courseId,"미기입","학생"))}});
+test("'미입력'과 '미기입'은 같은 학생 학교 식별값으로 처리",()=>{assert.equal(YP.studentKey(mech.courseId,"미입력","학생"),YP.studentKey(mech.courseId,"미기입","학생"));assert.equal(YP.studentKey(mech.courseId,"","학생"),YP.studentKey(mech.courseId,"미기입","학생"))});
+test("교사용 화면은 xlsx·csv 첨부와 Excel 자동 가져오기 모듈을 로드",()=>{const html=read("site/index.html"),app=read("site/assets/app.js");assert.match(html,/accept="[^"]*\.xlsx[^"]*\.csv/);assert.ok(html.indexOf("assets/xlsx-import.js")<html.indexOf("assets/app.js"));assert.match(app,/YP_XLSX\.importAssessment/);assert.match(app,/객관식 선택번호 → 검수 정오표/);assert.match(app,/importMode:"upsert"/)});
+test("Excel 레거시 결과표는 공식행을 학생으로 중복 수집하지 않음",()=>{const cell=(value,formula="")=>({value,formula});const rows=[];rows[0]=[cell("이름"),cell("총점"),cell(1),cell(2),cell(3)];rows[1]=[cell("학생A"),cell(12),cell(1),cell(2),cell(3)];rows[2]=[cell("=A2"),cell(12),cell(1),cell(2),cell(3)];rows[2][0].formula="A2";for(let i=3;i<8;i++)rows[i]=[];const sheet={name:"1회",rows,maxRow:7,maxCol:4};const layout=YP_XLSX._test.findLegacyLayout(sheet,{questionCount:3,round:0,shortTitle:"역학 총괄평가"});assert.ok(layout);assert.deepEqual(Array.from(layout.studentRows),[1])});
+const uploadedMechanicsExcel="/mnt/data/역학진단고사 v3.xlsx";
+(fs.existsSync(uploadedMechanicsExcel)?test:test.skip)("첨부 역학 Excel 179명 자동 해석·학교 미기입·총점 0건 불일치",async()=>{const b=fs.readFileSync(uploadedMechanicsExcel),file={name:"역학진단고사 v3.xlsx",arrayBuffer:async()=>b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength)},result=await YP_XLSX.importAssessment(file,mech);assert.equal(result.sheetName,"1회");assert.equal(result.inputMode,"raw-choice");assert.equal(result.students.length,179);assert.equal(result.missingSchool,179);assert.deepEqual(Array.from(result.answerKeyMismatchQuestions),[]);assert.ok(result.students.every(s=>s.school==="미기입"));let mismatch=0;for(const student of result.students){const calc=YP.calculateResult(mech,student.inputs,student.partialModes);if(Number.isFinite(student.sourceTotal)&&Math.abs(calc.score-student.sourceTotal)>1e-9)mismatch++}assert.equal(mismatch,0);assert.equal(result.students.at(-1).sourceRow,201)});
+test("실제 학생 Excel 원본은 공개 GitHub 프로젝트에 포함하지 않음",()=>{const all=[];function walk(dir){for(const ent of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,ent.name);if(ent.isDirectory())walk(p);else all.push(path.relative(root,p))}}walk(root);assert.equal(all.some(p=>/역학진단고사 v3\.xlsx$/i.test(p)),false)});
 test("데모 데이터는 동일 학생의 7개 복습+역학 총괄을 포함",()=>{const data=JSON.parse(read("site/assets/data/demo-data.js").replace(/^window\.YP_DEMO_DATA\s*=\s*/,"").replace(/;\s*$/,"")).reports;assert.equal(data.filter(r=>r.school==="영스고"&&r.name==="김물리").length,8);assert.equal(new Set(data.map(r=>r.token)).size,data.length);assert.equal(new Set(data.map(r=>r.fingerprint)).size,data.length)});
 test("데모 API도 historyRecords를 반환",()=>{const src=read("site/assets/api.js");assert.match(src,/historyRecords=YP\.getLinkedHistory/);assert.match(src,/studentKey=YP\.studentKey/)});
 
@@ -121,6 +134,8 @@ test("데모 API도 historyRecords를 반환",()=>{const src=read("site/assets/a
 test("Apps Script에 총괄 메타·InputMode·OriginalRetry·StudentKey 열이 있음",()=>{const src=read("apps-script/Code.gs");for(const term of ["AssessmentType","InputProfileJSON","HistoryExamIdsJSON","HistoryLabel","InputMode","OriginalRetryJSON","StudentKey"])assert.match(src,new RegExp(term))});
 test("Apps Script는 기존 헤더 이름으로 행을 재배치해 스키마를 안전 마이그레이션",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function ensureSheetSchema_/);assert.match(src,/currentIndex\[h\]/);assert.match(src,/const remapped = sourceRows\.map/);assert.match(src,/sh\.clearContents\(\)/)});
 test("Apps Script 총괄 점수 파서는 binary와 points를 구분",()=>{const src=read("apps-script/Code.gs");assert.match(src,/mode==="binary"/);assert.match(src,/mode==="points"/);assert.match(src,/객관식은 0 또는 1만 입력/);assert.match(src,/서술형 점수는 0~/)});
+test("Apps Script 일괄 저장은 단일 시트 쓰기와 동일 학생 upsert를 사용",()=>{const src=read("apps-script/Code.gs");assert.match(src,/API_VERSION = "3\.2\.0-excel-batch-import"/);assert.match(src,/function calculateScoringFromQuestions_/);assert.match(src,/function reportIdentityKey_/);assert.match(src,/String\(input\.importMode\|\|"upsert"\)==="upsert"/);assert.match(src,/sh\.getRange\(2,1,data\.length,headers\.length\)\.setValues\(data\)/);assert.match(src,/savedCount:saved\.length/);assert.doesNotMatch(src,/saved\.push\(saveReport_\(r\)\.record\)/)});
+test("Apps Script는 학교 빈칸·구버전 표기를 '미기입'으로 정규화",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function normalizeSchool_/);assert.match(src,/school==="미입력"\|\|school==="미기입" \? "미기입"/);assert.match(src,/const school=normalizeSchool_\(input\.school\)/);assert.match(src,/const rawSchool=String\(row\.School\|\|""\)\.trim\(\),school=normalizeSchool_\(rawSchool\)/);assert.match(src,/function migrateSchoolLabels_/);assert.match(src,/학교 미기입 표기 정리/)});
 test("Apps Script 학생 연결키는 과정·학교·이름 SHA-256",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function makeStudentKey_/);assert.match(src,/DigestAlgorithm\.SHA_256/);assert.match(src,/normalizeIdentity_\(school/)});
 test("Apps Script 결과 링크는 토큰·지문·학생 식별 다이제스트를 모두 검증",()=>{const src=read("apps-script/Code.gs");assert.match(src,/constantTimeEqual_\(String\(row\.Fingerprint\),String\(fp\)\)/);assert.match(src,/makeFingerprint_/);assert.match(src,/makeIdentityDigest_/);assert.match(src,/학생 식별 정보 무결성 검증/)});
 test("Apps Script 재계산 열 번호는 새 Reports 17열 스키마와 일치",()=>{const src=read("apps-script/Code.gs");assert.match(src,/getRange\(i\+2,14\).*calc\.scoring/);assert.match(src,/getRange\(i\+2,15\).*record/);assert.match(src,/getRange\(i\+2,17\).*new Date/)});
@@ -138,4 +153,103 @@ test("Word 모듈 실제 생성 smoke: ZIP·통합 표·내장 로고",async()=>
   const YP2={loadImage:async()=>({naturalWidth:256,naturalHeight:160}),dataURLToUint8:()=>new Uint8Array(),roundLabel:()=>"물리1 · 역학 총괄평가",formatNumber:n=>String(n),isComprehensive:e=>e.assessmentType==="comprehensive",buildComment:()=>"통합 분석 코멘트",computeStudentUnits:()=>[{unit:"힘과 운동",percent:100,score:100,maxPoints:100,averagePercent:80,level:"강점"}],statusLabel:s=>s==="full"?"만점":s,reviewLabel:()=>"교정 적용",cropDataURL:async()=>"data:image/png;base64,",downloadBlob:(blob,name)=>{captured={blob,name}}};
   const ctx={console,TextEncoder,TextDecoder,Blob,Uint8Array,Date,Math,window:{},YP:YP2,document:{getElementById:()=>null},fetch:async()=>({ok:true,arrayBuffer:async()=>logo.buffer.slice(logo.byteOffset,logo.byteOffset+logo.byteLength)})};ctx.window=ctx;vm.createContext(ctx);vm.runInContext(source,ctx);
   await ctx.YoungsDocx.exportReport({exam,record,stats,history});assert.ok(captured);const buf=Buffer.from(await captured.blob.arrayBuffer()),txt=buf.toString("utf8");assert.equal(buf.subarray(0,4).toString("hex"),"504b0304");assert.match(txt,/word\/media\/image1\.png/);assert.match(txt,/복습·총괄 통합 성적 리포트/);assert.match(txt,/물리1 2~8회 복습 테스트/);assert.match(txt,/테스트학생/);assert.doesNotMatch(txt,/TargetMode="External"/);
+});
+
+// Secure automatic cross-device connection and deployment
+
+test("GitHub Pages workflow uses current official Pages actions",()=>{
+  const src=read(".github/workflows/pages.yml");
+  assert.match(src,/actions\/checkout@v6/);
+  assert.match(src,/actions\/configure-pages@v6/);
+  assert.match(src,/actions\/upload-pages-artifact@v5/);
+  assert.match(src,/actions\/deploy-pages@v5/);
+});
+
+test("GitHub Pages workflow injects YP_API_URL and accepts legacy variable",()=>{
+  const src=read(".github/workflows/pages.yml");
+  assert.match(src,/vars\.YP_API_URL/);
+  assert.match(src,/vars\.APPS_SCRIPT_URL/);
+  assert.match(src,/runtime-config\.js/);
+  assert.match(src,/script\.google\.com\/macros\/s\//);
+  assert.match(src,/PIN·세션·WRITE_KEY는 포함하지 않습니다/);
+});
+
+test("GitHub Pages workflow diagnoses disabled Pages and supports optional admin token",()=>{
+  const src=read(".github/workflows/pages.yml");
+  assert.match(src,/Settings → Pages → Build and deployment → Source/);
+  assert.match(src,/PAGES_ADMIN_TOKEN/);
+  assert.match(src,/\{\"build_type\":\"workflow\"\}/);
+});
+
+test("index와 report가 runtime config를 config보다 먼저 로드",()=>{
+  for(const rel of ["site/index.html","site/report.html"]){
+    const src=read(rel),runtime=src.indexOf('assets/runtime-config.js'),config=src.indexOf('assets/config.js');
+    assert.ok(runtime>=0&&config>runtime,rel);
+  }
+});
+
+test("공개 runtime config에는 URL 자리만 있고 인증 비밀값은 없음",()=>{
+  const src=read("site/assets/runtime-config.js");
+  assert.match(src,/apiUrl:\s*""/);
+  assert.doesNotMatch(src,/teacherPin\s*:/i);
+  assert.doesNotMatch(src,/sessionToken\s*:/i);
+  assert.doesNotMatch(src,/writeKey\s*:/i);
+});
+
+test("교사용 프론트엔드는 PIN 로그인·90일 세션·1회용 새 컴퓨터 링크를 사용",()=>{
+  const api=read("site/assets/api.js"),app=read("site/assets/app.js"),html=read("site/index.html");
+  assert.match(api,/teacherLogin/);
+  assert.match(api,/claimDevice/);
+  assert.match(api,/sessionStatus/);
+  assert.match(api,/createDeviceSetupToken/);
+  assert.match(app,/teacher-setup=/);
+  assert.match(app,/새 컴퓨터 연결 링크/);
+  assert.match(html,/교사 PIN/);
+  assert.match(html,/10분 동안 한 번만/);
+  assert.doesNotMatch(html,/id="writeKeyInput"/);
+});
+
+test("Apps Script는 설치·PIN·서명 세션·1회용 토큰 API를 제공",()=>{
+  const src=read("apps-script/Code.gs");
+  for(const term of ["installYoungsPhysics","teacherLogin","claimDevice","sessionStatus","createDeviceSetupToken","TEACHER_PIN_HASH","SESSION_SECRET","AUTH_EPOCH"])assert.match(src,new RegExp(term));
+  assert.match(src,/DEFAULT_SESSION_TTL_DAYS = 90/);
+  assert.match(src,/DEFAULT_SETUP_TOKEN_TTL_MINUTES = 10/);
+  assert.match(src,/clearDeviceSetupToken_\(\);\s*return createSessionResponse_/);
+});
+
+test("Apps Script Spreadsheet 메뉴에서 설치·PIN·세션 관리 가능",()=>{
+  const src=read("apps-script/Code.gs");
+  assert.match(src,/function onOpen\(\)/);
+  assert.match(src,/설치·시트 초기화/);
+  assert.match(src,/무작위 교사 PIN 재발급/);
+  assert.match(src,/모든 교사 기기 세션 해제/);
+});
+
+test("Apps Script manifest는 Sheets와 container UI 최소 권한을 선언",()=>{
+  const manifest=JSON.parse(read("apps-script/appsscript.json"));
+  assert.deepEqual(manifest.oauthScopes,[
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/script.container.ui"
+  ]);
+});
+
+test("설치 문서는 Pages 404 해결과 YP_API_URL 자동 연결 절차를 포함",()=>{
+  const src=read("INSTALL_KO.md");
+  assert.match(src,/Get Pages site failed: Not Found/);
+  assert.match(src,/Source[\s\S]*GitHub Actions/);
+  assert.match(src,/YP_API_URL/);
+  assert.match(src,/installYoungsPhysics/);
+  assert.match(src,/새 컴퓨터 연결 링크/);
+  assert.doesNotMatch(src,/Apps Script `\/exec` URL과 WRITE_KEY를 입력/);
+});
+
+
+test("교사용 화면은 탭·창 복귀와 네트워크 재연결 시 학생 기록을 자동 갱신",()=>{
+  const app=read("site/assets/app.js");
+  assert.match(app,/function refreshWhenActive/);
+  assert.match(app,/addEventListener\(\"focus\"/);
+  assert.match(app,/addEventListener\(\"pageshow\"/);
+  assert.match(app,/addEventListener\(\"online\"/);
+  assert.match(app,/visibilitychange/);
+  assert.match(app,/refreshReports\(\)/);
 });

@@ -1,45 +1,85 @@
-# Apps Script 설치 및 스키마 마이그레이션
+# Young’s Physics Apps Script 3.2
 
-`Code.gs`는 주간 복습과 총괄평가를 같은 Reports 시트에서 관리합니다.
-
-## Script Properties
+## 설치 파일
 
 ```text
-SPREADSHEET_ID
-WRITE_KEY
-FINGERPRINT_SECRET
+Code.gs
+appsscript.json
 ```
 
-FINGERPRINT_SECRET을 생략하면 WRITE_KEY를 지문 서명 비밀값으로 사용하지만, 서로 다른 값을 권장합니다.
+Google Spreadsheet에 연결된 Apps Script 프로젝트에 두 파일을 적용합니다.
 
-## 최초 설치
-
-1. Google Spreadsheet에 연결된 Apps Script에 Code.gs를 붙여넣습니다.
-2. Script Properties를 설정합니다.
-3. `connectThisSpreadsheet()`를 실행합니다.
-4. 웹 앱으로 새 배포합니다.
-5. GitHub Pages 교사용 화면에서 카탈로그 동기화를 실행합니다.
-
-## 기존 주간 시스템에 적용
-
-이번 버전은 Exams, Questions, Reports의 열 수와 순서가 달라집니다. `ensureSheetSchema_()`가 기존 1행 헤더 이름을 기준으로 데이터를 새 스키마에 재배치합니다. 따라서 Code.gs를 교체한 뒤 `connectThisSpreadsheet()`를 실행해야 합니다.
-
-기존 Reports의 StudentKey는 비어 있어도 조회할 때 계산됩니다. 완전한 무결성 갱신은 WRITE_KEY와 FINGERPRINT_SECRET 설정 후 `repairIntegrity` API를 실행합니다.
-
-## 주요 API
+## 최초 설치·업데이트
 
 ```text
-ping
-listCourses
-listExams
-getExam
-getQuestions
+installYoungsPhysics()
+```
+
+이 함수는 다음을 수행합니다.
+
+- 현재 Spreadsheet ID 연결
+- Courses, Exams, Questions, Reports 시트 생성·안전 마이그레이션
+- 학생 링크용 `FINGERPRINT_SECRET` 자동 생성
+- 교사 세션용 `SESSION_SECRET` 자동 생성
+- 세션 일괄 무효화용 `AUTH_EPOCH` 자동 생성
+- 교사 PIN이 없으면 10자리 무작위 PIN 생성
+- 학교가 빈칸이거나 구버전 `미입력`인 기록을 `미기입`으로 정리
+- 학교 표기 변경에 맞춰 `IdentityDigest`, `StudentKey`, `RecordJSON`도 함께 갱신
+
+기존 PIN이 있으면 설치 함수가 변경하지 않습니다.
+
+Spreadsheet를 새로고침하면 `Young's Physics` 메뉴가 추가됩니다.
+
+```text
+① 설치·시트 초기화
+학교 미기입 표기 정리
+교사 PIN 직접 변경
+무작위 교사 PIN 재발급
+모든 교사 기기 세션 해제
+연결 상태 확인
+```
+
+## Excel 일괄 저장 API
+
+사이트가 `.xlsx`를 브라우저에서 해석한 뒤 정규화한 학생 기록을 다음 API로 전송합니다.
+
+```text
+saveBatch
+```
+
+3.2의 `saveBatch`는 다음 방식으로 동작합니다.
+
+- Reports 시트를 한 번 읽음
+- 동일 `examId + 학교 + 이름` 기록을 찾아 upsert
+- 기존 토큰·지문·학부모 링크 유지
+- 신규·수정 학생을 메모리에서 반영
+- 전체 결과를 한 번의 `setValues`로 저장
+- 영향받은 시험만 통계를 다시 계산
+- 저장 성공·신규·수정·실패 건수를 반환
+
+학교는 빈칸, `미입력`, `미기입`을 모두 동일한 학교 식별값으로 취급하고 저장값은 `미기입`으로 통일합니다.
+
+## 교사 인증 API
+
+```text
+bootstrap
+teacherLogin
+sessionStatus
+createDeviceSetupToken
+claimDevice
+```
+
+교사 세션 기본 유효기간은 90일입니다. 브라우저에는 `WRITE_KEY`가 아니라 서명된 세션 토큰만 저장됩니다.
+
+## 성적 API
+
+```text
 syncCatalog
 saveReport
 saveBatch
-getReport
 listReports
 deleteReport
+getReport
 getExamStats
 checkIntegrity
 repairIntegrity
@@ -49,11 +89,34 @@ backupReports
 checkStorageLocation
 ```
 
-`getReport`와 `saveReport`는 총괄평가일 때 `historyRecords`도 반환합니다. 연결 대상은 Exams 시트의 `HistoryExamIdsJSON`과 Reports의 `StudentKey`로 결정합니다.
+학생 리포트 조회는 교사 세션을 요구하지 않지만, 토큰·지문·학생 식별 다이제스트를 모두 검증합니다.
 
-## 보안
+## Script Properties
 
-- WRITE_KEY는 쓰기·목록·삭제 요청에 필요합니다.
-- 학생 리포트 GET은 토큰과 지문을 모두 검증합니다.
-- 서버에서는 지문 HMAC, IdentityDigest, StudentKey를 다시 검사합니다.
-- 학생 링크에 WRITE_KEY가 포함되지 않습니다.
+설치 함수가 자동으로 관리합니다.
+
+```text
+SPREADSHEET_ID
+FINGERPRINT_SECRET
+SESSION_SECRET
+TEACHER_PIN_HASH
+TEACHER_PIN_SALT
+AUTH_EPOCH
+```
+
+선택 설정:
+
+```text
+SESSION_TTL_DAYS           기본 90, 1~365
+SETUP_TOKEN_TTL_MINUTES    기본 10, 2~60
+WRITE_KEY                  구버전 호환·긴급 복구용만 사용
+```
+
+## 웹 앱 배포
+
+```text
+실행 사용자: 나
+액세스 권한: 모든 사용자
+```
+
+운영 사이트에는 `/exec` 주소를 사용합니다. `Code.gs`를 수정한 뒤에는 기존 웹 앱 배포를 새 버전으로 갱신해야 합니다.
