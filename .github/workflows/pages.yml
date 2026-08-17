@@ -69,7 +69,7 @@ jobs:
 
           config = {
               "apiUrl": url,
-              "buildVersion": "3.2.0-excel-batch-import",
+              "buildVersion": "3.2.4-report-token-affinity",
               "buildRef": os.environ.get("YP_BUILD_REF", "")[:12],
           }
           out = target / "assets" / "runtime-config.js"
@@ -82,6 +82,55 @@ jobs:
           )
           print(f"Apps Script automatic connection injected: {out}")
           PY
+
+      - name: Verify Apps Script public deployment
+        shell: bash
+        env:
+          YP_API_URL: ${{ vars.YP_API_URL }}
+          LEGACY_APPS_SCRIPT_URL: ${{ vars.APPS_SCRIPT_URL }}
+        run: |
+          set -euo pipefail
+          URL="${YP_API_URL:-${LEGACY_APPS_SCRIPT_URL:-}}"
+          CHECK_URL="${URL}?action=ping&github_check=${GITHUB_SHA::12}"
+          HTTP_CODE="$(curl -sS -L --max-time 35 -o /tmp/yp-api-ping.txt -w "%{http_code}" "$CHECK_URL" || true)"
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "::error title=Apps Script 공개 연결 실패::HTTP ${HTTP_CODE}. Apps Script 배포를 ‘실행 사용자: 나’, ‘액세스 권한: 로그인 없이 모든 사용자’로 설정하고 최신 /exec URL을 YP_API_URL에 등록하세요."
+            sed -n '1,12p' /tmp/yp-api-ping.txt 2>/dev/null || true
+            exit 1
+          fi
+          python3 - <<'PY'
+          import json
+          import pathlib
+          import sys
+          text = pathlib.Path('/tmp/yp-api-ping.txt').read_text(encoding='utf-8', errors='replace')
+          try:
+              data = json.loads(text)
+          except Exception:
+              print('::error title=Apps Script가 JSON 대신 로그인/HTML을 반환했습니다::웹 앱 액세스 권한이 로그인 사용자로 제한되었거나 /exec URL이 잘못되었습니다. 응답 앞부분: ' + text[:240].replace('\n', ' '))
+              sys.exit(1)
+          if not data.get('ok'):
+              print('::error title=Apps Script ping 실패::' + str(data)[:400])
+              sys.exit(1)
+          expected = '3.2.4-report-token-affinity'
+          if data.get('apiVersion') != expected:
+              print(f'::error title=Apps Script 버전 불일치::현재 서버 버전은 {data.get("apiVersion", "unknown")}이고 필요한 버전은 {expected}입니다. v3.2.4 Code.gs를 저장한 뒤 웹 앱을 새 버전으로 재배포하세요.')
+              sys.exit(1)
+          print('Apps Script public ping verified:', data.get('apiVersion', 'unknown'))
+          PY
+
+          BRIDGE_OWNER="$(printf '%s' "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')"
+          BRIDGE_ORIGIN="https://${BRIDGE_OWNER}.github.io"
+          BRIDGE_CODE="$(curl -sS -L -G --max-time 35 -o /tmp/yp-api-bridge.html -w "%{http_code}" \
+            --data-urlencode "action=bridge" \
+            --data-urlencode "origin=${BRIDGE_ORIGIN}" \
+            --data-urlencode "channel=githubbridgecheck123456" \
+            "$URL" || true)"
+          if [ "$BRIDGE_CODE" != "200" ] || ! grep -q "YP_API_BRIDGE_READY" /tmp/yp-api-bridge.html; then
+            echo "::error title=Apps Script 통신 브리지 미배포::v3.2.4 Code.gs가 실제 웹 앱 /exec에 반영되지 않았습니다. Apps Script에서 새 버전으로 재배포하세요. HTTP ${BRIDGE_CODE}."
+            sed -n '1,8p' /tmp/yp-api-bridge.html 2>/dev/null || true
+            exit 1
+          fi
+          echo "Apps Script HtmlService bridge verified."
 
       - name: Ensure GitHub Pages is enabled
         shell: bash
