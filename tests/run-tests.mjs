@@ -128,16 +128,18 @@ const uploadedMechanicsExcel="/mnt/data/역학진단고사 v3.xlsx";
 test("실제 학생 Excel 원본은 공개 GitHub 프로젝트에 포함하지 않음",()=>{const all=[];function walk(dir){for(const ent of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,ent.name);if(ent.isDirectory())walk(p);else all.push(path.relative(root,p))}}walk(root);assert.equal(all.some(p=>/역학진단고사 v3\.xlsx$/i.test(p)),false)});
 test("데모 데이터는 동일 학생의 7개 복습+역학 총괄을 포함",()=>{const data=JSON.parse(read("site/assets/data/demo-data.js").replace(/^window\.YP_DEMO_DATA\s*=\s*/,"").replace(/;\s*$/,"")).reports;assert.equal(data.filter(r=>r.school==="영스고"&&r.name==="김물리").length,8);assert.equal(new Set(data.map(r=>r.token)).size,data.length);assert.equal(new Set(data.map(r=>r.fingerprint)).size,data.length)});
 test("데모 API도 historyRecords를 반환",()=>{const src=read("site/assets/api.js");assert.match(src,/historyRecords=YP\.getLinkedHistory/);assert.match(src,/studentKey=YP\.studentKey/)});
+test("교사용 API는 HtmlService 브리지와 공개 GET 진단을 지원",()=>{const src=read("site/assets/api.js");assert.match(src,/YP_API_BRIDGE_REQUEST/);assert.match(src,/_bridgeRequest/);assert.match(src,/_probePublicGet/);assert.match(src,/DEPLOYMENT_ACCESS/);assert.match(src,/BRIDGE_NOT_DEPLOYED/)});
 
 // Apps Script schema/migration/security
 
 test("Apps Script에 총괄 메타·InputMode·OriginalRetry·StudentKey 열이 있음",()=>{const src=read("apps-script/Code.gs");for(const term of ["AssessmentType","InputProfileJSON","HistoryExamIdsJSON","HistoryLabel","InputMode","OriginalRetryJSON","StudentKey"])assert.match(src,new RegExp(term))});
 test("Apps Script는 기존 헤더 이름으로 행을 재배치해 스키마를 안전 마이그레이션",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function ensureSheetSchema_/);assert.match(src,/currentIndex\[h\]/);assert.match(src,/const remapped = sourceRows\.map/);assert.match(src,/sh\.clearContents\(\)/)});
 test("Apps Script 총괄 점수 파서는 binary와 points를 구분",()=>{const src=read("apps-script/Code.gs");assert.match(src,/mode==="binary"/);assert.match(src,/mode==="points"/);assert.match(src,/객관식은 0 또는 1만 입력/);assert.match(src,/서술형 점수는 0~/)});
-test("Apps Script 일괄 저장은 단일 시트 쓰기와 동일 학생 upsert를 사용",()=>{const src=read("apps-script/Code.gs");assert.match(src,/API_VERSION = "3\.2\.0-excel-batch-import"/);assert.match(src,/function calculateScoringFromQuestions_/);assert.match(src,/function reportIdentityKey_/);assert.match(src,/String\(input\.importMode\|\|"upsert"\)==="upsert"/);assert.match(src,/sh\.getRange\(2,1,data\.length,headers\.length\)\.setValues\(data\)/);assert.match(src,/savedCount:saved\.length/);assert.doesNotMatch(src,/saved\.push\(saveReport_\(r\)\.record\)/)});
+test("Apps Script는 POST와 HtmlService 브리지에 공통 API 디스패처를 사용",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function dispatchApiRequest_/);assert.match(src,/function apiBridge\(request\)/);assert.match(src,/return jsonOutput_\(dispatchApiRequest_\(parseBody_\(e\)\)\)/);assert.match(src,/function apiErrorObject_/)});
+test("Apps Script 일괄 저장은 단일 시트 쓰기와 동일 학생 upsert를 사용",()=>{const src=read("apps-script/Code.gs");assert.match(src,/API_VERSION = "3\.2\.4-report-token-affinity"/);assert.match(src,/function calculateScoringFromQuestions_/);assert.match(src,/function reportIdentityKey_/);assert.match(src,/String\(input\.importMode\|\|"upsert"\)==="upsert"/);assert.match(src,/sh\.getRange\(2,1,data\.length,headers\.length\)\.setValues\(data\)/);assert.match(src,/savedCount:saved\.length/);assert.doesNotMatch(src,/saved\.push\(saveReport_\(r\)\.record\)/)});
 test("Apps Script는 학교 빈칸·구버전 표기를 '미기입'으로 정규화",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function normalizeSchool_/);assert.match(src,/school==="미입력"\|\|school==="미기입" \? "미기입"/);assert.match(src,/const school=normalizeSchool_\(input\.school\)/);assert.match(src,/const rawSchool=String\(row\.School\|\|""\)\.trim\(\),school=normalizeSchool_\(rawSchool\)/);assert.match(src,/function migrateSchoolLabels_/);assert.match(src,/학교 미기입 표기 정리/)});
 test("Apps Script 학생 연결키는 과정·학교·이름 SHA-256",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function makeStudentKey_/);assert.match(src,/DigestAlgorithm\.SHA_256/);assert.match(src,/normalizeIdentity_\(school/)});
-test("Apps Script 결과 링크는 토큰·지문·학생 식별 다이제스트를 모두 검증",()=>{const src=read("apps-script/Code.gs");assert.match(src,/constantTimeEqual_\(String\(row\.Fingerprint\),String\(fp\)\)/);assert.match(src,/makeFingerprint_/);assert.match(src,/makeIdentityDigest_/);assert.match(src,/학생 식별 정보 무결성 검증/)});
+test("Apps Script 결과 링크는 토큰·지문·학생 식별 다이제스트를 모두 검증",()=>{const src=read("apps-script/Code.gs");assert.match(src,/constantTimeEqual_\(String\(row\.Fingerprint\|\|""\),String\(fp\)\)/);assert.match(src,/makeFingerprint_/);assert.match(src,/makeIdentityDigest_/);assert.match(src,/학생 식별 정보 무결성 검증/)});
 test("Apps Script 재계산 열 번호는 새 Reports 17열 스키마와 일치",()=>{const src=read("apps-script/Code.gs");assert.match(src,/getRange\(i\+2,14\).*calc\.scoring/);assert.match(src,/getRange\(i\+2,15\).*record/);assert.match(src,/getRange\(i\+2,17\).*new Date/)});
 
 // Actual OOXML Word generation
@@ -174,6 +176,22 @@ test("GitHub Pages workflow injects YP_API_URL and accepts legacy variable",()=>
   assert.match(src,/PIN·세션·WRITE_KEY는 포함하지 않습니다/);
 });
 
+test("GitHub Pages workflow는 Apps Script 공개 ping을 배포 전에 검증",()=>{
+  const src=read(".github/workflows/pages.yml");
+  assert.match(src,/Verify Apps Script public deployment/);
+  assert.match(src,/action=ping/);
+  assert.match(src,/curl -sS -L/);
+  assert.match(src,/로그인 없이 모든 사용자/);
+});
+
+test("GitHub Pages workflow는 Apps Script v3.2.4 브리지 배포까지 검증",()=>{
+  const src=read(".github/workflows/pages.yml");
+  assert.match(src,/3\.2\.4-report-token-affinity/);
+  assert.match(src,/action=bridge/);
+  assert.match(src,/YP_API_BRIDGE_READY/);
+  assert.match(src,/Apps Script 통신 브리지 미배포/);
+});
+
 test("GitHub Pages workflow diagnoses disabled Pages and supports optional admin token",()=>{
   const src=read(".github/workflows/pages.yml");
   assert.match(src,/Settings → Pages → Build and deployment → Source/);
@@ -207,6 +225,17 @@ test("교사용 프론트엔드는 PIN 로그인·90일 세션·1회용 새 컴�
   assert.match(html,/교사 PIN/);
   assert.match(html,/10분 동안 한 번만/);
   assert.doesNotMatch(html,/id="writeKeyInput"/);
+});
+
+test("교사용 API는 ContentService fetch 대신 HtmlService 통신 브리지를 사용",()=>{
+  const api=read("site/assets/api.js"),server=read("apps-script/Code.gs");
+  assert.match(api,/YP_API_BRIDGE_REQUEST/);
+  assert.match(api,/action","bridge/);
+  assert.match(api,/_bridgeRequest/);
+  assert.match(server,/function bridgeHtml_/);
+  assert.match(server,/setXFrameOptionsMode\(HtmlService\.XFrameOptionsMode\.ALLOWALL\)/);
+  assert.match(server,/function apiBridge\(request\)/);
+  assert.match(server,/google\.script\.run/);
 });
 
 test("Apps Script는 설치·PIN·서명 세션·1회용 토큰 API를 제공",()=>{
@@ -252,4 +281,30 @@ test("교사용 화면은 탭·창 복귀와 네트워크 재연결 시 학생 �
   assert.match(app,/addEventListener\(\"online\"/);
   assert.match(app,/visibilitychange/);
   assert.match(app,/refreshReports\(\)/);
+});
+
+
+test("성적표 링크는 토큰·지문과 함께 생성 당시 Apps Script /exec 주소·서버 식별자를 고정",()=>{
+  const app=read("site/assets/app.js");
+  assert.match(app,/params\.set\("api",api\)/);
+  assert.match(app,/params\.set\("sid",String\(serverInstanceId\)\)/);
+  assert.match(app,/serverInstanceId=state\.serverInstanceId/);
+});
+
+test("성적표 페이지는 링크의 /exec 주소를 배포 runtime 주소보다 우선 사용",()=>{
+  const config=read("site/assets/config.js");
+  assert.match(config,/const apiUrl=linkUrl\|\|runtimeUrl/);
+  assert.match(config,/isReportPage/);
+  assert.match(config,/report-link/);
+  assert.match(config,/script\\\.google\\\.com/);
+});
+
+test("Apps Script는 토큰 열·A열·RecordJSON을 조회하고 저장소 진단·복구 함수를 제공",()=>{
+  const src=read("apps-script/Code.gs");
+  assert.match(src,/function findReportRowByToken_/);
+  assert.match(src,/mode:"column-a"/);
+  assert.match(src,/mode:"record-json"/);
+  assert.match(src,/function diagnoseReportStorage/);
+  assert.match(src,/function repairReportStorage/);
+  assert.match(src,/serverInstanceId:getServerInstanceId_\(\)/);
 });

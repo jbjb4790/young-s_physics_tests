@@ -1,7 +1,16 @@
 (function(){
  const $=id=>document.getElementById(id);let current={exam:null,record:null,stats:null,history:null,historyRecords:[]};
  const htmlText=s=>YP.escapeHTML(s).replace(/\n/g,"<br>");
- function errorPage(message){$("reportRoot").innerHTML=`<div class="card error-box"><h2>성적표를 열 수 없습니다.</h2><p>${YP.escapeHTML(message)}</p><a class="btn btn-primary" href="index.html">교사용 화면으로</a></div>`}
+ function errorPage(message,detail=""){$("reportRoot").innerHTML=`<div class="card error-box"><h2>성적표를 열 수 없습니다.</h2><p>${YP.escapeHTML(message)}</p>${detail?`<div class="notice small">${detail}</div>`:""}<a class="btn btn-primary" href="index.html">교사용 화면으로</a></div>`}
+ function reportErrorDetail(error,link){
+   const code=String(error&&error.code||"");
+   if(code==="REPORT_NOT_FOUND"){
+     const current=YP.escapeHTML(String(error?.data?.serverInstanceId||"확인 불가")),expected=YP.escapeHTML(String(link.get("sid")||"구버전 링크"));
+     return `<b>확인 순서</b><br>1. 교사용 화면을 강력 새로고침합니다.<br>2. ‘서버 기록 새로고침’을 누릅니다.<br>3. 해당 학생의 ‘링크 복사’를 다시 눌러 새 링크를 전달합니다.<br><span class="muted">링크 서버: ${expected} · 현재 응답 서버: ${current}</span>`;
+   }
+   if(code==="FINGERPRINT_MISMATCH"||code==="FINGERPRINT_INTEGRITY")return `교사용 화면의 서버 기록에서 해당 학생 링크를 다시 복사해 주세요.`;
+   return "";
+ }
  function params(){return new URLSearchParams(location.hash.replace(/^#/,""))}
  function statusClass(s){return s==="full"?"status-full":s==="partial"?"status-partial":s==="wrong"?"status-wrong":""}
  function coreBox(title,items){return `<div class="core-note-box"><h3>${title}</h3><ul class="list-clean">${(items||[]).map(x=>`<li>${YP.escapeHTML(x)}</li>`).join("")}</ul></div>`}
@@ -60,6 +69,21 @@
  }
  function bindSimilar(q){const s=q.similarProblem,inp=$(`similarInput${q.no}`),res=$(`similarResult${q.no}`),submit=$(`similarSubmit${q.no}`),reset=$(`similarReset${q.no}`);submit.onclick=()=>{if(!inp.value.trim())return YP.toast("동형 문제 답을 입력하거나 선택하세요.");const check=YP.checkSimilarAnswer(inp.value,s),verdict=check.correct===true?`<b class="correct-text">정답입니다.</b>`:check.correct===false?`<b class="wrong-text">입력 답을 다시 비교해 보세요.</b>`:`<b>자기 점검형 문항입니다.</b>`;res.innerHTML=`${verdict}<hr><b>정답</b><div>${htmlText(s.answer)}</div><b class="block-label">해설</b><div>${htmlText(s.explanation)}</div>`;res.classList.remove("hidden");submit.classList.add("hidden");reset.classList.remove("hidden");inp.disabled=true};reset.onclick=()=>{inp.value="";inp.disabled=false;res.classList.add("hidden");res.innerHTML="";submit.classList.remove("hidden");reset.classList.add("hidden")}}
  async function exportWord(){const btn=$("wordBtn");if(!window.YoungsDocx)return YP.toast("Word 생성 모듈을 불러오지 못했습니다.",5000);btn.disabled=true;btn.textContent="Word 생성 중...";try{await window.YoungsDocx.exportReport(current);YP.toast("로고·그래프·문제 이미지를 내장한 실제 .docx를 생성했습니다.")}catch(e){console.error(e);YP.toast("Word 생성 실패: "+e.message,7000)}finally{btn.disabled=false;btn.textContent="Word(.docx)"}}
- async function init(){if(YP_API.demo)$("demoBanner").classList.remove("hidden");const p=params(),token=p.get("id"),fp=p.get("fp");if(!token||!fp)return errorPage("학생 링크에 토큰 또는 지문이 없습니다.");try{const data=await YP_API.getReport(token,fp),record=data.record,exam=YP.getExam(record.examId);if(!exam)throw new Error("연결된 시험 설정을 찾을 수 없습니다.");if(record.examId!==exam.examId||record.courseId!==exam.courseId)throw new Error("학생 기록과 시험 설정의 식별자가 일치하지 않습니다.");current={exam,record,stats:data.stats,integrity:data.integrity,historyRecords:data.historyRecords||[]};makeReport(exam,record,data.stats,data.integrity,data.historyRecords||[])}catch(e){errorPage(e.message)}}
+ async function init(){
+   if(YP_API.demo)$("demoBanner").classList.remove("hidden");
+   const p=params(),token=p.get("id"),fp=p.get("fp"),expectedServer=String(p.get("sid")||"");
+   if(!token||!fp)return errorPage("학생 링크에 토큰 또는 지문이 없습니다.");
+   try{
+     const data=await YP_API.getReport(token,fp);
+     if(expectedServer&&data.serverInstanceId&&expectedServer!==String(data.serverInstanceId)){
+       const err=new Error("이 성적표 링크를 만든 서버와 현재 연결된 Apps Script 서버가 다릅니다. 교사용 화면에서 링크를 다시 복사해 주세요.");err.code="SERVER_INSTANCE_MISMATCH";throw err;
+     }
+     const record=data.record,exam=YP.getExam(record.examId);
+     if(!exam)throw new Error("연결된 시험 설정을 찾을 수 없습니다.");
+     if(record.examId!==exam.examId||record.courseId!==exam.courseId)throw new Error("학생 기록과 시험 설정의 식별자가 일치하지 않습니다.");
+     current={exam,record,stats:data.stats,integrity:data.integrity,historyRecords:data.historyRecords||[]};
+     makeReport(exam,record,data.stats,data.integrity,data.historyRecords||[]);
+   }catch(e){errorPage(e.message,reportErrorDetail(e,p))}
+ }
  document.addEventListener("DOMContentLoaded",init);
 })();

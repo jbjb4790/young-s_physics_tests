@@ -1,10 +1,10 @@
 {
   "name": "youngs-physics-review-comprehensive-analysis",
-  "version": "3.2.0",
+  "version": "3.2.4",
   "private": true,
   "scripts": {
     "test": "node --test tests/run-tests.mjs",
     "serve": "python3 -m http.server 8080 -d site"
   },
-  "description": "Young's Physics secure automatic Apps Script connection, Excel batch import, and GitHub Pages deployment package"
+  "description": "Young's Physics secure Apps Script connection, Excel batch import, and report-token affinity package"
 }

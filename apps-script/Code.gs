@@ -30,7 +30,7 @@ const HEADERS = {
   Reports: ["Token","Fingerprint","IdentitySeed","IdentityDigest","StudentKey","ExamId","CourseId","School","Name","Grade","ClassNo","ResultInputsJSON","PartialModesJSON","ScoringJSON","RecordJSON","CreatedAt","UpdatedAt"]
 };
 
-const API_VERSION = "3.2.0-excel-batch-import";
+const API_VERSION = "3.2.4-report-token-affinity";
 const DEFAULT_SESSION_TTL_DAYS = 90;
 const DEFAULT_SETUP_TOKEN_TTL_MINUTES = 10;
 
@@ -43,12 +43,17 @@ function onOpen() {
     SpreadsheetApp.getUi()
       .createMenu("Young's Physics")
       .addItem("① 설치·시트 초기화", "installYoungsPhysics")
-      .addItem("학교 미기입 표기 정리", "migrateSchoolLabels")
+      .addItem("학교 미기입 표기 정리(분할 실행)", "migrateSchoolLabels")
       .addSeparator()
       .addItem("교사 PIN 직접 변경", "setTeacherPin")
       .addItem("무작위 교사 PIN 재발급", "resetTeacherPin")
+      .addItem("GitHub Pages 허용 주소 설정", "setSiteOrigins")
       .addItem("모든 교사 기기 세션 해제", "invalidateTeacherSessions")
       .addSeparator()
+      .addItem("성적표 토큰 저장소 진단", "diagnoseReportStorage")
+      .addItem("성적표 토큰 저장소 복구", "repairReportStorage")
+      .addSeparator()
+      .addItem("웹 앱 배포 진단", "checkWebAppDeployment")
       .addItem("연결 상태 확인", "showYoungsPhysicsStatus")
       .addToUi();
   } catch (err) {}
@@ -65,6 +70,7 @@ function showYoungsPhysicsStatus() {
     "교사 PIN: " + (status.teacherPinConfigured ? "설정됨" : "미설정"),
     "교사 세션 유효기간: " + status.sessionTtlDays + "일",
     "새 컴퓨터 링크 유효기간: " + status.setupTokenTtlMinutes + "분",
+    "허용 사이트: " + (String(props.getProperty("SITE_ORIGINS") || props.getProperty("SITE_ORIGIN") || "").trim() || "미설정(모든 HTTPS origin 허용)"),
     "SPREADSHEET_ID: " + (props.getProperty("SPREADSHEET_ID") ? "설정됨" : "미설정")
   ];
   try {
@@ -76,6 +82,12 @@ function showYoungsPhysicsStatus() {
 function doGet(e) {
   try {
     const action = String((e && e.parameter && e.parameter.action) || "ping");
+    if (action === "bridge") {
+      return bridgeHtml_(
+        String(e.parameter.origin || ""),
+        String(e.parameter.channel || "")
+      );
+    }
     if (action === "getReport") {
       return jsonOutput_(getReport_(String(e.parameter.token || ""), String(e.parameter.fp || "")));
     }
@@ -86,78 +98,188 @@ function doGet(e) {
       return jsonOutput_(bootstrap_());
     }
     if (action === "ping") {
-      return jsonOutput_({ok:true, message:"Young's Physics Apps Script API 정상", apiVersion:API_VERSION, time:new Date().toISOString()});
+      return jsonOutput_({
+        ok:true,
+        message:"Young's Physics Apps Script API 정상",
+        apiVersion:API_VERSION,
+        serverInstanceId:getServerInstanceId_(),
+        transport:"content-service",
+        time:new Date().toISOString()
+      });
     }
     return jsonOutput_({ok:false, code:"UNSUPPORTED_ACTION", error:"지원하지 않는 GET action입니다: " + action});
   } catch (err) {
-    return jsonOutput_({ok:false, code:String(err && err.code || "SERVER_ERROR"), error:String(err && err.message || err)});
+    return jsonOutput_(apiErrorObject_(err));
   }
+}
+
+/**
+ * GitHub Pages에서 Apps Script ContentService로 직접 fetch할 때 브라우저·조직 정책에 따라
+ * 리디렉션/CORS 단계가 차단될 수 있다. 이 HTML 브리지는 Apps Script의 google.script.run을
+ * 사용해 서버 함수를 호출하고, 결과만 postMessage로 GitHub Pages에 돌려준다.
+ */
+function bridgeHtml_(requestedOrigin, requestedChannel) {
+  const origin = validateBridgeOrigin_(requestedOrigin);
+  const channel = validateBridgeChannel_(requestedChannel);
+  const originJson = JSON.stringify(origin).replace(/</g, "\\u003c");
+  const channelJson = JSON.stringify(channel).replace(/</g, "\\u003c");
+  const versionJson = JSON.stringify(API_VERSION);
+  const html = [
+    '<!doctype html>',
+    '<html><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">',
+    '<title>Young\'s Physics API Bridge</title></head>',
+    '<body style="margin:0;background:transparent">',
+    '<script>',
+    '(function(){',
+    '"use strict";',
+    'var ORIGIN=' + originJson + ';',
+    'var CHANNEL=' + channelJson + ';',
+    'var VERSION=' + versionJson + ';',
+    'function send(payload){try{parent.postMessage(payload,ORIGIN);}catch(e){}}',
+    'function errorText(error){return error&&error.message?String(error.message):String(error||"Apps Script bridge error");}',
+    'window.addEventListener("message",function(event){',
+    '  if(event.source!==parent||event.origin!==ORIGIN)return;',
+    '  var message=event.data||{};',
+    '  if(message.type!=="YP_API_BRIDGE_REQUEST"||message.channel!==CHANNEL||!message.id)return;',
+    '  google.script.run',
+    '    .withSuccessHandler(function(result){send({type:"YP_API_BRIDGE_RESPONSE",channel:CHANNEL,id:String(message.id),result:result});})',
+    '    .withFailureHandler(function(error){send({type:"YP_API_BRIDGE_RESPONSE",channel:CHANNEL,id:String(message.id),result:{ok:false,code:"BRIDGE_SERVER_ERROR",error:errorText(error)}});})',
+    '    .apiBridge(message.body||{});',
+    '});',
+    'function ready(){',
+    '  if(!(window.google&&google.script&&google.script.run)){setTimeout(ready,50);return;}',
+    '  send({type:"YP_API_BRIDGE_READY",channel:CHANNEL,apiVersion:VERSION});',
+    '}',
+    'ready();',
+    '})();',
+    '<\/script></body></html>'
+  ].join('');
+  return HtmlService.createHtmlOutput(html)
+    .setTitle("Young's Physics API Bridge")
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function validateBridgeOrigin_(origin) {
+  const value = String(origin || "").trim().replace(/\/$/, "");
+  const secure = /^https:\/\/[A-Za-z0-9.-]+(?::\d+)?$/.test(value);
+  const local = /^http:\/\/(localhost|127\.0\.0\.1)(?::\d+)?$/.test(value);
+  if (!secure && !local) {
+    throwApiError_("BRIDGE_ORIGIN_INVALID", "통신 브리지의 사이트 origin이 올바르지 않습니다.");
+  }
+  const props = PropertiesService.getScriptProperties();
+  const configured = String(props.getProperty("SITE_ORIGINS") || props.getProperty("SITE_ORIGIN") || "").trim();
+  if (configured) {
+    const allowed = configured.split(/[\n,;]/).map(function(v){ return String(v || "").trim().replace(/\/$/, ""); }).filter(String);
+    if (allowed.indexOf(value) < 0) {
+      throwApiError_("BRIDGE_ORIGIN_DENIED", "현재 GitHub Pages 주소가 Apps Script SITE_ORIGINS 허용 목록에 없습니다.");
+    }
+  }
+  return value;
+}
+
+function validateBridgeChannel_(channel) {
+  const value = String(channel || "").trim();
+  if (!/^[A-Za-z0-9_-]{16,120}$/.test(value)) {
+    throwApiError_("BRIDGE_CHANNEL_INVALID", "통신 브리지 채널 값이 올바르지 않습니다.");
+  }
+  return value;
 }
 
 function doPost(e) {
   try {
-    const body = parseBody_(e);
-    const action = String(body.action || "");
-    const writeKey = body.writeKey;
-    switch (action) {
-      case "bootstrap":
-        return jsonOutput_(bootstrap_());
-      case "teacherLogin":
-        return jsonOutput_(teacherLogin_(String(body.teacherPin || ""), String(body.deviceLabel || "")));
-      case "claimDevice":
-        return jsonOutput_(claimDevice_(String(body.setupToken || ""), String(body.deviceLabel || "")));
-      case "sessionStatus":
-        return jsonOutput_(sessionStatus_(String(body.sessionToken || "")));
-      case "createDeviceSetupToken":
-        assertTeacherAuth_(body); return jsonOutput_(createDeviceSetupToken_());
-      case "ping":
-        if (body.sessionToken) verifyTeacherSession_(String(body.sessionToken));
-        else if (writeKey !== undefined && writeKey !== "") assertWriteKey_(writeKey);
-        return jsonOutput_({ok:true, message:"Google Sheets 연결 정상", apiVersion:API_VERSION, spreadsheetId:getSpreadsheet_().getId(), time:new Date().toISOString()});
-      case "listCourses":
-        return jsonOutput_({ok:true, courses:listRows_(SHEETS.COURSES)});
-      case "listExams":
-        return jsonOutput_({ok:true, exams:listRows_(SHEETS.EXAMS)});
-      case "getExam":
-        return jsonOutput_({ok:true, exam:getRowBy_(SHEETS.EXAMS,"ExamId",String(body.examId || ""))});
-      case "getQuestions":
-        return jsonOutput_({ok:true, questions:getQuestionRows_(String(body.examId || ""))});
-      case "saveExam":
-        assertTeacherAuth_(body); return jsonOutput_({ok:true, exam:saveExam_(body.exam || {})});
-      case "saveQuestions":
-        assertTeacherAuth_(body); return jsonOutput_({ok:true, count:saveQuestions_(String(body.examId || ""), body.questions || [])});
-      case "syncCatalog":
-        assertTeacherAuth_(body); return jsonOutput_(syncCatalog_(body.catalog || {}));
-      case "saveReport":
-        assertTeacherAuth_(body); return jsonOutput_(saveReport_(body.record || {}));
-      case "saveBatch":
-        assertTeacherAuth_(body); return jsonOutput_(saveBatch_(body.records || []));
-      case "getReport":
-        return jsonOutput_(getReport_(String(body.token || ""), String(body.fp || "")));
-      case "listReports":
-        assertTeacherAuth_(body); return jsonOutput_({ok:true, reports:listReports_(body)});
-      case "deleteReport":
-        assertTeacherAuth_(body); return jsonOutput_({ok:true, deleted:deleteReport_(String(body.token || ""))});
-      case "getExamStats":
-        return jsonOutput_({ok:true, stats:getExamStats_(String(body.examId || ""))});
-      case "checkIntegrity":
-        assertTeacherAuth_(body); return jsonOutput_(checkIntegrity_());
-      case "repairIntegrity":
-        assertTeacherAuth_(body); return jsonOutput_(repairIntegrity_());
-      case "recalculateExam":
-        assertTeacherAuth_(body); return jsonOutput_(recalculateExam_(String(body.examId || "")));
-      case "exportExamData":
-        assertTeacherAuth_(body); return jsonOutput_({ok:true, data:exportExamData_(String(body.examId || ""))});
-      case "backupReports":
-        assertTeacherAuth_(body); return jsonOutput_(backupReports_());
-      case "checkStorageLocation":
-        assertTeacherAuth_(body); return jsonOutput_({ok:true, spreadsheetId:getSpreadsheet_().getId(), spreadsheetUrl:getSpreadsheet_().getUrl()});
-      default:
-        return jsonOutput_({ok:false, error:"지원하지 않는 POST action입니다: " + action});
-    }
+    return jsonOutput_(dispatchApiRequest_(parseBody_(e)));
   } catch (err) {
-    return jsonOutput_({ok:false, code:String(err && err.code || "SERVER_ERROR"), error:String(err && err.message || err), stack:String(err && err.stack || "")});
+    return jsonOutput_(apiErrorObject_(err));
   }
+}
+
+/** HtmlService 브리지에서 호출하는 공개 서버 함수. */
+function apiBridge(request) {
+  try {
+    return dispatchApiRequest_(request || {});
+  } catch (err) {
+    return apiErrorObject_(err);
+  }
+}
+
+function dispatchApiRequest_(body) {
+  body = body || {};
+  const action = String(body.action || "");
+  const writeKey = body.writeKey;
+  switch (action) {
+    case "bootstrap":
+      return bootstrap_();
+    case "teacherLogin":
+      return teacherLogin_(String(body.teacherPin || ""), String(body.deviceLabel || ""));
+    case "claimDevice":
+      return claimDevice_(String(body.setupToken || ""), String(body.deviceLabel || ""));
+    case "sessionStatus":
+      return sessionStatus_(String(body.sessionToken || ""));
+    case "createDeviceSetupToken":
+      assertTeacherAuth_(body); return createDeviceSetupToken_();
+    case "ping":
+      if (body.sessionToken) verifyTeacherSession_(String(body.sessionToken));
+      else if (writeKey !== undefined && writeKey !== "") assertWriteKey_(writeKey);
+      return {
+        ok:true,
+        message:"Google Sheets 연결 정상",
+        apiVersion:API_VERSION,
+        serverInstanceId:getServerInstanceId_(),
+        transport:"html-service-bridge",
+        spreadsheetId:getSpreadsheet_().getId(),
+        time:new Date().toISOString()
+      };
+    case "listCourses":
+      return {ok:true, courses:listRows_(SHEETS.COURSES)};
+    case "listExams":
+      return {ok:true, exams:listRows_(SHEETS.EXAMS)};
+    case "getExam":
+      return {ok:true, exam:getRowBy_(SHEETS.EXAMS,"ExamId",String(body.examId || ""))};
+    case "getQuestions":
+      return {ok:true, questions:getQuestionRows_(String(body.examId || ""))};
+    case "saveExam":
+      assertTeacherAuth_(body); return {ok:true, exam:saveExam_(body.exam || {})};
+    case "saveQuestions":
+      assertTeacherAuth_(body); return {ok:true, count:saveQuestions_(String(body.examId || ""), body.questions || [])};
+    case "syncCatalog":
+      assertTeacherAuth_(body); return syncCatalog_(body.catalog || {});
+    case "saveReport":
+      assertTeacherAuth_(body); return saveReport_(body.record || {});
+    case "saveBatch":
+      assertTeacherAuth_(body); return saveBatch_(body.records || []);
+    case "getReport":
+      return getReport_(String(body.token || ""), String(body.fp || ""));
+    case "listReports":
+      assertTeacherAuth_(body); return {ok:true, reports:listReports_(body), serverInstanceId:getServerInstanceId_()};
+    case "deleteReport":
+      assertTeacherAuth_(body); return {ok:true, deleted:deleteReport_(String(body.token || ""))};
+    case "getExamStats":
+      return {ok:true, stats:getExamStats_(String(body.examId || ""))};
+    case "checkIntegrity":
+      assertTeacherAuth_(body); return checkIntegrity_();
+    case "repairIntegrity":
+      assertTeacherAuth_(body); return repairIntegrity_();
+    case "recalculateExam":
+      assertTeacherAuth_(body); return recalculateExam_(String(body.examId || ""));
+    case "exportExamData":
+      assertTeacherAuth_(body); return {ok:true, data:exportExamData_(String(body.examId || ""))};
+    case "backupReports":
+      assertTeacherAuth_(body); return backupReports_();
+    case "checkStorageLocation":
+      assertTeacherAuth_(body); return {ok:true, spreadsheetId:getSpreadsheet_().getId(), spreadsheetUrl:getSpreadsheet_().getUrl()};
+    default:
+      return {ok:false, code:"UNSUPPORTED_ACTION", error:"지원하지 않는 POST action입니다: " + action};
+  }
+}
+
+function apiErrorObject_(err) {
+  return {
+    ok:false,
+    code:String(err && err.code || "SERVER_ERROR"),
+    error:String(err && err.message || err),
+    data:err && err.data ? err.data : null,
+    stack:String(err && err.stack || "")
+  };
 }
 
 function connectThisSpreadsheet() {
@@ -165,40 +287,63 @@ function connectThisSpreadsheet() {
   if (!ss) throw new Error("스프레드시트에 연결된 Apps Script에서 실행하세요.");
   PropertiesService.getScriptProperties().setProperty("SPREADSHEET_ID", ss.getId());
   initializeSheets_();
-  const schoolMigration=migrateSchoolLabels_();
-  return {spreadsheetId:ss.getId(), url:ss.getUrl(), schoolLabelsMigrated:schoolMigration.migrated};
+  // 학교 표기 변환은 설치와 분리한다. 기존 기록이 많아도 설치 함수가 시간 초과되지 않는다.
+  return {
+    spreadsheetId:ss.getId(),
+    url:ss.getUrl(),
+    schoolLabelsMigrated:0,
+    schoolMigrationDeferred:true
+  };
 }
 
 /**
- * 최초 설치용 함수. 시트, 학생 링크 비밀키, 교사 세션 비밀키와 교사 PIN을 한 번에 준비한다.
- * 실행 결과와 스프레드시트 알림창에 최초 교사 PIN을 표시한다.
+ * 최초 설치용 함수.
+ * 중요: Apps Script 편집기에서 실행할 때 UI alert()는 서버 실행을 일시 정지시키므로 사용하지 않는다.
+ * 설치 결과와 최초 PIN은 실행 로그와 Spreadsheet toast에 비차단 방식으로 표시한다.
+ * 기존 Reports의 학교 표기 변환은 migrateSchoolLabels()를 여러 번 실행하는 분할 방식으로 처리한다.
  */
 function installYoungsPhysics() {
-  const connected = connectThisSpreadsheet();
-  ensureAuthSecrets_();
-  const props = PropertiesService.getScriptProperties();
-  let pin = "";
-  if (!props.getProperty("TEACHER_PIN_HASH")) {
-    pin = generateTeacherPin_();
-    setTeacherPinValue_(pin, false);
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(20000)) {
+    throw new Error("다른 설치 또는 저장 작업이 진행 중입니다. 20초 후 다시 실행하세요.");
   }
-  const result = {
-    ok:true,
-    apiVersion:API_VERSION,
-    spreadsheetId:connected.spreadsheetId,
-    spreadsheetUrl:connected.url,
-    schoolLabelsMigrated:Number(connected.schoolLabelsMigrated||0),
-    teacherPin:pin || "이미 설정됨",
-    message:pin ? "최초 교사 PIN이 생성되었습니다. 안전한 곳에 보관하세요." : "교사 PIN이 이미 설정되어 있어 변경하지 않았습니다."
-  };
   try {
-    SpreadsheetApp.getUi().alert(
-      "Young's Physics 설치 완료",
-      pin ? "교사 PIN: " + pin + "\n\n이 PIN은 새 컴퓨터에서 최초 1회 교사 인증할 때 사용합니다." : "교사 PIN이 이미 설정되어 있습니다. 변경하려면 resetTeacherPin()을 실행하세요.",
-      SpreadsheetApp.getUi().ButtonSet.OK
-    );
-  } catch (uiErr) {}
-  return result;
+    const connected = connectThisSpreadsheet();
+    ensureAuthSecrets_();
+    const props = PropertiesService.getScriptProperties();
+    let pin = "";
+    if (!props.getProperty("TEACHER_PIN_HASH")) {
+      pin = generateTeacherPin_();
+      setTeacherPinValue_(pin, false);
+    }
+
+    const ss = getSpreadsheet_();
+    const reports = ss.getSheetByName(SHEETS.REPORTS);
+    const pendingSchoolRows = reports ? Math.max(0, reports.getLastRow() - 1) : 0;
+    const result = {
+      ok:true,
+      apiVersion:API_VERSION,
+      spreadsheetId:connected.spreadsheetId,
+      spreadsheetUrl:connected.url,
+      schoolLabelsMigrated:0,
+      schoolMigrationDeferred:pendingSchoolRows > 0,
+      pendingSchoolRows:pendingSchoolRows,
+      teacherPin:pin || "이미 설정됨",
+      message:pin
+        ? "설치 완료. 최초 교사 PIN이 생성되었습니다. 실행 로그에서 PIN을 복사하세요."
+        : "설치 완료. 기존 교사 PIN을 유지했습니다."
+    };
+
+    const toastMessage = pin
+      ? "설치 완료 · 교사 PIN: " + pin + " · 실행 로그에도 기록되었습니다."
+      : "설치 완료 · 기존 교사 PIN을 유지했습니다.";
+    try { ss.toast(toastMessage, "Young's Physics", 20); } catch (toastErr) {}
+    console.log("YOUNGS_PHYSICS_INSTALL_RESULT=" + JSON.stringify(result));
+    if (pin) console.log("YOUNGS_PHYSICS_TEACHER_PIN=" + pin);
+    return result;
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 /** 교사 PIN을 사용자가 직접 입력해 변경한다. 기존 교사 세션은 모두 무효화된다. */
@@ -208,8 +353,71 @@ function setTeacherPin() {
   if (response.getSelectedButton() !== ui.Button.OK) return {ok:false, cancelled:true};
   const pin = String(response.getResponseText() || "").trim();
   setTeacherPinValue_(pin, true);
-  ui.alert("교사 PIN이 변경되었습니다. 기존 컴퓨터의 교사 세션은 모두 해제됩니다.");
-  return {ok:true};
+  // alert()는 서버 실행을 일시 정지시킬 수 있으므로 비차단 toast와 로그만 사용한다.
+  try { getSpreadsheet_().toast("교사 PIN이 변경되었습니다. 기존 교사 세션은 모두 해제되었습니다.", "Young's Physics", 12); } catch (toastErr) {}
+  console.log("YOUNGS_PHYSICS_TEACHER_PIN_CHANGED=true");
+  return {ok:true, apiVersion:API_VERSION, pinLength:pin.length};
+}
+
+/** Apps Script 편집기에서 현재 웹 앱 배포 상태와 URL을 확인한다. */
+function checkWebAppDeployment() {
+  const service = ScriptApp.getService();
+  const props = PropertiesService.getScriptProperties();
+  const result = {
+    ok:true,
+    apiVersion:API_VERSION,
+    serviceEnabled:service.isEnabled(),
+    serviceUrl:String(service.getUrl() || ""),
+    spreadsheetConnected:!!props.getProperty("SPREADSHEET_ID"),
+    teacherPinConfigured:!!props.getProperty("TEACHER_PIN_HASH"),
+    siteOrigins:String(props.getProperty("SITE_ORIGINS") || props.getProperty("SITE_ORIGIN") || ""),
+    note:"serviceEnabled가 true여도 배포 액세스 권한은 Apps Script의 배포 관리 화면에서 로그인 없이 모든 사용자로 설정해야 합니다."
+  };
+  console.log("YOUNGS_PHYSICS_WEBAPP_DIAGNOSTIC=" + JSON.stringify(result));
+  try {
+    getSpreadsheet_().toast(
+      result.serviceEnabled ? "웹 앱 배포 감지됨 · 실행 로그에서 /exec URL을 확인하세요." : "웹 앱 배포가 감지되지 않습니다. 새 웹 앱 배포가 필요합니다.",
+      "Young's Physics",
+      15
+    );
+  } catch (toastErr) {}
+  return result;
+}
+
+/**
+ * HTML 브리지를 삽입할 수 있는 사이트 origin을 제한한다.
+ * 예: https://username.github.io (저장소 경로는 제외)
+ */
+function setSiteOrigins() {
+  const ui = SpreadsheetApp.getUi();
+  const props = PropertiesService.getScriptProperties();
+  const current = String(props.getProperty("SITE_ORIGINS") || props.getProperty("SITE_ORIGIN") || "").trim();
+  const response = ui.prompt(
+    "GitHub Pages 허용 주소 설정",
+    "허용할 origin을 입력하세요. 예: https://username.github.io\n여러 주소는 쉼표로 구분합니다. 저장소 경로(/repo)는 입력하지 않습니다.\n현재값: " + (current || "미설정"),
+    ui.ButtonSet.OK_CANCEL
+  );
+  if (response.getSelectedButton() !== ui.Button.OK) return {ok:false, cancelled:true};
+  const raw = String(response.getResponseText() || "").trim();
+  if (!raw) {
+    props.deleteProperty("SITE_ORIGINS");
+    props.deleteProperty("SITE_ORIGIN");
+    try { getSpreadsheet_().toast("허용 주소 제한을 해제했습니다.", "Young's Physics", 10); } catch (toastErr) {}
+    return {ok:true, siteOrigins:[]};
+  }
+  const values = raw.split(/[\n,;]/).map(function(v){ return String(v || "").trim().replace(/\/$/, ""); }).filter(String);
+  const unique = [];
+  values.forEach(function(value){
+    const secure = /^https:\/\/[A-Za-z0-9.-]+(?::\d+)?$/.test(value);
+    const local = /^http:\/\/(localhost|127\.0\.0\.1)(?::\d+)?$/.test(value);
+    if (!secure && !local) throw new Error("origin 형식이 올바르지 않습니다: " + value + " (경로 없이 https://도메인 형식으로 입력하세요.)");
+    if (unique.indexOf(value) < 0) unique.push(value);
+  });
+  props.setProperty("SITE_ORIGINS", unique.join(","));
+  props.deleteProperty("SITE_ORIGIN");
+  try { getSpreadsheet_().toast("허용 사이트 " + unique.length + "개를 저장했습니다.", "Young's Physics", 12); } catch (toastErr) {}
+  console.log("YOUNGS_PHYSICS_SITE_ORIGINS=" + JSON.stringify(unique));
+  return {ok:true, siteOrigins:unique};
 }
 
 /** 무작위 교사 PIN을 새로 만들고 기존 세션을 모두 무효화한다. */
@@ -217,9 +425,8 @@ function resetTeacherPin() {
   ensureAuthSecrets_();
   const pin = generateTeacherPin_();
   setTeacherPinValue_(pin, true);
-  try {
-    SpreadsheetApp.getUi().alert("새 교사 PIN", "교사 PIN: " + pin + "\n\n기존 컴퓨터의 교사 세션은 모두 해제되었습니다.", SpreadsheetApp.getUi().ButtonSet.OK);
-  } catch (uiErr) {}
+  try { getSpreadsheet_().toast("새 교사 PIN: " + pin, "Young's Physics", 20); } catch (toastErr) {}
+  console.log("YOUNGS_PHYSICS_TEACHER_PIN=" + pin);
   return {ok:true, teacherPin:pin};
 }
 
@@ -303,17 +510,52 @@ function getSpreadsheet_() {
   throw new Error("SPREADSHEET_ID가 설정되지 않았습니다. connectThisSpreadsheet()를 먼저 실행하세요.");
 }
 
+/**
+ * 공개 링크가 어느 운영 Spreadsheet에서 생성되었는지 구분하기 위한 비밀이 아닌 짧은 식별자.
+ * Spreadsheet ID 원문은 노출하지 않고 SHA-256 요약값의 앞부분만 사용한다.
+ */
+function getServerInstanceId_() {
+  const id = String(getSpreadsheet_().getId() || "");
+  const digest = Utilities.computeDigest(
+    Utilities.DigestAlgorithm.SHA_256,
+    "youngs-physics|" + id,
+    Utilities.Charset.UTF_8
+  );
+  return webSafeBase64_(digest).slice(0, 16);
+}
+
 function getSheet_(name) {
-  initializeSheets_();
-  const sh = getSpreadsheet_().getSheetByName(name);
-  if (!sh) throw new Error(name + " 시트를 찾을 수 없습니다.");
+  const ss = getSpreadsheet_();
+  let sh = ss.getSheetByName(name);
+  if (!sh) {
+    if (!HEADERS[name]) throw new Error(name + " 시트를 찾을 수 없습니다.");
+    sh = ss.insertSheet(name);
+    ensureSheetSchema_(sh, HEADERS[name]);
+    sh.setFrozenRows(1);
+    sh.getRange(1,1,1,HEADERS[name].length)
+      .setFontWeight("bold")
+      .setBackground("#0c2b50")
+      .setFontColor("#ffffff");
+  }
   return sh;
 }
 
 function parseBody_(e) {
-  if (!e || !e.postData || !e.postData.contents) return {};
-  try { return JSON.parse(e.postData.contents); }
-  catch (err) { throw new Error("요청 JSON을 해석할 수 없습니다."); }
+  // 기본 전송은 text/plain JSON이고, 일부 브라우저·보안 환경에서는
+  // application/x-www-form-urlencoded의 payload 필드로 한 번 더 시도한다.
+  // 두 형식을 모두 지원해 GitHub Pages → Apps Script 전송 호환성을 높인다.
+  if (!e) return {};
+  const parameterPayload = e.parameter && e.parameter.payload;
+  if (parameterPayload !== undefined && parameterPayload !== "") {
+    try { return JSON.parse(String(parameterPayload)); }
+    catch (err) { throw new Error("요청 payload JSON을 해석할 수 없습니다."); }
+  }
+  if (e.postData && e.postData.contents) {
+    try { return JSON.parse(e.postData.contents); }
+    catch (err) { throw new Error("요청 JSON을 해석할 수 없습니다."); }
+  }
+  // 단순 form 필드 전송도 최소 호환용으로 허용한다.
+  return Object.assign({}, e.parameter || {});
 }
 
 function jsonOutput_(obj) {
@@ -329,14 +571,19 @@ function assertWriteKey_(key) {
 function bootstrap_() {
   ensureAuthSecrets_();
   const props = PropertiesService.getScriptProperties();
+  const service = ScriptApp.getService();
   return {
     ok:true,
     apiVersion:API_VERSION,
+    serverInstanceId:getServerInstanceId_(),
     appName:"Young's Physics 성적 분석",
     authMode:"teacher-session",
     teacherPinConfigured:!!props.getProperty("TEACHER_PIN_HASH"),
     sessionTtlDays:getSessionTtlDays_(),
     setupTokenTtlMinutes:getSetupTokenTtlMinutes_(),
+    serviceEnabled:service.isEnabled(),
+    serviceUrl:String(service.getUrl() || ""),
+    spreadsheetConnected:!!props.getProperty("SPREADSHEET_ID"),
     serverTime:new Date().toISOString()
   };
 }
@@ -491,9 +738,10 @@ function base64UrlDecodeText_(text) {
   return Utilities.newBlob(Utilities.base64DecodeWebSafe(String(text || ""))).getDataAsString("UTF-8");
 }
 
-function throwApiError_(code, message) {
+function throwApiError_(code, message, data) {
   const err = new Error(message);
   err.code = code;
+  if (data !== undefined) err.data = data;
   throw err;
 }
 
@@ -666,7 +914,7 @@ function saveReport_(input) {
     const row=[token,fingerprint,seed,identityDigest,studentKey,record.examId,courseId,school,name,record.grade,record.classNo,JSON.stringify(record.resultInputs),JSON.stringify(record.partialModes),JSON.stringify(calc.scoring),JSON.stringify(record),old?old.CreatedAt:now,now];
     if(rowIndex>=0) sh.getRange(rowIndex+2,1,1,headers.length).setValues([row]); else sh.getRange(sh.getLastRow()+1,1,1,headers.length).setValues([row]);
     const stats=getExamStats_(record.examId);
-    return {ok:true,record:record,stats:stats,historyRecords:getLinkedHistoryRecords_(record),token:token,fp:fingerprint,displayName:name,created:!old,updated:!!old};
+    return {ok:true,record:record,stats:stats,historyRecords:getLinkedHistoryRecords_(record),token:token,fp:fingerprint,displayName:name,created:!old,updated:!!old,serverInstanceId:getServerInstanceId_()};
   } finally { lock.releaseLock(); }
 }
 
@@ -714,7 +962,7 @@ function saveBatch_(records) {
     }
   } finally { lock.releaseLock(); }
   const statsByExam={};Object.keys(touched).forEach(function(examId){statsByExam[examId]=getExamStats_(examId);});
-  return {ok:true,saved:saved,savedCount:saved.length,createdCount:createdCount,updatedCount:updatedCount,failed:failed,statsByExam:statsByExam};
+  return {ok:true,saved:saved,savedCount:saved.length,createdCount:createdCount,updatedCount:updatedCount,failed:failed,statsByExam:statsByExam,serverInstanceId:getServerInstanceId_()};
 }
 
 function newToken_() {
@@ -768,22 +1016,84 @@ function webSafeBase64_(bytes) {
   return Utilities.base64EncodeWebSafe(bytes).replace(/=+$/,"");
 }
 
+/** URL 복사·메신저 전달 과정에서 섞일 수 있는 공백·제로폭 문자를 제거한다. */
+function normalizeReportToken_(value) {
+  let token=String(value===undefined||value===null?"":value)
+    .replace(/[\u200B-\u200D\u2060\uFEFF]/g,"")
+    .trim();
+  if (/%[0-9A-Fa-f]{2}/.test(token)) {
+    try { token=decodeURIComponent(token); } catch (decodeErr) {}
+  }
+  return token.replace(/[\u200B-\u200D\u2060\uFEFF]/g,"").trim();
+}
+
+/**
+ * Reports의 실제 헤더가 구버전이거나 설치가 중간에 끝났어도 Token 열·A열·RecordJSON을
+ * 순서대로 확인한다. 읽기 요청이므로 시트 구조를 자동으로 파괴적으로 바꾸지 않는다.
+ */
+function findReportRowByToken_(token) {
+  const target=normalizeReportToken_(token);
+  if(!target) return null;
+  const sh=getSheet_(SHEETS.REPORTS),lastRow=sh.getLastRow();
+  if(lastRow<2) return null;
+  const width=Math.max(sh.getLastColumn(),HEADERS.Reports.length);
+  const headers=sh.getRange(1,1,1,width).getValues()[0].map(function(v){return String(v||"").trim();});
+  const rows=sh.getRange(2,1,lastRow-1,width).getValues();
+  const tokenCol=headers.indexOf("Token"),recordCol=headers.indexOf("RecordJSON");
+  const canonicalRecordCol=HEADERS.Reports.indexOf("RecordJSON");
+
+  for(let i=0;i<rows.length;i++) {
+    const raw=rows[i],candidates=[];
+    if(tokenCol>=0)candidates.push({value:raw[tokenCol],mode:"header"});
+    candidates.push({value:raw[0],mode:"column-a"});
+    const jsonIndex=recordCol>=0?recordCol:canonicalRecordCol;
+    const embedded=safeJson_(raw[jsonIndex],{});
+    if(embedded&&embedded.token)candidates.push({value:embedded.token,mode:"record-json"});
+    const match=candidates.find(function(c){return normalizeReportToken_(c.value)===target;});
+    if(!match)continue;
+
+    let object;
+    if(tokenCol>=0)object=rowToObject_(headers,raw);
+    else object=rowToObject_(HEADERS.Reports,raw.slice(0,HEADERS.Reports.length));
+    object=Object.assign({},embedded||{},object||{});
+    object.Token=normalizeReportToken_(object.Token||match.value||embedded.token);
+    if(!object.Fingerprint&&embedded.fingerprint)object.Fingerprint=embedded.fingerprint;
+    if(!object.ExamId&&embedded.examId)object.ExamId=embedded.examId;
+    if(!object.CourseId&&embedded.courseId)object.CourseId=embedded.courseId;
+    if(!object.School&&embedded.school)object.School=embedded.school;
+    if(!object.Name&&embedded.name)object.Name=embedded.name;
+    return {row:object,rowNumber:i+2,lookupMode:match.mode};
+  }
+  return null;
+}
+
 function getReport_(token,fp) {
-  if(!token||!fp) throw new Error("학생 토큰 또는 지문이 없습니다.");
-  const row=getRowBy_(SHEETS.REPORTS,"Token",token);if(!row) throw new Error("성적표 토큰을 찾을 수 없습니다.");
-  if(!constantTimeEqual_(String(row.Fingerprint),String(fp))) throw new Error("요청한 학생과 서버에서 불러온 학생 정보가 일치하지 않습니다. 교사에게 새 결과 링크를 요청해 주세요.");
-  const recomputed=makeFingerprint_(String(row.Token),String(row.IdentitySeed));
-  if(!constantTimeEqual_(recomputed,String(row.Fingerprint))) throw new Error("서버 토큰·지문 무결성 검증에 실패했습니다.");
+  token=normalizeReportToken_(token);fp=String(fp||"").trim();
+  if(!token||!fp) throwApiError_("REPORT_LINK_INCOMPLETE","학생 토큰 또는 지문이 없습니다.");
+  const found=findReportRowByToken_(token);
+  if(!found) {
+    const sh=getSheet_(SHEETS.REPORTS);
+    throwApiError_("REPORT_NOT_FOUND","성적표 토큰을 찾을 수 없습니다. 이 링크를 만든 Apps Script 서버와 현재 사이트에 연결된 서버가 다른지 확인한 뒤 교사용 화면의 ‘서버 기록’에서 링크를 다시 복사해 주세요.",{
+      serverInstanceId:getServerInstanceId_(),
+      reportCount:Math.max(0,sh.getLastRow()-1),
+      tokenPreview:token.slice(0,8)+"…"+token.slice(-6)
+    });
+  }
+  const row=found.row;
+  if(!constantTimeEqual_(String(row.Fingerprint||""),String(fp))) throwApiError_("FINGERPRINT_MISMATCH","요청한 학생과 서버에서 불러온 학생 정보가 일치하지 않습니다. 교사에게 새 결과 링크를 요청해 주세요.",{serverInstanceId:getServerInstanceId_()});
+  const recomputed=makeFingerprint_(String(row.Token),String(row.IdentitySeed||""));
+  if(!constantTimeEqual_(recomputed,String(row.Fingerprint||""))) throwApiError_("FINGERPRINT_INTEGRITY","서버 토큰·지문 무결성 검증에 실패했습니다. 교사용 화면에서 해당 학생 링크를 다시 발급해 주세요.",{serverInstanceId:getServerInstanceId_(),rowNumber:found.rowNumber});
   const rawSchool=String(row.School||"").trim(),school=normalizeSchool_(rawSchool);
   const identityMatches=schoolIdentityVariants_(rawSchool).some(function(candidate){return constantTimeEqual_(makeIdentityDigest_(String(row.ExamId),String(row.CourseId),candidate,String(row.Name)),String(row.IdentityDigest));});
-  if(!identityMatches) throw new Error("학생 식별 정보 무결성 검증에 실패했습니다.");
+  if(!identityMatches) throwApiError_("IDENTITY_INTEGRITY","학생 식별 정보 무결성 검증에 실패했습니다.",{serverInstanceId:getServerInstanceId_(),rowNumber:found.rowNumber});
   let record=safeJson_(row.RecordJSON,{});
   const scoring=safeJson_(row.ScoringJSON,[]);
   record=Object.assign(record,{token:String(row.Token),fingerprint:String(row.Fingerprint),studentKey:makeStudentKey_(String(row.CourseId),school,String(row.Name)),examId:String(row.ExamId),courseId:String(row.CourseId),school:school,name:String(row.Name),grade:String(row.Grade||""),classNo:String(row.ClassNo||""),resultInputs:safeJson_(row.ResultInputsJSON,[]),partialModes:safeJson_(row.PartialModesJSON,[]),scoring:scoring});
   if(record.score===undefined) record.score=scoring.reduce((a,x)=>a+Number(x.score||0),0);
-  const exam=getRowBy_(SHEETS.EXAMS,"ExamId",record.examId);record.maxScore=Number(record.maxScore||exam.MaxScore||0);record.percent=record.maxScore?record.score/record.maxScore*100:0;
+  const exam=getRowBy_(SHEETS.EXAMS,"ExamId",record.examId);if(!exam)throwApiError_("EXAM_NOT_FOUND","연결된 시험 설정을 찾을 수 없습니다.");
+  record.maxScore=Number(record.maxScore||exam.MaxScore||0);record.percent=record.maxScore?record.score/record.maxScore*100:0;
   record.counts={full:0,partial:0,wrong:0,ungraded:0};scoring.forEach(x=>record.counts[x.status]=(record.counts[x.status]||0)+1);
-  return {ok:true,record:record,stats:getExamStats_(record.examId),historyRecords:getLinkedHistoryRecords_(record),integrity:{tokenMatch:true,fingerprintMatch:true,identityMatch:true}};
+  return {ok:true,record:record,stats:getExamStats_(record.examId),historyRecords:getLinkedHistoryRecords_(record),serverInstanceId:getServerInstanceId_(),lookupMode:found.lookupMode,integrity:{tokenMatch:true,fingerprintMatch:true,identityMatch:true}};
 }
 
 function listReports_(filter) {
@@ -792,6 +1102,83 @@ function listReports_(filter) {
     const school=normalizeSchool_(row.School);
     return Object.assign(record,{token:String(row.Token),fingerprint:String(row.Fingerprint),studentKey:makeStudentKey_(String(row.CourseId),school,String(row.Name)),examId:String(row.ExamId),courseId:String(row.CourseId),school:school,name:String(row.Name),grade:String(row.Grade||""),classNo:String(row.ClassNo||""),resultInputs:safeJson_(row.ResultInputsJSON,[]),partialModes:safeJson_(row.PartialModesJSON,[]),scoring:safeJson_(row.ScoringJSON,[]),createdAt:serializeCell_(row.CreatedAt),updatedAt:serializeCell_(row.UpdatedAt)});
   }).filter(function(r){return (!filter.examId||r.examId===filter.examId)&&(!filter.courseId||r.courseId===filter.courseId);}).sort(function(a,b){return String(b.updatedAt).localeCompare(String(a.updatedAt));});
+}
+
+/**
+ * Apps Script 편집기에서 직접 실행하는 성적표 저장소 진단 함수.
+ * 학생 개인정보는 로그에 출력하지 않고 헤더·행 수·토큰 상태만 요약한다.
+ */
+function diagnoseReportStorage() {
+  const sh=getSheet_(SHEETS.REPORTS),lastRow=sh.getLastRow(),lastCol=sh.getLastColumn();
+  const headers=lastCol?sh.getRange(1,1,1,lastCol).getDisplayValues()[0].map(function(v){return String(v||"").trim();}):[];
+  const tokenCol=headers.indexOf("Token"),recordCol=headers.indexOf("RecordJSON");
+  let tokenCount=0,embeddedTokenCount=0,blankTokenRows=0;
+  if(lastRow>1){
+    const width=Math.max(lastCol,HEADERS.Reports.length),rows=sh.getRange(2,1,lastRow-1,width).getValues();
+    rows.forEach(function(row){
+      const token=normalizeReportToken_(tokenCol>=0?row[tokenCol]:row[0]);
+      if(token)tokenCount++;else blankTokenRows++;
+      const idx=recordCol>=0?recordCol:HEADERS.Reports.indexOf("RecordJSON"),record=safeJson_(row[idx],{});
+      if(normalizeReportToken_(record&&record.token))embeddedTokenCount++;
+    });
+  }
+  const result={
+    ok:true,
+    apiVersion:API_VERSION,
+    serverInstanceId:getServerInstanceId_(),
+    spreadsheetId:getSpreadsheet_().getId(),
+    sheetName:sh.getName(),
+    reportRows:Math.max(0,lastRow-1),
+    tokenHeaderFound:tokenCol>=0,
+    tokenColumn:tokenCol>=0?tokenCol+1:null,
+    recordJsonHeaderFound:recordCol>=0,
+    tokenCount:tokenCount,
+    embeddedTokenCount:embeddedTokenCount,
+    blankTokenRows:blankTokenRows,
+    schemaExact:HEADERS.Reports.every(function(h,i){return headers[i]===h;})
+  };
+  console.log("YOUNGS_PHYSICS_REPORT_DIAGNOSTIC="+JSON.stringify(result));
+  try{getSpreadsheet_().toast("성적표 저장소 진단 완료 · 행 "+result.reportRows+" · 토큰 "+result.tokenCount,"Young's Physics",15);}catch(toastErr){}
+  return result;
+}
+
+/**
+ * Reports 헤더를 정식 17열 스키마로 재배치하고 누락·불일치한 토큰 관련 필드를 복구한다.
+ * 지문을 다시 만든 행은 기존 링크가 바뀌므로 교사용 화면에서 링크를 다시 복사해야 한다.
+ */
+function repairReportStorage() {
+  const lock=LockService.getScriptLock();
+  if(!lock.tryLock(20000))throw new Error("다른 저장 작업이 진행 중입니다. 잠시 후 다시 실행하세요.");
+  try{
+    const sh=getSheet_(SHEETS.REPORTS);
+    ensureSheetSchema_(sh,HEADERS.Reports);
+    if(sh.getLastRow()<2)return {ok:true,apiVersion:API_VERSION,serverInstanceId:getServerInstanceId_(),rows:0,repaired:0,reissuedLinks:0};
+    const rows=sh.getRange(2,1,sh.getLastRow()-1,HEADERS.Reports.length).getValues();
+    let repaired=0,reissuedLinks=0;
+    rows.forEach(function(row){
+      const obj=rowToObject_(HEADERS.Reports,row),record=safeJson_(obj.RecordJSON,{});
+      let changed=false;
+      let token=normalizeReportToken_(obj.Token||record.token);
+      if(!token){token=newToken_();changed=true;}
+      let seed=normalizeReportToken_(obj.IdentitySeed);
+      if(!seed){seed=newToken_();changed=true;}
+      const expected=makeFingerprint_(token,seed);
+      let fingerprint=String(obj.Fingerprint||record.fingerprint||"").trim();
+      if(!fingerprint||!constantTimeEqual_(fingerprint,expected)){fingerprint=expected;changed=true;reissuedLinks++;}
+      const school=normalizeSchool_(obj.School||record.school),name=String(obj.Name||record.name||"").trim();
+      const examId=String(obj.ExamId||record.examId||""),courseId=String(obj.CourseId||record.courseId||"");
+      const studentKey=makeStudentKey_(courseId,school,name),identityDigest=makeIdentityDigest_(examId,courseId,school,name);
+      if(String(obj.Token||"")!==token||String(obj.IdentitySeed||"")!==seed||String(obj.Fingerprint||"")!==fingerprint||String(obj.School||"")!==school||String(obj.StudentKey||"")!==studentKey||String(obj.IdentityDigest||"")!==identityDigest)changed=true;
+      const hydrated=Object.assign({},record,{token:token,fingerprint:fingerprint,studentKey:studentKey,examId:examId,courseId:courseId,school:school,name:name});
+      row[0]=token;row[1]=fingerprint;row[2]=seed;row[3]=identityDigest;row[4]=studentKey;row[5]=examId;row[6]=courseId;row[7]=school;row[8]=name;row[14]=JSON.stringify(hydrated);
+      if(changed)repaired++;
+    });
+    sh.getRange(2,1,rows.length,HEADERS.Reports.length).setValues(rows);
+    const result={ok:true,apiVersion:API_VERSION,serverInstanceId:getServerInstanceId_(),rows:rows.length,repaired:repaired,reissuedLinks:reissuedLinks};
+    console.log("YOUNGS_PHYSICS_REPORT_REPAIR="+JSON.stringify(result));
+    try{getSpreadsheet_().toast("성적표 저장소 복구 완료 · "+repaired+"행 정리 · 링크 재발급 "+reissuedLinks+"건","Young's Physics",20);}catch(toastErr){}
+    return result;
+  } finally {lock.releaseLock();}
 }
 
 function getLinkedHistoryRecords_(record) {
@@ -857,26 +1244,76 @@ function repairIntegrity_() {
   return {ok:true,repaired:repaired,schoolLabelsMigrated:schoolLabelsMigrated};
 }
 
-/** 빈 학교와 구버전 '미입력' 표기를 '미기입'으로 바꾸고 무결성 필드를 함께 갱신한다. */
-function migrateSchoolLabels_() {
-  const sh=getSheet_(SHEETS.REPORTS),headers=HEADERS.Reports;if(sh.getLastRow()<2)return {ok:true,migrated:0};
-  const values=sh.getRange(2,1,sh.getLastRow()-1,headers.length).getValues();let migrated=0;
+/**
+ * 빈 학교와 구버전 '미입력' 표기를 '미기입'으로 바꾸고 무결성 필드를 함께 갱신한다.
+ * 한 번에 전체 행을 처리하지 않고 기본 100행씩 처리하여 Apps Script 실행 시간 제한을 피한다.
+ */
+function migrateSchoolLabels_(batchSize) {
+  const sh = getSheet_(SHEETS.REPORTS);
+  const headers = HEADERS.Reports;
+  const props = PropertiesService.getScriptProperties();
+  const lastRow = sh.getLastRow();
+  const size = Math.max(10, Math.min(500, Number(batchSize || 100)));
+  let startRow = Math.max(2, Number(props.getProperty("SCHOOL_MIGRATION_NEXT_ROW") || 2));
+
+  if (lastRow < 2 || startRow > lastRow) {
+    props.deleteProperty("SCHOOL_MIGRATION_NEXT_ROW");
+    return {ok:true, done:true, processed:0, migrated:0, nextRow:null, totalRows:Math.max(0,lastRow-1)};
+  }
+
+  const count = Math.min(size, lastRow - startRow + 1);
+  const values = sh.getRange(startRow,1,count,headers.length).getValues();
+  let migrated = 0;
   values.forEach(function(row){
-    const o=rowToObject_(headers,row),school=normalizeSchool_(o.School),identityDigest=makeIdentityDigest_(String(o.ExamId),String(o.CourseId),school,String(o.Name)),studentKey=makeStudentKey_(String(o.CourseId),school,String(o.Name));
-    const record=safeJson_(o.RecordJSON,{}),recordChanged=record.school!==school||record.studentKey!==studentKey;
-    if(String(o.School)!==school||String(o.IdentityDigest)!==identityDigest||String(o.StudentKey)!==studentKey||recordChanged){
-      record.school=school;record.studentKey=studentKey;
-      row[3]=identityDigest;row[4]=studentKey;row[7]=school;row[14]=JSON.stringify(record);migrated++;
+    const o = rowToObject_(headers,row);
+    const school = normalizeSchool_(o.School);
+    const identityDigest = makeIdentityDigest_(String(o.ExamId),String(o.CourseId),school,String(o.Name));
+    const studentKey = makeStudentKey_(String(o.CourseId),school,String(o.Name));
+    const record = safeJson_(o.RecordJSON,{});
+    const recordChanged = record.school !== school || record.studentKey !== studentKey;
+    if (String(o.School)!==school || String(o.IdentityDigest)!==identityDigest || String(o.StudentKey)!==studentKey || recordChanged) {
+      record.school = school;
+      record.studentKey = studentKey;
+      row[3] = identityDigest;
+      row[4] = studentKey;
+      row[7] = school;
+      row[14] = JSON.stringify(record);
+      migrated++;
     }
   });
-  if(migrated)sh.getRange(2,1,values.length,headers.length).setValues(values);
-  return {ok:true,migrated:migrated};
+
+  if (migrated) sh.getRange(startRow,1,count,headers.length).setValues(values);
+  const nextRow = startRow + count;
+  const done = nextRow > lastRow;
+  if (done) props.deleteProperty("SCHOOL_MIGRATION_NEXT_ROW");
+  else props.setProperty("SCHOOL_MIGRATION_NEXT_ROW", String(nextRow));
+
+  return {
+    ok:true,
+    done:done,
+    processed:count,
+    migrated:migrated,
+    nextRow:done ? null : nextRow,
+    totalRows:lastRow-1,
+    remainingRows:done ? 0 : lastRow-nextRow+1
+  };
 }
 
+/** Spreadsheet 메뉴 또는 Apps Script 편집기에서 반복 실행한다. 기본 100행씩 진행한다. */
 function migrateSchoolLabels() {
-  const result=migrateSchoolLabels_();
-  try{SpreadsheetApp.getUi().alert("학교 표기 정리 완료",result.migrated+"개 기록을 '미기입' 표기로 정리했습니다.",SpreadsheetApp.getUi().ButtonSet.OK);}catch(e){}
+  const result = migrateSchoolLabels_(100);
+  const message = result.done
+    ? "학교 표기 정리 완료 · 이번 실행 " + result.migrated + "개 변경"
+    : "학교 표기 정리 진행 중 · " + result.processed + "행 처리 · 남은 행 " + result.remainingRows;
+  try { getSpreadsheet_().toast(message, "Young's Physics", 15); } catch (toastErr) {}
+  console.log("YOUNGS_PHYSICS_SCHOOL_MIGRATION=" + JSON.stringify(result));
   return result;
+}
+
+/** 학교 표기 분할 변환을 처음 행부터 다시 시작한다. */
+function resetSchoolMigrationCursor() {
+  PropertiesService.getScriptProperties().deleteProperty("SCHOOL_MIGRATION_NEXT_ROW");
+  return {ok:true, nextRow:2};
 }
 
 function recalculateExam_(examId) {

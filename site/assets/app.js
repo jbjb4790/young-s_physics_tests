@@ -1,5 +1,5 @@
 (function(){
- const state={exam:null,inputs:[],partialModes:[],editToken:null,batchRows:[],batchMeta:null,reports:[]};
+ const state={exam:null,inputs:[],partialModes:[],editToken:null,batchRows:[],batchMeta:null,reports:[],serverInstanceId:""};
  const $=id=>document.getElementById(id);
  const AUTH_ERROR_CODES=new Set(["AUTH_REQUIRED","AUTH_INVALID","AUTH_EXPIRED","AUTH_REVOKED"]);
  function showDemo(){$("demoBanner").classList.toggle("hidden",!YP_API.demo)}
@@ -118,16 +118,23 @@
  function fillSample(){state.exam.questions.forEach((q,i)=>{let v;if(q.inputMode==="binary")v=i%6===2||i%9===5?"0":"1";else if(q.inputMode==="points")v=[4,3,2,4,1][i-20]??"3";else v=i%5===2?"0":i%4===1?(q.maxPoints>2?String(Math.max(2,Math.round(q.maxPoints*.6))):"P1"):"1";state.inputs[i]=v;$(`qInput${i}`).value=v;updateQuestion(i)});updateScore();$("studentName").value="김물리";$("school").value="영스고";$("grade").value="2";YP.toast("예시 입력을 채웠습니다.")}
  function clearAll(){if(!confirm("현재 입력을 모두 지울까요?"))return;state.inputs.fill("");state.partialModes.fill(false);state.editToken=null;state.exam.questions.forEach((q,i)=>{$(`qInput${i}`).value="";if($(`partial${i}`))$(`partial${i}`).checked=false;updateQuestion(i)});updateScore();$("cancelEditBtn").classList.add("hidden")}
  function makeRecord(extra={}){const school=YP.normalizeSchool($("school").value),name=$("studentName").value.trim();return {token:state.editToken||undefined,examId:state.exam.examId,courseId:state.exam.courseId,school,name,studentKey:YP.studentKey(state.exam.courseId,school,name),grade:$("grade").value,classNo:$("classNo").value.trim(),teacherMemo:$("teacherMemo").value.trim(),resultInputs:[...state.inputs],partialModes:[...state.partialModes],...extra}}
- function reportURL(token,fp){const u=new URL(YP.config.reportPage,location.href);u.hash=`id=${encodeURIComponent(token)}&fp=${encodeURIComponent(fp)}`;return u.toString()}
+ function reportURL(token,fp,serverInstanceId=state.serverInstanceId){
+   const u=new URL(YP.config.reportPage,location.href),params=new URLSearchParams();
+   params.set("id",String(token||""));params.set("fp",String(fp||""));
+   const api=String(YP_API.apiUrl||YP.config.apiUrl||"").trim();
+   if(/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(api))params.set("api",api);
+   if(serverInstanceId)params.set("sid",String(serverInstanceId));
+   u.hash=params.toString();return u.toString();
+ }
  function showLinkModal(data,url){const back=document.createElement("div");back.className="modal-backdrop";back.innerHTML=`<div class="modal"><div class="modal-success">✓</div><h2>저장·통합 성적표 생성 완료</h2><p><b>${YP.escapeHTML(data.record.name)}</b> · ${YP.escapeHTML(YP.roundLabel(YP.getExam(data.record.examId)))} · ${YP.formatNumber(data.record.score)} / ${data.record.maxScore}점</p><div class="field"><label>학부모 전달용 학생 결과 링크</label><input id="generatedLink" readonly value="${YP.escapeHTML(url)}"></div><div class="notice">Google Sheets 저장, 통계 재계산, 기존 복습 테스트 연결, 성적표 생성과 링크 복사가 한 번에 완료되었습니다.</div><div class="modal-actions"><button class="btn btn-light" id="closeGenerated">닫기</button><a class="btn btn-primary" target="_blank" href="${url}">통합 성적표 열기</a></div></div>`;document.body.appendChild(back);back.querySelector("#closeGenerated").onclick=()=>back.remove()}
- async function saveCurrent(){const result=updateScore();if(!state.exam||!$("studentName").value.trim())return YP.toast("학생 이름을 입력하세요.");if(!result.valid)return YP.toast("입력 오류 문항을 먼저 수정하세요.");if(result.counts.ungraded&&!confirm(`${result.counts.ungraded}개 문항이 미입력입니다. 미채점 상태로 저장할까요?`))return;if(!YP_API.demo&&!YP_API.isAuthenticated()){openSettings();return YP.toast("교사 PIN으로 이 컴퓨터를 먼저 연결하세요.",5000)}const btn=$("saveReportBtn");btn.disabled=true;btn.textContent="저장·분석·링크 생성 중...";try{const data=await YP_API.saveReport(makeRecord());state.editToken=data.record.token;const url=reportURL(data.record.token,data.record.fingerprint);await YP.copyText(url);showLinkModal(data,url);await refreshReports();$("cancelEditBtn").classList.remove("hidden")}catch(e){handleAuthFailure(e);YP.toast(e.message,6000)}finally{btn.disabled=false;btn.textContent="저장·성적 분석·링크 복사"}}
+ async function saveCurrent(){const result=updateScore();if(!state.exam||!$("studentName").value.trim())return YP.toast("학생 이름을 입력하세요.");if(!result.valid)return YP.toast("입력 오류 문항을 먼저 수정하세요.");if(result.counts.ungraded&&!confirm(`${result.counts.ungraded}개 문항이 미입력입니다. 미채점 상태로 저장할까요?`))return;if(!YP_API.demo&&!YP_API.isAuthenticated()){openSettings();return YP.toast("교사 PIN으로 이 컴퓨터를 먼저 연결하세요.",5000)}const btn=$("saveReportBtn");btn.disabled=true;btn.textContent="저장·분석·링크 생성 중...";try{const data=await YP_API.saveReport(makeRecord());state.editToken=data.record.token;state.serverInstanceId=String(data.serverInstanceId||state.serverInstanceId||"");const url=reportURL(data.record.token,data.record.fingerprint,state.serverInstanceId);await YP.copyText(url);showLinkModal(data,url);await refreshReports();$("cancelEditBtn").classList.remove("hidden")}catch(e){handleAuthFailure(e);YP.toast(e.message,6000)}finally{btn.disabled=false;btn.textContent="저장·성적 분석·링크 복사"}}
  async function refreshReports(){
    const tbody=$("reportsBody");
    if(!YP_API.demo&&!YP_API.isAuthenticated()){
      state.reports=[];tbody.innerHTML=`<tr><td colspan="6" class="muted">교사 PIN으로 연결하면 다른 컴퓨터에서 저장한 학생 기록도 자동으로 표시됩니다.</td></tr>`;return;
    }
    try{
-     const data=await YP_API.listReports({});state.reports=data.reports||[];
+     const data=await YP_API.listReports({});state.reports=data.reports||[];state.serverInstanceId=String(data.serverInstanceId||state.serverInstanceId||"");
      tbody.innerHTML=state.reports.length?state.reports.map(r=>{const ex=YP.getExam(r.examId),school=YP.normalizeSchool(r.school);return `<tr><td>${YP.escapeHTML(ex?YP.roundLabel(ex):r.examId)}</td><td>${YP.escapeHTML(school)}</td><td>${YP.escapeHTML(r.name)}</td><td>${YP.formatNumber(r.score)} / ${r.maxScore}</td><td>${YP.escapeHTML(String(r.updatedAt||"").replace("T"," ").slice(0,16))}</td><td><div class="report-list-actions"><button class="btn btn-light" data-action="edit" data-token="${r.token}">수정</button><button class="btn btn-primary" data-action="copy" data-token="${r.token}" data-fp="${r.fingerprint}">링크 복사</button><a class="btn btn-light" target="_blank" href="${reportURL(r.token,r.fingerprint)}">열기</a><button class="btn btn-danger" data-action="delete" data-token="${r.token}">삭제</button></div></td></tr>`}).join(""):`<tr><td colspan="6" class="muted">저장된 기록이 없습니다.</td></tr>`;
      tbody.querySelectorAll("button[data-action]").forEach(b=>b.onclick=()=>handleReportAction(b.dataset.action,b.dataset.token,b.dataset.fp,state.reports));
    }catch(e){handleAuthFailure(e);state.reports=[];tbody.innerHTML=`<tr><td colspan="6">${YP.escapeHTML(e.message)}</td></tr>`}
@@ -198,7 +205,7 @@
    if(!YP_API.demo&&!YP_API.isAuthenticated()){openSettings();return YP.toast("교사 PIN으로 이 컴퓨터를 먼저 연결하세요.",5000)}
    const button=$("saveBatchBtn");button.disabled=true;button.textContent=`${records.length}명 Google Sheets 저장 중...`;
    try{
-     const data=await YP_API.saveBatch(records),savedCount=Number(data.savedCount??data.saved?.length??0),created=Number(data.createdCount??savedCount),updated=Number(data.updatedCount??0),failed=Array.isArray(data.failed)?data.failed.length:0;
+     const data=await YP_API.saveBatch(records);state.serverInstanceId=String(data.serverInstanceId||state.serverInstanceId||"");const savedCount=Number(data.savedCount??data.saved?.length??0),created=Number(data.createdCount??savedCount),updated=Number(data.updatedCount??0),failed=Array.isArray(data.failed)?data.failed.length:0;
      YP.toast(`${savedCount}명 저장 완료 · 신규 ${created} · 수정 ${updated}${failed?` · 실패 ${failed}`:""}`,7000);await refreshReports();
      const summary=$("batchImportSummary");summary.insertAdjacentHTML("beforeend",`<div class="batch-summary-card ok"><span>Google Sheets 반영</span><b>${savedCount}명 완료${failed?` · 실패 ${failed}`:""}</b></div>`);
    }catch(e){handleAuthFailure(e);YP.toast(e.message,7000)}finally{button.disabled=false;button.textContent=`검증된 학생 ${records.length}명 일괄 저장`}
