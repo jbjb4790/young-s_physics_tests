@@ -1,8 +1,19 @@
-# Young’s Physics 성적 분석 시스템 3.2
+> **v3.3.0 교사 인증 연결 수정:** GitHub Pages를 Apps Script 보안 상위 페이지 안에서 실행하고, 서버 호출은 공식 `google.script.run`으로 처리합니다. PIN 입력 후 “Apps Script 서버에 연결하지 못했습니다”가 표시되면 `HOSTED_PARENT_BRIDGE_FIX_KO.md` 순서대로 Code.gs와 GitHub 패치를 함께 적용하세요. 기존 학생 기록·PIN·토큰은 유지됩니다.
+
+# Young’s Physics 성적 분석 시스템 3.3.0
+
+> **v3.2.5 자동 연결 수정:** 지속형 `google.script.run` iframe 대신 hidden form POST 응답 브리지를 사용합니다. `Apps Script GET 연결은 정상이나 통신 브리지를 열지 못했습니다` 오류가 발생하면 `FORM_POST_BRIDGE_FIX_KO.md` 순서대로 **Code.gs와 GitHub 파일을 함께** 교체하세요. 기존 학생 기록·PIN·토큰은 유지됩니다.
+
+
+> **v3.2.4 성적표 토큰 수정:** 학생 링크에 생성 당시 Apps Script `/exec` 주소와 서버 식별자를 함께 넣고, Reports의 `Token` 열·A열·`RecordJSON`을 교차 조회합니다. 기존 기록은 `diagnoseReportStorage()`와 `repairReportStorage()`로 점검·복구할 수 있습니다. 적용 순서는 `REPORT_TOKEN_FIX_KO.md`를 확인하세요.
+
+
+> **v3.2.3 연결 수정:** 교사 인증의 `Failed to fetch`를 방지하기 위해 Apps Script HtmlService 통신 브리지를 사용합니다. 적용 순서는 `PIN_FAILED_TO_FETCH_FIX_KO.md`를 확인하세요.
+
 
 GitHub Pages와 Google Sheets + Apps Script로 운영하는 **주간 복습·총괄평가 통합 성적 분석 시스템**입니다.
 
-3.2 배포본은 3.1의 다른 컴퓨터 자동 연결 기능을 유지하면서 다음 기능을 추가합니다.
+3.3.0 배포본은 기존 Excel 일괄 입력·다른 컴퓨터 자동 연결·성적표 토큰 검증 기능을 유지하면서, 교사 인증 통신을 Apps Script 상위 보안 페이지와 `google.script.run` 방식으로 변경합니다. 다음 기능도 그대로 포함합니다.
 
 - 학교가 비어 있으면 저장·목록·학생 리포트·Word에서 **`미기입`**으로 통일
 - 구버전의 빈 학교 또는 `미입력` 학교 기록도 `미기입`과 같은 학생으로 인식
@@ -65,15 +76,16 @@ Value: https://script.google.com/macros/s/.../exec
 
 정상 동기화 기준은 과정 3개, 시험 39개, 등록 문항 108개입니다.
 
-## 3.1 운영본에서 업데이트
+## 기존 운영본에서 3.3.0으로 업데이트
 
 1. Google Spreadsheet를 `파일 → 사본 만들기`로 백업합니다.
-2. Apps Script의 `Code.gs`를 3.2 파일로 교체합니다.
-3. `installYoungsPhysics()`를 한 번 실행합니다.
-   - 기존 PIN은 유지됩니다.
-   - 빈 학교와 구버전 `미입력` 학교 표기가 `미기입`으로 안전하게 정리됩니다.
+2. Apps Script의 `Code.gs`를 3.3.0 파일로 전체 교체합니다.
+3. **`installYoungsPhysics()`, `resetTeacherPin()`, `repairReportStorage()`는 다시 실행하지 않습니다.** 기존 PIN·학생 기록·토큰·지문을 그대로 유지합니다.
 4. 기존 웹 앱 배포를 **새 버전**으로 갱신합니다.
-5. GitHub에는 3.2 패치 또는 전체 업로드본을 덮어쓰고 Pages를 다시 배포합니다.
+5. GitHub에는 3.3.0 패치 또는 전체 업로드본을 덮어쓰고 Pages를 다시 배포합니다.
+6. 배포된 GitHub Pages 주소를 열면 Apps Script `/exec?view=host&site=...` 주소로 자동 전환된 뒤 기존 화면이 표시되는지 확인합니다.
+
+새로운 빈 Spreadsheet에 처음 설치하는 경우에만 `installYoungsPhysics()`를 실행합니다.
 
 ## Excel로 학생 기록 일괄 입력
 

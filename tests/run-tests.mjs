@@ -128,15 +128,15 @@ const uploadedMechanicsExcel="/mnt/data/역학진단고사 v3.xlsx";
 test("실제 학생 Excel 원본은 공개 GitHub 프로젝트에 포함하지 않음",()=>{const all=[];function walk(dir){for(const ent of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,ent.name);if(ent.isDirectory())walk(p);else all.push(path.relative(root,p))}}walk(root);assert.equal(all.some(p=>/역학진단고사 v3\.xlsx$/i.test(p)),false)});
 test("데모 데이터는 동일 학생의 7개 복습+역학 총괄을 포함",()=>{const data=JSON.parse(read("site/assets/data/demo-data.js").replace(/^window\.YP_DEMO_DATA\s*=\s*/,"").replace(/;\s*$/,"")).reports;assert.equal(data.filter(r=>r.school==="영스고"&&r.name==="김물리").length,8);assert.equal(new Set(data.map(r=>r.token)).size,data.length);assert.equal(new Set(data.map(r=>r.fingerprint)).size,data.length)});
 test("데모 API도 historyRecords를 반환",()=>{const src=read("site/assets/api.js");assert.match(src,/historyRecords=YP\.getLinkedHistory/);assert.match(src,/studentKey=YP\.studentKey/)});
-test("교사용 API는 HtmlService 브리지와 공개 GET 진단을 지원",()=>{const src=read("site/assets/api.js");assert.match(src,/YP_API_BRIDGE_REQUEST/);assert.match(src,/_bridgeRequest/);assert.match(src,/_probePublicGet/);assert.match(src,/DEPLOYMENT_ACCESS/);assert.match(src,/BRIDGE_NOT_DEPLOYED/)});
+test("교사용 API는 form POST 브리지와 공개 GET 진단을 지원",()=>{const src=read("site/assets/api.js");assert.match(src,/YP_API_FORM_RESPONSE/);assert.match(src,/_formPostRequest/);assert.match(src,/_probePublicGet/);assert.match(src,/_probeBridgeCheck/);assert.match(src,/DEPLOYMENT_ACCESS/);assert.match(src,/FORM_BRIDGE_TIMEOUT/)});
 
 // Apps Script schema/migration/security
 
 test("Apps Script에 총괄 메타·InputMode·OriginalRetry·StudentKey 열이 있음",()=>{const src=read("apps-script/Code.gs");for(const term of ["AssessmentType","InputProfileJSON","HistoryExamIdsJSON","HistoryLabel","InputMode","OriginalRetryJSON","StudentKey"])assert.match(src,new RegExp(term))});
 test("Apps Script는 기존 헤더 이름으로 행을 재배치해 스키마를 안전 마이그레이션",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function ensureSheetSchema_/);assert.match(src,/currentIndex\[h\]/);assert.match(src,/const remapped = sourceRows\.map/);assert.match(src,/sh\.clearContents\(\)/)});
 test("Apps Script 총괄 점수 파서는 binary와 points를 구분",()=>{const src=read("apps-script/Code.gs");assert.match(src,/mode==="binary"/);assert.match(src,/mode==="points"/);assert.match(src,/객관식은 0 또는 1만 입력/);assert.match(src,/서술형 점수는 0~/)});
-test("Apps Script는 POST와 HtmlService 브리지에 공통 API 디스패처를 사용",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function dispatchApiRequest_/);assert.match(src,/function apiBridge\(request\)/);assert.match(src,/return jsonOutput_\(dispatchApiRequest_\(parseBody_\(e\)\)\)/);assert.match(src,/function apiErrorObject_/)});
-test("Apps Script 일괄 저장은 단일 시트 쓰기와 동일 학생 upsert를 사용",()=>{const src=read("apps-script/Code.gs");assert.match(src,/API_VERSION = "3\.2\.4-report-token-affinity"/);assert.match(src,/function calculateScoringFromQuestions_/);assert.match(src,/function reportIdentityKey_/);assert.match(src,/String\(input\.importMode\|\|"upsert"\)==="upsert"/);assert.match(src,/sh\.getRange\(2,1,data\.length,headers\.length\)\.setValues\(data\)/);assert.match(src,/savedCount:saved\.length/);assert.doesNotMatch(src,/saved\.push\(saveReport_\(r\)\.record\)/)});
+test("Apps Script는 JSON POST·form POST·레거시 HtmlService 브리지에 공통 API 디스패처를 사용",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function dispatchApiRequest_/);assert.match(src,/function apiBridge\(request\)/);assert.match(src,/function handleFormPostBridge_/);assert.match(src,/return jsonOutput_\(dispatchApiRequest_\(parseBody_\(e\)\)\)/);assert.match(src,/function apiErrorObject_/)});
+test("Apps Script 일괄 저장은 단일 시트 쓰기와 동일 학생 upsert를 사용",()=>{const src=read("apps-script/Code.gs");assert.match(src,/API_VERSION = "3\.3\.0-hosted-parent-bridge"/);assert.match(src,/function calculateScoringFromQuestions_/);assert.match(src,/function reportIdentityKey_/);assert.match(src,/String\(input\.importMode\|\|"upsert"\)==="upsert"/);assert.match(src,/sh\.getRange\(2,1,data\.length,headers\.length\)\.setValues\(data\)/);assert.match(src,/savedCount:saved\.length/);assert.doesNotMatch(src,/saved\.push\(saveReport_\(r\)\.record\)/)});
 test("Apps Script는 학교 빈칸·구버전 표기를 '미기입'으로 정규화",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function normalizeSchool_/);assert.match(src,/school==="미입력"\|\|school==="미기입" \? "미기입"/);assert.match(src,/const school=normalizeSchool_\(input\.school\)/);assert.match(src,/const rawSchool=String\(row\.School\|\|""\)\.trim\(\),school=normalizeSchool_\(rawSchool\)/);assert.match(src,/function migrateSchoolLabels_/);assert.match(src,/학교 미기입 표기 정리/)});
 test("Apps Script 학생 연결키는 과정·학교·이름 SHA-256",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function makeStudentKey_/);assert.match(src,/DigestAlgorithm\.SHA_256/);assert.match(src,/normalizeIdentity_\(school/)});
 test("Apps Script 결과 링크는 토큰·지문·학생 식별 다이제스트를 모두 검증",()=>{const src=read("apps-script/Code.gs");assert.match(src,/constantTimeEqual_\(String\(row\.Fingerprint\|\|""\),String\(fp\)\)/);assert.match(src,/makeFingerprint_/);assert.match(src,/makeIdentityDigest_/);assert.match(src,/학생 식별 정보 무결성 검증/)});
@@ -184,12 +184,13 @@ test("GitHub Pages workflow는 Apps Script 공개 ping을 배포 전에 검증",
   assert.match(src,/로그인 없이 모든 사용자/);
 });
 
-test("GitHub Pages workflow는 Apps Script v3.2.4 브리지 배포까지 검증",()=>{
+test("GitHub Pages workflow는 Apps Script v3.3.0 상위 보안 브리지 배포까지 검증",()=>{
   const src=read(".github/workflows/pages.yml");
-  assert.match(src,/3\.2\.4-report-token-affinity/);
-  assert.match(src,/action=bridge/);
-  assert.match(src,/YP_API_BRIDGE_READY/);
-  assert.match(src,/Apps Script 통신 브리지 미배포/);
+  assert.match(src,/3\.3\.0-hosted-parent-bridge/);
+  assert.match(src,/__ypTransport=form-post/);
+  assert.match(src,/YP_API_FORM_RESPONSE/);
+  assert.match(src,/Apps Script POST 응답 브리지 미배포/);
+  assert.match(src,/YP_SITE_ORIGIN/);
 });
 
 test("GitHub Pages workflow diagnoses disabled Pages and supports optional admin token",()=>{
@@ -227,15 +228,100 @@ test("교사용 프론트엔드는 PIN 로그인·90일 세션·1회용 새 컴�
   assert.doesNotMatch(html,/id="writeKeyInput"/);
 });
 
-test("교사용 API는 ContentService fetch 대신 HtmlService 통신 브리지를 사용",()=>{
+test("교사용 API는 CORS fetch 대신 hidden form POST 응답 브리지를 사용",()=>{
   const api=read("site/assets/api.js"),server=read("apps-script/Code.gs");
-  assert.match(api,/YP_API_BRIDGE_REQUEST/);
-  assert.match(api,/action","bridge/);
-  assert.match(api,/_bridgeRequest/);
-  assert.match(server,/function bridgeHtml_/);
+  assert.match(api,/__ypTransport/);
+  assert.match(api,/_formPostRequest/);
+  assert.match(api,/YP_API_FORM_RESPONSE/);
+  assert.match(api,/form\.submit\(\)/);
+  assert.match(server,/function handleFormPostBridge_/);
+  assert.match(server,/function formPostBridgeHtml_/);
+  assert.match(server,/window\.top/);
   assert.match(server,/setXFrameOptionsMode\(HtmlService\.XFrameOptionsMode\.ALLOWALL\)/);
-  assert.match(server,/function apiBridge\(request\)/);
+  assert.match(server,/function apiBridge\(request\)/); // 구버전 호환
+});
+
+test("hidden form POST 브리지 런타임 smoke: 응답 postMessage를 받아 bootstrap 완료",async()=>{
+  const listeners={};
+  const store=new Map();
+  const localStorage={getItem:k=>store.has(k)?store.get(k):null,setItem:(k,v)=>store.set(k,String(v)),removeItem:k=>store.delete(k)};
+  const body={appendChild() {}};
+  const document={body,createElement(tag){
+    const el={tagName:String(tag).toUpperCase(),children:[],style:{},setAttribute(){},appendChild(child){this.children.push(child)},remove(){this.removed=true}};
+    if(tag==="form")el.submit=function(){
+      const fields=Object.fromEntries(this.children.map(x=>[x.name,x.value]));
+      setTimeout(()=>listeners.message({
+        origin:new URL(this.action).origin,
+        data:{type:"YP_API_FORM_RESPONSE",channel:fields.channel,id:fields.id,result:{ok:true,apiVersion:"mock",teacherPinConfigured:true}}
+      }),0);
+    };
+    return el;
+  }};
+  const YP0={config:{apiUrl:"http://127.0.0.1:9876/exec",demoMode:false,sessionStorage:"s",sessionMetaStorage:"m",cachePrefix:"t_",buildVersion:"test"}};
+  const window0={YP:YP0,addEventListener:(name,fn)=>{listeners[name]=fn}};
+  const ctx={window:window0,YP:YP0,document,localStorage,navigator:{platform:"test",userAgent:"test"},location:{origin:"http://127.0.0.1:8080"},URL,crypto:globalThis.crypto,setTimeout,clearTimeout,TextEncoder,Blob,console};
+  vm.createContext(ctx);vm.runInContext(read("site/assets/api.js"),ctx);
+  const result=await ctx.window.YP_API.bootstrap();
+  assert.equal(result.ok,true);assert.equal(result.teacherPinConfigured,true);
+});
+
+
+
+
+test("form POST 브리지는 origin·채널·요청 ID를 검증하고 허용 origin 오류를 상세 반환",()=>{
+  const api=read("site/assets/api.js"),server=read("apps-script/Code.gs");
+  assert.match(server,/function normalizeBridgeOriginInput_/);
+  assert.match(server,/function validateBridgeRequestId_/);
+  assert.match(server,/BRIDGE_ORIGIN_DENIED/);
+  assert.match(server,/allowedOrigins/);
+  assert.match(api,/bridgeCheck/);
+  assert.match(api,/setSiteOrigins\(\)/);
+  assert.match(api,/_trustedAppsScriptMessageOrigin/);
+});
+
+
+test("직접 연 GitHub Pages는 Apps Script 상위 보안 페이지로 자동 전환",()=>{
+  const launch=read("site/assets/launch.js"),index=read("site/index.html"),report=read("site/report.html");
+  assert.match(launch,/view","host"/);
+  assert.match(launch,/site\.toString\(\)/);
+  assert.match(launch,/ypEmbedded/);
+  assert.match(index,/assets\/launch\.js/);
+  assert.match(report,/assets\/launch\.js/);
+});
+
+test("Apps Script 상위 보안 페이지가 GitHub 자식 앱 요청을 google.script.run으로 중계",()=>{
+  const api=read("site/assets/api.js"),server=read("apps-script/Code.gs");
+  assert.match(api,/YP_HOST_BRIDGE_HELLO/);
+  assert.match(api,/YP_HOST_BRIDGE_REQUEST/);
+  assert.match(api,/YP_HOST_BRIDGE_RESPONSE/);
+  assert.match(api,/_hostRequest/);
+  assert.match(server,/function hostedBridgeShell_/);
+  assert.match(server,/view === "host"/);
   assert.match(server,/google\.script\.run/);
+  assert.match(server,/YP_HOST_BRIDGE_READY/);
+});
+
+
+test("Apps Script 상위 보안 브리지 런타임 smoke: bootstrap 응답",async()=>{
+  const listeners={};
+  const store=new Map();
+  const localStorage={getItem:k=>store.has(k)?store.get(k):null,setItem:(k,v)=>store.set(k,String(v)),removeItem:k=>store.delete(k)};
+  let parent;
+  const window0={
+    YP_HOSTED_BRIDGE:{enabled:true,channel:"hostchannel1234567890"},
+    addEventListener:(name,fn)=>{listeners[name]=fn}
+  };
+  parent={postMessage(message){
+    if(message.type==="YP_HOST_BRIDGE_HELLO")setTimeout(()=>listeners.message({origin:"https://script.googleusercontent.com",source:parent,data:{type:"YP_HOST_BRIDGE_READY",channel:message.channel,apiVersion:"3.3.0-hosted-parent-bridge"}}),0);
+    if(message.type==="YP_HOST_BRIDGE_REQUEST")setTimeout(()=>listeners.message({origin:"https://script.googleusercontent.com",source:parent,data:{type:"YP_HOST_BRIDGE_RESPONSE",channel:message.channel,id:message.id,result:{ok:true,apiVersion:"3.3.0-hosted-parent-bridge",teacherPinConfigured:true}}}),0);
+  }};
+  window0.parent=parent;
+  const YP0={config:{apiUrl:"https://script.google.com/macros/s/testDeployment123/exec",demoMode:false,sessionStorage:"s",sessionMetaStorage:"m",cachePrefix:"t_",buildVersion:"3.3.0-hosted-parent-bridge"}};
+  window0.YP=YP0;
+  const ctx={window:window0,YP:YP0,document:{},localStorage,navigator:{platform:"test",userAgent:"test"},location:{origin:"https://teacher.github.io",protocol:"https:",hostname:"teacher.github.io",search:"?ypEmbedded=1&ypBridgeChannel=hostchannel1234567890"},URL,crypto:globalThis.crypto,setTimeout,clearTimeout,setInterval,clearInterval,TextEncoder,Blob,console};
+  vm.createContext(ctx);vm.runInContext(read("site/assets/api.js"),ctx);
+  const result=await ctx.window.YP_API.bootstrap();
+  assert.equal(result.ok,true);assert.equal(result.teacherPinConfigured,true);
 });
 
 test("Apps Script는 설치·PIN·서명 세션·1회용 토큰 API를 제공",()=>{
@@ -307,4 +393,44 @@ test("Apps Script는 토큰 열·A열·RecordJSON을 조회하고 저장소 진�
   assert.match(src,/function diagnoseReportStorage/);
   assert.match(src,/function repairReportStorage/);
   assert.match(src,/serverInstanceId:getServerInstanceId_\(\)/);
+});
+
+test("form POST 응답은 Apps Script의 중첩 IFRAME source와 무관하게 채널·origin으로 안전하게 완료",async()=>{
+  const listeners={};
+  const store=new Map();
+  const localStorageMock={getItem:k=>store.has(k)?store.get(k):null,setItem:(k,v)=>store.set(k,String(v)),removeItem:k=>store.delete(k)};
+  const ypConfig={apiUrl:"https://script.google.com/macros/s/testDeployment123/exec",demoMode:false,sessionStorage:"s",sessionMetaStorage:"m",cachePrefix:"t_"};
+  const apiCtx={
+    console,URL,TextEncoder,crypto:globalThis.crypto,setTimeout,clearTimeout,
+    navigator:{platform:"test",userAgent:"test"},location:{origin:"https://teacher.github.io",protocol:"https:",hostname:"teacher.github.io"},
+    localStorage:localStorageMock,
+    window:{YP:{config:ypConfig},addEventListener:(type,fn)=>{listeners[type]=fn}},
+    YP:{config:ypConfig},
+    document:{}
+  };
+  apiCtx.window.window=apiCtx.window;
+  vm.createContext(apiCtx);
+  vm.runInContext(read("site/assets/api.js"),apiCtx);
+  const api=apiCtx.window.YP_API;
+  let cleaned=0;
+  const resultPromise=new Promise((resolve,reject)=>{
+    const timer=setTimeout(()=>reject(new Error("timeout")),1000);
+    api.bridgePending.set("req1",{resolve,reject,timer,action:"ping",channel:"channel1234567890",frame:{remove(){cleaned++}},form:{remove(){cleaned++}}});
+  });
+  listeners.message({
+    origin:"https://script.googleusercontent.com",
+    source:{nested:true},
+    data:{type:"YP_API_FORM_RESPONSE",id:"req1",channel:"channel1234567890",result:{ok:true,apiVersion:"3.3.0-hosted-parent-bridge"}}
+  });
+  const result=await resultPromise;
+  assert.equal(result.ok,true);
+  assert.equal(result.apiVersion,"3.3.0-hosted-parent-bridge");
+  assert.equal(cleaned,2);
+  assert.equal(api.bridgePending.size,0);
+});
+
+test("Apps Script form POST handler는 정의되지 않은 origin helper를 참조하지 않음",()=>{
+  const src=read("apps-script/Code.gs");
+  assert.doesNotMatch(src,/normalizeBridgeOrigin_\(/);
+  assert.match(src,/normalizeBridgeOriginInput_\(rawOrigin\)/);
 });

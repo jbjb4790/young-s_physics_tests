@@ -5,11 +5,13 @@
  class WeeklyAPI{
   constructor(){
    this.apiUrl="";this.demo=true;this.lastBootstrap=null;this.serverInstanceId="";
+   this.hosted=!!window.YP_HOSTED_BRIDGE?.enabled;this.hostChannel=String(window.YP_HOSTED_BRIDGE?.channel||"");this.hostOrigin="";this.hostReady=false;this.hostReadyPromise=null;this.hostReadyResolve=null;this.hostSeq=0;this.hostPending=new Map();
    this.bridgeFrame=null;this.bridgeReadyPromise=null;this.bridgeReady=false;
    this.bridgeChannel="";this.bridgeSeq=0;this.bridgePending=new Map();
    this.bridgeMessageHandler=e=>this._handleBridgeMessage(e);
    window.addEventListener("message",this.bridgeMessageHandler);
    this.refreshConfig();
+   if(this.hosted)setTimeout(()=>this._announceHost(),0);
   }
   refreshConfig(){
    const next=String(YP.config.apiUrl||"").trim();
@@ -37,6 +39,32 @@
    return true;
   }
   sessionExpiry(){return this.getSession().expiresAt||""}
+  _announceHost(){
+   if(!this.hosted||!this.hostChannel||window.parent===window)return;
+   try{window.parent.postMessage({type:"YP_HOST_BRIDGE_HELLO",channel:this.hostChannel,apiVersion:String(YP.config?.buildVersion||"")},"*")}catch(e){}
+  }
+  _cleanupHostPending(pending){if(!pending)return;clearTimeout(pending.timer)}
+  _ensureHostBridge(){
+   if(!this.hosted)return Promise.reject(new YPAPIError("Apps Script 상위 통신 모드가 아닙니다.","HOST_BRIDGE_DISABLED"));
+   if(!this.hostChannel)return Promise.reject(new YPAPIError("Apps Script 상위 통신 채널이 없습니다.","HOST_BRIDGE_CHANNEL_MISSING"));
+   if(this.hostReady)return Promise.resolve({ready:true,origin:this.hostOrigin});
+   if(this.hostReadyPromise)return this.hostReadyPromise;
+   this.hostReadyPromise=new Promise((resolve,reject)=>{
+    let count=0;const timer=setInterval(()=>{count++;this._announceHost();if(this.hostReady||count>80){clearInterval(timer);if(this.hostReady)resolve({ready:true,origin:this.hostOrigin});else reject(new YPAPIError("Apps Script 보안 연결 페이지가 응답하지 않습니다. GitHub Pages를 다시 열어 주세요.","HOST_BRIDGE_TIMEOUT"))}},250);
+    this.hostReadyResolve=message=>{if(this.hostReady){clearInterval(timer);resolve(message)}};
+   }).finally(()=>{this.hostReadyPromise=null;this.hostReadyResolve=null});
+   this._announceHost();
+   return this.hostReadyPromise;
+  }
+  async _hostRequest(action,body){
+   await this._ensureHostBridge();
+   const id=`yp-host-${Date.now()}-${++this.hostSeq}`,timeoutMs=action==="saveBatch"?330000:action==="syncCatalog"?120000:60000;
+   return new Promise((resolve,reject)=>{
+    const timer=setTimeout(()=>{const pending=this.hostPending.get(id);this.hostPending.delete(id);this._cleanupHostPending(pending);reject(new YPAPIError("Apps Script 작업 응답 시간이 초과되었습니다. 저장 작업이었다면 Google Sheets를 먼저 확인하세요.","HOST_BRIDGE_RESPONSE_TIMEOUT",{action,id,timeoutMs}))},timeoutMs);
+    this.hostPending.set(id,{resolve,reject,timer,action});
+    try{window.parent.postMessage({type:"YP_HOST_BRIDGE_REQUEST",channel:this.hostChannel,id,body:body||{}},this.hostOrigin||"*")}catch(e){this.hostPending.delete(id);clearTimeout(timer);reject(new YPAPIError("Apps Script 보안 연결 요청을 전송하지 못했습니다.","HOST_BRIDGE_SEND_FAILED",{action,id,message:String(e&&e.message||e)}))}
+   });
+  }
   _newBridgeChannel(){
    const raw=crypto.randomUUID?crypto.randomUUID()+crypto.randomUUID():Date.now()+"-"+Math.random()+"-"+Math.random();
    return String(raw).replace(/[^A-Za-z0-9_-]/g,"").slice(0,96).padEnd(24,"0");
@@ -44,7 +72,7 @@
   _destroyBridge(reason){
    if(this.bridgeFrame?.parentNode)this.bridgeFrame.parentNode.removeChild(this.bridgeFrame);
    this.bridgeFrame=null;this.bridgeReady=false;this.bridgeReadyPromise=null;this.bridgeChannel="";
-   for(const [id,p] of this.bridgePending){clearTimeout(p.timer);p.reject(new YPAPIError("Apps Script 통신 브리지가 초기화되었습니다.","BRIDGE_RESET",{id,reason}))}
+   for(const [id,p] of this.bridgePending){this._cleanupPending(p);p.reject(new YPAPIError("Apps Script 통신 브리지가 초기화되었습니다.","BRIDGE_RESET",{id,reason}))}
    this.bridgePending.clear();
   }
   _bridgeParentOrigin(){
@@ -52,9 +80,33 @@
    if(!origin||origin==="null")throw new YPAPIError("GitHub Pages 주소에서 사이트를 열어야 Apps Script 자동 연결을 사용할 수 있습니다.","BRIDGE_ORIGIN_INVALID",{origin});
    return origin;
   }
+  _trustedAppsScriptMessageOrigin(origin){
+   const value=String(origin||"");
+   let apiOrigin="";try{apiOrigin=new URL(this.apiUrl).origin}catch(e){}
+   return value===apiOrigin||/^https:\/\/([a-z0-9-]+\.)*(googleusercontent\.com|google\.com)$/i.test(value);
+  }
+  _cleanupPending(pending){
+   if(!pending)return;
+   clearTimeout(pending.timer);
+   try{pending.form?.remove()}catch(e){}
+   try{pending.frame?.remove()}catch(e){}
+  }
   _handleBridgeMessage(event){
-   if(!this.bridgeFrame||event.source!==this.bridgeFrame.contentWindow)return;
    const message=event.data||{};
+   if(this.hosted&&event.source===window.parent&&message.channel===this.hostChannel&&this._trustedAppsScriptMessageOrigin(event.origin)){
+    if(message.type==="YP_HOST_BRIDGE_READY"){this.hostOrigin=event.origin;this.hostReady=true;if(this.hostReadyResolve)this.hostReadyResolve(message);return}
+    if(message.type==="YP_HOST_BRIDGE_RESPONSE"&&message.id){const id=String(message.id),pending=this.hostPending.get(id);if(!pending)return;this.hostPending.delete(id);this._cleanupHostPending(pending);try{pending.resolve(this._validateApiData(message.result,pending.action))}catch(e){pending.reject(e)}return}
+   }
+   if(message.type==="YP_API_FORM_RESPONSE"&&message.id){
+    const pending=this.bridgePending.get(String(message.id));
+    if(!pending||message.channel!==pending.channel)return;
+    if(!this._trustedAppsScriptMessageOrigin(event.origin))return;
+    this.bridgePending.delete(String(message.id));this._cleanupPending(pending);
+    try{pending.resolve(this._validateApiData(message.result,pending.action))}catch(e){pending.reject(e)}
+    return;
+   }
+   // v3.2.3~3.2.4의 지속형 google.script.run 브리지도 기존 링크 호환용으로 수신한다.
+   if(!this.bridgeFrame||event.source!==this.bridgeFrame.contentWindow)return;
    if(message.channel!==this.bridgeChannel)return;
    if(message.type==="YP_API_BRIDGE_READY"){
     this.bridgeReady=true;
@@ -63,7 +115,7 @@
    }
    if(message.type!=="YP_API_BRIDGE_RESPONSE"||!message.id)return;
    const pending=this.bridgePending.get(String(message.id));if(!pending)return;
-   this.bridgePending.delete(String(message.id));clearTimeout(pending.timer);
+   this.bridgePending.delete(String(message.id));this._cleanupPending(pending);
    try{pending.resolve(this._validateApiData(message.result,pending.action))}catch(e){pending.reject(e)}
   }
   _validateApiData(data,context){
@@ -94,13 +146,29 @@
     return {reachable:true,status:res.status,url:res.url,loginRequired,json,text:text.slice(0,240)}
    }catch(e){return {reachable:false,error:String(e&&e.message||e),code:String(e&&e.code||"")}}
   }
+  async _probeBridgeCheck(){
+   try{
+    const url=new URL(this.apiUrl);url.searchParams.set("action","bridgeCheck");url.searchParams.set("origin",this._bridgeParentOrigin());url.searchParams.set("_",String(Date.now()));
+    const res=await this._fetchWithTimeout(url.toString(),{method:"GET",redirect:"follow",credentials:"omit",cache:"no-store",referrerPolicy:"no-referrer"},12000);
+    const text=await res.text();let json=null;try{json=JSON.parse(text)}catch(e){}
+    return {reachable:true,status:res.status,url:res.url,json,text:text.slice(0,300)};
+   }catch(e){return {reachable:false,error:String(e&&e.message||e),code:String(e&&e.code||"")}}
+  }
   async _bridgeDiagnostic(action,cause){
    const probe=await this._probePublicGet();
    if(probe.loginRequired){
     throw new YPAPIError("PIN 확인 전에 Apps Script 웹 앱 접근이 차단되었습니다. 배포를 ‘실행 사용자: 나’, ‘액세스 권한: 로그인 없이 모든 사용자’로 새 버전 배포하세요.","DEPLOYMENT_ACCESS",{action,cause,probe,apiUrl:this.apiUrl});
    }
    if(probe.reachable&&probe.json?.ok){
-    throw new YPAPIError("Apps Script GET 연결은 정상이나 통신 브리지를 열지 못했습니다. Code.gs를 v3.2.3으로 교체하고 새 버전 배포했는지 확인한 뒤 브라우저를 강력 새로고침하세요.","BRIDGE_NOT_DEPLOYED",{action,cause,probe,apiUrl:this.apiUrl});
+    const bridgeCheck=await this._probeBridgeCheck();
+    if(bridgeCheck.json&&bridgeCheck.json.ok===false&&bridgeCheck.json.code==="BRIDGE_ORIGIN_DENIED"){
+     const allowed=bridgeCheck.json.data?.allowedOrigins||[];
+     throw new YPAPIError("현재 GitHub Pages 주소가 Apps Script 허용 주소와 다릅니다. Apps Script에서 setSiteOrigins()를 실행해 저장소 경로를 제외한 현재 origin을 등록하거나, 입력란을 비워 제한을 해제하세요.","BRIDGE_ORIGIN_DENIED",{action,cause,probe,bridgeCheck,allowedOrigins:allowed,siteOrigin:location.origin,apiUrl:this.apiUrl});
+    }
+    if(bridgeCheck.json&&bridgeCheck.json.ok===false){
+     throw new YPAPIError(bridgeCheck.json.error||"Apps Script 통신 브리지 설정을 확인하지 못했습니다.",bridgeCheck.json.code||"BRIDGE_CONFIG_ERROR",{action,cause,probe,bridgeCheck,apiUrl:this.apiUrl});
+    }
+    throw new YPAPIError("Apps Script GET은 정상이나 브라우저가 POST 응답 브리지를 받지 못했습니다. Code.gs와 GitHub 파일을 v3.2.5로 함께 교체하고 Apps Script를 새 버전 배포한 뒤 강력 새로고침하세요.","FORM_BRIDGE_TIMEOUT",{action,cause,probe,bridgeCheck,siteOrigin:location.origin,apiUrl:this.apiUrl});
    }
    throw new YPAPIError("Apps Script 서버에 연결하지 못했습니다. GitHub의 YP_API_URL이 최신 /exec 주소인지, 웹 앱이 익명 접근으로 배포되었는지 확인하세요.","FETCH_FAILED",{action,cause,probe,apiUrl:this.apiUrl});
   }
@@ -128,24 +196,56 @@
    frame.src=src.toString();document.body.appendChild(frame);
    try{return await this.bridgeReadyPromise}catch(e){this._destroyBridge("bridge-load-failed");throw e}
   }
-  async _bridgeRequest(action,body){
-   try{await this._ensureBridge()}catch(e){return this._bridgeDiagnostic(action,{code:e.code||"",message:e.message||String(e)})}
-   const id=`yp-${Date.now()}-${++this.bridgeSeq}`,timeoutMs=action==="saveBatch"?330000:action==="syncCatalog"?120000:60000;
+  _hiddenInput(form,name,value){
+   const input=document.createElement("input");input.type="hidden";input.name=name;input.value=String(value??"");form.appendChild(input);
+  }
+  _formPostRequest(action,body){
+   const id=`yp-${Date.now()}-${++this.bridgeSeq}`,channel=this._newBridgeChannel();
+   const timeoutMs=action==="saveBatch"?330000:action==="syncCatalog"?120000:60000;
+   const frame=document.createElement("iframe"),frameName=`yp-form-bridge-${Date.now()}-${this.bridgeSeq}`;
+   frame.name=frameName;frame.id=frameName;frame.setAttribute("aria-hidden","true");frame.tabIndex=-1;frame.title="Young's Physics Apps Script form bridge";
+   frame.style.cssText="position:fixed!important;width:1px!important;height:1px!important;left:-10000px!important;top:-10000px!important;border:0!important;opacity:0!important;pointer-events:none!important";
+   const form=document.createElement("form");form.method="POST";form.action=this.apiUrl;form.target=frameName;form.acceptCharset="UTF-8";form.enctype="application/x-www-form-urlencoded";form.style.display="none";
+   this._hiddenInput(form,"__ypTransport","form-post");
+   this._hiddenInput(form,"origin",this._bridgeParentOrigin());
+   this._hiddenInput(form,"channel",channel);
+   this._hiddenInput(form,"id",id);
+   this._hiddenInput(form,"payload",JSON.stringify(body||{}));
    return new Promise((resolve,reject)=>{
     const timer=setTimeout(()=>{
-     this.bridgePending.delete(id);
-     reject(new YPAPIError("Apps Script 작업 응답이 지연되고 있습니다. 저장 작업이었다면 Google Sheets를 먼저 확인한 뒤 중복 실행하지 마세요.","BRIDGE_RESPONSE_TIMEOUT",{action,id,timeoutMs}));
+     const pending=this.bridgePending.get(id);this.bridgePending.delete(id);this._cleanupPending(pending||{frame,form,timer});
+     reject(new YPAPIError("Apps Script 작업 응답이 지연되고 있습니다. 저장 작업이었다면 Google Sheets를 먼저 확인한 뒤 중복 실행하지 마세요.","FORM_BRIDGE_RESPONSE_TIMEOUT",{action,id,timeoutMs}));
     },timeoutMs);
-    this.bridgePending.set(id,{resolve,reject,timer,action});
-    try{this.bridgeFrame.contentWindow.postMessage({type:"YP_API_BRIDGE_REQUEST",channel:this.bridgeChannel,id,body},"*")}
-    catch(e){clearTimeout(timer);this.bridgePending.delete(id);reject(new YPAPIError("Apps Script 통신 브리지로 요청을 보내지 못했습니다.","BRIDGE_SEND_FAILED",{action,message:String(e&&e.message||e)}))}
+    this.bridgePending.set(id,{resolve,reject,timer,action,channel,frame,form});
+    frame.onerror=()=>{
+     const pending=this.bridgePending.get(id);if(!pending)return;this.bridgePending.delete(id);this._cleanupPending(pending);
+     reject(new YPAPIError("Apps Script POST 응답 브리지 페이지를 불러오지 못했습니다.","FORM_BRIDGE_LOAD_FAILED",{action,id}));
+    };
+    try{
+     document.body.appendChild(frame);document.body.appendChild(form);form.submit();
+     // 제출 후 form은 제거해도 대상 iframe의 네비게이션은 계속된다.
+     setTimeout(()=>{try{form.remove()}catch(e){}},0);
+    }catch(e){
+     const pending=this.bridgePending.get(id);this.bridgePending.delete(id);this._cleanupPending(pending||{frame,form,timer});
+     reject(new YPAPIError("Apps Script POST 브리지 요청을 전송하지 못했습니다.","FORM_BRIDGE_SEND_FAILED",{action,id,message:String(e&&e.message||e)}));
+    }
    });
+  }
+  async _bridgeRequest(action,body){
+   try{return await this._formPostRequest(action,body)}
+   catch(e){
+    if(["FORM_BRIDGE_RESPONSE_TIMEOUT","FORM_BRIDGE_LOAD_FAILED","FORM_BRIDGE_SEND_FAILED"].includes(String(e&&e.code||""))){
+     return this._bridgeDiagnostic(action,{code:e.code||"",message:e.message||String(e)});
+    }
+    throw e;
+   }
   }
   async request(action,payload={},options={}){
    this.refreshConfig();
    if(this.demo)return this.demoRequest(action,payload,options);
    const body={action,...payload};
    if(options.auth){const token=this.getSession().token;if(token)body.sessionToken=token}
+   if(this.hosted)return this._hostRequest(action,body);
    return this._bridgeRequest(action,body);
   }
   async getReport(token,fp){return this.request("getReport",{token,fp})}

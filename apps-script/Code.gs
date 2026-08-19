@@ -30,7 +30,7 @@ const HEADERS = {
   Reports: ["Token","Fingerprint","IdentitySeed","IdentityDigest","StudentKey","ExamId","CourseId","School","Name","Grade","ClassNo","ResultInputsJSON","PartialModesJSON","ScoringJSON","RecordJSON","CreatedAt","UpdatedAt"]
 };
 
-const API_VERSION = "3.2.4-report-token-affinity";
+const API_VERSION = "3.3.0-hosted-parent-bridge";
 const DEFAULT_SESSION_TTL_DAYS = 90;
 const DEFAULT_SETUP_TOKEN_TTL_MINUTES = 10;
 
@@ -48,6 +48,7 @@ function onOpen() {
       .addItem("교사 PIN 직접 변경", "setTeacherPin")
       .addItem("무작위 교사 PIN 재발급", "resetTeacherPin")
       .addItem("GitHub Pages 허용 주소 설정", "setSiteOrigins")
+      .addItem("허용 주소 제한 즉시 해제", "clearSiteOrigins")
       .addItem("모든 교사 기기 세션 해제", "invalidateTeacherSessions")
       .addSeparator()
       .addItem("성적표 토큰 저장소 진단", "diagnoseReportStorage")
@@ -81,12 +82,28 @@ function showYoungsPhysicsStatus() {
 
 function doGet(e) {
   try {
-    const action = String((e && e.parameter && e.parameter.action) || "ping");
+    const parameters = (e && e.parameter) || {};
+    const view = String(parameters.view || "");
+    if (view === "host") {
+      return hostedBridgeShell_(String(parameters.site || ""));
+    }
+    const action = String(parameters.action || "ping");
     if (action === "bridge") {
       return bridgeHtml_(
         String(e.parameter.origin || ""),
         String(e.parameter.channel || "")
       );
+    }
+    if (action === "bridgeCheck") {
+      const origin = validateBridgeOrigin_(String(e.parameter.origin || ""));
+      return jsonOutput_({
+        ok:true,
+        apiVersion:API_VERSION,
+        serverInstanceId:getServerInstanceId_(),
+        origin:origin,
+        formPostBridge:true,
+        legacyHtmlBridge:true
+      });
     }
     if (action === "getReport") {
       return jsonOutput_(getReport_(String(e.parameter.token || ""), String(e.parameter.fp || "")));
@@ -113,14 +130,96 @@ function doGet(e) {
   }
 }
 
+
+/**
+ * GitHub Pages 앱을 Apps Script HTML Service 안의 자식 iframe으로 실행한다.
+ * google.script.run은 Apps Script가 직접 제공한 상위 페이지에서만 호출하고,
+ * GitHub 앱은 postMessage로 요청·응답만 교환한다. 이 구조는 브라우저의
+ * cross-origin fetch, third-party Apps Script iframe, ContentService CORS에 의존하지 않는다.
+ */
+function hostedBridgeShell_(requestedSiteUrl) {
+  const rawSite = String(requestedSiteUrl || "").trim();
+  const origin = validateBridgeOrigin_(rawSite);
+  if (rawSite.indexOf(origin) !== 0) {
+    throwApiError_("HOST_SITE_INVALID", "GitHub Pages 사이트 주소가 올바르지 않습니다.");
+  }
+  const suffix = rawSite.slice(origin.length, origin.length + 1);
+  if (suffix && suffix !== "/" && suffix !== "?" && suffix !== "#") {
+    throwApiError_("HOST_SITE_INVALID", "GitHub Pages 사이트 주소와 origin이 일치하지 않습니다.");
+  }
+
+  const channel = String(Utilities.getUuid() + Utilities.getUuid()).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 96);
+  const siteJson = safeJsonForHtml_(rawSite);
+  const originJson = safeJsonForHtml_(origin);
+  const channelJson = safeJsonForHtml_(channel);
+  const versionJson = safeJsonForHtml_(API_VERSION);
+  const html = [
+    '<!doctype html>',
+    '<html lang="ko"><head><meta charset="utf-8">',
+    '<meta name="viewport" content="width=device-width,initial-scale=1">',
+    '<meta name="robots" content="noindex,nofollow">',
+    '<title>Young\'s Physics Secure Connection</title>',
+    '<style>',
+    'html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#f4f8ff;font-family:Arial,"Noto Sans KR",sans-serif}',
+    '#ypHostFrame{display:block;width:100%;height:100%;border:0;background:white}',
+    '#ypHostStatus{position:fixed;z-index:20;left:50%;top:50%;transform:translate(-50%,-50%);min-width:280px;max-width:calc(100% - 40px);padding:22px 24px;border:1px solid #cfe0f8;border-radius:18px;background:white;box-shadow:0 18px 60px rgba(0,45,110,.18);color:#0b2c63;text-align:center}',
+    '#ypHostStatus b{display:block;font-size:18px;margin-bottom:8px}#ypHostStatus span{font-size:13px;color:#5d6f89}',
+    '</style></head><body>',
+    '<div id="ypHostStatus"><b>Young\'s Physics 보안 연결 중</b><span>Google Sheets 통신 채널을 준비하고 있습니다.</span></div>',
+    '<iframe id="ypHostFrame" title="Young\'s Physics 성적 분석" allow="clipboard-read; clipboard-write; fullscreen" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+    '<script>',
+    '(function(){"use strict";',
+    'var SITE=' + siteJson + ';',
+    'var SITE_ORIGIN=' + originJson + ';',
+    'var CHANNEL=' + channelJson + ';',
+    'var VERSION=' + versionJson + ';',
+    'var frame=document.getElementById("ypHostFrame");',
+    'var status=document.getElementById("ypHostStatus");',
+    'var ready=false;',
+    'function send(message){try{if(frame&&frame.contentWindow)frame.contentWindow.postMessage(message,SITE_ORIGIN);}catch(e){}}',
+    'function errorText(error){return error&&error.message?String(error.message):String(error||"Apps Script error");}',
+    'function readyMessage(){send({type:"YP_HOST_BRIDGE_READY",channel:CHANNEL,apiVersion:VERSION});}',
+    'window.addEventListener("message",function(event){',
+    '  if(!frame||event.source!==frame.contentWindow||event.origin!==SITE_ORIGIN)return;',
+    '  var message=event.data||{};',
+    '  if(message.channel!==CHANNEL)return;',
+    '  if(message.type==="YP_HOST_BRIDGE_HELLO"){ready=true;status.style.display="none";readyMessage();return;}',
+    '  if(message.type!=="YP_HOST_BRIDGE_REQUEST"||!message.id)return;',
+    '  var id=String(message.id);',
+    '  google.script.run',
+    '    .withSuccessHandler(function(result){send({type:"YP_HOST_BRIDGE_RESPONSE",channel:CHANNEL,id:id,result:result});})',
+    '    .withFailureHandler(function(error){send({type:"YP_HOST_BRIDGE_RESPONSE",channel:CHANNEL,id:id,result:{ok:false,code:"HOST_SERVER_ERROR",error:errorText(error)}});})',
+    '    .apiBridge(message.body||{});',
+    '});',
+    'function start(){',
+    '  try{var u=new URL(SITE);u.searchParams.set("ypEmbedded","1");u.searchParams.set("ypBridgeChannel",CHANNEL);frame.src=u.toString();}',
+    '  catch(e){status.innerHTML="<b>사이트 주소 오류</b><span>GitHub Pages 주소를 다시 확인하세요.</span>";return;}',
+    '  var count=0;var timer=setInterval(function(){count++;readyMessage();if(ready||count>120)clearInterval(timer);},250);',
+    '}',
+    'start();',
+    '})();',
+    '<\/script></body></html>'
+  ].join("");
+  return HtmlService.createHtmlOutput(html)
+    .setTitle("Young's Physics Secure Connection")
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
 /**
  * GitHub Pages에서 Apps Script ContentService로 직접 fetch할 때 브라우저·조직 정책에 따라
  * 리디렉션/CORS 단계가 차단될 수 있다. 이 HTML 브리지는 Apps Script의 google.script.run을
  * 사용해 서버 함수를 호출하고, 결과만 postMessage로 GitHub Pages에 돌려준다.
  */
 function bridgeHtml_(requestedOrigin, requestedChannel) {
-  const origin = validateBridgeOrigin_(requestedOrigin);
-  const channel = validateBridgeChannel_(requestedChannel);
+  let origin;
+  let channel;
+  try {
+    origin = validateBridgeOrigin_(requestedOrigin);
+    channel = validateBridgeChannel_(requestedChannel);
+  } catch (err) {
+    return bridgeErrorHtml_(requestedOrigin, requestedChannel, err);
+  }
+
   const originJson = JSON.stringify(origin).replace(/</g, "\\u003c");
   const channelJson = JSON.stringify(channel).replace(/</g, "\\u003c");
   const versionJson = JSON.stringify(API_VERSION);
@@ -135,10 +234,11 @@ function bridgeHtml_(requestedOrigin, requestedChannel) {
     'var ORIGIN=' + originJson + ';',
     'var CHANNEL=' + channelJson + ';',
     'var VERSION=' + versionJson + ';',
-    'function send(payload){try{parent.postMessage(payload,ORIGIN);}catch(e){}}',
+    'var TOP_WINDOW=window.top;',
+    'function send(payload){try{TOP_WINDOW.postMessage(payload,ORIGIN);}catch(e){}}',
     'function errorText(error){return error&&error.message?String(error.message):String(error||"Apps Script bridge error");}',
     'window.addEventListener("message",function(event){',
-    '  if(event.source!==parent||event.origin!==ORIGIN)return;',
+    '  if(event.source!==TOP_WINDOW||event.origin!==ORIGIN)return;',
     '  var message=event.data||{};',
     '  if(message.type!=="YP_API_BRIDGE_REQUEST"||message.channel!==CHANNEL||!message.id)return;',
     '  google.script.run',
@@ -146,9 +246,14 @@ function bridgeHtml_(requestedOrigin, requestedChannel) {
     '    .withFailureHandler(function(error){send({type:"YP_API_BRIDGE_RESPONSE",channel:CHANNEL,id:String(message.id),result:{ok:false,code:"BRIDGE_SERVER_ERROR",error:errorText(error)}});})',
     '    .apiBridge(message.body||{});',
     '});',
+    'var waitCount=0;',
     'function ready(){',
-    '  if(!(window.google&&google.script&&google.script.run)){setTimeout(ready,50);return;}',
-    '  send({type:"YP_API_BRIDGE_READY",channel:CHANNEL,apiVersion:VERSION});',
+    '  if(!(window.google&&google.script&&google.script.run)){',
+    '    waitCount++;',
+    '    if(waitCount>400){send({type:"YP_API_BRIDGE_ERROR",channel:CHANNEL,apiVersion:VERSION,code:"GOOGLE_SCRIPT_RUN_UNAVAILABLE",error:"Apps Script 브리지 런타임을 불러오지 못했습니다."});return;}',
+    '    setTimeout(ready,50);return;',
+    '  }',
+    '  send({type:"YP_API_BRIDGE_READY",channel:CHANNEL,apiVersion:VERSION,bridgeMode:"nested-top-window"});',
     '}',
     'ready();',
     '})();',
@@ -159,19 +264,58 @@ function bridgeHtml_(requestedOrigin, requestedChannel) {
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
+/**
+ * HtmlService는 자체 IFRAME 샌드박스 안에서 실행될 수 있다. 브리지 검증 오류도
+ * 최상위 GitHub Pages 창에 postMessage하여 타임아웃 대신 원인을 즉시 표시한다.
+ */
+function bridgeErrorHtml_(requestedOrigin, requestedChannel, err) {
+  const origin = normalizeBridgeOriginInput_(requestedOrigin);
+  const channel = String(requestedChannel || "").trim();
+  if (!origin || !/^[A-Za-z0-9_-]{16,120}$/.test(channel)) {
+    return jsonOutput_(apiErrorObject_(err));
+  }
+  const payload = apiErrorObject_(err);
+  payload.type = "YP_API_BRIDGE_ERROR";
+  payload.channel = channel;
+  payload.apiVersion = API_VERSION;
+  const originJson = JSON.stringify(origin).replace(/</g, "\\u003c");
+  const payloadJson = JSON.stringify(payload).replace(/</g, "\\u003c");
+  const html = [
+    '<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"></head>',
+    '<body><script>',
+    '(function(){"use strict";var ORIGIN=' + originJson + ';var PAYLOAD=' + payloadJson + ';',
+    'try{window.top.postMessage(PAYLOAD,ORIGIN);}catch(e){}',
+    '})();',
+    '<\/script></body></html>'
+  ].join('');
+  return HtmlService.createHtmlOutput(html)
+    .setTitle("Young's Physics API Bridge Error")
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+/** 전체 Pages URL이 들어와도 scheme + host origin으로 정규화한다. */
+function normalizeBridgeOriginInput_(origin) {
+  const raw = String(origin || "").trim();
+  const match = raw.match(/^(https?):\/\/([^\/?#]+)/i);
+  if (!match) return "";
+  const scheme = String(match[1] || "").toLowerCase();
+  const authority = String(match[2] || "").toLowerCase();
+  const secure = scheme === "https" && /^[a-z0-9.-]+(?::\d+)?$/.test(authority);
+  const local = scheme === "http" && /^(localhost|127\.0\.0\.1)(?::\d+)?$/.test(authority);
+  return secure || local ? scheme + "://" + authority : "";
+}
+
 function validateBridgeOrigin_(origin) {
-  const value = String(origin || "").trim().replace(/\/$/, "");
-  const secure = /^https:\/\/[A-Za-z0-9.-]+(?::\d+)?$/.test(value);
-  const local = /^http:\/\/(localhost|127\.0\.0\.1)(?::\d+)?$/.test(value);
-  if (!secure && !local) {
+  const value = normalizeBridgeOriginInput_(origin);
+  if (!value) {
     throwApiError_("BRIDGE_ORIGIN_INVALID", "통신 브리지의 사이트 origin이 올바르지 않습니다.");
   }
   const props = PropertiesService.getScriptProperties();
   const configured = String(props.getProperty("SITE_ORIGINS") || props.getProperty("SITE_ORIGIN") || "").trim();
   if (configured) {
-    const allowed = configured.split(/[\n,;]/).map(function(v){ return String(v || "").trim().replace(/\/$/, ""); }).filter(String);
+    const allowed = configured.split(/[\n,;]/).map(normalizeBridgeOriginInput_).filter(String);
     if (allowed.indexOf(value) < 0) {
-      throwApiError_("BRIDGE_ORIGIN_DENIED", "현재 GitHub Pages 주소가 Apps Script SITE_ORIGINS 허용 목록에 없습니다.");
+      throwApiError_("BRIDGE_ORIGIN_DENIED", "현재 사이트 주소 " + value + "가 Apps Script SITE_ORIGINS 허용 목록에 없습니다. setSiteOrigins()를 다시 실행하거나 제한을 비우세요.", {requestedOrigin:value, allowedOrigins:allowed});
     }
   }
   return value;
@@ -186,11 +330,103 @@ function validateBridgeChannel_(channel) {
 }
 
 function doPost(e) {
+  // GitHub Pages의 cross-origin fetch/iframe 초기화가 브라우저 정책에 막히는 경우를 피하기 위해,
+  // hidden form POST → HtmlService postMessage 응답 방식도 지원한다.
+  if (isFormPostBridgeRequest_(e)) {
+    return handleFormPostBridge_(e);
+  }
   try {
     return jsonOutput_(dispatchApiRequest_(parseBody_(e)));
   } catch (err) {
     return jsonOutput_(apiErrorObject_(err));
   }
+}
+
+function isFormPostBridgeRequest_(e) {
+  return !!(e && e.parameter && String(e.parameter.__ypTransport || "") === "form-post");
+}
+
+/**
+ * 브라우저가 Apps Script를 hidden iframe 안에서 직접 로드한 뒤 google.script.run을 여는 방식은
+ * 일부 환경에서 제3자 iframe/샌드박스 정책에 의해 준비 메시지가 도착하지 않을 수 있다.
+ * 이 전송은 요청 자체를 HTML form POST로 보내고, 처리 결과가 담긴 매우 작은 HtmlService 문서가
+ * window.top.postMessage()로 GitHub Pages에 결과를 돌려준다.
+ */
+function handleFormPostBridge_(e) {
+  const rawOrigin = String(e && e.parameter && e.parameter.origin || "");
+  const rawChannel = String(e && e.parameter && e.parameter.channel || "");
+  const rawId = String(e && e.parameter && e.parameter.id || "");
+
+  let origin = "";
+  let channel = "";
+  let requestId = "";
+  let result;
+  try {
+    // 문법상 안전한 origin을 먼저 확보해 오류도 요청한 사이트에만 돌려준다.
+    origin = normalizeBridgeOriginInput_(rawOrigin);
+    channel = validateBridgeChannel_(rawChannel);
+    requestId = validateBridgeRequestId_(rawId);
+    validateBridgeOrigin_(origin);
+    result = dispatchApiRequest_(parseBody_(e));
+  } catch (err) {
+    result = apiErrorObject_(err);
+    try { if (!origin) origin = normalizeBridgeOriginInput_(rawOrigin); } catch (ignored) {}
+    try { if (!channel) channel = validateBridgeChannel_(rawChannel); } catch (ignored) {}
+    try { if (!requestId) requestId = validateBridgeRequestId_(rawId); } catch (ignored) {}
+  }
+
+  // origin/channel/id 자체가 유효하지 않으면 어떤 외부 창에도 메시지를 보내지 않는다.
+  if (!origin || !channel || !requestId) {
+    return HtmlService.createHtmlOutput('<!doctype html><meta charset="utf-8"><title>Invalid bridge request</title>')
+      .setTitle("Young's Physics invalid bridge request")
+      .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  }
+  return formPostBridgeHtml_(origin, channel, requestId, result);
+}
+
+function validateBridgeRequestId_(requestId) {
+  const value = String(requestId || "").trim();
+  if (!/^[A-Za-z0-9_-]{8,180}$/.test(value)) {
+    throwApiError_("BRIDGE_REQUEST_ID_INVALID", "통신 브리지 요청 ID가 올바르지 않습니다.");
+  }
+  return value;
+}
+
+function formPostBridgeHtml_(origin, channel, requestId, result) {
+  const originJson = safeJsonForHtml_(origin);
+  const payloadJson = safeJsonForHtml_({
+    type:"YP_API_FORM_RESPONSE",
+    channel:channel,
+    id:requestId,
+    apiVersion:API_VERSION,
+    result:result
+  });
+  const html = [
+    '<!doctype html>',
+    '<html><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">',
+    '<title>Young\'s Physics Form Bridge</title></head>',
+    '<body style="margin:0;background:transparent">',
+    '<script>',
+    '(function(){"use strict";',
+    'var TARGET=' + originJson + ';',
+    'var MESSAGE=' + payloadJson + ';',
+    'function send(win){try{if(win&&win.postMessage)win.postMessage(MESSAGE,TARGET);}catch(e){}}',
+    // Apps Script HTML Service는 IFRAME sandbox를 사용하므로 parent가 Google 래퍼일 수 있다.
+    // top에도 보내야 실제 GitHub Pages가 반드시 수신한다.
+    'setTimeout(function(){send(window.parent);if(window.top!==window.parent)send(window.top);},0);',
+    '})();',
+    '<\/script></body></html>'
+  ].join('');
+  return HtmlService.createHtmlOutput(html)
+    .setTitle("Young's Physics Form Bridge")
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function safeJsonForHtml_(value) {
+  return JSON.stringify(value)
+    .replace(/</g, "\\u003c")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
 }
 
 /** HtmlService 브리지에서 호출하는 공개 서버 함수. */
@@ -225,7 +461,7 @@ function dispatchApiRequest_(body) {
         message:"Google Sheets 연결 정상",
         apiVersion:API_VERSION,
         serverInstanceId:getServerInstanceId_(),
-        transport:"html-service-bridge",
+        transport:"form-post-bridge",
         spreadsheetId:getSpreadsheet_().getId(),
         time:new Date().toISOString()
       };
@@ -389,28 +625,71 @@ function checkWebAppDeployment() {
  * 예: https://username.github.io (저장소 경로는 제외)
  */
 function setSiteOrigins() {
-  const ui = SpreadsheetApp.getUi();
   const props = PropertiesService.getScriptProperties();
   const current = String(props.getProperty("SITE_ORIGINS") || props.getProperty("SITE_ORIGIN") || "").trim();
-  const response = ui.prompt(
-    "GitHub Pages 허용 주소 설정",
-    "허용할 origin을 입력하세요. 예: https://username.github.io\n여러 주소는 쉼표로 구분합니다. 저장소 경로(/repo)는 입력하지 않습니다.\n현재값: " + (current || "미설정"),
-    ui.ButtonSet.OK_CANCEL
-  );
-  if (response.getSelectedButton() !== ui.Button.OK) return {ok:false, cancelled:true};
-  const raw = String(response.getResponseText() || "").trim();
-  if (!raw) {
+  const currentJson = JSON.stringify(current).replace(/</g, "\\u003c");
+  const html = [
+    '<!doctype html><html><head><meta charset="utf-8">',
+    '<style>',
+    'body{font-family:Arial,"Noto Sans KR",sans-serif;margin:0;padding:22px;color:#0c2b50;background:#f7faff}',
+    'h2{margin:0 0 8px;font-size:20px}',
+    'p{margin:0 0 14px;line-height:1.55;color:#42566f;font-size:13px}',
+    'textarea{box-sizing:border-box;width:100%;height:96px;border:1px solid #b8c9df;border-radius:10px;padding:12px;font:14px/1.5 monospace;background:#fff;resize:vertical}',
+    '.hint{margin-top:8px;font-size:12px;color:#687b92}',
+    '.buttons{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}',
+    'button{border:0;border-radius:9px;padding:10px 15px;font-weight:700;cursor:pointer}',
+    '.secondary{background:#e9f1fb;color:#0c2b50}',
+    '.danger{background:#fff0f0;color:#b42318}',
+    '.primary{background:#1267e8;color:#fff}',
+    '#status{min-height:18px;margin-top:10px;font-size:12px;color:#1267e8}',
+    '</style></head><body>',
+    '<h2>GitHub Pages 허용 주소 설정</h2>',
+    '<p>허용할 사이트 주소를 입력하세요. 여러 주소는 쉼표 또는 줄바꿈으로 구분합니다. 저장 시 경로는 제거되고 <b>https://도메인</b>만 남습니다.</p>',
+    '<textarea id="origins" placeholder="https://username.github.io"></textarea>',
+    '<div class="hint">예: https://username.github.io 또는 https://example.com</div>',
+    '<div id="status"></div>',
+    '<div class="buttons">',
+    '<button class="danger" onclick="clearOrigins()">제한 해제</button>',
+    '<button class="secondary" onclick="google.script.host.close()">취소</button>',
+    '<button class="primary" onclick="saveOrigins()">저장</button>',
+    '</div>',
+    '<script>',
+    'document.getElementById("origins").value=' + currentJson + ';',
+    'function busy(message){document.getElementById("status").textContent=message;Array.prototype.forEach.call(document.querySelectorAll("button"),function(b){b.disabled=true;});}',
+    'function done(result){document.getElementById("status").textContent=result&&result.siteOrigins&&result.siteOrigins.length?"저장 완료: "+result.siteOrigins.join(", "):"허용 주소 제한을 해제했습니다.";setTimeout(function(){google.script.host.close();},650);}',
+    'function failed(err){document.getElementById("status").textContent="오류: "+(err&&err.message?err.message:String(err));Array.prototype.forEach.call(document.querySelectorAll("button"),function(b){b.disabled=false;});}',
+    'function saveOrigins(){busy("저장 중...");google.script.run.withSuccessHandler(done).withFailureHandler(failed).saveSiteOriginsFromDialog(document.getElementById("origins").value);}',
+    'function clearOrigins(){busy("제한 해제 중...");google.script.run.withSuccessHandler(done).withFailureHandler(failed).clearSiteOrigins();}',
+    '<\/script></body></html>'
+  ].join("");
+  const output = HtmlService.createHtmlOutput(html).setWidth(560).setHeight(365);
+  SpreadsheetApp.getUi().showModalDialog(output, "Young's Physics · 허용 주소");
+  console.log("YOUNGS_PHYSICS_SITE_ORIGINS_DIALOG_OPENED=true");
+  return {ok:true, dialogOpened:true, current:current};
+}
+
+/** 비차단 HTML 대화상자에서 전달된 값을 실제 Script Properties에 저장한다. */
+function saveSiteOriginsFromDialog(raw) {
+  return saveSiteOriginsValue_(raw);
+}
+
+/** 허용 origin 값을 저장한다. 빈 문자열이면 제한을 해제한다. */
+function saveSiteOriginsValue_(raw) {
+  const props = PropertiesService.getScriptProperties();
+  const text = String(raw || "").trim();
+  if (!text) {
     props.deleteProperty("SITE_ORIGINS");
     props.deleteProperty("SITE_ORIGIN");
     try { getSpreadsheet_().toast("허용 주소 제한을 해제했습니다.", "Young's Physics", 10); } catch (toastErr) {}
+    console.log("YOUNGS_PHYSICS_SITE_ORIGINS=[]");
     return {ok:true, siteOrigins:[]};
   }
-  const values = raw.split(/[\n,;]/).map(function(v){ return String(v || "").trim().replace(/\/$/, ""); }).filter(String);
+  const values = text.split(/[\n,;]/).map(normalizeBridgeOriginInput_).filter(String);
+  if (!values.length) {
+    throw new Error("허용 주소 형식이 올바르지 않습니다. https://도메인 형식으로 입력하세요.");
+  }
   const unique = [];
-  values.forEach(function(value){
-    const secure = /^https:\/\/[A-Za-z0-9.-]+(?::\d+)?$/.test(value);
-    const local = /^http:\/\/(localhost|127\.0\.0\.1)(?::\d+)?$/.test(value);
-    if (!secure && !local) throw new Error("origin 형식이 올바르지 않습니다: " + value + " (경로 없이 https://도메인 형식으로 입력하세요.)");
+  values.forEach(function(value) {
     if (unique.indexOf(value) < 0) unique.push(value);
   });
   props.setProperty("SITE_ORIGINS", unique.join(","));
@@ -418,6 +697,11 @@ function setSiteOrigins() {
   try { getSpreadsheet_().toast("허용 사이트 " + unique.length + "개를 저장했습니다.", "Young's Physics", 12); } catch (toastErr) {}
   console.log("YOUNGS_PHYSICS_SITE_ORIGINS=" + JSON.stringify(unique));
   return {ok:true, siteOrigins:unique};
+}
+
+/** UI 입력 없이 즉시 제한을 해제한다. Apps Script 편집기에서 직접 실행해도 대기하지 않는다. */
+function clearSiteOrigins() {
+  return saveSiteOriginsValue_("");
 }
 
 /** 무작위 교사 PIN을 새로 만들고 기존 세션을 모두 무효화한다. */

@@ -5,5 +5,5 @@
  */
 window.YP_RUNTIME_CONFIG = window.YP_RUNTIME_CONFIG || {
   apiUrl: "",
-  buildVersion: "3.2.4-report-token-affinity"
+  buildVersion: "3.3.0-hosted-parent-bridge"
 };

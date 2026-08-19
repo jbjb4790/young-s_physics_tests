@@ -35,6 +35,8 @@
     cachePrefix:"yp_weekly_",
     reportPage:"report.html",
     appTitle:"Young's Physics 주간 기본 복습 테스트",
-    buildVersion:String(runtime.buildVersion||"3.2.4-report-token-affinity")
+    buildVersion:String(runtime.buildVersion||"3.3.0-hosted-parent-bridge"),
+    hostedBridge:!!window.YP_HOSTED_BRIDGE?.enabled,
+    hostedBridgeChannel:String(window.YP_HOSTED_BRIDGE?.channel||"")
   };
 })();
