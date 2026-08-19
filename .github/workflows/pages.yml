@@ -1,4 +1,4 @@
-name: Deploy Young's Physics to GitHub Pages
+name: Deploy Young's Physics v3.3.0b to GitHub Pages
 
 on:
   push:
@@ -122,23 +122,41 @@ jobs:
 
           BRIDGE_OWNER="$(printf '%s' "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')"
           BRIDGE_ORIGIN="${YP_SITE_ORIGIN:-https://${BRIDGE_OWNER}.github.io}"
-          BRIDGE_CODE="$(curl -sS -L --max-time 60 -o /tmp/yp-api-form-bridge.html -w "%{http_code}" \
-            -X POST \
-            --data-urlencode "__ypTransport=form-post" \
+
+          # v3.3.0의 실제 운영 통신은 view=host + google.script.run 방식이다.
+          # 기존 form POST 검사는 Apps Script의 302 리디렉션과 curl -X POST 조합에서
+          # HTTP 200을 받으면서도 응답 본문을 잘못 판정하는 경우가 있어 배포를 막을 수 있다.
+          # SITE_ORIGINS 허용 여부는 공식 GET bridgeCheck JSON으로 직접 검증한다.
+          BRIDGE_CHECK_CODE="$(curl -sS -G -L --max-time 40 -o /tmp/yp-bridge-check.json -w "%{http_code}" \
+            --data-urlencode "action=bridgeCheck" \
             --data-urlencode "origin=${BRIDGE_ORIGIN}" \
-            --data-urlencode "channel=githubformbridge1234567890" \
-            --data-urlencode "id=githubformcheck123456" \
-            --data-urlencode 'payload={"action":"ping"}' \
             "$URL" || true)"
-          if [ "$BRIDGE_CODE" != "200" ] \
-             || ! grep -q "YP_API_FORM_RESPONSE" /tmp/yp-api-form-bridge.html \
-             || ! grep -q '3.3.0-hosted-parent-bridge' /tmp/yp-api-form-bridge.html \
-             || ! grep -q '"ok":true' /tmp/yp-api-form-bridge.html; then
-            echo "::error title=Apps Script POST 응답 브리지 미배포::v3.3.0 Code.gs가 실제 웹 앱 /exec에 반영되지 않았거나 SITE_ORIGINS가 ${BRIDGE_ORIGIN}을 허용하지 않습니다. Apps Script를 새 버전으로 재배포하고 setSiteOrigins()를 확인하세요. HTTP ${BRIDGE_CODE}."
-            sed -n '1,12p' /tmp/yp-api-form-bridge.html 2>/dev/null || true
+          if [ "$BRIDGE_CHECK_CODE" != "200" ]; then
+            echo "::error title=Apps Script origin 검사 연결 실패::HTTP ${BRIDGE_CHECK_CODE}. /exec 주소와 웹 앱 공개 권한을 확인하세요."
+            sed -n '1,20p' /tmp/yp-bridge-check.json 2>/dev/null || true
             exit 1
           fi
-          echo "Apps Script form POST response bridge verified."
+          python3 - <<'PY'
+          import json
+          import pathlib
+          import sys
+          text = pathlib.Path('/tmp/yp-bridge-check.json').read_text(encoding='utf-8', errors='replace')
+          try:
+              data = json.loads(text)
+          except Exception:
+              print('::error title=Apps Script origin 검사가 JSON이 아닙니다::응답 앞부분: ' + text[:300].replace('\n', ' '))
+              sys.exit(1)
+          if not data.get('ok'):
+              code = data.get('code', 'BRIDGE_CHECK_FAILED')
+              error = data.get('error', str(data))
+              print(f'::error title=Apps Script SITE_ORIGINS 불일치::{code}: {error}')
+              sys.exit(1)
+          expected = '3.3.0-hosted-parent-bridge'
+          if data.get('apiVersion') != expected:
+              print(f'::error title=Apps Script 브리지 버전 불일치::현재 {data.get("apiVersion", "unknown")}, 필요 {expected}')
+              sys.exit(1)
+          print('Apps Script origin allow-list verified:', data.get('origin'))
+          PY
 
           HOST_SITE="${BRIDGE_ORIGIN}/"
           HOST_CODE="$(curl -sS -G -L --max-time 40 -o /tmp/yp-hosted-bridge.html -w "%{http_code}" \
