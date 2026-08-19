@@ -33,6 +33,7 @@ jobs:
           test -f site/index.html
           test -f site/report.html
           test -f site/assets/runtime-config.js
+          test -f site/assets/launch.js
           test -f site/assets/data/catalog.js
           echo "Young's Physics static site files verified."
 
@@ -69,7 +70,7 @@ jobs:
 
           config = {
               "apiUrl": url,
-              "buildVersion": "3.2.4-report-token-affinity",
+              "buildVersion": "3.3.0-hosted-parent-bridge",
               "buildRef": os.environ.get("YP_BUILD_REF", "")[:12],
           }
           out = target / "assets" / "runtime-config.js"
@@ -88,6 +89,7 @@ jobs:
         env:
           YP_API_URL: ${{ vars.YP_API_URL }}
           LEGACY_APPS_SCRIPT_URL: ${{ vars.APPS_SCRIPT_URL }}
+          YP_SITE_ORIGIN: ${{ vars.YP_SITE_ORIGIN }}
         run: |
           set -euo pipefail
           URL="${YP_API_URL:-${LEGACY_APPS_SCRIPT_URL:-}}"
@@ -111,26 +113,46 @@ jobs:
           if not data.get('ok'):
               print('::error title=Apps Script ping 실패::' + str(data)[:400])
               sys.exit(1)
-          expected = '3.2.4-report-token-affinity'
+          expected = '3.3.0-hosted-parent-bridge'
           if data.get('apiVersion') != expected:
-              print(f'::error title=Apps Script 버전 불일치::현재 서버 버전은 {data.get("apiVersion", "unknown")}이고 필요한 버전은 {expected}입니다. v3.2.4 Code.gs를 저장한 뒤 웹 앱을 새 버전으로 재배포하세요.')
+              print(f'::error title=Apps Script 버전 불일치::현재 서버 버전은 {data.get("apiVersion", "unknown")}이고 필요한 버전은 {expected}입니다. v3.3.0 Code.gs를 저장한 뒤 웹 앱을 새 버전으로 재배포하세요.')
               sys.exit(1)
           print('Apps Script public ping verified:', data.get('apiVersion', 'unknown'))
           PY
 
           BRIDGE_OWNER="$(printf '%s' "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')"
-          BRIDGE_ORIGIN="https://${BRIDGE_OWNER}.github.io"
-          BRIDGE_CODE="$(curl -sS -L -G --max-time 35 -o /tmp/yp-api-bridge.html -w "%{http_code}" \
-            --data-urlencode "action=bridge" \
+          BRIDGE_ORIGIN="${YP_SITE_ORIGIN:-https://${BRIDGE_OWNER}.github.io}"
+          BRIDGE_CODE="$(curl -sS -L --max-time 60 -o /tmp/yp-api-form-bridge.html -w "%{http_code}" \
+            -X POST \
+            --data-urlencode "__ypTransport=form-post" \
             --data-urlencode "origin=${BRIDGE_ORIGIN}" \
-            --data-urlencode "channel=githubbridgecheck123456" \
+            --data-urlencode "channel=githubformbridge1234567890" \
+            --data-urlencode "id=githubformcheck123456" \
+            --data-urlencode 'payload={"action":"ping"}' \
             "$URL" || true)"
-          if [ "$BRIDGE_CODE" != "200" ] || ! grep -q "YP_API_BRIDGE_READY" /tmp/yp-api-bridge.html; then
-            echo "::error title=Apps Script 통신 브리지 미배포::v3.2.4 Code.gs가 실제 웹 앱 /exec에 반영되지 않았습니다. Apps Script에서 새 버전으로 재배포하세요. HTTP ${BRIDGE_CODE}."
-            sed -n '1,8p' /tmp/yp-api-bridge.html 2>/dev/null || true
+          if [ "$BRIDGE_CODE" != "200" ] \
+             || ! grep -q "YP_API_FORM_RESPONSE" /tmp/yp-api-form-bridge.html \
+             || ! grep -q '3.3.0-hosted-parent-bridge' /tmp/yp-api-form-bridge.html \
+             || ! grep -q '"ok":true' /tmp/yp-api-form-bridge.html; then
+            echo "::error title=Apps Script POST 응답 브리지 미배포::v3.3.0 Code.gs가 실제 웹 앱 /exec에 반영되지 않았거나 SITE_ORIGINS가 ${BRIDGE_ORIGIN}을 허용하지 않습니다. Apps Script를 새 버전으로 재배포하고 setSiteOrigins()를 확인하세요. HTTP ${BRIDGE_CODE}."
+            sed -n '1,12p' /tmp/yp-api-form-bridge.html 2>/dev/null || true
             exit 1
           fi
-          echo "Apps Script HtmlService bridge verified."
+          echo "Apps Script form POST response bridge verified."
+
+          HOST_SITE="${BRIDGE_ORIGIN}/"
+          HOST_CODE="$(curl -sS -G -L --max-time 40 -o /tmp/yp-hosted-bridge.html -w "%{http_code}" \
+            --data-urlencode "view=host" \
+            --data-urlencode "site=${HOST_SITE}" \
+            "$URL" || true)"
+          if [ "$HOST_CODE" != "200" ] \
+             || ! grep -q "YP_HOST_BRIDGE_READY" /tmp/yp-hosted-bridge.html \
+             || ! grep -q "3.3.0-hosted-parent-bridge" /tmp/yp-hosted-bridge.html; then
+            echo "::error title=Apps Script 상위 보안 브리지 미배포::v3.3.0 Code.gs의 view=host 페이지가 현재 /exec에 반영되지 않았습니다. 새 버전으로 다시 배포하세요. HTTP ${HOST_CODE}."
+            sed -n '1,12p' /tmp/yp-hosted-bridge.html 2>/dev/null || true
+            exit 1
+          fi
+          echo "Apps Script hosted parent bridge verified."
 
       - name: Ensure GitHub Pages is enabled
         shell: bash
