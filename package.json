@@ -1,6 +1,6 @@
 {
   "name": "youngs-physics-review-comprehensive-analysis",
-  "version": "3.3.0",
+  "version": "3.3.2",
   "private": true,
   "scripts": {
     "test": "node --test tests/run-tests.mjs",
