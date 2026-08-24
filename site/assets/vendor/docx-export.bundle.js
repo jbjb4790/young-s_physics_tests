@@ -46,7 +46,7 @@
    async function addImage(bytes,w,h,alt,maxInches=6.25,maxHeightInches=7.2){
      imgNo++;const rid=`rId${relNo++}`,name=`image${imgNo}.png`;files.push({name:`word/media/${name}`,data:bytes});rels.push(`<Relationship Id="${rid}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/${name}"/>`);return imageDrawing(rid,imgNo,w,h,alt,maxInches,maxHeightInches);
    }
-   const logo=await YP.loadImage("assets/images/logo.png"),logoDrawing=await addImage(await fetchBytes("assets/images/logo.png"),logo.naturalWidth,logo.naturalHeight,"Young's Physics 로고",1.85,0.9),isTotal=YP.isComprehensive&&YP.isComprehensive(exam),avgGap=record.percent-(stats.averagePercent||0),scoreMessage=record.percent>=90?"개념 이해와 문제 적용력이 매우 안정적입니다.":record.percent>=80?"핵심 개념이 탄탄하며 일부 취약 문항을 보완하면 좋습니다.":record.percent>=65?"기본 개념은 형성되어 있으며 우선 단원 복습이 필요합니다.":"핵심 개념부터 순서대로 다시 연결하는 학습이 필요합니다.";
+   const logo=await YP.loadImage("assets/images/logo.png"),logoDrawing=await addImage(await fetchBytes("assets/images/logo.png"),logo.naturalWidth,logo.naturalHeight,"Young's Physics 로고",1.85,0.9),isTotal=YP.isComprehensive&&YP.isComprehensive(exam),avgGap=record.percent-(stats.averagePercent||0),standing=YP.computeTopStanding?YP.computeTopStanding(record.score,stats):null,showStanding=!!(isTotal&&standing&&standing.eligible),scoreMessage=record.percent>=90?"개념 이해와 문제 적용력이 매우 안정적입니다.":record.percent>=80?"핵심 개념이 탄탄하며 일부 취약 문항을 보완하면 좋습니다.":record.percent>=65?"기본 개념은 형성되어 있으며 우선 단원 복습이 필요합니다.":"핵심 개념부터 순서대로 다시 연결하는 학습이 필요합니다.";
    body.push(table([[
      {content:logoDrawing,vAlign:"center",padX:90,padY:60},
      {content:[p("YOUNG'S PHYSICS PERFORMANCE REPORT","",{bold:true,color:"0866E5",size:16}),p(isTotal?"복습·총괄 통합 성적 리포트":"주간 기본 복습 테스트 성적 분석 리포트","",{bold:true,color:"06265D",size:34}),p(exam.title,"",{bold:true,color:"0866E5",size:23})],vAlign:"center",padX:150,padY:80}
@@ -58,7 +58,7 @@
    ],[1300,3000,1500,3000]));
    body.push(table([[
      {content:[p("종합 점수","",{bold:true,color:"DCEBFF",size:20}),p(`${YP.formatNumber(record.score)} / ${exam.maxScore}`,"",{bold:true,color:"FFFFFF",size:46}),p(scoreMessage,"",{color:"EAF4FF",size:18})],fill:"0866E5",vAlign:"center",padX:220,padY:180},
-     {content:[p("성취율","",{bold:true,color:"CFE5FF",size:17}),p(`${record.percent.toFixed(1)}%`,"",{bold:true,color:"FFFFFF",size:31}),p("전체 평균 대비","",{bold:true,color:"CFE5FF",size:17}),p(`${avgGap>=0?"+":""}${YP.formatNumber(avgGap)}%p`,"",{bold:true,color:"FFFFFF",size:27}),p(`전체 평균 ${YP.formatNumber(stats.average)}점 · ${stats.count}명`,"",{color:"DCEBFF",size:16})],fill:"063B8C",vAlign:"center",padX:180,padY:150}
+     {content:[p("성취율","",{bold:true,color:"CFE5FF",size:17}),p(`${record.percent.toFixed(1)}%`,"",{bold:true,color:"FFFFFF",size:31}),p("전체 평균 대비","",{bold:true,color:"CFE5FF",size:17}),p(`${avgGap>=0?"+":""}${YP.formatNumber(avgGap)}%p`,"",{bold:true,color:"FFFFFF",size:27}),...(showStanding?[p("동일 평가 내 위치","",{bold:true,color:"FFE9A6",size:16}),p(standing.label,"",{bold:true,color:"FFF6D4",size:27}),p(`${standing.total}명 기준${standing.tied>1?` · 공동 ${standing.tied}명`:""}`,"",{color:"F6E9BE",size:14})]:[]),p(`전체 평균 ${YP.formatNumber(stats.average)}점 · ${stats.count}명`,"",{color:"DCEBFF",size:16})],fill:"063B8C",vAlign:"center",padX:180,padY:150}
    ]],[5100,3100],{noBorders:true}));
    body.push(p(isTotal?"총괄평가 종합 분석":"종합 분석","Heading1"));body.push(p(YP.buildComment(exam,record,stats,history),"Quote"));
    const scoreCanvas=document.getElementById("scoreChart"),distCanvas=document.getElementById("distChart");

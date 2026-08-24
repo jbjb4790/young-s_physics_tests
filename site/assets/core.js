@@ -138,6 +138,21 @@
    const units=[...new Set(exam.questions.map(q=>q.unit))].map(unit=>{const idx=exam.questions.map((q,i)=>q.unit===unit?i:-1).filter(i=>i>=0),max=idx.reduce((a,i)=>a+exam.questions[i].maxPoints,0),avg=n?valid.reduce((sum,r)=>sum+idx.reduce((a,i)=>a+Number(r.scoring[i]?.score??0),0),0)/n:0;return {unit,maxPoints:max,averageScore:avg,averagePercent:max?avg/max*100:0}});
    return {count:n,average,averagePercent:exam.maxScore?average/exam.maxScore*100:0,median,highest:n?Math.max(...scores):0,lowest:n?Math.min(...scores):0,scoreList:scores,perQuestion,units};
  };
+ /**
+  * 동일 평가 내 상위 비율을 계산한다.
+  * 동점자는 자신보다 높은 점수의 학생 수를 기준으로 같은 경쟁 순위를 적용한다.
+  * 상위 비율 = 공동 석차 ÷ 동일 평가 응시 인원 × 100이다.
+  */
+ YP.computeTopStanding=function(studentScore,statsOrScores){
+   const score=Number(studentScore),source=Array.isArray(statsOrScores)?statsOrScores:(Array.isArray(statsOrScores?.scoreList)?statsOrScores.scoreList:[]);
+   let scores=source.map(Number).filter(Number.isFinite),count=scores.length;
+   if(!Number.isFinite(score)||!count)return null;
+   const epsilon=1e-9;let tied=scores.filter(v=>Math.abs(v-score)<=epsilon).length;
+   // 저장 직후 통계 갱신이 지연되어 현재 학생이 목록에 없으면 한 번만 보완한다.
+   if(!tied){scores=[...scores,score];count=scores.length;tied=1}
+   const higher=scores.filter(v=>v>score+epsilon).length,rank=higher+1,exactPercent=rank/count*100,topPercent=Math.round(exactPercent*10)/10;
+   return {eligible:count>=2&&exactPercent<=50+epsilon,count,total:count,higher,tied,rank,exactPercent,topPercent,label:`상위 ${YP.formatNumber(topPercent)}%`};
+ };
  YP.computeStudentUnits=function(exam,record,stats){return [...new Set(exam.questions.map(q=>q.unit))].map(unit=>{const idx=exam.questions.map((q,i)=>q.unit===unit?i:-1).filter(i=>i>=0),max=idx.reduce((a,i)=>a+exam.questions[i].maxPoints,0),score=idx.reduce((a,i)=>a+Number(record.scoring[i]?.score??0),0),avg=stats?.units?.find(u=>u.unit===unit)?.averagePercent??0,percent=max?score/max*100:0;return {unit,score,maxPoints:max,percent,averagePercent:avg,questionCount:idx.length,level:percent>=85?"강점":percent>=65?"안정":percent>=45?"보완":"우선 보완"}})};
  YP.getLinkedHistory=function(exam,record,records){if(!YP.isComprehensive(exam)||!exam.historyExamIds?.length)return [];const key=YP.studentKey(exam.courseId,record.school,record.name);return (records||[]).map(YP.normalizeRecord).filter(r=>exam.historyExamIds.includes(r.examId)&&YP.studentKey(r.courseId,r.school,r.name)===key).sort((a,b)=>{const ea=YP.getExam(a.examId),eb=YP.getExam(b.examId);return (ea?.round||0)-(eb?.round||0)})};
  YP.computeHistorySummary=function(exam,record,records){

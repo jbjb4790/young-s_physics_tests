@@ -89,6 +89,26 @@ test("물리2심화 총괄도 같은 1~25 선택번호 정책을 사용",()=>{
 test("기존 주간 입력의 1·P1 규칙은 유지",()=>{const q={maxPoints:7,inputMode:"achievement"};assert.equal(YP.parseQuestionInput("1",q).score,7);assert.equal(YP.parseQuestionInput("P1",q).score,1);assert.equal(YP.parseQuestionInput("1",q,true).score,1)});
 test("탭 붙여넣기에서 빈 셀 위치 보존",()=>assert.deepEqual(Array.from(YP.parseDelimited("1\t\t0\t4")),["1","","0","4"]));
 
+// Comprehensive top-percent standing
+
+test("총괄 상위 비율은 공동 석차를 응시 인원으로 나누어 계산",()=>{
+  const s=YP.computeTopStanding(90,[50,60,70,80,90,100,100,90]);
+  assert.equal(s.rank,3);assert.equal(s.count,8);assert.equal(s.tied,2);assert.equal(s.topPercent,37.5);assert.equal(s.eligible,true);
+});
+test("상위 50% 경계는 표시하고 50% 초과는 숨김",()=>{
+  const boundary=YP.computeTopStanding(80,[50,60,70,80,90,100]);
+  assert.equal(boundary.topPercent,50);assert.equal(boundary.eligible,true);
+  assert.equal(YP.computeTopStanding(70,[50,60,70,80,90,100]).eligible,false);
+});
+test("응시자 1명 또는 빈 점수 목록은 상위 비율을 표시하지 않음",()=>{
+  assert.equal(YP.computeTopStanding(100,[100]).eligible,false);assert.equal(YP.computeTopStanding(100,[]),null);
+});
+test("총괄 첫 화면과 Word는 상위 50% 학생에게만 위치를 표시",()=>{
+  const report=read("site/assets/report.js"),docx=read("site/assets/vendor/docx-export.bundle.js");
+  assert.match(report,/showStanding=YP\.isComprehensive\(exam\)&&!!standing\?\.eligible/);assert.match(report,/동일 평가 내 위치/);assert.match(report,/공동 /);assert.doesNotMatch(report,/standing\.rank\}위/);
+  assert.match(docx,/computeTopStanding/);assert.match(docx,/동일 평가 내 위치/);assert.doesNotMatch(docx,/standing\.rank\}위/);
+});
+
 // History linkage and analysis
 
 test("총괄은 같은 과정·학교·이름의 지정 회차만 연결",()=>{
@@ -210,9 +230,9 @@ test("Word 모듈 실제 생성 smoke: ZIP·통합 표·내장 로고",async()=>
   const record={name:"테스트학생",school:"테스트고",grade:"2",classNo:"1",score:100,maxScore:100,percent:100,scoring:[{status:"full",score:100}]};
   const stats={average:80,averagePercent:80,count:2,median:80,highest:100,perQuestion:[{average:80}],units:[{unit:"힘과 운동",averagePercent:80}],scoreList:[80,100]};
   const history={count:2,expectedCount:7,score:170,maxScore:200,percent:85,trend:[{label:"2회",score:80,maxScore:100,percent:80},{label:"3회",score:90,maxScore:100,percent:90}],units:[{unit:"힘과 운동",score:85,maxPoints:100,percent:85,level:"강점"}]};
-  const YP2={loadImage:async()=>({naturalWidth:256,naturalHeight:160}),dataURLToUint8:()=>new Uint8Array(),roundLabel:()=>"물리1 · 역학 총괄평가",formatNumber:n=>String(n),isComprehensive:e=>e.assessmentType==="comprehensive",buildComment:()=>"통합 분석 코멘트",computeStudentUnits:()=>[{unit:"힘과 운동",percent:100,score:100,maxPoints:100,averagePercent:80,level:"강점"}],statusLabel:s=>s==="full"?"만점":s,reviewLabel:()=>"교정 적용",cropDataURL:async()=>"data:image/png;base64,",downloadBlob:(blob,name)=>{captured={blob,name}}};
+  const YP2={loadImage:async()=>({naturalWidth:256,naturalHeight:160}),dataURLToUint8:()=>new Uint8Array(),roundLabel:()=>"물리1 · 역학 총괄평가",formatNumber:n=>String(n),isComprehensive:e=>e.assessmentType==="comprehensive",computeTopStanding:()=>({eligible:true,label:"상위 50%",rank:1,count:2,total:2,tied:1}),buildComment:()=>"통합 분석 코멘트",computeStudentUnits:()=>[{unit:"힘과 운동",percent:100,score:100,maxPoints:100,averagePercent:80,level:"강점"}],statusLabel:s=>s==="full"?"만점":s,reviewLabel:()=>"교정 적용",cropDataURL:async()=>"data:image/png;base64,",downloadBlob:(blob,name)=>{captured={blob,name}}};
   const ctx={console,TextEncoder,TextDecoder,Blob,Uint8Array,Date,Math,window:{},YP:YP2,document:{getElementById:()=>null},fetch:async()=>({ok:true,arrayBuffer:async()=>logo.buffer.slice(logo.byteOffset,logo.byteOffset+logo.byteLength)})};ctx.window=ctx;vm.createContext(ctx);vm.runInContext(source,ctx);
-  await ctx.YoungsDocx.exportReport({exam,record,stats,history});assert.ok(captured);const buf=Buffer.from(await captured.blob.arrayBuffer()),txt=buf.toString("utf8");assert.equal(buf.subarray(0,4).toString("hex"),"504b0304");assert.match(txt,/word\/media\/image1\.png/);assert.match(txt,/복습·총괄 통합 성적 리포트/);assert.match(txt,/물리1 2~8회 복습 테스트/);assert.match(txt,/테스트학생/);assert.doesNotMatch(txt,/TargetMode="External"/);
+  await ctx.YoungsDocx.exportReport({exam,record,stats,history});assert.ok(captured);const buf=Buffer.from(await captured.blob.arrayBuffer()),txt=buf.toString("utf8");assert.equal(buf.subarray(0,4).toString("hex"),"504b0304");assert.match(txt,/word\/media\/image1\.png/);assert.match(txt,/복습·총괄 통합 성적 리포트/);assert.match(txt,/물리1 2~8회 복습 테스트/);assert.match(txt,/상위 50%/);assert.match(txt,/테스트학생/);assert.doesNotMatch(txt,/TargetMode="External"/);
 });
 
 // Secure automatic cross-device connection and deployment
@@ -495,9 +515,9 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
 
 // v3.4.0 answer-key editor and choice-based retry learning
 
-test("v3.4.2 심화 총괄 1~25 선택번호 기능 버전",()=>{
+test("v3.4.3 총괄 상위 50% 표시 기능 버전",()=>{
   assert.equal(catalog.featureVersion,"3.4.2-advanced-total-all-choice");
-  assert.equal(JSON.parse(read("package.json")).version,"3.4.2");
+  assert.equal(JSON.parse(read("package.json")).version,"3.4.3");
 });
 
 test("준비 완료 108문항의 원문 재도전은 모두 보기 선택 방식",()=>{
