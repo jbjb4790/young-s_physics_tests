@@ -155,33 +155,43 @@
   function parseClass(v){const s=cleanText(v);return s==="0"?"":s}
   function indicator(v){
     const s=normalizedHeader(v);
-    if(["o","○","⭕","맞음","정답","true","correct"].includes(s))return "1";
-    if(["x","×","✕","틀림","오답","false","wrong"].includes(s))return "0";
-    if(v===true)return "1";if(v===false)return "0";return null;
+    if(["o","○","⭕","맞음","정답","true","correct"].includes(s))return "O";
+    if(["x","×","✕","틀림","오답","false","wrong"].includes(s))return "X";
+    if(v===true)return "O";if(v===false)return "X";return null;
   }
   function scoreInputFromRaw(raw,q,verifiedKey,sheetKey,mode){
-    const direct=indicator(raw);if(direct!==null)return {value:direct,error:""};
-    const s=displayValue(raw);if(s===""||s==="-"||s==="미응시")return {value:"",error:""};
-    const n=Number(String(s).replace(/,/g,""));
-    if((q.inputMode||"")==="points"){
+    const direct=indicator(raw),s=displayValue(raw);if(s===""||s==="-"||s==="미응시")return {value:"",error:""};
+    const n=Number(String(s).replace(/,/g,"")),inputMode=String(q.inputMode||"");
+    if(inputMode==="points"){
       if(!Number.isFinite(n))return {value:"",error:`${q.no}번 서술형 점수가 숫자가 아닙니다.`};
       return {value:displayValue(n),error:""};
     }
-    if(mode==="direct"){
-      if(n===0||n===1)return {value:String(n),error:""};
-      return {value:"",error:`${q.no}번 객관식 정오표는 0 또는 1이어야 합니다.`};
+    if(inputMode==="objective-choice"){
+      if(mode==="legacy-binary"){
+        if(direct)return {value:direct,error:""};
+        if(n===0)return {value:"X",error:""};if(n===1)return {value:"O",error:""};
+        return {value:"",error:`${q.no}번 구형 객관식 정오표는 0/1 또는 O/X여야 합니다.`};
+      }
+      if(direct)return {value:direct,error:""};
+      if(Number.isInteger(n)&&n>=1&&n<=5)return {value:String(n),error:""};
+      return {value:"",error:`${q.no}번 객관식 선택 번호는 1~5여야 합니다.`};
     }
-    if(!Number.isFinite(n))return {value:"",error:`${q.no}번 객관식 답안을 읽을 수 없습니다.`};
-    const key=Number(verifiedKey||sheetKey);if(!Number.isFinite(key))return {value:"",error:`${q.no}번 검증 정답을 찾지 못했습니다.`};
-    return {value:Number(n)===key?"1":"0",error:""};
+    if(inputMode==="binary"){
+      if(direct)return {value:direct==="O"?"1":"0",error:""};
+      if(mode==="legacy-binary"&&(n===0||n===1))return {value:String(n),error:""};
+      if(!Number.isFinite(n))return {value:"",error:`${q.no}번 객관식 답안을 읽을 수 없습니다.`};
+      const key=Number(verifiedKey||sheetKey);if(!Number.isFinite(key))return {value:"",error:`${q.no}번 검증 정답을 찾지 못했습니다.`};
+      return {value:Number(n)===key?"1":"0",error:""};
+    }
+    return {value:s,error:""};
   }
   function detectInputMode(sheet,dataRows,questionCols,objectiveCount){
-    let zeroOne=0,choice=0,other=0;
-    for(const r of dataRows.slice(0,30))for(let i=0;i<objectiveCount;i++){
-      const v=valueAt(sheet,r,questionCols[i]),direct=indicator(v);if(direct!==null){zeroOne++;continue}
-      const n=Number(displayValue(v));if(!Number.isFinite(n))continue;if(n===0||n===1)zeroOne++;else if(n>=2&&n<=5&&Number.isInteger(n))choice++;else other++;
+    let legacySignals=0,higherChoices=0,ones=0,other=0;
+    for(const r of dataRows.slice(0,60))for(let i=0;i<objectiveCount;i++){
+      const v=valueAt(sheet,r,questionCols[i]),direct=indicator(v);if(direct!==null){legacySignals++;continue}
+      const n=Number(displayValue(v));if(!Number.isFinite(n))continue;if(n===0)legacySignals++;else if(n>=2&&n<=5&&Number.isInteger(n))higherChoices++;else if(n===1)ones++;else other++;
     }
-    if(choice>0)return "raw-choice";if(zeroOne>0&&other===0)return "direct";return "raw-choice";
+    if(higherChoices>0)return "raw-choice";if(legacySignals>0&&other===0)return "legacy-binary";return "raw-choice";
   }
   function candidateStudentRows(sheet,startRow,nameCol,questionCols){
     const rows=[];let gap=0,started=false;
@@ -231,7 +241,7 @@
     return mismatches;
   }
   function buildImport(workbook,layout,exam){
-    const objectiveCount=exam.questions.filter(q=>(q.inputMode||"")==="binary").length||Math.min(20,exam.questionCount),mode=detectInputMode(layout.sheet,layout.studentRows,layout.questionCols,objectiveCount),keyMismatches=validateAnswerKey(layout,exam);
+    const objectiveCount=exam.questions.filter(q=>["binary","objective-choice"].includes(q.inputMode||"")).length||Math.min(20,exam.questionCount),mode=detectInputMode(layout.sheet,layout.studentRows,layout.questionCols,objectiveCount),keyMismatches=validateAnswerKey(layout,exam);
     const students=[];let missingSchool=0,scoreMismatch=0;
     for(const row of layout.studentRows){
       const name=cleanText(valueAt(layout.sheet,row,layout.nameCol));if(!name)continue;

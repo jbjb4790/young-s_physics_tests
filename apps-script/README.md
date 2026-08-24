@@ -1,6 +1,6 @@
-# v3.4.0 정답 관리 API 업데이트
+# v3.4.1 총괄 선택번호·CSV 자동 입력 API 업데이트
 
-기존 운영본에서는 `Code.gs`만 v3.4.0으로 교체한 뒤 웹 앱을 **새 버전**으로 재배포합니다. `appsscript.json` 권한은 바뀌지 않았고, `installYoungsPhysics()`를 다시 실행하지 않습니다. 교사용 홈페이지에서 정답을 처음 저장할 때 `QuestionOverrides` 시트가 자동 생성됩니다.
+기존 운영본에서는 `Code.gs`를 v3.4.1로 교체한 뒤 웹 앱을 **새 버전**으로 재배포합니다. `appsscript.json` 권한은 바뀌지 않았고, `installYoungsPhysics()`를 다시 실행하지 않습니다. 교사용 홈페이지에서 정답을 처음 저장할 때 `QuestionOverrides` 시트가 자동 생성됩니다.
 
 추가 API: `getQuestions`, `saveQuestionAnswers`, `clearQuestionAnswerOverrides`. 정답 수정 요청은 교사 세션 인증이 필요합니다.
 
@@ -38,3 +38,11 @@ https://username.github.io
 ```text
 3.3.0-hosted-parent-bridge
 ```
+
+
+## v3.4.1 입력 규칙
+
+- 물리1·물리2 총괄평가 1~20번: 학생 선택번호 1~5
+- 21~25번: 실제 서술형 획득 점수
+- 구형 0/1·O/X 기록은 `inputEncoding=legacy-binary`로 호환
+- 새 총괄 기록은 `inputEncoding=objective-choice-v1`로 저장

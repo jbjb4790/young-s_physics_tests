@@ -1,10 +1,11 @@
 (function(){
- const state={exam:null,inputs:[],partialModes:[],editToken:null,batchRows:[],batchMeta:null,reports:[],serverInstanceId:"",examLoadSeq:0,answerEditorDirty:false};
+ const state={exam:null,inputs:[],partialModes:[],editToken:null,batchRows:[],batchMeta:null,reports:[],serverInstanceId:"",examLoadSeq:0,answerEditorDirty:false,inputEncoding:""};
  const $=id=>document.getElementById(id);
  const AUTH_ERROR_CODES=new Set(["AUTH_REQUIRED","AUTH_INVALID","AUTH_EXPIRED","AUTH_REVOKED"]);
+ function defaultInputEncoding(exam){return YP.usesObjectiveChoiceNumbers(exam)?"objective-choice-v1":""}
  function showDemo(){$("demoBanner").classList.toggle("hidden",!YP_API.demo)}
  function isAuthError(e){return AUTH_ERROR_CODES.has(String(e&&e.code||""))}
- function catalogVersion(){return [YP.catalog.schemaVersion||"",YP.catalog.generatedAt||"",YP.catalog.exams.length,YP.readyExams().reduce((a,e)=>a+(e.questions?.length||0),0)].join("|")}
+ function catalogVersion(){return [YP.catalog.schemaVersion||"",YP.catalog.featureVersion||"",YP.catalog.generatedAt||"",YP.catalog.exams.map(e=>e.configVersion||"").join(","),YP.catalog.exams.length,YP.readyExams().reduce((a,e)=>a+(e.questions?.length||0),0)].join("|")}
  function formatExpiry(iso){if(!iso)return "";const d=new Date(iso);return isNaN(d)?"":d.toLocaleString("ko-KR",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"})}
  function updateConnectionUI(){
    const btn=$("settingsBtn"),txt=$("settingsBtnText");if(!btn||!txt)return;
@@ -71,10 +72,10 @@
    if(clearFile&&file)file.value="";
  }
  async function loadExam(options={}){
-   const examId=$("examSelect").value,seq=++state.examLoadSeq,base=YP.clone(YP.getExam(examId));if(!base)return;
+   const examId=$("examSelect").value,seq=++state.examLoadSeq,base=YP.applyExamInputPolicy(YP.clone(YP.getExam(examId)));if(!base)return;
    const preserve=!!options.preserveInputs&&state.exam?.examId===examId,oldInputs=preserve?[...state.inputs]:[],oldModes=preserve?[...state.partialModes]:[];
    state.exam=base;state.inputs=Array(base.questionCount||0).fill("").map((_,i)=>oldInputs[i]??"");state.partialModes=Array(base.questionCount||0).fill(false).map((_,i)=>!!oldModes[i]);
-   if(!preserve){state.editToken=null;$("cancelEditBtn").classList.add("hidden")}
+   if(!preserve){state.editToken=null;state.inputEncoding=defaultInputEncoding(base);$("cancelEditBtn").classList.add("hidden")}
    state.answerEditorDirty=false;if(options.resetBatch!==false)resetBatchPreview();renderExamNotice();renderQuestions();renderAnswerEditor();updateScore();
    if(!(YP_API.demo||YP_API.isAuthenticated())){setAnswerEditorStatus("교사 PIN 인증 후 Google Sheets에 저장된 정답 수정본을 불러오고 편집할 수 있습니다.","auth");return}
    try{
@@ -90,15 +91,17 @@
    let note=`${badge} <b>${YP.escapeHTML(e.title)}</b> · ${e.questionCount}문항 · ${e.maxScore}점`;
    if(e.pdf)note+=` · <a href="${e.pdf}" target="_blank">원문 시험지</a>`;
    if(e.solutionPdf)note+=` · <a href="${e.solutionPdf}" target="_blank">검수 기준 해설지</a>`;
-   if(YP.isComprehensive(e))note+=`<br><b>입력:</b> 1~20번 정오표(0=틀림, 1=맞음) · 21~25번 실제 서술형 점수(0~4점)<br><b>통합 분석:</b> ${YP.escapeHTML(e.historyLabel)}와 같은 학교·이름의 학생 기록을 자동 연결합니다.`;
+   if(YP.usesObjectiveChoiceNumbers(e))note+=`<br><b>입력:</b> 1~20번 학생이 고른 객관식 번호(1~5) · 21~25번 실제 서술형 점수(0~4점)<br><b>통합 분석:</b> ${YP.escapeHTML(e.historyLabel)}와 같은 학교·이름의 학생 기록을 자동 연결합니다.`;
+   else if(YP.isComprehensive(e))note+=`<br><b>입력:</b> 시험 설정에 등록된 문항별 성취값·실제 점수<br><b>통합 분석:</b> ${YP.escapeHTML(e.historyLabel)}와 같은 학교·이름의 학생 기록을 자동 연결합니다.`;
    else note+=`<br>0=오답, 1=문항 만점, 그 밖의 숫자=부분점수, P1=정확히 1점`;
    if(e.sourceNote)note+=`<br>${YP.escapeHTML(e.sourceNote)}`;
    const issues=(e.questions||[]).filter(q=>["needs-review","ambiguous"].includes(q.reviewStatus)).map(q=>q.no);if(issues.length)note+=`<br><b>자동 공개 보류:</b> ${issues.join(", ")}번`;
    $("examNotice").innerHTML=note;
    if($("stickyExamName"))$("stickyExamName").textContent=YP.roundLabel(e);
-   $("pasteValues").placeholder=YP.isComprehensive(e)?"예: 1\t1\t0\t... (20개) \t4\t3\t2\t4\t1":"예: 1\t1\t0\t2.5\tP1\t1";
+   $("pasteValues").placeholder=YP.usesObjectiveChoiceNumbers(e)?"예: 5\t2\t3\t... (객관식 20개) \t4\t3\t2\t4\t1":YP.isComprehensive(e)?"시험 설정 순서대로 입력":"예: 1\t1\t0\t2.5\tP1\t1";
  }
  function qInputHTML(q,i){
+   if((q.inputMode||"achievement")==="objective-choice")return `<div class="objective-choice-control"><div class="objective-choice-buttons">${[1,2,3,4,5].map(n=>`<button type="button" class="objective-choice-btn" data-choice-i="${i}" data-v="${n}" aria-label="${n}번 선택">${YP.choiceLabel(n)}</button>`).join("")}</div><input class="score-input compact" id="qInput${i}" data-i="${i}" inputmode="numeric" autocomplete="off" placeholder="1~5" maxlength="1"></div><div class="score-result ungraded objective-choice-result" id="qResult${i}">미입력</div>`;
    if((q.inputMode||"achievement")==="binary")return `<div class="binary-control"><button type="button" class="binary-btn correct" data-i="${i}" data-v="1">O · 맞음</button><button type="button" class="binary-btn wrong" data-i="${i}" data-v="0">X · 틀림</button><input class="score-input compact" id="qInput${i}" data-i="${i}" inputmode="numeric" autocomplete="off" placeholder="0 / 1" maxlength="1"></div>`;
    if(q.inputMode==="points")return `<div class="score-row"><input class="score-input" id="qInput${i}" data-i="${i}" type="number" min="0" max="${q.maxPoints}" step="0.5" inputmode="decimal" autocomplete="off" placeholder="0~${q.maxPoints}점"><div class="score-result ungraded" id="qResult${i}">미입력</div></div><div class="quick-points">${[0,1,2,3,4].filter(v=>v<=q.maxPoints).map(v=>`<button type="button" data-point-i="${i}" data-v="${v}">${v}점</button>`).join("")}</div>`;
    return `<div class="score-row"><input class="score-input" id="qInput${i}" data-i="${i}" inputmode="decimal" autocomplete="off" placeholder="0 / 1 / 부분점수"><div class="score-result ungraded" id="qResult${i}">미입력</div></div>${q.maxPoints>1?`<label class="partial-toggle"><input type="checkbox" id="partial${i}" data-i="${i}"> '1'을 만점이 아닌 1점 부분점수로 처리</label>`:""}`;
@@ -106,7 +109,7 @@
  function renderQuestions(){
    const e=state.exam;if(!e){$("questionGrid").innerHTML="";return}
    $("questionGrid").classList.toggle("total-grid",YP.isComprehensive(e));
-   $("questionGrid").innerHTML=e.questions.map((q,i)=>`<div class="question-input-card ungraded ${q.inputMode||"achievement"}" id="qCard${i}"><div class="q-head"><div><div class="q-title">${q.no}번</div><div class="q-meta">${q.no<=20&&YP.isComprehensive(e)?"객관식 정오":"서술형 점수"} · ${q.maxPoints}점 · ${YP.escapeHTML(q.unit)}</div></div><span class="badge ${q.reviewStatus}">${YP.reviewLabel(q.reviewStatus)}</span></div>${qInputHTML(q,i)}${q.inputMode==="binary"?`<div class="score-result ungraded binary-result" id="qResult${i}">미입력</div>`:""}</div>`).join("");
+   $("questionGrid").innerHTML=e.questions.map((q,i)=>{const modeLabel=q.inputMode==="objective-choice"?"객관식 선택 번호":q.inputMode==="binary"?"객관식 정오":q.inputMode==="points"?"서술형 점수":"문항 성취값";return `<div class="question-input-card ungraded ${q.inputMode||"achievement"}" id="qCard${i}"><div class="q-head"><div><div class="q-title">${q.no}번</div><div class="q-meta">${modeLabel} · ${q.maxPoints}점 · ${YP.escapeHTML(q.unit)}</div></div><span class="badge ${q.reviewStatus}">${YP.reviewLabel(q.reviewStatus)}</span></div>${qInputHTML(q,i)}${q.inputMode==="binary"?`<div class="score-result ungraded binary-result" id="qResult${i}">미입력</div>`:""}</div>`}).join("");
    e.questions.forEach((q,i)=>{
      const inp=$(`qInput${i}`);inp.value=state.inputs[i]??"";inp.addEventListener("input",()=>{state.inputs[i]=inp.value;updateQuestion(i);updateScore()});
      inp.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key==="ArrowDown"){ev.preventDefault();$(`qInput${Math.min(i+1,e.questions.length-1)}`)?.focus()}if(ev.key==="ArrowUp"){ev.preventDefault();$(`qInput${Math.max(i-1,0)}`)?.focus()}if(ev.key==="Backspace"&&!inp.value&&i>0){ev.preventDefault();$(`qInput${i-1}`)?.focus()}});
@@ -114,6 +117,7 @@
      updateQuestion(i);
    });
    document.querySelectorAll(".binary-btn").forEach(b=>b.onclick=()=>setValue(Number(b.dataset.i),b.dataset.v));
+   document.querySelectorAll(".objective-choice-btn").forEach(b=>b.onclick=()=>setValue(Number(b.dataset.choiceI),b.dataset.v));
    document.querySelectorAll("button[data-point-i]").forEach(b=>b.onclick=()=>setValue(Number(b.dataset.pointI),b.dataset.v));
  }
 
@@ -170,16 +174,19 @@
  function setValue(i,v){state.inputs[i]=String(v);$(`qInput${i}`).value=String(v);updateQuestion(i);updateScore();$(`qInput${Math.min(i+1,state.exam.questions.length-1)}`)?.focus()}
  function updateQuestion(i){
    const q=state.exam.questions[i],p=YP.parseQuestionInput(state.inputs[i],q,state.partialModes[i]),card=$(`qCard${i}`),res=$(`qResult${i}`);
-   card.className=`question-input-card ${q.inputMode||"achievement"} ${p.status}`;res.className=`score-result ${q.inputMode==="binary"?"binary-result ":""}${p.status}`;res.textContent=p.valid?(p.status==="full"?`${p.score}/${q.maxPoints}`:p.status==="partial"?`${YP.formatNumber(p.score)}/${q.maxPoints}`:YP.statusLabel(p.status)):"입력 오류";res.title=p.message;
+   card.className=`question-input-card ${q.inputMode||"achievement"} ${p.status}`;res.className=`score-result ${q.inputMode==="binary"?"binary-result ":q.inputMode==="objective-choice"?"objective-choice-result ":""}${p.status}`;
+   if(q.inputMode==="objective-choice"&&p.valid&&p.status!=="ungraded")res.textContent=p.legacyMarker?`${p.legacyMarker} · ${p.status==="full"?`${p.score}/${q.maxPoints}`:"0점"}`:`${YP.choiceLabel(p.selectedChoice)} · ${p.status==="full"?`${p.score}/${q.maxPoints}`:"0점"}`;
+   else res.textContent=p.valid?(p.status==="full"?`${p.score}/${q.maxPoints}`:p.status==="partial"?`${YP.formatNumber(p.score)}/${q.maxPoints}`:YP.statusLabel(p.status)):"입력 오류";res.title=p.message;
    card.querySelectorAll(".binary-btn").forEach(b=>b.classList.toggle("selected",String(b.dataset.v)===String(state.inputs[i]).trim()));
+   card.querySelectorAll(".objective-choice-btn").forEach(b=>b.classList.toggle("selected",String(b.dataset.v)===String(state.inputs[i]).trim()));
  }
  function updateScore(){
    if(!state.exam)return;const r=YP.calculateResult(state.exam,state.inputs,state.partialModes);$("scoreValue").textContent=`${YP.formatNumber(r.score)} / ${state.exam.maxScore}`;$("scorePercent").textContent=`${r.percent.toFixed(1)}%`;$("scoreProgress").style.width=`${Math.min(100,r.percent)}%`;if($("scoreRing"))$("scoreRing").style.setProperty("--score-angle",`${Math.min(100,Math.max(0,r.percent))*3.6}deg`);["full","partial","wrong","ungraded"].forEach(k=>$(`${k}Count`).textContent=r.counts[k]||0);$("completionText").textContent=`${state.exam.questionCount-r.counts.ungraded} / ${state.exam.questionCount} 문항 입력${r.counts.invalid?` · 오류 ${r.counts.invalid}`:""}`;return r;
  }
  function applyPaste(){const vals=YP.parseDelimited($("pasteValues").value),n=state.exam.questionCount;for(let i=0;i<n;i++){state.inputs[i]=vals[i]??"";$(`qInput${i}`).value=state.inputs[i];updateQuestion(i)}updateScore();$("pasteMessage").textContent=vals.length===n?`${n}개 값을 적용했습니다.`:`${vals.length}개 값을 읽었습니다. ${vals.length<n?"뒤쪽은 미입력으로 유지":"초과 값은 적용하지 않음"}했습니다.`}
- function fillSample(){state.exam.questions.forEach((q,i)=>{let v;if(q.inputMode==="binary")v=i%6===2||i%9===5?"0":"1";else if(q.inputMode==="points")v=[4,3,2,4,1][i-20]??"3";else v=i%5===2?"0":i%4===1?(q.maxPoints>2?String(Math.max(2,Math.round(q.maxPoints*.6))):"P1"):"1";state.inputs[i]=v;$(`qInput${i}`).value=v;updateQuestion(i)});updateScore();$("studentName").value="김물리";$("school").value="영스고";$("grade").value="2";YP.toast("예시 입력을 채웠습니다.")}
- function clearAll(){if(!confirm("현재 입력을 모두 지울까요?"))return;state.inputs.fill("");state.partialModes.fill(false);state.editToken=null;state.exam.questions.forEach((q,i)=>{$(`qInput${i}`).value="";if($(`partial${i}`))$(`partial${i}`).checked=false;updateQuestion(i)});updateScore();$("cancelEditBtn").classList.add("hidden")}
- function makeRecord(extra={}){const school=YP.normalizeSchool($("school").value),name=$("studentName").value.trim();return {token:state.editToken||undefined,examId:state.exam.examId,courseId:state.exam.courseId,school,name,studentKey:YP.studentKey(state.exam.courseId,school,name),grade:$("grade").value,classNo:$("classNo").value.trim(),teacherMemo:$("teacherMemo").value.trim(),resultInputs:[...state.inputs],partialModes:[...state.partialModes],...extra}}
+ function fillSample(){state.exam.questions.forEach((q,i)=>{let v;if(q.inputMode==="objective-choice"){const key=Number(q.answerKey)||1;v=i%6===2?String(key%5+1):String(key)}else if(q.inputMode==="binary")v=i%6===2||i%9===5?"0":"1";else if(q.inputMode==="points")v=[4,3,2,4,1][i-20]??"3";else v=i%5===2?"0":i%4===1?(q.maxPoints>2?String(Math.max(2,Math.round(q.maxPoints*.6))):"P1"):"1";state.inputs[i]=v;$(`qInput${i}`).value=v;updateQuestion(i)});updateScore();$("studentName").value="김물리";$("school").value="영스고";$("grade").value="2";YP.toast("예시 입력을 채웠습니다.")}
+ function clearAll(){if(!confirm("현재 입력을 모두 지울까요?"))return;state.inputs.fill("");state.partialModes.fill(false);state.editToken=null;state.inputEncoding=defaultInputEncoding(state.exam);state.exam.questions.forEach((q,i)=>{$(`qInput${i}`).value="";if($(`partial${i}`))$(`partial${i}`).checked=false;updateQuestion(i)});updateScore();$("cancelEditBtn").classList.add("hidden")}
+ function makeRecord(extra={}){const school=YP.normalizeSchool($("school").value),name=$("studentName").value.trim();return {token:state.editToken||undefined,examId:state.exam.examId,courseId:state.exam.courseId,school,name,studentKey:YP.studentKey(state.exam.courseId,school,name),grade:$("grade").value,classNo:$("classNo").value.trim(),teacherMemo:$("teacherMemo").value.trim(),resultInputs:[...state.inputs],partialModes:[...state.partialModes],inputEncoding:state.inputEncoding||defaultInputEncoding(state.exam),...extra}}
  function reportURL(token,fp,serverInstanceId=state.serverInstanceId){
    const u=new URL(YP.config.reportPage,location.href),params=new URLSearchParams();
    params.set("id",String(token||""));params.set("fp",String(fp||""));
@@ -201,11 +208,17 @@
      tbody.querySelectorAll("button[data-action]").forEach(b=>b.onclick=()=>handleReportAction(b.dataset.action,b.dataset.token,b.dataset.fp,state.reports));
    }catch(e){handleAuthFailure(e);state.reports=[];tbody.innerHTML=`<tr><td colspan="6">${YP.escapeHTML(e.message)}</td></tr>`}
  }
- async function handleReportAction(action,token,fp,reports){if(action==="copy"){await YP.copyText(reportURL(token,fp));return YP.toast("학부모 전달용 학생 링크를 복사했습니다.")}if(action==="delete"){if(!confirm("이 학생 기록을 삭제할까요?"))return;try{await YP_API.deleteReport(token);await refreshReports();YP.toast("삭제했습니다.")}catch(e){YP.toast(e.message,5000)}return}if(action==="edit"){const r=reports.find(x=>x.token===token);if(!r)return;$("courseSelect").value=r.courseId||YP.getExam(r.examId).courseId;renderExamOptions();$("examSelect").value=r.examId;await loadExam();$("studentName").value=r.name;$("school").value=YP.normalizeSchool(r.school)==="미기입"?"":r.school;$("grade").value=r.grade||"";$("classNo").value=r.classNo||"";$("teacherMemo").value=r.teacherMemo||"";state.inputs=[...(r.resultInputs||[])];state.partialModes=[...(r.partialModes||[])];state.editToken=r.token;state.exam.questions.forEach((q,i)=>{$(`qInput${i}`).value=state.inputs[i]??"";if($(`partial${i}`))$(`partial${i}`).checked=!!state.partialModes[i];updateQuestion(i)});updateScore();$("cancelEditBtn").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"});YP.toast("수정 모드: 저장하면 기존 링크가 유지됩니다.")}}
- function cancelEdit(){state.editToken=null;$("cancelEditBtn").classList.add("hidden");YP.toast("수정 모드를 종료했습니다.")}
+ function editableInputsForRecord(record,exam){
+   const values=[...(record.resultInputs||[])],scoring=record.scoring||[];
+   if(!YP.usesObjectiveChoiceNumbers(exam))return values;
+   exam.questions.forEach((q,i)=>{if(q.inputMode!=="objective-choice")return;const raw=String(values[i]??"").trim(),score=scoring[i];if(record.inputEncoding==="legacy-binary"||(q.inputMode==="objective-choice"&&["0","1"].includes(raw)&&score&&["full","wrong"].includes(score.status)))values[i]=score.status==="full"?"O":"X"});
+   return values;
+ }
+ async function handleReportAction(action,token,fp,reports){if(action==="copy"){await YP.copyText(reportURL(token,fp));return YP.toast("학부모 전달용 학생 링크를 복사했습니다.")}if(action==="delete"){if(!confirm("이 학생 기록을 삭제할까요?"))return;try{await YP_API.deleteReport(token);await refreshReports();YP.toast("삭제했습니다.")}catch(e){YP.toast(e.message,5000)}return}if(action==="edit"){const r=reports.find(x=>x.token===token);if(!r)return;$("courseSelect").value=r.courseId||YP.getExam(r.examId).courseId;renderExamOptions();$("examSelect").value=r.examId;await loadExam();$("studentName").value=r.name;$("school").value=YP.normalizeSchool(r.school)==="미기입"?"":r.school;$("grade").value=r.grade||"";$("classNo").value=r.classNo||"";$("teacherMemo").value=r.teacherMemo||"";state.inputs=editableInputsForRecord(r,state.exam);state.partialModes=[...(r.partialModes||[])];state.editToken=r.token;state.inputEncoding=r.inputEncoding||(YP.usesObjectiveChoiceNumbers(state.exam)?"legacy-binary":"");state.exam.questions.forEach((q,i)=>{$(`qInput${i}`).value=state.inputs[i]??"";if($(`partial${i}`))$(`partial${i}`).checked=!!state.partialModes[i];updateQuestion(i)});updateScore();$("cancelEditBtn").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"});YP.toast("수정 모드: 저장하면 기존 링크가 유지됩니다.")}}
+ function cancelEdit(){state.editToken=null;state.inputEncoding=defaultInputEncoding(state.exam);$("cancelEditBtn").classList.add("hidden");YP.toast("수정 모드를 종료했습니다.")}
  function downloadTemplate(){
    if(!state.exam)return YP.toast("시험을 먼저 선택하세요.");
-   const headers=["과정","시험","학교","이름","학년","반번호",...state.exam.questions.map(q=>"Q"+q.no)],example=[YP.getCourse(state.exam.courseId).courseName,state.exam.shortTitle||state.exam.round+"회","","홍길동","2","",...state.exam.questions.map(q=>q.inputMode==="points"?q.maxPoints:"1")],csv="\ufeff"+[headers,example].map(r=>r.map(YP.csvEscape).join(",")).join("\n");
+   const headers=["과정","시험","학교","이름","학년","반번호",...state.exam.questions.map(q=>"Q"+q.no)],example=[YP.getCourse(state.exam.courseId).courseName,state.exam.shortTitle||state.exam.round+"회","","홍길동","2","",...state.exam.questions.map(q=>q.inputMode==="points"?q.maxPoints:q.inputMode==="objective-choice"?(Number(q.answerKey)||1):"1")],csv="\ufeff"+[headers,example].map(r=>r.map(YP.csvEscape).join(",")).join("\n");
    YP.downloadBlob(new Blob([csv],{type:"text/csv;charset=utf-8"}),`${state.exam.examId}_입력템플릿.csv`);
  }
  function batchIdentityKey(record){return [record.examId,YP.normalizeIdentity(YP.normalizeSchool(record.school)),YP.normalizeIdentity(record.name)].join("|")}
@@ -215,10 +228,10 @@
    const validRows=rows.filter(x=>x.saveable),missingSchool=rows.filter(x=>YP.normalizeSchool(x.record.school)==="미기입").length,updates=validRows.filter(x=>x.existing).length,errors=rows.length-validRows.length;
    const summary=$("batchImportSummary");summary.classList.remove("hidden");
    summary.innerHTML=`
-    <div class="batch-summary-card"><span>첨부 파일·시트</span><b>${YP.escapeHTML(meta.fileName||"-")}<br>${YP.escapeHTML(meta.sheetName||"CSV")}</b></div>
+    <div class="batch-summary-card"><span>첨부 파일·시트</span><b>${YP.escapeHTML(meta.fileName||"-")}<br>${YP.escapeHTML(meta.sheetName||"CSV")}${meta.encoding?` · ${YP.escapeHTML(meta.encoding)}`:""}</b></div>
     <div class="batch-summary-card ok"><span>읽은 학생</span><b>${rows.length}명</b></div>
     <div class="batch-summary-card ${missingSchool?"warn":""}"><span>학교 미기입</span><b>${missingSchool}명 → 미기입</b></div>
-    <div class="batch-summary-card"><span>입력 해석</span><b>${YP.escapeHTML(meta.inputModeLabel||"정오표·부분점수")}</b></div>
+    <div class="batch-summary-card"><span>입력 해석</span><b>${YP.escapeHTML(meta.inputModeLabel||"학생 선택번호·부분점수")}</b></div>
     <div class="batch-summary-card ${errors?"warn":"ok"}"><span>저장 예상</span><b>신규 ${Math.max(0,validRows.length-updates)} · 수정 ${updates}${errors?` · 오류 ${errors}`:""}</b></div>`;
    const preview=$("csvPreview");preview.classList.remove("hidden");
    preview.innerHTML=`<table><thead><tr><th>원본 행</th><th>학교</th><th>학생</th><th>재계산 점수</th><th>원본 총점</th><th>처리 상태</th></tr></thead><tbody>${rows.map(x=>{
@@ -228,38 +241,32 @@
    }).join("")}</tbody></table>`;
    const button=$("saveBatchBtn");button.classList.toggle("hidden",!validRows.length);button.textContent=`검증된 학생 ${validRows.length}명 일괄 저장`;
  }
- function normalizeCsvHeader(v){return String(v||"").trim().toLowerCase().replace(/[\s_\-./·()\[\]{}:]+/g,"")}
- function previewCsv(text,fileName="학생기록.csv"){
-   const rows=YP.csvParse(text);if(rows.length<2)throw new Error("CSV 데이터 행이 없습니다.");
-   const header=rows[0].map(normalizeCsvHeader),findIndex=(...names)=>{for(const n of names){const i=header.indexOf(normalizeCsvHeader(n));if(i>=0)return i}return -1},nameIdx=findIndex("이름","성명","학생명");
-   if(nameIdx<0)throw new Error("CSV에 이름 열이 필요합니다.");
-   const qIdx=state.exam.questions.map(q=>findIndex("Q"+q.no,"문항"+q.no));if(qIdx.some(i=>i<0))throw new Error("현재 시험의 Q1~Qn 헤더가 모두 필요합니다.");
-   const schoolIdx=findIndex("학교","학교명"),gradeIdx=findIndex("학년"),classIdx=findIndex("반번호","반·번호","반"),totalIdx=findIndex("총점","점수");
-   const parsed=rows.slice(1).map((row,k)=>{
-     const name=String(row[nameIdx]||"").trim(),school=schoolIdx>=0?String(row[schoolIdx]||"").trim():"",inputs=qIdx.map(i=>row[i]??""),partialModes=Array(inputs.length).fill(false),calc=YP.calculateResult(state.exam,inputs,partialModes),errors=[];
-     if(!name)errors.push("이름 없음");if(!calc.valid)errors.push("점수 입력 오류");
-     const record={examId:state.exam.examId,courseId:state.exam.courseId,school:YP.normalizeSchool(school),name,grade:gradeIdx>=0?String(row[gradeIdx]||"").trim():"",classNo:classIdx>=0?String(row[classIdx]||"").trim():"",resultInputs:inputs,partialModes,importMode:"upsert",importSource:{fileName,sheetName:"CSV",sourceRow:k+2,format:"q-header"}};
-     const sourceTotal=totalIdx>=0&&String(row[totalIdx]??"").trim()!==""?Number(row[totalIdx]):null,existing=findExistingBatchRecord(record);
-     return {rowNo:k+2,record,calc,sourceTotal:Number.isFinite(sourceTotal)?sourceTotal:null,errors,saveable:!!name&&calc.valid&&!errors.length,existing,errorMessage:errors.join(" · ")};
-   }).filter(x=>x.record.name||x.record.resultInputs.some(v=>String(v||"").trim()!==""));
-   renderBatchPreview({fileName,sheetName:"CSV",format:"q-header",inputModeLabel:"0/1 정오표·실제 점수"},parsed);
+ function batchRecordFromImportedStudent(imported,s){
+   return {examId:state.exam.examId,courseId:state.exam.courseId,school:YP.normalizeSchool(s.school),name:s.name,grade:s.grade||"",classNo:s.classNo||"",resultInputs:s.inputs,partialModes:s.partialModes||Array(state.exam.questionCount).fill(false),inputEncoding:imported.inputMode==="legacy-binary"?"legacy-binary":defaultInputEncoding(state.exam),importMode:"upsert",importSource:{fileName:imported.fileName,sheetName:imported.sheetName||"CSV",sourceRow:s.sourceRow,format:imported.format,inputMode:imported.inputMode,encoding:imported.encoding||"",delimiter:imported.delimiter||""}};
+ }
+ async function previewCsv(file){
+   if(typeof YP_CSV==="undefined")throw new Error("CSV 가져오기 모듈을 불러오지 못했습니다. Pages 배포 파일을 확인하세요.");
+   const imported=await YP_CSV.importAssessment(file,state.exam);
+   const parsed=imported.students.map(s=>{const record=batchRecordFromImportedStudent(imported,s),calc=YP.calculateResult(state.exam,record.resultInputs,record.partialModes),errors=[...(s.errors||[])];if(!record.name)errors.push("이름 없음");if(!calc.valid)errors.push("점수 입력 오류");const existing=findExistingBatchRecord(record);return {rowNo:s.sourceRow,record,calc,sourceTotal:s.sourceTotal,errors,saveable:!!record.name&&calc.valid&&!errors.length,existing,errorMessage:errors.join(" · ")}});
+   const modeLabel=imported.inputMode==="raw-choice"?"객관식 학생 선택번호 1~5 · 서술형 실제 점수":imported.inputMode==="legacy-binary"?"구형 0/1·O/X 정오표 호환 · 서술형 실제 점수":"문항별 성취값·실제 점수";
+   renderBatchPreview({...imported,inputModeLabel:modeLabel},parsed);
  }
  async function previewExcel(file){
    if(typeof YP_XLSX==="undefined")throw new Error("Excel 가져오기 모듈을 불러오지 못했습니다. Pages 배포 파일을 확인하세요.");
    const imported=await YP_XLSX.importAssessment(file,state.exam);
    const parsed=imported.students.map(s=>{
-     const record={examId:state.exam.examId,courseId:state.exam.courseId,school:YP.normalizeSchool(s.school),name:s.name,grade:s.grade||"",classNo:s.classNo||"",resultInputs:s.inputs,partialModes:s.partialModes||Array(state.exam.questionCount).fill(false),importMode:"upsert",importSource:{fileName:imported.fileName,sheetName:imported.sheetName,sourceRow:s.sourceRow,format:imported.format,inputMode:imported.inputMode}};
+     const record=batchRecordFromImportedStudent(imported,s);
      const calc=YP.calculateResult(state.exam,record.resultInputs,record.partialModes),errors=[...(s.errors||[])];if(!record.name)errors.push("이름 없음");if(!calc.valid)errors.push("점수 입력 오류");
      const existing=findExistingBatchRecord(record);return {rowNo:s.sourceRow,record,calc,sourceTotal:s.sourceTotal,errors,saveable:!!record.name&&calc.valid&&!errors.length,existing,errorMessage:errors.join(" · ")};
    });
-   const modeLabel=imported.inputMode==="raw-choice"?"객관식 선택번호 → 검수 정오표":"0/1 정오표·실제 점수";
+   const modeLabel=imported.inputMode==="raw-choice"?"객관식 학생 선택번호 1~5 · 서술형 실제 점수":imported.inputMode==="legacy-binary"?"구형 0/1·O/X 정오표 호환 · 서술형 실제 점수":"문항별 성취값·실제 점수";
    renderBatchPreview({...imported,inputModeLabel:modeLabel},parsed);
    if(imported.answerKeyMismatchQuestions?.length)YP.toast(`Excel 정답표와 검수 정답표가 다른 문항: ${imported.answerKeyMismatchQuestions.join(", ")}번. 사이트 검수 정답으로 재채점했습니다.`,7000);
  }
  async function handleBatchFile(file){
    if(!file)return;
    resetBatchPreview(false);const summary=$("batchImportSummary");summary.classList.remove("hidden");summary.innerHTML='<div class="batch-summary-card"><span>파일 분석</span><b>학생 행과 문항 열을 확인하는 중...</b></div>';
-   try{if(/\.xlsx$/i.test(file.name))await previewExcel(file);else if(/\.csv$/i.test(file.name))previewCsv(await file.text(),file.name);else throw new Error(".xlsx 또는 .csv 파일만 첨부할 수 있습니다.")}
+   try{if(/\.xlsx$/i.test(file.name))await previewExcel(file);else if(/\.csv$/i.test(file.name))await previewCsv(file);else throw new Error(".xlsx 또는 .csv 파일만 첨부할 수 있습니다.")}
    catch(err){state.batchRows=[];summary.classList.remove("hidden");summary.innerHTML=`<div class="batch-summary-card warn"><span>가져오기 실패</span><b>${YP.escapeHTML(err.message)}</b></div>`;$("csvPreview").classList.add("hidden");$("saveBatchBtn").classList.add("hidden");YP.toast(err.message,7000)}
  }
  async function saveBatch(){

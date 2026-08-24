@@ -1,8 +1,10 @@
+> **v3.4.1 총괄 선택번호·CSV 자동 인식 업데이트:** 물리1·물리2 총괄평가의 1~20번은 학생이 실제로 고른 객관식 번호 1~5를 입력하고 정답표와 비교해 자동 채점합니다. CSV는 이름·성명·학생명·학생 이름·학생 성명·Name 등 다양한 이름 헤더와 UTF-8·CP949/EUC-KR·UTF-16을 자동 인식합니다. 기존 v3.4.0 정답 관리·보기 선택 기능도 그대로 포함됩니다.
+
 > **v3.4.0 정답 관리·보기 선택 업데이트:** 교사용 홈페이지에서 선택한 시험의 객관식 정답 번호, 서술형 모범답안, 원문 재도전 보기와 동형 문제 보기를 수정해 Google Sheets의 `QuestionOverrides` 시트에 저장할 수 있습니다. 준비 완료된 108문항의 원문 재도전과 동형 문제는 모두 보기 선택 방식이며, 기존에 문자열 입력 대상이던 서술형·단답형 65문항과 답안번호가 별도 등록되지 않은 복합 선택형 3문항도 정확한 문자열을 입력할 필요가 없습니다. 기존 배포의 `.github/workflows/pages.yml`과 `site/assets/runtime-config.js`는 유지한 채 v3.4.0 패치를 적용하세요.
 
 > **v3.3.0 교사 인증 연결 수정:** GitHub Pages를 Apps Script 보안 상위 페이지 안에서 실행하고, 서버 호출은 공식 `google.script.run`으로 처리합니다. PIN 입력 후 “Apps Script 서버에 연결하지 못했습니다”가 표시되면 `HOSTED_PARENT_BRIDGE_FIX_KO.md` 순서대로 Code.gs와 GitHub 패치를 함께 적용하세요. 기존 학생 기록·PIN·토큰은 유지됩니다.
 
-# Young’s Physics 성적 분석 시스템 3.4.0
+# Young’s Physics 성적 분석 시스템 3.4.1
 
 > **v3.2.5 자동 연결 수정:** 지속형 `google.script.run` iframe 대신 hidden form POST 응답 브리지를 사용합니다. `Apps Script GET 연결은 정상이나 통신 브리지를 열지 못했습니다` 오류가 발생하면 `FORM_POST_BRIDGE_FIX_KO.md` 순서대로 **Code.gs와 GitHub 파일을 함께** 교체하세요. 기존 학생 기록·PIN·토큰은 유지됩니다.
 
@@ -14,6 +16,16 @@
 
 
 GitHub Pages와 Google Sheets + Apps Script로 운영하는 **주간 복습·총괄평가 통합 성적 분석 시스템**입니다.
+
+
+## v3.4.1 총괄평가 학생 선택번호·CSV 자동 인식
+
+- 물리1·물리2 총괄평가 1~20번은 `0/1`이 아니라 학생이 실제로 고른 객관식 번호 `1~5`를 저장하고 정답표와 비교해 채점합니다.
+- 21~25번은 기존처럼 실제 서술형 획득 점수를 입력합니다.
+- CSV 이름 헤더는 `이름`, `성명`, `학생명`, `학생 이름`, `학생 성명`, `Name`, `StudentName` 등을 자동 인식합니다.
+- CSV의 UTF-8·CP949/EUC-KR·UTF-16 인코딩과 쉼표·탭·세미콜론 구분자를 자동 감지합니다.
+- 기존 0/1 또는 O/X 정오표는 구형 파일 호환 모드로 불러옵니다.
+- 학교 열이 없거나 비어 있으면 `미기입`으로 저장합니다.
 
 ## v3.4.0 정답 관리와 선택형 오답 재도전
 
@@ -32,7 +44,7 @@ GitHub Pages와 Google Sheets + Apps Script로 운영하는 **주간 복습·총
 - 구버전의 빈 학교 또는 `미입력` 학교 기록도 `미기입`과 같은 학생으로 인식
 - `.xlsx` 파일을 교사용 화면에 첨부하면 학생 행과 문항 열을 자동 탐색
 - 물리1 역학 총괄평가 결과표의 객관식 선택 번호 1~20번을 검수 정답표로 자동 채점
-- 서술형 21~25번은 Excel에 기록된 실제 점수를 그대로 사용
+- 총괄 1~20번은 학생 선택번호를 그대로 저장·채점하고, 21~25번은 Excel·CSV의 실제 점수를 그대로 사용
 - 저장 전 학생 수·재계산 점수·원본 총점·오류·신규/수정 여부를 미리 표시
 - 같은 시험·학교·이름을 다시 가져오면 기존 토큰과 학부모 링크를 유지한 채 수정
 - 여러 학생을 Apps Script `saveBatch` 한 번으로 Google Sheets에 일괄 반영
@@ -89,13 +101,13 @@ Value: https://script.google.com/macros/s/.../exec
 
 정상 동기화 기준은 과정 3개, 시험 39개, 등록 문항 108개입니다.
 
-## 기존 운영본에서 3.4.0으로 업데이트
+## 기존 운영본에서 3.4.1로 업데이트
 
 1. Google Spreadsheet를 `파일 → 사본 만들기`로 백업합니다.
-2. Apps Script의 `Code.gs`를 3.4.0 파일로 전체 교체합니다.
+2. Apps Script의 `Code.gs`를 3.4.1 파일로 전체 교체합니다.
 3. **`installYoungsPhysics()`, `resetTeacherPin()`, `repairReportStorage()`는 다시 실행하지 않습니다.** 기존 PIN·학생 기록·토큰·지문을 그대로 유지합니다.
 4. 기존 웹 앱 배포를 **새 버전**으로 갱신합니다.
-5. GitHub에는 v3.4.0 기능 패치를 덮어쓰되 `.github/workflows/pages.yml`과 `site/assets/runtime-config.js`는 기존 운영본을 유지하고 Pages를 다시 배포합니다.
+5. GitHub에는 v3.4.1 기능 패치를 덮어쓰되 `.github/workflows/pages.yml`과 `site/assets/runtime-config.js`는 기존 운영본을 유지하고 Pages를 다시 배포합니다.
 6. 배포된 GitHub Pages 주소를 열면 Apps Script `/exec?view=host&site=...` 주소로 자동 전환된 뒤 기존 화면이 표시되는지 확인합니다.
 
 새로운 빈 Spreadsheet에 처음 설치하는 경우에만 `installYoungsPhysics()`를 실행합니다.
@@ -121,7 +133,7 @@ Value: https://script.google.com/macros/s/.../exec
 - `.xlsx`
 - 비밀번호가 설정되지 않은 파일
 - 문항 번호가 연속된 `1~n` 형식 또는 `Q1~Qn` 헤더 형식
-- 객관식 선택 번호, O/X, 0/1 정오표
+- 총괄 객관식 학생 선택번호 1~5, 구형 O/X·0/1 정오표 호환
 - 서술형 실제 점수
 - CSV `Q1~Qn` 형식
 

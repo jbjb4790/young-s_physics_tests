@@ -6,6 +6,16 @@
  YP.getExam=id=>YP.catalog.exams.find(e=>e.examId===id);
  YP.readyExams=()=>YP.catalog.exams.filter(e=>e.status==="ready");
  YP.isComprehensive=ex=>ex?.assessmentType==="comprehensive";
+ YP.usesObjectiveChoiceNumbers=ex=>YP.isComprehensive(ex)&&["physics1-basic","physics2-basic"].includes(String(ex?.courseId||""));
+ YP.choiceLabel=n=>["","①","②","③","④","⑤"][Number(n)]||String(n??"");
+ YP.applyExamInputPolicy=function(exam){
+   if(!exam||!Array.isArray(exam.questions))return exam;
+   if(YP.usesObjectiveChoiceNumbers(exam)){
+     exam.inputProfile={...(exam.inputProfile||{}),objectiveMode:"choice-number"};
+     exam.questions.forEach(q=>{if(q?.type==="objective"&&Number(q.no)>=1&&Number(q.no)<=20&&Number.isInteger(Number(q.answerKey)))q.inputMode="objective-choice"});
+   }
+   return exam;
+ };
  YP.roundLabel=ex=>YP.isComprehensive(ex)?`${YP.getCourse(ex.courseId)?.courseName||ex.courseId} · ${ex.shortTitle||ex.title}`:`${YP.getCourse(ex.courseId)?.courseName||ex.courseId} ${ex.round}회`;
  YP.escapeHTML=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
  YP.formatNumber=(n,d=1)=>Number(n||0).toLocaleString("ko-KR",{maximumFractionDigits:d,minimumFractionDigits:Number.isInteger(Number(n))?0:Math.min(d,1)});
@@ -39,7 +49,7 @@
    const out=YP.clone(exam);if(!out||!Array.isArray(out.questions)||!Array.isArray(rows)||!rows.length)return out;
    const byNo=new Map(rows.map(r=>[Number(r.QuestionNo??r.no),r]));
    out.questions=out.questions.map(q=>YP.questionRowToClient(byNo.get(Number(q.no)),q));
-   out.questionCount=out.questions.length;out.maxScore=out.questions.reduce((a,q)=>a+Number(q.maxPoints||0),0);return out;
+   out.questionCount=out.questions.length;out.maxScore=out.questions.reduce((a,q)=>a+Number(q.maxPoints||0),0);return YP.applyExamInputPolicy(out);
  };
  YP.checkChoiceAnswer=function(input,config){const value=Number(String(input??"").trim()),correct=Number(config?.correctChoice||config?.answer||0);return Number.isFinite(value)&&Number.isFinite(correct)&&value>0&&correct>0?value===correct:null};
 
@@ -60,6 +70,16 @@
    const original=raw==null?"":String(raw),value=original.trim(),mode=q.inputMode||"achievement";
    if(mode==="achievement")return YP.parseScoreInput(raw,q.maxPoints,partialMode);
    if(value==="")return {raw:original,status:"ungraded",score:null,valid:true,message:"미입력"};
+   if(mode==="objective-choice"){
+     const marker=value.toLowerCase().replace(/\s+/g,"");
+     if(["o","○","⭕","맞음","정답","correct","true"].includes(marker))return {raw:original,status:"full",score:q.maxPoints,valid:true,message:`구형 정오표 · 정답 · ${q.maxPoints}점`,answerKey:Number(q.answerKey)||null,legacyMarker:"O"};
+     if(["x","×","✕","틀림","오답","wrong","false","0"].includes(marker))return {raw:original,status:"wrong",score:0,valid:true,message:"구형 정오표 · 오답 · 0점",answerKey:Number(q.answerKey)||null,legacyMarker:"X"};
+     const selected=Number(value.replace(/,/g,"")),answerKey=Number(q.answerKey);
+     if(!Number.isInteger(selected)||selected<1||selected>5)return {raw:original,status:"invalid",score:null,valid:false,message:"객관식 선택 번호는 1~5 중 하나여야 합니다."};
+     if(!Number.isInteger(answerKey)||answerKey<1||answerKey>5)return {raw:original,status:"invalid",score:null,valid:false,message:"이 문항의 공식 정답 번호를 찾지 못했습니다."};
+     const correct=selected===answerKey;
+     return {raw:original,status:correct?"full":"wrong",score:correct?q.maxPoints:0,valid:true,message:correct?`선택 ${YP.choiceLabel(selected)} · 정답 · ${q.maxPoints}점`:`선택 ${YP.choiceLabel(selected)} · 오답 (정답 ${YP.choiceLabel(answerKey)})`,selectedChoice:selected,answerKey};
+   }
    const n=Number(value.replace(/,/g,""));
    if(!Number.isFinite(n))return {raw:original,status:"invalid",score:null,valid:false,message:mode==="binary"?"객관식은 0 또는 1만 입력하세요.":`0~${q.maxPoints}점 숫자를 입력하세요.`};
    if(mode==="binary"){
@@ -73,6 +93,7 @@
    return {raw:original,status:"partial",score:n,valid:true,message:`부분점수 ${n}점`};
  };
  YP.calculateResult=function(exam,rawInputs,partialModes=[]){
+   exam=YP.applyExamInputPolicy(exam);
    const scoring=exam.questions.map((q,i)=>({...YP.parseQuestionInput(rawInputs[i],q,!!partialModes[i]),questionNo:q.no,maxPoints:q.maxPoints,unit:q.unit,topic:q.topic,inputMode:q.inputMode||"achievement"}));
    const valid=scoring.every(x=>x.valid),score=scoring.reduce((a,x)=>a+(x.score??0),0),counts={full:0,partial:0,wrong:0,ungraded:0,invalid:0};
    scoring.forEach(x=>counts[x.status]=(counts[x.status]||0)+1);
@@ -86,7 +107,14 @@
  YP.copyText=async function(text){try{await navigator.clipboard.writeText(text);return true}catch(e){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();return ok}};
  YP.toast=function(message,ms=3000){const el=document.getElementById("toast");if(!el)return;el.textContent=message;el.classList.remove("hidden");clearTimeout(YP._toastTimer);YP._toastTimer=setTimeout(()=>el.classList.add("hidden"),ms)};
 
- YP.normalizeRecord=function(record){const exam=YP.getExam(record.examId),school=YP.normalizeSchool(record.school);if(!exam)return {...record,school};const result=YP.calculateResult(exam,record.resultInputs||[],record.partialModes||[]);return {...record,school,courseId:exam.courseId,score:result.score,maxScore:exam.maxScore,percent:result.percent,scoring:result.scoring,counts:result.counts,studentKey:YP.studentKey(exam.courseId,school,record.name)}};
+ YP.normalizeRecord=function(record){
+   const exam=YP.applyExamInputPolicy(YP.getExam(record.examId)),school=YP.normalizeSchool(record.school);if(!exam)return {...record,school};
+   const inputs=[...(record.resultInputs||[])];
+   if(YP.usesObjectiveChoiceNumbers(exam)&&(record.inputEncoding==="legacy-binary"||(!record.inputEncoding&&Array.isArray(record.scoring)&&record.scoring.length))){
+     exam.questions.forEach((q,i)=>{if(q.inputMode!=="objective-choice")return;const score=record.scoring?.[i];if(score&&["full","wrong"].includes(score.status)&&["0","1"].includes(String(inputs[i]??"").trim()))inputs[i]=score.status==="full"?"O":"X"});
+   }
+   const result=YP.calculateResult(exam,inputs,record.partialModes||[]);return {...record,school,courseId:exam.courseId,score:result.score,maxScore:exam.maxScore,percent:result.percent,scoring:result.scoring,counts:result.counts,studentKey:YP.studentKey(exam.courseId,school,record.name)}
+ };
  YP.computeStats=function(exam,records){
    const valid=(records||[]).map(YP.normalizeRecord).filter(r=>r.examId===exam.examId&&r.scoring&&Number.isFinite(Number(r.score))),n=valid.length;
    const scores=valid.map(r=>Number(r.score)).sort((a,b)=>a-b),average=n?scores.reduce((a,b)=>a+b,0)/n:0,median=n?(n%2?scores[(n-1)/2]:(scores[n/2-1]+scores[n/2])/2):0;

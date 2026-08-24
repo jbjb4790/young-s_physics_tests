@@ -1231,11 +1231,43 @@ function clearQuestionAnswerOverrides_(examId,questionNos) {
   return {ok:true,examId:examId,deleted:deleted,questions:getQuestionRows_(examId)};
 }
 
-function parseScore_(raw,maxPoints,partialMode,inputMode) {
-  const text=raw===null||raw===undefined?"":String(raw).trim(),mode=String(inputMode||"achievement");
+function isComprehensiveChoiceExam_(exam) {
+  if(!exam)return false;
+  return String(exam.AssessmentType||"")==="comprehensive" && ["physics1-basic","physics2-basic"].indexOf(String(exam.CourseId||""))>=0;
+}
+
+function effectiveInputMode_(exam,question) {
+  const mode=String(question&&question.InputMode||"achievement");
+  const no=Number(question&&question.QuestionNo),type=String(question&&question.Type||"");
+  const answer=safeJson_(question&&question.AnswerJSON,{}),key=Number(answer&&answer.answerKey);
+  if(isComprehensiveChoiceExam_(exam)&&type==="objective"&&no>=1&&no<=20&&Number.isInteger(key)&&key>=1&&key<=5)return "objective-choice";
+  return mode;
+}
+
+function parseScore_(raw,maxPoints,partialMode,inputMode,answerKey,inputEncoding) {
+  const text=raw===null||raw===undefined?"":String(raw).trim(),mode=String(inputMode||"achievement"),encoding=String(inputEncoding||"");
   if(text==="") return {raw:String(raw||""),status:"ungraded",score:null,valid:true};
+  const marker=text.toLowerCase().replace(/\s+/g,"");
+  const correctMarkers=["o","○","⭕","맞음","정답","correct","true"];
+  const wrongMarkers=["x","×","✕","틀림","오답","wrong","false"];
   const n=Number(text.replace(/,/g,""));
+  if(mode==="objective-choice") {
+    const key=Number(answerKey);
+    if(!Number.isInteger(key)||key<1||key>5)return {raw:text,status:"invalid",score:null,valid:false,error:"공식 정답 번호를 찾지 못했습니다."};
+    if(correctMarkers.indexOf(marker)>=0)return {raw:text,status:"full",score:Number(maxPoints),valid:true,answerKey:key,legacyMarker:"O"};
+    if(wrongMarkers.indexOf(marker)>=0||text==="0")return {raw:text,status:"wrong",score:0,valid:true,answerKey:key,legacyMarker:"X"};
+    if(encoding==="legacy-binary"){
+      if(n===1)return {raw:text,status:"full",score:Number(maxPoints),valid:true,answerKey:key,legacyMarker:"O"};
+      if(n===0)return {raw:text,status:"wrong",score:0,valid:true,answerKey:key,legacyMarker:"X"};
+      return {raw:text,status:"invalid",score:null,valid:false,error:"구형 정오표는 0/1 또는 O/X여야 합니다."};
+    }
+    if(!Number.isInteger(n)||n<1||n>5)return {raw:text,status:"invalid",score:null,valid:false,error:"객관식 선택 번호는 1~5 중 하나여야 합니다."};
+    const correct=n===key;
+    return {raw:text,status:correct?"full":"wrong",score:correct?Number(maxPoints):0,valid:true,selectedChoice:n,answerKey:key};
+  }
   if(mode==="binary") {
+    if(correctMarkers.indexOf(marker)>=0)return {raw:text,status:"full",score:Number(maxPoints),valid:true,legacyMarker:"O"};
+    if(wrongMarkers.indexOf(marker)>=0)return {raw:text,status:"wrong",score:0,valid:true,legacyMarker:"X"};
     if(!isFinite(n)||(n!==0&&n!==1)) return {raw:text,status:"invalid",score:null,valid:false,error:"객관식은 0 또는 1만 입력합니다."};
     return n===1?{raw:text,status:"full",score:Number(maxPoints),valid:true}:{raw:text,status:"wrong",score:0,valid:true};
   }
@@ -1254,12 +1286,13 @@ function parseScore_(raw,maxPoints,partialMode,inputMode) {
   return {raw:text,status:"partial",score:n,valid:true};
 }
 
-function calculateScoringFromQuestions_(questions,inputs,partialModes) {
+function calculateScoringFromQuestions_(questions,inputs,partialModes,exam,inputEncoding) {
   if(!questions||!questions.length) throw new Error("Questions 시트에 시험 문항이 없습니다. 먼저 시험 설정을 동기화하세요.");
   if((inputs||[]).length>questions.length) throw new Error("입력값이 시험 문항 수보다 많습니다.");
   const scoring=questions.map(function(q,i){
-    const p=parseScore_((inputs||[])[i],Number(q.MaxPoints),(partialModes||[])[i]===true,String(q.InputMode||"achievement"));
-    p.questionNo=Number(q.QuestionNo);p.maxPoints=Number(q.MaxPoints);p.unit=q.Unit;p.topic=q.Topic;p.inputMode=String(q.InputMode||"achievement");
+    const answer=safeJson_(q.AnswerJSON,{}),mode=effectiveInputMode_(exam,q);
+    const p=parseScore_((inputs||[])[i],Number(q.MaxPoints),(partialModes||[])[i]===true,mode,answer.answerKey,inputEncoding);
+    p.questionNo=Number(q.QuestionNo);p.maxPoints=Number(q.MaxPoints);p.unit=q.Unit;p.topic=q.Topic;p.inputMode=mode;
     return p;
   });
   const invalid=scoring.filter(function(x){return !x.valid;});
@@ -1270,8 +1303,9 @@ function calculateScoringFromQuestions_(questions,inputs,partialModes) {
   return {scoring:scoring,score:score,maxScore:maxScore,percent:maxScore?score/maxScore*100:0,counts:counts};
 }
 
-function calculateScoring_(examId,inputs,partialModes) {
-  return calculateScoringFromQuestions_(getQuestionRows_(examId),inputs,partialModes);
+function calculateScoring_(examId,inputs,partialModes,inputEncoding) {
+  const exam=getRowBy_(SHEETS.EXAMS,"ExamId",String(examId||""));
+  return calculateScoringFromQuestions_(getQuestionRows_(examId),inputs,partialModes,exam,inputEncoding);
 }
 
 function saveReport_(input) {
@@ -1282,7 +1316,6 @@ function saveReport_(input) {
     if(String(exam.Status)!=="ready") throw new Error("아직 준비 중인 시험입니다.");
     let name=String(input.name||"").trim();if(!name) throw new Error("학생 이름이 필요합니다.");
     const school=normalizeSchool_(input.school);
-    const calc=calculateScoring_(String(input.examId),input.resultInputs||[],input.partialModes||[]);
     const sh=getSheet_(SHEETS.REPORTS),headers=HEADERS.Reports;
     const data=sh.getLastRow()>1?sh.getRange(2,1,sh.getLastRow()-1,headers.length).getValues():[];
     const objects=data.map(function(row){return rowToObject_(headers,row);});
@@ -1303,11 +1336,13 @@ function saveReport_(input) {
     const now=new Date(),token=old?String(old.Token):newToken_(),seed=old?String(old.IdentitySeed):newToken_();
     const fingerprint=old?String(old.Fingerprint):makeFingerprint_(token,seed),courseId=String(exam.CourseId),identityDigest=makeIdentityDigest_(input.examId,courseId,school,name),studentKey=makeStudentKey_(courseId,school,name);
     const previousRecord=old?safeJson_(old.RecordJSON,{}):{};
+    const effectiveEncoding=String(input.inputEncoding||previousRecord.inputEncoding||(old?"legacy-binary":isComprehensiveChoiceExam_(exam)?"objective-choice-v1":""));
+    const calc=calculateScoring_(String(input.examId),input.resultInputs||[],input.partialModes||[],effectiveEncoding);
     const record={
       token:token,fingerprint:fingerprint,studentKey:studentKey,examId:String(input.examId),courseId:courseId,school:school,name:name,
       grade:String(input.grade||""),classNo:String(input.classNo||""),teacherMemo:String(input.teacherMemo||""),
       resultInputs:input.resultInputs||[],partialModes:input.partialModes||[],scoring:calc.scoring,score:calc.score,maxScore:calc.maxScore,
-      percent:calc.percent,counts:calc.counts,createdAt:old?serializeCell_(old.CreatedAt):now.toISOString(),updatedAt:now.toISOString()
+      percent:calc.percent,counts:calc.counts,inputEncoding:effectiveEncoding,createdAt:old?serializeCell_(old.CreatedAt):now.toISOString(),updatedAt:now.toISOString()
     };
     if(input.importSource) record.importSource=input.importSource;
     else if(previousRecord.importSource) record.importSource=previousRecord.importSource;
@@ -1339,14 +1374,16 @@ function saveBatch_(records) {
         const exam=examCache[examId];if(!exam) throw new Error("등록되지 않은 시험입니다.");if(String(exam.Status)!=="ready") throw new Error("아직 준비 중인 시험입니다.");
         if(!questionCache[examId]) questionCache[examId]=getQuestionRows_(examId);
         let name=String(input.name||"").trim();if(!name) throw new Error("학생 이름이 필요합니다.");
-        const school=normalizeSchool_(input.school),calc=calculateScoringFromQuestions_(questionCache[examId],input.resultInputs||[],input.partialModes||[]);
+        const school=normalizeSchool_(input.school);
         let rowIndex=-1,old=null;
         if(input.token){rowIndex=Object.prototype.hasOwnProperty.call(tokenIndex,String(input.token))?tokenIndex[String(input.token)]:-1;if(rowIndex<0)throw new Error("수정할 서버 토큰을 찾지 못했습니다.");old=rowToObject_(headers,data[rowIndex]);}
         else if(String(input.importMode||"upsert")==="upsert") {const key=reportIdentityKey_(examId,school,name);if(Object.prototype.hasOwnProperty.call(identityIndex,key)){rowIndex=identityIndex[key];old=rowToObject_(headers,data[rowIndex]);}}
         const group=[examId,normalizeIdentity_(school)].join("|");if(!namesByGroup[group])namesByGroup[group]=new Set();
         if(!old&&String(input.importMode||"upsert")!=="upsert"){const base=name;let n=1;while(namesByGroup[group].has(name)){n++;name=base+n;}}
         const now=new Date(),token=old?String(old.Token):newToken_(),seed=old?String(old.IdentitySeed):newToken_(),fingerprint=old?String(old.Fingerprint):makeFingerprint_(token,seed),courseId=String(exam.CourseId),identityDigest=makeIdentityDigest_(examId,courseId,school,name),studentKey=makeStudentKey_(courseId,school,name),previousRecord=old?safeJson_(old.RecordJSON,{}):{};
-        const record={token:token,fingerprint:fingerprint,studentKey:studentKey,examId:examId,courseId:courseId,school:school,name:name,grade:String(input.grade||""),classNo:String(input.classNo||""),teacherMemo:String(input.teacherMemo||""),resultInputs:input.resultInputs||[],partialModes:input.partialModes||[],scoring:calc.scoring,score:calc.score,maxScore:calc.maxScore,percent:calc.percent,counts:calc.counts,createdAt:old?serializeCell_(old.CreatedAt):now.toISOString(),updatedAt:now.toISOString()};
+        const effectiveEncoding=String(input.inputEncoding||previousRecord.inputEncoding||(old?"legacy-binary":isComprehensiveChoiceExam_(exam)?"objective-choice-v1":""));
+        const calc=calculateScoringFromQuestions_(questionCache[examId],input.resultInputs||[],input.partialModes||[],exam,effectiveEncoding);
+        const record={token:token,fingerprint:fingerprint,studentKey:studentKey,examId:examId,courseId:courseId,school:school,name:name,grade:String(input.grade||""),classNo:String(input.classNo||""),teacherMemo:String(input.teacherMemo||""),resultInputs:input.resultInputs||[],partialModes:input.partialModes||[],scoring:calc.scoring,score:calc.score,maxScore:calc.maxScore,percent:calc.percent,counts:calc.counts,inputEncoding:effectiveEncoding,createdAt:old?serializeCell_(old.CreatedAt):now.toISOString(),updatedAt:now.toISOString()};
         if(input.importSource)record.importSource=input.importSource;else if(previousRecord.importSource)record.importSource=previousRecord.importSource;
         const row=[token,fingerprint,seed,identityDigest,studentKey,examId,courseId,school,name,record.grade,record.classNo,JSON.stringify(record.resultInputs),JSON.stringify(record.partialModes),JSON.stringify(calc.scoring),JSON.stringify(record),old?old.CreatedAt:now,now];
         if(rowIndex>=0){data[rowIndex]=row;updatedCount++;}else{rowIndex=data.length;data.push(row);createdCount++;}
@@ -1719,7 +1756,7 @@ function resetSchoolMigrationCursor() {
 function recalculateExam_(examId) {
   const sh=getSheet_(SHEETS.REPORTS),headers=HEADERS.Reports;if(sh.getLastRow()<2)return {ok:true,updated:0};
   const rows=sh.getRange(2,1,sh.getLastRow()-1,headers.length).getValues();let updated=0;
-  rows.forEach(function(row,i){const o=rowToObject_(headers,row);if(String(o.ExamId)!==examId)return;const calc=calculateScoring_(examId,safeJson_(o.ResultInputsJSON,[]),safeJson_(o.PartialModesJSON,[]));const record=Object.assign(safeJson_(o.RecordJSON,{}),{scoring:calc.scoring,score:calc.score,maxScore:calc.maxScore,percent:calc.percent,counts:calc.counts,updatedAt:new Date().toISOString()});sh.getRange(i+2,14).setValue(JSON.stringify(calc.scoring));sh.getRange(i+2,15).setValue(JSON.stringify(record));sh.getRange(i+2,17).setValue(new Date());updated++;});
+  rows.forEach(function(row,i){const o=rowToObject_(headers,row);if(String(o.ExamId)!==examId)return;const existingRecord=safeJson_(o.RecordJSON,{}),encoding=String(existingRecord.inputEncoding||"legacy-binary");const calc=calculateScoring_(examId,safeJson_(o.ResultInputsJSON,[]),safeJson_(o.PartialModesJSON,[]),encoding);const record=Object.assign(existingRecord,{scoring:calc.scoring,score:calc.score,maxScore:calc.maxScore,percent:calc.percent,counts:calc.counts,inputEncoding:encoding,updatedAt:new Date().toISOString()});sh.getRange(i+2,14).setValue(JSON.stringify(calc.scoring));sh.getRange(i+2,15).setValue(JSON.stringify(record));sh.getRange(i+2,17).setValue(new Date());updated++;});
   return {ok:true,updated:updated,stats:getExamStats_(examId)};
 }
 
