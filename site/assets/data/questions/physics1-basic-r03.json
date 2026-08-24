@@ -94,11 +94,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "순간 P=Q=R, 평균 R>Q>P, 평균가속도 P=Q=R",
-          "4",
-          "순간속도 P=Q=R, 평균속도 R>Q>P, 평균가속도 P=Q=R",
-          "P=Q=R, R>Q>P, P=Q=R",
-          "순간 같음 평균 R>Q>P 가속도 같음"
+          "순간 P=Q=R, 평균 R>Q>P, 평균가속도 P=Q=R"
         ],
         "choices": [
           "순간 P>Q>R, 평균 P=Q=R, 평균가속도 R>Q>P",
@@ -106,7 +102,8 @@
           "순간 R>Q>P, 평균 R>Q>P, 평균가속도 P=Q=R",
           "순간 P=Q=R, 평균 P=Q=R, 평균가속도 R>Q>P"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -121,8 +118,10 @@
         "acceptableAnswers": [
           "3",
           "순간속도 A=B=C, 평균속도 C>B>A, 평균가속도 A=B=C"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 2,
@@ -176,9 +175,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "4",
-          "① N ② 2N ③ 0벡터",
-          "N,2N,0",
-          "위, 위의 2배, 0"
+          "① N ② 2N ③ 0벡터"
         ],
         "choices": [
           "① N ② 2N ③ 1벡터",
@@ -186,7 +183,8 @@
           "① N ② 2N ③ 2벡터",
           "① N ② 2N ③ 0벡터"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -201,8 +199,10 @@
         "acceptableAnswers": [
           "3",
           "① C, ② 2C, ③ 0벡터"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 3,
@@ -260,10 +260,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "4",
-          "10 m/s, 남동쪽",
-          "10 남동",
-          "10m/s 남동쪽",
-          "남동쪽 10"
+          "10 m/s, 남동쪽"
         ],
         "choices": [
           "5 m/s, 남동쪽",
@@ -271,7 +268,8 @@
           "20 m/s, 남동쪽",
           "10 m/s, 남동쪽"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -286,8 +284,10 @@
         "acceptableAnswers": [
           "2",
           "10√2 m/s, 북서쪽"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 4,
@@ -338,9 +338,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "평균속도 0.50 m/s, 평균가속도 2.0 m/s²",
-          "0.5,2",
-          "0.50 m/s, 2.0 m/s²"
+          "평균속도 0.50 m/s, 평균가속도 2.0 m/s²"
         ],
         "choices": [
           "평균속도 1 m/s, 평균가속도 2.0 m/s²",
@@ -348,7 +346,8 @@
           "평균속도 0.25 m/s, 평균가속도 2.0 m/s²",
           "평균속도 1.5 m/s, 평균가속도 2.0 m/s²"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -363,8 +362,10 @@
         "acceptableAnswers": [
           "1",
           "평균속도 0.40 m/s, 평균가속도 2.0 m/s²"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 5,
@@ -423,9 +424,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "① 2 s ② 2<t≤4 s ③ 6 m",
-          "2, 2<t<=4, 6",
-          "2s,2~4s,6m"
+          "① 2 s ② 2<t≤4 s ③ 6 m"
         ],
         "choices": [
           "① 4 s ② 2<t≤4 s ③ 6 m",
@@ -433,7 +432,8 @@
           "① 1 s ② 2<t≤4 s ③ 6 m",
           "① 3 s ② 2<t≤4 s ③ 6 m"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -448,8 +448,10 @@
         "acceptableAnswers": [
           "3",
           "a=-2 m/s², 정지 2 s, 같은 방향 2<t≤3 s, 최대변위 4 m"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 6,
@@ -504,9 +506,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "a=2 m/s², 시간 4 s, 거리 16 m",
-          "2,4,16",
-          "2m/s2,4s,16m"
+          "a=2 m/s², 시간 4 s, 거리 16 m"
         ],
         "choices": [
           "a=4 m/s², 시간 4 s, 거리 16 m",
@@ -514,7 +514,8 @@
           "a=2 m/s², 시간 4 s, 거리 16 m",
           "a=3 m/s², 시간 4 s, 거리 16 m"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -529,8 +530,10 @@
         "acceptableAnswers": [
           "3",
           "a=10 m/s², 시간 1 s, 거리 5 m"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 7,
@@ -599,7 +602,8 @@
           "0~3 s에는 v>0이고 속력이 감소하며, 3 s에 v=0, 이후 v<0이고 속력이 증가한다.",
           "0~3 s에는 v>0이고 속력이 증가하며, 3 s에도 v>0, 이후 v<0이고 속력이 감소한다."
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -614,9 +618,11 @@
         "acceptableAnswers": [
           "2",
           "처음 v>0이며 감속 → 최고점 v=0 → 이후 v<0이며 반대 방향 운동"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     }
   ],
-  "featureVersion": "3.4.0-answer-editor-choice-retry"
+  "featureVersion": "3.4.4-all-retry-multiple-choice"
 }

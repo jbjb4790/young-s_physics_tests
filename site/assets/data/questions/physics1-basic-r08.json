@@ -94,8 +94,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "104 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2",
-          "104,4sqrt2,2sqrt26,sqrt13/2"
+          "104 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2"
         ],
         "choices": [
           "104 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2",
@@ -103,7 +102,8 @@
           "52 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2",
           "114 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -118,8 +118,10 @@
         "acceptableAnswers": [
           "2",
           "150 J, 10 m/s, 10√3 m/s, 속력비 √3"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 2,
@@ -175,9 +177,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "4 m/s",
-          "4",
-          "4m/s"
+          "4 m/s"
         ],
         "choices": [
           "2 m/s",
@@ -185,7 +185,8 @@
           "6 m/s",
           "8 m/s"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -200,8 +201,10 @@
         "acceptableAnswers": [
           "2",
           "2√5 m/s"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 3,
@@ -251,9 +254,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "k=60 N/m, U=1.2 J",
-          "60,1.2",
-          "60N/m,1.2J"
+          "k=60 N/m, U=1.2 J"
         ],
         "choices": [
           "k=120 N/m, U=1.2 J",
@@ -261,7 +262,8 @@
           "k=30 N/m, U=1.2 J",
           "k=70 N/m, U=1.2 J"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -276,8 +278,10 @@
         "acceptableAnswers": [
           "4",
           "k=25 N/m, 탄성에너지 2 J"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 4,
@@ -330,9 +334,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "4",
-          "2 m/s, √3 m/s",
-          "2,sqrt3",
-          "2m/s,√3m/s"
+          "2 m/s, √3 m/s"
         ],
         "choices": [
           "4 m/s, √3 m/s",
@@ -340,7 +342,8 @@
           "3 m/s, √3 m/s",
           "2 m/s, √3 m/s"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -354,10 +357,11 @@
         "answer": "10 J, 2√5 m/s, √15 m/s",
         "acceptableAnswers": [
           "1",
-          "10 J, 2√5 m/s, √15 m/s",
-          "3"
-        ]
-      }
+          "10 J, 2√5 m/s, √15 m/s"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 5,
@@ -409,9 +413,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "열 6 cal, μ=0.3",
-          "6,0.3",
-          "6cal,0.3"
+          "열 6 cal, μ=0.3"
         ],
         "choices": [
           "열 12 cal, μ=0.3",
@@ -419,7 +421,8 @@
           "열 3 cal, μ=0.3",
           "열 7 cal, μ=0.3"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -434,8 +437,10 @@
         "acceptableAnswers": [
           "1",
           "0.5 cal, μ=√3/15(약 0.115)"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 6,
@@ -491,9 +496,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "약 0.711 m",
-          "0.711",
-          "(5+sqrt85)/20"
+          "약 0.711 m"
         ],
         "choices": [
           "약 1.42 m",
@@ -501,7 +504,8 @@
           "약 0.711 m",
           "약 1.71 m"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -516,9 +520,11 @@
         "acceptableAnswers": [
           "1",
           "2 m"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     }
   ],
-  "featureVersion": "3.4.0-answer-editor-choice-retry"
+  "featureVersion": "3.4.4-all-retry-multiple-choice"
 }

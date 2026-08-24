@@ -98,9 +98,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "(0 s, 0 m), (3 s, 12 m), (5 s, 17 m). 3 s에서 기울기가 0이 된 뒤 다시 증가한다.",
-          "0,12,17",
-          "17 m"
+          "(0 s, 0 m), (3 s, 12 m), (5 s, 17 m). 3 s에서 기울기가 0이 된 뒤 다시 증가한다."
         ],
         "choices": [
           "(0 s, 0 m), (3 s, 12 m), (5 s, 7 m). 3 s 이후 이동거리가 감소한다.",
@@ -108,7 +106,8 @@
           "(0 s, 0 m), (3 s, 0 m), (5 s, 5 m). 방향 전환 순간 이동거리가 초기화된다.",
           "(0 s, 0 m), (3 s, 12 m), (5 s, 12 m). 방향 전환 뒤 이동거리가 일정하다."
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -123,8 +122,10 @@
         "acceptableAnswers": [
           "4",
           "이동거리는 계속 증가하고, 되돌아서는 순간에만 기울기가 0이 된다."
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 2,
@@ -181,10 +182,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 30 m.",
-          "30",
-          "30m",
-          "30 m"
+          "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 30 m."
         ],
         "choices": [
           "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 30 m.",
@@ -192,7 +190,8 @@
           "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 15 m.",
           "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 40 m."
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -207,8 +206,10 @@
         "acceptableAnswers": [
           "1",
           "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선(끝에서 수평 접선)"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 3,
@@ -265,12 +266,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "6 m/s², 서쪽",
-          "6",
-          "6m/s2",
-          "6 m/s²",
-          "서쪽 6",
-          "6 서쪽"
+          "6 m/s², 서쪽"
         ],
         "choices": [
           "6 m/s², 서쪽",
@@ -278,7 +274,8 @@
           "9 m/s², 서쪽",
           "12 m/s², 서쪽"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -293,8 +290,10 @@
         "acceptableAnswers": [
           "3",
           "3 m/s², 왼쪽"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 4,
@@ -343,8 +342,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "위치 증가·속도 감소",
-          "위치는 증가, 속도는 감소"
+          "위치 증가·속도 감소"
         ],
         "choices": [
           "위치 증가·속도 증가",
@@ -352,7 +350,8 @@
           "위치 증가·속도 감소",
           "위치 감소·속도 감소"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -366,10 +365,11 @@
         "answer": "s는 증가하고, v는 감소한다.",
         "acceptableAnswers": [
           "3",
-          "s는 증가하고, v는 감소한다.",
-          "s 증가, v 감소"
-        ]
-      }
+          "s는 증가하고, v는 감소한다."
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 5,
@@ -419,10 +419,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "평균 속력 6 m/s, 평균 속도 크기 0 m/s",
-          "6,0",
-          "6 m/s, 0 m/s",
-          "평균속력 6 평균속도 0"
+          "평균 속력 6 m/s, 평균 속도 크기 0 m/s"
         ],
         "choices": [
           "평균 속력 6 m/s, 평균 속도 크기 0 m/s",
@@ -430,7 +427,8 @@
           "평균 속력 3 m/s, 평균 속도 크기 0 m/s",
           "평균 속력 7 m/s, 평균 속도 크기 0 m/s"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -445,8 +443,10 @@
         "acceptableAnswers": [
           "2",
           "평균 속력 2 m/s, 평균 속도 크기 0 m/s"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 6,
@@ -502,9 +502,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "16 m/s",
-          "16",
-          "16m/s"
+          "16 m/s"
         ],
         "choices": [
           "8 m/s",
@@ -512,7 +510,8 @@
           "16 m/s",
           "32 m/s"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -527,8 +526,10 @@
         "acceptableAnswers": [
           "2",
           "15 m/s"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 7,
@@ -578,9 +579,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "순간속도 P>Q>R, 평균속도 P=Q=R=5 m/s",
-          "P>Q>R, P=Q=R",
-          "P>Q>R 평균 같음"
+          "순간속도 P>Q>R, 평균속도 P=Q=R=5 m/s"
         ],
         "choices": [
           "순간속도 P>Q>R, 평균속도 P=Q=R=10 m/s",
@@ -588,7 +587,8 @@
           "순간속도 P>Q>R, 평균속도 P=Q=R=5 m/s",
           "순간속도 P>Q>R, 평균속도 P=Q=R=6 m/s"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -603,8 +603,10 @@
         "acceptableAnswers": [
           "4",
           "순간속도 A>B>C, 평균속도 A=B=C"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 8,
@@ -662,9 +664,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "27 m",
-          "27",
-          "27m"
+          "27 m"
         ],
         "choices": [
           "27 m",
@@ -672,7 +672,8 @@
           "40.5 m",
           "54 m"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -687,9 +688,11 @@
         "acceptableAnswers": [
           "4",
           "12 m"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     }
   ],
-  "featureVersion": "3.4.0-answer-editor-choice-retry"
+  "featureVersion": "3.4.4-all-retry-multiple-choice"
 }

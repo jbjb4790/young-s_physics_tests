@@ -288,3 +288,25 @@ img{max-width:100%}
 .similar-prompt-preview b{display:block;color:var(--navy);font-size:12px}.similar-prompt-preview p{margin:5px 0 0;color:#4f6076;font-size:12px}
 @media(max-width:900px){.answer-manager-meta,.answer-editor-fields{grid-template-columns:1fr}.answer-manager-toolbar{width:100%;margin-left:58px}.answer-manager-toolbar .btn{flex:1}.answer-editor-summary-answer{max-width:42%}}
 @media(max-width:640px){.answer-manager-toolbar{margin-left:0}.answer-choice-list{grid-template-columns:1fr}.answer-editor-card summary{align-items:flex-start;flex-wrap:wrap}.answer-editor-summary-answer{max-width:100%;width:100%;min-width:0;text-align:left;padding-left:34px}.answer-choice-title{display:block}.answer-choice-title span{display:block;text-align:left;margin-top:3px}}
+
+/* v3.4.4 — all retry learning uses visible multiple-choice cards */
+.retry-choice-group{border:0;padding:0;margin:14px 0 12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;min-width:0}
+.retry-choice-group legend{grid-column:1/-1;padding:0 0 7px;color:var(--navy);font-size:12px;font-weight:950;letter-spacing:.01em}
+.retry-choice-option{position:relative;display:grid;grid-template-columns:38px minmax(0,1fr);align-items:center;gap:10px;min-height:54px;padding:9px 12px 9px 9px;border:1px solid #cbdcec;border-radius:13px;background:#fff;color:#334b68;cursor:pointer;transition:border-color .16s,background .16s,box-shadow .16s,transform .16s}
+.retry-choice-option:hover{border-color:#83b7ef;background:#f4f9ff;transform:translateY(-1px);box-shadow:0 5px 14px rgba(8,102,229,.07)}
+.retry-choice-option:focus-within{border-color:var(--blue);box-shadow:0 0 0 4px rgba(8,102,229,.1)}
+.retry-choice-option input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.retry-choice-index{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#e8f3ff;color:var(--blue);font-size:17px;font-weight:950;line-height:1}
+.retry-choice-text{min-width:0;font-size:13px;font-weight:750;line-height:1.45;overflow-wrap:anywhere}
+.retry-choice-option.is-selected{border-color:var(--blue);background:linear-gradient(145deg,#edf6ff,#fff);box-shadow:0 0 0 2px rgba(8,102,229,.08)}
+.retry-choice-option.is-selected .retry-choice-index{background:var(--blue);color:#fff}
+.retry-choice-option.is-correct{border-color:#69be96;background:var(--ok-bg);box-shadow:0 0 0 2px rgba(11,154,99,.08)}
+.retry-choice-option.is-correct .retry-choice-index{background:var(--ok);color:#fff}
+.retry-choice-option.is-wrong{border-color:#e78a99;background:var(--bad-bg);box-shadow:0 0 0 2px rgba(227,62,84,.07)}
+.retry-choice-option.is-wrong .retry-choice-index{background:var(--bad);color:#fff}
+.retry-choice-option:has(input:disabled){cursor:default;transform:none}
+.retry-action-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.retry-action-row .btn{min-height:42px}
+.retry-card .similar-input{display:block;margin-top:10px}
+.choice-data-warning{margin:12px 0}
+@media(max-width:720px){.retry-choice-group{grid-template-columns:1fr}.retry-choice-grid{grid-template-columns:1fr}.retry-choice-option{min-height:50px}.retry-action-row .btn{flex:1 1 180px}}

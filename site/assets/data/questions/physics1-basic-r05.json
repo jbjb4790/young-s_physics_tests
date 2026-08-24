@@ -93,9 +93,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "20 N",
-          "20",
-          "20N"
+          "20 N"
         ],
         "choices": [
           "20 N",
@@ -103,7 +101,8 @@
           "30 N",
           "40 N"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -118,8 +117,10 @@
         "acceptableAnswers": [
           "3",
           "20 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 2,
@@ -173,9 +174,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "1.5 m/s²",
-          "1.5",
-          "1.5m/s2"
+          "1.5 m/s²"
         ],
         "choices": [
           "1.5 m/s²",
@@ -183,7 +182,8 @@
           "2.25 m/s²",
           "3 m/s²"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -198,8 +198,10 @@
         "acceptableAnswers": [
           "1",
           "1.2 m/s²"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 3,
@@ -251,9 +253,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "가속도 0, 정지마찰력 24 N",
-          "0,24",
-          "0m/s2,24N"
+          "가속도 0, 정지마찰력 24 N"
         ],
         "choices": [
           "가속도 1, 정지마찰력 24 N",
@@ -261,7 +261,8 @@
           "가속도 -1, 정지마찰력 24 N",
           "가속도 2, 정지마찰력 24 N"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -276,8 +277,10 @@
         "acceptableAnswers": [
           "3",
           "가속도 0 m/s², 정지마찰력 18 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 4,
@@ -330,9 +333,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "80 N",
-          "80",
-          "80N"
+          "80 N"
         ],
         "choices": [
           "40 N",
@@ -340,7 +341,8 @@
           "120 N",
           "160 N"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -355,8 +357,10 @@
         "acceptableAnswers": [
           "4",
           "100 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 5,
@@ -408,9 +412,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "100 N",
-          "100",
-          "100N"
+          "100 N"
         ],
         "choices": [
           "50 N",
@@ -418,7 +420,8 @@
           "100 N",
           "200 N"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -432,10 +435,11 @@
         "answer": "N=100-50√3 N (약 13.4 N)",
         "acceptableAnswers": [
           "3",
-          "N=100-50√3 N (약 13.4 N)",
-          "100-50√3 N (약 13.4 N)"
-        ]
-      }
+          "N=100-50√3 N (약 13.4 N)"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 6,
@@ -485,9 +489,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "12 N",
-          "12",
-          "12N"
+          "12 N"
         ],
         "choices": [
           "6 N",
@@ -495,7 +497,8 @@
           "12 N",
           "24 N"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -510,8 +513,10 @@
         "acceptableAnswers": [
           "4",
           "1) 10 N / 2) 힘 방향 미제시로 2 N 또는 18 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 7,
@@ -564,9 +569,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "16 N",
-          "16",
-          "16N"
+          "16 N"
         ],
         "choices": [
           "8 N",
@@ -574,7 +577,8 @@
           "24 N",
           "32 N"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -589,8 +593,10 @@
         "acceptableAnswers": [
           "3",
           "24 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 8,
@@ -643,9 +649,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "a=4 m/s², T=42 N",
-          "4,42",
-          "4m/s2,42N"
+          "a=4 m/s², T=42 N"
         ],
         "choices": [
           "a=8 m/s², T=42 N",
@@ -653,7 +657,8 @@
           "a=4 m/s², T=42 N",
           "a=5 m/s², T=42 N"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -668,8 +673,10 @@
         "acceptableAnswers": [
           "4",
           "가속도 2 m/s², 장력 48 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 9,
@@ -726,9 +733,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "300 N",
-          "300",
-          "300N"
+          "300 N"
         ],
         "choices": [
           "150 N",
@@ -736,7 +741,8 @@
           "450 N",
           "600 N"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -751,8 +757,10 @@
         "acceptableAnswers": [
           "2",
           "800 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 10,
@@ -810,9 +818,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "s-t: 순간 P>Q>R, 평균 P=Q=R / v-t: 순간 P=Q=R, 평균 R>Q>P",
-          "s-t: 순간 P>Q>R, 평균 P=Q=R. v-t: 순간 P=Q=R, 평균 R>Q>P.",
-          "P>Q>R,P=Q=R;P=Q=R,R>Q>P"
+          "s-t: 순간 P>Q>R, 평균 P=Q=R / v-t: 순간 P=Q=R, 평균 R>Q>P"
         ],
         "choices": [
           "s-t: 순간 P=Q=R, 평균 P>Q>R / v-t: 순간 R>Q>P, 평균 P=Q=R",
@@ -820,7 +826,8 @@
           "s-t: 순간 R>Q>P, 평균 P=Q=R / v-t: 순간 P=Q=R, 평균 P>Q>R",
           "s-t와 v-t 모두 순간 P>Q>R, 평균 R>Q>P"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -835,8 +842,10 @@
         "acceptableAnswers": [
           "4",
           "s-t: 순간 A>B>C, 평균 A=B=C / v-t: 순간 A=B=C, 평균 C>B>A"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 11,
@@ -888,9 +897,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "13 m/s, 남서쪽",
-          "13 남서",
-          "13m/s 남서쪽"
+          "13 m/s, 남서쪽"
         ],
         "choices": [
           "13 m/s, 남서쪽",
@@ -898,7 +905,8 @@
           "19.5 m/s, 남서쪽",
           "26 m/s, 남서쪽"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -913,8 +921,10 @@
         "acceptableAnswers": [
           "1",
           "10√2 m/s, 남동쪽"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 12,
@@ -964,9 +974,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "평균속력 0.60 m/s, 가속도 4.0 m/s²",
-          "0.6,4",
-          "0.60m/s,4m/s2"
+          "평균속력 0.60 m/s, 가속도 4.0 m/s²"
         ],
         "choices": [
           "평균속력 1.2 m/s, 가속도 4.0 m/s²",
@@ -974,7 +982,8 @@
           "평균속력 0.3 m/s, 가속도 4.0 m/s²",
           "평균속력 1.6 m/s, 가속도 4.0 m/s²"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -989,8 +998,10 @@
         "acceptableAnswers": [
           "3",
           "평균속력 0.75 m/s, 평균가속도 5.0 m/s²"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 13,
@@ -1044,9 +1055,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "0.75 N",
-          "0.75",
-          "0.75N"
+          "0.75 N"
         ],
         "choices": [
           "0.375 N",
@@ -1054,7 +1063,8 @@
           "1.12 N",
           "1.5 N"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -1069,8 +1079,10 @@
         "acceptableAnswers": [
           "2",
           "0.5 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 14,
@@ -1119,9 +1131,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "3배, 2 m/s²",
-          "3,2",
-          "3배,2m/s2"
+          "3배, 2 m/s²"
         ],
         "choices": [
           "6배, 2 m/s²",
@@ -1129,7 +1139,8 @@
           "1.5배, 2 m/s²",
           "4배, 2 m/s²"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -1144,8 +1155,10 @@
         "acceptableAnswers": [
           "4",
           "이동거리 3배, 가속도 2 m/s²"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 15,
@@ -1197,8 +1210,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "4",
-          "ㄱ,ㄷ",
-          "ㄱ, ㄷ"
+          "ㄱ,ㄷ"
         ],
         "choices": [
           "ㄱ",
@@ -1207,7 +1219,8 @@
           "ㄱ,ㄷ",
           "ㄴ,ㄷ"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -1221,11 +1234,12 @@
         "answer": "ㄱ, ㄷ",
         "acceptableAnswers": [
           "3",
-          "ㄱ, ㄷ",
-          "ㄱ,ㄷ"
-        ]
-      }
+          "ㄱ, ㄷ"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     }
   ],
-  "featureVersion": "3.4.0-answer-editor-choice-retry"
+  "featureVersion": "3.4.4-all-retry-multiple-choice"
 }

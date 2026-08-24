@@ -515,9 +515,9 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
 
 // v3.4.0 answer-key editor and choice-based retry learning
 
-test("v3.4.3 총괄 상위 50% 표시 기능 버전",()=>{
-  assert.equal(catalog.featureVersion,"3.4.2-advanced-total-all-choice");
-  assert.equal(JSON.parse(read("package.json")).version,"3.4.3");
+test("v3.4.4 전 문항 객관식 재도전 기능 버전",()=>{
+  assert.equal(catalog.featureVersion,"3.4.4-all-retry-multiple-choice");
+  assert.equal(JSON.parse(read("package.json")).version,"3.4.4");
 });
 
 test("준비 완료 108문항의 원문 재도전은 모두 보기 선택 방식",()=>{
@@ -526,7 +526,7 @@ test("준비 완료 108문항의 원문 재도전은 모두 보기 선택 방식
   readyQuestions.forEach(q=>{
     const r=q.originalRetry||{};
     assert.equal(r.inputMode,"choice",`원문 ${q.no}`);
-    assert.ok(Array.isArray(r.choices)&&r.choices.length>=2&&r.choices.length<=6,`원문 ${q.no}`);
+    assert.ok(Array.isArray(r.choices)&&[4,5].includes(r.choices.length),`원문 ${q.no}`);
     assert.ok(Number.isInteger(Number(r.correctChoice))&&Number(r.correctChoice)>=1&&Number(r.correctChoice)<=r.choices.length,`원문 ${q.no}`);
     assert.equal(new Set(r.choices.map(x=>String(x).trim().toLowerCase())).size,r.choices.length,`원문 보기 중복 ${q.no}`);
   });
@@ -537,7 +537,7 @@ test("준비 완료 108문항의 동형 문제도 모두 보기 선택 방식",(
   readyQuestions.forEach(q=>{
     const r=q.similarProblem||{};
     assert.equal(r.inputMode,"choice",`동형 ${q.no}`);
-    assert.ok(Array.isArray(r.choices)&&r.choices.length>=2&&r.choices.length<=6,`동형 ${q.no}`);
+    assert.ok(Array.isArray(r.choices)&&[4,5].includes(r.choices.length),`동형 ${q.no}`);
     assert.ok(Number.isInteger(Number(r.correctChoice))&&Number(r.correctChoice)>=1&&Number(r.correctChoice)<=r.choices.length,`동형 ${q.no}`);
     assert.equal(new Set(r.choices.map(x=>String(x).trim().toLowerCase())).size,r.choices.length,`동형 보기 중복 ${q.no}`);
   });
@@ -546,15 +546,43 @@ test("준비 완료 108문항의 동형 문제도 모두 보기 선택 방식",(
 test("기존 문자열 입력 대상 68문항도 자유 입력 없이 정답 보기 선택",()=>{
   const qs=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).filter(q=>q.type!=="objective"||q.answerKey==null);
   assert.equal(qs.length,68);
-  qs.forEach(q=>{assert.equal(q.originalRetry.inputMode,"choice");assert.ok(q.originalRetry.choices.length>=2);assert.equal(q.similarProblem.inputMode,"choice")});
+  qs.forEach(q=>{assert.equal(q.originalRetry.inputMode,"choice");assert.ok([4,5].includes(q.originalRetry.choices.length));assert.equal(q.similarProblem.inputMode,"choice")});
 });
 
-test("학생 리포트는 원문·동형 답안을 select 보기로 받고 correctChoice로 판정",()=>{
+test("학생 리포트는 원문·동형을 ①~⑤ 라디오 카드로만 제출",()=>{
   const src=read("site/assets/report.js");
-  assert.match(src,/정답 보기를 선택하세요/);
-  assert.match(src,/YP\.checkChoiceAnswer\(inp\.value,q\.originalRetry/);
-  assert.match(src,/YP\.checkSimilarAnswer\(inp\.value,s\)/);
-  assert.doesNotMatch(src,/<input id="originalInput/);
+  assert.match(src,/retry-choice-grid/);
+  assert.match(src,/type=\"radio\"/);
+  assert.match(src,/원문 문제를 객관식으로 다시 풀기/);
+  assert.match(src,/동형 문제도 객관식으로 풀기/);
+  assert.match(src,/YP\.checkChoiceAnswer\(value,config\)/);
+  assert.doesNotMatch(src,/<select id=\"originalInput/);
+  assert.doesNotMatch(src,/<select id=\"similarInput/);
+  assert.doesNotMatch(src,/답 또는 풀이 결과 입력/);
+});
+
+
+test("단답형·서술형 65문항의 원문과 동형 문제도 모두 4지·5지 객관식",()=>{
+  const qs=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).filter(q=>q.type==="subjective");
+  assert.equal(qs.length,65);
+  for(const q of qs)for(const key of ["originalRetry","similarProblem"]){
+    const c=q[key];assert.equal(c.inputMode,"choice");assert.ok([4,5].includes(c.choices.length));assert.ok(c.correctChoice>=1&&c.correctChoice<=c.choices.length);
+  }
+});
+
+test("정답 관리 화면은 재도전 보기를 4개 또는 5개로 제한",()=>{
+  const src=read("site/assets/app.js");
+  assert.match(src,/\!\[4,5\]\.includes\(choices\.length\)/);
+  assert.match(src,/보기는 4개 또는 5개여야 합니다/);
+  assert.match(src,/4지·5지 객관식 보기/);
+});
+
+test("객관식 재도전 CSS는 선택·정답·오답 상태와 모바일 1열을 제공",()=>{
+  const css=read("site/assets/styles.css");
+  assert.match(css,/\.retry-choice-option\.is-correct/);
+  assert.match(css,/\.retry-choice-option\.is-wrong/);
+  assert.match(css,/@media\(max-width:720px\)/);
+  assert.match(css,/\.retry-choice-grid\{grid-template-columns:1fr\}/);
 });
 
 test("교사용 홈페이지에 시험 정답·보기 관리 UI와 저장 동작이 있음",()=>{
@@ -626,4 +654,28 @@ test("모든 선택형 재도전의 공개 정답 문구는 실제 정답 보기
     const c=q[key];
     assert.equal(c.answer,c.choices[c.correctChoice-1],`${e.examId} ${q.no} ${key}`);
   }
+});
+
+test("구버전 자유입력 서버 수정본은 정적 객관식 재도전 보기를 덮어쓰지 않음",()=>{
+  const base=YP.clone(mech),original=YP.clone(base.questions[20].originalRetry),similar=YP.clone(base.questions[20].similarProblem);
+  const rows=[{
+    QuestionNo:21,
+    OriginalRetryJSON:JSON.stringify({inputMode:"text",answer:"7h/3"}),
+    SimilarProblemJSON:JSON.stringify({inputMode:"text",answer:"13h/4"}),
+    OverrideUpdatedAt:"2026-08-24T00:00:00.000Z"
+  }];
+  const merged=YP.mergeExamQuestions(base,rows),q=merged.questions.find(x=>x.no===21);
+  assert.deepEqual(q.originalRetry.choices,original.choices);
+  assert.equal(q.originalRetry.correctChoice,original.correctChoice);
+  assert.deepEqual(q.similarProblem.choices,similar.choices);
+  assert.equal(q.similarProblem.correctChoice,similar.correctChoice);
+  assert.equal(q.retryChoiceReady,true);
+});
+
+test("Apps Script도 잘못된 구버전 자유입력 override를 원본 객관식 보기로 자동 복귀",()=>{
+  const src=read("apps-script/Code.gs"),start=src.indexOf("function getQuestionRows_"),end=src.indexOf("function upsertQuestionOverride_",start),block=src.slice(start,end);
+  assert.match(block,/normalizeChoiceConfigSafe_/);
+  assert.match(block,/if\(normalized\)merged\[key\]=JSON\.stringify\(normalized\)/);
+  assert.match(block,/구버전 자유입력·불완전 보기 수정본은 원본 객관식 보기로 자동 복귀/);
+  assert.match(block,/choices\.length!==4&&choices\.length!==5/);
 });

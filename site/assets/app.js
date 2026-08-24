@@ -148,7 +148,7 @@
  }
  function answerChoiceEditorHTML(prefix,index,config,title){
    const choices=(config?.choices||[]).length?(config.choices||[]):['보기 1','보기 2','보기 3','보기 4'],correct=Number(config?.correctChoice||1);
-   return `<div class="answer-choice-editor" id="${prefix}Group${index}" data-choice-count="${choices.length}"><div class="answer-choice-title"><b>${title}</b><span>학생은 정답을 직접 입력하지 않고 보기에서 선택합니다.</span></div><div class="answer-choice-list">${choices.map((choice,j)=>`<label class="answer-choice-row"><span>${j+1}</span><input id="${prefix}Choice${index}_${j}" value="${YP.escapeHTML(choice)}" data-answer-editor-input></label>`).join("")}</div><div class="field answer-correct-select"><label for="${prefix}Correct${index}">정답 보기</label><select id="${prefix}Correct${index}" data-answer-editor-input>${choices.map((_,j)=>`<option value="${j+1}" ${correct===j+1?"selected":""}>${j+1}번</option>`).join("")}</select></div></div>`;
+   return `<div class="answer-choice-editor" id="${prefix}Group${index}" data-choice-count="${choices.length}"><div class="answer-choice-title"><b>${title}</b><span>학생은 정답을 직접 입력하지 않고 4지·5지 객관식 보기에서 선택합니다.</span></div><div class="answer-choice-list">${choices.map((choice,j)=>`<label class="answer-choice-row"><span>${j+1}</span><input id="${prefix}Choice${index}_${j}" value="${YP.escapeHTML(choice)}" data-answer-editor-input></label>`).join("")}</div><div class="field answer-correct-select"><label for="${prefix}Correct${index}">정답 보기</label><select id="${prefix}Correct${index}" data-answer-editor-input>${choices.map((_,j)=>`<option value="${j+1}" ${correct===j+1?"selected":""}>${j+1}번</option>`).join("")}</select></div></div>`;
  }
  function renderAnswerEditor(){
    const root=$("answerEditorGrid"),e=state.exam;if(!root)return;if(!e){root.innerHTML="";return}
@@ -164,7 +164,7 @@
  function markAnswerEditorDirty(){state.answerEditorDirty=true;setAnswerEditorStatus("수정 내용이 아직 Google Sheets에 저장되지 않았습니다.","dirty")}
  function collectChoiceConfig(prefix,index,base,label){
    const group=$(`${prefix}Group${index}`),count=Number(group?.dataset.choiceCount||0),choices=[];for(let j=0;j<count;j++)choices.push(String($(`${prefix}Choice${index}_${j}`)?.value||"").trim());
-   if(choices.length<2||choices.some(x=>!x))throw new Error(`${label}: 빈 보기가 있습니다.`);if(new Set(choices.map(x=>x.toLowerCase().replace(/\s+/g," "))).size!==choices.length)throw new Error(`${label}: 중복 보기를 수정하세요.`);
+   if(![4,5].includes(choices.length))throw new Error(`${label}: 보기는 4개 또는 5개여야 합니다.`);if(choices.some(x=>!x))throw new Error(`${label}: 빈 보기가 있습니다.`);if(new Set(choices.map(x=>x.toLowerCase().replace(/\s+/g," "))).size!==choices.length)throw new Error(`${label}: 중복 보기를 수정하세요.`);
    const correctChoice=Number($(`${prefix}Correct${index}`)?.value||0);if(!Number.isInteger(correctChoice)||correctChoice<1||correctChoice>choices.length)throw new Error(`${label}: 정답 보기를 선택하세요.`);
    return {...YP.clone(base||{}),inputMode:"choice",choices,correctChoice,answer:choices[correctChoice-1],acceptableAnswers:[String(correctChoice),choices[correctChoice-1]]};
  }

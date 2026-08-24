@@ -128,9 +128,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "1 A, 오른쪽",
-          "1A오른쪽",
-          "1,오른쪽"
+          "1 A, 오른쪽"
         ],
         "choices": [
           "0.5 A, 오른쪽",
@@ -138,7 +136,8 @@
           "1.5 A, 오른쪽",
           "2 A, 오른쪽"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "answerKey": 3,
       "originalRetry": {
@@ -155,8 +154,10 @@
           "3",
           "③"
         ],
-        "correctChoice": 3
-      }
+        "correctChoice": 3,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 2,
@@ -204,9 +205,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "위쪽",
-          "4",
-          "위"
+          "위쪽"
         ],
         "choices": [
           "위쪽",
@@ -214,7 +213,8 @@
           "왼쪽",
           "오른쪽"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "answerKey": 4,
       "originalRetry": {
@@ -231,8 +231,10 @@
           "4",
           "④"
         ],
-        "correctChoice": 4
-      }
+        "correctChoice": 4,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 3,
@@ -279,10 +281,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "더 크게 굴절: 보라빛 / 더 긴 파장: 빨간빛",
-          "1",
-          "보라빛, 빨간빛",
-          "보라,빨강"
+          "더 크게 굴절: 보라빛 / 더 긴 파장: 빨간빛"
         ],
         "choices": [
           "더 크게 굴절: 빨간빛 / 더 긴 파장: 보라빛",
@@ -290,7 +289,8 @@
           "더 크게 굴절: 빨간빛 / 더 긴 파장: 빨간빛",
           "더 크게 굴절: 보라빛 / 더 긴 파장: 보라빛"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "answerKey": 1,
       "originalRetry": {
@@ -307,8 +307,10 @@
           "1",
           "①"
         ],
-        "correctChoice": 1
-      }
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 4,
@@ -356,8 +358,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "4",
-          "2:1",
-          "2"
+          "2:1"
         ],
         "choices": [
           "4:1",
@@ -365,7 +366,8 @@
           "3:1",
           "2:1"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "answerKey": 5,
       "originalRetry": {
@@ -382,8 +384,10 @@
           "5",
           "⑤"
         ],
-        "correctChoice": 5
-      }
+        "correctChoice": 5,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 5,
@@ -431,8 +435,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "4배",
-          "4"
+          "4배"
         ],
         "choices": [
           "2배",
@@ -440,7 +443,8 @@
           "6배",
           "8배"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "answerKey": 4,
       "originalRetry": {
@@ -457,8 +461,10 @@
           "4",
           "④"
         ],
-        "correctChoice": 4
-      }
+        "correctChoice": 4,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 6,
@@ -507,9 +513,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "60 W 정격 전구, 2:1",
-          "60W,2:1",
-          "60,2"
+          "60 W 정격 전구, 2:1"
         ],
         "choices": [
           "120 W 정격 전구, 2:1",
@@ -517,7 +521,8 @@
           "60 W 정격 전구, 2:1",
           "70 W 정격 전구, 2:1"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "answerKey": 4,
       "originalRetry": {
@@ -534,8 +539,10 @@
           "4",
           "④"
         ],
-        "correctChoice": 4
-      }
+        "correctChoice": 4,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 7,
@@ -583,9 +590,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "8 Ω",
-          "8",
-          "8Ω"
+          "8 Ω"
         ],
         "choices": [
           "4 Ω",
@@ -593,7 +598,8 @@
           "8 Ω",
           "16 Ω"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "answerKey": 2,
       "originalRetry": {
@@ -610,8 +616,10 @@
           "2",
           "②"
         ],
-        "correctChoice": 2
-      }
+        "correctChoice": 2,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 8,
@@ -658,9 +666,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "양전하",
-          "3",
-          "양"
+          "양전하"
         ],
         "choices": [
           "양전하",
@@ -668,7 +674,8 @@
           "중성",
           "전하량이 계속 변한다."
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "answerKey": 2,
       "originalRetry": {
@@ -685,8 +692,10 @@
           "2",
           "②"
         ],
-        "correctChoice": 2
-      }
+        "correctChoice": 2,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 9,
@@ -734,10 +743,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "1/9배",
-          "2",
-          "1/9",
-          "0.111"
+          "1/9배"
         ],
         "choices": [
           "1/3배",
@@ -745,7 +751,8 @@
           "1/9배",
           "1/27배"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "answerKey": 3,
       "originalRetry": {
@@ -762,8 +769,10 @@
           "3",
           "③"
         ],
-        "correctChoice": 3
-      }
+        "correctChoice": 3,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 10,
@@ -811,10 +820,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "A·B는 밝아지고 C는 꺼진다.",
-          "3",
-          "A와 B는 밝아지고 C는 꺼진다.",
-          "A,B밝아짐C꺼짐"
+          "A·B는 밝아지고 C는 꺼진다."
         ],
         "choices": [
           "A·B는 밝아지고 C는 꺼진다.",
@@ -822,7 +828,8 @@
           "A만 밝아지고 B·C는 꺼진다.",
           "세 전구 모두 밝기가 변하지 않는다."
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "answerKey": 2,
       "originalRetry": {
@@ -839,8 +846,10 @@
           "2",
           "②"
         ],
-        "correctChoice": 2
-      }
+        "correctChoice": 2,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 11,
@@ -888,10 +897,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "전기장 +x, 전자 힘 -x",
-          "전기장은 +x, 전자 힘은 -x",
-          "+x,-x",
-          "오른쪽,왼쪽"
+          "전기장 +x, 전자 힘 -x"
         ],
         "choices": [
           "전기장 +x, 전자 힘 -x",
@@ -899,7 +905,8 @@
           "전기장과 전자 힘 모두 +x",
           "전기장과 전자 힘 모두 -x"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "answerKey": 4,
       "originalRetry": {
@@ -916,8 +923,10 @@
           "4",
           "④"
         ],
-        "correctChoice": 4
-      }
+        "correctChoice": 4,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 12,
@@ -965,10 +974,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "5B₀",
-          "2",
-          "5B0",
-          "5"
+          "5B₀"
         ],
         "choices": [
           "2.5B₀",
@@ -976,7 +982,8 @@
           "5B₀",
           "10B₀"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "answerKey": 5,
       "originalRetry": {
@@ -993,8 +1000,10 @@
           "5",
           "⑤"
         ],
-        "correctChoice": 5
-      }
+        "correctChoice": 5,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 13,
@@ -1043,9 +1052,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "4 A, 반시계방향",
-          "4A반시계",
-          "4,반시계"
+          "4 A, 반시계방향"
         ],
         "choices": [
           "2 A, 반시계방향",
@@ -1053,7 +1060,8 @@
           "4 A, 반시계방향",
           "8 A, 반시계방향"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "answerKey": 2,
       "originalRetry": {
@@ -1070,8 +1078,10 @@
           "2",
           "②"
         ],
-        "correctChoice": 2
-      }
+        "correctChoice": 2,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 14,
@@ -1119,8 +1129,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "2I",
-          "2"
+          "2I"
         ],
         "choices": [
           "1I",
@@ -1128,7 +1137,8 @@
           "2I",
           "4I"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "answerKey": 1,
       "originalRetry": {
@@ -1145,8 +1155,10 @@
           "1",
           "①"
         ],
-        "correctChoice": 1
-      }
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 15,
@@ -1194,8 +1206,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "아래쪽",
-          "아래"
+          "아래쪽"
         ],
         "choices": [
           "위쪽",
@@ -1203,7 +1214,8 @@
           "진행 방향과 같은 오른쪽",
           "순간적으로 정지"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "answerKey": 2,
       "originalRetry": {
@@ -1220,8 +1232,10 @@
           "2",
           "②"
         ],
-        "correctChoice": 2
-      }
+        "correctChoice": 2,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 16,
@@ -1268,8 +1282,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "4개",
-          "4"
+          "4개"
         ],
         "choices": [
           "4개",
@@ -1277,7 +1290,8 @@
           "6개",
           "8개"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "answerKey": 4,
       "originalRetry": {
@@ -1294,8 +1308,10 @@
           "4",
           "④"
         ],
-        "correctChoice": 4
-      }
+        "correctChoice": 4,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 17,
@@ -1343,8 +1359,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "4",
-          "2개",
-          "2"
+          "2개"
         ],
         "choices": [
           "1개",
@@ -1352,7 +1367,8 @@
           "4개",
           "2개"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "answerKey": 2,
       "originalRetry": {
@@ -1369,8 +1385,10 @@
           "2",
           "②"
         ],
-        "correctChoice": 2
-      }
+        "correctChoice": 2,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 18,
@@ -1418,9 +1436,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "20 m/s",
-          "20",
-          "20m/s"
+          "20 m/s"
         ],
         "choices": [
           "10 m/s",
@@ -1428,7 +1444,8 @@
           "30 m/s",
           "40 m/s"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "answerKey": 2,
       "originalRetry": {
@@ -1445,8 +1462,10 @@
           "2",
           "②"
         ],
-        "correctChoice": 2
-      }
+        "correctChoice": 2,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 19,
@@ -1494,8 +1513,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "√2",
-          "1.414"
+          "√2"
         ],
         "choices": [
           "√2",
@@ -1503,7 +1521,8 @@
           "√1",
           "√3"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "answerKey": 5,
       "originalRetry": {
@@ -1520,8 +1539,10 @@
           "5",
           "⑤"
         ],
-        "correctChoice": 5
-      }
+        "correctChoice": 5,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 20,
@@ -1569,9 +1590,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "상은 초점 쪽으로 이동하고 작아진다.",
-          "3",
-          "초점,작아짐"
+          "상은 초점 쪽으로 이동하고 작아진다."
         ],
         "choices": [
           "상은 초점 쪽으로 이동하고 작아진다.",
@@ -1579,7 +1598,8 @@
           "상 위치는 같고 크기만 커진다.",
           "허상으로 바뀌고 커진다."
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "answerKey": 3,
       "originalRetry": {
@@ -1596,8 +1616,10 @@
           "3",
           "③"
         ],
-        "correctChoice": 3
-      }
+        "correctChoice": 3,
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 21,
@@ -1659,8 +1681,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "렌즈 2 오른쪽 8 cm, 도립 실상, 4 cm",
-          "오른쪽 8 cm, 도립 실상, 4 cm"
+          "렌즈 2 오른쪽 8 cm, 도립 실상, 4 cm"
         ],
         "choices": [
           "렌즈 2 왼쪽 8 cm, 정립 허상, 4 cm",
@@ -1668,7 +1689,8 @@
           "렌즈 2 오른쪽 8 cm, 도립 실상, 4 cm",
           "렌즈 2 오른쪽 8 cm, 정립 실상, 2 cm"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -1683,8 +1705,10 @@
         "acceptableAnswers": [
           "2",
           "렌즈 2 오른쪽 20/3 cm, 확대된 도립 실상, 4 cm"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 22,
@@ -1744,9 +1768,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "450 cm",
-          "450",
-          "450cm"
+          "450 cm"
         ],
         "choices": [
           "450 cm",
@@ -1754,7 +1776,8 @@
           "675 cm",
           "900 cm"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -1769,8 +1792,10 @@
         "acceptableAnswers": [
           "2",
           "거울면 아래 512.5 cm"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 23,
@@ -1832,8 +1857,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "25 Hz, 13.6 m",
-          "25,13.6"
+          "25 Hz, 13.6 m"
         ],
         "choices": [
           "25 Hz, 13.6 m",
@@ -1841,7 +1865,8 @@
           "12.5 Hz, 13.6 m",
           "35 Hz, 13.6 m"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -1856,8 +1881,10 @@
         "acceptableAnswers": [
           "2",
           "f=25 Hz, λ=14 m"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 24,
@@ -1919,9 +1946,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "R=10/3 Ω, I_6=2/3 A",
-          "10/3,2/3",
-          "3.333,0.667"
+          "R=10/3 Ω, I_6=2/3 A"
         ],
         "choices": [
           "R=5/3 Ω, I_6=2/3 A",
@@ -1929,7 +1954,8 @@
           "R=10/3 Ω, I_6=2/3 A",
           "R=20/3 Ω, I_6=2/3 A"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -1944,8 +1970,10 @@
         "acceptableAnswers": [
           "4",
           "R=3 Ω, 10 Ω 저항 전류=0.6 A"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 25,
@@ -2013,7 +2041,8 @@
           "16",
           "8"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -2028,9 +2057,11 @@
         "acceptableAnswers": [
           "3",
           "E_D/E_C=8"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     }
   ],
-  "featureVersion": "3.4.0-answer-editor-choice-retry"
+  "featureVersion": "3.4.4-all-retry-multiple-choice"
 }

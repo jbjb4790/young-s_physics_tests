@@ -1159,8 +1159,13 @@ function getQuestionRows_(examId) {
     const override=overrideMap[String(Number(row.QuestionNo))];
     if(!override)return row;
     const merged=Object.assign({},row);
-    ["AnswerJSON","OriginalRetryJSON","SimilarProblemJSON"].forEach(function(key){
-      if(String(override[key]||"").trim()!=="")merged[key]=override[key];
+    if(String(override.AnswerJSON||"").trim()!=="")merged.AnswerJSON=override.AnswerJSON;
+    ["OriginalRetryJSON","SimilarProblemJSON"].forEach(function(key){
+      const raw=String(override[key]||"").trim();
+      if(!raw)return;
+      const normalized=normalizeChoiceConfigSafe_(safeJson_(raw,{}));
+      // 구버전 자유입력·불완전 보기 수정본은 원본 객관식 보기로 자동 복귀한다.
+      if(normalized)merged[key]=JSON.stringify(normalized);
     });
     merged.OverrideUpdatedAt=override.UpdatedAt||"";
     merged.OverrideRevisionNote=override.RevisionNote||"";
@@ -1168,10 +1173,14 @@ function getQuestionRows_(examId) {
   });
 }
 
+function normalizeChoiceConfigSafe_(config) {
+  try{return validateChoiceConfig_(config,"객관식 재도전");}catch(error){return null;}
+}
+
 function validateChoiceConfig_(config,label) {
   const value=config&&typeof config==="object"?config:{};
   const choices=(value.choices||[]).map(function(x){return String(x==null?"":x).trim();}).filter(function(x){return x!=="";});
-  if(choices.length<2||choices.length>6)throwApiError_("ANSWER_CHOICES_INVALID",label+" 보기는 2~6개여야 합니다.");
+  if(choices.length!==4&&choices.length!==5)throwApiError_("ANSWER_CHOICES_INVALID",label+" 보기는 4개 또는 5개여야 합니다.");
   const normalized=choices.map(function(x){return x.replace(/\s+/g," ").toLowerCase();});
   if(new Set(normalized).size!==normalized.length)throwApiError_("ANSWER_CHOICES_DUPLICATE",label+" 보기에는 같은 내용이 중복될 수 없습니다.");
   const correctChoice=Number(value.correctChoice||value.answer||0);

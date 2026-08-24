@@ -96,9 +96,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "4",
-          "6 s",
-          "6",
-          "6s"
+          "6 s"
         ],
         "choices": [
           "3 s",
@@ -106,7 +104,8 @@
           "12 s",
           "6 s"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -121,8 +120,10 @@
         "acceptableAnswers": [
           "2",
           "8 s"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 2,
@@ -179,9 +180,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "1800 N",
-          "1800",
-          "1800N"
+          "1800 N"
         ],
         "choices": [
           "1800 N",
@@ -189,7 +188,8 @@
           "2700 N",
           "3600 N"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -204,8 +204,10 @@
         "acceptableAnswers": [
           "4",
           "5000 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 3,
@@ -262,9 +264,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "3 m/s²",
-          "3",
-          "3m/s2"
+          "3 m/s²"
         ],
         "choices": [
           "3 m/s²",
@@ -272,7 +272,8 @@
           "4.5 m/s²",
           "6 m/s²"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -287,8 +288,10 @@
         "acceptableAnswers": [
           "3",
           "5 m/s²"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 4,
@@ -344,9 +347,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "90 kg",
-          "90",
-          "90kg"
+          "90 kg"
         ],
         "choices": [
           "45 kg",
@@ -354,7 +355,8 @@
           "90 kg",
           "180 kg"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -369,8 +371,10 @@
         "acceptableAnswers": [
           "4",
           "75 kg"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 5,
@@ -424,11 +428,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "작용·반작용: ①-③, ②-④ / 평형: ①-②",
-          "3",
-          "작용·반작용: ①-③, ②-④. 평형: ①-②.",
-          "1-3,2-4,1-2",
-          "①③ ②④ 평형①②"
+          "작용·반작용: ①-③, ②-④ / 평형: ①-②"
         ],
         "choices": [
           "작용·반작용: ①-②, ③-④ / 평형: ①-③",
@@ -436,7 +436,8 @@
           "작용·반작용: ①-④, ②-③ / 평형: ③-④",
           "작용·반작용: ①-② / 평형: ②-④"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -451,8 +452,10 @@
         "acceptableAnswers": [
           "1",
           "작용·반작용: 가-다, 나-라 / 평형: 가-나"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 6,
@@ -509,9 +512,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "4",
-          "40 N",
-          "40",
-          "40N"
+          "40 N"
         ],
         "choices": [
           "20 N",
@@ -519,7 +520,8 @@
           "80 N",
           "40 N"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -534,8 +536,10 @@
         "acceptableAnswers": [
           "4",
           "24 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 7,
@@ -601,7 +605,8 @@
           "두 줄 모두 30 N",
           "두 줄 모두 30√3 N"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -616,8 +621,10 @@
         "acceptableAnswers": [
           "4",
           "A쪽 20√3 N, B쪽 20 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 8,
@@ -666,9 +673,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "T=20 N, N=20√3 N",
-          "20,20sqrt3",
-          "20N,20√3N"
+          "T=20 N, N=20√3 N"
         ],
         "choices": [
           "T=40 N, N=20√3 N",
@@ -676,7 +681,8 @@
           "T=20 N, N=20√3 N",
           "T=30 N, N=20√3 N"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -691,8 +697,10 @@
         "acceptableAnswers": [
           "3",
           "T=mg sinθ, N=mg cosθ"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 9,
@@ -750,9 +758,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "6 N",
-          "6",
-          "6N"
+          "6 N"
         ],
         "choices": [
           "3 N",
@@ -760,7 +766,8 @@
           "6 N",
           "12 N"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -775,9 +782,11 @@
         "acceptableAnswers": [
           "1",
           "2 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     }
   ],
-  "featureVersion": "3.4.0-answer-editor-choice-retry"
+  "featureVersion": "3.4.4-all-retry-multiple-choice"
 }

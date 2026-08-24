@@ -94,9 +94,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "B=14/3 m/s, e=2/3, 에너지 16/3 J 손실",
-          "14/3,2/3,16/3",
-          "4.667,0.667,5.333"
+          "B=14/3 m/s, e=2/3, 에너지 16/3 J 손실"
         ],
         "choices": [
           "B=28/3 m/s, e=2/3, 에너지 16/3 J 손실",
@@ -104,7 +102,8 @@
           "B=14/3 m/s, e=2/3, 에너지 16/3 J 손실",
           "B=24/3 m/s, e=2/3, 에너지 16/3 J 손실"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -119,8 +118,10 @@
         "acceptableAnswers": [
           "4",
           "B=4 m/s, e=1, 에너지 손실 0 J"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 2,
@@ -179,8 +180,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "1:√3",
-          "1:sqrt3"
+          "1:√3"
         ],
         "choices": [
           "1:√2",
@@ -188,7 +188,8 @@
           "√2:1",
           "√3:1"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -202,10 +203,11 @@
         "answer": "1:√2",
         "acceptableAnswers": [
           "2",
-          "1:√2",
-          "4"
-        ]
-      }
+          "1:√2"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 3,
@@ -262,9 +264,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "4",
-          "3 N",
-          "3",
-          "3N"
+          "3 N"
         ],
         "choices": [
           "1.5 N",
@@ -272,7 +272,8 @@
           "6 N",
           "3 N"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -287,8 +288,10 @@
         "acceptableAnswers": [
           "4",
           "0.2 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 4,
@@ -346,10 +349,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "10√3 m/s",
-          "10sqrt3",
-          "10√3",
-          "17.32"
+          "10√3 m/s"
         ],
         "choices": [
           "10 m/s",
@@ -357,7 +357,8 @@
           "15 m/s",
           "30 m/s"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -371,10 +372,11 @@
         "answer": "10√2 m/s",
         "acceptableAnswers": [
           "2",
-          "10√2 m/s",
-          "4"
-        ]
-      }
+          "10√2 m/s"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 5,
@@ -430,10 +432,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "√29 m/s",
-          "sqrt29",
-          "√29",
-          "5.385"
+          "√29 m/s"
         ],
         "choices": [
           "√58 m/s",
@@ -441,7 +440,8 @@
           "√29 m/s",
           "√39 m/s"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -456,8 +456,10 @@
         "acceptableAnswers": [
           "1",
           "6 m/s"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 6,
@@ -511,9 +513,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "160 W",
-          "160",
-          "160W"
+          "160 W"
         ],
         "choices": [
           "160 W",
@@ -521,7 +521,8 @@
           "240 W",
           "320 W"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -536,8 +537,10 @@
         "acceptableAnswers": [
           "4",
           "400 W"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 7,
@@ -598,8 +601,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "1",
-          "400 J, 140 N, -140 J, 260 J",
-          "400,140,-140,260"
+          "400 J, 140 N, -140 J, 260 J"
         ],
         "choices": [
           "400 J, 140 N, -140 J, 260 J",
@@ -607,7 +609,8 @@
           "200 J, 140 N, -140 J, 260 J",
           "410 J, 140 N, -140 J, 260 J"
         ],
-        "correctChoice": 1
+        "correctChoice": 1,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -622,9 +625,11 @@
         "acceptableAnswers": [
           "4",
           "700 J, 30 N, -30 J, 670 J"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     }
   ],
-  "featureVersion": "3.4.0-answer-editor-choice-retry"
+  "featureVersion": "3.4.4-all-retry-multiple-choice"
 }

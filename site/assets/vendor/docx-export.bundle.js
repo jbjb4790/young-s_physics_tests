@@ -46,6 +46,11 @@
    async function addImage(bytes,w,h,alt,maxInches=6.25,maxHeightInches=7.2){
      imgNo++;const rid=`rId${relNo++}`,name=`image${imgNo}.png`;files.push({name:`word/media/${name}`,data:bytes});rels.push(`<Relationship Id="${rid}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/${name}"/>`);return imageDrawing(rid,imgNo,w,h,alt,maxInches,maxHeightInches);
    }
+   function choiceTable(config){
+     const normalized=YP.normalizeChoiceChallenge?YP.normalizeChoiceChallenge(config||{}):config||{},choices=Array.isArray(normalized.choices)?normalized.choices:[];
+     if(!normalized.valid||choices.length<4)return null;
+     return table([[p("보기","",{bold:true}),p("내용","",{bold:true})],...choices.map((choice,i)=>[p(YP.choiceLabel?YP.choiceLabel(i+1):String(i+1)),p(choice)])],[900,7100]);
+   }
    const logo=await YP.loadImage("assets/images/logo.png"),logoDrawing=await addImage(await fetchBytes("assets/images/logo.png"),logo.naturalWidth,logo.naturalHeight,"Young's Physics 로고",1.85,0.9),isTotal=YP.isComprehensive&&YP.isComprehensive(exam),avgGap=record.percent-(stats.averagePercent||0),standing=YP.computeTopStanding?YP.computeTopStanding(record.score,stats):null,showStanding=!!(isTotal&&standing&&standing.eligible),scoreMessage=record.percent>=90?"개념 이해와 문제 적용력이 매우 안정적입니다.":record.percent>=80?"핵심 개념이 탄탄하며 일부 취약 문항을 보완하면 좋습니다.":record.percent>=65?"기본 개념은 형성되어 있으며 우선 단원 복습이 필요합니다.":"핵심 개념부터 순서대로 다시 연결하는 학습이 필요합니다.";
    body.push(table([[
      {content:logoDrawing,vAlign:"center",padX:90,padY:60},
@@ -101,12 +106,13 @@
      const dataURL=await YP.cropDataURL(exam,q,1),tmp=await YP.loadImage(dataURL);body.push(await addImage(dataBytes(dataURL),tmp.naturalWidth,tmp.naturalHeight,`${q.no}번 원문 문제`,5.8,4.4));
      if(q.correctionNote)body.push(p(`검수 메모: ${q.correctionNote}`,"Quote"));
      if(["ambiguous","needs-review"].includes(q.reviewStatus)){body.push(p("확인 필요: 원문 조건 부족 또는 복수 해석 가능성으로 공식 정답·해설 자동 공개를 보류했습니다."));continue}
+     const originalChoices=choiceTable(q.originalRetry);if(originalChoices){body.push(p("원문 문제 객관식 재도전 보기","Heading3"));body.push(originalChoices);body.push(p("※ 학생 링크에서는 보기를 선택해 제출한 뒤 정답과 해설이 공개됩니다.","Quote"))}
      body.push(p("검수된 정답·모범답안","Heading3"));body.push(p(q.answer));
      body.push(p("풀이","Heading3"));q.explanation.forEach((x,i)=>body.push(p(`${i+1}. ${x}`)));
      body.push(p("필요한 공식","Heading3"));q.formulas.forEach(x=>body.push(p(`• ${x}`)));
      body.push(p("자주 하는 실수","Heading3"));q.commonMistakes.forEach(x=>body.push(p(`• ${x}`)));
      body.push(p("부분점수 기준","Heading3"));body.push(table([[p("평가 요소","",{bold:true}),p("점수","",{bold:true})],...q.rubric.map(r=>[p(r.criterion),p(`${r.points}점`)])],[6500,1500]));
-     body.push(p("새 동형 문제","Heading3"));body.push(p(q.similarProblem.prompt));body.push(p("※ 동형 문제 정답과 해설은 학생 링크에서 답을 제출한 뒤 확인합니다.","Quote"));
+     body.push(p("새 동형 문제","Heading3"));body.push(p(q.similarProblem.prompt));const similarChoices=choiceTable(q.similarProblem);if(similarChoices)body.push(similarChoices);body.push(p("※ 동형 문제도 객관식 보기를 선택해 제출한 뒤 정답과 해설을 확인합니다.","Quote"));
    }
    body.push(p("회차 핵심 개념·공식","Heading1"));body.push(p(exam.coreNote.summary));
    [["반드시 알아야 할 개념",exam.coreNote.concepts],["핵심 공식",exam.coreNote.formulas],["자주 하는 실수",exam.coreNote.mistakes],["시험 전 5분 체크",exam.coreNote.checklist]].forEach(([t,items])=>{body.push(p(t,"Heading2"));items.forEach(x=>body.push(p(`• ${x}`)))});

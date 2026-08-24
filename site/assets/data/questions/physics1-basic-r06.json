@@ -95,9 +95,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "4",
-          "3 m/s",
-          "3",
-          "3m/s"
+          "3 m/s"
         ],
         "choices": [
           "1.5 m/s",
@@ -105,7 +103,8 @@
           "6 m/s",
           "3 m/s"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -120,8 +119,10 @@
         "acceptableAnswers": [
           "2",
           "4 m/s, 오른쪽"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 2,
@@ -177,9 +178,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "4",
-          "4 m/s 오른쪽",
-          "4m/s 오른쪽",
-          "오른쪽 4"
+          "4 m/s 오른쪽"
         ],
         "choices": [
           "2 m/s 오른쪽",
@@ -187,7 +186,8 @@
           "8 m/s 오른쪽",
           "4 m/s 오른쪽"
         ],
-        "correctChoice": 4
+        "correctChoice": 4,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -202,8 +202,10 @@
         "acceptableAnswers": [
           "1",
           "1 m/s, 오른쪽"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 3,
@@ -263,9 +265,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "2",
-          "충격량 -10 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J",
-          "-10,100,20",
-          "왼쪽10Ns,100N,20J"
+          "충격량 -10 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J"
         ],
         "choices": [
           "충격량 -20 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J",
@@ -273,7 +273,8 @@
           "충격량 -5 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J",
           "충격량 0 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J"
         ],
-        "correctChoice": 2
+        "correctChoice": 2,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -288,8 +289,10 @@
         "acceptableAnswers": [
           "3",
           "충격량 -12 N·s(왼쪽), 평균힘 60 N, 완전 탄성 충돌"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 4,
@@ -353,7 +356,8 @@
           "3개",
           "4개"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -367,10 +371,11 @@
         "answer": "4개",
         "acceptableAnswers": [
           "3",
-          "4개",
-          "4"
-        ]
-      }
+          "4개"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 5,
@@ -419,8 +424,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "13 m/s",
-          "13"
+          "13 m/s"
         ],
         "choices": [
           "7 m/s",
@@ -428,7 +432,8 @@
           "13 m/s",
           "25 m/s"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -443,8 +448,10 @@
         "acceptableAnswers": [
           "2",
           "충격량 16 N·s, 최종속도 10 m/s"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     },
     {
       "no": 6,
@@ -500,9 +507,7 @@
         "inputMode": "choice",
         "acceptableAnswers": [
           "3",
-          "딱딱한 바닥 50 N, 매트 10 N",
-          "50,10",
-          "50N,10N"
+          "딱딱한 바닥 50 N, 매트 10 N"
         ],
         "choices": [
           "딱딱한 바닥 100 N, 매트 10 N",
@@ -510,7 +515,8 @@
           "딱딱한 바닥 50 N, 매트 10 N",
           "딱딱한 바닥 60 N, 매트 10 N"
         ],
-        "correctChoice": 3
+        "correctChoice": 3,
+        "displayMode": "choice-card"
       },
       "originalRetry": {
         "inputMode": "choice",
@@ -525,9 +531,11 @@
         "acceptableAnswers": [
           "2",
           "A=콘크리트, B=쿠션 / 충격량 각 1 N·s / 평균힘 100 N, 50 N"
-        ]
-      }
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
     }
   ],
-  "featureVersion": "3.4.0-answer-editor-choice-retry"
+  "featureVersion": "3.4.4-all-retry-multiple-choice"
 }
