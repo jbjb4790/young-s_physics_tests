@@ -1,3 +1,11 @@
+# v3.4.0 정답 관리 API 업데이트
+
+기존 운영본에서는 `Code.gs`만 v3.4.0으로 교체한 뒤 웹 앱을 **새 버전**으로 재배포합니다. `appsscript.json` 권한은 바뀌지 않았고, `installYoungsPhysics()`를 다시 실행하지 않습니다. 교사용 홈페이지에서 정답을 처음 저장할 때 `QuestionOverrides` 시트가 자동 생성됩니다.
+
+추가 API: `getQuestions`, `saveQuestionAnswers`, `clearQuestionAnswerOverrides`. 정답 수정 요청은 교사 세션 인증이 필요합니다.
+
+---
+
 # Young’s Physics Apps Script 3.3.0
 
 ## v3.3.0 상위 보안 브리지

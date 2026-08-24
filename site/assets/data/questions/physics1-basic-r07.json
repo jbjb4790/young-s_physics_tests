@@ -59,7 +59,7 @@
       },
       "reviewStatus": "verified",
       "correctionNote": "",
-      "answer": "운동량 보존: 2·5+4·2=2·1+4v_B → 18=2+4v_B, v_B=4 m/s? 잠깐, 원문 그림의 초기 운동량은 2·5+4·2=18이고 충돌 후 A는 1 m/s이므로 v_B=4 m/s이다. 반발계수 e=(v_B-v_A)/(u_A-u_B)=(4-1)/(5-2)=1. 따라서 이 수치대로라면 완전 탄성이고 운동에너지 손실은 0 J이다.",
+      "answer": "운동량 보존에서 2·5+4·2=2·1+4v_B이므로 v_B=4 m/s이다. 반발계수는 e=(4-1)/(5-2)=1이며, 충돌 전후 운동에너지가 같아 에너지 손실은 0 J이다.",
       "explanation": [
         "원문 그림의 속도를 정확히 읽으면 B의 충돌 후 속도는 4 m/s이다.",
         "K_before=½·2·5²+½·4·2²=33 J, K_after=½·2·1²+½·4·4²=33 J로 같다."
@@ -91,10 +91,34 @@
         "prompt": "2 kg A가 6 m/s, 3 kg B가 2 m/s로 같은 방향 운동한다. 충돌 후 A가 2 m/s가 되었다. B의 속도, 반발계수, 운동에너지 손실을 구하시오.",
         "answer": "B=14/3 m/s, e=2/3, 에너지 16/3 J 손실",
         "explanation": "운동량: 2·6+3·2=2·2+3v_B → v_B=14/3. e=(14/3-2)/(6-2)=2/3. K_i=42 J, K_f=4+98/3=110/3 J이므로 16/3 J 손실이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "B=14/3 m/s, e=2/3, 에너지 16/3 J 손실",
           "14/3,2/3,16/3",
           "4.667,0.667,5.333"
+        ],
+        "choices": [
+          "B=28/3 m/s, e=2/3, 에너지 16/3 J 손실",
+          "B=7/3 m/s, e=2/3, 에너지 16/3 J 손실",
+          "B=14/3 m/s, e=2/3, 에너지 16/3 J 손실",
+          "B=24/3 m/s, e=2/3, 에너지 16/3 J 손실"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "B=8 m/s, e=1, 에너지 손실 0 J",
+          "B=2 m/s, e=1, 에너지 손실 0 J",
+          "B=5 m/s, e=1, 에너지 손실 0 J",
+          "B=4 m/s, e=1, 에너지 손실 0 J"
+        ],
+        "correctChoice": 4,
+        "answer": "B=4 m/s, e=1, 에너지 손실 0 J",
+        "acceptableAnswers": [
+          "4",
+          "B=4 m/s, e=1, 에너지 손실 0 J"
         ]
       }
     },
@@ -152,10 +176,34 @@
         "prompt": "정지한 물체에 0~4 m에서 힘이 0→30 N으로 선형 증가하고, 4~8 m에서 30 N으로 일정하다. 4 m와 8 m 속력의 비는?",
         "answer": "1:√3",
         "explanation": "W_4=60 J, W_8=60+120=180 J. 속력비는 √60:√180=1:√3.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
-          "1:sqrt3",
-          "1:√3"
+          "2",
+          "1:√3",
+          "1:sqrt3"
+        ],
+        "choices": [
+          "1:√2",
+          "1:√3",
+          "√2:1",
+          "√3:1"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "1:2",
+          "1:√2",
+          "√2:1",
+          "2:1"
+        ],
+        "correctChoice": 2,
+        "answer": "1:√2",
+        "acceptableAnswers": [
+          "2",
+          "1:√2",
+          "4"
         ]
       }
     },
@@ -211,11 +259,34 @@
         "prompt": "3 kg 물체가 4 m/s에서 출발해 6 N 힘을 운동 방향으로 받으며 10 m 이동하여 6 m/s가 되었다. 마찰력 크기는?",
         "answer": "3 N",
         "explanation": "ΔK=½·3(36-16)=30 J, 가한 힘의 일 60 J이므로 마찰이 한 일 -30 J, f=3 N.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "4",
+          "3 N",
           "3",
-          "3N",
+          "3N"
+        ],
+        "choices": [
+          "1.5 N",
+          "4.5 N",
+          "6 N",
           "3 N"
+        ],
+        "correctChoice": 4
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "0.1 N",
+          "0.3 N",
+          "0.4 N",
+          "0.2 N"
+        ],
+        "correctChoice": 4,
+        "answer": "0.2 N",
+        "acceptableAnswers": [
+          "4",
+          "0.2 N"
         ]
       }
     },
@@ -272,11 +343,36 @@
         "prompt": "물체를 지면에서 30 m/s로 위로 던졌다. 위치에너지가 운동에너지의 2배가 되는 지점의 속력을 구하시오.",
         "answer": "10√3 m/s",
         "explanation": "전체 에너지 ½m·900. U=2K이므로 전체=3K, K=150m. ½mv²=150m → v=10√3.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "10√3 m/s",
           "10sqrt3",
           "10√3",
           "17.32"
+        ],
+        "choices": [
+          "10 m/s",
+          "10√3 m/s",
+          "15 m/s",
+          "30 m/s"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "10 m/s",
+          "10√2 m/s",
+          "20 m/s",
+          "20√2 m/s"
+        ],
+        "correctChoice": 2,
+        "answer": "10√2 m/s",
+        "acceptableAnswers": [
+          "2",
+          "10√2 m/s",
+          "4"
         ]
       }
     },
@@ -331,11 +427,35 @@
         "prompt": "질량 4 kg 물체가 3 m/s로 움직일 때 같은 방향 5 N 힘이 8 m 동안 작용한다. 최종속력은?",
         "answer": "√29 m/s",
         "explanation": "K_i=18 J, W=40 J, K_f=58 J=2v²이므로 v²=29.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "√29 m/s",
           "sqrt29",
           "√29",
           "5.385"
+        ],
+        "choices": [
+          "√58 m/s",
+          "√14.5 m/s",
+          "√29 m/s",
+          "√39 m/s"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "6 m/s",
+          "3 m/s",
+          "9 m/s",
+          "12 m/s"
+        ],
+        "correctChoice": 1,
+        "answer": "6 m/s",
+        "acceptableAnswers": [
+          "1",
+          "6 m/s"
         ]
       }
     },
@@ -388,11 +508,34 @@
         "prompt": "질량 6 kg 상자가 3 m 간격으로 놓인 벨트가 2 m/s로 움직이며 높이 4 m까지 올린다. g=10. 필요한 이상적 일률은?",
         "answer": "160 W",
         "explanation": "질량 유량=(6/3)·2=4 kg/s, P=4·10·4=160 W.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "1",
+          "160 W",
           "160",
-          "160W",
-          "160 W"
+          "160W"
+        ],
+        "choices": [
+          "160 W",
+          "80 W",
+          "240 W",
+          "320 W"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "200 W",
+          "600 W",
+          "800 W",
+          "400 W"
+        ],
+        "correctChoice": 4,
+        "answer": "400 W",
+        "acceptableAnswers": [
+          "4",
+          "400 W"
         ]
       }
     },
@@ -452,11 +595,36 @@
         "prompt": "질량 20 kg 상자를 수평면과 37° 위 방향으로 100 N 당겨 5 m 이동시킨다. sin37=0.6, cos37=0.8, μ_k=0.2, g=10. 힘의 일, N, 마찰의 일, 알짜일을 구하시오.",
         "answer": "400 J, 140 N, -140 J, 260 J",
         "explanation": "W_F=100·5·0.8=400. N=200-60=140. f=28 N, W_f=-140. W_net=260 J.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "1",
+          "400 J, 140 N, -140 J, 260 J",
           "400,140,-140,260"
+        ],
+        "choices": [
+          "400 J, 140 N, -140 J, 260 J",
+          "800 J, 140 N, -140 J, 260 J",
+          "200 J, 140 N, -140 J, 260 J",
+          "410 J, 140 N, -140 J, 260 J"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "700 J, 100 N, -100 J, 600 J",
+          "500√2 J, 30 N, -30 J, 500√2-30 J",
+          "700 J, 30 N, +30 J, 730 J",
+          "700 J, 30 N, -30 J, 670 J"
+        ],
+        "correctChoice": 4,
+        "answer": "700 J, 30 N, -30 J, 670 J",
+        "acceptableAnswers": [
+          "4",
+          "700 J, 30 N, -30 J, 670 J"
         ]
       }
     }
-  ]
+  ],
+  "featureVersion": "3.4.0-answer-editor-choice-retry"
 }

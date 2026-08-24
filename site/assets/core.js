@@ -14,6 +14,34 @@
  YP.normalizeIdentity=s=>String(s??"").trim().toLowerCase().replace(/\s+/g,"").replace(/[()\[\]{}\-_.]/g,"");
  YP.normalizeSchool=s=>{const v=String(s??"").trim();return !v||v==="미입력"||v==="미기입"?"미기입":v};
  YP.studentKey=(courseId,school,name)=>[courseId,YP.normalizeIdentity(YP.normalizeSchool(school)),YP.normalizeIdentity(name)].join("|");
+ YP.safeJSON=function(value,fallback){if(value&&typeof value==="object")return value;try{return JSON.parse(String(value||""))}catch(e){return fallback}};
+ YP.clone=function(value){return value==null?value:JSON.parse(JSON.stringify(value))};
+ /** Google Sheets Questions 행을 정적 카탈로그 문항 형식으로 변환한다. 빈 JSON은 정적 기본값을 보존한다. */
+ YP.questionRowToClient=function(row,fallback={}){
+   if(!row||typeof row!=="object")return YP.clone(fallback);
+   const answer=YP.safeJSON(row.AnswerJSON,{}),rubric=YP.safeJSON(row.RubricJSON,null),explain=YP.safeJSON(row.ExplanationJSON,{}),original=YP.safeJSON(row.OriginalRetryJSON,null),similar=YP.safeJSON(row.SimilarProblemJSON,null),image=YP.safeJSON(row.ImageJSON,null);
+   const q={...YP.clone(fallback)};
+   const number=Number(row.QuestionNo??row.no);if(Number.isFinite(number)&&number>0)q.no=number;
+   if(row.Type)q.type=String(row.Type);if(row.InputMode)q.inputMode=String(row.InputMode);
+   if(row.MaxPoints!==""&&row.MaxPoints!=null&&Number.isFinite(Number(row.MaxPoints)))q.maxPoints=Number(row.MaxPoints);
+   if(row.Unit)q.unit=String(row.Unit);if(row.Topic)q.topic=String(row.Topic);if(row.Difficulty)q.difficulty=String(row.Difficulty);
+   if(answer&&Object.keys(answer).length){if(answer.display!==undefined)q.answer=answer.display;if(answer.answerKey!==undefined&&answer.answerKey!==null&&answer.answerKey!=="")q.answerKey=Number(answer.answerKey);if(Array.isArray(answer.acceptableAnswers))q.acceptableAnswers=answer.acceptableAnswers}
+   if(Array.isArray(rubric))q.rubric=rubric;
+   if(explain&&Object.keys(explain).length){if(Array.isArray(explain.steps))q.explanation=explain.steps;if(Array.isArray(explain.formulas))q.formulas=explain.formulas;if(Array.isArray(explain.commonMistakes))q.commonMistakes=explain.commonMistakes}
+   if(original&&Object.keys(original).length)q.originalRetry=original;
+   if(similar&&Object.keys(similar).length)q.similarProblem=similar;
+   if(image&&Object.keys(image).length)q.image=image;
+   if(row.ReviewStatus)q.reviewStatus=String(row.ReviewStatus);if(row.CorrectionNote!==undefined&&row.CorrectionNote!=="")q.correctionNote=String(row.CorrectionNote);
+   if(row.OverrideUpdatedAt)q.answerOverrideUpdatedAt=String(row.OverrideUpdatedAt);
+   return q;
+ };
+ YP.mergeExamQuestions=function(exam,rows){
+   const out=YP.clone(exam);if(!out||!Array.isArray(out.questions)||!Array.isArray(rows)||!rows.length)return out;
+   const byNo=new Map(rows.map(r=>[Number(r.QuestionNo??r.no),r]));
+   out.questions=out.questions.map(q=>YP.questionRowToClient(byNo.get(Number(q.no)),q));
+   out.questionCount=out.questions.length;out.maxScore=out.questions.reduce((a,q)=>a+Number(q.maxPoints||0),0);return out;
+ };
+ YP.checkChoiceAnswer=function(input,config){const value=Number(String(input??"").trim()),correct=Number(config?.correctChoice||config?.answer||0);return Number.isFinite(value)&&Number.isFinite(correct)&&value>0&&correct>0?value===correct:null};
 
  YP.parseScoreInput=function(raw,maxPoints,partialMode=false){
    const original=raw==null?"":String(raw),value=original.trim();
@@ -83,7 +111,7 @@
  };
 
  YP.normalizeAnswer=s=>String(s??"").toLowerCase().replace(/\s+/g,"").replace(/[㎨²^]/g,"").replace(/m\/s2|m\/s²/g,"").replace(/n|j|w|kg|m\/s|cm|m|s/g,"");
- YP.checkSimilarAnswer=function(input,similar){if(!similar?.acceptableAnswers?.length)return {mode:"self",correct:null};const n=YP.normalizeAnswer(input);return {mode:"auto",correct:similar.acceptableAnswers.some(a=>{const x=YP.normalizeAnswer(a);return x&&n&&(x===n||n.includes(x)||x.includes(n))})}};
+ YP.checkSimilarAnswer=function(input,similar){if(similar?.inputMode==="choice"&&similar?.correctChoice)return {mode:"choice",correct:YP.checkChoiceAnswer(input,similar)};if(!similar?.acceptableAnswers?.length)return {mode:"self",correct:null};const n=YP.normalizeAnswer(input);return {mode:"auto",correct:similar.acceptableAnswers.some(a=>{const x=YP.normalizeAnswer(a);return x&&n&&(x===n||n.includes(x)||x.includes(n))})}};
  YP.loadImage=src=>new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=src});
  YP.drawQuestionCrop=async function(canvas,exam,q,maxWidth=1000){const src=exam.pages[q.image.page-1];if(!src)throw new Error(`문항 ${q.no} 페이지 이미지가 없습니다.`);const img=await YP.loadImage(src),[x,y,w,h]=q.image.crop,scale=Math.min(1,maxWidth/w);canvas.width=Math.round(w*scale);canvas.height=Math.round(h*scale);canvas.getContext("2d").drawImage(img,x,y,w,h,0,0,canvas.width,canvas.height);return canvas};
  YP.cropDataURL=async function(exam,q,scale=1){const src=exam.pages[q.image.page-1];if(!src)throw new Error(`문항 ${q.no} 페이지 이미지가 없습니다.`);const img=await YP.loadImage(src),[x,y,w,h]=q.image.crop,c=document.createElement("canvas");c.width=Math.round(w*scale);c.height=Math.round(h*scale);c.getContext("2d").drawImage(img,x,y,w,h,0,0,c.width,c.height);return c.toDataURL("image/png")};

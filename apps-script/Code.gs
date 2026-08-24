@@ -20,6 +20,7 @@ const SHEETS = {
   COURSES: "Courses",
   EXAMS: "Exams",
   QUESTIONS: "Questions",
+  QUESTION_OVERRIDES: "QuestionOverrides",
   REPORTS: "Reports"
 };
 
@@ -27,6 +28,7 @@ const HEADERS = {
   Courses: ["CourseId","CourseName","Active"],
   Exams: ["ExamId","CourseId","Round","Title","ShortTitle","AssessmentType","Section","ExamDate","QuestionCount","MaxScore","ExamPDF","SolutionPDF","ReviewStatus","ConfigVersion","Status","PagesJSON","CoreNoteJSON","InputProfileJSON","HistoryExamIdsJSON","HistoryLabel","SourceTitle","SourceNote","DisplayOrder"],
   Questions: ["ExamId","QuestionNo","Type","InputMode","MaxPoints","Unit","Topic","Difficulty","AnswerJSON","RubricJSON","ExplanationJSON","OriginalRetryJSON","SimilarProblemJSON","ReviewStatus","CorrectionNote","ImageJSON"],
+  QuestionOverrides: ["ExamId","QuestionNo","AnswerJSON","OriginalRetryJSON","SimilarProblemJSON","RevisionNote","UpdatedAt"],
   Reports: ["Token","Fingerprint","IdentitySeed","IdentityDigest","StudentKey","ExamId","CourseId","School","Name","Grade","ClassNo","ResultInputsJSON","PartialModesJSON","ScoringJSON","RecordJSON","CreatedAt","UpdatedAt"]
 };
 
@@ -472,11 +474,15 @@ function dispatchApiRequest_(body) {
     case "getExam":
       return {ok:true, exam:getRowBy_(SHEETS.EXAMS,"ExamId",String(body.examId || ""))};
     case "getQuestions":
-      return {ok:true, questions:getQuestionRows_(String(body.examId || ""))};
+      assertTeacherAuth_(body); return {ok:true, questions:getQuestionRows_(String(body.examId || ""))};
     case "saveExam":
       assertTeacherAuth_(body); return {ok:true, exam:saveExam_(body.exam || {})};
     case "saveQuestions":
       assertTeacherAuth_(body); return {ok:true, count:saveQuestions_(String(body.examId || ""), body.questions || [])};
+    case "saveQuestionAnswers":
+      assertTeacherAuth_(body); return saveQuestionAnswers_(String(body.examId || ""), body.questions || [], String(body.revisionNote || ""));
+    case "clearQuestionAnswerOverrides":
+      assertTeacherAuth_(body); return clearQuestionAnswerOverrides_(String(body.examId || ""), body.questionNos || []);
     case "syncCatalog":
       assertTeacherAuth_(body); return syncCatalog_(body.catalog || {});
     case "saveReport":
@@ -1078,7 +1084,7 @@ function syncCatalog_(catalog) {
   catalog.exams.forEach(function(ex){
     examRows.push([ex.examId,ex.courseId,ex.round,ex.title,ex.shortTitle||"",ex.assessmentType||"weekly",ex.section||"",ex.examDate||"",ex.questionCount||0,ex.maxScore||0,ex.pdf||"",ex.solutionPdf||"",ex.reviewStatus||"",ex.configVersion||"",ex.status||"",JSON.stringify(ex.pages||[]),JSON.stringify(ex.coreNote||{}),JSON.stringify(ex.inputProfile||{}),JSON.stringify(ex.historyExamIds||[]),ex.historyLabel||"",ex.sourceTitle||"",ex.sourceNote||"",ex.displayOrder||""]);
     (ex.questions||[]).forEach(function(q){
-      questionRows.push([ex.examId,q.no,q.type,q.inputMode||"achievement",q.maxPoints,q.unit,q.topic,q.difficulty,JSON.stringify({display:q.answer,answerKey:q.answerKey}),JSON.stringify(q.rubric||[]),JSON.stringify({steps:q.explanation||[],formulas:q.formulas||[],commonMistakes:q.commonMistakes||[]}),JSON.stringify(q.originalRetry||{}),JSON.stringify(q.similarProblem||{}),q.reviewStatus||"",q.correctionNote||"",JSON.stringify(q.image||{})]);
+      questionRows.push([ex.examId,q.no,q.type,q.inputMode||"achievement",q.maxPoints,q.unit,q.topic,q.difficulty,JSON.stringify({display:q.answer,answerKey:q.answerKey,acceptableAnswers:q.acceptableAnswers||[]}),JSON.stringify(q.rubric||[]),JSON.stringify({steps:q.explanation||[],formulas:q.formulas||[],commonMistakes:q.commonMistakes||[]}),JSON.stringify(q.originalRetry||{}),JSON.stringify(q.similarProblem||{}),q.reviewStatus||"",q.correctionNote||"",JSON.stringify(q.image||{})]);
     });
   });
   replaceData_(SHEETS.EXAMS,examRows);
@@ -1106,13 +1112,123 @@ function saveQuestions_(examId,questions) {
     const ids=sh.getRange(2,1,sh.getLastRow()-1,1).getValues().flat();
     for(let i=ids.length-1;i>=0;i--) if(String(ids[i])===examId) sh.deleteRow(i+2);
   }
-  const rows=(questions||[]).map(q=>[examId,q.no,q.type,q.inputMode||"achievement",q.maxPoints,q.unit,q.topic,q.difficulty,JSON.stringify({display:q.answer,answerKey:q.answerKey}),JSON.stringify(q.rubric||[]),JSON.stringify({steps:q.explanation||[],formulas:q.formulas||[],commonMistakes:q.commonMistakes||[]}),JSON.stringify(q.originalRetry||{}),JSON.stringify(q.similarProblem||{}),q.reviewStatus||"",q.correctionNote||"",JSON.stringify(q.image||{})]);
+  const rows=(questions||[]).map(q=>[examId,q.no,q.type,q.inputMode||"achievement",q.maxPoints,q.unit,q.topic,q.difficulty,JSON.stringify({display:q.answer,answerKey:q.answerKey,acceptableAnswers:q.acceptableAnswers||[]}),JSON.stringify(q.rubric||[]),JSON.stringify({steps:q.explanation||[],formulas:q.formulas||[],commonMistakes:q.commonMistakes||[]}),JSON.stringify(q.originalRetry||{}),JSON.stringify(q.similarProblem||{}),q.reviewStatus||"",q.correctionNote||"",JSON.stringify(q.image||{})]);
   if(rows.length) sh.getRange(sh.getLastRow()+1,1,rows.length,headers.length).setValues(rows);
   return rows.length;
 }
 
+function getBaseQuestionRows_(examId) {
+  return listRows_(SHEETS.QUESTIONS)
+    .filter(function(r){return String(r.ExamId)===String(examId);})
+    .sort(function(a,b){return Number(a.QuestionNo)-Number(b.QuestionNo);});
+}
+
+function getQuestionOverrideRows_(examId) {
+  return listRows_(SHEETS.QUESTION_OVERRIDES)
+    .filter(function(r){return String(r.ExamId)===String(examId);})
+    .sort(function(a,b){return Number(a.QuestionNo)-Number(b.QuestionNo);});
+}
+
+/**
+ * Questions 시트는 배포 카탈로그의 검수 원본이고 QuestionOverrides 시트는
+ * 홈페이지에서 교사가 수정한 정답·보기만 보존한다. 카탈로그를 다시 동기화해도
+ * 운영 중 수정값이 사라지지 않도록 조회 시 두 시트를 합친다.
+ */
 function getQuestionRows_(examId) {
-  return listRows_(SHEETS.QUESTIONS).filter(r=>String(r.ExamId)===String(examId)).sort((a,b)=>Number(a.QuestionNo)-Number(b.QuestionNo));
+  const base=getBaseQuestionRows_(examId);
+  if(!base.length)return [];
+  const overrideMap={};
+  getQuestionOverrideRows_(examId).forEach(function(row){overrideMap[String(Number(row.QuestionNo))]=row;});
+  return base.map(function(row){
+    const override=overrideMap[String(Number(row.QuestionNo))];
+    if(!override)return row;
+    const merged=Object.assign({},row);
+    ["AnswerJSON","OriginalRetryJSON","SimilarProblemJSON"].forEach(function(key){
+      if(String(override[key]||"").trim()!=="")merged[key]=override[key];
+    });
+    merged.OverrideUpdatedAt=override.UpdatedAt||"";
+    merged.OverrideRevisionNote=override.RevisionNote||"";
+    return merged;
+  });
+}
+
+function validateChoiceConfig_(config,label) {
+  const value=config&&typeof config==="object"?config:{};
+  const choices=(value.choices||[]).map(function(x){return String(x==null?"":x).trim();}).filter(function(x){return x!=="";});
+  if(choices.length<2||choices.length>6)throwApiError_("ANSWER_CHOICES_INVALID",label+" 보기는 2~6개여야 합니다.");
+  const normalized=choices.map(function(x){return x.replace(/\s+/g," ").toLowerCase();});
+  if(new Set(normalized).size!==normalized.length)throwApiError_("ANSWER_CHOICES_DUPLICATE",label+" 보기에는 같은 내용이 중복될 수 없습니다.");
+  const correctChoice=Number(value.correctChoice||value.answer||0);
+  if(!Number.isInteger(correctChoice)||correctChoice<1||correctChoice>choices.length)throwApiError_("ANSWER_CORRECT_CHOICE_INVALID",label+" 정답 보기 번호가 유효하지 않습니다.");
+  return Object.assign({},value,{inputMode:"choice",choices:choices,correctChoice:correctChoice,answer:choices[correctChoice-1],acceptableAnswers:[String(correctChoice),choices[correctChoice-1]]});
+}
+
+function upsertQuestionOverride_(obj) {
+  const sh=getSheet_(SHEETS.QUESTION_OVERRIDES),headers=HEADERS.QuestionOverrides;
+  const examId=String(obj.ExamId||""),questionNo=Number(obj.QuestionNo);
+  let rowNumber=0;
+  if(sh.getLastRow()>=2){
+    const rows=sh.getRange(2,1,sh.getLastRow()-1,2).getValues();
+    for(let i=0;i<rows.length;i++){
+      if(String(rows[i][0])===examId&&Number(rows[i][1])===questionNo){rowNumber=i+2;break;}
+    }
+  }
+  const row=headers.map(function(h){return obj[h]===undefined?"":obj[h];});
+  if(rowNumber)sh.getRange(rowNumber,1,1,headers.length).setValues([row]);
+  else{rowNumber=sh.getLastRow()+1;sh.getRange(rowNumber,1,1,headers.length).setValues([row]);}
+  return rowNumber;
+}
+
+/** 홈페이지 정답 관리 화면에서 수정한 정답·재도전 보기·동형 문제 보기를 저장한다. */
+function saveQuestionAnswers_(examId,questions,revisionNote) {
+  examId=String(examId||"").trim();
+  if(!examId)throwApiError_("EXAM_ID_REQUIRED","examId가 필요합니다.");
+  if(!Array.isArray(questions)||!questions.length)throwApiError_("QUESTION_ANSWERS_REQUIRED","저장할 문항 정답이 없습니다.");
+  const baseRows=getBaseQuestionRows_(examId);
+  if(!baseRows.length)throwApiError_("QUESTIONS_NOT_FOUND","시험 문항을 찾을 수 없습니다. 시험 설정 서버 동기화를 먼저 실행하세요.");
+  const baseMap={};baseRows.forEach(function(row){baseMap[String(Number(row.QuestionNo))]=row;});
+  const now=new Date();
+  const saved=[];
+  questions.forEach(function(item){
+    const no=Number(item&&item.no);
+    if(!Number.isInteger(no)||no<1||!baseMap[String(no)])throwApiError_("QUESTION_NO_INVALID","등록되지 않은 문항 번호가 포함되어 있습니다: "+String(item&&item.no));
+    const display=String(item.answer==null?"":item.answer).trim();
+    if(!display)throwApiError_("ANSWER_REQUIRED",no+"번 공식 정답을 입력하세요.");
+    const baseAnswer=safeJson_(baseMap[String(no)].AnswerJSON,{});
+    const rawAnswerKey=item.answerKey===undefined||item.answerKey===null||item.answerKey===""?baseAnswer.answerKey:Number(item.answerKey);
+    if(rawAnswerKey!==undefined&&rawAnswerKey!==null&&rawAnswerKey!==""&&(!Number.isInteger(Number(rawAnswerKey))||Number(rawAnswerKey)<1||Number(rawAnswerKey)>5)){
+      throwApiError_("ANSWER_KEY_INVALID",no+"번 객관식 정답 번호는 1~5여야 합니다.");
+    }
+    const originalRetry=validateChoiceConfig_(item.originalRetry,no+"번 원문 재도전");
+    const similarProblem=validateChoiceConfig_(item.similarProblem,no+"번 동형 문제");
+    const acceptable=Array.isArray(item.acceptableAnswers)?item.acceptableAnswers:baseAnswer.acceptableAnswers||[];
+    const answerJson={display:display,answerKey:rawAnswerKey===""?null:rawAnswerKey,acceptableAnswers:acceptable};
+    const obj={
+      ExamId:examId,
+      QuestionNo:no,
+      AnswerJSON:JSON.stringify(answerJson),
+      OriginalRetryJSON:JSON.stringify(originalRetry),
+      SimilarProblemJSON:JSON.stringify(similarProblem),
+      RevisionNote:String(item.revisionNote||revisionNote||"").trim(),
+      UpdatedAt:now
+    };
+    upsertQuestionOverride_(obj);saved.push(no);
+  });
+  return {ok:true,examId:examId,count:saved.length,questionNos:saved,questions:getQuestionRows_(examId),updatedAt:now.toISOString()};
+}
+
+function clearQuestionAnswerOverrides_(examId,questionNos) {
+  examId=String(examId||"").trim();
+  if(!examId)throwApiError_("EXAM_ID_REQUIRED","examId가 필요합니다.");
+  const selected=new Set((Array.isArray(questionNos)?questionNos:[]).map(Number).filter(function(n){return Number.isInteger(n)&&n>0;}));
+  const sh=getSheet_(SHEETS.QUESTION_OVERRIDES);let deleted=0;
+  if(sh.getLastRow()>=2){
+    const rows=sh.getRange(2,1,sh.getLastRow()-1,2).getValues();
+    for(let i=rows.length-1;i>=0;i--){
+      if(String(rows[i][0])===examId&&(!selected.size||selected.has(Number(rows[i][1])))){sh.deleteRow(i+2);deleted++;}
+    }
+  }
+  return {ok:true,examId:examId,deleted:deleted,questions:getQuestionRows_(examId)};
 }
 
 function parseScore_(raw,maxPoints,partialMode,inputMode) {
@@ -1377,7 +1493,7 @@ function getReport_(token,fp) {
   const exam=getRowBy_(SHEETS.EXAMS,"ExamId",record.examId);if(!exam)throwApiError_("EXAM_NOT_FOUND","연결된 시험 설정을 찾을 수 없습니다.");
   record.maxScore=Number(record.maxScore||exam.MaxScore||0);record.percent=record.maxScore?record.score/record.maxScore*100:0;
   record.counts={full:0,partial:0,wrong:0,ungraded:0};scoring.forEach(x=>record.counts[x.status]=(record.counts[x.status]||0)+1);
-  return {ok:true,record:record,stats:getExamStats_(record.examId),historyRecords:getLinkedHistoryRecords_(record),serverInstanceId:getServerInstanceId_(),lookupMode:found.lookupMode,integrity:{tokenMatch:true,fingerprintMatch:true,identityMatch:true}};
+  return {ok:true,record:record,stats:getExamStats_(record.examId),historyRecords:getLinkedHistoryRecords_(record),questions:getQuestionRows_(record.examId),serverInstanceId:getServerInstanceId_(),lookupMode:found.lookupMode,integrity:{tokenMatch:true,fingerprintMatch:true,identityMatch:true}};
 }
 
 function listReports_(filter) {

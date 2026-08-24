@@ -89,12 +89,38 @@
       ],
       "similarProblem": {
         "prompt": "세 물체 P,Q,R의 v-t 그래프가 (0,0)과 (4 s,16 m/s)를 잇는다. P는 직선 아래, Q는 직선, R은 직선 위에 놓인다. 4초 순간속도·평균속도·평균가속도를 비교하시오.",
-        "answer": "순간속도 P=Q=R, 평균속도 R>Q>P, 평균가속도 P=Q=R",
+        "answer": "순간 P=Q=R, 평균 R>Q>P, 평균가속도 P=Q=R",
         "explanation": "끝점의 세로값과 속도 변화량은 같고, 평균속도만 그래프 아래 넓이에 따라 달라진다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "순간 P=Q=R, 평균 R>Q>P, 평균가속도 P=Q=R",
+          "4",
+          "순간속도 P=Q=R, 평균속도 R>Q>P, 평균가속도 P=Q=R",
           "P=Q=R, R>Q>P, P=Q=R",
           "순간 같음 평균 R>Q>P 가속도 같음"
+        ],
+        "choices": [
+          "순간 P>Q>R, 평균 P=Q=R, 평균가속도 R>Q>P",
+          "순간 P=Q=R, 평균 R>Q>P, 평균가속도 P=Q=R",
+          "순간 R>Q>P, 평균 R>Q>P, 평균가속도 P=Q=R",
+          "순간 P=Q=R, 평균 P=Q=R, 평균가속도 R>Q>P"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "순간속도 A>B>C, 평균속도 A=B=C, 평균가속도 C>B>A",
+          "순간속도 A=B=C, 평균속도 A>B>C, 평균가속도 A=B=C",
+          "순간속도 A=B=C, 평균속도 C>B>A, 평균가속도 A=B=C",
+          "순간속도 C>B>A, 평균속도 C>B>A, 평균가속도 C>B>A"
+        ],
+        "correctChoice": 3,
+        "answer": "순간속도 A=B=C, 평균속도 C>B>A, 평균가속도 A=B=C",
+        "acceptableAnswers": [
+          "3",
+          "순간속도 A=B=C, 평균속도 C>B>A, 평균가속도 A=B=C"
         ]
       }
     },
@@ -147,10 +173,34 @@
         "prompt": "정사각형 중심에서 오른쪽을 E, 위를 N, 오른쪽 위 대각선을 NE, 오른쪽 아래 대각선을 SE라 하자. ① NE+W ② NE-SE ③ N+E-NE를 구하시오. 단, 대각선 벡터의 각 성분은 축 벡터 1개와 같다.",
         "answer": "① N ② 2N ③ 0벡터",
         "explanation": "NE=(1,1), W=(-1,0), SE=(1,-1), N=(0,1), E=(1,0)로 두고 성분별로 계산한다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "4",
+          "① N ② 2N ③ 0벡터",
           "N,2N,0",
           "위, 위의 2배, 0"
+        ],
+        "choices": [
+          "① N ② 2N ③ 1벡터",
+          "① N ② 2N ③ -1벡터",
+          "① N ② 2N ③ 2벡터",
+          "① N ② 2N ③ 0벡터"
+        ],
+        "correctChoice": 4
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "① E, ② C, ③ C",
+          "① C, ② C, ③ E",
+          "① C, ② 2C, ③ 0벡터",
+          "① 0벡터, ② 2E, ③ C"
+        ],
+        "correctChoice": 3,
+        "answer": "① C, ② 2C, ③ 0벡터",
+        "acceptableAnswers": [
+          "3",
+          "① C, ② 2C, ③ 0벡터"
         ]
       }
     },
@@ -207,11 +257,35 @@
         "prompt": "북쪽으로 6 m/s로 달리는 사람에게 서풍이 8 m/s로 분다. 사람이 느끼는 바람의 속력과 진행 방향을 구하시오.",
         "answer": "10 m/s, 남동쪽",
         "explanation": "서풍의 공기 속도는 동쪽 8 m/s이다. 상대속도=(8,0)-(0,6)=(8,-6)이므로 크기는 10 m/s, 흐름 방향은 남동쪽이다(북서쪽에서 불어오는 바람).",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "4",
+          "10 m/s, 남동쪽",
           "10 남동",
           "10m/s 남동쪽",
           "남동쪽 10"
+        ],
+        "choices": [
+          "5 m/s, 남동쪽",
+          "15 m/s, 남동쪽",
+          "20 m/s, 남동쪽",
+          "10 m/s, 남동쪽"
+        ],
+        "correctChoice": 4
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "20√2 m/s, 북서쪽",
+          "10√2 m/s, 북서쪽",
+          "5√2 m/s, 북서쪽",
+          "10√2 m/s, 남동쪽"
+        ],
+        "correctChoice": 2,
+        "answer": "10√2 m/s, 북서쪽",
+        "acceptableAnswers": [
+          "2",
+          "10√2 m/s, 북서쪽"
         ]
       }
     },
@@ -261,10 +335,34 @@
         "prompt": "50 Hz 시간기록계에서 5타점 간격의 이동 거리가 차례로 3 cm, 5 cm, 7 cm였다. 첫 구간 시작부터 셋째 구간 끝까지 평균속도와 평균가속도를 구하시오.",
         "answer": "평균속도 0.50 m/s, 평균가속도 2.0 m/s²",
         "explanation": "총 15 cm를 0.30 s에 이동해 평균속도는 0.50 m/s이다. 구간 속도는 0.30,0.50,0.70 m/s이고 첫·셋째 구간 중심 시각 차 0.20 s이므로 가속도는 2.0 m/s²이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "평균속도 0.50 m/s, 평균가속도 2.0 m/s²",
           "0.5,2",
           "0.50 m/s, 2.0 m/s²"
+        ],
+        "choices": [
+          "평균속도 1 m/s, 평균가속도 2.0 m/s²",
+          "평균속도 0.50 m/s, 평균가속도 2.0 m/s²",
+          "평균속도 0.25 m/s, 평균가속도 2.0 m/s²",
+          "평균속도 1.5 m/s, 평균가속도 2.0 m/s²"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "평균속도 0.40 m/s, 평균가속도 2.0 m/s²",
+          "평균속도 0.8 m/s, 평균가속도 2.0 m/s²",
+          "평균속도 0.2 m/s, 평균가속도 2.0 m/s²",
+          "평균속도 1.4 m/s, 평균가속도 2.0 m/s²"
+        ],
+        "correctChoice": 1,
+        "answer": "평균속도 0.40 m/s, 평균가속도 2.0 m/s²",
+        "acceptableAnswers": [
+          "1",
+          "평균속도 0.40 m/s, 평균가속도 2.0 m/s²"
         ]
       }
     },
@@ -322,10 +420,34 @@
         "prompt": "처음속도 6 m/s인 물체가 a=-3 m/s²로 0~4 s 동안 운동한다. ① 정지 시각 ② 속도와 가속도의 방향이 같은 구간 ③ 원점으로부터 최대 변위를 구하시오.",
         "answer": "① 2 s ② 2<t≤4 s ③ 6 m",
         "explanation": "v=6-3t이므로 2 s에 0이다. 이후 v와 a가 모두 음수이다. x=6t-1.5t²의 최대는 t=2 s에서 6 m이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "① 2 s ② 2<t≤4 s ③ 6 m",
           "2, 2<t<=4, 6",
           "2s,2~4s,6m"
+        ],
+        "choices": [
+          "① 4 s ② 2<t≤4 s ③ 6 m",
+          "① 2 s ② 2<t≤4 s ③ 6 m",
+          "① 1 s ② 2<t≤4 s ③ 6 m",
+          "① 3 s ② 2<t≤4 s ③ 6 m"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "a=-4 m/s², 정지 1 s, 같은 방향 1<t≤3 s, 최대변위 2 m",
+          "a=-1 m/s², 정지 4 s, 같은 방향 없음, 최대변위 8 m",
+          "a=-2 m/s², 정지 2 s, 같은 방향 2<t≤3 s, 최대변위 4 m",
+          "a=+2 m/s², 정지 2 s, 같은 방향 0≤t<2 s, 최대변위 6 m"
+        ],
+        "correctChoice": 3,
+        "answer": "a=-2 m/s², 정지 2 s, 같은 방향 2<t≤3 s, 최대변위 4 m",
+        "acceptableAnswers": [
+          "3",
+          "a=-2 m/s², 정지 2 s, 같은 방향 2<t≤3 s, 최대변위 4 m"
         ]
       }
     },
@@ -379,10 +501,34 @@
         "prompt": "정지한 열차가 일정한 가속도로 움직인다. 속도가 8 m/s인 순간부터 48 m를 더 간 뒤 16 m/s가 되었다. 가속도와 8 m/s가 될 때까지의 시간·거리를 구하시오.",
         "answer": "a=2 m/s², 시간 4 s, 거리 16 m",
         "explanation": "16²-8²=2a·48에서 a=2이다. 정지에서 8 m/s까지 t=4 s, s=½·2·4²=16 m이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "a=2 m/s², 시간 4 s, 거리 16 m",
           "2,4,16",
           "2m/s2,4s,16m"
+        ],
+        "choices": [
+          "a=4 m/s², 시간 4 s, 거리 16 m",
+          "a=1 m/s², 시간 4 s, 거리 16 m",
+          "a=2 m/s², 시간 4 s, 거리 16 m",
+          "a=3 m/s², 시간 4 s, 거리 16 m"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "a=20 m/s², 시간 0.5 s, 거리 2.5 m",
+          "a=5 m/s², 시간 2 s, 거리 10 m",
+          "a=10 m/s², 시간 1 s, 거리 5 m",
+          "a=8 m/s², 시간 1.25 s, 거리 6.25 m"
+        ],
+        "correctChoice": 3,
+        "answer": "a=10 m/s², 시간 1 s, 거리 5 m",
+        "acceptableAnswers": [
+          "3",
+          "a=10 m/s², 시간 1 s, 거리 5 m"
         ]
       }
     },
@@ -440,14 +586,37 @@
       ],
       "similarProblem": {
         "prompt": "물체의 s-t 그래프가 처음에는 증가하되 기울기가 줄어들어 t=3 s에 최대가 되고, 이후 감소하며 기울기의 절댓값이 커진다. v의 부호와 운동 상태를 서술하시오.",
-        "answer": "0~3 s에는 v>0이며 감속, 3 s에 v=0, 이후 v<0이며 반대 방향으로 가속된다.",
+        "answer": "0~3 s에는 v>0이고 속력이 감소하며, 3 s에 v=0, 이후 v<0이고 속력이 증가한다.",
         "explanation": "위치 그래프의 기울기 부호가 운동 방향을, 기울기 절댓값이 속력을 나타낸다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
-          "v>0, v=0, v<0",
-          "정방향 감속 정지 역방향 가속"
+          "3",
+          "0~3 s에는 v>0이고 속력이 감소하며, 3 s에 v=0, 이후 v<0이고 속력이 증가한다."
+        ],
+        "choices": [
+          "0~3 s에는 v<0이고 속력이 감소하며, 3 s에 v=0, 이후 v>0이고 속력이 증가한다.",
+          "전 구간에서 v>0이며, 3 s 전후로 같은 방향의 등속운동을 한다.",
+          "0~3 s에는 v>0이고 속력이 감소하며, 3 s에 v=0, 이후 v<0이고 속력이 증가한다.",
+          "0~3 s에는 v>0이고 속력이 증가하며, 3 s에도 v>0, 이후 v<0이고 속력이 감소한다."
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "처음 v<0이며 감속 → 최고점 v=0 → 이후 v>0",
+          "처음 v>0이며 감속 → 최고점 v=0 → 이후 v<0이며 반대 방향 운동",
+          "전 구간 v>0이며 등속운동",
+          "최고점에서도 v>0이며 이후 같은 방향으로 가속"
+        ],
+        "correctChoice": 2,
+        "answer": "처음 v>0이며 감속 → 최고점 v=0 → 이후 v<0이며 반대 방향 운동",
+        "acceptableAnswers": [
+          "2",
+          "처음 v>0이며 감속 → 최고점 v=0 → 이후 v<0이며 반대 방향 운동"
         ]
       }
     }
-  ]
+  ],
+  "featureVersion": "3.4.0-answer-editor-choice-retry"
 }

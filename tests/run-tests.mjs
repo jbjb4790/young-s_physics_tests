@@ -434,3 +434,111 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
   assert.doesNotMatch(src,/normalizeBridgeOrigin_\(/);
   assert.match(src,/normalizeBridgeOriginInput_\(rawOrigin\)/);
 });
+
+// v3.4.0 answer-key editor and choice-based retry learning
+
+test("v3.4.0 정답 관리·보기 선택 기능 버전",()=>{
+  assert.equal(catalog.featureVersion,"3.4.0-answer-editor-choice-retry");
+  assert.equal(JSON.parse(read("package.json")).version,"3.4.0");
+});
+
+test("준비 완료 108문항의 원문 재도전은 모두 보기 선택 방식",()=>{
+  const readyQuestions=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]);
+  assert.equal(readyQuestions.length,108);
+  readyQuestions.forEach(q=>{
+    const r=q.originalRetry||{};
+    assert.equal(r.inputMode,"choice",`원문 ${q.no}`);
+    assert.ok(Array.isArray(r.choices)&&r.choices.length>=2&&r.choices.length<=6,`원문 ${q.no}`);
+    assert.ok(Number.isInteger(Number(r.correctChoice))&&Number(r.correctChoice)>=1&&Number(r.correctChoice)<=r.choices.length,`원문 ${q.no}`);
+    assert.equal(new Set(r.choices.map(x=>String(x).trim().toLowerCase())).size,r.choices.length,`원문 보기 중복 ${q.no}`);
+  });
+});
+
+test("준비 완료 108문항의 동형 문제도 모두 보기 선택 방식",()=>{
+  const readyQuestions=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]);
+  readyQuestions.forEach(q=>{
+    const r=q.similarProblem||{};
+    assert.equal(r.inputMode,"choice",`동형 ${q.no}`);
+    assert.ok(Array.isArray(r.choices)&&r.choices.length>=2&&r.choices.length<=6,`동형 ${q.no}`);
+    assert.ok(Number.isInteger(Number(r.correctChoice))&&Number(r.correctChoice)>=1&&Number(r.correctChoice)<=r.choices.length,`동형 ${q.no}`);
+    assert.equal(new Set(r.choices.map(x=>String(x).trim().toLowerCase())).size,r.choices.length,`동형 보기 중복 ${q.no}`);
+  });
+});
+
+test("기존 문자열 입력 대상 68문항도 자유 입력 없이 정답 보기 선택",()=>{
+  const qs=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).filter(q=>q.type!=="objective"||q.answerKey==null);
+  assert.equal(qs.length,68);
+  qs.forEach(q=>{assert.equal(q.originalRetry.inputMode,"choice");assert.ok(q.originalRetry.choices.length>=2);assert.equal(q.similarProblem.inputMode,"choice")});
+});
+
+test("학생 리포트는 원문·동형 답안을 select 보기로 받고 correctChoice로 판정",()=>{
+  const src=read("site/assets/report.js");
+  assert.match(src,/정답 보기를 선택하세요/);
+  assert.match(src,/YP\.checkChoiceAnswer\(inp\.value,q\.originalRetry/);
+  assert.match(src,/YP\.checkSimilarAnswer\(inp\.value,s\)/);
+  assert.doesNotMatch(src,/<input id="originalInput/);
+});
+
+test("교사용 홈페이지에 시험 정답·보기 관리 UI와 저장 동작이 있음",()=>{
+  const html=read("site/index.html"),app=read("site/assets/app.js"),api=read("site/assets/api.js");
+  assert.match(html,/id="answerManager"/);
+  assert.match(html,/id="answerEditorGrid"/);
+  assert.match(html,/id="saveAnswerEditorBtn"/);
+  assert.match(app,/function renderAnswerEditor/);
+  assert.match(app,/function saveAnswerEditor/);
+  assert.match(app,/collectAnswerEditorQuestions/);
+  assert.match(api,/saveQuestionAnswers\(examId,questions/);
+  assert.match(api,/clearQuestionAnswerOverrides/);
+});
+
+test("Apps Script는 QuestionOverrides 시트에 홈페이지 수정 정답을 보존하고 카탈로그와 병합",()=>{
+  const src=read("apps-script/Code.gs");
+  assert.match(src,/QUESTION_OVERRIDES:\s*"QuestionOverrides"/);
+  assert.match(src,/QuestionOverrides:\s*\["ExamId","QuestionNo","AnswerJSON"/);
+  assert.match(src,/function saveQuestionAnswers_/);
+  assert.match(src,/function clearQuestionAnswerOverrides_/);
+  assert.match(src,/function getQuestionOverrideRows_/);
+  assert.match(src,/merged\.OverrideUpdatedAt/);
+  assert.match(src,/questions:getQuestionRows_\(record\.examId\)/);
+});
+
+test("정답 수정은 syncCatalog의 Questions 교체와 분리되어 유지",()=>{
+  const src=read("apps-script/Code.gs"),start=src.indexOf("function syncCatalog_"),end=src.indexOf("function replaceData_",start),block=src.slice(start,end);
+  assert.match(block,/replaceData_\(SHEETS\.QUESTIONS/);
+  assert.doesNotMatch(block,/replaceData_\(SHEETS\.QUESTION_OVERRIDES/);
+});
+
+test("서버 정답 행을 현재 시험에 병합하면 객관식 answerKey와 재도전 보기가 갱신",()=>{
+  const base=YP.clone(mech),rows=[{QuestionNo:1,AnswerJSON:JSON.stringify({display:"④",answerKey:4,acceptableAnswers:["4","④"]}),OriginalRetryJSON:JSON.stringify({inputMode:"choice",choices:["①","②","③","④","⑤"],correctChoice:4,answer:"4"}),SimilarProblemJSON:JSON.stringify(base.questions[0].similarProblem),OverrideUpdatedAt:"2026-08-24T00:00:00.000Z"}];
+  const merged=YP.mergeExamQuestions(base,rows);
+  assert.equal(merged.questions[0].answerKey,4);
+  assert.equal(merged.questions[0].answer,"④");
+  assert.equal(merged.questions[0].originalRetry.correctChoice,4);
+  assert.ok(merged.questions[0].answerOverrideUpdatedAt);
+});
+
+
+test("답안번호가 없는 선택형·복합 문항은 표준 1~5 객관식으로 오인하지 않음",()=>{
+  const src=read("site/assets/app.js");
+  assert.match(src,/function hasStandardObjectiveKey\(q\)/);
+  assert.match(src,/raw!==null&&raw!==undefined/);
+  const affected=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).filter(q=>q.type==="objective"&&(q.answerKey==null||String(q.answerKey).trim()===""));
+  assert.equal(affected.length,3);
+  affected.forEach(q=>{assert.ok(String(q.answer||"").length>1);assert.equal(q.originalRetry.inputMode,"choice")});
+});
+
+test("홈페이지에서 정답 보기를 바꾸면 공개되는 정답 문구도 선택 보기와 함께 갱신",()=>{
+  const appJs=read("site/assets/app.js"),codeGs=read("apps-script/Code.gs");
+  assert.match(appJs,/answer:choices\[correctChoice-1\]/);
+  assert.match(codeGs,/answer:choices\[correctChoice-1\]/);
+  assert.match(codeGs,/acceptableAnswers:\[String\(correctChoice\),choices\[correctChoice-1\]\]/);
+});
+
+
+test("모든 선택형 재도전의 공개 정답 문구는 실제 정답 보기와 일치",()=>{
+  const ready=catalog.exams.filter(e=>e.status==="ready");
+  for(const e of ready)for(const q of e.questions)for(const key of ["originalRetry","similarProblem"]){
+    const c=q[key];
+    assert.equal(c.answer,c.choices[c.correctChoice-1],`${e.examId} ${q.no} ${key}`);
+  }
+});

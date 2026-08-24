@@ -93,13 +93,36 @@
       ],
       "similarProblem": {
         "prompt": "어떤 물체의 위치가 처음 0 m에서 증가하다가 t=3 s에 12 m로 최대가 된 뒤, t=5 s에 7 m가 되었다. 이동 거리-시간 그래프의 핵심 점 (0 s, 3 s, 5 s)의 이동 거리를 쓰고 그래프 모양을 설명하시오.",
-        "answer": "(0 s, 0 m), (3 s, 12 m), (5 s, 17 m). 3 s까지 증가하다가 기울기가 0이 된 뒤, 다시 증가한다.",
+        "answer": "(0 s, 0 m), (3 s, 12 m), (5 s, 17 m). 3 s에서 기울기가 0이 된 뒤 다시 증가한다.",
         "explanation": "3 s까지 12 m 이동했고, 이후 12 m에서 7 m로 5 m 되돌아왔으므로 총 이동 거리는 17 m이다. 이동 거리는 방향이 바뀌어도 감소하지 않는다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "(0 s, 0 m), (3 s, 12 m), (5 s, 17 m). 3 s에서 기울기가 0이 된 뒤 다시 증가한다.",
           "0,12,17",
-          "0m,12m,17m",
-          "17m"
+          "17 m"
+        ],
+        "choices": [
+          "(0 s, 0 m), (3 s, 12 m), (5 s, 7 m). 3 s 이후 이동거리가 감소한다.",
+          "(0 s, 0 m), (3 s, 12 m), (5 s, 17 m). 3 s에서 기울기가 0이 된 뒤 다시 증가한다.",
+          "(0 s, 0 m), (3 s, 0 m), (5 s, 5 m). 방향 전환 순간 이동거리가 초기화된다.",
+          "(0 s, 0 m), (3 s, 12 m), (5 s, 12 m). 방향 전환 뒤 이동거리가 일정하다."
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "변위가 감소하는 구간에서는 이동거리도 감소한다.",
+          "되돌아서는 순간 이동거리가 0으로 초기화된다.",
+          "이동거리 그래프는 전체 구간에서 수평선이다.",
+          "이동거리는 계속 증가하고, 되돌아서는 순간에만 기울기가 0이 된다."
+        ],
+        "correctChoice": 4,
+        "answer": "이동거리는 계속 증가하고, 되돌아서는 순간에만 기울기가 0이 된다.",
+        "acceptableAnswers": [
+          "4",
+          "이동거리는 계속 증가하고, 되돌아서는 순간에만 기울기가 0이 된다."
         ]
       }
     },
@@ -155,11 +178,35 @@
         "prompt": "속력이 0~2 s 동안 0에서 6 m/s까지 일정하게 증가하고, 2~5 s 동안 6 m/s로 일정하며, 5~7 s 동안 0까지 일정하게 감소한다. 이동 거리 그래프의 세 구간 모양과 7 s까지 이동 거리를 구하시오.",
         "answer": "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 30 m.",
         "explanation": "v-t 넓이는 첫 삼각형 6 m, 직사각형 18 m, 마지막 삼각형 6 m이므로 합은 30 m이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "1",
+          "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 30 m.",
           "30",
           "30m",
           "30 m"
+        ],
+        "choices": [
+          "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 30 m.",
+          "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 60 m.",
+          "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 15 m.",
+          "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선. 총 이동 거리 40 m."
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선(끝에서 수평 접선)",
+          "직선 → 아래로 볼록한 곡선 → 위로 볼록한 곡선",
+          "위로 볼록한 곡선 → 직선 → 아래로 볼록한 곡선",
+          "아래로 볼록한 곡선 → 수평선 → 아래로 볼록한 곡선"
+        ],
+        "correctChoice": 1,
+        "answer": "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선(끝에서 수평 접선)",
+        "acceptableAnswers": [
+          "1",
+          "아래로 볼록한 곡선 → 직선 → 위로 볼록한 곡선(끝에서 수평 접선)"
         ]
       }
     },
@@ -215,13 +262,37 @@
         "prompt": "동쪽으로 4 m/s로 달리던 물체가 2 s 뒤 서쪽으로 8 m/s가 되었다. 평균 가속도의 크기와 방향을 구하시오.",
         "answer": "6 m/s², 서쪽",
         "explanation": "동쪽을 +로 두면 a=(-8-4)/2=-6 m/s²이므로 크기는 6 m/s²이고 방향은 서쪽이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "1",
+          "6 m/s², 서쪽",
           "6",
           "6m/s2",
           "6 m/s²",
           "서쪽 6",
           "6 서쪽"
+        ],
+        "choices": [
+          "6 m/s², 서쪽",
+          "3 m/s², 서쪽",
+          "9 m/s², 서쪽",
+          "12 m/s², 서쪽"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "1.5 m/s², 왼쪽",
+          "4.5 m/s², 왼쪽",
+          "3 m/s², 왼쪽",
+          "6 m/s², 왼쪽"
+        ],
+        "correctChoice": 3,
+        "answer": "3 m/s², 왼쪽",
+        "acceptableAnswers": [
+          "3",
+          "3 m/s², 왼쪽"
         ]
       }
     },
@@ -267,18 +338,36 @@
       ],
       "similarProblem": {
         "prompt": "1초 간격으로 위치가 0, 6, 10, 12, 13 m로 측정되었다. 위치와 속도가 각각 증가·일정·감소 중 무엇인지 고르시오.",
-        "answer": "위치는 증가, 속도는 감소",
+        "answer": "위치 증가·속도 감소",
         "explanation": "위치는 계속 커지지만 1초당 변위가 6, 4, 2, 1 m로 줄어들어 속도는 감소한다.",
         "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
           "위치 증가·속도 감소",
-          "3"
+          "위치는 증가, 속도는 감소"
         ],
         "choices": [
           "위치 증가·속도 증가",
           "위치 증가·속도 일정",
           "위치 증가·속도 감소",
           "위치 감소·속도 감소"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "s는 증가하고, v는 증가한다.",
+          "s는 증가하고, v는 일정하다.",
+          "s는 증가하고, v는 감소한다.",
+          "s는 감소하고, v는 감소한다."
+        ],
+        "correctChoice": 3,
+        "answer": "s는 증가하고, v는 감소한다.",
+        "acceptableAnswers": [
+          "3",
+          "s는 증가하고, v는 감소한다.",
+          "s 증가, v 감소"
         ]
       }
     },
@@ -327,11 +416,35 @@
         "prompt": "A와 B가 15 m 떨어져 있다. A에서 B까지 3 s, B에서 A까지 2 s가 걸렸다. 왕복 평균 속력과 평균 속도의 크기를 구하시오.",
         "answer": "평균 속력 6 m/s, 평균 속도 크기 0 m/s",
         "explanation": "총 이동 거리 30 m, 총 시간 5 s이므로 6 m/s이다. 최종 위치가 출발점과 같아 변위는 0이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "1",
+          "평균 속력 6 m/s, 평균 속도 크기 0 m/s",
           "6,0",
           "6 m/s, 0 m/s",
           "평균속력 6 평균속도 0"
+        ],
+        "choices": [
+          "평균 속력 6 m/s, 평균 속도 크기 0 m/s",
+          "평균 속력 12 m/s, 평균 속도 크기 0 m/s",
+          "평균 속력 3 m/s, 평균 속도 크기 0 m/s",
+          "평균 속력 7 m/s, 평균 속도 크기 0 m/s"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "평균 속력 4 m/s, 평균 속도 크기 0 m/s",
+          "평균 속력 2 m/s, 평균 속도 크기 0 m/s",
+          "평균 속력 1 m/s, 평균 속도 크기 0 m/s",
+          "평균 속력 3 m/s, 평균 속도 크기 0 m/s"
+        ],
+        "correctChoice": 2,
+        "answer": "평균 속력 2 m/s, 평균 속도 크기 0 m/s",
+        "acceptableAnswers": [
+          "2",
+          "평균 속력 2 m/s, 평균 속도 크기 0 m/s"
         ]
       }
     },
@@ -386,11 +499,34 @@
         "prompt": "같은 거리를 갈 때 12 m/s, 돌아올 때 24 m/s로 이동했다. 왕복 평균 속력을 구하시오.",
         "answer": "16 m/s",
         "explanation": "2×12×24/(12+24)=576/36=16 m/s이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "16 m/s",
           "16",
-          "16m/s",
-          "16 m/s"
+          "16m/s"
+        ],
+        "choices": [
+          "8 m/s",
+          "24 m/s",
+          "16 m/s",
+          "32 m/s"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "7.5 m/s",
+          "15 m/s",
+          "22.5 m/s",
+          "30 m/s"
+        ],
+        "correctChoice": 2,
+        "answer": "15 m/s",
+        "acceptableAnswers": [
+          "2",
+          "15 m/s"
         ]
       }
     },
@@ -439,10 +575,34 @@
         "prompt": "세 물체 P,Q,R의 s-t 그래프가 원점에서 시작해 t=4 s에 모두 s=20 m에서 만난다. 그 순간 접선 기울기는 각각 8, 5, 2 m/s이다. 순간속도와 0~4 s 평균속도를 비교하시오.",
         "answer": "순간속도 P>Q>R, 평균속도 P=Q=R=5 m/s",
         "explanation": "순간속도는 주어진 접선 기울기이고, 평균속도는 모두 20/4=5 m/s이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "순간속도 P>Q>R, 평균속도 P=Q=R=5 m/s",
           "P>Q>R, P=Q=R",
           "P>Q>R 평균 같음"
+        ],
+        "choices": [
+          "순간속도 P>Q>R, 평균속도 P=Q=R=10 m/s",
+          "순간속도 P>Q>R, 평균속도 P=Q=R=2.5 m/s",
+          "순간속도 P>Q>R, 평균속도 P=Q=R=5 m/s",
+          "순간속도 P>Q>R, 평균속도 P=Q=R=6 m/s"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "순간속도 A=B=C, 평균속도 A>B>C",
+          "순간속도 C>B>A, 평균속도 A=B=C",
+          "순간속도 A>B>C, 평균속도 C>B>A",
+          "순간속도 A>B>C, 평균속도 A=B=C"
+        ],
+        "correctChoice": 4,
+        "answer": "순간속도 A>B>C, 평균속도 A=B=C",
+        "acceptableAnswers": [
+          "4",
+          "순간속도 A>B>C, 평균속도 A=B=C"
         ]
       }
     },
@@ -499,13 +659,37 @@
         "prompt": "정지한 물체의 가속도가 0~3 s에는 2 m/s², 3~5 s에는 0, 5~7 s에는 -3 m/s²이다. 7 s까지 총 변위를 구하시오.",
         "answer": "27 m",
         "explanation": "0~3 s 변위 9 m, 3~5 s 변위 12 m, 5~7 s 속도 6→0이므로 변위 6 m. 합은 27 m이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "1",
+          "27 m",
           "27",
-          "27m",
-          "27 m"
+          "27m"
+        ],
+        "choices": [
+          "27 m",
+          "13.5 m",
+          "40.5 m",
+          "54 m"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "6 m",
+          "18 m",
+          "24 m",
+          "12 m"
+        ],
+        "correctChoice": 4,
+        "answer": "12 m",
+        "acceptableAnswers": [
+          "4",
+          "12 m"
         ]
       }
     }
-  ]
+  ],
+  "featureVersion": "3.4.0-answer-editor-choice-retry"
 }

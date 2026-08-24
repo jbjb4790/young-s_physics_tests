@@ -1,5 +1,5 @@
 (function(){
- const state={exam:null,inputs:[],partialModes:[],editToken:null,batchRows:[],batchMeta:null,reports:[],serverInstanceId:""};
+ const state={exam:null,inputs:[],partialModes:[],editToken:null,batchRows:[],batchMeta:null,reports:[],serverInstanceId:"",examLoadSeq:0,answerEditorDirty:false};
  const $=id=>document.getElementById(id);
  const AUTH_ERROR_CODES=new Set(["AUTH_REQUIRED","AUTH_INVALID","AUTH_EXPIRED","AUTH_REVOKED"]);
  function showDemo(){$("demoBanner").classList.toggle("hidden",!YP_API.demo)}
@@ -43,7 +43,7 @@
      }
      if(YP_API.isAuthenticated()){try{await YP_API.sessionStatus()}catch(e){if(!isAuthError(e))throw e}}
      updateConnectionUI();setAuthModalState();
-     if(YP_API.isAuthenticated()){await autoSyncCatalog(false);await refreshReports()}
+     if(YP_API.isAuthenticated()){await autoSyncCatalog(false);await loadExam({preserveInputs:true,resetBatch:false,quiet:true});await refreshReports()}
      else{await refreshReports();setTimeout(openSettings,350)}
      if(!boot.teacherPinConfigured){openSettings();$("settingsStatus").textContent="Apps Script에서 installYoungsPhysics()를 실행해 교사 PIN을 먼저 생성하세요."}
    }catch(e){
@@ -60,7 +60,7 @@
    const weekly=list.filter(e=>!YP.isComprehensive(e)).sort((a,b)=>a.round-b.round),totals=list.filter(YP.isComprehensive).sort((a,b)=>(a.displayOrder||0)-(b.displayOrder||0));
    const opts=(title,arr)=>arr.length?`<optgroup label="${title}">${arr.map(e=>`<option value="${e.examId}" ${e.status!=="ready"?"disabled":""}>${YP.escapeHTML(YP.isComprehensive(e)?e.shortTitle:`${e.round}회 복습 테스트`)}${e.status==="ready"?"":" · 준비 중"}</option>`).join("")}</optgroup>`:"";
    $("examSelect").innerHTML=opts("주간 복습 테스트",weekly)+opts("파트 종료 총괄평가",totals);
-   const preferred=totals.find(e=>e.status==="ready")||weekly.find(e=>e.status==="ready");if(preferred)$("examSelect").value=preferred.examId;loadExam();
+   const preferred=totals.find(e=>e.status==="ready")||weekly.find(e=>e.status==="ready");if(preferred)$("examSelect").value=preferred.examId;void loadExam();
  }
  function resetBatchPreview(clearFile=true){
    state.batchRows=[];state.batchMeta=null;
@@ -70,9 +70,19 @@
    if(button){button.classList.add("hidden");button.disabled=false;button.textContent="검증된 학생 기록 일괄 저장"}
    if(clearFile&&file)file.value="";
  }
- function loadExam(){
-   state.exam=YP.getExam($("examSelect").value);state.inputs=Array(state.exam?.questionCount||0).fill("");state.partialModes=Array(state.exam?.questionCount||0).fill(false);state.editToken=null;
-   resetBatchPreview();renderExamNotice();renderQuestions();updateScore();$("cancelEditBtn").classList.add("hidden");
+ async function loadExam(options={}){
+   const examId=$("examSelect").value,seq=++state.examLoadSeq,base=YP.clone(YP.getExam(examId));if(!base)return;
+   const preserve=!!options.preserveInputs&&state.exam?.examId===examId,oldInputs=preserve?[...state.inputs]:[],oldModes=preserve?[...state.partialModes]:[];
+   state.exam=base;state.inputs=Array(base.questionCount||0).fill("").map((_,i)=>oldInputs[i]??"");state.partialModes=Array(base.questionCount||0).fill(false).map((_,i)=>!!oldModes[i]);
+   if(!preserve){state.editToken=null;$("cancelEditBtn").classList.add("hidden")}
+   state.answerEditorDirty=false;if(options.resetBatch!==false)resetBatchPreview();renderExamNotice();renderQuestions();renderAnswerEditor();updateScore();
+   if(!(YP_API.demo||YP_API.isAuthenticated())){setAnswerEditorStatus("교사 PIN 인증 후 Google Sheets에 저장된 정답 수정본을 불러오고 편집할 수 있습니다.","auth");return}
+   try{
+     const data=await YP_API.getQuestions(examId);if(seq!==state.examLoadSeq||$("examSelect").value!==examId)return;
+     state.exam=YP.mergeExamQuestions(base,data.questions||[]);state.inputs=Array(state.exam.questionCount||0).fill("").map((_,i)=>oldInputs[i]??state.inputs[i]??"");state.partialModes=Array(state.exam.questionCount||0).fill(false).map((_,i)=>oldModes[i]??state.partialModes[i]??false);
+     renderExamNotice();renderQuestions();renderAnswerEditor();updateScore();
+     if(!options.quiet)setAnswerEditorStatus("Google Sheets의 최신 정답·보기를 불러왔습니다.","ok");
+   }catch(e){if(seq!==state.examLoadSeq)return;handleAuthFailure(e);setAnswerEditorStatus("서버 정답을 불러오지 못해 배포본 정답을 표시합니다: "+e.message,"error")}
  }
  function renderExamNotice(){
    const e=state.exam;if(!e)return;
@@ -98,12 +108,64 @@
    $("questionGrid").classList.toggle("total-grid",YP.isComprehensive(e));
    $("questionGrid").innerHTML=e.questions.map((q,i)=>`<div class="question-input-card ungraded ${q.inputMode||"achievement"}" id="qCard${i}"><div class="q-head"><div><div class="q-title">${q.no}번</div><div class="q-meta">${q.no<=20&&YP.isComprehensive(e)?"객관식 정오":"서술형 점수"} · ${q.maxPoints}점 · ${YP.escapeHTML(q.unit)}</div></div><span class="badge ${q.reviewStatus}">${YP.reviewLabel(q.reviewStatus)}</span></div>${qInputHTML(q,i)}${q.inputMode==="binary"?`<div class="score-result ungraded binary-result" id="qResult${i}">미입력</div>`:""}</div>`).join("");
    e.questions.forEach((q,i)=>{
-     const inp=$(`qInput${i}`);inp.addEventListener("input",()=>{state.inputs[i]=inp.value;updateQuestion(i);updateScore()});
+     const inp=$(`qInput${i}`);inp.value=state.inputs[i]??"";inp.addEventListener("input",()=>{state.inputs[i]=inp.value;updateQuestion(i);updateScore()});
      inp.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key==="ArrowDown"){ev.preventDefault();$(`qInput${Math.min(i+1,e.questions.length-1)}`)?.focus()}if(ev.key==="ArrowUp"){ev.preventDefault();$(`qInput${Math.max(i-1,0)}`)?.focus()}if(ev.key==="Backspace"&&!inp.value&&i>0){ev.preventDefault();$(`qInput${i-1}`)?.focus()}});
-     const cb=$(`partial${i}`);if(cb)cb.addEventListener("change",()=>{state.partialModes[i]=cb.checked;updateQuestion(i);updateScore()});
+     const cb=$(`partial${i}`);if(cb){cb.checked=!!state.partialModes[i];cb.addEventListener("change",()=>{state.partialModes[i]=cb.checked;updateQuestion(i);updateScore()})}
+     updateQuestion(i);
    });
    document.querySelectorAll(".binary-btn").forEach(b=>b.onclick=()=>setValue(Number(b.dataset.i),b.dataset.v));
    document.querySelectorAll("button[data-point-i]").forEach(b=>b.onclick=()=>setValue(Number(b.dataset.pointI),b.dataset.v));
+ }
+
+ function setAnswerEditorStatus(message,type=""){
+   const el=$("answerEditorStatus");if(!el)return;el.textContent=message||"";el.className=`answer-editor-status ${type}`.trim();
+ }
+ function hasStandardObjectiveKey(q){
+   const raw=q?.answerKey;return raw!==null&&raw!==undefined&&String(raw).trim()!==""&&Number.isInteger(Number(raw))&&Number(raw)>=1&&Number(raw)<=5;
+ }
+ function answerChoiceEditorHTML(prefix,index,config,title){
+   const choices=(config?.choices||[]).length?(config.choices||[]):['보기 1','보기 2','보기 3','보기 4'],correct=Number(config?.correctChoice||1);
+   return `<div class="answer-choice-editor" id="${prefix}Group${index}" data-choice-count="${choices.length}"><div class="answer-choice-title"><b>${title}</b><span>학생은 정답을 직접 입력하지 않고 보기에서 선택합니다.</span></div><div class="answer-choice-list">${choices.map((choice,j)=>`<label class="answer-choice-row"><span>${j+1}</span><input id="${prefix}Choice${index}_${j}" value="${YP.escapeHTML(choice)}" data-answer-editor-input></label>`).join("")}</div><div class="field answer-correct-select"><label for="${prefix}Correct${index}">정답 보기</label><select id="${prefix}Correct${index}" data-answer-editor-input>${choices.map((_,j)=>`<option value="${j+1}" ${correct===j+1?"selected":""}>${j+1}번</option>`).join("")}</select></div></div>`;
+ }
+ function renderAnswerEditor(){
+   const root=$("answerEditorGrid"),e=state.exam;if(!root)return;if(!e){root.innerHTML="";return}
+   const overrides=e.questions.filter(q=>q.answerOverrideUpdatedAt).length;
+   root.innerHTML=e.questions.map((q,i)=>{
+     const objective=hasStandardObjectiveKey(q),answerKey=objective?Number(q.answerKey):null;
+     const keyField=objective?`<div class="field"><label for="aeAnswerKey${i}">객관식 공식 정답 번호</label><select id="aeAnswerKey${i}" data-answer-editor-input>${[1,2,3,4,5].map(n=>`<option value="${n}" ${answerKey===n?"selected":""}>${n}번</option>`).join("")}</select></div>`:"";
+     return `<details class="answer-editor-card" ${i===0?"open":""}><summary><div><b>${q.no}번</b><span>${YP.escapeHTML(q.unit||"")} · ${YP.escapeHTML(q.topic||"")}</span></div><div class="answer-editor-summary-answer"><small>현재 공식 정답</small><strong>${YP.escapeHTML(q.answer||"-")}</strong>${q.answerOverrideUpdatedAt?'<em>서버 수정본</em>':''}</div></summary><div class="answer-editor-body"><div class="answer-editor-fields"><div class="field"><label for="aeAnswer${i}">공식 정답·모범답안</label><textarea id="aeAnswer${i}" rows="3" data-answer-editor-input>${YP.escapeHTML(q.answer||"")}</textarea></div>${keyField}</div>${answerChoiceEditorHTML("aeOriginal",i,q.originalRetry,"원문 문제 다시 풀기 보기")}${q.similarProblem?.prompt?`<div class="similar-prompt-preview"><b>동형 문제</b><p>${YP.escapeHTML(q.similarProblem.prompt)}</p></div>`:""}${answerChoiceEditorHTML("aeSimilar",i,q.similarProblem,"동형 문제 보기")}</div></details>`;
+   }).join("");
+   root.querySelectorAll("[data-answer-editor-input]").forEach(el=>{el.addEventListener("input",markAnswerEditorDirty);el.addEventListener("change",markAnswerEditorDirty)});
+   state.answerEditorDirty=false;setAnswerEditorStatus(`${e.questionCount}개 문항 표시 · ${overrides?`서버 수정본 ${overrides}개 적용`:'배포된 검수 원본 사용'}`,overrides?"override":"ready");
+ }
+ function markAnswerEditorDirty(){state.answerEditorDirty=true;setAnswerEditorStatus("수정 내용이 아직 Google Sheets에 저장되지 않았습니다.","dirty")}
+ function collectChoiceConfig(prefix,index,base,label){
+   const group=$(`${prefix}Group${index}`),count=Number(group?.dataset.choiceCount||0),choices=[];for(let j=0;j<count;j++)choices.push(String($(`${prefix}Choice${index}_${j}`)?.value||"").trim());
+   if(choices.length<2||choices.some(x=>!x))throw new Error(`${label}: 빈 보기가 있습니다.`);if(new Set(choices.map(x=>x.toLowerCase().replace(/\s+/g," "))).size!==choices.length)throw new Error(`${label}: 중복 보기를 수정하세요.`);
+   const correctChoice=Number($(`${prefix}Correct${index}`)?.value||0);if(!Number.isInteger(correctChoice)||correctChoice<1||correctChoice>choices.length)throw new Error(`${label}: 정답 보기를 선택하세요.`);
+   return {...YP.clone(base||{}),inputMode:"choice",choices,correctChoice,answer:choices[correctChoice-1],acceptableAnswers:[String(correctChoice),choices[correctChoice-1]]};
+ }
+ function collectAnswerEditorQuestions(){
+   if(!state.exam)throw new Error("시험을 먼저 선택하세요.");
+   return state.exam.questions.map((q,i)=>{
+     let answer=String($(`aeAnswer${i}`)?.value||"").trim();if(!answer)throw new Error(`${q.no}번 공식 정답을 입력하세요.`);
+     const objective=hasStandardObjectiveKey(q),answerKey=objective?Number($(`aeAnswerKey${i}`)?.value||0):null;if(objective&&(!Number.isInteger(answerKey)||answerKey<1||answerKey>5))throw new Error(`${q.no}번 객관식 정답 번호를 확인하세요.`);
+     if(objective)answer="①②③④⑤"[answerKey-1];
+     const originalRetry=collectChoiceConfig("aeOriginal",i,q.originalRetry,`${q.no}번 원문 재도전`);if(objective){originalRetry.correctChoice=answerKey;originalRetry.answer=originalRetry.choices[answerKey-1];originalRetry.acceptableAnswers=[String(answerKey),originalRetry.answer,answer]}
+     const similarProblem=collectChoiceConfig("aeSimilar",i,q.similarProblem,`${q.no}번 동형 문제`);
+     return {no:q.no,answer,answerKey:objective?answerKey:null,acceptableAnswers:objective?[String(answerKey),answer]:(q.acceptableAnswers||[]),originalRetry,similarProblem,revisionNote:String($("answerRevisionNote")?.value||"").trim()};
+   });
+ }
+ async function saveAnswerEditor(){
+   if(!state.exam)return YP.toast("시험을 먼저 선택하세요.");if(!YP_API.demo&&!YP_API.isAuthenticated()){openSettings();return YP.toast("교사 PIN으로 연결한 뒤 정답을 저장하세요.",5000)};
+   let questions;try{questions=collectAnswerEditorQuestions()}catch(e){setAnswerEditorStatus(e.message,"error");return YP.toast(e.message,6000)}
+   const btn=$("saveAnswerEditorBtn");btn.disabled=true;btn.textContent="Google Sheets에 저장 중...";
+   try{const examId=state.exam.examId,data=await YP_API.saveQuestionAnswers(examId,questions,$("answerRevisionNote")?.value||"");state.exam=YP.mergeExamQuestions(YP.clone(YP.getExam(examId)),data.questions||[]);state.answerEditorDirty=false;resetBatchPreview();renderExamNotice();renderQuestions();renderAnswerEditor();updateScore();setAnswerEditorStatus(`${data.count||questions.length}개 문항의 정답·보기를 저장했습니다. 다른 컴퓨터와 학생 성적표에도 적용됩니다.`,"ok");YP.toast("정답과 오답 학습 보기를 저장했습니다.",5000)}catch(e){handleAuthFailure(e);setAnswerEditorStatus(e.message,"error");YP.toast(e.message,7000)}finally{btn.disabled=false;btn.textContent="정답·보기 저장"}
+ }
+ async function resetAnswerOverrides(){
+   if(!state.exam)return;if(!YP_API.demo&&!YP_API.isAuthenticated()){openSettings();return YP.toast("교사 PIN으로 연결하세요.",5000)};if(!confirm(`${YP.roundLabel(state.exam)}의 홈페이지 정답 수정본을 모두 삭제하고 배포된 검수 원본으로 되돌릴까요?`))return;
+   const btn=$("resetAnswerOverridesBtn");btn.disabled=true;
+   try{const data=await YP_API.clearQuestionAnswerOverrides(state.exam.examId,[]);state.exam=YP.mergeExamQuestions(YP.clone(YP.getExam(state.exam.examId)),data.questions||[]);resetBatchPreview();renderExamNotice();renderQuestions();renderAnswerEditor();updateScore();setAnswerEditorStatus(`수정본 ${data.deleted||0}개를 삭제하고 검수 원본으로 되돌렸습니다.`,"ok");YP.toast("시험 정답을 검수 원본으로 되돌렸습니다.",5000)}catch(e){handleAuthFailure(e);setAnswerEditorStatus(e.message,"error");YP.toast(e.message,7000)}finally{btn.disabled=false}
  }
  function setValue(i,v){state.inputs[i]=String(v);$(`qInput${i}`).value=String(v);updateQuestion(i);updateScore();$(`qInput${Math.min(i+1,state.exam.questions.length-1)}`)?.focus()}
  function updateQuestion(i){
@@ -139,7 +201,7 @@
      tbody.querySelectorAll("button[data-action]").forEach(b=>b.onclick=()=>handleReportAction(b.dataset.action,b.dataset.token,b.dataset.fp,state.reports));
    }catch(e){handleAuthFailure(e);state.reports=[];tbody.innerHTML=`<tr><td colspan="6">${YP.escapeHTML(e.message)}</td></tr>`}
  }
- async function handleReportAction(action,token,fp,reports){if(action==="copy"){await YP.copyText(reportURL(token,fp));return YP.toast("학부모 전달용 학생 링크를 복사했습니다.")}if(action==="delete"){if(!confirm("이 학생 기록을 삭제할까요?"))return;try{await YP_API.deleteReport(token);await refreshReports();YP.toast("삭제했습니다.")}catch(e){YP.toast(e.message,5000)}return}if(action==="edit"){const r=reports.find(x=>x.token===token);if(!r)return;$("courseSelect").value=r.courseId||YP.getExam(r.examId).courseId;renderExamOptions();$("examSelect").value=r.examId;loadExam();$("studentName").value=r.name;$("school").value=YP.normalizeSchool(r.school)==="미기입"?"":r.school;$("grade").value=r.grade||"";$("classNo").value=r.classNo||"";$("teacherMemo").value=r.teacherMemo||"";state.inputs=[...(r.resultInputs||[])];state.partialModes=[...(r.partialModes||[])];state.editToken=r.token;state.exam.questions.forEach((q,i)=>{$(`qInput${i}`).value=state.inputs[i]??"";if($(`partial${i}`))$(`partial${i}`).checked=!!state.partialModes[i];updateQuestion(i)});updateScore();$("cancelEditBtn").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"});YP.toast("수정 모드: 저장하면 기존 링크가 유지됩니다.")}}
+ async function handleReportAction(action,token,fp,reports){if(action==="copy"){await YP.copyText(reportURL(token,fp));return YP.toast("학부모 전달용 학생 링크를 복사했습니다.")}if(action==="delete"){if(!confirm("이 학생 기록을 삭제할까요?"))return;try{await YP_API.deleteReport(token);await refreshReports();YP.toast("삭제했습니다.")}catch(e){YP.toast(e.message,5000)}return}if(action==="edit"){const r=reports.find(x=>x.token===token);if(!r)return;$("courseSelect").value=r.courseId||YP.getExam(r.examId).courseId;renderExamOptions();$("examSelect").value=r.examId;await loadExam();$("studentName").value=r.name;$("school").value=YP.normalizeSchool(r.school)==="미기입"?"":r.school;$("grade").value=r.grade||"";$("classNo").value=r.classNo||"";$("teacherMemo").value=r.teacherMemo||"";state.inputs=[...(r.resultInputs||[])];state.partialModes=[...(r.partialModes||[])];state.editToken=r.token;state.exam.questions.forEach((q,i)=>{$(`qInput${i}`).value=state.inputs[i]??"";if($(`partial${i}`))$(`partial${i}`).checked=!!state.partialModes[i];updateQuestion(i)});updateScore();$("cancelEditBtn").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"});YP.toast("수정 모드: 저장하면 기존 링크가 유지됩니다.")}}
  function cancelEdit(){state.editToken=null;$("cancelEditBtn").classList.add("hidden");YP.toast("수정 모드를 종료했습니다.")}
  function downloadTemplate(){
    if(!state.exam)return YP.toast("시험을 먼저 선택하세요.");
@@ -212,9 +274,9 @@
  }
  function openSettings(){setAuthModalState();$("teacherPinInput").value="";$("settingsModal").classList.remove("hidden");if(!YP_API.demo&&!YP_API.isAuthenticated())setTimeout(()=>$("teacherPinInput").focus(),80)}
  function closeSettings(){$("settingsModal").classList.add("hidden")}
- async function teacherLogin(){const pin=$("teacherPinInput").value.trim();if(!pin)return $("settingsStatus").textContent="교사 PIN을 입력하세요.";const btn=$("teacherLoginBtn");btn.disabled=true;btn.textContent="연결 중...";try{const d=await YP_API.login(pin);$("settingsStatus").textContent="교사 연결이 완료되었습니다. 시험 설정을 자동 동기화합니다.";setAuthModalState();await autoSyncCatalog(false);await refreshReports();YP.toast("이 컴퓨터에서 바로 학생 성적을 입력할 수 있습니다.",5000)}catch(e){$("settingsStatus").textContent=e.message}finally{btn.disabled=false;btn.textContent="이 컴퓨터를 교사용으로 연결"}}
+ async function teacherLogin(){const pin=$("teacherPinInput").value.trim();if(!pin)return $("settingsStatus").textContent="교사 PIN을 입력하세요.";const btn=$("teacherLoginBtn");btn.disabled=true;btn.textContent="연결 중...";try{const d=await YP_API.login(pin);$("settingsStatus").textContent="교사 연결이 완료되었습니다. 시험 설정을 자동 동기화합니다.";setAuthModalState();await autoSyncCatalog(false);await loadExam({preserveInputs:true,resetBatch:false});await refreshReports();YP.toast("이 컴퓨터에서 바로 학생 성적을 입력할 수 있습니다.",5000)}catch(e){$("settingsStatus").textContent=e.message}finally{btn.disabled=false;btn.textContent="이 컴퓨터를 교사용으로 연결"}}
  async function ping(){try{const d=YP_API.isAuthenticated()?await YP_API.sessionStatus():await YP_API.bootstrap();$("settingsStatus").textContent=YP_API.isAuthenticated()?`교사 연결 정상 · 만료 ${formatExpiry(d.expiresAt)}`:`Apps Script 서버 연결 정상 · 교사 인증 필요`;setAuthModalState($("settingsStatus").textContent)}catch(e){handleAuthFailure(e);$("settingsStatus").textContent=e.message}}
- async function syncCatalog(){try{const d=await autoSyncCatalog(true);$("settingsStatus").textContent=`동기화 완료: 과정 ${d.courses}, 시험 ${d.exams}, 문항 ${d.questions}`}catch(e){handleAuthFailure(e);$("settingsStatus").textContent=e.message}}
+ async function syncCatalog(){try{const d=await autoSyncCatalog(true);await loadExam({preserveInputs:true,resetBatch:false});$("settingsStatus").textContent=`동기화 완료: 과정 ${d.courses}, 시험 ${d.exams}, 문항 ${d.questions}`}catch(e){handleAuthFailure(e);$("settingsStatus").textContent=e.message}}
  async function createNewDeviceLink(){try{const d=await YP_API.createDeviceSetupToken(),u=new URL(location.href);u.search="";u.hash=`teacher-setup=${encodeURIComponent(d.setupToken)}`;await YP.copyText(u.toString());$("settingsStatus").textContent=`새 컴퓨터 연결 링크를 복사했습니다. ${formatExpiry(d.expiresAt)}까지 한 번만 사용할 수 있습니다.`;YP.toast("새 컴퓨터 연결 링크를 복사했습니다.",5000)}catch(e){handleAuthFailure(e);$("settingsStatus").textContent=e.message}}
  function logoutTeacher(){YP_API.clearSession();localStorage.removeItem(YP.config.catalogSyncStorage);updateConnectionUI();setAuthModalState("이 컴퓨터의 교사 연결을 해제했습니다.");refreshReports()}
  const autoRefreshState={lastAt:0,promise:null};
@@ -225,17 +287,17 @@
    if(now-autoRefreshState.lastAt<1500)return null;
    autoRefreshState.lastAt=now;
    autoRefreshState.promise=(async()=>{
-     try{await refreshReports()}
+     try{if(!state.answerEditorDirty)await loadExam({preserveInputs:true,resetBatch:false,quiet:true});await refreshReports()}
      catch(e){handleAuthFailure(e)}
      finally{autoRefreshState.promise=null}
    })();
    return autoRefreshState.promise;
  }
  function bind(){
-   $("courseSelect").onchange=renderExamOptions;$("examSelect").onchange=loadExam;$("applyPasteBtn").onclick=applyPaste;$("sampleBtn").onclick=fillSample;$("clearBtn").onclick=clearAll;$("saveReportBtn").onclick=saveCurrent;$("cancelEditBtn").onclick=cancelEdit;$("refreshReportsBtn").onclick=refreshReports;$("downloadCsvTemplateBtn").onclick=downloadTemplate;
-   $("csvFile").onchange=e=>handleBatchFile(e.target.files?.[0]);$("saveBatchBtn").onclick=saveBatch;
+   $("courseSelect").onchange=renderExamOptions;$("examSelect").onchange=()=>loadExam();$("applyPasteBtn").onclick=applyPaste;$("sampleBtn").onclick=fillSample;$("clearBtn").onclick=clearAll;$("saveReportBtn").onclick=saveCurrent;$("cancelEditBtn").onclick=cancelEdit;$("refreshReportsBtn").onclick=refreshReports;$("downloadCsvTemplateBtn").onclick=downloadTemplate;
+   $("csvFile").onchange=e=>handleBatchFile(e.target.files?.[0]);$("saveBatchBtn").onclick=saveBatch;$("reloadAnswerEditorBtn").onclick=()=>loadExam({preserveInputs:true,resetBatch:false});$("saveAnswerEditorBtn").onclick=saveAnswerEditor;$("resetAnswerOverridesBtn").onclick=resetAnswerOverrides;$("answerRevisionNote").addEventListener("input",markAnswerEditorDirty);
    const drop=$("batchDropZone");if(drop){["dragenter","dragover"].forEach(type=>drop.addEventListener(type,e=>{e.preventDefault();drop.classList.add("dragover")}));["dragleave","drop"].forEach(type=>drop.addEventListener(type,e=>{e.preventDefault();drop.classList.remove("dragover")}));drop.addEventListener("drop",e=>handleBatchFile(e.dataTransfer?.files?.[0]))}
-   $("settingsBtn").onclick=openSettings;$("closeSettingsBtn").onclick=closeSettings;$("teacherLoginBtn").onclick=teacherLogin;$("teacherPinInput").addEventListener("keydown",e=>{if(e.key==="Enter")teacherLogin()});$("pingBtn").onclick=ping;$("syncCatalogBtn").onclick=syncCatalog;$("newDeviceLinkBtn").onclick=createNewDeviceLink;$("logoutBtn").onclick=logoutTeacher;$("settingsModal").addEventListener("click",e=>{if(e.target===$("settingsModal"))closeSettings()});window.addEventListener("focus",()=>refreshWhenActive("focus"));window.addEventListener("pageshow",()=>refreshWhenActive("pageshow"));window.addEventListener("online",()=>refreshWhenActive("online"));document.addEventListener("visibilitychange",()=>{if(!document.hidden)refreshWhenActive("visibility")});
+   $("settingsBtn").onclick=openSettings;$("closeSettingsBtn").onclick=closeSettings;$("teacherLoginBtn").onclick=teacherLogin;$("teacherPinInput").addEventListener("keydown",e=>{if(e.key==="Enter")teacherLogin()});$("pingBtn").onclick=ping;$("syncCatalogBtn").onclick=syncCatalog;$("newDeviceLinkBtn").onclick=createNewDeviceLink;$("logoutBtn").onclick=logoutTeacher;$("settingsModal").addEventListener("click",e=>{if(e.target===$("settingsModal"))closeSettings()});window.addEventListener("focus",()=>refreshWhenActive("focus"));window.addEventListener("pageshow",()=>refreshWhenActive("pageshow"));window.addEventListener("online",()=>refreshWhenActive("online"));document.addEventListener("visibilitychange",()=>{if(!document.hidden)refreshWhenActive("visibility")});window.addEventListener("beforeunload",e=>{if(state.answerEditorDirty){e.preventDefault();e.returnValue=""}});
  }
  async function init(){showDemo();initCourses();bind();await initializeServerConnection()}
  document.addEventListener("DOMContentLoaded",init);

@@ -93,11 +93,34 @@
         "prompt": "높이 180 m에서 물체를 가만히 떨어뜨렸다. g=10 m/s², 공기 저항 무시. 바닥까지 걸리는 시간을 구하시오.",
         "answer": "6 s",
         "explanation": "180=5t²이므로 t²=36, t=6 s이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "4",
+          "6 s",
           "6",
-          "6s",
+          "6s"
+        ],
+        "choices": [
+          "3 s",
+          "9 s",
+          "12 s",
           "6 s"
+        ],
+        "correctChoice": 4
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "4 s",
+          "8 s",
+          "12 s",
+          "16 s"
+        ],
+        "correctChoice": 2,
+        "answer": "8 s",
+        "acceptableAnswers": [
+          "2",
+          "8 s"
         ]
       }
     },
@@ -153,11 +176,34 @@
         "prompt": "자동차가 수평 도로에서 20 m/s로 등속 주행하며 엔진이 1800 N의 추진력을 낸다. 저항력의 크기를 구하시오.",
         "answer": "1800 N",
         "explanation": "등속운동이므로 수평 알짜힘이 0이라 추진력과 저항력이 같다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "1",
+          "1800 N",
           "1800",
-          "1800N",
-          "1800 N"
+          "1800N"
+        ],
+        "choices": [
+          "1800 N",
+          "900 N",
+          "2700 N",
+          "3600 N"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "2500 N",
+          "7500 N",
+          "10000 N",
+          "5000 N"
+        ],
+        "correctChoice": 4,
+        "answer": "5000 N",
+        "acceptableAnswers": [
+          "4",
+          "5000 N"
         ]
       }
     },
@@ -213,11 +259,34 @@
         "prompt": "질량 5 kg 물체에 서로 수직인 9 N과 12 N의 힘이 작용한다. 가속도 크기를 구하시오.",
         "answer": "3 m/s²",
         "explanation": "합력은 15 N이고 a=15/5=3 m/s²이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "3 m/s²",
+          "3",
+          "3m/s2"
+        ],
+        "choices": [
+          "3 m/s²",
+          "1.5 m/s²",
+          "4.5 m/s²",
+          "6 m/s²"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "2.5 m/s²",
+          "7.5 m/s²",
+          "5 m/s²",
+          "10 m/s²"
+        ],
+        "correctChoice": 3,
+        "answer": "5 m/s²",
         "acceptableAnswers": [
           "3",
-          "3m/s2",
-          "3 m/s²"
+          "5 m/s²"
         ]
       }
     },
@@ -272,11 +341,34 @@
         "prompt": "정지한 두 스케이트 선수가 서로 밀었다. 60 kg인 A가 3 m/s, B가 2 m/s로 반대 방향으로 움직였다. B의 질량을 구하시오.",
         "answer": "90 kg",
         "explanation": "처음 운동량이 0이므로 60·3=m_B·2, m_B=90 kg이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "90 kg",
           "90",
-          "90kg",
-          "90 kg"
+          "90kg"
+        ],
+        "choices": [
+          "45 kg",
+          "135 kg",
+          "90 kg",
+          "180 kg"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "37.5 kg",
+          "112 kg",
+          "150 kg",
+          "75 kg"
+        ],
+        "correctChoice": 4,
+        "answer": "75 kg",
+        "acceptableAnswers": [
+          "4",
+          "75 kg"
         ]
       }
     },
@@ -327,12 +419,38 @@
       ],
       "similarProblem": {
         "prompt": "천장에 매달린 전등에 대해 ① 줄이 전등을 위로 당기는 힘 ② 지구가 전등을 아래로 당기는 힘 ③ 전등이 줄을 아래로 당기는 힘 ④ 전등이 지구를 위로 당기는 힘이 있다. 작용·반작용 쌍과 평형 쌍을 쓰시오.",
-        "answer": "작용·반작용: ①-③, ②-④. 평형: ①-②.",
+        "answer": "작용·반작용: ①-③, ②-④ / 평형: ①-②",
         "explanation": "서로 다른 물체에 작용하는 쌍은 작용·반작용이고, 전등 하나에 작용해 합이 0인 ①과 ②가 평형이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "작용·반작용: ①-③, ②-④ / 평형: ①-②",
+          "3",
+          "작용·반작용: ①-③, ②-④. 평형: ①-②.",
           "1-3,2-4,1-2",
           "①③ ②④ 평형①②"
+        ],
+        "choices": [
+          "작용·반작용: ①-②, ③-④ / 평형: ①-③",
+          "작용·반작용: ①-③, ②-④ / 평형: ①-②",
+          "작용·반작용: ①-④, ②-③ / 평형: ③-④",
+          "작용·반작용: ①-② / 평형: ②-④"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "작용·반작용: 가-다, 나-라 / 평형: 가-나",
+          "작용·반작용: 가-나, 다-라 / 평형: 가-다",
+          "작용·반작용: 가-라, 나-다 / 평형: 나-라",
+          "작용·반작용: 가-다 / 평형: 나-라"
+        ],
+        "correctChoice": 1,
+        "answer": "작용·반작용: 가-다, 나-라 / 평형: 가-나",
+        "acceptableAnswers": [
+          "1",
+          "작용·반작용: 가-다, 나-라 / 평형: 가-나"
         ]
       }
     },
@@ -388,11 +506,34 @@
         "prompt": "무게 20 N인 물체가 실에 매달려 있고, 수평 힘 때문에 실이 연직과 60°를 이룬 채 정지했다. 장력을 구하시오.",
         "answer": "40 N",
         "explanation": "Tcos60°=20이므로 T=40 N이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "4",
+          "40 N",
           "40",
-          "40N",
+          "40N"
+        ],
+        "choices": [
+          "20 N",
+          "60 N",
+          "80 N",
           "40 N"
+        ],
+        "correctChoice": 4
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "12 N",
+          "36 N",
+          "48 N",
+          "24 N"
+        ],
+        "correctChoice": 4,
+        "answer": "24 N",
+        "acceptableAnswers": [
+          "4",
+          "24 N"
         ]
       }
     },
@@ -447,12 +588,34 @@
       ],
       "similarProblem": {
         "prompt": "무게 60 N인 물체를 두 줄이 수평선과 각각 30°, 60°를 이루며 지지한다. 30° 줄의 장력과 60° 줄의 장력을 구하시오.",
-        "answer": "30° 줄: 30 N, 60° 줄: 30√3 N",
+        "answer": "수평선과 30°인 줄: 30 N, 수평선과 60°인 줄: 30√3 N",
         "explanation": "수평평형과 연직평형을 연립한다. 60° 줄의 장력이 √3배 크고, 연직성분 합이 60 N이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
-          "30,30sqrt3",
-          "30N,30√3N"
+          "1",
+          "수평선과 30°인 줄: 30 N, 수평선과 60°인 줄: 30√3 N"
+        ],
+        "choices": [
+          "수평선과 30°인 줄: 30 N, 수평선과 60°인 줄: 30√3 N",
+          "수평선과 30°인 줄: 30√3 N, 수평선과 60°인 줄: 30 N",
+          "두 줄 모두 30 N",
+          "두 줄 모두 30√3 N"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "A쪽 40√3 N, B쪽 20 N",
+          "A쪽 10√3 N, B쪽 20 N",
+          "A쪽 30√3 N, B쪽 20 N",
+          "A쪽 20√3 N, B쪽 20 N"
+        ],
+        "correctChoice": 4,
+        "answer": "A쪽 20√3 N, B쪽 20 N",
+        "acceptableAnswers": [
+          "4",
+          "A쪽 20√3 N, B쪽 20 N"
         ]
       }
     },
@@ -500,10 +663,34 @@
         "prompt": "마찰 없는 30° 경사면에 질량 4 kg 물체를 경사면과 나란한 줄로 묶어 정지시켰다. g=10 m/s². 장력과 수직항력을 구하시오.",
         "answer": "T=20 N, N=20√3 N",
         "explanation": "T=mg sin30=20 N, N=mg cos30=20√3 N이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "T=20 N, N=20√3 N",
           "20,20sqrt3",
           "20N,20√3N"
+        ],
+        "choices": [
+          "T=40 N, N=20√3 N",
+          "T=10 N, N=20√3 N",
+          "T=20 N, N=20√3 N",
+          "T=30 N, N=20√3 N"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "T=mg cosθ, N=mg sinθ",
+          "T=mg tanθ, N=mg",
+          "T=mg sinθ, N=mg cosθ",
+          "T=mg, N=mg cosθ"
+        ],
+        "correctChoice": 3,
+        "answer": "T=mg sinθ, N=mg cosθ",
+        "acceptableAnswers": [
+          "3",
+          "T=mg sinθ, N=mg cosθ"
         ]
       }
     },
@@ -560,13 +747,37 @@
         "prompt": "매끄러운 수평면에서 3 kg과 2 kg 상자가 붙어 있다. 3 kg 상자를 15 N으로 민다. 두 상자 사이 접촉력을 구하시오.",
         "answer": "6 N",
         "explanation": "전체 가속도는 15/5=3 m/s²이고, 2 kg 상자에 필요한 힘은 2·3=6 N이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "6 N",
           "6",
-          "6N",
-          "6 N"
+          "6N"
+        ],
+        "choices": [
+          "3 N",
+          "9 N",
+          "6 N",
+          "12 N"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "2 N",
+          "1 N",
+          "3 N",
+          "4 N"
+        ],
+        "correctChoice": 1,
+        "answer": "2 N",
+        "acceptableAnswers": [
+          "1",
+          "2 N"
         ]
       }
     }
-  ]
+  ],
+  "featureVersion": "3.4.0-answer-editor-choice-retry"
 }

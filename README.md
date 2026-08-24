@@ -1,6 +1,8 @@
+> **v3.4.0 정답 관리·보기 선택 업데이트:** 교사용 홈페이지에서 선택한 시험의 객관식 정답 번호, 서술형 모범답안, 원문 재도전 보기와 동형 문제 보기를 수정해 Google Sheets의 `QuestionOverrides` 시트에 저장할 수 있습니다. 준비 완료된 108문항의 원문 재도전과 동형 문제는 모두 보기 선택 방식이며, 기존에 문자열 입력 대상이던 서술형·단답형 65문항과 답안번호가 별도 등록되지 않은 복합 선택형 3문항도 정확한 문자열을 입력할 필요가 없습니다. 기존 배포의 `.github/workflows/pages.yml`과 `site/assets/runtime-config.js`는 유지한 채 v3.4.0 패치를 적용하세요.
+
 > **v3.3.0 교사 인증 연결 수정:** GitHub Pages를 Apps Script 보안 상위 페이지 안에서 실행하고, 서버 호출은 공식 `google.script.run`으로 처리합니다. PIN 입력 후 “Apps Script 서버에 연결하지 못했습니다”가 표시되면 `HOSTED_PARENT_BRIDGE_FIX_KO.md` 순서대로 Code.gs와 GitHub 패치를 함께 적용하세요. 기존 학생 기록·PIN·토큰은 유지됩니다.
 
-# Young’s Physics 성적 분석 시스템 3.3.0
+# Young’s Physics 성적 분석 시스템 3.4.0
 
 > **v3.2.5 자동 연결 수정:** 지속형 `google.script.run` iframe 대신 hidden form POST 응답 브리지를 사용합니다. `Apps Script GET 연결은 정상이나 통신 브리지를 열지 못했습니다` 오류가 발생하면 `FORM_POST_BRIDGE_FIX_KO.md` 순서대로 **Code.gs와 GitHub 파일을 함께** 교체하세요. 기존 학생 기록·PIN·토큰은 유지됩니다.
 
@@ -12,6 +14,17 @@
 
 
 GitHub Pages와 Google Sheets + Apps Script로 운영하는 **주간 복습·총괄평가 통합 성적 분석 시스템**입니다.
+
+## v3.4.0 정답 관리와 선택형 오답 재도전
+
+- 상단 메뉴의 **정답 관리**에서 시험별 공식 정답과 모범답안을 수정
+- 객관식 1~5번 정답 번호, 원문 재도전 보기, 동형 문제 보기를 한 화면에서 편집
+- 저장값은 `QuestionOverrides` 시트에 분리 보존되어 카탈로그 재동기화 후에도 유지
+- 다른 교사용 컴퓨터와 새로 여는 학생 성적표에서 최신 수정본 자동 사용
+- 원문 재도전과 동형 문제는 모두 `<select>` 보기 선택 방식
+- 기존 학생 점수는 정답 변경만으로 자동 재채점하지 않으며, Excel을 다시 일괄 저장하거나 학생 기록을 수정해야 함
+- 기존 운영본 업데이트에서는 `installYoungsPhysics()`를 다시 실행하지 않고 `Code.gs` 새 버전 배포만 수행
+
 
 3.3.0 배포본은 기존 Excel 일괄 입력·다른 컴퓨터 자동 연결·성적표 토큰 검증 기능을 유지하면서, 교사 인증 통신을 Apps Script 상위 보안 페이지와 `google.script.run` 방식으로 변경합니다. 다음 기능도 그대로 포함합니다.
 
@@ -76,13 +89,13 @@ Value: https://script.google.com/macros/s/.../exec
 
 정상 동기화 기준은 과정 3개, 시험 39개, 등록 문항 108개입니다.
 
-## 기존 운영본에서 3.3.0으로 업데이트
+## 기존 운영본에서 3.4.0으로 업데이트
 
 1. Google Spreadsheet를 `파일 → 사본 만들기`로 백업합니다.
-2. Apps Script의 `Code.gs`를 3.3.0 파일로 전체 교체합니다.
+2. Apps Script의 `Code.gs`를 3.4.0 파일로 전체 교체합니다.
 3. **`installYoungsPhysics()`, `resetTeacherPin()`, `repairReportStorage()`는 다시 실행하지 않습니다.** 기존 PIN·학생 기록·토큰·지문을 그대로 유지합니다.
 4. 기존 웹 앱 배포를 **새 버전**으로 갱신합니다.
-5. GitHub에는 3.3.0 패치 또는 전체 업로드본을 덮어쓰고 Pages를 다시 배포합니다.
+5. GitHub에는 v3.4.0 기능 패치를 덮어쓰되 `.github/workflows/pages.yml`과 `site/assets/runtime-config.js`는 기존 운영본을 유지하고 Pages를 다시 배포합니다.
 6. 배포된 GitHub Pages 주소를 열면 Apps Script `/exec?view=host&site=...` 주소로 자동 전환된 뒤 기존 화면이 표시되는지 확인합니다.
 
 새로운 빈 Spreadsheet에 처음 설치하는 경우에만 `installYoungsPhysics()`를 실행합니다.

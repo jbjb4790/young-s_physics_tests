@@ -92,11 +92,34 @@
         "prompt": "2 kg 물체가 6 m/s, 4 kg 물체가 1 m/s로 같은 방향 운동한다. 충돌 후 2 kg 물체가 2 m/s이면 4 kg 물체 속도는?",
         "answer": "3 m/s",
         "explanation": "초기 운동량 16, 최종 4+4v. v=3 m/s.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "4",
+          "3 m/s",
           "3",
-          "3m/s",
+          "3m/s"
+        ],
+        "choices": [
+          "1.5 m/s",
+          "4.5 m/s",
+          "6 m/s",
           "3 m/s"
+        ],
+        "correctChoice": 4
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "2 m/s, 오른쪽",
+          "4 m/s, 오른쪽",
+          "6 m/s, 오른쪽",
+          "8 m/s, 오른쪽"
+        ],
+        "correctChoice": 2,
+        "answer": "4 m/s, 오른쪽",
+        "acceptableAnswers": [
+          "2",
+          "4 m/s, 오른쪽"
         ]
       }
     },
@@ -151,11 +174,34 @@
         "prompt": "3 kg A가 오른쪽 8 m/s, 5 kg B가 왼쪽 2 m/s로 충돌한다. 이후 A가 왼쪽 2 m/s이면 B의 속도는?",
         "answer": "4 m/s 오른쪽",
         "explanation": "초기 p=24-10=14, 최종=-6+5v. v=4 m/s.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
           "4",
+          "4 m/s 오른쪽",
           "4m/s 오른쪽",
           "오른쪽 4"
+        ],
+        "choices": [
+          "2 m/s 오른쪽",
+          "6 m/s 오른쪽",
+          "8 m/s 오른쪽",
+          "4 m/s 오른쪽"
+        ],
+        "correctChoice": 4
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "1 m/s, 오른쪽",
+          "0.5 m/s, 오른쪽",
+          "1.5 m/s, 오른쪽",
+          "2 m/s, 오른쪽"
+        ],
+        "correctChoice": 1,
+        "answer": "1 m/s, 오른쪽",
+        "acceptableAnswers": [
+          "1",
+          "1 m/s, 오른쪽"
         ]
       }
     },
@@ -214,10 +260,34 @@
         "prompt": "0.5 kg 공이 오른쪽 12 m/s로 벽에 부딪혀 0.1 s 뒤 왼쪽 8 m/s로 튕겼다. 공이 받은 충격량과 평균힘 크기, 운동에너지 손실을 구하시오.",
         "answer": "충격량 -10 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J",
         "explanation": "Δp=0.5(-8-12)=-10. 평균힘 10/0.1=100. K_i=36 J, K_f=16 J라 손실 20 J.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "충격량 -10 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J",
           "-10,100,20",
           "왼쪽10Ns,100N,20J"
+        ],
+        "choices": [
+          "충격량 -20 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J",
+          "충격량 -10 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J",
+          "충격량 -5 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J",
+          "충격량 0 N·s(왼쪽), 평균힘 100 N, 에너지 손실 20 J"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "충격량 -24 N·s(왼쪽), 평균힘 60 N, 완전 탄성 충돌",
+          "충격량 -6 N·s(왼쪽), 평균힘 60 N, 완전 탄성 충돌",
+          "충격량 -12 N·s(왼쪽), 평균힘 60 N, 완전 탄성 충돌",
+          "충격량 -2 N·s(왼쪽), 평균힘 60 N, 완전 탄성 충돌"
+        ],
+        "correctChoice": 3,
+        "answer": "충격량 -12 N·s(왼쪽), 평균힘 60 N, 완전 탄성 충돌",
+        "acceptableAnswers": [
+          "3",
+          "충격량 -12 N·s(왼쪽), 평균힘 60 N, 완전 탄성 충돌"
         ]
       }
     },
@@ -274,14 +344,31 @@
         "explanation": "이상적인 경우 운동량과 에너지 보존을 동시에 만족하는 동일 개수 3개가 나온다.",
         "inputMode": "choice",
         "acceptableAnswers": [
-          "3개",
-          "3"
+          "3",
+          "3개"
         ],
         "choices": [
           "1개",
           "2개",
           "3개",
-          "6개"
+          "4개"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "2개",
+          "3개",
+          "4개",
+          "5개"
+        ],
+        "correctChoice": 3,
+        "answer": "4개",
+        "acceptableAnswers": [
+          "3",
+          "4개",
+          "4"
         ]
       }
     },
@@ -329,11 +416,33 @@
         "prompt": "3 kg 물체에 0~6 s 동안 밑변 6 s, 높이 12 N인 삼각형 모양 힘이 작용한다. 처음속도 1 m/s가 힘 방향일 때 최종속도는?",
         "answer": "13 m/s",
         "explanation": "충격량 36 N·s, Δv=12 m/s, 최종 13 m/s.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
-          "13",
-          "13m/s",
-          "13 m/s"
+          "3",
+          "13 m/s",
+          "13"
+        ],
+        "choices": [
+          "7 m/s",
+          "10 m/s",
+          "13 m/s",
+          "25 m/s"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "충격량 32 N·s, 최종속도 10 m/s",
+          "충격량 16 N·s, 최종속도 10 m/s",
+          "충격량 8 N·s, 최종속도 10 m/s",
+          "충격량 26 N·s, 최종속도 10 m/s"
+        ],
+        "correctChoice": 2,
+        "answer": "충격량 16 N·s, 최종속도 10 m/s",
+        "acceptableAnswers": [
+          "2",
+          "충격량 16 N·s, 최종속도 10 m/s"
         ]
       }
     },
@@ -388,12 +497,37 @@
         "prompt": "0.2 kg 공이 5 m/s로 바닥에 닿아 정지한다. 딱딱한 바닥에서는 0.02 s, 매트에서는 0.10 s 걸렸다. 평균 충격력 크기를 각각 구하시오.",
         "answer": "딱딱한 바닥 50 N, 매트 10 N",
         "explanation": "충격량 크기 0.2·5=1 N·s. 시간으로 나누면 50 N과 10 N.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "딱딱한 바닥 50 N, 매트 10 N",
           "50,10",
           "50N,10N"
+        ],
+        "choices": [
+          "딱딱한 바닥 100 N, 매트 10 N",
+          "딱딱한 바닥 25 N, 매트 10 N",
+          "딱딱한 바닥 50 N, 매트 10 N",
+          "딱딱한 바닥 60 N, 매트 10 N"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "A=쿠션, B=콘크리트 / 충격량 2,1 N·s / 평균힘 50,100 N",
+          "A=콘크리트, B=쿠션 / 충격량 각 1 N·s / 평균힘 100 N, 50 N",
+          "A=콘크리트, B=쿠션 / 충격량 1,2 N·s / 평균힘 100,100 N",
+          "A=쿠션, B=콘크리트 / 충격량 각 1 N·s / 평균힘 100,50 N"
+        ],
+        "correctChoice": 2,
+        "answer": "A=콘크리트, B=쿠션 / 충격량 각 1 N·s / 평균힘 100 N, 50 N",
+        "acceptableAnswers": [
+          "2",
+          "A=콘크리트, B=쿠션 / 충격량 각 1 N·s / 평균힘 100 N, 50 N"
         ]
       }
     }
-  ]
+  ],
+  "featureVersion": "3.4.0-answer-editor-choice-retry"
 }

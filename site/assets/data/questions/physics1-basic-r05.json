@@ -90,10 +90,33 @@
         "prompt": "정지마찰계수 0.4인 수평면에 질량 5 kg 물체가 있다. g=10 m/s². 움직이기 직전 필요한 수평힘을 구하시오.",
         "answer": "20 N",
         "explanation": "N=50 N, f_s,max=0.4×50=20 N이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "1",
+          "20 N",
           "20",
-          "20N",
+          "20N"
+        ],
+        "choices": [
+          "20 N",
+          "10 N",
+          "30 N",
+          "40 N"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "10 N",
+          "30 N",
+          "20 N",
+          "40 N"
+        ],
+        "correctChoice": 3,
+        "answer": "20 N",
+        "acceptableAnswers": [
+          "3",
           "20 N"
         ]
       }
@@ -147,11 +170,34 @@
         "prompt": "질량 8 kg, μ_s=0.25, μ_k=0.15인 물체를 24 N으로 당긴다. g=10. 가속도를 구하시오.",
         "answer": "1.5 m/s²",
         "explanation": "최대 정지마찰력 20 N보다 24 N이 크므로 움직인다. 운동마찰력 12 N, 알짜힘 12 N, a=1.5 m/s².",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "1",
+          "1.5 m/s²",
           "1.5",
-          "1.5m/s2",
-          "1.5 m/s²"
+          "1.5m/s2"
+        ],
+        "choices": [
+          "1.5 m/s²",
+          "0.75 m/s²",
+          "2.25 m/s²",
+          "3 m/s²"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "1.2 m/s²",
+          "0.6 m/s²",
+          "1.8 m/s²",
+          "2.4 m/s²"
+        ],
+        "correctChoice": 1,
+        "answer": "1.2 m/s²",
+        "acceptableAnswers": [
+          "1",
+          "1.2 m/s²"
         ]
       }
     },
@@ -202,10 +248,34 @@
         "prompt": "최대 정지마찰력이 30 N인 물체를 24 N으로 민다. 가속도와 정지마찰력 크기를 구하시오.",
         "answer": "가속도 0, 정지마찰력 24 N",
         "explanation": "물체는 정지하고 정지마찰력이 가한 힘과 같은 24 N으로 평형을 만든다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "가속도 0, 정지마찰력 24 N",
           "0,24",
           "0m/s2,24N"
+        ],
+        "choices": [
+          "가속도 1, 정지마찰력 24 N",
+          "가속도 0, 정지마찰력 24 N",
+          "가속도 -1, 정지마찰력 24 N",
+          "가속도 2, 정지마찰력 24 N"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "가속도 1 m/s², 정지마찰력 18 N",
+          "가속도 -1 m/s², 정지마찰력 18 N",
+          "가속도 0 m/s², 정지마찰력 18 N",
+          "가속도 2 m/s², 정지마찰력 18 N"
+        ],
+        "correctChoice": 3,
+        "answer": "가속도 0 m/s², 정지마찰력 18 N",
+        "acceptableAnswers": [
+          "3",
+          "가속도 0 m/s², 정지마찰력 18 N"
         ]
       }
     },
@@ -257,11 +327,34 @@
         "prompt": "무게 80 N인 상자를 벽에 눌러 정지시켰다. 미끄러지지 않는다면 상자에 작용하는 정지마찰력 크기는?",
         "answer": "80 N",
         "explanation": "연직 평형 때문에 마찰력이 무게와 같은 80 N이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "80 N",
           "80",
-          "80N",
-          "80 N"
+          "80N"
+        ],
+        "choices": [
+          "40 N",
+          "80 N",
+          "120 N",
+          "160 N"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "50 N",
+          "150 N",
+          "200 N",
+          "100 N"
+        ],
+        "correctChoice": 4,
+        "answer": "100 N",
+        "acceptableAnswers": [
+          "4",
+          "100 N"
         ]
       }
     },
@@ -312,11 +405,35 @@
         "prompt": "질량 12 kg 물체를 수평면과 30° 위 방향으로 40 N 당긴다. g=10. 수직항력을 구하시오.",
         "answer": "100 N",
         "explanation": "N=120-40sin30=120-20=100 N이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "100 N",
           "100",
-          "100N",
-          "100 N"
+          "100N"
+        ],
+        "choices": [
+          "50 N",
+          "150 N",
+          "100 N",
+          "200 N"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "N=100+50√3 N (약 186.6 N)",
+          "N=100-25√3 N (약 56.7 N)",
+          "N=100-50√3 N (약 13.4 N)",
+          "N=50√3 N (약 86.6 N)"
+        ],
+        "correctChoice": 3,
+        "answer": "N=100-50√3 N (약 13.4 N)",
+        "acceptableAnswers": [
+          "3",
+          "N=100-50√3 N (약 13.4 N)",
+          "100-50√3 N (약 13.4 N)"
         ]
       }
     },
@@ -365,11 +482,34 @@
         "prompt": "매끄러운 면에서 2 kg, 1 kg, 3 kg 블록이 차례로 붙어 있고 왼쪽 블록을 오른쪽으로 24 N 민다. 가운데 블록이 오른쪽 3 kg 블록을 미는 힘을 구하시오.",
         "answer": "12 N",
         "explanation": "전체 가속도는 24/6=4 m/s². 오른쪽 3 kg 블록에 필요한 힘은 3×4=12 N이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "12 N",
           "12",
-          "12N",
-          "12 N"
+          "12N"
+        ],
+        "choices": [
+          "6 N",
+          "18 N",
+          "12 N",
+          "24 N"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "1) 10 N / 2) 2 N만 가능",
+          "1) 10 N / 2) 18 N만 가능",
+          "1) 5 N / 2) 12 N",
+          "1) 10 N / 2) 힘 방향 미제시로 2 N 또는 18 N"
+        ],
+        "correctChoice": 4,
+        "answer": "1) 10 N / 2) 힘 방향 미제시로 2 N 또는 18 N",
+        "acceptableAnswers": [
+          "4",
+          "1) 10 N / 2) 힘 방향 미제시로 2 N 또는 18 N"
         ]
       }
     },
@@ -421,11 +561,34 @@
         "prompt": "매끄러운 책상 위 8 kg 물체와 매달린 2 kg 물체가 줄로 연결되어 있다. g=10. 장력을 구하시오.",
         "answer": "16 N",
         "explanation": "a=20/10=2 m/s², T=8×2=16 N이다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "16 N",
           "16",
-          "16N",
-          "16 N"
+          "16N"
+        ],
+        "choices": [
+          "8 N",
+          "16 N",
+          "24 N",
+          "32 N"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "12 N",
+          "36 N",
+          "24 N",
+          "48 N"
+        ],
+        "correctChoice": 3,
+        "answer": "24 N",
+        "acceptableAnswers": [
+          "3",
+          "24 N"
         ]
       }
     },
@@ -477,10 +640,34 @@
         "prompt": "3 kg과 7 kg이 이상적인 도르래에 매달렸다. g=10. 가속도와 장력을 구하시오.",
         "answer": "a=4 m/s², T=42 N",
         "explanation": "a=(7-3)10/10=4. 3 kg은 위로 가속하므로 T=3(10+4)=42 N.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "a=4 m/s², T=42 N",
           "4,42",
           "4m/s2,42N"
+        ],
+        "choices": [
+          "a=8 m/s², T=42 N",
+          "a=2 m/s², T=42 N",
+          "a=4 m/s², T=42 N",
+          "a=5 m/s², T=42 N"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "가속도 4 m/s², 장력 48 N",
+          "가속도 1 m/s², 장력 48 N",
+          "가속도 3 m/s², 장력 48 N",
+          "가속도 2 m/s², 장력 48 N"
+        ],
+        "correctChoice": 4,
+        "answer": "가속도 2 m/s², 장력 48 N",
+        "acceptableAnswers": [
+          "4",
+          "가속도 2 m/s², 장력 48 N"
         ]
       }
     },
@@ -536,11 +723,34 @@
         "prompt": "60 kg 사람이 탄 엘리베이터가 3 s 동안 정지에서 위로 6 m/s가 된 뒤, 나중에 2 s 동안 정지한다. g=10. 최대·최소 겉보기 무게의 차를 구하시오.",
         "answer": "300 N",
         "explanation": "상승 가속도 2 m/s²에서 N_max=720 N, 정지시키는 아래 가속도 3 m/s²에서 N_min=420 N, 차 300 N.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "300 N",
           "300",
-          "300N",
-          "300 N"
+          "300N"
+        ],
+        "choices": [
+          "150 N",
+          "300 N",
+          "450 N",
+          "600 N"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "400 N",
+          "800 N",
+          "1200 N",
+          "1600 N"
+        ],
+        "correctChoice": 2,
+        "answer": "800 N",
+        "acceptableAnswers": [
+          "2",
+          "800 N"
         ]
       }
     },
@@ -595,11 +805,36 @@
       ],
       "similarProblem": {
         "prompt": "s-t 세 곡선이 같은 끝점에서 만나고 접선 기울기가 P>Q>R이다. 별도의 v-t 세 곡선도 같은 끝점에서 만나며 R이 직선 위, Q가 직선, P가 직선 아래이다. 순간속도와 평균속도를 각각 비교하시오.",
-        "answer": "s-t: 순간 P>Q>R, 평균 P=Q=R. v-t: 순간 P=Q=R, 평균 R>Q>P.",
+        "answer": "s-t: 순간 P>Q>R, 평균 P=Q=R / v-t: 순간 P=Q=R, 평균 R>Q>P",
         "explanation": "그래프 종류에 따라 세로값·기울기·넓이의 의미를 구분한다.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "s-t: 순간 P>Q>R, 평균 P=Q=R / v-t: 순간 P=Q=R, 평균 R>Q>P",
+          "s-t: 순간 P>Q>R, 평균 P=Q=R. v-t: 순간 P=Q=R, 평균 R>Q>P.",
           "P>Q>R,P=Q=R;P=Q=R,R>Q>P"
+        ],
+        "choices": [
+          "s-t: 순간 P=Q=R, 평균 P>Q>R / v-t: 순간 R>Q>P, 평균 P=Q=R",
+          "s-t: 순간 P>Q>R, 평균 P=Q=R / v-t: 순간 P=Q=R, 평균 R>Q>P",
+          "s-t: 순간 R>Q>P, 평균 P=Q=R / v-t: 순간 P=Q=R, 평균 P>Q>R",
+          "s-t와 v-t 모두 순간 P>Q>R, 평균 R>Q>P"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "s-t: 순간 A=B=C, 평균 A>B>C / v-t: 순간 C>B>A, 평균 A=B=C",
+          "s-t: 순간 C>B>A, 평균 A=B=C / v-t: 순간 A=B=C, 평균 A>B>C",
+          "s-t와 v-t 모두 순간 A>B>C, 평균 C>B>A",
+          "s-t: 순간 A>B>C, 평균 A=B=C / v-t: 순간 A=B=C, 평균 C>B>A"
+        ],
+        "correctChoice": 4,
+        "answer": "s-t: 순간 A>B>C, 평균 A=B=C / v-t: 순간 A=B=C, 평균 C>B>A",
+        "acceptableAnswers": [
+          "4",
+          "s-t: 순간 A>B>C, 평균 A=B=C / v-t: 순간 A=B=C, 평균 C>B>A"
         ]
       }
     },
@@ -650,10 +885,34 @@
         "prompt": "동쪽으로 5 m/s로 달리는 사람에게 북풍이 12 m/s로 분다. 느끼는 바람의 속력과 흐름 방향은?",
         "answer": "13 m/s, 남서쪽",
         "explanation": "공기 속도 (0,-12)-사람 (5,0)=(-5,-12), 크기 13, 남서쪽.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "1",
+          "13 m/s, 남서쪽",
           "13 남서",
           "13m/s 남서쪽"
+        ],
+        "choices": [
+          "13 m/s, 남서쪽",
+          "6.5 m/s, 남서쪽",
+          "19.5 m/s, 남서쪽",
+          "26 m/s, 남서쪽"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "10√2 m/s, 남동쪽",
+          "20√2 m/s, 남동쪽",
+          "5√2 m/s, 남동쪽",
+          "10√2 m/s, 북서쪽"
+        ],
+        "correctChoice": 1,
+        "answer": "10√2 m/s, 남동쪽",
+        "acceptableAnswers": [
+          "1",
+          "10√2 m/s, 남동쪽"
         ]
       }
     },
@@ -702,10 +961,34 @@
         "prompt": "5타점 간격이 0.1 s인 테이프에서 연속 구간 거리가 4, 8, 12 cm이다. 첫 점부터 셋째 경계까지 평균속력과 가속도를 구하시오.",
         "answer": "평균속력 0.60 m/s, 가속도 4.0 m/s²",
         "explanation": "첫 두 구간 12 cm/0.2 s=0.60. 구간 속력 0.4,0.8,1.2이고 첫·셋째 중심 차 0.2 s이므로 a=4.0.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "평균속력 0.60 m/s, 가속도 4.0 m/s²",
           "0.6,4",
           "0.60m/s,4m/s2"
+        ],
+        "choices": [
+          "평균속력 1.2 m/s, 가속도 4.0 m/s²",
+          "평균속력 0.60 m/s, 가속도 4.0 m/s²",
+          "평균속력 0.3 m/s, 가속도 4.0 m/s²",
+          "평균속력 1.6 m/s, 가속도 4.0 m/s²"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "평균속력 1.5 m/s, 평균가속도 5.0 m/s²",
+          "평균속력 0.375 m/s, 평균가속도 5.0 m/s²",
+          "평균속력 0.75 m/s, 평균가속도 5.0 m/s²",
+          "평균속력 1.75 m/s, 평균가속도 5.0 m/s²"
+        ],
+        "correctChoice": 3,
+        "answer": "평균속력 0.75 m/s, 평균가속도 5.0 m/s²",
+        "acceptableAnswers": [
+          "3",
+          "평균속력 0.75 m/s, 평균가속도 5.0 m/s²"
         ]
       }
     },
@@ -758,11 +1041,34 @@
         "prompt": "무게 1.2 N, 길이 60 cm 막대를 전체 길이 100 cm인 실로 양끝에서 대칭 지지한다. 각 실 부분은 50 cm이고 반쪽 밑변은 30 cm이다. 장력을 구하시오.",
         "answer": "0.75 N",
         "explanation": "높이는 40 cm, sinθ=40/50=0.8. 2T·0.8=1.2이므로 T=0.75 N.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "0.75 N",
           "0.75",
-          "0.75N",
-          "0.75 N"
+          "0.75N"
+        ],
+        "choices": [
+          "0.375 N",
+          "0.75 N",
+          "1.12 N",
+          "1.5 N"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "0.25 N",
+          "0.5 N",
+          "0.75 N",
+          "1 N"
+        ],
+        "correctChoice": 2,
+        "answer": "0.5 N",
+        "acceptableAnswers": [
+          "2",
+          "0.5 N"
         ]
       }
     },
@@ -810,10 +1116,34 @@
         "prompt": "정지 출발 자동차가 3 s에 6 m/s, 6 s에 12 m/s이다. 3~6 s 이동거리는 0~3 s의 몇 배이며 가속도는?",
         "answer": "3배, 2 m/s²",
         "explanation": "0~3 s 거리는 9 m, 3~6 s는 평균속도 9×3=27 m이므로 3배. a=6/3=2.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "3배, 2 m/s²",
           "3,2",
           "3배,2m/s2"
+        ],
+        "choices": [
+          "6배, 2 m/s²",
+          "3배, 2 m/s²",
+          "1.5배, 2 m/s²",
+          "4배, 2 m/s²"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "이동거리 6배, 가속도 2 m/s²",
+          "이동거리 1.5배, 가속도 2 m/s²",
+          "이동거리 4배, 가속도 2 m/s²",
+          "이동거리 3배, 가속도 2 m/s²"
+        ],
+        "correctChoice": 4,
+        "answer": "이동거리 3배, 가속도 2 m/s²",
+        "acceptableAnswers": [
+          "4",
+          "이동거리 3배, 가속도 2 m/s²"
         ]
       }
     },
@@ -862,12 +1192,13 @@
       ],
       "similarProblem": {
         "prompt": "다음 중 힘의 평형을 모두 고르시오. ㄱ 정지한 책에 작용하는 중력과 책상 수직항력. ㄴ 사람이 벽을 미는 힘과 벽이 사람을 미는 힘. ㄷ 등속 낙하하는 물체의 중력과 공기저항.",
-        "answer": "ㄱ, ㄷ",
+        "answer": "ㄱ,ㄷ",
         "explanation": "ㄱ과 ㄷ은 각각 같은 물체에 작용해 합력이 0이다. ㄴ은 작용·반작용이다.",
         "inputMode": "choice",
         "acceptableAnswers": [
+          "4",
           "ㄱ,ㄷ",
-          "4"
+          "ㄱ, ㄷ"
         ],
         "choices": [
           "ㄱ",
@@ -875,8 +1206,26 @@
           "ㄷ",
           "ㄱ,ㄷ",
           "ㄴ,ㄷ"
+        ],
+        "correctChoice": 4
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "ㄱ만",
+          "ㄷ만",
+          "ㄱ, ㄷ",
+          "ㄴ, ㄹ"
+        ],
+        "correctChoice": 3,
+        "answer": "ㄱ, ㄷ",
+        "acceptableAnswers": [
+          "3",
+          "ㄱ, ㄷ",
+          "ㄱ,ㄷ"
         ]
       }
     }
-  ]
+  ],
+  "featureVersion": "3.4.0-answer-editor-choice-retry"
 }

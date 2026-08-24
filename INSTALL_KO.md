@@ -1,3 +1,18 @@
+# v3.4.0 기존 운영본 업데이트 안내
+
+현재 v3.3.x 운영 시스템에 **정답 관리·보기 선택 기능**을 추가할 때는 아래 순서만 진행합니다.
+
+1. Spreadsheet 백업
+2. Apps Script `Code.gs`를 v3.4.0으로 전체 교체
+3. `installYoungsPhysics()`, `resetTeacherPin()`, `repairReportStorage()`는 실행하지 않음
+4. 기존 웹 앱을 새 버전으로 재배포
+5. GitHub v3.4.0 패치를 덮어쓰되 `.github/workflows/pages.yml`과 `site/assets/runtime-config.js`는 기존 운영 파일 유지
+6. GitHub Pages 재배포 후 강력 새로고침
+
+최초 저장 시 `QuestionOverrides` 시트가 자동 생성됩니다. 정답 변경 후 기존 학생 점수는 자동 재채점되지 않으므로 Excel을 다시 저장하거나 학생 기록을 수정해야 합니다.
+
+---
+
 > **v3.3.0 교사 인증 연결 수정:** GitHub Pages를 Apps Script 보안 상위 페이지 안에서 실행하고, 서버 호출은 공식 `google.script.run`으로 처리합니다. PIN 입력 후 “Apps Script 서버에 연결하지 못했습니다”가 표시되면 `HOSTED_PARENT_BRIDGE_FIX_KO.md` 순서대로 Code.gs와 GitHub 패치를 함께 적용하세요. 기존 학생 기록·PIN·토큰은 유지됩니다.
 
 # Young’s Physics 3.3.0 최종 설치·자동 연결·Excel 입력 안내

@@ -256,6 +256,9 @@
   async sessionStatus(){const d=await this.request("sessionStatus",{sessionToken:this.getSession().token});return d}
   createDeviceSetupToken(){return this.request("createDeviceSetupToken",{},{auth:true})}
   listReports(filters={}){return this.request("listReports",filters,{auth:true})}
+  getQuestions(examId){return this.request("getQuestions",{examId:String(examId||"")},{auth:true})}
+  saveQuestionAnswers(examId,questions,revisionNote=""){return this.request("saveQuestionAnswers",{examId:String(examId||""),questions:Array.isArray(questions)?questions:[],revisionNote:String(revisionNote||"")},{auth:true})}
+  clearQuestionAnswerOverrides(examId,questionNos=[]){return this.request("clearQuestionAnswerOverrides",{examId:String(examId||""),questionNos:Array.isArray(questionNos)?questionNos:[]},{auth:true})}
   saveReport(record){return this.request("saveReport",{record},{auth:true})}
   saveBatch(records){return this.request("saveBatch",{records},{auth:true})}
   deleteReport(token){return this.request("deleteReport",{token},{auth:true})}
@@ -263,6 +266,17 @@
   getExamStats(examId){return this.request("getExamStats",{examId})}
   checkIntegrity(){return this.request("checkIntegrity",{},{auth:true})}
   _demoKey(){return YP.config.cachePrefix+"demo_reports_v2"}
+  _questionOverrideKey(){return YP.config.cachePrefix+"demo_question_overrides_v1"}
+  _loadQuestionOverrides(){let data={};try{data=JSON.parse(localStorage.getItem(this._questionOverrideKey())||"{}")||{}}catch(e){}return data&&typeof data==="object"?data:{}}
+  _saveQuestionOverrides(data){localStorage.setItem(this._questionOverrideKey(),JSON.stringify(data||{}))}
+  _questionToRow(examId,q,overrideUpdatedAt=""){
+    return {ExamId:examId,QuestionNo:q.no,Type:q.type,InputMode:q.inputMode||"achievement",MaxPoints:q.maxPoints,Unit:q.unit||"",Topic:q.topic||"",Difficulty:q.difficulty||"",AnswerJSON:JSON.stringify({display:q.answer,answerKey:q.answerKey,acceptableAnswers:q.acceptableAnswers||[]}),RubricJSON:JSON.stringify(q.rubric||[]),ExplanationJSON:JSON.stringify({steps:q.explanation||[],formulas:q.formulas||[],commonMistakes:q.commonMistakes||[]}),OriginalRetryJSON:JSON.stringify(q.originalRetry||{}),SimilarProblemJSON:JSON.stringify(q.similarProblem||{}),ReviewStatus:q.reviewStatus||"",CorrectionNote:q.correctionNote||"",ImageJSON:JSON.stringify(q.image||{}),OverrideUpdatedAt:overrideUpdatedAt||""}
+  }
+  _demoQuestionRows(examId){
+    const exam=YP.getExam(examId);if(!exam)return [];
+    const overrides=this._loadQuestionOverrides()[examId]||{};
+    return (exam.questions||[]).map(q=>{const o=overrides[String(q.no)]||null,merged=o?{...YP.clone(q),...o,originalRetry:o.originalRetry||q.originalRetry,similarProblem:o.similarProblem||q.similarProblem}:YP.clone(q);return this._questionToRow(examId,merged,o?.updatedAt||"")})
+  }
   _loadDemo(){let rows;try{rows=JSON.parse(localStorage.getItem(this._demoKey())||"null")}catch(e){}if(!Array.isArray(rows)){rows=JSON.parse(JSON.stringify(window.YP_DEMO_DATA?.reports||[]));localStorage.setItem(this._demoKey(),JSON.stringify(rows))}return rows}
   _saveDemo(rows){localStorage.setItem(this._demoKey(),JSON.stringify(rows))}
   _normalize(r){return YP.normalizeRecord(r)}
@@ -276,6 +290,17 @@
     if(action==="createDeviceSetupToken")return {ok:true,demo:true,setupToken:"demo-setup-token",expiresAt:new Date(Date.now()+600000).toISOString(),oneTime:true};
     if(action==="ping")return {ok:true,demo:true,message:"데모 저장소 연결 정상",serverInstanceId:"demo-local"};
     if(action==="syncCatalog")return {ok:true,demo:true,courses:YP.catalog.courses.length,exams:YP.catalog.exams.length,questions:YP.readyExams().reduce((a,e)=>a+(e.questions?.length||0),0)};
+    if(action==="getQuestions")return {ok:true,demo:true,questions:this._demoQuestionRows(String(payload.examId||""))};
+    if(action==="saveQuestionAnswers"){
+      const examId=String(payload.examId||""),exam=YP.getExam(examId);if(!exam)throw new YPAPIError("시험 문항을 찾을 수 없습니다.","QUESTIONS_NOT_FOUND");
+      const all=this._loadQuestionOverrides(),bucket=all[examId]||{},now=new Date().toISOString();
+      for(const item of payload.questions||[]){const no=Number(item.no),base=exam.questions.find(q=>Number(q.no)===no);if(!base)throw new YPAPIError(`${no}번 문항을 찾을 수 없습니다.`,"QUESTION_NO_INVALID");bucket[String(no)]={answer:String(item.answer??base.answer),answerKey:item.answerKey??base.answerKey,acceptableAnswers:item.acceptableAnswers||base.acceptableAnswers||[],originalRetry:YP.clone(item.originalRetry||base.originalRetry),similarProblem:YP.clone(item.similarProblem||base.similarProblem),revisionNote:String(item.revisionNote||payload.revisionNote||""),updatedAt:now}}
+      all[examId]=bucket;this._saveQuestionOverrides(all);return {ok:true,demo:true,examId,count:(payload.questions||[]).length,questions:this._demoQuestionRows(examId),updatedAt:now};
+    }
+    if(action==="clearQuestionAnswerOverrides"){
+      const examId=String(payload.examId||""),all=this._loadQuestionOverrides(),bucket=all[examId]||{},selected=new Set((payload.questionNos||[]).map(Number));let deleted=0;
+      Object.keys(bucket).forEach(k=>{if(!selected.size||selected.has(Number(k))){delete bucket[k];deleted++}});if(Object.keys(bucket).length)all[examId]=bucket;else delete all[examId];this._saveQuestionOverrides(all);return {ok:true,demo:true,examId,deleted,questions:this._demoQuestionRows(examId)};
+    }
     if(action==="listReports"){const list=rows.map(r=>this._normalize(r)).filter(r=>(!payload.examId||r.examId===payload.examId)&&(!payload.courseId||r.courseId===payload.courseId));return {ok:true,reports:list.sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt))),serverInstanceId:"demo-local"}}
     if(action==="saveReport"){
       const input=payload.record||{},exam=YP.getExam(input.examId);if(!exam||exam.status!=="ready")throw new YPAPIError("등록되지 않았거나 준비 중인 시험입니다.","EXAM_NOT_READY");const calc=YP.calculateResult(exam,input.resultInputs||[],input.partialModes||[]);if(!calc.valid)throw new YPAPIError("점수 입력 오류가 있습니다.","INVALID_SCORE");
@@ -293,7 +318,7 @@
     }
     if(action==="deleteReport"){const before=rows.length;rows=rows.filter(r=>r.token!==payload.token);this._saveDemo(rows);return {ok:true,deleted:before-rows.length}}
     if(action==="getReport"){
-      const row=rows.find(r=>r.token===payload.token);if(!row)throw new YPAPIError("성적표 토큰을 찾을 수 없습니다.","REPORT_NOT_FOUND");if(row.fingerprint!==payload.fp)throw new YPAPIError("요청한 학생과 서버에서 불러온 학생 정보가 일치하지 않습니다. 교사에게 새 결과 링크를 요청해 주세요.","FINGERPRINT_MISMATCH");const record=this._normalize(row),exam=YP.getExam(record.examId),seeded=row.token.startsWith("demo-");if(!seeded){const recomputed=await this._fp(row.token,row.examId,row.school||"미기입",row.name);if(recomputed!==row.fingerprint)throw new YPAPIError("학생 지문 재검증에 실패했습니다.","FINGERPRINT_MISMATCH")}const same=rows.map(r=>this._normalize(r)).filter(r=>r.examId===record.examId),stats=YP.computeStats(exam,same),historyRecords=YP.getLinkedHistory(exam,record,rows);return {ok:true,record,stats,historyRecords,serverInstanceId:"demo-local",integrity:{tokenMatch:true,fingerprintMatch:true,identityMatch:true},demo:true};
+      const row=rows.find(r=>r.token===payload.token);if(!row)throw new YPAPIError("성적표 토큰을 찾을 수 없습니다.","REPORT_NOT_FOUND");if(row.fingerprint!==payload.fp)throw new YPAPIError("요청한 학생과 서버에서 불러온 학생 정보가 일치하지 않습니다. 교사에게 새 결과 링크를 요청해 주세요.","FINGERPRINT_MISMATCH");const record=this._normalize(row),exam=YP.getExam(record.examId),seeded=row.token.startsWith("demo-");if(!seeded){const recomputed=await this._fp(row.token,row.examId,row.school||"미기입",row.name);if(recomputed!==row.fingerprint)throw new YPAPIError("학생 지문 재검증에 실패했습니다.","FINGERPRINT_MISMATCH")}const same=rows.map(r=>this._normalize(r)).filter(r=>r.examId===record.examId),stats=YP.computeStats(exam,same),historyRecords=YP.getLinkedHistory(exam,record,rows);return {ok:true,record,stats,historyRecords,questions:this._demoQuestionRows(record.examId),serverInstanceId:"demo-local",integrity:{tokenMatch:true,fingerprintMatch:true,identityMatch:true},demo:true};
     }
     if(action==="getExamStats"){const exam=YP.getExam(payload.examId),same=rows.map(r=>this._normalize(r)).filter(r=>r.examId===payload.examId);return {ok:true,stats:YP.computeStats(exam,same)}}
     if(action==="checkIntegrity")return {ok:true,checked:rows.length,issues:[]};

@@ -91,9 +91,33 @@
         "prompt": "정지한 2 kg 물체에 0~4 m에서는 8 N, 4~10 m에서는 12 N 힘이 작용한다. 10 m까지 한 일, 4 m와 10 m에서 속력, 속력비를 구하시오.",
         "answer": "104 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2",
         "explanation": "W₄=32 J, W₁₀=32+72=104 J. v=√(2W/m)=√W이므로 v₄=√32=4√2, v₁₀=√104=2√26.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "1",
+          "104 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2",
           "104,4sqrt2,2sqrt26,sqrt13/2"
+        ],
+        "choices": [
+          "104 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2",
+          "208 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2",
+          "52 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2",
+          "114 J, v₄=4√2 m/s, v₁₀=2√26 m/s, v₁₀/v₄=√13/2"
+        ],
+        "correctChoice": 1
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "150 J, 5√2 m/s, 10√3 m/s, 속력비 √6",
+          "150 J, 10 m/s, 10√3 m/s, 속력비 √3",
+          "100 J, 10 m/s, 10√2 m/s, 속력비 √2",
+          "150 J, 10√2 m/s, 10√3 m/s, 속력비 √(3/2)"
+        ],
+        "correctChoice": 2,
+        "answer": "150 J, 10 m/s, 10√3 m/s, 속력비 √3",
+        "acceptableAnswers": [
+          "2",
+          "150 J, 10 m/s, 10√3 m/s, 속력비 √3"
         ]
       }
     },
@@ -148,11 +172,34 @@
         "prompt": "길이 0.8 m 진자를 수평 위치에서 놓았다. 최하점 속력을 g=10으로 구하시오.",
         "answer": "4 m/s",
         "explanation": "높이차 0.8 m이므로 v=√(2·10·0.8)=4 m/s.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "4 m/s",
           "4",
-          "4m/s",
-          "4 m/s"
+          "4m/s"
+        ],
+        "choices": [
+          "2 m/s",
+          "4 m/s",
+          "6 m/s",
+          "8 m/s"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "4√5 m/s",
+          "2√5 m/s",
+          "1√5 m/s",
+          "3√5 m/s"
+        ],
+        "correctChoice": 2,
+        "answer": "2√5 m/s",
+        "acceptableAnswers": [
+          "2",
+          "2√5 m/s"
         ]
       }
     },
@@ -201,10 +248,34 @@
         "prompt": "용수철 F-x 그래프가 원점과 (0.30 m, 18 N)을 잇는 직선이다. k와 0.20 m 늘어났을 때 탄성에너지를 구하시오.",
         "answer": "k=60 N/m, U=1.2 J",
         "explanation": "k=18/0.3=60. U=½·60·0.2²=1.2 J.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "k=60 N/m, U=1.2 J",
           "60,1.2",
           "60N/m,1.2J"
+        ],
+        "choices": [
+          "k=120 N/m, U=1.2 J",
+          "k=60 N/m, U=1.2 J",
+          "k=30 N/m, U=1.2 J",
+          "k=70 N/m, U=1.2 J"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "k=50 N/m, 탄성에너지 2 J",
+          "k=12.5 N/m, 탄성에너지 2 J",
+          "k=35 N/m, 탄성에너지 2 J",
+          "k=25 N/m, 탄성에너지 2 J"
+        ],
+        "correctChoice": 4,
+        "answer": "k=25 N/m, 탄성에너지 2 J",
+        "acceptableAnswers": [
+          "4",
+          "k=25 N/m, 탄성에너지 2 J"
         ]
       }
     },
@@ -256,10 +327,35 @@
         "prompt": "k=50 N/m, m=2 kg인 수평 용수철을 평형점에서 0.4 m 당겨 놓는다. 평형점 속력과 0.2 m 압축 시 속력을 구하시오.",
         "answer": "2 m/s, √3 m/s",
         "explanation": "총 E=½·50·0.16=4 J. O에서 ½·2v²=4 →2. 0.2 m에서 U=1 J, K=3 J → v=√3.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "4",
+          "2 m/s, √3 m/s",
           "2,sqrt3",
           "2m/s,√3m/s"
+        ],
+        "choices": [
+          "4 m/s, √3 m/s",
+          "1 m/s, √3 m/s",
+          "3 m/s, √3 m/s",
+          "2 m/s, √3 m/s"
+        ],
+        "correctChoice": 4
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "10 J, 2√5 m/s, √15 m/s",
+          "10 J, √10 m/s, √5 m/s",
+          "5 J, 2√5 m/s, √15 m/s",
+          "10 J, 2√10 m/s, √30 m/s"
+        ],
+        "correctChoice": 1,
+        "answer": "10 J, 2√5 m/s, √15 m/s",
+        "acceptableAnswers": [
+          "1",
+          "10 J, 2√5 m/s, √15 m/s",
+          "3"
         ]
       }
     },
@@ -310,10 +406,34 @@
         "prompt": "질량 2 kg 물체가 37° 빗면을 5 m 내려가 속력 6 m/s가 되었다. 처음 정지, sin37=0.6, cos37=0.8, g=10, 4 J/cal. 발생 열량과 마찰계수를 구하시오.",
         "answer": "열 6 cal, μ=0.3",
         "explanation": "높이차 3 m라 위치에너지 감소 60 J, 운동에너지 36 J. 열은 24 J=6 cal. 마찰력은 24/5=4.8 N, N=2·10·0.8=16 N이므로 μ=0.3.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "2",
+          "열 6 cal, μ=0.3",
           "6,0.3",
           "6cal,0.3"
+        ],
+        "choices": [
+          "열 12 cal, μ=0.3",
+          "열 6 cal, μ=0.3",
+          "열 3 cal, μ=0.3",
+          "열 7 cal, μ=0.3"
+        ],
+        "correctChoice": 2
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "0.5 cal, μ=√3/15(약 0.115)",
+          "1 cal, μ=√3/15(약 0.115)",
+          "0.25 cal, μ=√3/15(약 0.115)",
+          "1.5 cal, μ=√3/15(약 0.115)"
+        ],
+        "correctChoice": 1,
+        "answer": "0.5 cal, μ=√3/15(약 0.115)",
+        "acceptableAnswers": [
+          "1",
+          "0.5 cal, μ=√3/15(약 0.115)"
         ]
       }
     },
@@ -368,12 +488,37 @@
         "prompt": "0.5 kg 물체를 k=20 N/m 용수철 위 0.30 m 높이에서 떨어뜨린다. g=10. 최대 압축량을 구하시오.",
         "answer": "약 0.711 m",
         "explanation": "5(0.3+x)=10x² → 10x²-5x-1.5=0, 양의 해 x=(5+√85)/20≈0.711 m.",
-        "inputMode": "text",
+        "inputMode": "choice",
         "acceptableAnswers": [
+          "3",
+          "약 0.711 m",
           "0.711",
           "(5+sqrt85)/20"
+        ],
+        "choices": [
+          "약 1.42 m",
+          "약 0.355 m",
+          "약 0.711 m",
+          "약 1.71 m"
+        ],
+        "correctChoice": 3
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "2 m",
+          "1 m",
+          "3 m",
+          "4 m"
+        ],
+        "correctChoice": 1,
+        "answer": "2 m",
+        "acceptableAnswers": [
+          "1",
+          "2 m"
         ]
       }
     }
-  ]
+  ],
+  "featureVersion": "3.4.0-answer-editor-choice-retry"
 }
