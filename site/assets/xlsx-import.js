@@ -234,8 +234,9 @@
     layouts.sort((a,b)=>layoutScore(b,exam)-layoutScore(a,exam));return layouts[0];
   }
   function validateAnswerKey(layout,exam){
-    const mismatches=[];for(let i=0;i<Math.min(20,exam.questions.length);i++){
-      const site=Number(exam.questions[i]?.answerKey),sheet=Number(layout.sheetKey[i]);if(Number.isFinite(site)&&Number.isFinite(sheet)&&site!==sheet)mismatches.push(i+1);
+    const mismatches=[];for(let i=0;i<exam.questions.length;i++){
+      const q=exam.questions[i];if(String(q?.inputMode||"")!=="objective-choice")continue;
+      const site=Number(q?.answerKey),sheet=Number(layout.sheetKey[i]);if(Number.isFinite(site)&&Number.isFinite(sheet)&&site!==sheet)mismatches.push(Number(q.no)||i+1);
     }
     if(mismatches.length>=4)throw new Error(`첨부 파일의 객관식 정답표가 현재 선택한 시험과 일치하지 않습니다. 불일치 문항: ${mismatches.join(", ")}번`);
     return mismatches;
@@ -262,6 +263,6 @@
     if(!exam||!Array.isArray(exam.questions)||!exam.questions.length)throw new Error("가져오기 전에 준비 완료된 시험을 선택하세요.");
     const workbook=await readWorkbook(file),layout=chooseLayout(workbook,exam);return buildImport(workbook,layout,exam);
   };
-  YP_XLSX._test={xmlUnescape,attrs,cellRefToCol,parseWorksheet,parseSharedStrings,findQuestionSequence,findLegacyLayout,findStandardLayout,buildImport,readZipDirectory};
+  YP_XLSX._test={xmlUnescape,attrs,cellRefToCol,parseWorksheet,parseSharedStrings,findQuestionSequence,findLegacyLayout,findStandardLayout,validateAnswerKey,buildImport,readZipDirectory};
   global.YP_XLSX=YP_XLSX;
 })(typeof window!=="undefined"?window:globalThis);

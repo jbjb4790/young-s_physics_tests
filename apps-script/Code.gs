@@ -1078,14 +1078,30 @@ function upsertObject_(sheetName,keyName,obj) {
 function syncCatalog_(catalog) {
   if (!catalog || !Array.isArray(catalog.courses) || !Array.isArray(catalog.exams)) throw new Error("catalog 형식이 올바르지 않습니다.");
   initializeSheets_();
+  // 자료가 아직 정적 카탈로그에 포함되지 않은 준비 중 시험은 기존 Questions 행을 보존한다.
+  // 이를 통해 물리1심화·물리2심화 총괄 문항을 먼저 Sheets에 등록한 운영본도
+  // 입력 정책만 갱신할 때 문항 데이터가 사라지지 않는다.
+  const existingQuestionRowsByExam={};
+  listRows_(SHEETS.QUESTIONS).forEach(function(row){
+    const id=String(row.ExamId||"");if(!id)return;
+    if(!existingQuestionRowsByExam[id])existingQuestionRowsByExam[id]=[];
+    existingQuestionRowsByExam[id].push(row);
+  });
   const courseRows=catalog.courses.map(c=>[c.courseId,c.courseName,c.active!==false]);
   replaceData_(SHEETS.COURSES,courseRows);
   const examRows=[],questionRows=[];
   catalog.exams.forEach(function(ex){
     examRows.push([ex.examId,ex.courseId,ex.round,ex.title,ex.shortTitle||"",ex.assessmentType||"weekly",ex.section||"",ex.examDate||"",ex.questionCount||0,ex.maxScore||0,ex.pdf||"",ex.solutionPdf||"",ex.reviewStatus||"",ex.configVersion||"",ex.status||"",JSON.stringify(ex.pages||[]),JSON.stringify(ex.coreNote||{}),JSON.stringify(ex.inputProfile||{}),JSON.stringify(ex.historyExamIds||[]),ex.historyLabel||"",ex.sourceTitle||"",ex.sourceNote||"",ex.displayOrder||""]);
-    (ex.questions||[]).forEach(function(q){
-      questionRows.push([ex.examId,q.no,q.type,q.inputMode||"achievement",q.maxPoints,q.unit,q.topic,q.difficulty,JSON.stringify({display:q.answer,answerKey:q.answerKey,acceptableAnswers:q.acceptableAnswers||[]}),JSON.stringify(q.rubric||[]),JSON.stringify({steps:q.explanation||[],formulas:q.formulas||[],commonMistakes:q.commonMistakes||[]}),JSON.stringify(q.originalRetry||{}),JSON.stringify(q.similarProblem||{}),q.reviewStatus||"",q.correctionNote||"",JSON.stringify(q.image||{})]);
-    });
+    const staticQuestions=Array.isArray(ex.questions)?ex.questions:[];
+    if(staticQuestions.length){
+      staticQuestions.forEach(function(q){
+        questionRows.push([ex.examId,q.no,q.type,q.inputMode||"achievement",q.maxPoints,q.unit,q.topic,q.difficulty,JSON.stringify({display:q.answer,answerKey:q.answerKey,acceptableAnswers:q.acceptableAnswers||[]}),JSON.stringify(q.rubric||[]),JSON.stringify({steps:q.explanation||[],formulas:q.formulas||[],commonMistakes:q.commonMistakes||[]}),JSON.stringify(q.originalRetry||{}),JSON.stringify(q.similarProblem||{}),q.reviewStatus||"",q.correctionNote||"",JSON.stringify(q.image||{})]);
+      });
+    } else {
+      (existingQuestionRowsByExam[String(ex.examId)]||[]).forEach(function(row){
+        questionRows.push(HEADERS.Questions.map(function(h){return row[h]===undefined?"":row[h];}));
+      });
+    }
   });
   replaceData_(SHEETS.EXAMS,examRows);
   replaceData_(SHEETS.QUESTIONS,questionRows);
@@ -1231,16 +1247,28 @@ function clearQuestionAnswerOverrides_(examId,questionNos) {
   return {ok:true,examId:examId,deleted:deleted,questions:getQuestionRows_(examId)};
 }
 
+function parseQuestionRange_(value) {
+  const m=String(value||"").trim().match(/^(\d+)\s*(?:-|~|–|—)\s*(\d+)$/);
+  if(!m)return null;
+  const start=Number(m[1]),end=Number(m[2]);
+  return Number.isInteger(start)&&Number.isInteger(end)&&start>0&&end>=start?{start:start,end:end}:null;
+}
+
+function objectiveChoiceRange_(exam) {
+  if(!exam||String(exam.AssessmentType||"")!=="comprehensive")return null;
+  const profile=safeJson_(exam.InputProfileJSON,{});
+  if(String(profile.objectiveMode||"")!=="choice-number")return null;
+  return parseQuestionRange_(profile.objectiveRange);
+}
+
 function isComprehensiveChoiceExam_(exam) {
-  if(!exam)return false;
-  return String(exam.AssessmentType||"")==="comprehensive" && ["physics1-basic","physics2-basic"].indexOf(String(exam.CourseId||""))>=0;
+  return !!objectiveChoiceRange_(exam);
 }
 
 function effectiveInputMode_(exam,question) {
   const mode=String(question&&question.InputMode||"achievement");
-  const no=Number(question&&question.QuestionNo),type=String(question&&question.Type||"");
-  const answer=safeJson_(question&&question.AnswerJSON,{}),key=Number(answer&&answer.answerKey);
-  if(isComprehensiveChoiceExam_(exam)&&type==="objective"&&no>=1&&no<=20&&Number.isInteger(key)&&key>=1&&key<=5)return "objective-choice";
+  const no=Number(question&&question.QuestionNo),range=objectiveChoiceRange_(exam);
+  if(range&&Number.isInteger(no)&&no>=range.start&&no<=range.end)return "objective-choice";
   return mode;
 }
 

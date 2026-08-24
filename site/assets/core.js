@@ -6,13 +6,29 @@
  YP.getExam=id=>YP.catalog.exams.find(e=>e.examId===id);
  YP.readyExams=()=>YP.catalog.exams.filter(e=>e.status==="ready");
  YP.isComprehensive=ex=>ex?.assessmentType==="comprehensive";
- YP.usesObjectiveChoiceNumbers=ex=>YP.isComprehensive(ex)&&["physics1-basic","physics2-basic"].includes(String(ex?.courseId||""));
+ YP.parseQuestionRange=value=>{
+   const m=String(value||"").trim().match(/^(\d+)\s*(?:-|~|–|—)\s*(\d+)$/);
+   if(!m)return null;
+   const start=Number(m[1]),end=Number(m[2]);
+   return Number.isInteger(start)&&Number.isInteger(end)&&start>0&&end>=start?{start,end}:null;
+ };
+ YP.objectiveChoiceRange=ex=>{
+   if(!YP.isComprehensive(ex))return null;
+   const profile=ex?.inputProfile||{};
+   if(String(profile.objectiveMode||"")!=="choice-number")return null;
+   return YP.parseQuestionRange(profile.objectiveRange);
+ };
+ YP.usesObjectiveChoiceNumbers=ex=>!!YP.objectiveChoiceRange(ex);
  YP.choiceLabel=n=>["","①","②","③","④","⑤"][Number(n)]||String(n??"");
  YP.applyExamInputPolicy=function(exam){
    if(!exam||!Array.isArray(exam.questions))return exam;
-   if(YP.usesObjectiveChoiceNumbers(exam)){
+   const range=YP.objectiveChoiceRange(exam);
+   if(range){
      exam.inputProfile={...(exam.inputProfile||{}),objectiveMode:"choice-number"};
-     exam.questions.forEach(q=>{if(q?.type==="objective"&&Number(q.no)>=1&&Number(q.no)<=20&&Number.isInteger(Number(q.answerKey)))q.inputMode="objective-choice"});
+     exam.questions.forEach(q=>{
+       const no=Number(q?.no);
+       if(Number.isInteger(no)&&no>=range.start&&no<=range.end){q.inputMode="objective-choice";q.type="objective"}
+     });
    }
    return exam;
  };

@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#075fdb">
 <title>Young's Physics 복습·총괄 통합 성적 분석</title>
 <link rel="icon" href="assets/images/favicon.png">
-<link rel="stylesheet" href="assets/styles.css?v=3.4.1">
+<link rel="stylesheet" href="assets/styles.css?v=3.4.2">
 </head>
 <body class="app-page">
 <div id="demoBanner" class="demo-banner hidden">Apps Script 자동 연결 주소가 배포에 설정되지 않아 현재 데모 모드입니다. GitHub 저장소 변수 <code>YP_API_URL</code>을 확인하세요.</div>
@@ -84,7 +84,7 @@
 <section id="questionEntry" class="card panel section-card">
  <div class="section-title-row">
   <div class="section-icon">02</div>
-  <div><div class="section-kicker">SCORING INPUT</div><h2>문항별 결과 입력</h2><p class="section-desc">물리1·물리2 총괄평가 1~20번은 학생이 고른 객관식 번호 1~5, 21~25번은 실제 서술형 점수를 입력합니다.</p></div>
+  <div><div class="section-kicker">SCORING INPUT</div><h2>문항별 결과 입력</h2><p class="section-desc">일반 물리1·물리2 총괄은 1~20번 학생 선택번호와 21~25번 실제 점수를 입력하고, 물리1심화·물리2심화 총괄은 1~25번 모두 학생이 고른 객관식 번호 1~5를 입력합니다.</p></div>
   <div class="toolbar"><button class="btn btn-light" id="sampleBtn">예시 입력</button><button class="btn btn-light" id="clearBtn">전체 초기화</button></div>
  </div>
  <div class="paste-panel">
@@ -117,10 +117,10 @@
  </div>
  <label class="upload-box batch-drop-zone" id="batchDropZone" for="csvFile">
   <div class="upload-icon">⇧</div>
-  <div><b>Excel(.xlsx) 또는 CSV 파일 첨부</b><span>물리1·물리2 총괄평가의 객관식 선택번호와 서술형 점수를 자동으로 찾습니다. CSV는 이름·성명·학생명·학생 성명·Name 등 이름 헤더와 UTF-8·CP949도 지원합니다. 파일을 여기에 끌어놓아도 됩니다.</span></div>
+  <div><b>Excel(.xlsx) 또는 CSV 파일 첨부</b><span>일반·심화 총괄평가의 학생 선택번호와 필요한 실제 점수를 자동으로 찾습니다. CSV는 이름·성명·학생명·학생 성명·Name 등 이름 헤더와 UTF-8·CP949도 지원합니다. 파일을 여기에 끌어놓아도 됩니다.</span></div>
   <div class="field"><input type="file" id="csvFile" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.csv,text/csv"></div>
  </label>
- <div class="notice small batch-import-note"><b>자동 변환 기준</b><br>학교 열이 없거나 빈칸이면 <b>미기입</b>으로 저장합니다. 물리1·물리2 총괄평가 객관식 1~20번은 학생이 고른 번호 1~5를 그대로 저장한 뒤 검수된 정답 번호와 비교해 채점하고, 서술형 21~25번은 Excel·CSV의 실제 점수를 그대로 사용합니다. 같은 시험·학교·이름을 다시 첨부하면 기존 링크를 유지한 채 성적을 수정합니다.</div>
+ <div class="notice small batch-import-note"><b>자동 변환 기준</b><br>학교 열이 없거나 빈칸이면 <b>미기입</b>으로 저장합니다. 일반 물리1·물리2 총괄은 1~20번 선택번호와 21~25번 실제 점수를 사용하며, 물리1심화·물리2심화 총괄은 1~25번 선택번호를 그대로 저장해 검수 정답과 비교합니다. 같은 시험·학교·이름을 다시 첨부하면 기존 링크를 유지한 채 성적을 수정합니다.</div>
  <div id="batchImportSummary" class="batch-import-summary hidden"></div>
  <div id="csvPreview" class="table-wrap hidden" style="margin-top:12px"></div>
  <button id="saveBatchBtn" class="btn btn-success hidden" style="margin-top:12px">검증된 학생 기록 일괄 저장</button>
@@ -186,11 +186,11 @@
 <script src="assets/runtime-config.js?v=3.3.0"></script>
 <script src="assets/launch.js?v=3.3.0"></script>
 <script src="assets/config.js?v=3.3.0"></script>
-<script src="assets/data/catalog.js?v=3.4.1"></script>
-<script src="assets/data/demo-data.js?v=3.4.1"></script>
-<script src="assets/core.js?v=3.4.1"></script>
-<script src="assets/api.js?v=3.4.1"></script>
-<script src="assets/csv-import.js?v=3.4.1"></script>
-<script src="assets/xlsx-import.js?v=3.4.1"></script>
-<script src="assets/app.js?v=3.4.1"></script>
+<script src="assets/data/catalog.js?v=3.4.2"></script>
+<script src="assets/data/demo-data.js?v=3.4.2"></script>
+<script src="assets/core.js?v=3.4.2"></script>
+<script src="assets/api.js?v=3.4.2"></script>
+<script src="assets/csv-import.js?v=3.4.2"></script>
+<script src="assets/xlsx-import.js?v=3.4.2"></script>
+<script src="assets/app.js?v=3.4.2"></script>
 </body></html>

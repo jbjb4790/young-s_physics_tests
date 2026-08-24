@@ -1,10 +1,10 @@
 {
   "name": "youngs-physics-review-comprehensive-analysis",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "private": true,
   "scripts": {
     "test": "node --test tests/run-tests.mjs",
     "serve": "python3 -m http.server 8080 -d site"
   },
-  "description": "Young's Physics objective choice-number scoring, robust CSV/Excel import, answer-key editor, choice-based retry learning, and Apps Script hosted parent bridge"
+  "description": "Young's Physics advanced comprehensive all-choice input, objective choice-number scoring, robust CSV/Excel import, answer-key editor, and Apps Script hosted parent bridge"
 }

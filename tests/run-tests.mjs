@@ -42,11 +42,12 @@ function scoreRecord(exam,school,name,values){
 
 // Catalog and operating policy
 
-test("카탈로그 스키마 2.0과 총 39개 시험",()=>{assert.equal(catalog.schemaVersion,"2.0.0");assert.equal(catalog.exams.length,39)});
-test("주간 34개와 총괄 5개로 분리",()=>{assert.equal(weekly.length,34);assert.equal(comprehensive.length,5)});
+test("카탈로그 스키마 2.0과 총 40개 시험",()=>{assert.equal(catalog.schemaVersion,"2.0.0");assert.equal(catalog.exams.length,40)});
+test("주간 34개와 총괄 6개로 분리",()=>{assert.equal(weekly.length,34);assert.equal(comprehensive.length,6)});
 test("물리1 주간 회차는 2~8, 10~16",()=>assert.deepEqual(weekly.filter(e=>e.courseId==="physics1-basic").map(e=>e.round),[2,3,4,5,6,7,8,10,11,12,13,14,15,16]));
 test("물리1심화 주간 회차는 2~7",()=>assert.deepEqual(weekly.filter(e=>e.courseId==="physics1-advanced").map(e=>e.round),[2,3,4,5,6,7]));
 test("물리2 주간 회차는 1~9, 11~15",()=>assert.deepEqual(weekly.filter(e=>e.courseId==="physics2-basic").map(e=>e.round),[1,2,3,4,5,6,7,8,9,11,12,13,14,15]));
+test("물리2심화 과정과 총괄 준비 항목이 등록됨",()=>{assert.equal(YP.getCourse("physics2-advanced").courseName,"물리2심화");assert.equal(YP.getExam("physics2-advanced-total").status,"coming-soon")});
 test("의도적 제외 회차는 물리1 1·9회, 물리2 10회",()=>{assert.deepEqual(catalog.operatingPolicy.excludedRounds["physics1-basic"],[1,9]);assert.deepEqual(catalog.operatingPolicy.excludedRounds["physics2-basic"],[10]);assert.equal(catalog.exams.some(e=>e.examId==="physics1-basic-r01"),false);assert.equal(catalog.exams.some(e=>e.examId==="physics1-basic-r09"),false);assert.equal(catalog.exams.some(e=>e.examId==="physics2-basic-r10"),false)});
 test("총괄평가 연결 범위가 요구사항과 일치",()=>{
   const expected={
@@ -54,12 +55,14 @@ test("총괄평가 연결 범위가 요구사항과 일치",()=>{
     "physics1-basic-total-electromagnetism":["physics1-basic-r10","physics1-basic-r11","physics1-basic-r12","physics1-basic-r13","physics1-basic-r14","physics1-basic-r15","physics1-basic-r16"],
     "physics2-basic-total-mechanics":["physics2-basic-r02","physics2-basic-r03","physics2-basic-r04","physics2-basic-r05","physics2-basic-r06","physics2-basic-r07","physics2-basic-r08","physics2-basic-r09"],
     "physics2-basic-total-electromagnetism":["physics2-basic-r11","physics2-basic-r12","physics2-basic-r13","physics2-basic-r14","physics2-basic-r15"],
-    "physics1-advanced-total":["physics1-advanced-r02","physics1-advanced-r03","physics1-advanced-r04","physics1-advanced-r05","physics1-advanced-r06","physics1-advanced-r07"]
+    "physics1-advanced-total":["physics1-advanced-r02","physics1-advanced-r03","physics1-advanced-r04","physics1-advanced-r05","physics1-advanced-r06","physics1-advanced-r07"],
+    "physics2-advanced-total":[]
   };
   for(const [id,ids] of Object.entries(expected))assert.deepEqual(YP.getExam(id).historyExamIds,ids,id);
 });
 test("현재 자료가 있는 물리1 역학·전자기 총괄만 준비 완료",()=>assert.deepEqual(comprehensive.filter(e=>e.status==="ready").map(e=>e.examId),["physics1-basic-total-mechanics","physics1-basic-total-electromagnetism"]));
-test("물리2 총괄 준비 항목도 객관식 선택번호 입력 정책을 예약",()=>comprehensive.filter(e=>e.courseId==="physics2-basic").forEach(e=>assert.equal(e.inputProfile.objectiveMode,"choice-number")));
+test("물리2 일반 총괄 준비 항목은 1~20 선택번호 정책을 예약",()=>comprehensive.filter(e=>e.courseId==="physics2-basic").forEach(e=>{assert.equal(e.inputProfile.objectiveMode,"choice-number");assert.equal(e.inputProfile.objectiveRange,"1-20");assert.equal(e.inputProfile.subjectiveMode,"points")}));
+test("물리1심화·물리2심화 총괄은 1~25 전체 선택번호 정책",()=>["physics1-advanced-total","physics2-advanced-total"].forEach(id=>{const e=YP.getExam(id);assert.equal(e.inputProfile.objectiveMode,"choice-number");assert.equal(e.inputProfile.objectiveRange,"1-25");assert.equal(e.inputProfile.subjectiveMode,"none")}));
 
 // Comprehensive assessment scoring
 
@@ -70,6 +73,19 @@ test("총괄 객관식은 1~5만 허용하고 구형 O/X·0은 호환",()=>{cons
 test("총괄 서술형의 1은 만점이 아니라 실제 1점",()=>{const q=mech.questions[20],r=YP.parseQuestionInput("1",q);assert.equal(r.status,"partial");assert.equal(r.score,1)});
 test("총괄 서술형 4점은 만점, 4.5점은 차단",()=>{const q=mech.questions[20];assert.equal(YP.parseQuestionInput("4",q).status,"full");assert.equal(YP.parseQuestionInput("4.5",q).valid,false)});
 test("총괄 학생 선택번호·서술형 점수 계산",()=>{const correct=mech.questions.slice(0,15).map(q=>String(q.answerKey)),wrong=mech.questions.slice(15,20).map(q=>String(Number(q.answerKey)%5+1)),inputs=[...correct,...wrong,"4","3","2","1","0"],r=YP.calculateResult(mech,inputs,Array(25).fill(false));assert.equal(r.score,70);assert.equal(r.counts.full,16);assert.equal(r.counts.partial,3);assert.equal(r.counts.wrong,6)});
+test("심화 총괄 모의 25문항은 21~25번도 점수가 아닌 학생 선택번호",()=>{
+  const base=YP.getExam("physics1-advanced-total"),exam=YP.applyExamInputPolicy({...base,status:"ready",questionCount:25,maxScore:100,questions:Array.from({length:25},(_,i)=>({no:i+1,type:i<20?"objective":"subjective",inputMode:i<20?"binary":"points",answerKey:i%5+1,maxPoints:4,unit:"심화",topic:"문항"+(i+1)}))});
+  assert.equal(exam.questions.filter(q=>q.inputMode==="objective-choice").length,25);
+  assert.ok(exam.questions.every(q=>q.type==="objective"));
+  const answers=exam.questions.map(q=>String(q.answerKey)),perfect=YP.calculateResult(exam,answers,Array(25).fill(false));
+  assert.equal(perfect.score,100);assert.equal(perfect.counts.full,25);
+  const q21=exam.questions[20],r=YP.parseQuestionInput("1",q21);assert.equal(r.selectedChoice,1);assert.equal(r.score,q21.answerKey===1?4:0);assert.notEqual(r.status,"partial");
+});
+
+test("물리2심화 총괄도 같은 1~25 선택번호 정책을 사용",()=>{
+  const base=YP.getExam("physics2-advanced-total"),exam=YP.applyExamInputPolicy({...base,status:"ready",questionCount:25,maxScore:100,questions:Array.from({length:25},(_,i)=>({no:i+1,type:"objective",answerKey:(i+2)%5+1,maxPoints:4,unit:"물리2심화",topic:"문항"+(i+1)}))});
+  assert.equal(YP.objectiveChoiceRange(exam).end,25);assert.ok(exam.questions.every(q=>q.inputMode==="objective-choice"));
+});
 test("기존 주간 입력의 1·P1 규칙은 유지",()=>{const q={maxPoints:7,inputMode:"achievement"};assert.equal(YP.parseQuestionInput("1",q).score,7);assert.equal(YP.parseQuestionInput("P1",q).score,1);assert.equal(YP.parseQuestionInput("1",q,true).score,1)});
 test("탭 붙여넣기에서 빈 셀 위치 보존",()=>assert.deepEqual(Array.from(YP.parseDelimited("1\t\t0\t4")),["1","","0","4"]));
 
@@ -153,6 +169,17 @@ test("CSV에 이름 열이 정말 없을 때는 지원 헤더를 구체적으로
 });
 
 test("Excel 레거시 결과표는 공식행을 학생으로 중복 수집하지 않음",()=>{const cell=(value,formula="")=>({value,formula});const rows=[];rows[0]=[cell("이름"),cell("총점"),cell(1),cell(2),cell(3)];rows[1]=[cell("학생A"),cell(12),cell(1),cell(2),cell(3)];rows[2]=[cell("=A2"),cell(12),cell(1),cell(2),cell(3)];rows[2][0].formula="A2";for(let i=3;i<8;i++)rows[i]=[];const sheet={name:"1회",rows,maxRow:7,maxCol:4};const layout=YP_XLSX._test.findLegacyLayout(sheet,{questionCount:3,round:0,shortTitle:"역학 총괄평가"});assert.ok(layout);assert.deepEqual(Array.from(layout.studentRows),[1])});
+test("심화 총괄 Excel 정답표 검증은 25번까지 확인",()=>{
+  const base=YP.getExam("physics1-advanced-total"),exam=YP.applyExamInputPolicy({...base,questionCount:25,questions:Array.from({length:25},(_,i)=>({no:i+1,type:"objective",answerKey:i%5+1,maxPoints:4}))});
+  const sheetKey=exam.questions.map(q=>q.answerKey);sheetKey[24]=sheetKey[24]===5?4:5;
+  assert.deepEqual(Array.from(YP_XLSX._test.validateAnswerKey({sheetKey},exam)),[25]);
+});
+test("심화 총괄 CSV Q1~Q25는 모두 선택번호로 읽고 100점 채점",()=>{
+  const base=YP.getExam("physics1-advanced-total"),exam=YP.applyExamInputPolicy({...base,status:"ready",questionCount:25,maxScore:100,questions:Array.from({length:25},(_,i)=>({no:i+1,type:"objective",answerKey:i%5+1,maxPoints:4,unit:"심화",topic:"문항"+(i+1)}))});
+  const imported=YP_CSV.importText(read("sample-data/물리1심화_총괄_학생선택번호_입력예시.csv"),exam);
+  assert.equal(imported.inputMode,"raw-choice");assert.equal(imported.students.length,1);assert.equal(imported.students[0].inputs.length,25);assert.equal(imported.students[0].inputs[20],"1");
+  assert.equal(YP.calculateResult(exam,imported.students[0].inputs,imported.students[0].partialModes).score,100);
+});
 const uploadedMechanicsExcel="/mnt/data/역학진단고사 v3.xlsx";
 (fs.existsSync(uploadedMechanicsExcel)?test:test.skip)("첨부 역학 Excel 179명 자동 해석·학교 미기입·총점 0건 불일치",async()=>{const b=fs.readFileSync(uploadedMechanicsExcel),file={name:"역학진단고사 v3.xlsx",arrayBuffer:async()=>b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength)},result=await YP_XLSX.importAssessment(file,mech);assert.equal(result.sheetName,"1회");assert.equal(result.inputMode,"raw-choice");assert.equal(result.students.length,179);assert.equal(result.missingSchool,179);assert.deepEqual(Array.from(result.answerKeyMismatchQuestions),[]);assert.ok(result.students.every(s=>s.school==="미기입"));assert.ok(result.students.some(s=>s.inputs.slice(0,20).some(v=>["2","3","4","5"].includes(String(v)))));assert.ok(result.students.every(s=>s.inputs.slice(0,20).every(v=>v===""||["1","2","3","4","5"].includes(String(v)))));let mismatch=0;for(const student of result.students){const calc=YP.calculateResult(mech,student.inputs,student.partialModes);if(Number.isFinite(student.sourceTotal)&&Math.abs(calc.score-student.sourceTotal)>1e-9)mismatch++}assert.equal(mismatch,0);assert.equal(result.students.at(-1).sourceRow,201)});
 test("실제 학생 Excel 원본은 공개 GitHub 프로젝트에 포함하지 않음",()=>{const all=[];function walk(dir){for(const ent of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,ent.name);if(ent.isDirectory())walk(p);else all.push(path.relative(root,p))}}walk(root);assert.equal(all.some(p=>/역학진단고사 v3\.xlsx$/i.test(p)),false)});
@@ -164,7 +191,7 @@ test("교사용 API는 form POST 브리지와 공개 GET 진단을 지원",()=>{
 
 test("Apps Script에 총괄 메타·InputMode·OriginalRetry·StudentKey 열이 있음",()=>{const src=read("apps-script/Code.gs");for(const term of ["AssessmentType","InputProfileJSON","HistoryExamIdsJSON","HistoryLabel","InputMode","OriginalRetryJSON","StudentKey"])assert.match(src,new RegExp(term))});
 test("Apps Script는 기존 헤더 이름으로 행을 재배치해 스키마를 안전 마이그레이션",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function ensureSheetSchema_/);assert.match(src,/currentIndex\[h\]/);assert.match(src,/const remapped = sourceRows\.map/);assert.match(src,/sh\.clearContents\(\)/)});
-test("Apps Script 총괄 점수 파서는 학생 선택번호·구형 binary·서술 점수를 구분",()=>{const src=read("apps-script/Code.gs");assert.match(src,/mode==="objective-choice"/);assert.match(src,/function effectiveInputMode_/);assert.match(src,/\["physics1-basic","physics2-basic"\]/);assert.match(src,/객관식 선택 번호는 1~5/);assert.match(src,/mode==="binary"/);assert.match(src,/mode==="points"/);assert.match(src,/서술형 점수는 0~/)});
+test("Apps Script 총괄 점수 파서는 InputProfile 범위에 따라 선택번호·binary·points를 구분",()=>{const src=read("apps-script/Code.gs");assert.match(src,/mode==="objective-choice"/);assert.match(src,/function parseQuestionRange_/);assert.match(src,/function objectiveChoiceRange_/);assert.match(src,/InputProfileJSON/);assert.match(src,/range&&Number\.isInteger\(no\)&&no>=range\.start&&no<=range\.end/);assert.match(src,/객관식 선택 번호는 1~5/);assert.match(src,/mode==="binary"/);assert.match(src,/mode==="points"/);assert.match(src,/서술형 점수는 0~/)});
 test("Apps Script는 학생 선택번호 인코딩을 RecordJSON에 보존하고 구형 기록을 재계산",()=>{const src=read("apps-script/Code.gs");assert.match(src,/inputEncoding:effectiveEncoding/);assert.match(src,/encoding==="legacy-binary"/);assert.match(src,/existingRecord\.inputEncoding\|\|"legacy-binary"/);assert.match(src,/selectedChoice:n,answerKey:key/)});
 test("Apps Script는 JSON POST·form POST·레거시 HtmlService 브리지에 공통 API 디스패처를 사용",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function dispatchApiRequest_/);assert.match(src,/function apiBridge\(request\)/);assert.match(src,/function handleFormPostBridge_/);assert.match(src,/return jsonOutput_\(dispatchApiRequest_\(parseBody_\(e\)\)\)/);assert.match(src,/function apiErrorObject_/)});
 test("Apps Script 일괄 저장은 단일 시트 쓰기와 동일 학생 upsert를 사용",()=>{const src=read("apps-script/Code.gs");assert.match(src,/API_VERSION = "3\.3\.0-hosted-parent-bridge"/);assert.match(src,/function calculateScoringFromQuestions_/);assert.match(src,/function reportIdentityKey_/);assert.match(src,/String\(input\.importMode\|\|"upsert"\)==="upsert"/);assert.match(src,/sh\.getRange\(2,1,data\.length,headers\.length\)\.setValues\(data\)/);assert.match(src,/savedCount:saved\.length/);assert.doesNotMatch(src,/saved\.push\(saveReport_\(r\)\.record\)/)});
@@ -468,9 +495,9 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
 
 // v3.4.0 answer-key editor and choice-based retry learning
 
-test("v3.4.1 학생 선택번호·CSV 자동 인식 기능 버전",()=>{
-  assert.equal(catalog.featureVersion,"3.4.1-objective-choice-csv-auto");
-  assert.equal(JSON.parse(read("package.json")).version,"3.4.1");
+test("v3.4.2 심화 총괄 1~25 선택번호 기능 버전",()=>{
+  assert.equal(catalog.featureVersion,"3.4.2-advanced-total-all-choice");
+  assert.equal(JSON.parse(read("package.json")).version,"3.4.2");
 });
 
 test("준비 완료 108문항의 원문 재도전은 모두 보기 선택 방식",()=>{
@@ -537,6 +564,13 @@ test("정답 수정은 syncCatalog의 Questions 교체와 분리되어 유지",(
   const src=read("apps-script/Code.gs"),start=src.indexOf("function syncCatalog_"),end=src.indexOf("function replaceData_",start),block=src.slice(start,end);
   assert.match(block,/replaceData_\(SHEETS\.QUESTIONS/);
   assert.doesNotMatch(block,/replaceData_\(SHEETS\.QUESTION_OVERRIDES/);
+});
+
+test("자료 대기 중 심화 총괄은 카탈로그 동기화 시 기존 Questions 행을 보존",()=>{
+  const src=read("apps-script/Code.gs"),start=src.indexOf("function syncCatalog_"),end=src.indexOf("function replaceData_",start),block=src.slice(start,end);
+  assert.match(block,/existingQuestionRowsByExam/);
+  assert.match(block,/staticQuestions\.length/);
+  assert.match(block,/HEADERS\.Questions\.map/);
 });
 
 test("서버 정답 행을 현재 시험에 병합하면 객관식 answerKey와 재도전 보기가 갱신",()=>{

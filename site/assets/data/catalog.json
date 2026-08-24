@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-08-24T03:40:00Z",
+  "generatedAt": "2026-08-24T05:00:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -15,6 +15,11 @@
     {
       "courseId": "physics2-basic",
       "courseName": "물리2",
+      "active": true
+    },
+    {
+      "courseId": "physics2-advanced",
+      "courseName": "물리2심화",
       "active": true
     }
   ],
@@ -9495,7 +9500,36 @@
       ],
       "historyLabel": "물리1심화 2~7회 복습 테스트",
       "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.10-total-1"
+      "configVersion": "2026.08.24-advanced-total-choice-v2",
+      "inputProfile": {
+        "objectiveRange": "1-25",
+        "subjectiveRange": "",
+        "objectiveMode": "choice-number",
+        "subjectiveMode": "none"
+      }
+    },
+    {
+      "examId": "physics2-advanced-total",
+      "courseId": "physics2-advanced",
+      "round": 0,
+      "displayOrder": 206,
+      "title": "물리2심화 총괄평가",
+      "shortTitle": "심화 총괄평가",
+      "assessmentType": "comprehensive",
+      "section": "integrated",
+      "status": "coming-soon",
+      "questionCount": 0,
+      "maxScore": 0,
+      "historyExamIds": [],
+      "historyLabel": "물리2심화 복습 테스트 연결 범위 미설정",
+      "reviewStatus": "not-uploaded",
+      "configVersion": "2026.08.24-advanced-total-choice-v1",
+      "inputProfile": {
+        "objectiveRange": "1-25",
+        "subjectiveRange": "",
+        "objectiveMode": "choice-number",
+        "subjectiveMode": "none"
+      }
     }
   ],
   "operatingPolicy": {
@@ -9539,7 +9573,8 @@
         13,
         14,
         15
-      ]
+      ],
+      "physics2-advanced": []
     },
     "excludedRounds": {
       "physics1-basic": [
@@ -9556,9 +9591,10 @@
       "normalizedName"
     ],
     "comprehensiveInput": {
-      "objectiveQuestions": "물리1·물리2 총괄 1~20: 학생 선택번호 1~5",
-      "subjectiveQuestions": "21~25: 실제 획득 점수"
+      "basicObjectiveQuestions": "물리1·물리2 일반 총괄 1~20: 학생 선택번호 1~5",
+      "basicSubjectiveQuestions": "물리1·물리2 일반 총괄 21~25: 실제 획득 점수",
+      "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.4.1-objective-choice-csv-auto"
+  "featureVersion": "3.4.2-advanced-total-all-choice"
 }

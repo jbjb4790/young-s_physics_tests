@@ -3,6 +3,24 @@
  const $=id=>document.getElementById(id);
  const AUTH_ERROR_CODES=new Set(["AUTH_REQUIRED","AUTH_INVALID","AUTH_EXPIRED","AUTH_REVOKED"]);
  function defaultInputEncoding(exam){return YP.usesObjectiveChoiceNumbers(exam)?"objective-choice-v1":""}
+ function objectiveChoicePolicy(exam){
+   const range=YP.objectiveChoiceRange(exam);if(!range)return null;
+   const allChoice=String(exam?.inputProfile?.subjectiveMode||"")==="none"||(Number(exam?.questionCount)>0&&range.end>=Number(exam.questionCount));
+   return {range,allChoice};
+ }
+ function inputPolicyText(exam){
+   const policy=objectiveChoicePolicy(exam);if(!policy)return "";
+   const {range,allChoice}=policy;
+   if(allChoice)return `${range.start}~${range.end}번 모두 학생이 고른 객관식 번호(1~5)`;
+   const last=Number(exam?.questionCount||25),subjectiveStart=range.end+1;
+   return `${range.start}~${range.end}번 학생이 고른 객관식 번호(1~5) · ${subjectiveStart}~${last}번 실제 서술형 점수`;
+ }
+ function batchInputModeLabel(exam,inputMode){
+   const policy=objectiveChoicePolicy(exam),choiceText=policy?.allChoice?`객관식 1~${policy.range.end}번 학생 선택번호 1~5`:`객관식 학생 선택번호 1~5 · 서술형 실제 점수`;
+   if(inputMode==="raw-choice")return choiceText;
+   if(inputMode==="legacy-binary")return policy?.allChoice?`구형 0/1·O/X 정오표 호환 · 객관식 1~${policy.range.end}번`:`구형 0/1·O/X 정오표 호환 · 서술형 실제 점수`;
+   return "문항별 성취값·실제 점수";
+ }
  function showDemo(){$("demoBanner").classList.toggle("hidden",!YP_API.demo)}
  function isAuthError(e){return AUTH_ERROR_CODES.has(String(e&&e.code||""))}
  function catalogVersion(){return [YP.catalog.schemaVersion||"",YP.catalog.featureVersion||"",YP.catalog.generatedAt||"",YP.catalog.exams.map(e=>e.configVersion||"").join(","),YP.catalog.exams.length,YP.readyExams().reduce((a,e)=>a+(e.questions?.length||0),0)].join("|")}
@@ -91,14 +109,15 @@
    let note=`${badge} <b>${YP.escapeHTML(e.title)}</b> · ${e.questionCount}문항 · ${e.maxScore}점`;
    if(e.pdf)note+=` · <a href="${e.pdf}" target="_blank">원문 시험지</a>`;
    if(e.solutionPdf)note+=` · <a href="${e.solutionPdf}" target="_blank">검수 기준 해설지</a>`;
-   if(YP.usesObjectiveChoiceNumbers(e))note+=`<br><b>입력:</b> 1~20번 학생이 고른 객관식 번호(1~5) · 21~25번 실제 서술형 점수(0~4점)<br><b>통합 분석:</b> ${YP.escapeHTML(e.historyLabel)}와 같은 학교·이름의 학생 기록을 자동 연결합니다.`;
+   if(YP.usesObjectiveChoiceNumbers(e))note+=`<br><b>입력:</b> ${YP.escapeHTML(inputPolicyText(e))}<br><b>통합 분석:</b> ${YP.escapeHTML(e.historyLabel||"연결 범위 미설정")}와 같은 학교·이름의 학생 기록을 자동 연결합니다.`;
    else if(YP.isComprehensive(e))note+=`<br><b>입력:</b> 시험 설정에 등록된 문항별 성취값·실제 점수<br><b>통합 분석:</b> ${YP.escapeHTML(e.historyLabel)}와 같은 학교·이름의 학생 기록을 자동 연결합니다.`;
    else note+=`<br>0=오답, 1=문항 만점, 그 밖의 숫자=부분점수, P1=정확히 1점`;
    if(e.sourceNote)note+=`<br>${YP.escapeHTML(e.sourceNote)}`;
    const issues=(e.questions||[]).filter(q=>["needs-review","ambiguous"].includes(q.reviewStatus)).map(q=>q.no);if(issues.length)note+=`<br><b>자동 공개 보류:</b> ${issues.join(", ")}번`;
    $("examNotice").innerHTML=note;
    if($("stickyExamName"))$("stickyExamName").textContent=YP.roundLabel(e);
-   $("pasteValues").placeholder=YP.usesObjectiveChoiceNumbers(e)?"예: 5\t2\t3\t... (객관식 20개) \t4\t3\t2\t4\t1":YP.isComprehensive(e)?"시험 설정 순서대로 입력":"예: 1\t1\t0\t2.5\tP1\t1";
+   const choicePolicy=objectiveChoicePolicy(e);
+   $("pasteValues").placeholder=choicePolicy?(choicePolicy.allChoice?`예: 2\t4\t1\t... (객관식 ${choicePolicy.range.end}개)`:`예: 5\t2\t3\t... (객관식 ${choicePolicy.range.end}개) \t4\t3\t2\t4\t1`):YP.isComprehensive(e)?"시험 설정 순서대로 입력":"예: 1\t1\t0\t2.5\tP1\t1";
  }
  function qInputHTML(q,i){
    if((q.inputMode||"achievement")==="objective-choice")return `<div class="objective-choice-control"><div class="objective-choice-buttons">${[1,2,3,4,5].map(n=>`<button type="button" class="objective-choice-btn" data-choice-i="${i}" data-v="${n}" aria-label="${n}번 선택">${YP.choiceLabel(n)}</button>`).join("")}</div><input class="score-input compact" id="qInput${i}" data-i="${i}" inputmode="numeric" autocomplete="off" placeholder="1~5" maxlength="1"></div><div class="score-result ungraded objective-choice-result" id="qResult${i}">미입력</div>`;
@@ -248,7 +267,7 @@
    if(typeof YP_CSV==="undefined")throw new Error("CSV 가져오기 모듈을 불러오지 못했습니다. Pages 배포 파일을 확인하세요.");
    const imported=await YP_CSV.importAssessment(file,state.exam);
    const parsed=imported.students.map(s=>{const record=batchRecordFromImportedStudent(imported,s),calc=YP.calculateResult(state.exam,record.resultInputs,record.partialModes),errors=[...(s.errors||[])];if(!record.name)errors.push("이름 없음");if(!calc.valid)errors.push("점수 입력 오류");const existing=findExistingBatchRecord(record);return {rowNo:s.sourceRow,record,calc,sourceTotal:s.sourceTotal,errors,saveable:!!record.name&&calc.valid&&!errors.length,existing,errorMessage:errors.join(" · ")}});
-   const modeLabel=imported.inputMode==="raw-choice"?"객관식 학생 선택번호 1~5 · 서술형 실제 점수":imported.inputMode==="legacy-binary"?"구형 0/1·O/X 정오표 호환 · 서술형 실제 점수":"문항별 성취값·실제 점수";
+   const modeLabel=batchInputModeLabel(state.exam,imported.inputMode);
    renderBatchPreview({...imported,inputModeLabel:modeLabel},parsed);
  }
  async function previewExcel(file){
@@ -259,7 +278,7 @@
      const calc=YP.calculateResult(state.exam,record.resultInputs,record.partialModes),errors=[...(s.errors||[])];if(!record.name)errors.push("이름 없음");if(!calc.valid)errors.push("점수 입력 오류");
      const existing=findExistingBatchRecord(record);return {rowNo:s.sourceRow,record,calc,sourceTotal:s.sourceTotal,errors,saveable:!!record.name&&calc.valid&&!errors.length,existing,errorMessage:errors.join(" · ")};
    });
-   const modeLabel=imported.inputMode==="raw-choice"?"객관식 학생 선택번호 1~5 · 서술형 실제 점수":imported.inputMode==="legacy-binary"?"구형 0/1·O/X 정오표 호환 · 서술형 실제 점수":"문항별 성취값·실제 점수";
+   const modeLabel=batchInputModeLabel(state.exam,imported.inputMode);
    renderBatchPreview({...imported,inputModeLabel:modeLabel},parsed);
    if(imported.answerKeyMismatchQuestions?.length)YP.toast(`Excel 정답표와 검수 정답표가 다른 문항: ${imported.answerKeyMismatchQuestions.join(", ")}번. 사이트 검수 정답으로 재채점했습니다.`,7000);
  }
