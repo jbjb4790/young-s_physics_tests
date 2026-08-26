@@ -21,6 +21,7 @@ const SHEETS = {
   EXAMS: "Exams",
   QUESTIONS: "Questions",
   QUESTION_OVERRIDES: "QuestionOverrides",
+  STUDENTS: "Students",
   REPORTS: "Reports"
 };
 
@@ -29,10 +30,13 @@ const HEADERS = {
   Exams: ["ExamId","CourseId","Round","Title","ShortTitle","AssessmentType","Section","ExamDate","QuestionCount","MaxScore","ExamPDF","SolutionPDF","ReviewStatus","ConfigVersion","Status","PagesJSON","CoreNoteJSON","InputProfileJSON","HistoryExamIdsJSON","HistoryLabel","SourceTitle","SourceNote","DisplayOrder"],
   Questions: ["ExamId","QuestionNo","Type","InputMode","MaxPoints","Unit","Topic","Difficulty","AnswerJSON","RubricJSON","ExplanationJSON","OriginalRetryJSON","SimilarProblemJSON","ReviewStatus","CorrectionNote","ImageJSON"],
   QuestionOverrides: ["ExamId","QuestionNo","AnswerJSON","OriginalRetryJSON","SimilarProblemJSON","RevisionNote","UpdatedAt"],
-  Reports: ["Token","Fingerprint","IdentitySeed","IdentityDigest","StudentKey","ExamId","CourseId","School","Name","Grade","ClassNo","ResultInputsJSON","PartialModesJSON","ScoringJSON","RecordJSON","CreatedAt","UpdatedAt"]
+  Students: ["StudentId","PortalToken","PortalFingerprint","IdentitySeed","IdentityDigest","IdentityKey","School","Name","Grade","ClassNo","ExternalId","CreatedAt","UpdatedAt","Active"],
+  Reports: ["Token","Fingerprint","IdentitySeed","IdentityDigest","StudentKey","ExamId","CourseId","School","Name","Grade","ClassNo","ResultInputsJSON","PartialModesJSON","ScoringJSON","RecordJSON","CreatedAt","UpdatedAt","StudentId"]
 };
 
 const API_VERSION = "3.3.0-hosted-parent-bridge";
+const FEATURE_VERSION = "3.5.0-student-lifetime-portal";
+const STUDENT_PORTAL_SCHEMA_VERSION = "1";
 const DEFAULT_SESSION_TTL_DAYS = 90;
 const DEFAULT_SETUP_TOKEN_TTL_MINUTES = 10;
 
@@ -56,6 +60,9 @@ function onOpen() {
       .addItem("성적표 토큰 저장소 진단", "diagnoseReportStorage")
       .addItem("성적표 토큰 저장소 복구", "repairReportStorage")
       .addSeparator()
+      .addItem("학생 통합 링크 마이그레이션", "migrateStudentPortals")
+      .addItem("학생 통합 링크 진단", "diagnoseStudentPortals")
+      .addSeparator()
       .addItem("웹 앱 배포 진단", "checkWebAppDeployment")
       .addItem("연결 상태 확인", "showYoungsPhysicsStatus")
       .addToUi();
@@ -69,6 +76,7 @@ function showYoungsPhysicsStatus() {
   const ss = getSpreadsheet_();
   const lines = [
     "API 버전: " + status.apiVersion,
+    "기능 버전: " + (status.featureVersion || FEATURE_VERSION),
     "스프레드시트: " + ss.getName(),
     "교사 PIN: " + (status.teacherPinConfigured ? "설정됨" : "미설정"),
     "교사 세션 유효기간: " + status.sessionTtlDays + "일",
@@ -101,6 +109,7 @@ function doGet(e) {
       return jsonOutput_({
         ok:true,
         apiVersion:API_VERSION,
+        featureVersion:FEATURE_VERSION,
         serverInstanceId:getServerInstanceId_(),
         origin:origin,
         formPostBridge:true,
@@ -121,6 +130,7 @@ function doGet(e) {
         ok:true,
         message:"Young's Physics Apps Script API 정상",
         apiVersion:API_VERSION,
+        featureVersion:FEATURE_VERSION,
         serverInstanceId:getServerInstanceId_(),
         transport:"content-service",
         time:new Date().toISOString()
@@ -462,6 +472,7 @@ function dispatchApiRequest_(body) {
         ok:true,
         message:"Google Sheets 연결 정상",
         apiVersion:API_VERSION,
+        featureVersion:FEATURE_VERSION,
         serverInstanceId:getServerInstanceId_(),
         transport:"form-post-bridge",
         spreadsheetId:getSpreadsheet_().getId(),
@@ -491,8 +502,18 @@ function dispatchApiRequest_(body) {
       assertTeacherAuth_(body); return saveBatch_(body.records || []);
     case "getReport":
       return getReport_(String(body.token || ""), String(body.fp || ""));
+    case "getStudentPortal":
+      return getStudentPortal_(String(body.token || ""), String(body.fp || ""));
+    case "getStudentExamDetail":
+      return getStudentExamDetail_(String(body.token || ""), String(body.fp || ""), String(body.reportToken || ""));
     case "listReports":
       assertTeacherAuth_(body); return {ok:true, reports:listReports_(body), serverInstanceId:getServerInstanceId_()};
+    case "listStudents":
+      assertTeacherAuth_(body); return {ok:true, students:listStudents_(body), serverInstanceId:getServerInstanceId_(), featureVersion:FEATURE_VERSION};
+    case "reissueStudentPortal":
+      assertTeacherAuth_(body); return reissueStudentPortal_(String(body.studentId || ""));
+    case "migrateStudentPortals":
+      assertTeacherAuth_(body); return migrateStudentPortals_(Number(body.batchSize || 300));
     case "deleteReport":
       assertTeacherAuth_(body); return {ok:true, deleted:deleteReport_(String(body.token || ""))};
     case "getExamStats":
@@ -865,6 +886,7 @@ function bootstrap_() {
   return {
     ok:true,
     apiVersion:API_VERSION,
+    featureVersion:FEATURE_VERSION,
     serverInstanceId:getServerInstanceId_(),
     appName:"Young's Physics 성적 분석",
     authMode:"teacher-session",
@@ -1346,6 +1368,7 @@ function calculateScoring_(examId,inputs,partialModes,inputEncoding) {
 }
 
 function saveReport_(input) {
+  ensureStudentPortalSchema_();
   const lock=LockService.getScriptLock();lock.waitLock(30000);
   try {
     const exam=getRowBy_(SHEETS.EXAMS,"ExamId",String(input.examId||""));
@@ -1370,34 +1393,37 @@ function saveReport_(input) {
       const used=new Set(objects.filter(function(r){return String(r.ExamId)===String(input.examId)&&normalizeIdentity_(normalizeSchool_(r.School))===normalizeIdentity_(school);}).map(function(r){return String(r.Name);}));
       const base=name;let n=1;while(used.has(name)){n++;name=base+n;}
     }
+    const previousRecord=old?safeJson_(old.RecordJSON,{}):{},store=loadStudentStore_();
+    const profile=resolveStudentProfileInStore_(store,{studentId:String(input.studentId||old&&old.StudentId||previousRecord.studentId||""),school:school,name:name,grade:String(input.grade||""),classNo:String(input.classNo||""),externalStudentId:String(input.externalStudentId||""),forceNewStudent:input.forceNewStudent===true},String(input.studentId||old&&old.StudentId||previousRecord.studentId||""));
+    persistStudentStore_(store);
     const now=new Date(),token=old?String(old.Token):newToken_(),seed=old?String(old.IdentitySeed):newToken_();
     const fingerprint=old?String(old.Fingerprint):makeFingerprint_(token,seed),courseId=String(exam.CourseId),identityDigest=makeIdentityDigest_(input.examId,courseId,school,name),studentKey=makeStudentKey_(courseId,school,name);
-    const previousRecord=old?safeJson_(old.RecordJSON,{}):{};
     const effectiveEncoding=String(input.inputEncoding||previousRecord.inputEncoding||(old?"legacy-binary":isComprehensiveChoiceExam_(exam)?"objective-choice-v1":""));
     const calc=calculateScoring_(String(input.examId),input.resultInputs||[],input.partialModes||[],effectiveEncoding);
     const record={
-      token:token,fingerprint:fingerprint,studentKey:studentKey,examId:String(input.examId),courseId:courseId,school:school,name:name,
+      token:token,fingerprint:fingerprint,studentId:profile.StudentId,studentKey:studentKey,examId:String(input.examId),courseId:courseId,school:school,name:name,
       grade:String(input.grade||""),classNo:String(input.classNo||""),teacherMemo:String(input.teacherMemo||""),
       resultInputs:input.resultInputs||[],partialModes:input.partialModes||[],scoring:calc.scoring,score:calc.score,maxScore:calc.maxScore,
       percent:calc.percent,counts:calc.counts,inputEncoding:effectiveEncoding,createdAt:old?serializeCell_(old.CreatedAt):now.toISOString(),updatedAt:now.toISOString()
     };
     if(input.importSource) record.importSource=input.importSource;
     else if(previousRecord.importSource) record.importSource=previousRecord.importSource;
-    const row=[token,fingerprint,seed,identityDigest,studentKey,record.examId,courseId,school,name,record.grade,record.classNo,JSON.stringify(record.resultInputs),JSON.stringify(record.partialModes),JSON.stringify(calc.scoring),JSON.stringify(record),old?old.CreatedAt:now,now];
+    const row=[token,fingerprint,seed,identityDigest,studentKey,record.examId,courseId,school,name,record.grade,record.classNo,JSON.stringify(record.resultInputs),JSON.stringify(record.partialModes),JSON.stringify(calc.scoring),JSON.stringify(record),old?old.CreatedAt:now,now,profile.StudentId];
     if(rowIndex>=0) sh.getRange(rowIndex+2,1,1,headers.length).setValues([row]); else sh.getRange(sh.getLastRow()+1,1,1,headers.length).setValues([row]);
     const stats=getExamStats_(record.examId);
-    return {ok:true,record:record,stats:stats,historyRecords:getLinkedHistoryRecords_(record),token:token,fp:fingerprint,displayName:name,created:!old,updated:!!old,serverInstanceId:getServerInstanceId_()};
+    return {ok:true,record:record,stats:stats,historyRecords:getLinkedHistoryRecords_(record),studentPortal:studentPortalSummary_(profile),token:token,fp:fingerprint,displayName:name,created:!old,updated:!!old,serverInstanceId:getServerInstanceId_(),featureVersion:FEATURE_VERSION};
   } finally { lock.releaseLock(); }
 }
 
 function saveBatch_(records) {
-  if(!Array.isArray(records)||!records.length) return {ok:true,saved:[],savedCount:0,createdCount:0,updatedCount:0,failed:[],statsByExam:{}};
+  ensureStudentPortalSchema_();
+  if(!Array.isArray(records)||!records.length) return {ok:true,saved:[],savedCount:0,createdCount:0,updatedCount:0,failed:[],statsByExam:{},students:[]};
   const lock=LockService.getScriptLock();lock.waitLock(30000);
   const touched={},saved=[],failed=[];let createdCount=0,updatedCount=0;
   try {
     const sh=getSheet_(SHEETS.REPORTS),headers=HEADERS.Reports;
     const data=sh.getLastRow()>1?sh.getRange(2,1,sh.getLastRow()-1,headers.length).getValues():[];
-    const examCache={},questionCache={},tokenIndex={},identityIndex={},namesByGroup={};
+    const examCache={},questionCache={},tokenIndex={},identityIndex={},namesByGroup={},studentStore=loadStudentStore_(),portalsByStudent={};
     data.forEach(function(row,i){
       const o=rowToObject_(headers,row),school=normalizeSchool_(o.School),group=[String(o.ExamId),normalizeIdentity_(school)].join("|");
       tokenIndex[String(o.Token)]=i;identityIndex[reportIdentityKey_(o.ExamId,school,o.Name)]=i;
@@ -1417,15 +1443,17 @@ function saveBatch_(records) {
         else if(String(input.importMode||"upsert")==="upsert") {const key=reportIdentityKey_(examId,school,name);if(Object.prototype.hasOwnProperty.call(identityIndex,key)){rowIndex=identityIndex[key];old=rowToObject_(headers,data[rowIndex]);}}
         const group=[examId,normalizeIdentity_(school)].join("|");if(!namesByGroup[group])namesByGroup[group]=new Set();
         if(!old&&String(input.importMode||"upsert")!=="upsert"){const base=name;let n=1;while(namesByGroup[group].has(name)){n++;name=base+n;}}
-        const now=new Date(),token=old?String(old.Token):newToken_(),seed=old?String(old.IdentitySeed):newToken_(),fingerprint=old?String(old.Fingerprint):makeFingerprint_(token,seed),courseId=String(exam.CourseId),identityDigest=makeIdentityDigest_(examId,courseId,school,name),studentKey=makeStudentKey_(courseId,school,name),previousRecord=old?safeJson_(old.RecordJSON,{}):{};
+        const previousRecord=old?safeJson_(old.RecordJSON,{}):{},preferred=String(input.studentId||old&&old.StudentId||previousRecord.studentId||"");
+        const profile=resolveStudentProfileInStore_(studentStore,{studentId:preferred,school:school,name:name,grade:String(input.grade||""),classNo:String(input.classNo||""),externalStudentId:String(input.externalStudentId||""),forceNewStudent:input.forceNewStudent===true},preferred);portalsByStudent[profile.StudentId]=studentPortalSummary_(profile);
+        const now=new Date(),token=old?String(old.Token):newToken_(),seed=old?String(old.IdentitySeed):newToken_(),fingerprint=old?String(old.Fingerprint):makeFingerprint_(token,seed),courseId=String(exam.CourseId),identityDigest=makeIdentityDigest_(examId,courseId,school,name),studentKey=makeStudentKey_(courseId,school,name);
         const effectiveEncoding=String(input.inputEncoding||previousRecord.inputEncoding||(old?"legacy-binary":isComprehensiveChoiceExam_(exam)?"objective-choice-v1":""));
         const calc=calculateScoringFromQuestions_(questionCache[examId],input.resultInputs||[],input.partialModes||[],exam,effectiveEncoding);
-        const record={token:token,fingerprint:fingerprint,studentKey:studentKey,examId:examId,courseId:courseId,school:school,name:name,grade:String(input.grade||""),classNo:String(input.classNo||""),teacherMemo:String(input.teacherMemo||""),resultInputs:input.resultInputs||[],partialModes:input.partialModes||[],scoring:calc.scoring,score:calc.score,maxScore:calc.maxScore,percent:calc.percent,counts:calc.counts,inputEncoding:effectiveEncoding,createdAt:old?serializeCell_(old.CreatedAt):now.toISOString(),updatedAt:now.toISOString()};
+        const record={token:token,fingerprint:fingerprint,studentId:profile.StudentId,studentKey:studentKey,examId:examId,courseId:courseId,school:school,name:name,grade:String(input.grade||""),classNo:String(input.classNo||""),teacherMemo:String(input.teacherMemo||""),resultInputs:input.resultInputs||[],partialModes:input.partialModes||[],scoring:calc.scoring,score:calc.score,maxScore:calc.maxScore,percent:calc.percent,counts:calc.counts,inputEncoding:effectiveEncoding,createdAt:old?serializeCell_(old.CreatedAt):now.toISOString(),updatedAt:now.toISOString()};
         if(input.importSource)record.importSource=input.importSource;else if(previousRecord.importSource)record.importSource=previousRecord.importSource;
-        const row=[token,fingerprint,seed,identityDigest,studentKey,examId,courseId,school,name,record.grade,record.classNo,JSON.stringify(record.resultInputs),JSON.stringify(record.partialModes),JSON.stringify(calc.scoring),JSON.stringify(record),old?old.CreatedAt:now,now];
+        const row=[token,fingerprint,seed,identityDigest,studentKey,examId,courseId,school,name,record.grade,record.classNo,JSON.stringify(record.resultInputs),JSON.stringify(record.partialModes),JSON.stringify(calc.scoring),JSON.stringify(record),old?old.CreatedAt:now,now,profile.StudentId];
         if(rowIndex>=0){data[rowIndex]=row;updatedCount++;}else{rowIndex=data.length;data.push(row);createdCount++;}
         tokenIndex[token]=rowIndex;identityIndex[reportIdentityKey_(examId,school,name)]=rowIndex;namesByGroup[group].add(name);touched[examId]=true;
-        saved.push({token:token,fingerprint:fingerprint,examId:examId,courseId:courseId,school:school,name:name,score:calc.score,maxScore:calc.maxScore,updatedAt:record.updatedAt});
+        saved.push({token:token,fingerprint:fingerprint,studentId:profile.StudentId,portalToken:profile.PortalToken,portalFingerprint:profile.PortalFingerprint,examId:examId,courseId:courseId,school:school,name:name,score:calc.score,maxScore:calc.maxScore,updatedAt:record.updatedAt});
       } catch(err) {
         failed.push({index:batchIndex+1,name:String(input.name||""),sourceRow:input.importSource&&input.importSource.sourceRow||"",error:String(err&&err.message||err)});
       }
@@ -1433,11 +1461,14 @@ function saveBatch_(records) {
     if(saved.length){
       const needed=data.length+1;if(sh.getMaxRows()<needed)sh.insertRowsAfter(sh.getMaxRows(),needed-sh.getMaxRows());
       sh.getRange(2,1,data.length,headers.length).setValues(data);
+      persistStudentStore_(studentStore);
     }
   } finally { lock.releaseLock(); }
   const statsByExam={};Object.keys(touched).forEach(function(examId){statsByExam[examId]=getExamStats_(examId);});
-  return {ok:true,saved:saved,savedCount:saved.length,createdCount:createdCount,updatedCount:updatedCount,failed:failed,statsByExam:statsByExam,serverInstanceId:getServerInstanceId_()};
+  const studentMap={};saved.forEach(function(r){if(!studentMap[r.studentId])studentMap[r.studentId]={studentId:r.studentId,portalToken:r.portalToken,portalFingerprint:r.portalFingerprint,school:r.school,name:r.name};});
+  return {ok:true,saved:saved,savedCount:saved.length,createdCount:createdCount,updatedCount:updatedCount,failed:failed,statsByExam:statsByExam,students:Object.keys(studentMap).map(function(k){return studentMap[k];}),serverInstanceId:getServerInstanceId_(),featureVersion:FEATURE_VERSION};
 }
+
 
 function newToken_() {
   return Utilities.getUuid().replace(/-/g,"") + Utilities.getUuid().replace(/-/g,"").slice(0,8);
@@ -1491,6 +1522,226 @@ function webSafeBase64_(bytes) {
 }
 
 /** URL 복사·메신저 전달 과정에서 섞일 수 있는 공백·제로폭 문자를 제거한다. */
+
+/**
+ * 학생 한 명에게 하나의 영구 학부모 포털 링크를 부여한다.
+ * 기존 Reports 행은 유지하고 마지막 StudentId 열로 Students 시트와 연결한다.
+ */
+function ensureStudentPortalSchema_() {
+  const props=PropertiesService.getScriptProperties();
+  if(String(props.getProperty("STUDENT_PORTAL_SCHEMA_VERSION")||"")===STUDENT_PORTAL_SCHEMA_VERSION)return;
+  const ss=getSpreadsheet_();
+  [SHEETS.STUDENTS,SHEETS.REPORTS].forEach(function(name){
+    let sh=ss.getSheetByName(name);if(!sh)sh=ss.insertSheet(name);
+    ensureSheetSchema_(sh,HEADERS[name]);
+    sh.setFrozenRows(1);
+    sh.getRange(1,1,1,HEADERS[name].length).setFontWeight("bold").setBackground("#0c2b50").setFontColor("#ffffff");
+  });
+  props.setProperty("STUDENT_PORTAL_SCHEMA_VERSION",STUDENT_PORTAL_SCHEMA_VERSION);
+}
+
+function makeStudentBaseIdentityKey_(school,name) {
+  return [normalizeIdentity_(normalizeSchool_(school)),normalizeIdentity_(name)].join("|");
+}
+
+function makeStudentProfileIdentityKey_(school,name,grade,classNo,externalId) {
+  const ext=normalizeIdentity_(externalId);
+  if(ext)return "external|"+ext;
+  return [makeStudentBaseIdentityKey_(school,name),normalizeIdentity_(grade),normalizeIdentity_(classNo)].join("|");
+}
+
+function makeStudentProfileDigest_(studentId,school,name,grade,classNo,externalId) {
+  return webSafeBase64_(Utilities.computeDigest(
+    Utilities.DigestAlgorithm.SHA_256,
+    [studentId,normalizeSchool_(school),String(name||"").trim(),String(grade||"").trim(),String(classNo||"").trim(),String(externalId||"").trim()].join("|"),
+    Utilities.Charset.UTF_8
+  ));
+}
+
+function makeStudentPortalFingerprint_(token,seed) {
+  const sig=Utilities.computeHmacSha256Signature(String(token)+"|"+String(seed)+"|student-portal",secret_());
+  return webSafeBase64_(sig);
+}
+
+function normalizeStudentProfile_(row) {
+  const school=normalizeSchool_(row.School),name=String(row.Name||"").trim(),grade=String(row.Grade||"").trim(),classNo=String(row.ClassNo||"").trim(),externalId=String(row.ExternalId||"").trim();
+  return {
+    StudentId:String(row.StudentId||"").trim(),PortalToken:normalizeReportToken_(row.PortalToken),PortalFingerprint:String(row.PortalFingerprint||"").trim(),IdentitySeed:String(row.IdentitySeed||"").trim(),
+    IdentityDigest:String(row.IdentityDigest||"").trim(),IdentityKey:String(row.IdentityKey||makeStudentProfileIdentityKey_(school,name,grade,classNo,externalId)),School:school,Name:name,Grade:grade,ClassNo:classNo,ExternalId:externalId,
+    CreatedAt:row.CreatedAt||new Date(),UpdatedAt:row.UpdatedAt||new Date(),Active:String(row.Active).toLowerCase()!=="false"
+  };
+}
+
+function studentProfileToRow_(p) {
+  return [p.StudentId,p.PortalToken,p.PortalFingerprint,p.IdentitySeed,p.IdentityDigest,p.IdentityKey,p.School,p.Name,p.Grade,p.ClassNo,p.ExternalId,p.CreatedAt,p.UpdatedAt,p.Active!==false];
+}
+
+function rebuildStudentStoreIndexes_(store) {
+  store.byId={};store.byToken={};store.byIdentity={};store.byBase={};store.byExternal={};
+  store.rows.forEach(function(p){
+    if(p.StudentId)store.byId[p.StudentId]=p;
+    if(p.PortalToken)store.byToken[p.PortalToken]=p;
+    if(p.IdentityKey)store.byIdentity[p.IdentityKey]=p;
+    const base=makeStudentBaseIdentityKey_(p.School,p.Name);if(!store.byBase[base])store.byBase[base]=[];store.byBase[base].push(p);
+    const ext=normalizeIdentity_(p.ExternalId);if(ext)store.byExternal[ext]=p;
+  });
+}
+
+function loadStudentStore_() {
+  ensureStudentPortalSchema_();
+  const sh=getSheet_(SHEETS.STUDENTS),headers=HEADERS.Students,values=sh.getLastRow()>1?sh.getRange(2,1,sh.getLastRow()-1,headers.length).getValues():[];
+  const store={sh:sh,rows:values.map(function(row){return normalizeStudentProfile_(rowToObject_(headers,row));}),dirty:false};
+  rebuildStudentStoreIndexes_(store);return store;
+}
+
+function persistStudentStore_(store) {
+  if(!store||!store.dirty)return;
+  const sh=store.sh,headers=HEADERS.Students,rows=store.rows.map(studentProfileToRow_),last=Math.max(0,sh.getLastRow()-1);
+  if(rows.length){if(sh.getMaxRows()<rows.length+1)sh.insertRowsAfter(sh.getMaxRows(),rows.length+1-sh.getMaxRows());sh.getRange(2,1,rows.length,headers.length).setValues(rows);}
+  if(last>rows.length)sh.getRange(rows.length+2,1,last-rows.length,headers.length).clearContent();
+  store.dirty=false;rebuildStudentStoreIndexes_(store);
+}
+
+function createStudentProfileInStore_(store,input) {
+  const now=new Date(),school=normalizeSchool_(input.school),name=String(input.name||"").trim();if(!name)throw new Error("학생 이름이 필요합니다.");
+  const grade=String(input.grade||"").trim(),classNo=String(input.classNo||"").trim(),externalId=String(input.externalStudentId||input.externalId||"").trim();
+  const studentId="stu_"+newToken_(),portalToken="sp_"+newToken_(),seed=newToken_();
+  const profile={StudentId:studentId,PortalToken:portalToken,PortalFingerprint:makeStudentPortalFingerprint_(portalToken,seed),IdentitySeed:seed,IdentityDigest:"",IdentityKey:makeStudentProfileIdentityKey_(school,name,grade,classNo,externalId),School:school,Name:name,Grade:grade,ClassNo:classNo,ExternalId:externalId,CreatedAt:now,UpdatedAt:now,Active:true};
+  profile.IdentityDigest=makeStudentProfileDigest_(studentId,school,name,grade,classNo,externalId);
+  store.rows.push(profile);store.dirty=true;rebuildStudentStoreIndexes_(store);return profile;
+}
+
+function updateStudentProfileInStore_(store,profile,input) {
+  const school=normalizeSchool_(input.school!==undefined?input.school:profile.School),name=String(input.name!==undefined?input.name:profile.Name||"").trim()||profile.Name,grade=String(input.grade!==undefined?input.grade:profile.Grade||"").trim(),classNo=String(input.classNo!==undefined?input.classNo:profile.ClassNo||"").trim(),externalId=String(input.externalStudentId||input.externalId||profile.ExternalId||"").trim();
+  const changed=profile.School!==school||profile.Name!==name||profile.Grade!==grade||profile.ClassNo!==classNo||profile.ExternalId!==externalId||profile.Active===false;
+  if(changed){profile.School=school;profile.Name=name;profile.Grade=grade;profile.ClassNo=classNo;profile.ExternalId=externalId;profile.IdentityKey=makeStudentProfileIdentityKey_(school,name,grade,classNo,externalId);profile.IdentityDigest=makeStudentProfileDigest_(profile.StudentId,school,name,grade,classNo,externalId);profile.UpdatedAt=new Date();profile.Active=true;store.dirty=true;rebuildStudentStoreIndexes_(store);}
+  return profile;
+}
+
+function resolveStudentProfileInStore_(store,input,preferredStudentId) {
+  const school=normalizeSchool_(input.school),name=String(input.name||"").trim(),grade=String(input.grade||"").trim(),classNo=String(input.classNo||"").trim(),externalId=String(input.externalStudentId||input.externalId||"").trim();
+  if(!name)throw new Error("학생 이름이 필요합니다.");
+  const preferred=String(preferredStudentId||input.studentId||"").trim();
+  if(preferred&&store.byId[preferred])return updateStudentProfileInStore_(store,store.byId[preferred],{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});
+  if(input.forceNewStudent===true)return createStudentProfileInStore_(store,{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});
+  const ext=normalizeIdentity_(externalId);if(ext&&store.byExternal[ext])return updateStudentProfileInStore_(store,store.byExternal[ext],{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});
+  const exactKey=makeStudentProfileIdentityKey_(school,name,grade,classNo,externalId);if(store.byIdentity[exactKey])return updateStudentProfileInStore_(store,store.byIdentity[exactKey],{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});
+  const base=makeStudentBaseIdentityKey_(school,name),candidates=(store.byBase[base]||[]).filter(function(p){return p.Active!==false;});
+  if(candidates.length===1){
+    const c=candidates[0],incomingClass=normalizeIdentity_(classNo),savedClass=normalizeIdentity_(c.ClassNo);
+    if(incomingClass&&savedClass&&incomingClass!==savedClass)return createStudentProfileInStore_(store,{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});
+    return updateStudentProfileInStore_(store,c,{school:school,name:name,grade:grade||c.Grade,classNo:classNo||c.ClassNo,externalStudentId:externalId||c.ExternalId});
+  }
+  if(candidates.length>1){
+    const incomingClass=normalizeIdentity_(classNo),classMatches=incomingClass?candidates.filter(function(p){return normalizeIdentity_(p.ClassNo)===incomingClass;}):[];
+    if(classMatches.length===1)return updateStudentProfileInStore_(store,classMatches[0],{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});
+    throwApiError_("STUDENT_PROFILE_AMBIGUOUS","같은 학교와 이름의 학생 통합 페이지가 여러 개입니다. 교사용 화면에서 기존 학생을 선택하거나 반·번호를 구분해 주세요.",{school:school,name:name,candidateCount:candidates.length});
+  }
+  return createStudentProfileInStore_(store,{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});
+}
+
+function studentPortalSummary_(profile) {
+  return {studentId:profile.StudentId,portalToken:profile.PortalToken,portalFingerprint:profile.PortalFingerprint,school:profile.School,name:profile.Name,grade:profile.Grade,classNo:profile.ClassNo,externalId:profile.ExternalId,createdAt:serializeCell_(profile.CreatedAt),updatedAt:serializeCell_(profile.UpdatedAt)};
+}
+
+function hydrateReportObject_(row) {
+  const record=safeJson_(row.RecordJSON,{}),school=normalizeSchool_(row.School),scoring=safeJson_(row.ScoringJSON,[]);
+  const hydrated=Object.assign(record,{token:String(row.Token),fingerprint:String(row.Fingerprint),studentId:String(row.StudentId||record.studentId||""),studentKey:makeStudentKey_(String(row.CourseId),school,String(row.Name)),examId:String(row.ExamId),courseId:String(row.CourseId),school:school,name:String(row.Name),grade:String(row.Grade||""),classNo:String(row.ClassNo||""),resultInputs:safeJson_(row.ResultInputsJSON,[]),partialModes:safeJson_(row.PartialModesJSON,[]),scoring:scoring,createdAt:serializeCell_(row.CreatedAt),updatedAt:serializeCell_(row.UpdatedAt)});
+  if(hydrated.score===undefined)hydrated.score=scoring.reduce(function(a,x){return a+Number(x.score||0);},0);
+  return hydrated;
+}
+
+function reportBelongsToStudent_(report,profile,studentStore) {
+  const linkedId=String(report.studentId||"").trim();
+  if(linkedId)return linkedId===String(profile.StudentId);
+  const base=makeStudentBaseIdentityKey_(report.school,report.name);
+  if(base!==makeStudentBaseIdentityKey_(profile.School,profile.Name))return false;
+  // 아직 StudentId가 없는 구버전 행은 같은 학교·이름의 활성 프로필이 정확히 하나일 때만
+  // 임시로 연결한다. 동명이인 후보가 둘 이상이면 다른 학생 결과가 섞이지 않도록 제외한다.
+  const store=studentStore||loadStudentStore_(),candidates=(store.byBase[base]||[]).filter(function(p){return p.Active!==false;});
+  if(candidates.length!==1||String(candidates[0].StudentId)!==String(profile.StudentId))return false;
+  const reportGrade=normalizeIdentity_(report.grade),profileGrade=normalizeIdentity_(profile.Grade);
+  const reportClass=normalizeIdentity_(report.classNo),profileClass=normalizeIdentity_(profile.ClassNo);
+  if(reportGrade&&profileGrade&&reportGrade!==profileGrade)return false;
+  if(reportClass&&profileClass&&reportClass!==profileClass)return false;
+  return true;
+}
+
+function listStudentReportRecords_(profile) {
+  const store=loadStudentStore_();
+  return listRows_(SHEETS.REPORTS).map(hydrateReportObject_).filter(function(r){return reportBelongsToStudent_(r,profile,store);}).sort(function(a,b){return String(b.updatedAt||b.createdAt).localeCompare(String(a.updatedAt||a.createdAt));});
+}
+
+function findStudentProfileByPortal_(token,fp) {
+  ensureStudentPortalSchema_();token=normalizeReportToken_(token);fp=String(fp||"").trim();if(!token||!fp)throwApiError_("PORTAL_LINK_INCOMPLETE","학생 통합 링크에 토큰 또는 지문이 없습니다.");
+  const store=loadStudentStore_(),profile=store.byToken[token];if(!profile)throwApiError_("STUDENT_PORTAL_NOT_FOUND","학생 통합 페이지 토큰을 찾을 수 없습니다. 교사에게 최신 학생 통합 링크를 요청해 주세요.",{serverInstanceId:getServerInstanceId_()});
+  if(!profile.Active)throwApiError_("STUDENT_PORTAL_DISABLED","이 학생 통합 페이지는 비활성화되어 있습니다.");
+  if(!constantTimeEqual_(profile.PortalFingerprint,fp))throwApiError_("PORTAL_FINGERPRINT_MISMATCH","학생 통합 링크의 지문이 일치하지 않습니다. 교사에게 링크를 다시 요청해 주세요.");
+  const recomputed=makeStudentPortalFingerprint_(profile.PortalToken,profile.IdentitySeed);if(!constantTimeEqual_(recomputed,profile.PortalFingerprint))throwApiError_("PORTAL_FINGERPRINT_INTEGRITY","학생 통합 링크 무결성 검증에 실패했습니다.");
+  const digest=makeStudentProfileDigest_(profile.StudentId,profile.School,profile.Name,profile.Grade,profile.ClassNo,profile.ExternalId);if(!constantTimeEqual_(digest,profile.IdentityDigest))throwApiError_("PORTAL_IDENTITY_INTEGRITY","학생 통합 정보 무결성 검증에 실패했습니다.");
+  return profile;
+}
+
+function buildStudentPortalData_(profile) {
+  const reports=listStudentReportRecords_(profile),examRows=listRows_(SHEETS.EXAMS),examMap={};examRows.forEach(function(e){examMap[String(e.ExamId)]=e;});
+  // 누적 요약에는 단원·배점·문항 번호만 필요하므로 Questions 시트를 한 번만 읽어 시험별로 묶는다.
+  // 시험마다 문항 시트를 반복 조회하면 Apps Script 실행 시간이 급격히 늘어나므로 피한다.
+  const questionCache={};listRows_(SHEETS.QUESTIONS).forEach(function(q){const id=String(q.ExamId||"");if(!questionCache[id])questionCache[id]=[];questionCache[id].push(q);});
+  Object.keys(questionCache).forEach(function(id){questionCache[id].sort(function(a,b){return Number(a.QuestionNo)-Number(b.QuestionNo);});});
+  const unitMap={},courseMap={},weakItems=[];let totalScore=0,totalMax=0,percentSum=0,full=0,partial=0,wrong=0,ungraded=0;
+  const summaries=reports.map(function(r){
+    const exam=examMap[r.examId]||{},questions=questionCache[r.examId]||[];
+    const counts=r.counts||{full:0,partial:0,wrong:0,ungraded:0};full+=Number(counts.full||0);partial+=Number(counts.partial||0);wrong+=Number(counts.wrong||0);ungraded+=Number(counts.ungraded||0);totalScore+=Number(r.score||0);totalMax+=Number(r.maxScore||exam.MaxScore||0);percentSum+=Number(r.percent||0);
+    const unitSnapshot={};questions.forEach(function(q,i){const s=r.scoring[i]||{},unit=String(q.Unit||"미분류"),key=[r.courseId,unit].join("|");if(!unitMap[key])unitMap[key]={courseId:r.courseId,unit:unit,score:0,maxPoints:0,questionCount:0,wrongCount:0,partialCount:0};const u=unitMap[key];u.score+=Number(s.score||0);u.maxPoints+=Number(q.MaxPoints||0);u.questionCount++;if(s.status==="wrong")u.wrongCount++;if(s.status==="partial")u.partialCount++;if(!unitSnapshot[unit])unitSnapshot[unit]={unit:unit,score:0,maxPoints:0};unitSnapshot[unit].score+=Number(s.score||0);unitSnapshot[unit].maxPoints+=Number(q.MaxPoints||0);if(s.status==="wrong"||s.status==="partial")weakItems.push({reportToken:r.token,examId:r.examId,courseId:r.courseId,questionNo:Number(q.QuestionNo),unit:unit,topic:String(q.Topic||""),status:String(s.status),score:s.score,maxPoints:Number(q.MaxPoints||0)});});
+    const ckey=r.courseId;if(!courseMap[ckey])courseMap[ckey]={courseId:ckey,score:0,maxPoints:0,count:0};courseMap[ckey].score+=Number(r.score||0);courseMap[ckey].maxPoints+=Number(r.maxScore||exam.MaxScore||0);courseMap[ckey].count++;
+    return {reportToken:r.token,examId:r.examId,courseId:r.courseId,title:String(exam.Title||r.examId),shortTitle:String(exam.ShortTitle||exam.Title||r.examId),assessmentType:String(exam.AssessmentType||"weekly"),section:String(exam.Section||""),round:Number(exam.Round||0),examDate:serializeCell_(exam.ExamDate),score:Number(r.score||0),maxScore:Number(r.maxScore||exam.MaxScore||0),percent:Number(r.percent||0),counts:counts,unitSnapshot:Object.keys(unitSnapshot).map(function(k){const u=unitSnapshot[k];return {unit:u.unit,score:u.score,maxPoints:u.maxPoints,percent:u.maxPoints?u.score/u.maxPoints*100:0};}),createdAt:r.createdAt,updatedAt:r.updatedAt};
+  });
+  const units=Object.keys(unitMap).map(function(k){const u=unitMap[k];return Object.assign(u,{percent:u.maxPoints?u.score/u.maxPoints*100:0});}).sort(function(a,b){return b.percent-a.percent;});
+  const courses=Object.keys(courseMap).map(function(k){const c=courseMap[k];return Object.assign(c,{percent:c.maxPoints?c.score/c.maxPoints*100:0});}).sort(function(a,b){return b.percent-a.percent;});
+  const chronological=summaries.slice().sort(function(a,b){return String(a.updatedAt||a.createdAt).localeCompare(String(b.updatedAt||b.createdAt));});
+  return {student:studentPortalSummary_(profile),reports:summaries,cumulative:{testCount:summaries.length,weeklyCount:summaries.filter(function(x){return x.assessmentType!=="comprehensive";}).length,comprehensiveCount:summaries.filter(function(x){return x.assessmentType==="comprehensive";}).length,totalScore:totalScore,totalMaxScore:totalMax,weightedPercent:totalMax?totalScore/totalMax*100:0,averagePercent:summaries.length?percentSum/summaries.length:0,latestPercent:chronological.length?chronological[chronological.length-1].percent:0,counts:{full:full,partial:partial,wrong:wrong,ungraded:ungraded},units:units,courses:courses,trend:chronological.map(function(x){return {reportToken:x.reportToken,examId:x.examId,label:x.shortTitle,percent:x.percent,assessmentType:x.assessmentType,updatedAt:x.updatedAt};}),strongUnits:units.slice(0,3),weakUnits:units.slice().sort(function(a,b){return a.percent-b.percent;}).slice(0,3),weakItems:weakItems.sort(function(a,b){const sa=a.status==="wrong"?0:1,sb=b.status==="wrong"?0:1;return sa-sb;})},serverInstanceId:getServerInstanceId_(),featureVersion:FEATURE_VERSION,integrity:{portalTokenMatch:true,portalFingerprintMatch:true,identityMatch:true}};
+}
+
+function getStudentPortal_(token,fp) {
+  const profile=findStudentProfileByPortal_(token,fp);return Object.assign({ok:true},buildStudentPortalData_(profile));
+}
+
+function getStudentExamDetail_(token,fp,reportToken) {
+  const profile=findStudentProfileByPortal_(token,fp),found=findReportRowByToken_(reportToken);if(!found)throwApiError_("REPORT_NOT_FOUND","선택한 시험 성적 기록을 찾을 수 없습니다.");
+  const report=hydrateReportObject_(found.row),store=loadStudentStore_();if(!reportBelongsToStudent_(report,profile,store))throwApiError_("PORTAL_REPORT_MISMATCH","선택한 시험 결과가 이 학생 통합 페이지에 속하지 않습니다.");
+  const detail=getReport_(report.token,String(found.row.Fingerprint||report.fingerprint||""));detail.student=studentPortalSummary_(profile);detail.featureVersion=FEATURE_VERSION;return detail;
+}
+
+function listStudents_(filter) {
+  const migrationProps=PropertiesService.getScriptProperties();
+  if(String(migrationProps.getProperty("STUDENT_PORTAL_MIGRATION_COMPLETE")||"")!==STUDENT_PORTAL_SCHEMA_VERSION){try{migrateStudentPortals_(500);}catch(migrationError){console.log("YOUNGS_PHYSICS_STUDENT_PORTAL_AUTO_MIGRATION_ERROR="+String(migrationError&&migrationError.message||migrationError));}}
+  const store=loadStudentStore_(),allReports=listRows_(SHEETS.REPORTS).map(hydrateReportObject_),examMap={};listRows_(SHEETS.EXAMS).forEach(function(e){examMap[String(e.ExamId)]=e;});
+  return store.rows.filter(function(p){return p.Active!==false;}).map(function(p){const reports=allReports.filter(function(r){return reportBelongsToStudent_(r,p,store);}),latest=reports.slice().sort(function(a,b){return String(b.updatedAt).localeCompare(String(a.updatedAt));})[0]||null,average=reports.length?reports.reduce(function(sum,r){return sum+Number(r.percent||0);},0)/reports.length:0,latestExam=latest?examMap[latest.examId]||{}:{};return Object.assign(studentPortalSummary_(p),{reportCount:reports.length,averagePercent:average,latestReport:latest?{reportToken:latest.token,examId:latest.examId,title:String(latestExam.Title||latest.examId),score:latest.score,maxScore:latest.maxScore,percent:latest.percent,updatedAt:latest.updatedAt}:null});}).filter(function(p){return (!filter||!filter.name||normalizeIdentity_(p.name).indexOf(normalizeIdentity_(filter.name))>=0)&&(!filter||!filter.school||normalizeIdentity_(p.school)===normalizeIdentity_(normalizeSchool_(filter.school)));}).sort(function(a,b){return [a.school,a.name,a.classNo].join("|").localeCompare([b.school,b.name,b.classNo].join("|"));});
+}
+
+function reissueStudentPortal_(studentId) {
+  ensureStudentPortalSchema_();const store=loadStudentStore_(),p=store.byId[String(studentId||"")];if(!p)throwApiError_("STUDENT_NOT_FOUND","학생 통합 프로필을 찾을 수 없습니다.");const token="sp_"+newToken_(),seed=newToken_();p.PortalToken=token;p.IdentitySeed=seed;p.PortalFingerprint=makeStudentPortalFingerprint_(token,seed);p.UpdatedAt=new Date();store.dirty=true;persistStudentStore_(store);return {ok:true,student:studentPortalSummary_(p),serverInstanceId:getServerInstanceId_()};
+}
+
+function migrateStudentPortals_(batchSize) {
+  ensureStudentPortalSchema_();const lock=LockService.getScriptLock();if(!lock.tryLock(20000))throw new Error("다른 학생 링크 마이그레이션 또는 저장 작업이 진행 중입니다.");
+  try{
+    const sh=getSheet_(SHEETS.REPORTS),headers=HEADERS.Reports,lastRow=sh.getLastRow(),props=PropertiesService.getScriptProperties(),size=Math.max(10,Math.min(1000,Number(batchSize||300)));let startRow=Math.max(2,Number(props.getProperty("STUDENT_PORTAL_MIGRATION_NEXT_ROW")||2));
+    if(lastRow<2||startRow>lastRow){props.deleteProperty("STUDENT_PORTAL_MIGRATION_NEXT_ROW");props.setProperty("STUDENT_PORTAL_MIGRATION_COMPLETE",STUDENT_PORTAL_SCHEMA_VERSION);return {ok:true,done:true,processed:0,linked:0,students:listRows_(SHEETS.STUDENTS).length,remainingRows:0};}
+    const count=Math.min(size,lastRow-startRow+1),rows=sh.getRange(startRow,1,count,headers.length).getValues(),store=loadStudentStore_();let linked=0;
+    rows.forEach(function(row){const o=rowToObject_(headers,row),record=safeJson_(o.RecordJSON,{}),preferred=String(o.StudentId||record.studentId||""),profile=resolveStudentProfileInStore_(store,{school:o.School,name:o.Name,grade:o.Grade,classNo:o.ClassNo,studentId:preferred},preferred);if(String(o.StudentId||"")!==profile.StudentId||String(record.studentId||"")!==profile.StudentId){row[headers.indexOf("StudentId")]=profile.StudentId;record.studentId=profile.StudentId;row[headers.indexOf("RecordJSON")]=JSON.stringify(record);linked++;}});
+    if(linked)sh.getRange(startRow,1,count,headers.length).setValues(rows);persistStudentStore_(store);const next=startRow+count,done=next>lastRow;if(done){props.deleteProperty("STUDENT_PORTAL_MIGRATION_NEXT_ROW");props.setProperty("STUDENT_PORTAL_MIGRATION_COMPLETE",STUDENT_PORTAL_SCHEMA_VERSION);}else{props.deleteProperty("STUDENT_PORTAL_MIGRATION_COMPLETE");props.setProperty("STUDENT_PORTAL_MIGRATION_NEXT_ROW",String(next));}return {ok:true,done:done,processed:count,linked:linked,students:store.rows.length,nextRow:done?null:next,remainingRows:done?0:lastRow-next+1};
+  } finally {lock.releaseLock();}
+}
+
+function migrateStudentPortals() {
+  const result=migrateStudentPortals_(300);try{getSpreadsheet_().toast(result.done?"학생 통합 링크 연결 완료 · "+result.students+"명":"학생 통합 링크 연결 중 · 남은 기록 "+result.remainingRows,"Young's Physics",15);}catch(e){}console.log("YOUNGS_PHYSICS_STUDENT_PORTAL_MIGRATION="+JSON.stringify(result));return result;
+}
+
+function diagnoseStudentPortals() {
+  ensureStudentPortalSchema_();const students=listRows_(SHEETS.STUDENTS),reports=listRows_(SHEETS.REPORTS),missing=reports.filter(function(r){return !String(r.StudentId||"").trim();}).length,invalid=[];if(missing)PropertiesService.getScriptProperties().deleteProperty("STUDENT_PORTAL_MIGRATION_COMPLETE");students.forEach(function(s){const p=normalizeStudentProfile_(s);if(makeStudentPortalFingerprint_(p.PortalToken,p.IdentitySeed)!==p.PortalFingerprint)invalid.push({studentId:p.StudentId,type:"fingerprint"});if(makeStudentProfileDigest_(p.StudentId,p.School,p.Name,p.Grade,p.ClassNo,p.ExternalId)!==p.IdentityDigest)invalid.push({studentId:p.StudentId,type:"identity"});});const result={ok:true,featureVersion:FEATURE_VERSION,students:students.length,reports:reports.length,reportsWithoutStudentId:missing,issues:invalid};console.log("YOUNGS_PHYSICS_STUDENT_PORTAL_DIAGNOSTIC="+JSON.stringify(result));return result;
+}
+
 function normalizeReportToken_(value) {
   let token=String(value===undefined||value===null?"":value)
     .replace(/[\u200B-\u200D\u2060\uFEFF]/g,"")
@@ -1562,20 +1813,17 @@ function getReport_(token,fp) {
   if(!identityMatches) throwApiError_("IDENTITY_INTEGRITY","학생 식별 정보 무결성 검증에 실패했습니다.",{serverInstanceId:getServerInstanceId_(),rowNumber:found.rowNumber});
   let record=safeJson_(row.RecordJSON,{});
   const scoring=safeJson_(row.ScoringJSON,[]);
-  record=Object.assign(record,{token:String(row.Token),fingerprint:String(row.Fingerprint),studentKey:makeStudentKey_(String(row.CourseId),school,String(row.Name)),examId:String(row.ExamId),courseId:String(row.CourseId),school:school,name:String(row.Name),grade:String(row.Grade||""),classNo:String(row.ClassNo||""),resultInputs:safeJson_(row.ResultInputsJSON,[]),partialModes:safeJson_(row.PartialModesJSON,[]),scoring:scoring});
+  record=Object.assign(record,{token:String(row.Token),fingerprint:String(row.Fingerprint),studentId:String(row.StudentId||record.studentId||""),studentKey:makeStudentKey_(String(row.CourseId),school,String(row.Name)),examId:String(row.ExamId),courseId:String(row.CourseId),school:school,name:String(row.Name),grade:String(row.Grade||""),classNo:String(row.ClassNo||""),resultInputs:safeJson_(row.ResultInputsJSON,[]),partialModes:safeJson_(row.PartialModesJSON,[]),scoring:scoring});
   if(record.score===undefined) record.score=scoring.reduce((a,x)=>a+Number(x.score||0),0);
   const exam=getRowBy_(SHEETS.EXAMS,"ExamId",record.examId);if(!exam)throwApiError_("EXAM_NOT_FOUND","연결된 시험 설정을 찾을 수 없습니다.");
   record.maxScore=Number(record.maxScore||exam.MaxScore||0);record.percent=record.maxScore?record.score/record.maxScore*100:0;
   record.counts={full:0,partial:0,wrong:0,ungraded:0};scoring.forEach(x=>record.counts[x.status]=(record.counts[x.status]||0)+1);
-  return {ok:true,record:record,stats:getExamStats_(record.examId),historyRecords:getLinkedHistoryRecords_(record),questions:getQuestionRows_(record.examId),serverInstanceId:getServerInstanceId_(),lookupMode:found.lookupMode,integrity:{tokenMatch:true,fingerprintMatch:true,identityMatch:true}};
+  return {ok:true,record:record,stats:getExamStats_(record.examId),historyRecords:getLinkedHistoryRecords_(record),questions:getQuestionRows_(record.examId),serverInstanceId:getServerInstanceId_(),featureVersion:FEATURE_VERSION,lookupMode:found.lookupMode,integrity:{tokenMatch:true,fingerprintMatch:true,identityMatch:true}};
 }
 
 function listReports_(filter) {
-  return listRows_(SHEETS.REPORTS).map(function(row){
-    const record=safeJson_(row.RecordJSON,{});
-    const school=normalizeSchool_(row.School);
-    return Object.assign(record,{token:String(row.Token),fingerprint:String(row.Fingerprint),studentKey:makeStudentKey_(String(row.CourseId),school,String(row.Name)),examId:String(row.ExamId),courseId:String(row.CourseId),school:school,name:String(row.Name),grade:String(row.Grade||""),classNo:String(row.ClassNo||""),resultInputs:safeJson_(row.ResultInputsJSON,[]),partialModes:safeJson_(row.PartialModesJSON,[]),scoring:safeJson_(row.ScoringJSON,[]),createdAt:serializeCell_(row.CreatedAt),updatedAt:serializeCell_(row.UpdatedAt)});
-  }).filter(function(r){return (!filter.examId||r.examId===filter.examId)&&(!filter.courseId||r.courseId===filter.courseId);}).sort(function(a,b){return String(b.updatedAt).localeCompare(String(a.updatedAt));});
+  ensureStudentPortalSchema_();
+  return listRows_(SHEETS.REPORTS).map(hydrateReportObject_).filter(function(r){return (!filter.examId||r.examId===filter.examId)&&(!filter.courseId||r.courseId===filter.courseId)&&(!filter.studentId||r.studentId===filter.studentId);}).sort(function(a,b){return String(b.updatedAt).localeCompare(String(a.updatedAt));});
 }
 
 /**
@@ -1617,7 +1865,7 @@ function diagnoseReportStorage() {
 }
 
 /**
- * Reports 헤더를 정식 17열 스키마로 재배치하고 누락·불일치한 토큰 관련 필드를 복구한다.
+ * Reports 헤더를 정식 18열 스키마로 재배치하고 누락·불일치한 토큰 관련 필드를 복구한다.
  * 지문을 다시 만든 행은 기존 링크가 바뀌므로 교사용 화면에서 링크를 다시 복사해야 한다.
  */
 function repairReportStorage() {
@@ -1659,8 +1907,8 @@ function getLinkedHistoryRecords_(record) {
   const exam=getRowBy_(SHEETS.EXAMS,"ExamId",String(record.examId||""));
   if(!exam) return [];
   const ids=safeJson_(exam.HistoryExamIdsJSON,[]);if(!ids.length)return [];
-  const key=String(record.studentKey||makeStudentKey_(record.courseId,record.school,record.name));
-  return listReports_({courseId:String(record.courseId)}).filter(function(r){return ids.indexOf(String(r.examId))>=0&&String(r.studentKey||makeStudentKey_(r.courseId,r.school,r.name))===key;});
+  const key=String(record.studentKey||makeStudentKey_(record.courseId,record.school,record.name)),studentId=String(record.studentId||"");
+  return listReports_({courseId:String(record.courseId)}).filter(function(r){return ids.indexOf(String(r.examId))>=0&&(studentId?String(r.studentId||"")===studentId:String(r.studentKey||makeStudentKey_(r.courseId,r.school,r.name))===key);});
 }
 
 function deleteReport_(token) {

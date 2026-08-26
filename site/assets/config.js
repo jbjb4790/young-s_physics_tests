@@ -6,9 +6,9 @@
   };
   const runtimeUrl=normalizeApiUrl(runtime.apiUrl);
   const legacyUrl=normalizeApiUrl(localStorage.getItem("yp_api_url")||"");
-  const isReportPage=/(?:^|\/)report\.html$/i.test(String(location.pathname||""));
+  const isPublicStudentPage=/(?:^|\/)(?:report|portal)\.html$/i.test(String(location.pathname||""));
   let linkUrl="",linkServerInstanceId="";
-  if(isReportPage){
+  if(isPublicStudentPage){
     try{
       const params=new URLSearchParams(location.hash.replace(/^#/,""));
       linkUrl=normalizeApiUrl(params.get("api"));
@@ -23,7 +23,7 @@
   window.YP_CONFIG={
     apiUrl,
     demoMode:!apiUrl,
-    apiUrlSource:linkUrl?"report-link":runtimeUrl?"deployment":legacyUrl?"legacy-local":"none",
+    apiUrlSource:linkUrl?"student-link":runtimeUrl?"deployment":legacyUrl?"legacy-local":"none",
     linkApiUrl:linkUrl,
     linkServerInstanceId,
     runtimeApiUrl:runtimeUrl,
@@ -34,6 +34,7 @@
     legacyApiUrlStorage:"yp_api_url",
     cachePrefix:"yp_weekly_",
     reportPage:"report.html",
+    portalPage:"portal.html",
     appTitle:"Young's Physics 주간 기본 복습 테스트",
     buildVersion:String(runtime.buildVersion||"3.3.0-hosted-parent-bridge"),
     hostedBridge:!!window.YP_HOSTED_BRIDGE?.enabled,

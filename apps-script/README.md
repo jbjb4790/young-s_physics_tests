@@ -1,3 +1,13 @@
+# v3.5.0 학생 영구 통합 포털 API 업데이트
+
+- 새 `Students` 시트에서 학생 한 명당 `StudentId`, 영구 포털 토큰, 지문과 식별 다이제스트를 관리합니다.
+- `Reports` 시트 마지막 열에 `StudentId`를 추가해 과정·회차가 달라도 같은 학생의 기록을 연결합니다.
+- 새 API: `getStudentPortal`, `getStudentExamDetail`, `listStudents`, `reissueStudentPortal`, `migrateStudentPortals`.
+- 기존 운영본에서는 `Code.gs`를 교체하고 웹 앱을 새 버전으로 재배포한 뒤 `migrateStudentPortals()`를 `done:true`가 될 때까지 실행합니다.
+- `installYoungsPhysics()`와 PIN 재설정은 다시 실행하지 않습니다. 기존 시험별 토큰·지문과 개별 성적표 링크는 유지됩니다.
+
+---
+
 # v3.4.2 심화 총괄 전체 선택번호 API 업데이트
 
 기존 운영본에서는 `Code.gs`를 v3.4.2로 교체한 뒤 웹 앱을 **새 버전**으로 재배포합니다. `appsscript.json` 권한은 바뀌지 않았고, `installYoungsPhysics()`를 다시 실행하지 않습니다.

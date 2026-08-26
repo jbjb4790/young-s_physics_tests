@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Young's Physics 3.4.4 객관식 오답 재도전 안내</title>
+<title>Young's Physics 3.5.0 학생 통합 포털 안내</title>
 <link rel="icon" href="assets/images/favicon.png">
-<link rel="stylesheet" href="assets/styles.css?v=3.4.4">
+<link rel="stylesheet" href="assets/styles.css?v=3.5.0">
 </head>
 <body class="guide-page">
 <header class="topbar report-topbar"><div class="topbar-inner"><a class="brand" href="index.html"><img src="assets/images/logo.png" alt="Young's Physics 로고"></a><nav class="main-nav"><a class="active" href="#">설치·정답 관리·Excel 입력</a></nav><div class="top-actions"><a class="btn btn-primary" href="index.html">교사용 입력 화면</a></div></div></header>
 <main class="report-shell">
+<section class="card report-section"><div class="section-kicker">VERSION 3.5.0</div><h2>학생 한 명당 하나의 영구 학부모 통합 링크</h2><p>교사가 같은 학생의 새 주간 복습·총괄평가를 저장하면, 기존 학부모 링크가 바뀌지 않은 채 학생 통합 페이지에 자동으로 추가됩니다.</p><div class="notice success"><b>학부모 탭:</b> 누적 요약 · 주간 복습 · 총괄평가 · 오답 학습</div><p>시험 카드를 누르면 같은 페이지에서 해당 시험 점수, 동일 시험 평균, 상위 비율, 단원·문항 분석, 원문 객관식 재도전과 동형 문제를 확인할 수 있습니다. 기존 시험별 성적표와 Word 출력 링크도 계속 제공합니다.</p><ol><li>Code.gs를 v3.5.0으로 교체하고 기존 웹 앱을 새 버전으로 재배포합니다.</li><li><code>migrateStudentPortals()</code>를 <code>done:true</code>가 될 때까지 실행합니다.</li><li>GitHub v3.5.0 패치를 덮어쓰고 Pages를 재배포합니다.</li><li>교사용 화면의 <b>학생 통합 링크</b> 표에서 학생별 영구 링크를 복사합니다.</li></ol><p>동일 학교·이름의 동명이인은 기존 학생 선택 또는 <b>동명이인 신규 학생</b> 버튼으로 분리합니다. 학교·이름·반번호가 모두 같은 실제 동명이인은 고유 학생 ID가 없으면 자동 구분할 수 없습니다.</p></section>
 <section class="card report-section"><div class="section-kicker">VERSION 3.4.4</div><h2>단답형·서술형 원문 재도전과 모든 동형 문제를 객관식으로 통일</h2><p>학생이 오답 또는 부분점수 문항을 다시 풀 때 원문 문제 이미지는 그대로 보여 주고, 답안만 4지·5지 객관식 카드에서 선택하도록 변경했습니다. 동형 문제도 자유 입력 없이 모두 객관식으로 제공합니다.</p><div class="notice success"><b>적용 범위:</b> 현재 등록된 108문항의 원문 재도전 108개와 동형 문제 108개 모두 객관식 보기·정답 번호가 검증되어 있습니다. 단답형·서술형은 계산 결과, 방향·부호, 공식 적용, 단위와 자주 하는 오답을 바탕으로 오답 보기를 구성했습니다.</div><p>학생은 ①~⑤ 보기 카드를 누른 뒤 답을 제출합니다. 제출 전에는 정답·해설이 숨겨지고, 제출 후 선택한 보기와 정답 보기가 표시되며 검수 해설과 동형 문제 단계가 열립니다.</p><p>GitHub 정적 파일과 함께 최신 <code>Code.gs</code>를 적용해 웹 앱을 새 버전으로 재배포합니다. 이는 이전 버전에서 저장된 자유입력형 또는 불완전한 <code>QuestionOverrides</code>가 새 객관식 보기를 덮어쓰지 않도록 하기 위한 호환성 보정입니다. 설치 함수·PIN 재설정·학생 재입력은 필요하지 않습니다.</p></section>
 <section class="card report-section"><div class="section-kicker">VERSION 3.4.3</div><h2>총괄평가 상위 50% 학생의 상위 백분율 표시</h2><p>동일 과정·동일 총괄평가 응시자 중 상위 50% 이내인 학생에게만 성적표 첫 화면의 종합 점수 카드에 <b>상위 N%</b>를 표시합니다. 주간 복습 테스트와 상위 50%를 초과한 학생에게는 표시하지 않습니다.</p><div class="notice"><b>계산 기준:</b> 자신보다 점수가 높은 학생 수 + 1을 경쟁 순위로 사용합니다. 동점자는 같은 순위를 적용하고, 공동 순위를 응시 인원으로 나눈 값을 소수 첫째 자리까지 표시합니다. 석차 숫자는 노출하지 않고 응시 인원과 동점자 수만 함께 표시됩니다.</div><p>기존 서버에 남은 구형 자유입력 수정본을 차단하려면 v3.4.4 <code>Code.gs</code>로 교체해 웹 앱을 새 버전으로 재배포합니다. GitHub 배포 후에는 <b>시험 설정 서버 동기화</b>를 한 번 실행합니다. 기존 PIN·학생 토큰·<code>/exec</code> 주소는 유지됩니다.</p></section>
 <section class="card report-section"><div class="section-kicker">VERSION 3.4.2</div><h2>심화 총괄 1~25번 전체를 학생 선택번호로 입력</h2><p>교사 인증 후 상단 <b>정답 관리</b> 메뉴에서 선택한 시험의 공식 정답·모범답안, 원문 재도전 보기와 동형 문제 보기를 편집할 수 있습니다. 저장값은 Google Sheets의 <code>QuestionOverrides</code> 시트에 보존되어 다른 컴퓨터와 학생 성적표에도 적용됩니다.</p><div class="notice success"><b>선택형 재도전:</b> 준비 완료된 원문·동형 108문항은 모두 보기 선택 방식이며, 서술형·단답형 65문항과 답안번호가 별도 등록되지 않은 복합 선택형 3문항도 정확한 문자열 입력이 필요하지 않습니다.</div></section>
@@ -24,6 +25,6 @@
 <section class="card report-section"><div class="section-kicker">SECURITY</div><h2>보안 원칙</h2><ul><li>GitHub에는 실제 학생 이름·학교·점수·토큰을 넣지 않습니다.</li><li>교사 PIN, 세션 토큰, <code>WRITE_KEY</code>와 서명 비밀값을 공개 파일에 넣지 않습니다.</li><li>학생 데이터의 원본은 Google Sheets입니다.</li><li>학생 링크는 서버 토큰·지문·학생 식별 다이제스트를 검증합니다.</li><li>정답 수정 API는 교사 세션 인증을 통과한 요청만 허용합니다.</li></ul></section>
 <section class="card report-section"><div class="section-kicker">CHECK</div><h2>적용 후 확인</h2><ol><li><code>/exec?action=ping</code>에서 기존 정상 API 버전을 확인합니다.</li><li>Pages에서 교사 PIN 인증이 유지되는지 확인합니다.</li><li>정답 관리에서 테스트 문항의 보기 한 곳을 수정해 저장합니다.</li><li>다른 컴퓨터에서 같은 문항에 <b>서버 수정본</b> 표시가 나오는지 확인합니다.</li><li>테스트 학생 링크에서 원문·동형 답안이 모두 ①~⑤ 객관식 카드로 표시되고 자유 입력칸이 없는지 확인합니다.</li><li>확인 후 <b>시험 원본으로 되돌리기</b>로 테스트 override를 삭제합니다.</li></ol></section>
 </main>
-<footer class="site-footer"><div><img src="assets/images/logo-mark.png" alt=""><b>Young's Physics</b><span>정답 관리와 선택형 오답 재도전</span></div><small>학생 데이터의 원본은 Google Sheets입니다.</small></footer>
+<footer class="site-footer"><div><img src="assets/images/logo-mark.png" alt=""><b>Young's Physics</b><span>학생 영구 통합 포털과 누적 성적 분석</span></div><small>학생 데이터의 원본은 Google Sheets입니다.</small></footer>
 </body>
 </html>

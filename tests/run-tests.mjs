@@ -162,7 +162,7 @@ test("학생 리포트는 원문 답 제출 전 정답·해설을 hidden 처리"
 test("학생 리포트 문항표에 총괄 객관식 학생 선택번호를 표시",()=>{const src=read("site/assets/report.js");assert.match(src,/function scoringInputLabel/);assert.match(src,/선택 \$\{YP\.choiceLabel\(selected\)\}/);assert.match(src,/record\.resultInputs\?\.\[i\]/)});
 test("동형 문제는 원문 제출 전 locked, 동형 제출 후 정답·해설 공개",()=>{const src=read("site/assets/report.js");assert.match(src,/similar-card locked/);assert.match(src,/원문 답을 먼저 제출하면 활성화/);assert.match(src,/동형 답 제출/);assert.match(src,/<b>정답<\/b>/)});
 test("확인 필요 문항은 정답 자동 공개를 차단",()=>assert.match(read("site/assets/report.js"),/\["ambiguous","needs-review"\]\.includes\(q\.reviewStatus\)/));
-test("학교 미기입은 '미기입'으로 저장하고 한 버튼으로 링크 복사",()=>{const src=read("site/assets/app.js"),html=read("site/index.html"),core=read("site/assets/core.js");assert.doesNotMatch(src,/학교를 반드시 입력/);assert.match(src,/YP\.normalizeSchool\(\$\("school"\)\.value\)/);assert.match(core,/v==="미입력"\|\|v==="미기입"\?"미기입"/);assert.match(html,/미기입 시 자동으로 ‘미기입’/);assert.match(html,/저장·성적 분석·링크 복사/);assert.match(src,/await YP\.copyText\(url\)/)});
+test("학교 미기입은 '미기입'으로 저장하고 한 버튼으로 링크 복사",()=>{const src=read("site/assets/app.js"),html=read("site/index.html"),core=read("site/assets/core.js");assert.doesNotMatch(src,/학교를 반드시 입력/);assert.match(src,/YP\.normalizeSchool\(\$\("school"\)\.value\)/);assert.match(core,/v==="미입력"\|\|v==="미기입"\?"미기입"/);assert.match(html,/미기입 시 자동으로 ‘미기입’/);assert.match(html,/저장·성적 분석·학생 링크 복사/);assert.match(src,/await YP\.copyText\(url\)/)});
 test("빈 학교와 구버전 '미입력' 기록은 '미기입'으로 정규화",()=>{for(const school of ["","미입력","미기입"]){const r=YP.normalizeRecord({examId:mech.examId,name:"학생",school,resultInputs:Array(25).fill("1"),partialModes:Array(25).fill(false)});assert.equal(r.school,"미기입");assert.equal(r.studentKey,YP.studentKey(mech.courseId,"미기입","학생"))}});
 test("'미입력'과 '미기입'은 같은 학생 학교 식별값으로 처리",()=>{assert.equal(YP.studentKey(mech.courseId,"미입력","학생"),YP.studentKey(mech.courseId,"미기입","학생"));assert.equal(YP.studentKey(mech.courseId,"","학생"),YP.studentKey(mech.courseId,"미기입","학생"))});
 test("교사용 화면은 CSV·Excel 자동 가져오기 모듈과 학생 선택번호 UI를 로드",()=>{const html=read("site/index.html"),app=read("site/assets/app.js");assert.match(html,/accept="[^"]*\.xlsx[^"]*\.csv/);assert.ok(html.indexOf("assets/csv-import.js")<html.indexOf("assets/xlsx-import.js"));assert.ok(html.indexOf("assets/xlsx-import.js")<html.indexOf("assets/app.js"));assert.match(app,/YP_CSV\.importAssessment/);assert.match(app,/YP_XLSX\.importAssessment/);assert.match(app,/객관식 학생 선택번호 1~5/);assert.match(app,/importMode:"upsert"/)});
@@ -218,7 +218,7 @@ test("Apps Script 일괄 저장은 단일 시트 쓰기와 동일 학생 upsert�
 test("Apps Script는 학교 빈칸·구버전 표기를 '미기입'으로 정규화",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function normalizeSchool_/);assert.match(src,/school==="미입력"\|\|school==="미기입" \? "미기입"/);assert.match(src,/const school=normalizeSchool_\(input\.school\)/);assert.match(src,/const rawSchool=String\(row\.School\|\|""\)\.trim\(\),school=normalizeSchool_\(rawSchool\)/);assert.match(src,/function migrateSchoolLabels_/);assert.match(src,/학교 미기입 표기 정리/)});
 test("Apps Script 학생 연결키는 과정·학교·이름 SHA-256",()=>{const src=read("apps-script/Code.gs");assert.match(src,/function makeStudentKey_/);assert.match(src,/DigestAlgorithm\.SHA_256/);assert.match(src,/normalizeIdentity_\(school/)});
 test("Apps Script 결과 링크는 토큰·지문·학생 식별 다이제스트를 모두 검증",()=>{const src=read("apps-script/Code.gs");assert.match(src,/constantTimeEqual_\(String\(row\.Fingerprint\|\|""\),String\(fp\)\)/);assert.match(src,/makeFingerprint_/);assert.match(src,/makeIdentityDigest_/);assert.match(src,/학생 식별 정보 무결성 검증/)});
-test("Apps Script 재계산 열 번호는 새 Reports 17열 스키마와 일치",()=>{const src=read("apps-script/Code.gs");assert.match(src,/getRange\(i\+2,14\).*calc\.scoring/);assert.match(src,/getRange\(i\+2,15\).*record/);assert.match(src,/getRange\(i\+2,17\).*new Date/)});
+test("Apps Script 재계산 핵심 열 위치는 StudentId 추가 후에도 유지",()=>{const src=read("apps-script/Code.gs");assert.match(src,/getRange\(i\+2,14\).*calc\.scoring/);assert.match(src,/getRange\(i\+2,15\).*record/);assert.match(src,/getRange\(i\+2,17\).*new Date/)});
 
 // Actual OOXML Word generation
 
@@ -254,28 +254,19 @@ test("GitHub Pages workflow injects YP_API_URL and accepts legacy variable",()=>
   assert.match(src,/PIN·세션·WRITE_KEY는 포함하지 않습니다/);
 });
 
-test("GitHub Pages workflow는 Apps Script 공개 ping을 배포 전에 검증",()=>{
+test("GitHub Pages workflow는 학생 통합 portal.html까지 배포 파일로 검증",()=>{
   const src=read(".github/workflows/pages.yml");
-  assert.match(src,/Verify Apps Script public deployment/);
-  assert.match(src,/action=ping/);
-  assert.match(src,/curl -sS -L/);
-  assert.match(src,/로그인 없이 모든 사용자/);
-});
-
-test("GitHub Pages workflow는 Apps Script v3.3.0 상위 보안 브리지 배포까지 검증",()=>{
-  const src=read(".github/workflows/pages.yml");
+  assert.match(src,/test -f site\/portal\.html/);
+  assert.match(src,/3\.5\.0-student-lifetime-portal/);
   assert.match(src,/3\.3\.0-hosted-parent-bridge/);
-  assert.match(src,/__ypTransport=form-post/);
-  assert.match(src,/YP_API_FORM_RESPONSE/);
-  assert.match(src,/Apps Script POST 응답 브리지 미배포/);
-  assert.match(src,/YP_SITE_ORIGIN/);
 });
 
-test("GitHub Pages workflow diagnoses disabled Pages and supports optional admin token",()=>{
+test("GitHub Pages workflow는 외부 Apps Script curl 검사로 정적 배포를 차단하지 않음",()=>{
   const src=read(".github/workflows/pages.yml");
+  assert.doesNotMatch(src,/curl -sS/);
+  assert.doesNotMatch(src,/__ypTransport=form-post/);
+  assert.doesNotMatch(src,/PAGES_ADMIN_TOKEN/);
   assert.match(src,/Settings → Pages → Build and deployment → Source/);
-  assert.match(src,/PAGES_ADMIN_TOKEN/);
-  assert.match(src,/\{\"build_type\":\"workflow\"\}/);
 });
 
 test("index와 report가 runtime config를 config보다 먼저 로드",()=>{
@@ -458,8 +449,9 @@ test("성적표 링크는 토큰·지문과 함께 생성 당시 Apps Script /ex
 test("성적표 페이지는 링크의 /exec 주소를 배포 runtime 주소보다 우선 사용",()=>{
   const config=read("site/assets/config.js");
   assert.match(config,/const apiUrl=linkUrl\|\|runtimeUrl/);
-  assert.match(config,/isReportPage/);
-  assert.match(config,/report-link/);
+  assert.match(config,/isPublicStudentPage/);
+  assert.match(config,/student-link/);
+  assert.match(config,/\(\?:report\|portal\)/);
   assert.match(config,/script\\\.google\\\.com/);
 });
 
@@ -513,11 +505,101 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
   assert.match(src,/normalizeBridgeOriginInput_\(rawOrigin\)/);
 });
 
-// v3.4.0 answer-key editor and choice-based retry learning
+// v3.5.0 student lifetime portal and v3.4.4 choice-based retry learning
 
-test("v3.4.4 전 문항 객관식 재도전 기능 버전",()=>{
-  assert.equal(catalog.featureVersion,"3.4.4-all-retry-multiple-choice");
-  assert.equal(JSON.parse(read("package.json")).version,"3.4.4");
+test("v3.5.0 학생 한 명당 하나의 영구 통합 링크 기능 버전",()=>{
+  assert.equal(catalog.featureVersion,"3.5.0-student-lifetime-portal");
+  assert.equal(JSON.parse(read("package.json")).version,"3.5.0");
+});
+
+test("학생 통합 포털 페이지와 네 개의 학부모 탭이 존재",()=>{
+  const html=read("site/portal.html"),js=read("site/assets/portal.js");
+  assert.match(html,/학생 통합 학습 페이지/);
+  for(const tab of ["overview","weekly","comprehensive","wrong"])assert.match(html,new RegExp(`data-portal-tab="${tab}"`));
+  assert.match(js,/portalDetail/);
+  assert.match(js,/renderOverview/);
+  assert.match(js,/renderAssessmentList/);
+  assert.match(js,/renderWrongLearning/);
+});
+
+test("학생 통합 포털은 영구 토큰으로 누적 목록을 받고 선택 시험 상세를 같은 페이지에 표시",()=>{
+  const js=read("site/assets/portal.js"),api=read("site/assets/api.js");
+  assert.match(js,/YP_API\.getStudentPortal\(state\.token,state\.fp\)/);
+  assert.match(js,/YP_API\.getStudentExamDetail/);
+  assert.match(js,/portalDetail/);
+  assert.match(read("apps-script/Code.gs"),/PORTAL_REPORT_MISMATCH|이 학생 통합 페이지에 속하지/);
+  assert.match(api,/getStudentPortal/);
+  assert.match(api,/getStudentExamDetail/);
+});
+
+test("교사용 홈페이지는 기존 학생 선택과 학생별 영구 링크 복사 UI를 제공",()=>{
+  const html=read("site/index.html"),app=read("site/assets/app.js");
+  assert.match(html,/studentProfileSelect/);
+  assert.match(html,/newStudentBtn/);
+  assert.match(html,/studentPortalsBody/);
+  assert.match(app,/function portalURL/);
+  assert.match(app,/studentPortal/);
+  assert.match(app,/영구 링크 복사/);
+  assert.match(app,/forceNewStudent/);
+});
+
+test("Apps Script는 Students 원장과 Reports StudentId를 사용해 한 학생의 모든 시험을 연결",()=>{
+  const src=read("apps-script/Code.gs");
+  assert.match(src,/STUDENTS:\s*"Students"/);
+  assert.match(src,/Students:\s*\["StudentId","PortalToken","PortalFingerprint"/);
+  assert.match(src,/Reports:\s*\[[^\]]*"StudentId"/);
+  assert.match(src,/function resolveStudentProfileInStore_/);
+  assert.match(src,/function listStudentReportRecords_/);
+  assert.match(src,/function buildStudentPortalData_/);
+  assert.match(src,/function getStudentPortal_/);
+  assert.match(src,/function getStudentExamDetail_/);
+});
+
+test("학생 포털 토큰·지문·학생 식별정보를 서버에서 함께 검증",()=>{
+  const src=read("apps-script/Code.gs");
+  const start=src.indexOf("function findStudentProfileByPortal_"),end=src.indexOf("function buildStudentPortalData_",start),block=src.slice(start,end);
+  assert.match(block,/PortalFingerprint/);
+  assert.match(block,/constantTimeEqual_/);
+  assert.match(block,/makeStudentPortalFingerprint_/);
+  assert.match(block,/makeStudentProfileDigest_/);
+  assert.match(block,/PORTAL_IDENTITY_INTEGRITY/);
+  assert.match(src,/PORTAL_REPORT_MISMATCH/);
+});
+
+test("기존 시험별 성적표 링크를 유지하면서 저장 응답에 학생 영구 포털을 추가",()=>{
+  const src=read("apps-script/Code.gs"),app=read("site/assets/app.js");
+  assert.match(src,/return \{ok:true,record:record,stats:stats,historyRecords:[^;]*studentPortal:/);
+  assert.match(src,/portalToken:profile\.PortalToken/);
+  assert.match(app,/portal\?portalURL\(portal/);
+  assert.match(app,/reportURL\(data\.record\.token/);
+  assert.match(app,/개별 성적표/);
+});
+
+test("기존 Reports를 학생 통합 프로필로 분할 마이그레이션하고 진단할 수 있음",()=>{
+  const src=read("apps-script/Code.gs");
+  assert.match(src,/function migrateStudentPortals_/);
+  assert.match(src,/STUDENT_PORTAL_MIGRATION_NEXT_ROW/);
+  assert.match(src,/STUDENT_PORTAL_MIGRATION_COMPLETE/);
+  assert.match(src,/function diagnoseStudentPortals/);
+  assert.match(src,/reportsWithoutStudentId/);
+});
+
+test("학생 누적 분석은 시험 만점으로 가중하고 주간·총괄을 분리",()=>{
+  const weeklyExam=YP.getExam("physics1-basic-r02"),a=scoreRecord(weeklyExam,"영스고","누적학생"),b=scoreRecord(mech,"영스고","누적학생");
+  a.token="r_week";a.updatedAt="2026-08-01T00:00:00.000Z";b.token="r_total";b.updatedAt="2026-08-02T00:00:00.000Z";
+  const summary=YP.computeStudentPortalCumulative([a,b]);
+  assert.equal(summary.cumulative.testCount,2);
+  assert.equal(summary.cumulative.weeklyCount,1);
+  assert.equal(summary.cumulative.comprehensiveCount,1);
+  assert.equal(summary.cumulative.weightedPercent,(a.score+b.score)/(a.maxScore+b.maxScore)*100);
+  assert.equal(summary.reports[0].reportToken,"r_total");
+});
+
+test("설정과 상위 브리지는 report.html과 portal.html을 모두 공개 학생 페이지로 인식",()=>{
+  const config=read("site/assets/config.js"),launch=read("site/assets/launch.js");
+  assert.match(config,/\(\?:report\|portal\)\\\.html/);
+  assert.match(config,/portalPage:\s*"portal.html"/);
+  assert.match(launch,/report\|portal/);
 });
 
 test("준비 완료 108문항의 원문 재도전은 모두 보기 선택 방식",()=>{
@@ -679,3 +761,8 @@ test("Apps Script도 잘못된 구버전 자유입력 override를 원본 객관�
   assert.match(block,/구버전 자유입력·불완전 보기 수정본은 원본 객관식 보기로 자동 복귀/);
   assert.match(block,/choices\.length!==4&&choices\.length!==5/);
 });
+
+test("학생 포털은 미연결 구버전 기록을 동명이인 여러 프로필에 중복 노출하지 않음",()=>{const src=read("apps-script/Code.gs");assert.match(src,/candidates\.length!==1/);assert.match(src,/reportBelongsToStudent_\(r,profile,store\)/);assert.match(src,/PORTAL_REPORT_MISMATCH/)});
+
+test("학생 누적 포털은 Questions 시트를 한 번만 읽어 시험별로 묶음",()=>{const src=read("apps-script/Code.gs");assert.match(src,/listRows_\(SHEETS\.QUESTIONS\)\.forEach/);const block=src.slice(src.indexOf("function buildStudentPortalData_"),src.indexOf("function getStudentPortal_"));assert.doesNotMatch(block,/getQuestionRows_\(/)});
+

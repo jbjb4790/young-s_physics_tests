@@ -20,7 +20,7 @@
   };
   const runtime=window.YP_RUNTIME_CONFIG||{};
   let apiUrl=normalizeApiUrl(runtime.apiUrl);
-  if(/(?:^|\/)report\.html$/i.test(String(location.pathname||""))){
+  if(/(?:^|\/)(?:report|portal)\.html$/i.test(String(location.pathname||""))){
     try{
       const hash=new URLSearchParams(location.hash.replace(/^#/,""));
       apiUrl=normalizeApiUrl(hash.get("api"))||apiUrl;

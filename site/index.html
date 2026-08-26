@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#075fdb">
 <title>Young's Physics 복습·총괄 통합 성적 분석</title>
 <link rel="icon" href="assets/images/favicon.png">
-<link rel="stylesheet" href="assets/styles.css?v=3.4.4">
+<link rel="stylesheet" href="assets/styles.css?v=3.5.0">
 </head>
 <body class="app-page">
 <div id="demoBanner" class="demo-banner hidden">Apps Script 자동 연결 주소가 배포에 설정되지 않아 현재 데모 모드입니다. GitHub 저장소 변수 <code>YP_API_URL</code>을 확인하세요.</div>
@@ -21,7 +21,8 @@
    <a href="#questionEntry">성적 입력</a>
    <a href="#answerManager">정답 관리</a>
    <a href="#batchInput">일괄 입력</a>
-   <a href="#savedReports">학생 기록</a>
+   <a href="#studentPortals">학생 통합 링크</a>
+   <a href="#savedReports">시험 기록</a>
   </nav>
   <div class="top-actions">
    <a class="btn btn-light" href="guide.html"><span aria-hidden="true">▤</span> 설치·운영 안내</a>
@@ -37,8 +38,8 @@
   <h1>데이터로 완성하는<br><em>과학적 학습 관리</em></h1>
   <p>주간 복습 테스트와 파트 총괄평가를 한 흐름으로 연결해, 학생의 성취를 정확히 분석하고 학부모에게 안전하게 공유합니다.</p>
   <div class="hero-stat-grid">
-   <div class="hero-stat"><span class="hero-stat-icon">∑</span><div><b>3개</b><small>운영 과정</small></div></div>
-   <div class="hero-stat"><span class="hero-stat-icon">✓</span><div><b>39개</b><small>복습·총괄 평가</small></div></div>
+   <div class="hero-stat"><span class="hero-stat-icon">∑</span><div><b>4개</b><small>운영 과정</small></div></div>
+   <div class="hero-stat"><span class="hero-stat-icon">✓</span><div><b>40개</b><small>복습·총괄 평가</small></div></div>
    <div class="hero-stat"><span class="hero-stat-icon">ƒ</span><div><b>108개</b><small>검수 문항</small></div></div>
    <div class="hero-stat"><span class="hero-stat-icon">↗</span><div><b>1-Click</b><small>저장·분석·링크</small></div></div>
   </div>
@@ -58,7 +59,7 @@
  <div class="workflow-arrow">→</div>
  <div class="workflow-item"><span>03</span><div><b>자동 분석·저장</b><small>Google Sheets와 통계 동기화</small></div></div>
  <div class="workflow-arrow">→</div>
- <div class="workflow-item"><span>04</span><div><b>학부모 링크 복사</b><small>토큰·학생 지문 이중 검증</small></div></div>
+ <div class="workflow-item"><span>04</span><div><b>학생 영구 링크 복사</b><small>모든 시험·누적 분석을 한 페이지에서</small></div></div>
 </section>
 
 <div class="grid-main">
@@ -70,6 +71,7 @@
   <div class="section-chip">필수 정보 먼저 입력</div>
  </div>
  <div class="form-grid">
+  <div class="field span-2 student-profile-picker"><label for="studentProfileSelect">기존 학생 통합 프로필</label><div class="student-profile-picker-row"><select id="studentProfileSelect"><option value="">자동 연결 또는 새 학생</option></select><button type="button" class="btn btn-light" id="newStudentBtn">동명이인 신규 학생</button></div><div id="studentProfileHint" class="small muted">학교·이름·학년·반번호를 기준으로 기존 학생을 자동 연결합니다.</div></div>
   <div class="field"><label for="courseSelect">과정 *</label><select id="courseSelect"></select></div>
   <div class="field"><label for="examSelect">회차 *</label><select id="examSelect"></select></div>
   <div class="field"><label for="studentName">학생 이름 *</label><input id="studentName" autocomplete="off" placeholder="예: 김물리"></div>
@@ -126,10 +128,20 @@
  <button id="saveBatchBtn" class="btn btn-success hidden" style="margin-top:12px">검증된 학생 기록 일괄 저장</button>
 </section>
 
-<section id="savedReports" class="card panel section-card">
+<section id="studentPortals" class="card panel section-card student-portals-section">
  <div class="section-title-row">
   <div class="section-icon">05</div>
-  <div><div class="section-kicker">STUDENT RECORDS</div><h2>저장된 학생 기록</h2><p class="section-desc">수정·링크 복사·열기·삭제는 서버 토큰을 기준으로 처리합니다.</p></div>
+  <div><div class="section-kicker">ONE STUDENT · ONE LIFETIME LINK</div><h2>학생별 통합 학부모 링크</h2><p class="section-desc">학생 한 명에게 하나의 영구 링크를 배정합니다. 이후 시험을 저장할 때 같은 페이지에 주간 복습·총괄평가·누적 분석·오답 학습이 자동으로 추가됩니다.</p></div>
+  <button class="btn btn-light" id="refreshStudentPortalsBtn">학생 링크 새로고침</button>
+ </div>
+ <div class="notice success small"><b>학부모에게는 아래 영구 링크만 한 번 전달하면 됩니다.</b><br>개별 시험 링크를 다시 보낼 필요 없이, 동일 학생의 새 시험 결과가 저장될 때마다 같은 페이지가 자동으로 갱신됩니다. 기존 시험별 성적표 링크도 계속 사용할 수 있습니다.</div>
+ <div class="table-wrap"><table><thead><tr><th>학교</th><th>학생</th><th>누적 시험</th><th>평균 성취율</th><th>최근 결과</th><th>수정일</th><th>작업</th></tr></thead><tbody id="studentPortalsBody"></tbody></table></div>
+</section>
+
+<section id="savedReports" class="card panel section-card">
+ <div class="section-title-row">
+  <div class="section-icon">06</div>
+  <div><div class="section-kicker">ASSESSMENT RECORDS</div><h2>저장된 시험별 기록</h2><p class="section-desc">각 시험 기록은 수정·삭제할 수 있으며, 학부모 공유는 학생별 영구 링크를 사용합니다. 개별 시험 성적표도 별도로 열 수 있습니다.</p></div>
   <button class="btn btn-light" id="refreshReportsBtn">서버 기록 새로고침</button>
  </div>
  <div id="reportsTable" class="table-wrap"><table><thead><tr><th>과정·회차</th><th>학교</th><th>학생</th><th>점수</th><th>수정일</th><th>작업</th></tr></thead><tbody id="reportsBody"></tbody></table></div>
@@ -148,8 +160,8 @@
   <div class="kpi ungraded-kpi"><b id="ungradedCount">0</b><span>미입력</span></div>
  </div>
  <div class="completion-line"><span id="completionText">0 / 0 문항 입력</span><span>자동 계산</span></div>
- <button id="saveReportBtn" class="btn btn-primary btn-lg btn-block save-main-btn">저장·성적 분석·링크 복사</button>
- <div class="save-helper"><span>✓</span> Google Sheets 저장, 통계 재계산, 학부모 링크 복사를 한 번에 완료합니다.</div>
+ <button id="saveReportBtn" class="btn btn-primary btn-lg btn-block save-main-btn">저장·성적 분석·학생 링크 복사</button>
+ <div class="save-helper"><span>✓</span> Google Sheets 저장, 통계 재계산, 학생 영구 링크 업데이트와 복사를 한 번에 완료합니다.</div>
  <button id="cancelEditBtn" class="btn btn-light btn-block hidden" style="margin-top:8px">수정 취소</button>
 </aside>
 </div>
@@ -186,11 +198,11 @@
 <script src="assets/runtime-config.js?v=3.3.0"></script>
 <script src="assets/launch.js?v=3.3.0"></script>
 <script src="assets/config.js?v=3.3.0"></script>
-<script src="assets/data/catalog.js?v=3.4.4"></script>
-<script src="assets/data/demo-data.js?v=3.4.4"></script>
-<script src="assets/core.js?v=3.4.4"></script>
-<script src="assets/api.js?v=3.4.4"></script>
-<script src="assets/csv-import.js?v=3.4.4"></script>
-<script src="assets/xlsx-import.js?v=3.4.4"></script>
-<script src="assets/app.js?v=3.4.4"></script>
+<script src="assets/data/catalog.js?v=3.5.0"></script>
+<script src="assets/data/demo-data.js?v=3.5.0"></script>
+<script src="assets/core.js?v=3.5.0"></script>
+<script src="assets/api.js?v=3.5.0"></script>
+<script src="assets/csv-import.js?v=3.5.0"></script>
+<script src="assets/xlsx-import.js?v=3.5.0"></script>
+<script src="assets/app.js?v=3.5.0"></script>
 </body></html>

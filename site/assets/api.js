@@ -249,6 +249,8 @@
    return this._bridgeRequest(action,body);
   }
   async getReport(token,fp){return this.request("getReport",{token,fp})}
+  getStudentPortal(token,fp){return this.request("getStudentPortal",{token,fp})}
+  getStudentExamDetail(token,fp,reportToken){return this.request("getStudentExamDetail",{token,fp,reportToken})}
   bootstrap(){return this.request("bootstrap").then(d=>(this.lastBootstrap=d,d))}
   ping(){return this.request("ping",{},this.isAuthenticated()?{auth:true}:{})}
   async login(pin){const d=await this.request("teacherLogin",{teacherPin:String(pin||""),deviceLabel:this.deviceLabel()});this.setSession(d);return d}
@@ -256,6 +258,9 @@
   async sessionStatus(){const d=await this.request("sessionStatus",{sessionToken:this.getSession().token});return d}
   createDeviceSetupToken(){return this.request("createDeviceSetupToken",{},{auth:true})}
   listReports(filters={}){return this.request("listReports",filters,{auth:true})}
+  listStudents(filters={}){return this.request("listStudents",filters,{auth:true})}
+  reissueStudentPortal(studentId){return this.request("reissueStudentPortal",{studentId},{auth:true})}
+  migrateStudentPortals(batchSize=300){return this.request("migrateStudentPortals",{batchSize},{auth:true})}
   getQuestions(examId){return this.request("getQuestions",{examId:String(examId||"")},{auth:true})}
   saveQuestionAnswers(examId,questions,revisionNote=""){return this.request("saveQuestionAnswers",{examId:String(examId||""),questions:Array.isArray(questions)?questions:[],revisionNote:String(revisionNote||"")},{auth:true})}
   clearQuestionAnswerOverrides(examId,questionNos=[]){return this.request("clearQuestionAnswerOverrides",{examId:String(examId||""),questionNos:Array.isArray(questionNos)?questionNos:[]},{auth:true})}
@@ -282,9 +287,12 @@
   _normalize(r){return YP.normalizeRecord(r)}
   async _fp(token,examId,school,name){const data=new TextEncoder().encode([token,examId,school,name,"youngs-demo-v2"].join("|"));if(crypto.subtle){const hash=await crypto.subtle.digest("SHA-256",data);return Array.from(new Uint8Array(hash)).slice(0,12).map(x=>x.toString(16).padStart(2,"0")).join("")}return btoa(String.fromCharCode(...data)).replace(/[^a-z0-9]/gi,"").slice(0,24)}
   _newToken(){return (crypto.randomUUID?crypto.randomUUID():"t-"+Date.now()+"-"+Math.random().toString(36).slice(2)).replace(/-/g,"")}
+  _demoStudentKey(record){return [YP.normalizeIdentity(YP.normalizeSchool(record.school)),YP.normalizeIdentity(record.name)].join("|")}
+  _demoStudentProfile(record){const key=this._demoStudentKey(record),slug=Array.from(new TextEncoder().encode(key)).slice(0,16).map(x=>x.toString(16).padStart(2,"0")).join("")||"student";return {studentId:`demo-stu-${slug}`,portalToken:`demo-portal-${slug}`,portalFingerprint:`demo-portal-fp-${slug}`,school:YP.normalizeSchool(record.school),name:String(record.name||""),grade:String(record.grade||""),classNo:String(record.classNo||""),createdAt:record.createdAt||new Date().toISOString(),updatedAt:record.updatedAt||new Date().toISOString()}}
+  _demoProfiles(rows){const map=new Map();(rows||[]).forEach(raw=>{const r=this._normalize(raw),p=this._demoStudentProfile(r),entry=map.get(p.studentId)||{...p,records:[]};entry.records.push({...r,studentId:p.studentId});if(String(r.updatedAt||"")>String(entry.updatedAt||""))entry.updatedAt=r.updatedAt;map.set(p.studentId,entry)});return [...map.values()]}
   async demoRequest(action,payload={}){
     let rows=this._loadDemo();
-    if(action==="bootstrap")return {ok:true,demo:true,apiVersion:"demo",serverInstanceId:"demo-local",authMode:"demo",teacherPinConfigured:true,sessionTtlDays:999};
+    if(action==="bootstrap")return {ok:true,demo:true,apiVersion:"demo",featureVersion:"3.5.0-student-lifetime-portal",serverInstanceId:"demo-local",authMode:"demo",teacherPinConfigured:true,sessionTtlDays:999};
     if(action==="teacherLogin"||action==="claimDevice")return {ok:true,demo:true,authenticated:true,sessionToken:"demo-session",expiresAt:"2999-12-31T00:00:00.000Z",role:"teacher"};
     if(action==="sessionStatus")return {ok:true,demo:true,authenticated:true,expiresAt:"2999-12-31T00:00:00.000Z",role:"teacher"};
     if(action==="createDeviceSetupToken")return {ok:true,demo:true,setupToken:"demo-setup-token",expiresAt:new Date(Date.now()+600000).toISOString(),oneTime:true};
@@ -301,15 +309,20 @@
       const examId=String(payload.examId||""),all=this._loadQuestionOverrides(),bucket=all[examId]||{},selected=new Set((payload.questionNos||[]).map(Number));let deleted=0;
       Object.keys(bucket).forEach(k=>{if(!selected.size||selected.has(Number(k))){delete bucket[k];deleted++}});if(Object.keys(bucket).length)all[examId]=bucket;else delete all[examId];this._saveQuestionOverrides(all);return {ok:true,demo:true,examId,deleted,questions:this._demoQuestionRows(examId)};
     }
-    if(action==="listReports"){const list=rows.map(r=>this._normalize(r)).filter(r=>(!payload.examId||r.examId===payload.examId)&&(!payload.courseId||r.courseId===payload.courseId));return {ok:true,reports:list.sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt))),serverInstanceId:"demo-local"}}
+    if(action==="listReports"){const list=rows.map(r=>{const n=this._normalize(r),p=this._demoStudentProfile(n);return {...n,studentId:n.studentId||p.studentId}}).filter(r=>(!payload.examId||r.examId===payload.examId)&&(!payload.courseId||r.courseId===payload.courseId));return {ok:true,reports:list.sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt))),serverInstanceId:"demo-local"}}
+    if(action==="listStudents"){const students=this._demoProfiles(rows).map(p=>{const summary=YP.computeStudentPortalCumulative(p.records);const latest=summary.reports[0]||null;return {...p,reportCount:p.records.length,averagePercent:summary.cumulative.averagePercent,latestReport:latest?{reportToken:latest.reportToken,examId:latest.examId,title:latest.title,score:latest.score,maxScore:latest.maxScore,percent:latest.percent,updatedAt:latest.updatedAt}:null,records:undefined}});return {ok:true,students,serverInstanceId:"demo-local",featureVersion:"3.5.0-student-lifetime-portal"}}
+    if(action==="getStudentPortal"){const profiles=this._demoProfiles(rows),p=profiles.find(x=>x.portalToken===payload.token);if(!p)throw new YPAPIError("학생 통합 페이지 토큰을 찾을 수 없습니다.","STUDENT_PORTAL_NOT_FOUND");if(p.portalFingerprint!==payload.fp)throw new YPAPIError("학생 통합 링크의 지문이 일치하지 않습니다.","PORTAL_FINGERPRINT_MISMATCH");const summary=YP.computeStudentPortalCumulative(p.records);return {ok:true,student:{studentId:p.studentId,portalToken:p.portalToken,portalFingerprint:p.portalFingerprint,school:p.school,name:p.name,grade:p.grade,classNo:p.classNo,createdAt:p.createdAt,updatedAt:p.updatedAt},...summary,serverInstanceId:"demo-local",featureVersion:"3.5.0-student-lifetime-portal",integrity:{portalTokenMatch:true,portalFingerprintMatch:true,identityMatch:true},demo:true}}
+    if(action==="getStudentExamDetail"){const profiles=this._demoProfiles(rows),p=profiles.find(x=>x.portalToken===payload.token);if(!p||p.portalFingerprint!==payload.fp)throw new YPAPIError("학생 통합 링크를 확인할 수 없습니다.","PORTAL_FINGERPRINT_MISMATCH");const report=p.records.find(r=>r.token===payload.reportToken);if(!report)throw new YPAPIError("선택한 시험 결과가 이 학생 통합 페이지에 없습니다.","PORTAL_REPORT_MISMATCH");const detail=await this.demoRequest("getReport",{token:report.token,fp:report.fingerprint});return {...detail,student:{studentId:p.studentId,portalToken:p.portalToken,portalFingerprint:p.portalFingerprint,school:p.school,name:p.name,grade:p.grade,classNo:p.classNo},featureVersion:"3.5.0-student-lifetime-portal"}}
+    if(action==="reissueStudentPortal"){const p=this._demoProfiles(rows).find(x=>x.studentId===payload.studentId);if(!p)throw new YPAPIError("학생 통합 프로필을 찾을 수 없습니다.","STUDENT_NOT_FOUND");return {ok:true,student:{...p,records:undefined},serverInstanceId:"demo-local"}}
+    if(action==="migrateStudentPortals")return {ok:true,done:true,processed:rows.length,linked:rows.length,students:this._demoProfiles(rows).length,remainingRows:0};
     if(action==="saveReport"){
       const input=payload.record||{},exam=YP.getExam(input.examId);if(!exam||exam.status!=="ready")throw new YPAPIError("등록되지 않았거나 준비 중인 시험입니다.","EXAM_NOT_READY");const calc=YP.calculateResult(exam,input.resultInputs||[],input.partialModes||[]);if(!calc.valid)throw new YPAPIError("점수 입력 오류가 있습니다.","INVALID_SCORE");
       let existing=input.token?rows.find(r=>r.token===input.token):null,name=String(input.name||"").trim(),school=YP.normalizeSchool(input.school);if(!name)throw new YPAPIError("학생 이름을 입력하세요.","NAME_REQUIRED");
       if(!existing&&input.importMode==="upsert"){const key=[input.examId,YP.normalizeIdentity(school),YP.normalizeIdentity(name)].join("|");existing=rows.find(r=>[r.examId,YP.normalizeIdentity(YP.normalizeSchool(r.school)),YP.normalizeIdentity(r.name)].join("|")===key)||null}
       const wasExisting=!!existing;
       if(!existing){const base=name;let n=1,names=new Set(rows.filter(r=>r.examId===input.examId&&YP.normalizeIdentity(YP.normalizeSchool(r.school))===YP.normalizeIdentity(school)).map(r=>r.name));while(names.has(name)){n++;name=base+n}}
-      const token=existing?.token||this._newToken(),fp=existing?.fingerprint||await this._fp(token,input.examId,school,name),now=new Date().toISOString(),studentKey=YP.studentKey(exam.courseId,school,name),row={...existing,...input,token,fingerprint:fp,name,school,studentKey,courseId:exam.courseId,createdAt:existing?.createdAt||now,updatedAt:now};
-      if(existing)rows=rows.map(r=>r.token===token?row:r);else rows.push(row);this._saveDemo(rows);const record=this._normalize(row),same=rows.map(r=>this._normalize(r)).filter(r=>r.examId===exam.examId),stats=YP.computeStats(exam,same),historyRecords=YP.getLinkedHistory(exam,record,rows);return {ok:true,record,stats,historyRecords,token,fp,displayName:name,created:!wasExisting,updated:wasExisting,serverInstanceId:"demo-local"};
+      const token=existing?.token||this._newToken(),fp=existing?.fingerprint||await this._fp(token,input.examId,school,name),now=new Date().toISOString(),studentKey=YP.studentKey(exam.courseId,school,name),base={...existing,...input,token,fingerprint:fp,name,school,studentKey,courseId:exam.courseId,createdAt:existing?.createdAt||now,updatedAt:now},portal=this._demoStudentProfile(base),row={...base,studentId:existing?.studentId||portal.studentId};
+      if(existing)rows=rows.map(r=>r.token===token?row:r);else rows.push(row);this._saveDemo(rows);const record=this._normalize(row),same=rows.map(r=>this._normalize(r)).filter(r=>r.examId===exam.examId),stats=YP.computeStats(exam,same),historyRecords=YP.getLinkedHistory(exam,record,rows);return {ok:true,record,stats,historyRecords,studentPortal:portal,token,fp,displayName:name,created:!wasExisting,updated:wasExisting,serverInstanceId:"demo-local",featureVersion:"3.5.0-student-lifetime-portal"};
     }
     if(action==="saveBatch"){
       const saved=[],failed=[];let createdCount=0,updatedCount=0;

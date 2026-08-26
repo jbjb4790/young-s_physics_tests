@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-08-24T08:30:00Z",
+  "generatedAt": "2026-08-26T12:00:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -9712,5 +9712,5 @@
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.4.4-all-retry-multiple-choice"
+  "featureVersion": "3.5.0-student-lifetime-portal"
 }
