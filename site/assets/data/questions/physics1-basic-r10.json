@@ -1,0 +1,471 @@
+{
+  "examId": "physics1-basic-r10",
+  "courseId": "physics1-basic",
+  "round": 10,
+  "title": "물리1 10회차 복습 테스트",
+  "status": "ready",
+  "examDate": "",
+  "questionCount": 5,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics1/r10.pdf",
+  "pages": [
+    "assets/pages/physics1/r10-p1.png"
+  ],
+  "reviewStatus": "verified",
+  "configVersion": "2026.08.30-r10-v1",
+  "sourceTitle": "물리1 10회차 복습 테스트",
+  "sourceNote": "",
+  "coreNote": {
+    "summary": "쿨롱 법칙, 도체의 전하 재분배, 정전기 유도와 여러 전하의 벡터 합성을 다루는 회차",
+    "concepts": [
+      "같은 크기 도체구를 접촉시키면 총전하가 절반씩 분배된다.",
+      "중성 도체도 정전기 유도로 대전체에 끌릴 수 있다.",
+      "전기력은 방향을 가진 벡터이며 대칭 성분은 상쇄될 수 있다.",
+      "검전기 접지는 손가락을 떼는 순서가 중요하다."
+    ],
+    "formulas": [
+      "F=k|q₁q₂|/r²",
+      "E=k|Q|/r²",
+      "접촉 후 q′=(q₁+q₂)/2"
+    ],
+    "mistakes": [
+      "거리 r 대신 r²을 쓰지 않는 것",
+      "반대 부호 전하의 영점을 두 전하 사이로 잡는 것",
+      "검전기 접지 순서를 혼동하는 것"
+    ],
+    "checklist": [
+      "각 힘의 방향을 먼저 화살표로 표시했는가?",
+      "대칭으로 상쇄되는 힘을 찾았는가?",
+      "접촉 전후 전하량 보존을 확인했는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전기력",
+      "topic": "도체구 접촉 후 전하 재분배",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          70,
+          590,
+          360
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "F′ = (1/8)F이며, 접촉 후에는 두 구가 모두 +1 C이므로 서로 밀어낸다.",
+      "explanation": [
+        "처음 전기력은 F=k|(+4)(-2)|/r²=8k/r²이다.",
+        "같은 크기의 금속구를 접촉시키면 전체 전하 +2 C가 똑같이 나뉘어 각 구가 +1 C가 된다.",
+        "같은 거리에서 F′=k(1)(1)/r²이므로 F′/F=1/8이다."
+      ],
+      "formulas": [
+        "F=k|q₁q₂|/r²",
+        "같은 크기 도체구 접촉 후 전하량=(q₁+q₂)/2"
+      ],
+      "commonMistakes": [
+        "접촉 후에도 처음 전하량을 그대로 곱하는 것",
+        "힘의 방향이 인력에서 척력으로 바뀌는 점을 놓치는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "접촉 후 각 전하 +1 C",
+          "points": 4
+        },
+        {
+          "criterion": "처음·나중 힘 비교",
+          "points": 4
+        },
+        {
+          "criterion": "1/8 및 척력",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "같은 크기의 금속구가 +6 C와 -2 C로 대전되어 있다. 접촉 후 원래 거리로 떼었을 때 전기력은 처음의 몇 배이며 방향은?",
+        "answer": "1/3배, 척력",
+        "explanation": "접촉 후 각 구는 +2 C이다. 처음 전하 곱의 크기는 12, 나중은 4이므로 힘은 1/3배이고 같은 부호라 척력이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "1/3배, 척력"
+        ],
+        "choices": [
+          "1/3배, 척력",
+          "1/6배, 인력",
+          "3배, 척력",
+          "1/2배, 인력"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "1/8배, 척력",
+          "1/4배, 척력",
+          "1/2배, 인력",
+          "8배, 척력"
+        ],
+        "correctChoice": 1,
+        "answer": "1/8배, 척력",
+        "acceptableAnswers": [
+          "1",
+          "1/8배, 척력"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 2,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "정전기",
+      "topic": "도체구 사이 인력·척력과 중성 도체",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          340,
+          590,
+          520
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "A: 중성, B: 양전하, C: 중성, D: 양전하",
+      "explanation": [
+        "(가)에서 B가 양전하인데 A와 서로 끌어당기므로 A는 음전하 또는 중성일 수 있다.",
+        "(나)에서 A와 C가 가까이 있어도 기울지 않으므로 도체의 유도까지 고려하면 A와 C가 모두 중성이다.",
+        "(다)에서 B와 D가 밀어내므로 D는 B와 같은 양전하이다."
+      ],
+      "formulas": [
+        "같은 부호: 척력",
+        "다른 부호: 인력",
+        "대전체와 중성 도체: 정전기 유도로 인력"
+      ],
+      "commonMistakes": [
+        "끌어당기면 반드시 서로 반대 부호라고 단정하는 것",
+        "중성 도체도 대전체에 끌릴 수 있음을 잊는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "A 중성",
+          "points": 5
+        },
+        {
+          "criterion": "B 양전하",
+          "points": 5
+        },
+        {
+          "criterion": "C 중성",
+          "points": 5
+        },
+        {
+          "criterion": "D 양전하",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "도체구 X, Y, Z, W가 있다. Y는 음전하이다. X-Y는 서로 끌리고, X-Z는 가까이 해도 움직이지 않으며, Y-W는 서로 밀어낸다. 각 상태는?",
+        "answer": "X 중성, Y 음전하, Z 중성, W 음전하",
+        "explanation": "X-Z가 무반응이므로 둘 다 중성이고, Y-W가 척력이므로 W는 Y와 같은 음전하이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "X 중성, Y 음전하, Z 중성, W 음전하"
+        ],
+        "choices": [
+          "X 중성, Y 음전하, Z 중성, W 음전하",
+          "X 양전하, Y 음전하, Z 음전하, W 양전하",
+          "X 음전하, Y 음전하, Z 중성, W 음전하",
+          "X 중성, Y 음전하, Z 양전하, W 양전하"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "A 중성, B 양전하, C 중성, D 양전하",
+          "A 음전하, B 양전하, C 양전하, D 음전하",
+          "A 양전하, B 양전하, C 중성, D 양전하",
+          "A 중성, B 양전하, C 음전하, D 음전하"
+        ],
+        "correctChoice": 1,
+        "answer": "A 중성, B 양전하, C 중성, D 양전하",
+        "acceptableAnswers": [
+          "1",
+          "A 중성, B 양전하, C 중성, D 양전하"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 3,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "전기력",
+      "topic": "일직선상 세 전하의 합력과 영점",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          800,
+          590,
+          820
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "(1) P가 받는 합력은 왼쪽이다. (2) 전기력이 0이 되는 곳은 A의 왼쪽이다.",
+      "explanation": [
+        "P에서 B(-5×10⁻⁸ C)의 인력은 왼쪽이고 A(+2×10⁻⁸ C)의 척력은 오른쪽이다.",
+        "F_B=2.8125×10⁻³ N, F_A=1.8×10⁻⁴ N이므로 합력은 왼쪽이다.",
+        "서로 반대 부호인 두 전하의 전기장 영점은 두 전하 사이가 아니라 전하량의 크기가 작은 A 바깥쪽에 생긴다."
+      ],
+      "formulas": [
+        "F=k|q₁q₂|/r²",
+        "반대 부호 두 전하의 영점: 작은 전하 쪽 바깥"
+      ],
+      "commonMistakes": [
+        "거리의 제곱을 빼먹는 것",
+        "반대 부호이므로 무조건 AB 사이에서 상쇄된다고 생각하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "두 힘 방향 판정",
+          "points": 5
+        },
+        {
+          "criterion": "크기 비교와 왼쪽 합력",
+          "points": 5
+        },
+        {
+          "criterion": "영점 구간 원리",
+          "points": 5
+        },
+        {
+          "criterion": "A 왼쪽 선택",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "A에 +1×10⁻⁸ C, B에 -4×10⁻⁸ C가 6 cm 간격으로 있다. 양전하 P를 B의 오른쪽 3 cm에 놓았다. P의 합력 방향과 전기장 영점 구간은?",
+        "answer": "합력 왼쪽, 영점은 A 왼쪽",
+        "explanation": "B의 인력이 매우 크므로 P의 합력은 왼쪽이다. 반대 부호이며 A가 작은 전하이므로 영점은 A 왼쪽이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "합력 왼쪽, 영점은 A 왼쪽"
+        ],
+        "choices": [
+          "합력 왼쪽, 영점은 A 왼쪽",
+          "합력 오른쪽, 영점은 A 왼쪽",
+          "합력 왼쪽, 영점은 AB 사이",
+          "합력 오른쪽, 영점은 B 오른쪽"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "합력 왼쪽, 영점은 A 왼쪽",
+          "합력 오른쪽, 영점은 AB 사이",
+          "합력 왼쪽, 영점은 B 오른쪽",
+          "합력 오른쪽, 영점은 A 왼쪽"
+        ],
+        "correctChoice": 1,
+        "answer": "합력 왼쪽, 영점은 A 왼쪽",
+        "acceptableAnswers": [
+          "1",
+          "합력 왼쪽, 영점은 A 왼쪽"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 4,
+      "maxPoints": 15,
+      "type": "subjective",
+      "unit": "정전기",
+      "topic": "검전기의 유도·접지",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          70,
+          590,
+          880
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "과정 1: 음전하, 과정 2: 중성, 과정 3: 양전하",
+      "explanation": [
+        "음전하 막대를 가까이 하면 전자가 금속박 쪽으로 밀려 금속박이 음전하가 된다.",
+        "막대를 둔 채 접지하면 밀려난 전자가 손가락을 통해 지면으로 빠져나가 금속박이 중성이 되어 닫힌다.",
+        "손가락을 먼저 떼고 막대를 치우면 검전기 전체에 남은 양전하가 퍼져 금속박도 양전하가 된다."
+      ],
+      "formulas": [
+        "정전기 유도",
+        "접지: 전자가 지면과 이동",
+        "손가락을 먼저 떼어 전하를 고정"
+      ],
+      "commonMistakes": [
+        "막대를 치우기 전에 손을 떼는 순서를 바꾸는 것",
+        "과정 2에서 금속박을 양전하라고 바로 쓰는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "과정 1 음전하",
+          "points": 5
+        },
+        {
+          "criterion": "과정 2 중성",
+          "points": 5
+        },
+        {
+          "criterion": "과정 3 양전하",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "양전하 유리 막대를 검전기 금속판에 가까이 하고, 손가락으로 접지한 뒤 손을 먼저 떼고 막대를 치웠다. 금속박 전하 변화는?",
+        "answer": "양전하 → 중성 → 음전하",
+        "explanation": "양전하 막대가 전자를 금속판으로 끌어당겨 처음 금속박은 양전하, 접지 중에는 중성, 마지막에는 검전기가 음전하가 된다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "양전하 → 중성 → 음전하"
+        ],
+        "choices": [
+          "양전하 → 중성 → 음전하",
+          "음전하 → 중성 → 양전하",
+          "양전하 → 음전하 → 중성",
+          "중성 → 양전하 → 음전하"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "음전하 → 중성 → 양전하",
+          "양전하 → 중성 → 음전하",
+          "음전하 → 양전하 → 중성",
+          "중성 → 음전하 → 양전하"
+        ],
+        "correctChoice": 1,
+        "answer": "음전하 → 중성 → 양전하",
+        "acceptableAnswers": [
+          "1",
+          "음전하 → 중성 → 양전하"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 5,
+      "maxPoints": 35,
+      "type": "subjective",
+      "unit": "전기력",
+      "topic": "정사각형 중심 전하의 벡터 합력",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          820,
+          590,
+          860
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "(1) 오른쪽 위 대각선 방향 (2) 2.7×10¹⁰ N (3) -3 C로 바꾸면 크기는 같고 왼쪽 아래 대각선 방향",
+      "explanation": [
+        "중심에서 네 꼭짓점까지 거리는 √2 m이다.",
+        "왼쪽 위 +2 C와 오른쪽 아래 +2 C가 만드는 힘은 크기가 같고 방향이 반대라 상쇄된다.",
+        "오른쪽 위 -1 C의 인력과 왼쪽 아래 +1 C의 척력은 모두 오른쪽 위 방향이며 각각 1.35×10¹⁰ N이다.",
+        "중심 전하의 부호를 바꾸면 모든 힘 방향이 반대가 되므로 크기는 같고 방향만 왼쪽 아래로 바뀐다."
+      ],
+      "formulas": [
+        "F=k|qQ|/r²",
+        "r=√(1²+1²)=√2 m",
+        "벡터는 성분 또는 대칭으로 합성"
+      ],
+      "commonMistakes": [
+        "네 힘의 크기를 단순히 모두 더하는 것",
+        "중심 전하 부호를 바꾸면 힘의 크기도 달라진다고 생각하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "대칭 힘 상쇄",
+          "points": 7
+        },
+        {
+          "criterion": "합력 방향",
+          "points": 5
+        },
+        {
+          "criterion": "합력 크기",
+          "points": 10
+        },
+        {
+          "criterion": "-3 C일 때 크기·방향",
+          "points": 13
+        }
+      ],
+      "similarProblem": {
+        "prompt": "한 변 2 m 정사각형의 왼쪽 위와 오른쪽 아래에 +2 C, 오른쪽 위에 -1 C, 왼쪽 아래에 +1 C가 있다. 중심에 +2 C를 놓으면 합력은?",
+        "answer": "오른쪽 위, 1.8×10¹⁰ N",
+        "explanation": "+2 C 쌍은 상쇄되고 -1 C의 인력과 +1 C의 척력이 오른쪽 위로 각각 9×10⁹ N이므로 합은 1.8×10¹⁰ N이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "오른쪽 위, 1.8×10¹⁰ N"
+        ],
+        "choices": [
+          "오른쪽 위, 1.8×10¹⁰ N",
+          "왼쪽 아래, 1.8×10¹⁰ N",
+          "오른쪽 위, 9×10⁹ N",
+          "합력 0"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "오른쪽 위, 2.7×10¹⁰ N; -3 C이면 같은 크기로 왼쪽 아래",
+          "왼쪽 위, 2.7×10¹⁰ N; -3 C이면 같은 방향",
+          "오른쪽 아래, 5.4×10¹⁰ N; -3 C이면 왼쪽 위",
+          "합력 0; -3 C에서도 합력 0"
+        ],
+        "correctChoice": 1,
+        "answer": "오른쪽 위, 2.7×10¹⁰ N; -3 C이면 같은 크기로 왼쪽 아래",
+        "acceptableAnswers": [
+          "1",
+          "오른쪽 위, 2.7×10¹⁰ N; -3 C이면 같은 크기로 왼쪽 아래"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    }
+  ],
+  "featureVersion": "3.5.1-physics1-r10-r14"
+}

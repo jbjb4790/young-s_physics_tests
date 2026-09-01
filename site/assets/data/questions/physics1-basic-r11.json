@@ -1,0 +1,689 @@
+{
+  "examId": "physics1-basic-r11",
+  "courseId": "physics1-basic",
+  "round": 11,
+  "title": "물리1 11회차 복습 테스트",
+  "status": "ready",
+  "examDate": "",
+  "questionCount": 8,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics1/r11.pdf",
+  "pages": [
+    "assets/pages/physics1/r11-p1.png"
+  ],
+  "reviewStatus": "corrected",
+  "configVersion": "2026.08.30-r11-v1",
+  "sourceTitle": "물리1 11회차 복습 테스트",
+  "sourceNote": "5번 (2)는 q의 부호 조건을 보완하여 적용했다.",
+  "coreNote": {
+    "summary": "전기장·전위의 방향과 크기, 균일 전기장, 점전하 전위차 및 전류의 정의를 연결하는 회차",
+    "concepts": [
+      "전기장은 +전하에서 나와 -전하로 들어간다.",
+      "전기력선이 조밀할수록 전기장이 세고 전기장 방향으로 전위가 낮아진다.",
+      "전위는 스칼라 합, 전기장은 벡터 합이다.",
+      "음전하의 이동 방향과 관습적 전류 방향은 반대이다."
+    ],
+    "formulas": [
+      "E=kQ/r²",
+      "V=kQ/r",
+      "ΔV=-EΔx",
+      "I=Q/t"
+    ],
+    "mistakes": [
+      "전기장과 전위의 거리 의존성을 바꾸어 쓰는 것",
+      "전위차 기준 순서를 무시하는 것",
+      "전해질의 양·음이온 전류를 서로 빼는 것"
+    ],
+    "checklist": [
+      "전하 부호에 따른 전기장 방향을 표시했는가?",
+      "전위는 부호 포함 스칼라로 더했는가?",
+      "전류 방향을 양전하 이동 기준으로 바꾸었는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전기장과 전위",
+      "topic": "두 점전하의 전기장 상쇄",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          65,
+          590,
+          330
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "0 N/C",
+      "explanation": [
+        "A에서 +4 C까지 거리는 2 m이므로 전기장은 오른쪽으로 k·4/2²=k이다.",
+        "A에서 -1 C까지 거리는 1 m이므로 전기장은 왼쪽으로 k·1/1²=k이다.",
+        "크기가 같고 방향이 반대라 합성 전기장은 0이다."
+      ],
+      "formulas": [
+        "E=k|Q|/r²"
+      ],
+      "commonMistakes": [
+        "전기장은 스칼라처럼 더하는 것",
+        "-전하가 만드는 전기장의 방향을 바깥쪽으로 잡는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "각 전기장 크기",
+          "points": 4
+        },
+        {
+          "criterion": "각 방향",
+          "points": 3
+        },
+        {
+          "criterion": "합성 0 N/C",
+          "points": 3
+        }
+      ],
+      "similarProblem": {
+        "prompt": "+9 C가 x=0, -1 C가 x=2 m에 있고 점 P가 x=3 m에 있다. P의 전기장은?",
+        "answer": "0 N/C",
+        "explanation": "+9 C는 거리 3 m에서 오른쪽으로 k, -1 C는 거리 1 m에서 왼쪽으로 k를 만들어 상쇄된다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "0 N/C"
+        ],
+        "choices": [
+          "0 N/C",
+          "9×10⁹ N/C, 오른쪽",
+          "9×10⁹ N/C, 왼쪽",
+          "18×10⁹ N/C, 오른쪽"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "0 N/C",
+          "9×10⁹ N/C, 오른쪽",
+          "9×10⁹ N/C, 왼쪽",
+          "18×10⁹ N/C, 오른쪽"
+        ],
+        "correctChoice": 1,
+        "answer": "0 N/C",
+        "acceptableAnswers": [
+          "1",
+          "0 N/C"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 2,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "전기장과 전위",
+      "topic": "전기장 방향으로 전하 부호·크기 추론",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          330,
+          590,
+          460
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "(1) B는 양전하 (2) |B|>|A| (3) r에서 전기장은 +x 방향",
+      "explanation": [
+        "A의 왼쪽 가까운 q에서는 A(-)의 전기장이 오른쪽으로 우세하지만 먼 p에서는 왼쪽 전기장이 우세하다.",
+        "왼쪽 방향 전기장을 만드는 B는 양전하이고, 먼 곳에서 우세하므로 |B|>|A|이다.",
+        "r은 B 오른쪽이므로 B(+)의 오른쪽 전기장이 A(-)의 왼쪽 전기장보다 커서 합성 방향은 +x이다."
+      ],
+      "formulas": [
+        "전기장은 +전하에서 나오고 -전하로 들어간다.",
+        "같은 직선 위 전기장은 부호를 정해 대수적으로 합성"
+      ],
+      "commonMistakes": [
+        "p와 q의 화살표를 전하가 움직이는 방향으로 오해하는 것",
+        "거리 효과를 무시하고 부호만 보는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "B 양전하",
+          "points": 5
+        },
+        {
+          "criterion": "B 전하량이 더 큼",
+          "points": 5
+        },
+        {
+          "criterion": "r에서 +x 방향과 근거",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "prompt": "A는 음전하이다. A 왼쪽의 가까운 점에서는 전기장이 오른쪽, 더 먼 점에서는 왼쪽이다. A 오른쪽에 있는 B의 부호와 크기 관계는?",
+        "answer": "B는 양전하이고 |B|>|A|",
+        "explanation": "먼 왼쪽에서 왼쪽 전기장이 우세하려면 B가 양전하이며, 거리상 더 불리한 B가 우세하므로 전하량도 더 커야 한다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "B는 양전하이고 |B|>|A|"
+        ],
+        "choices": [
+          "B는 양전하이고 |B|>|A|",
+          "B는 양전하이고 |B|<|A|",
+          "B는 음전하이고 |B|>|A|",
+          "B는 음전하이고 |B|<|A|"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "B는 양전하, |B|>|A|, r에서 +x",
+          "B는 음전하, |A|>|B|, r에서 -x",
+          "B는 양전하, |A|>|B|, r에서 -x",
+          "B는 음전하, |B|>|A|, r에서 +x"
+        ],
+        "correctChoice": 1,
+        "answer": "B는 양전하, |B|>|A|, r에서 +x",
+        "acceptableAnswers": [
+          "1",
+          "B는 양전하, |B|>|A|, r에서 +x"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 3,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전기장과 전위",
+      "topic": "전기력선 밀도와 전위 변화",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          720,
+          590,
+          430
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "전기장의 세기는 A가 더 크고, 전위도 A가 더 높다.",
+      "explanation": [
+        "전기력선이 더 조밀한 A에서 전기장이 더 세다.",
+        "전기력선 화살표 방향으로 전위는 낮아지므로 A에서 B로 갈수록 전위가 감소한다."
+      ],
+      "formulas": [
+        "전기력선 밀도 ∝ |E|",
+        "E=-dV/ds"
+      ],
+      "commonMistakes": [
+        "전기력선 화살표 방향으로 전위가 증가한다고 생각하는 것",
+        "점의 높낮이로 전위를 판단하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "전기장 A가 큼",
+          "points": 5
+        },
+        {
+          "criterion": "전위 A가 높음",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "전기력선이 왼쪽 X에서 조밀하고 오른쪽 Y로 갈수록 퍼지며 화살표는 오른쪽이다. X와 Y의 전기장·전위를 비교하면?",
+        "answer": "전기장 X>Y, 전위 X>Y",
+        "explanation": "밀도는 X가 크고, 전위는 전기장 방향으로 감소한다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "전기장 X>Y, 전위 X>Y"
+        ],
+        "choices": [
+          "전기장 X>Y, 전위 X>Y",
+          "전기장 X<Y, 전위 X>Y",
+          "전기장 X>Y, 전위 X<Y",
+          "전기장 X=Y, 전위 X=Y"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "전기장: A>B, 전위: A>B",
+          "전기장: B>A, 전위: A>B",
+          "전기장: A>B, 전위: B>A",
+          "전기장: A=B, 전위: A=B"
+        ],
+        "correctChoice": 1,
+        "answer": "전기장: A>B, 전위: A>B",
+        "acceptableAnswers": [
+          "1",
+          "전기장: A>B, 전위: A>B"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 4,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전기장과 전위",
+      "topic": "여러 점전하의 전위 합",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          1080,
+          590,
+          600
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "0 V",
+      "explanation": [
+        "정사각형 중심에서 네 꼭짓점까지 거리는 모두 같다.",
+        "전위는 스칼라이므로 V=(k/r)(Q-Q+2Q-2Q)=0이다."
+      ],
+      "formulas": [
+        "V=kQ/r",
+        "전위는 부호를 포함한 스칼라 합"
+      ],
+      "commonMistakes": [
+        "전기장처럼 방향 성분을 나누는 것",
+        "전하량의 부호를 빼먹는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "같은 거리 인식",
+          "points": 3
+        },
+        {
+          "criterion": "전위 스칼라 합",
+          "points": 4
+        },
+        {
+          "criterion": "0 V",
+          "points": 3
+        }
+      ],
+      "similarProblem": {
+        "prompt": "한 원 위 같은 거리에 +Q, +2Q, -Q, -2Q가 놓였다. 원 중심의 전위는?",
+        "answer": "0 V",
+        "explanation": "모든 거리가 같고 전하량의 대수합이 0이므로 전위도 0이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "0 V"
+        ],
+        "choices": [
+          "0 V",
+          "kQ/r",
+          "2kQ/r",
+          "6kQ/r"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "0 V",
+          "kQ/d",
+          "2kQ/d",
+          "4kQ/d"
+        ],
+        "correctChoice": 1,
+        "answer": "0 V",
+        "acceptableAnswers": [
+          "1",
+          "0 V"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 5,
+      "maxPoints": 15,
+      "type": "subjective",
+      "unit": "전기장과 전위",
+      "topic": "균일 전기장의 전위·힘",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          55,
+          590,
+          760
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "원문 (2)에서 q의 부호가 제시되지 않았다. 양전하 q를 뜻하는 것으로 보완하며, 음전하이면 운동 방향이 반대임을 함께 명시했다.",
+      "answer": "(1) A (2) q>0이면 오른쪽, q<0이면 왼쪽 (3) E_A=E_B=E_C=E_D",
+      "explanation": [
+        "균일 전기장은 오른쪽이므로 전위는 왼쪽으로 갈수록 높다. A가 가장 왼쪽이다.",
+        "전기력은 F=qE이므로 양전하는 전기장 방향, 음전하는 반대 방향으로 움직인다.",
+        "균일 전기장이므로 위치와 무관하게 세기가 같다."
+      ],
+      "formulas": [
+        "ΔV=-EΔx",
+        "F=qE"
+      ],
+      "commonMistakes": [
+        "q의 부호가 없는데 한 방향으로 단정하는 것",
+        "등전위선 간격이 같다는 의미를 놓치는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "A 선택",
+          "points": 5
+        },
+        {
+          "criterion": "q 부호에 따른 방향",
+          "points": 5
+        },
+        {
+          "criterion": "전기장 모두 같음",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "균일 전기장이 왼쪽을 향한다. 같은 전기장 안의 X가 Y보다 오른쪽에 있을 때, 전위가 높은 점과 +q의 운동 방향은?",
+        "answer": "Y가 더 높고, +q는 왼쪽으로 움직인다.",
+        "explanation": "전위는 전기장 방향으로 감소하므로 오른쪽 Y가 더 높고 양전하는 전기장 방향인 왼쪽으로 움직인다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "Y가 더 높고, +q는 왼쪽으로 움직인다."
+        ],
+        "choices": [
+          "Y가 더 높고, +q는 왼쪽으로 움직인다.",
+          "X가 더 높고, +q는 왼쪽으로 움직인다.",
+          "Y가 더 높고, +q는 오른쪽으로 움직인다.",
+          "전위가 같고, +q는 정지한다."
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "A; q>0이면 오른쪽(q<0이면 왼쪽); 네 점의 전기장 같음",
+          "D; q>0이면 왼쪽; A의 전기장이 가장 큼",
+          "B; 전하는 움직이지 않음; C의 전기장이 가장 큼",
+          "C; q의 부호와 무관하게 오른쪽; 네 점의 전기장 다름"
+        ],
+        "correctChoice": 1,
+        "answer": "A; q>0이면 오른쪽(q<0이면 왼쪽); 네 점의 전기장 같음",
+        "acceptableAnswers": [
+          "1",
+          "A; q>0이면 오른쪽(q<0이면 왼쪽); 네 점의 전기장 같음"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 6,
+      "maxPoints": 15,
+      "type": "subjective",
+      "unit": "전기장과 전위",
+      "topic": "점전하의 전기장과 전위차",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          720,
+          590,
+          580
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "A: 200 N/C, 오른쪽; B: 50 N/C, 오른쪽; V_A-V_B=300 V",
+      "explanation": [
+        "양전하가 만드는 전기장은 바깥쪽이다.",
+        "E_A=kQ/3²=200 N/C, E_B=kQ/6²=50 N/C이다.",
+        "V_A=kQ/3=600 V, V_B=kQ/6=300 V이므로 V_A-V_B=300 V이다."
+      ],
+      "formulas": [
+        "E=kQ/r²",
+        "V=kQ/r"
+      ],
+      "commonMistakes": [
+        "전기장에 1/r을 적용하는 것",
+        "전위차의 순서를 확인하지 않고 부호를 쓰는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "A 전기장",
+          "points": 3
+        },
+        {
+          "criterion": "B 전기장",
+          "points": 2
+        },
+        {
+          "criterion": "방향",
+          "points": 2
+        },
+        {
+          "criterion": "전위차 300 V",
+          "points": 8
+        }
+      ],
+      "similarProblem": {
+        "prompt": "+4×10⁻⁷ C에서 2 m, 4 m 떨어진 A, B가 있다. 각 전기장과 V_A-V_B는?",
+        "answer": "A 900 N/C, B 225 N/C, 모두 바깥쪽; V_A-V_B=900 V",
+        "explanation": "E_A=9×10⁹·4×10⁻⁷/4=900, E_B=225. 전위차는 kQ(1/2-1/4)=900 V이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "A 900 N/C, B 225 N/C, 모두 바깥쪽; V_A-V_B=900 V"
+        ],
+        "choices": [
+          "A 900 N/C, B 225 N/C, 모두 바깥쪽; V_A-V_B=900 V",
+          "A 450 N/C, B 225 N/C; V_A-V_B=450 V",
+          "A 900 N/C, B 450 N/C; V_A-V_B=1800 V",
+          "A 225 N/C, B 900 N/C; V_A-V_B=-900 V"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "A 200 N/C 오른쪽, B 50 N/C 오른쪽, V_A-V_B=300 V",
+          "A 600 N/C 오른쪽, B 300 N/C 오른쪽, V_A-V_B=150 V",
+          "A 200 N/C 왼쪽, B 50 N/C 왼쪽, V_A-V_B=-300 V",
+          "A 400 N/C 오른쪽, B 100 N/C 오른쪽, V_A-V_B=600 V"
+        ],
+        "correctChoice": 1,
+        "answer": "A 200 N/C 오른쪽, B 50 N/C 오른쪽, V_A-V_B=300 V",
+        "acceptableAnswers": [
+          "1",
+          "A 200 N/C 오른쪽, B 50 N/C 오른쪽, V_A-V_B=300 V"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 7,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전류",
+      "topic": "전하량과 전류",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          1240,
+          590,
+          250
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "20 A",
+      "explanation": [
+        "이동한 전하량은 Q=Ne=(6.25×10¹⁹)(1.6×10⁻¹⁹)=10 C이다.",
+        "I=Q/t=10/0.5=20 A이다."
+      ],
+      "formulas": [
+        "I=Q/t",
+        "Q=Ne"
+      ],
+      "commonMistakes": [
+        "전자 수의 지수를 잘못 곱하는 것",
+        "0.5초로 나누지 않고 곱하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "전하량 10 C",
+          "points": 5
+        },
+        {
+          "criterion": "전류 20 A",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "0.25초 동안 3.125×10¹⁹개의 전자가 단면을 통과했다. 전류의 세기는?",
+        "answer": "20 A",
+        "explanation": "전하량은 5 C, I=5/0.25=20 A이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "20 A"
+        ],
+        "choices": [
+          "20 A",
+          "10 A",
+          "40 A",
+          "5 A"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "20 A",
+          "10 A",
+          "5 A",
+          "40 A"
+        ],
+        "correctChoice": 1,
+        "answer": "20 A",
+        "acceptableAnswers": [
+          "1",
+          "20 A"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 8,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전류",
+      "topic": "전해질에서의 전류 방향과 합",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          1460,
+          590,
+          260
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "10 A, (+)극판에서 (-)극판 방향",
+      "explanation": [
+        "+10 C 양이온이 (-)극판으로 이동하면 같은 방향으로 10 C의 전류를 만든다.",
+        "-10 C 음이온이 반대쪽인 (+)극판으로 이동하는 것도 관습적 전류는 (-)극판 방향이다.",
+        "총 20 C가 2 s 동안 같은 관습적 방향의 전류를 만들므로 I=10 A이다."
+      ],
+      "formulas": [
+        "I=(|Q_+|+|Q_-|)/t"
+      ],
+      "commonMistakes": [
+        "양이온과 음이온의 효과가 상쇄된다고 생각하는 것",
+        "음전하 이동 방향과 전류 방향을 같게 잡는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "두 이온의 관습적 전류 방향",
+          "points": 5
+        },
+        {
+          "criterion": "10 A 계산",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "1초 동안 +6 C 양이온이 음극으로, -4 C 음이온이 양극으로 이동했다. 총전류는?",
+        "answer": "10 A, 양극→음극",
+        "explanation": "두 이동은 모두 양극에서 음극으로 향하는 관습적 전류를 만들고 총 전하량은 10 C이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "10 A, 양극→음극"
+        ],
+        "choices": [
+          "10 A, 양극→음극",
+          "2 A, 양극→음극",
+          "10 A, 음극→양극",
+          "0 A"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "10 A, (+)극판→(-)극판",
+          "0 A",
+          "5 A, (-)극판→(+)극판",
+          "20 A, (+)극판→(-)극판"
+        ],
+        "correctChoice": 1,
+        "answer": "10 A, (+)극판→(-)극판",
+        "acceptableAnswers": [
+          "1",
+          "10 A, (+)극판→(-)극판"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    }
+  ],
+  "featureVersion": "3.5.1-physics1-r10-r14"
+}

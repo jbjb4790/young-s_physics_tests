@@ -1,0 +1,632 @@
+{
+  "examId": "physics1-basic-r12",
+  "courseId": "physics1-basic",
+  "round": 12,
+  "title": "물리1 12회차 복습 테스트",
+  "status": "ready",
+  "examDate": "",
+  "questionCount": 7,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics1/r12.pdf",
+  "pages": [
+    "assets/pages/physics1/r12-p1.png"
+  ],
+  "reviewStatus": "corrected",
+  "configVersion": "2026.08.30-r12-v1",
+  "sourceTitle": "물리1 12회차 복습 테스트",
+  "sourceNote": "3번 전위차는 B가 A보다 10 V 높다는 관계로 명확히 적용했다.",
+  "coreNote": {
+    "summary": "직렬·병렬 회로의 합성저항, 가지 전류, 전위 변화와 전력을 계산하는 회차",
+    "concepts": [
+      "병렬 연결의 전압은 같고 전류는 저항에 반비례한다.",
+      "복합회로는 가장 안쪽 직렬·병렬부터 단계적으로 단순화한다.",
+      "전류 방향으로 저항을 지나면 전위가 IR만큼 감소한다.",
+      "부피가 일정한 도선은 길이 변화에 따라 단면적도 함께 변한다."
+    ],
+    "formulas": [
+      "R=ρL/S",
+      "1/R_p=Σ1/R",
+      "V=IR",
+      "P=IV=I²R"
+    ],
+    "mistakes": [
+      "병렬 저항을 단순 합하는 것",
+      "전압과 전류를 같은 양처럼 분배하는 것",
+      "전지 극성과 ΔV 부호를 반대로 쓰는 것"
+    ],
+    "checklist": [
+      "노드가 같은 두 점을 표시했는가?",
+      "각 가지의 직렬·병렬 관계를 다시 확인했는가?",
+      "마지막에 전압·전류 합이 키르히호프 법칙을 만족하는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전기 회로",
+      "topic": "병렬회로의 전압과 전류",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          60,
+          590,
+          430
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "I₁=6 A, I₂=3 A, V₁=6 V, V₂=6 V",
+      "explanation": [
+        "두 저항은 6 V 전지에 병렬로 연결되어 각 저항의 전압은 6 V이다.",
+        "I₁=6/1=6 A, I₂=6/2=3 A이다."
+      ],
+      "formulas": [
+        "병렬: V₁=V₂",
+        "I=V/R"
+      ],
+      "commonMistakes": [
+        "병렬 저항에 전류가 같다고 생각하는 것",
+        "전압을 저항비로 나누는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "I₁",
+          "points": 2.5
+        },
+        {
+          "criterion": "I₂",
+          "points": 2.5
+        },
+        {
+          "criterion": "V₁",
+          "points": 2.5
+        },
+        {
+          "criterion": "V₂",
+          "points": 2.5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "12 V 전지에 3 Ω과 6 Ω을 병렬 연결했다. 두 전류와 전압은?",
+        "answer": "4 A, 2 A, 각 12 V",
+        "explanation": "병렬 전압은 12 V이고 I=V/R이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "4 A, 2 A, 각 12 V"
+        ],
+        "choices": [
+          "4 A, 2 A, 각 12 V",
+          "2 A, 4 A, 각 6 V",
+          "6 A, 6 A, 각 12 V",
+          "4 A, 2 A, 각각 4 V와 8 V"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "I₁=6 A, I₂=3 A, V₁=V₂=6 V",
+          "I₁=3 A, I₂=6 A, V₁=2 V, V₂=4 V",
+          "I₁=I₂=2 A, V₁=2 V, V₂=4 V",
+          "I₁=9 A, I₂=3 A, V₁=V₂=3 V"
+        ],
+        "correctChoice": 1,
+        "answer": "I₁=6 A, I₂=3 A, V₁=V₂=6 V",
+        "acceptableAnswers": [
+          "1",
+          "I₁=6 A, I₂=3 A, V₁=V₂=6 V"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 2,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "전기 회로",
+      "topic": "직렬·병렬 복합회로",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          430,
+          590,
+          530
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "합성저항 1.5 Ω, I₁:I₂:I₃=2:1:1",
+      "explanation": [
+        "위쪽 안의 2 Ω 두 개는 병렬이므로 1 Ω이다.",
+        "그 앞의 2 Ω과 직렬이어서 위 가지는 3 Ω이고, 아래 가지도 3 Ω이다.",
+        "3 Ω 두 가지가 병렬이므로 전체는 1.5 Ω이다.",
+        "I₁은 병렬로 나뉘기 전 전류이며 두 2 Ω에 똑같이 나뉘므로 I₁=I₂+I₃, I₂=I₃이다."
+      ],
+      "formulas": [
+        "R_parallel=R/2 (같은 저항 2개)",
+        "1/R_eq=Σ1/R"
+      ],
+      "commonMistakes": [
+        "I₁·I₂·I₃를 세 가지 전체 전류로 보는 것",
+        "위쪽 2 Ω 세 개를 모두 병렬로 보는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "내부 병렬 1 Ω",
+          "points": 4
+        },
+        {
+          "criterion": "위 가지 3 Ω",
+          "points": 3
+        },
+        {
+          "criterion": "전체 1.5 Ω",
+          "points": 3
+        },
+        {
+          "criterion": "전류비 2:1:1",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "prompt": "한 가지는 4 Ω 직렬 뒤에 4 Ω 두 개 병렬, 다른 가지는 6 Ω 하나이다. 전체 합성저항과 분기 전류:두 병렬 전류의 비는?",
+        "answer": "3 Ω, 2:1:1",
+        "explanation": "첫 가지는 4+2=6 Ω, 다른 가지도 6 Ω이므로 전체 3 Ω이다. 첫 가지 전류는 두 같은 저항에 반씩 나뉜다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "3 Ω, 2:1:1"
+        ],
+        "choices": [
+          "3 Ω, 2:1:1",
+          "6 Ω, 1:1:1",
+          "4 Ω, 2:1:1",
+          "2 Ω, 1:2:2"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "1.5 Ω, 2:1:1",
+          "3 Ω, 1:1:1",
+          "2 Ω, 1:2:2",
+          "6 Ω, 2:1:1"
+        ],
+        "correctChoice": 1,
+        "answer": "1.5 Ω, 2:1:1",
+        "acceptableAnswers": [
+          "1",
+          "1.5 Ω, 2:1:1"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 3,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "전기 회로",
+      "topic": "복합회로 합성저항과 전위차",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          900,
+          590,
+          810
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "원문 ΔV_AB의 부호 정의가 명시되지 않았다. B가 A보다 10 V 높다는 물리적 관계를 우선 제시하고 두 관례의 부호를 함께 명시했다.",
+      "answer": "합성저항 50 Ω. B가 A보다 10 V 높다(V_B-V_A=10 V; V_A-V_B=-10 V).",
+      "explanation": [
+        "오른쪽의 70 Ω 두 개는 병렬이라 35 Ω이다.",
+        "위-오른쪽-아래 경로는 70+35+70=175 Ω이고, 왼쪽 70 Ω과 병렬이므로 전체는 50 Ω이다.",
+        "175 Ω 가지 전류는 50/175=2/7 A이다.",
+        "B-A 사이 병렬부 전압은 (2/7)×35=10 V이며 전류가 B에서 A로 흐르므로 B가 높다."
+      ],
+      "formulas": [
+        "R_p=R₁R₂/(R₁+R₂)",
+        "V=IR"
+      ],
+      "commonMistakes": [
+        "오른쪽 두 저항을 직렬로 보는 것",
+        "ΔV_AB의 부호 정의를 확인하지 않는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "오른쪽 병렬 35 Ω",
+          "points": 3
+        },
+        {
+          "criterion": "가지 175 Ω",
+          "points": 3
+        },
+        {
+          "criterion": "전체 50 Ω",
+          "points": 4
+        },
+        {
+          "criterion": "B가 10 V 높음",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "prompt": "같은 구조에 모든 저항이 40 Ω이고 전지가 40 V이다. 전체 합성저항과 B-A 전위차는?",
+        "answer": "200/7 Ω, B가 A보다 8 V 높음",
+        "explanation": "직접 가지 40 Ω, 다른 가지 40+20+40=100 Ω이므로 전체 200/7 Ω. 100 Ω 가지 전류 0.4 A, 병렬부 전압 8 V이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "200/7 Ω, B가 A보다 8 V 높음"
+        ],
+        "choices": [
+          "200/7 Ω, B가 A보다 8 V 높음",
+          "40 Ω, A가 B보다 8 V 높음",
+          "20 Ω, B가 A보다 16 V 높음",
+          "80 Ω, A와 B의 전위가 같음"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "50 Ω, B가 A보다 10 V 높음",
+          "70 Ω, A가 B보다 10 V 높음",
+          "35 Ω, B가 A보다 20 V 높음",
+          "105 Ω, A와 B의 전위가 같음"
+        ],
+        "correctChoice": 1,
+        "answer": "50 Ω, B가 A보다 10 V 높음",
+        "acceptableAnswers": [
+          "1",
+          "50 Ω, B가 A보다 10 V 높음"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 4,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전기 회로",
+      "topic": "비저항·길이·단면적 변화",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          60,
+          590,
+          430
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "R′=8ρL/S=8R",
+      "explanation": [
+        "부피 SL가 일정하고 길이가 2L이므로 새 단면적은 S/2이다.",
+        "비저항도 2ρ가 되므로 R′=(2ρ)(2L)/(S/2)=8ρL/S이다."
+      ],
+      "formulas": [
+        "R=ρL/S",
+        "부피 SL=일정"
+      ],
+      "commonMistakes": [
+        "길이만 2배라서 저항도 2배라고 하는 것",
+        "단면적 변화와 비저항 변화를 하나 빼먹는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "새 단면적 S/2",
+          "points": 3
+        },
+        {
+          "criterion": "새 비저항·길이 대입",
+          "points": 4
+        },
+        {
+          "criterion": "8ρL/S",
+          "points": 3
+        }
+      ],
+      "similarProblem": {
+        "prompt": "부피를 유지하며 길이를 3배로 늘리고 비저항이 절반인 물질로 바꾸었다. 새 저항은?",
+        "answer": "(9/2)R",
+        "explanation": "단면적은 S/3, R′=(ρ/2)(3L)/(S/3)=9ρL/(2S)=9R/2이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "(9/2)R"
+        ],
+        "choices": [
+          "(9/2)R",
+          "(3/2)R",
+          "9R",
+          "6R"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "8ρL/S",
+          "4ρL/S",
+          "2ρL/S",
+          "16ρL/S"
+        ],
+        "correctChoice": 1,
+        "answer": "8ρL/S",
+        "acceptableAnswers": [
+          "1",
+          "8ρL/S"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 5,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전기 회로",
+      "topic": "회로를 따라 전위 변화",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          420,
+          590,
+          480
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "X가 Y보다 4 V 높다(V_X-V_Y=4 V).",
+      "explanation": [
+        "전류 방향으로 3 V 전지의 +극에서 -극으로 지나므로 전위가 3 V 내려간다.",
+        "1 Ω 저항에서도 전류 방향으로 IR=1 V 내려간다.",
+        "따라서 X에서 Y로 총 4 V 감소한다."
+      ],
+      "formulas": [
+        "전지 +→-: -ε",
+        "저항에서 전류 방향: -IR"
+      ],
+      "commonMistakes": [
+        "전지 기호의 긴 선이 +극임을 반대로 읽는 것",
+        "저항에서 전류 방향으로 전위가 오른다고 보는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "전지 전위 변화 -3 V",
+          "points": 3
+        },
+        {
+          "criterion": "저항 전위 변화 -1 V",
+          "points": 3
+        },
+        {
+          "criterion": "X가 4 V 높음",
+          "points": 4
+        }
+      ],
+      "similarProblem": {
+        "prompt": "오른쪽으로 2 A가 흐르고, 긴 선이 왼쪽인 5 V 전지와 2 Ω 저항을 차례로 지난다. 왼쪽 P와 오른쪽 Q의 전위 관계는?",
+        "answer": "P가 Q보다 9 V 높다",
+        "explanation": "전지에서 5 V, 저항에서 4 V가 전류 방향으로 감소한다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "P가 Q보다 9 V 높다"
+        ],
+        "choices": [
+          "P가 Q보다 9 V 높다",
+          "Q가 P보다 9 V 높다",
+          "P가 Q보다 1 V 높다",
+          "P와 Q의 전위가 같다"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "X가 Y보다 4 V 높다",
+          "Y가 X보다 4 V 높다",
+          "X가 Y보다 2 V 높다",
+          "X와 Y의 전위가 같다"
+        ],
+        "correctChoice": 1,
+        "answer": "X가 Y보다 4 V 높다",
+        "acceptableAnswers": [
+          "1",
+          "X가 Y보다 4 V 높다"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 6,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전기 회로",
+      "topic": "병렬 부하 추가와 전류계",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          820,
+          590,
+          450
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "A₁의 전류는 증가하고, A₂의 전류는 변하지 않는다.",
+      "explanation": [
+        "같은 전지에 전구를 병렬로 더 연결하면 전체 합성저항이 감소해 전지에서 나오는 전체 전류 A₁은 증가한다.",
+        "각 병렬 가지의 전압은 계속 전지 전압과 같으므로 기존 전구 가지의 전류 A₂는 변하지 않는다."
+      ],
+      "formulas": [
+        "병렬 추가 → R_eq 감소",
+        "각 병렬 가지 전압 일정"
+      ],
+      "commonMistakes": [
+        "전체 전류와 한 가지 전류를 혼동하는 것",
+        "전구 수가 늘면 모든 전구 전류가 나뉜다고 생각하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "A₁ 증가",
+          "points": 5
+        },
+        {
+          "criterion": "A₂ 일정",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "이상적인 전지에 같은 저항을 병렬로 한 개 더 연결했다. 전지 바로 옆 전류계와 기존 한 가지 전류계의 변화는?",
+        "answer": "전체 전류는 증가, 기존 가지 전류는 일정",
+        "explanation": "병렬 가지 수가 늘어 합성저항은 감소하지만 각 가지 전압은 그대로다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "전체 전류는 증가, 기존 가지 전류는 일정"
+        ],
+        "choices": [
+          "전체 전류는 증가, 기존 가지 전류는 일정",
+          "전체 전류는 일정, 기존 가지 전류는 감소",
+          "둘 다 증가",
+          "둘 다 감소"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "A₁ 증가, A₂ 일정",
+          "A₁ 일정, A₂ 감소",
+          "A₁ 감소, A₂ 증가",
+          "A₁·A₂ 모두 감소"
+        ],
+        "correctChoice": 1,
+        "answer": "A₁ 증가, A₂ 일정",
+        "acceptableAnswers": [
+          "1",
+          "A₁ 증가, A₂ 일정"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 7,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "전기 회로",
+      "topic": "병렬 분류와 전력",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          1200,
+          590,
+          520
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "20 Ω 저항 전류 3 A, 소비 전력 180 W",
+      "explanation": [
+        "20 Ω과 30 Ω의 병렬 합성은 12 Ω이다.",
+        "8 Ω과 직렬이므로 전체 저항은 20 Ω, 전체 전류는 100/20=5 A이다.",
+        "8 Ω 전압강하는 40 V라 병렬부 전압은 60 V이다.",
+        "I_20=60/20=3 A, P=I²R=9×20=180 W이다."
+      ],
+      "formulas": [
+        "R_p=20×30/(20+30)=12 Ω",
+        "P=IV=I²R"
+      ],
+      "commonMistakes": [
+        "20 Ω과 30 Ω을 직렬로 더하는 것",
+        "전체 전류 5 A가 20 Ω에 그대로 흐른다고 하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "합성저항과 전체 전류",
+          "points": 5
+        },
+        {
+          "criterion": "병렬부 전압",
+          "points": 5
+        },
+        {
+          "criterion": "20 Ω 전류",
+          "points": 5
+        },
+        {
+          "criterion": "전력",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "24 V 전지에 4 Ω을 직렬로 두고 그 뒤에 12 Ω과 6 Ω을 병렬 연결했다. 6 Ω의 전류와 전력은?",
+        "answer": "2 A, 24 W",
+        "explanation": "병렬 합성 4 Ω, 전체 8 Ω이므로 전체 전류 3 A. 병렬 전압 12 V, 6 Ω 전류 2 A, 전력 24 W이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "2 A, 24 W"
+        ],
+        "choices": [
+          "2 A, 24 W",
+          "3 A, 54 W",
+          "1 A, 6 W",
+          "2 A, 12 W"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "3 A, 180 W",
+          "5 A, 500 W",
+          "2 A, 80 W",
+          "3 A, 60 W"
+        ],
+        "correctChoice": 1,
+        "answer": "3 A, 180 W",
+        "acceptableAnswers": [
+          "1",
+          "3 A, 180 W"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    }
+  ],
+  "featureVersion": "3.5.1-physics1-r10-r14"
+}

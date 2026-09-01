@@ -1,0 +1,766 @@
+{
+  "examId": "physics1-basic-r14",
+  "courseId": "physics1-basic",
+  "round": 14,
+  "title": "물리1 14회차 복습 테스트",
+  "status": "ready",
+  "examDate": "",
+  "questionCount": 9,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics1/r14.pdf",
+  "pages": [
+    "assets/pages/physics1/r14-p1.png"
+  ],
+  "reviewStatus": "corrected",
+  "configVersion": "2026.08.30-r14-v1",
+  "sourceTitle": "물리1 14회차 복습 테스트",
+  "sourceNote": "4번의 Wb 단위를 자기장이 아닌 자속 변화율로 교정했다.",
+  "coreNote": {
+    "summary": "전류가 받는 자기력, 패러데이·렌츠 법칙, 진행파의 속도·위상·매질 운동을 다루는 회차",
+    "concepts": [
+      "자기력 방향은 전류와 자기장에 모두 수직이다.",
+      "유도기전력은 자속 자체가 아니라 자속의 변화율에 비례한다.",
+      "렌츠 법칙은 원래 자속의 “변화”를 방해하는 방향을 정한다.",
+      "진행파의 이동과 매질 입자의 상하 운동을 구분한다."
+    ],
+    "formulas": [
+      "F=ILB sinθ",
+      "|ε|=N|ΔΦ/Δt|",
+      "Φ=BA cosθ",
+      "v=fλ",
+      "a_y=-ω²y"
+    ],
+    "mistakes": [
+      "N→S 자기장 방향을 반대로 잡는 것",
+      "자속 감소일 때 원래 자기장과 반대 방향 유도장을 만든다고 오해하는 것",
+      "파의 진행속도와 입자 속도를 같게 보는 것"
+    ],
+    "checklist": [
+      "전류·자기장·힘 세 방향을 각각 표시했는가?",
+      "자속이 증가하는지 감소하는지 먼저 썼는가?",
+      "파장·이동거리·진폭을 그래프 축에서 따로 읽었는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전자기력",
+      "topic": "자기장 속 전류 도선의 힘",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          55,
+          590,
+          460
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "D 방향",
+      "explanation": [
+        "자기장은 N극에서 S극으로 향하므로 아래쪽 N에서 위쪽 S 방향이다.",
+        "전지의 긴 선이 +극이므로 도선의 전류는 오른쪽 뒤쪽 끝에서 왼쪽 앞쪽 끝으로 흐른다.",
+        "플레밍 왼손 법칙 또는 I×B를 적용하면 힘은 왼쪽 D 방향이다."
+      ],
+      "formulas": [
+        "F=IL×B",
+        "플레밍 왼손 법칙"
+      ],
+      "commonMistakes": [
+        "자기장 방향을 S→N으로 잡는 것",
+        "전자 이동 방향을 전류 방향으로 쓰는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "자기장 방향",
+          "points": 3
+        },
+        {
+          "criterion": "전류 방향",
+          "points": 3
+        },
+        {
+          "criterion": "D 방향",
+          "points": 4
+        }
+      ],
+      "similarProblem": {
+        "prompt": "원문의 전지 극성을 반대로 연결하면 도선의 힘 방향은?",
+        "answer": "B 방향",
+        "explanation": "전류가 반대로 바뀌고 자기장은 그대로라 힘도 D의 반대인 B가 된다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "2",
+          "B 방향"
+        ],
+        "choices": [
+          "A 방향",
+          "B 방향",
+          "C 방향",
+          "D 방향"
+        ],
+        "correctChoice": 2,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "A 방향",
+          "B 방향",
+          "C 방향",
+          "D 방향"
+        ],
+        "correctChoice": 4,
+        "answer": "D 방향",
+        "acceptableAnswers": [
+          "4",
+          "D 방향"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 2,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전자기 유도",
+      "topic": "패러데이 법칙",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          450,
+          590,
+          260
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "1 V",
+      "explanation": [
+        "|ε|=N|ΔΦ|/Δt=250×(2×10⁻⁴)/0.05=1 V이다."
+      ],
+      "formulas": [
+        "|ε|=N|ΔΦ/Δt|"
+      ],
+      "commonMistakes": [
+        "감은 수 250을 빼먹는 것",
+        "0.05초를 5초로 넣는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "공식",
+          "points": 4
+        },
+        {
+          "criterion": "1 V",
+          "points": 6
+        }
+      ],
+      "similarProblem": {
+        "prompt": "500회 코일의 자속이 0.10초 동안 3×10⁻⁴ Wb 변했다. 유도기전력은?",
+        "answer": "1.5 V",
+        "explanation": "500×3×10⁻⁴/0.10=1.5 V이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "1.5 V"
+        ],
+        "choices": [
+          "1.5 V",
+          "0.15 V",
+          "15 V",
+          "3 V"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "1 V",
+          "0.1 V",
+          "10 V",
+          "5 V"
+        ],
+        "correctChoice": 1,
+        "answer": "1 V",
+        "acceptableAnswers": [
+          "1",
+          "1 V"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 3,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전자기 유도",
+      "topic": "자기장 변화와 코일 자속",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          660,
+          590,
+          260
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "0.48 V",
+      "explanation": [
+        "코일 면이 자기장에 수직이므로 한 회당 자속 변화는 AΔB=(3×10⁻³)(8-6)=6×10⁻³ Wb이다.",
+        "|ε|=N AΔB/Δt=40×6×10⁻³/0.5=0.48 V이다."
+      ],
+      "formulas": [
+        "Φ=BA",
+        "|ε|=NA|ΔB|/Δt"
+      ],
+      "commonMistakes": [
+        "40회를 곱하지 않는 것",
+        "자기장 변화량을 8 T로 쓰는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "자속 변화",
+          "points": 4
+        },
+        {
+          "criterion": "0.48 V",
+          "points": 6
+        }
+      ],
+      "similarProblem": {
+        "prompt": "100회, 면적 2×10⁻³ m² 코일에서 자기장이 0.2초 동안 1 T에서 4 T로 변한다. 기전력은?",
+        "answer": "3 V",
+        "explanation": "100×2×10⁻³×3/0.2=3 V이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "3 V"
+        ],
+        "choices": [
+          "3 V",
+          "1.5 V",
+          "6 V",
+          "0.3 V"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "0.48 V",
+          "0.24 V",
+          "4.8 V",
+          "0.12 V"
+        ],
+        "correctChoice": 1,
+        "answer": "0.48 V",
+        "acceptableAnswers": [
+          "1",
+          "0.48 V"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 4,
+      "maxPoints": 15,
+      "type": "subjective",
+      "unit": "전자기 유도",
+      "topic": "자속 변화율과 유도전류",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          850,
+          590,
+          330
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "원문은 “자기장이 Wb로 변한다”고 썼으나 Wb는 자속 단위이다. “한 회를 지나는 자속이 매초 4.0×10⁻³ Wb 변한다”로 교정했다.",
+      "answer": "유도기전력 6 V, 30 Ω 연결 시 전류 0.2 A",
+      "explanation": [
+        "문장의 4.0×10⁻³ Wb/s는 코일 한 회를 지나는 자속 변화율이다.",
+        "|ε|=N|dΦ/dt|=1500×4.0×10⁻³=6 V이다.",
+        "I=ε/R=6/30=0.2 A이다."
+      ],
+      "formulas": [
+        "|ε|=N|dΦ/dt|",
+        "I=ε/R"
+      ],
+      "commonMistakes": [
+        "자기장의 단위를 Wb로 쓰는 오류를 그대로 받아들이는 것",
+        "1500을 나누는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "기전력 6 V",
+          "points": 10
+        },
+        {
+          "criterion": "전류 0.2 A",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "800회 코일의 한 회당 자속 변화율이 2.5×10⁻³ Wb/s이고 10 Ω을 연결했다. 기전력과 전류는?",
+        "answer": "2 V, 0.2 A",
+        "explanation": "ε=800×2.5×10⁻³=2 V, I=2/10=0.2 A이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "2 V, 0.2 A"
+        ],
+        "choices": [
+          "2 V, 0.2 A",
+          "20 V, 2 A",
+          "2 V, 5 A",
+          "0.2 V, 0.02 A"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "6 V, 0.2 A",
+          "0.006 V, 0.0002 A",
+          "60 V, 2 A",
+          "6 V, 5 A"
+        ],
+        "correctChoice": 1,
+        "answer": "6 V, 0.2 A",
+        "acceptableAnswers": [
+          "1",
+          "6 V, 0.2 A"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 5,
+      "maxPoints": 15,
+      "type": "subjective",
+      "unit": "전자기 유도",
+      "topic": "면적 변화에 의한 유도전류",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          1050,
+          590,
+          650
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "유도전류 방향: 시계방향, 크기: 10 A, 유도기전력: 2 V",
+      "explanation": [
+        "면적 감소율은 0.2/0.1=2 m²/s이고 |ε|=B|dA/dt|=1×2=2 V이다.",
+        "I=ε/R=2/0.2=10 A이다.",
+        "지면 안쪽 자속이 감소하므로 이를 유지하려는 유도 자기장도 지면 안쪽이어야 하며, 오른손 법칙상 시계방향이다."
+      ],
+      "formulas": [
+        "|ε|=|d(BA)/dt|",
+        "I=ε/R",
+        "렌츠 법칙"
+      ],
+      "commonMistakes": [
+        "면적 감소이므로 무조건 반시계라고 하는 것",
+        "0.2 m²/0.1 s를 0.02로 계산하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "렌츠 법칙과 시계방향",
+          "points": 5
+        },
+        {
+          "criterion": "2 V",
+          "points": 5
+        },
+        {
+          "criterion": "10 A",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "지면 안쪽 0.5 T 자기장 속 원형도선의 면적이 0.1초당 0.3 m²씩 증가한다. R=0.3 Ω일 때?",
+        "answer": "반시계방향, 5 A, 1.5 V",
+        "explanation": "안쪽 자속 증가를 막기 위해 바깥쪽 자기장을 만드는 반시계 전류가 흐른다. ε=0.5×3=1.5 V, I=5 A이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "반시계방향, 5 A, 1.5 V"
+        ],
+        "choices": [
+          "반시계방향, 5 A, 1.5 V",
+          "시계방향, 5 A, 1.5 V",
+          "반시계방향, 1.5 A, 5 V",
+          "시계방향, 3 A, 0.9 V"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "시계방향, 10 A, 2 V",
+          "반시계방향, 10 A, 2 V",
+          "시계방향, 2 A, 10 V",
+          "반시계방향, 2 A, 0.4 V"
+        ],
+        "correctChoice": 1,
+        "answer": "시계방향, 10 A, 2 V",
+        "acceptableAnswers": [
+          "1",
+          "시계방향, 10 A, 2 V"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 6,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "전자기 유도",
+      "topic": "유도전류를 크게 하는 조건",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          55,
+          590,
+          400
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "예: 자석을 더 빠르게 움직인다, 더 강한 자석을 사용한다. 또한 코일 감은 수·단면적을 늘리거나 철심을 넣어도 된다.",
+      "explanation": [
+        "유도기전력은 자속 변화율과 감은 수에 비례한다.",
+        "자석을 빠르게 움직이거나 강한 자석을 쓰면 자속 변화가 커진다.",
+        "같은 저항이라면 유도기전력이 커질수록 전류도 커진다."
+      ],
+      "formulas": [
+        "|ε|=N|ΔΦ/Δt|",
+        "I=ε/R"
+      ],
+      "commonMistakes": [
+        "자석을 멀리 천천히 움직이는 것을 고르는 것",
+        "변화하지 않는 큰 자기장만 있으면 전류가 흐른다고 생각하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "타당한 조건 1개",
+          "points": 5
+        },
+        {
+          "criterion": "서로 다른 타당한 조건 1개",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "다른 조건이 같을 때 유도기전력을 정확히 2배로 만드는 변화는?",
+        "answer": "코일 감은 수를 2배로 한다.",
+        "explanation": "ε=NΔΦ/Δt이므로 감은 수를 2배로 하면 정확히 2배가 된다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "코일 감은 수를 2배로 한다."
+        ],
+        "choices": [
+          "코일 감은 수를 2배로 한다.",
+          "코일 저항을 2배로 한다.",
+          "자석을 멈춘다.",
+          "코일 감은 수를 절반으로 한다."
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "자석을 더 빠르게 움직이고, 더 강한 자석 또는 감은 수가 많은 코일을 사용한다.",
+          "자석을 멈추고 코일 저항을 크게 한다.",
+          "자석을 더 멀리 두고 천천히 움직인다.",
+          "코일 감은 수를 줄이고 자석을 고정한다."
+        ],
+        "correctChoice": 1,
+        "answer": "자석을 더 빠르게 움직이고, 더 강한 자석 또는 감은 수가 많은 코일을 사용한다.",
+        "acceptableAnswers": [
+          "1",
+          "자석을 더 빠르게 움직이고, 더 강한 자석 또는 감은 수가 많은 코일을 사용한다."
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 7,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "파동",
+      "topic": "파동 그래프에서 파장·속력·진동수",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          420,
+          590,
+          580
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "f=1.25 Hz, T=0.8 s, λ=1 m, v=1.25 m/s, A=0.5 m",
+      "explanation": [
+        "실선은 x=0, 0.5, 1 m에서 축과 만나 한 파장 λ=1 m이다.",
+        "그래프에 표시된 두 파형의 이동 거리는 0.125 m이고 시간 간격은 0.1 s이므로 v=0.125/0.1=1.25 m/s이다.",
+        "f=v/λ=1.25 Hz, T=1/f=0.8 s이며 그래프 최대 변위는 0.5 m이다."
+      ],
+      "formulas": [
+        "v=fλ",
+        "T=1/f"
+      ],
+      "commonMistakes": [
+        "0.5 m를 파장으로 읽는 것",
+        "0.1초 표시를 주기로 해석하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "λ=1 m",
+          "points": 2
+        },
+        {
+          "criterion": "v=1.25 m/s",
+          "points": 2
+        },
+        {
+          "criterion": "f=1.25 Hz",
+          "points": 2
+        },
+        {
+          "criterion": "T=0.8 s",
+          "points": 2
+        },
+        {
+          "criterion": "A=0.5 m",
+          "points": 2
+        }
+      ],
+      "similarProblem": {
+        "prompt": "파장 2 m인 파가 0.25초 동안 오른쪽으로 0.5 m 이동하며 진폭은 0.3 m이다. f,T,v,A는?",
+        "answer": "f=1 Hz, T=1 s, v=2 m/s, A=0.3 m",
+        "explanation": "v=0.5/0.25=2 m/s, f=v/λ=1 Hz, T=1 s이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "f=1 Hz, T=1 s, v=2 m/s, A=0.3 m"
+        ],
+        "choices": [
+          "f=1 Hz, T=1 s, v=2 m/s, A=0.3 m",
+          "f=2 Hz, T=0.5 s, v=2 m/s, A=0.3 m",
+          "f=0.5 Hz, T=2 s, v=1 m/s, A=0.3 m",
+          "f=1 Hz, T=1 s, v=0.5 m/s, A=0.6 m"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "1.25 Hz, 0.8 s, 1 m, 1.25 m/s, 0.5 m",
+          "1 Hz, 1 s, 1 m, 1 m/s, 0.5 m",
+          "2.5 Hz, 0.4 s, 0.5 m, 1.25 m/s, 0.5 m",
+          "10 Hz, 0.1 s, 1 m, 10 m/s, 0.5 m"
+        ],
+        "correctChoice": 1,
+        "answer": "1.25 Hz, 0.8 s, 1 m, 1.25 m/s, 0.5 m",
+        "acceptableAnswers": [
+          "1",
+          "1.25 Hz, 0.8 s, 1 m, 1.25 m/s, 0.5 m"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 8,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "파동",
+      "topic": "진행파에서 매질 속도·가속도",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          920,
+          590,
+          370
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "(1) x=0.5 m (2) x=0.75 m",
+      "explanation": [
+        "왼쪽 진행파 y=f(x+vt)에서 매질의 순간속도는 ∂y/∂t=v∂y/∂x이므로 그래프 기울기와 같은 부호이다.",
+        "x=0.5 m는 하강하는 영점이라 기울기가 가장 음수이므로 아래쪽 속도가 최대이다.",
+        "매질 가속도는 a_y=-ω²y이므로 위쪽 가속도는 변위가 가장 아래인 골 x=0.75 m에서 최대이다."
+      ],
+      "formulas": [
+        "왼쪽 진행파: v_y=+v·∂y/∂x",
+        "a_y=-ω²y"
+      ],
+      "commonMistakes": [
+        "파의 진행속도와 매질 입자의 속도를 같은 것으로 보는 것",
+        "가속도가 영점에서 최대라고 생각하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "속도 관계와 x=0.5 m",
+          "points": 5
+        },
+        {
+          "criterion": "가속도 관계와 x=0.75 m",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "오른쪽 진행파가 x=0,1,2 m에서 축을 만나고 x=0.5 m가 마루, x=1.5 m가 골이다. 아래쪽 속도 최대점과 위쪽 가속도 최대점은?",
+        "answer": "x=0 또는 2 m의 상승 영점, x=1.5 m",
+        "explanation": "오른쪽 진행파는 v_y=-v y_x이므로 상승 영점에서 아래쪽 속도가 최대이고, 골에서 위쪽 가속도가 최대이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "x=0 또는 2 m의 상승 영점, x=1.5 m"
+        ],
+        "choices": [
+          "x=0 또는 2 m의 상승 영점, x=1.5 m",
+          "x=1 m, x=0.5 m",
+          "x=0.5 m, x=1 m",
+          "x=1.5 m, x=0.5 m"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "아래쪽 속도 최대 x=0.5 m, 위쪽 가속도 최대 x=0.75 m",
+          "아래쪽 속도 최대 x=0.25 m, 위쪽 가속도 최대 x=0.5 m",
+          "아래쪽 속도 최대 x=0 m, 위쪽 가속도 최대 x=0.25 m",
+          "아래쪽 속도 최대 x=0.75 m, 위쪽 가속도 최대 x=0.25 m"
+        ],
+        "correctChoice": 1,
+        "answer": "아래쪽 속도 최대 x=0.5 m, 위쪽 가속도 최대 x=0.75 m",
+        "acceptableAnswers": [
+          "1",
+          "아래쪽 속도 최대 x=0.5 m, 위쪽 가속도 최대 x=0.75 m"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 9,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "파동",
+      "topic": "진행파의 공간 이동",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          1230,
+          590,
+          500
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "+x로 3λ/4 이동한 그래프는 원래 그래프를 오른쪽으로 3λ/4(또는 왼쪽으로 λ/4) 평행이동한다. -x로 3λ/4 이동한 그래프는 왼쪽으로 3λ/4(또는 오른쪽으로 λ/4) 평행이동한다.",
+      "explanation": [
+        "진행 방향으로 이동 거리만큼 그래프 전체를 평행이동한다.",
+        "주기성 때문에 +3λ/4 이동은 -λ/4 이동과 같은 모양이고, -3λ/4 이동은 +λ/4 이동과 같다.",
+        "초기 그래프를 sin형으로 보면 x=0에서 +x 이동 후에는 마루, -x 이동 후에는 골에서 시작한다."
+      ],
+      "formulas": [
+        "y(x,t)=f(x-vt) (+x)",
+        "y(x,t)=f(x+vt) (-x)"
+      ],
+      "commonMistakes": [
+        "파형을 상하 반전만 하는 것",
+        "3λ/4 이동을 3/4주기 뒤로만 생각하고 진행 방향을 놓치는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "+x 3λ/4 평행이동",
+          "points": 5
+        },
+        {
+          "criterion": "-x 3λ/4 평행이동",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "prompt": "초기 파형 y=A sin(2πx/λ)을 +x로 λ/4, -x로 λ/4 이동했다. x=0에서 각 변위는?",
+        "answer": "+x 이동: -A, -x 이동: +A",
+        "explanation": "y_+(0)=A sin(-π/2)=-A, y_-(0)=A sin(+π/2)=+A이다.",
+        "inputMode": "choice",
+        "acceptableAnswers": [
+          "1",
+          "+x 이동: -A, -x 이동: +A"
+        ],
+        "choices": [
+          "+x 이동: -A, -x 이동: +A",
+          "+x 이동: +A, -x 이동: -A",
+          "둘 다 0",
+          "둘 다 +A"
+        ],
+        "correctChoice": 1,
+        "displayMode": "choice-card"
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "+x 이동 그래프는 x=0에서 마루로 시작하고, -x 이동 그래프는 x=0에서 골로 시작한다.",
+          "두 그래프 모두 x=0에서 위로 지나는 영점으로 시작한다.",
+          "+x 이동은 골, -x 이동은 마루로 시작한다.",
+          "두 그래프 모두 원래 그래프와 완전히 같다."
+        ],
+        "correctChoice": 1,
+        "answer": "+x 이동 그래프는 x=0에서 마루로 시작하고, -x 이동 그래프는 x=0에서 골로 시작한다.",
+        "acceptableAnswers": [
+          "1",
+          "+x 이동 그래프는 x=0에서 마루로 시작하고, -x 이동 그래프는 x=0에서 골로 시작한다."
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    }
+  ],
+  "featureVersion": "3.5.1-physics1-r10-r14"
+}

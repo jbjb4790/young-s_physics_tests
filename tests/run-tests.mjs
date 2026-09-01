@@ -64,6 +64,16 @@ test("현재 자료가 있는 물리1 역학·전자기 총괄만 준비 완료"
 test("물리2 일반 총괄 준비 항목은 1~20 선택번호 정책을 예약",()=>comprehensive.filter(e=>e.courseId==="physics2-basic").forEach(e=>{assert.equal(e.inputProfile.objectiveMode,"choice-number");assert.equal(e.inputProfile.objectiveRange,"1-20");assert.equal(e.inputProfile.subjectiveMode,"points")}));
 test("물리1심화·물리2심화 총괄은 1~25 전체 선택번호 정책",()=>["physics1-advanced-total","physics2-advanced-total"].forEach(id=>{const e=YP.getExam(id);assert.equal(e.inputProfile.objectiveMode,"choice-number");assert.equal(e.inputProfile.objectiveRange,"1-25");assert.equal(e.inputProfile.subjectiveMode,"none")}));
 
+// Physics 1 weekly rounds 10-14 content
+
+test("물리1 10~14회가 준비 완료 100점 시험으로 등록",()=>{
+  for(const round of [10,11,12,13,14]){const e=YP.getExam(`physics1-basic-r${String(round).padStart(2,"0")}`);assert.equal(e.status,"ready");assert.equal(e.maxScore,100);assert.equal(e.questions.reduce((a,q)=>a+q.maxPoints,0),100);assert.ok(e.pdf.endsWith(`r${round}.pdf`));}
+});
+test("물리1 10~14회 문항 수는 5·8·7·15·9",()=>assert.deepEqual([10,11,12,13,14].map(r=>YP.getExam(`physics1-basic-r${r}`).questionCount),[5,8,7,15,9]));
+test("물리1 10~14회 총 44문항과 전체 준비 완료 152문항",()=>{const added=[10,11,12,13,14].flatMap(r=>YP.getExam(`physics1-basic-r${r}`).questions);assert.equal(added.length,44);assert.equal(catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).length,152)});
+test("13회 솔레노이드 극성 문항은 권선 정보 부족으로 확인 필요",()=>{const q=YP.getExam("physics1-basic-r13").questions.find(q=>q.no===7);assert.equal(q.reviewStatus,"needs-review");assert.match(q.answer,/결정할 수 없다/)});
+test("새 회차 핵심 정답 검산",()=>{assert.match(YP.getExam("physics1-basic-r10").questions[0].answer,/1\/8/);assert.equal(YP.getExam("physics1-basic-r11").questions[0].answer,"0 N/C");assert.match(YP.getExam("physics1-basic-r12").questions[6].answer,/180 W/);assert.equal(YP.getExam("physics1-basic-r13").questions[8].answer,"5B₀");assert.match(YP.getExam("physics1-basic-r14").questions[6].answer,/f=1\.25 Hz/)});
+
 // Comprehensive assessment scoring
 
 test("각 물리1 총괄은 25문항·100점",()=>[mech,em].forEach(e=>{assert.equal(e.questionCount,25);assert.equal(e.maxScore,100);assert.equal(e.questions.reduce((a,q)=>a+q.maxPoints,0),100)}));
@@ -505,11 +515,11 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
   assert.match(src,/normalizeBridgeOriginInput_\(rawOrigin\)/);
 });
 
-// v3.5.0 student lifetime portal and v3.4.4 choice-based retry learning
+// v3.5.1 physics1 r10-r14 data addition, student lifetime portal, and choice-based retry learning
 
-test("v3.5.0 학생 한 명당 하나의 영구 통합 링크 기능 버전",()=>{
-  assert.equal(catalog.featureVersion,"3.5.0-student-lifetime-portal");
-  assert.equal(JSON.parse(read("package.json")).version,"3.5.0");
+test("v3.5.1은 학생 영구 통합 링크를 유지하며 물리1 10~14회를 추가",()=>{
+  assert.equal(catalog.featureVersion,"3.5.1-physics1-r10-r14");
+  assert.equal(JSON.parse(read("package.json")).version,"3.5.1");
 });
 
 test("학생 통합 포털 페이지와 네 개의 학부모 탭이 존재",()=>{
@@ -602,9 +612,9 @@ test("설정과 상위 브리지는 report.html과 portal.html을 모두 공개 
   assert.match(launch,/report\|portal/);
 });
 
-test("준비 완료 108문항의 원문 재도전은 모두 보기 선택 방식",()=>{
+test("준비 완료 152문항의 원문 재도전은 모두 보기 선택 방식",()=>{
   const readyQuestions=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]);
-  assert.equal(readyQuestions.length,108);
+  assert.equal(readyQuestions.length,152);
   readyQuestions.forEach(q=>{
     const r=q.originalRetry||{};
     assert.equal(r.inputMode,"choice",`원문 ${q.no}`);
@@ -614,7 +624,7 @@ test("준비 완료 108문항의 원문 재도전은 모두 보기 선택 방식
   });
 });
 
-test("준비 완료 108문항의 동형 문제도 모두 보기 선택 방식",()=>{
+test("준비 완료 152문항의 동형 문제도 모두 보기 선택 방식",()=>{
   const readyQuestions=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]);
   readyQuestions.forEach(q=>{
     const r=q.similarProblem||{};
@@ -625,9 +635,9 @@ test("준비 완료 108문항의 동형 문제도 모두 보기 선택 방식",(
   });
 });
 
-test("기존 문자열 입력 대상 68문항도 자유 입력 없이 정답 보기 선택",()=>{
+test("문자열 입력 대상 112문항도 자유 입력 없이 정답 보기 선택",()=>{
   const qs=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).filter(q=>q.type!=="objective"||q.answerKey==null);
-  assert.equal(qs.length,68);
+  assert.equal(qs.length,112);
   qs.forEach(q=>{assert.equal(q.originalRetry.inputMode,"choice");assert.ok([4,5].includes(q.originalRetry.choices.length));assert.equal(q.similarProblem.inputMode,"choice")});
 });
 
@@ -644,9 +654,9 @@ test("학생 리포트는 원문·동형을 ①~⑤ 라디오 카드로만 제�
 });
 
 
-test("단답형·서술형 65문항의 원문과 동형 문제도 모두 4지·5지 객관식",()=>{
+test("단답형·서술형 109문항의 원문과 동형 문제도 모두 4지·5지 객관식",()=>{
   const qs=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).filter(q=>q.type==="subjective");
-  assert.equal(qs.length,65);
+  assert.equal(qs.length,109);
   for(const q of qs)for(const key of ["originalRetry","similarProblem"]){
     const c=q[key];assert.equal(c.inputMode,"choice");assert.ok([4,5].includes(c.choices.length));assert.ok(c.correctChoice>=1&&c.correctChoice<=c.choices.length);
   }

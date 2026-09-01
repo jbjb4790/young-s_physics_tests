@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-08-26T12:00:00Z",
+  "generatedAt": "2026-08-30T18:00:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -5098,55 +5098,3792 @@
       "courseId": "physics1-basic",
       "round": 10,
       "title": "물리1 10회차 복습 테스트",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.10-1"
+      "status": "ready",
+      "examDate": "",
+      "questionCount": 5,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics1/r10.pdf",
+      "pages": [
+        "assets/pages/physics1/r10-p1.png"
+      ],
+      "reviewStatus": "verified",
+      "configVersion": "2026.08.30-r10-v1",
+      "sourceTitle": "물리1 10회차 복습 테스트",
+      "sourceNote": "",
+      "coreNote": {
+        "summary": "쿨롱 법칙, 도체의 전하 재분배, 정전기 유도와 여러 전하의 벡터 합성을 다루는 회차",
+        "concepts": [
+          "같은 크기 도체구를 접촉시키면 총전하가 절반씩 분배된다.",
+          "중성 도체도 정전기 유도로 대전체에 끌릴 수 있다.",
+          "전기력은 방향을 가진 벡터이며 대칭 성분은 상쇄될 수 있다.",
+          "검전기 접지는 손가락을 떼는 순서가 중요하다."
+        ],
+        "formulas": [
+          "F=k|q₁q₂|/r²",
+          "E=k|Q|/r²",
+          "접촉 후 q′=(q₁+q₂)/2"
+        ],
+        "mistakes": [
+          "거리 r 대신 r²을 쓰지 않는 것",
+          "반대 부호 전하의 영점을 두 전하 사이로 잡는 것",
+          "검전기 접지 순서를 혼동하는 것"
+        ],
+        "checklist": [
+          "각 힘의 방향을 먼저 화살표로 표시했는가?",
+          "대칭으로 상쇄되는 힘을 찾았는가?",
+          "접촉 전후 전하량 보존을 확인했는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전기력",
+          "topic": "도체구 접촉 후 전하 재분배",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              70,
+              590,
+              360
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "F′ = (1/8)F이며, 접촉 후에는 두 구가 모두 +1 C이므로 서로 밀어낸다.",
+          "explanation": [
+            "처음 전기력은 F=k|(+4)(-2)|/r²=8k/r²이다.",
+            "같은 크기의 금속구를 접촉시키면 전체 전하 +2 C가 똑같이 나뉘어 각 구가 +1 C가 된다.",
+            "같은 거리에서 F′=k(1)(1)/r²이므로 F′/F=1/8이다."
+          ],
+          "formulas": [
+            "F=k|q₁q₂|/r²",
+            "같은 크기 도체구 접촉 후 전하량=(q₁+q₂)/2"
+          ],
+          "commonMistakes": [
+            "접촉 후에도 처음 전하량을 그대로 곱하는 것",
+            "힘의 방향이 인력에서 척력으로 바뀌는 점을 놓치는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "접촉 후 각 전하 +1 C",
+              "points": 4
+            },
+            {
+              "criterion": "처음·나중 힘 비교",
+              "points": 4
+            },
+            {
+              "criterion": "1/8 및 척력",
+              "points": 2
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 크기의 금속구가 +6 C와 -2 C로 대전되어 있다. 접촉 후 원래 거리로 떼었을 때 전기력은 처음의 몇 배이며 방향은?",
+            "answer": "1/3배, 척력",
+            "explanation": "접촉 후 각 구는 +2 C이다. 처음 전하 곱의 크기는 12, 나중은 4이므로 힘은 1/3배이고 같은 부호라 척력이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "1/3배, 척력"
+            ],
+            "choices": [
+              "1/3배, 척력",
+              "1/6배, 인력",
+              "3배, 척력",
+              "1/2배, 인력"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "1/8배, 척력",
+              "1/4배, 척력",
+              "1/2배, 인력",
+              "8배, 척력"
+            ],
+            "correctChoice": 1,
+            "answer": "1/8배, 척력",
+            "acceptableAnswers": [
+              "1",
+              "1/8배, 척력"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 20,
+          "type": "subjective",
+          "unit": "정전기",
+          "topic": "도체구 사이 인력·척력과 중성 도체",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              340,
+              590,
+              520
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "A: 중성, B: 양전하, C: 중성, D: 양전하",
+          "explanation": [
+            "(가)에서 B가 양전하인데 A와 서로 끌어당기므로 A는 음전하 또는 중성일 수 있다.",
+            "(나)에서 A와 C가 가까이 있어도 기울지 않으므로 도체의 유도까지 고려하면 A와 C가 모두 중성이다.",
+            "(다)에서 B와 D가 밀어내므로 D는 B와 같은 양전하이다."
+          ],
+          "formulas": [
+            "같은 부호: 척력",
+            "다른 부호: 인력",
+            "대전체와 중성 도체: 정전기 유도로 인력"
+          ],
+          "commonMistakes": [
+            "끌어당기면 반드시 서로 반대 부호라고 단정하는 것",
+            "중성 도체도 대전체에 끌릴 수 있음을 잊는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "A 중성",
+              "points": 5
+            },
+            {
+              "criterion": "B 양전하",
+              "points": 5
+            },
+            {
+              "criterion": "C 중성",
+              "points": 5
+            },
+            {
+              "criterion": "D 양전하",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "도체구 X, Y, Z, W가 있다. Y는 음전하이다. X-Y는 서로 끌리고, X-Z는 가까이 해도 움직이지 않으며, Y-W는 서로 밀어낸다. 각 상태는?",
+            "answer": "X 중성, Y 음전하, Z 중성, W 음전하",
+            "explanation": "X-Z가 무반응이므로 둘 다 중성이고, Y-W가 척력이므로 W는 Y와 같은 음전하이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "X 중성, Y 음전하, Z 중성, W 음전하"
+            ],
+            "choices": [
+              "X 중성, Y 음전하, Z 중성, W 음전하",
+              "X 양전하, Y 음전하, Z 음전하, W 양전하",
+              "X 음전하, Y 음전하, Z 중성, W 음전하",
+              "X 중성, Y 음전하, Z 양전하, W 양전하"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "A 중성, B 양전하, C 중성, D 양전하",
+              "A 음전하, B 양전하, C 양전하, D 음전하",
+              "A 양전하, B 양전하, C 중성, D 양전하",
+              "A 중성, B 양전하, C 음전하, D 음전하"
+            ],
+            "correctChoice": 1,
+            "answer": "A 중성, B 양전하, C 중성, D 양전하",
+            "acceptableAnswers": [
+              "1",
+              "A 중성, B 양전하, C 중성, D 양전하"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 20,
+          "type": "subjective",
+          "unit": "전기력",
+          "topic": "일직선상 세 전하의 합력과 영점",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              800,
+              590,
+              820
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "(1) P가 받는 합력은 왼쪽이다. (2) 전기력이 0이 되는 곳은 A의 왼쪽이다.",
+          "explanation": [
+            "P에서 B(-5×10⁻⁸ C)의 인력은 왼쪽이고 A(+2×10⁻⁸ C)의 척력은 오른쪽이다.",
+            "F_B=2.8125×10⁻³ N, F_A=1.8×10⁻⁴ N이므로 합력은 왼쪽이다.",
+            "서로 반대 부호인 두 전하의 전기장 영점은 두 전하 사이가 아니라 전하량의 크기가 작은 A 바깥쪽에 생긴다."
+          ],
+          "formulas": [
+            "F=k|q₁q₂|/r²",
+            "반대 부호 두 전하의 영점: 작은 전하 쪽 바깥"
+          ],
+          "commonMistakes": [
+            "거리의 제곱을 빼먹는 것",
+            "반대 부호이므로 무조건 AB 사이에서 상쇄된다고 생각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "두 힘 방향 판정",
+              "points": 5
+            },
+            {
+              "criterion": "크기 비교와 왼쪽 합력",
+              "points": 5
+            },
+            {
+              "criterion": "영점 구간 원리",
+              "points": 5
+            },
+            {
+              "criterion": "A 왼쪽 선택",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "A에 +1×10⁻⁸ C, B에 -4×10⁻⁸ C가 6 cm 간격으로 있다. 양전하 P를 B의 오른쪽 3 cm에 놓았다. P의 합력 방향과 전기장 영점 구간은?",
+            "answer": "합력 왼쪽, 영점은 A 왼쪽",
+            "explanation": "B의 인력이 매우 크므로 P의 합력은 왼쪽이다. 반대 부호이며 A가 작은 전하이므로 영점은 A 왼쪽이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "합력 왼쪽, 영점은 A 왼쪽"
+            ],
+            "choices": [
+              "합력 왼쪽, 영점은 A 왼쪽",
+              "합력 오른쪽, 영점은 A 왼쪽",
+              "합력 왼쪽, 영점은 AB 사이",
+              "합력 오른쪽, 영점은 B 오른쪽"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "합력 왼쪽, 영점은 A 왼쪽",
+              "합력 오른쪽, 영점은 AB 사이",
+              "합력 왼쪽, 영점은 B 오른쪽",
+              "합력 오른쪽, 영점은 A 왼쪽"
+            ],
+            "correctChoice": 1,
+            "answer": "합력 왼쪽, 영점은 A 왼쪽",
+            "acceptableAnswers": [
+              "1",
+              "합력 왼쪽, 영점은 A 왼쪽"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 15,
+          "type": "subjective",
+          "unit": "정전기",
+          "topic": "검전기의 유도·접지",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              70,
+              590,
+              880
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "과정 1: 음전하, 과정 2: 중성, 과정 3: 양전하",
+          "explanation": [
+            "음전하 막대를 가까이 하면 전자가 금속박 쪽으로 밀려 금속박이 음전하가 된다.",
+            "막대를 둔 채 접지하면 밀려난 전자가 손가락을 통해 지면으로 빠져나가 금속박이 중성이 되어 닫힌다.",
+            "손가락을 먼저 떼고 막대를 치우면 검전기 전체에 남은 양전하가 퍼져 금속박도 양전하가 된다."
+          ],
+          "formulas": [
+            "정전기 유도",
+            "접지: 전자가 지면과 이동",
+            "손가락을 먼저 떼어 전하를 고정"
+          ],
+          "commonMistakes": [
+            "막대를 치우기 전에 손을 떼는 순서를 바꾸는 것",
+            "과정 2에서 금속박을 양전하라고 바로 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "과정 1 음전하",
+              "points": 5
+            },
+            {
+              "criterion": "과정 2 중성",
+              "points": 5
+            },
+            {
+              "criterion": "과정 3 양전하",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "양전하 유리 막대를 검전기 금속판에 가까이 하고, 손가락으로 접지한 뒤 손을 먼저 떼고 막대를 치웠다. 금속박 전하 변화는?",
+            "answer": "양전하 → 중성 → 음전하",
+            "explanation": "양전하 막대가 전자를 금속판으로 끌어당겨 처음 금속박은 양전하, 접지 중에는 중성, 마지막에는 검전기가 음전하가 된다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "양전하 → 중성 → 음전하"
+            ],
+            "choices": [
+              "양전하 → 중성 → 음전하",
+              "음전하 → 중성 → 양전하",
+              "양전하 → 음전하 → 중성",
+              "중성 → 양전하 → 음전하"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "음전하 → 중성 → 양전하",
+              "양전하 → 중성 → 음전하",
+              "음전하 → 양전하 → 중성",
+              "중성 → 음전하 → 양전하"
+            ],
+            "correctChoice": 1,
+            "answer": "음전하 → 중성 → 양전하",
+            "acceptableAnswers": [
+              "1",
+              "음전하 → 중성 → 양전하"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 35,
+          "type": "subjective",
+          "unit": "전기력",
+          "topic": "정사각형 중심 전하의 벡터 합력",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              820,
+              590,
+              860
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "(1) 오른쪽 위 대각선 방향 (2) 2.7×10¹⁰ N (3) -3 C로 바꾸면 크기는 같고 왼쪽 아래 대각선 방향",
+          "explanation": [
+            "중심에서 네 꼭짓점까지 거리는 √2 m이다.",
+            "왼쪽 위 +2 C와 오른쪽 아래 +2 C가 만드는 힘은 크기가 같고 방향이 반대라 상쇄된다.",
+            "오른쪽 위 -1 C의 인력과 왼쪽 아래 +1 C의 척력은 모두 오른쪽 위 방향이며 각각 1.35×10¹⁰ N이다.",
+            "중심 전하의 부호를 바꾸면 모든 힘 방향이 반대가 되므로 크기는 같고 방향만 왼쪽 아래로 바뀐다."
+          ],
+          "formulas": [
+            "F=k|qQ|/r²",
+            "r=√(1²+1²)=√2 m",
+            "벡터는 성분 또는 대칭으로 합성"
+          ],
+          "commonMistakes": [
+            "네 힘의 크기를 단순히 모두 더하는 것",
+            "중심 전하 부호를 바꾸면 힘의 크기도 달라진다고 생각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "대칭 힘 상쇄",
+              "points": 7
+            },
+            {
+              "criterion": "합력 방향",
+              "points": 5
+            },
+            {
+              "criterion": "합력 크기",
+              "points": 10
+            },
+            {
+              "criterion": "-3 C일 때 크기·방향",
+              "points": 13
+            }
+          ],
+          "similarProblem": {
+            "prompt": "한 변 2 m 정사각형의 왼쪽 위와 오른쪽 아래에 +2 C, 오른쪽 위에 -1 C, 왼쪽 아래에 +1 C가 있다. 중심에 +2 C를 놓으면 합력은?",
+            "answer": "오른쪽 위, 1.8×10¹⁰ N",
+            "explanation": "+2 C 쌍은 상쇄되고 -1 C의 인력과 +1 C의 척력이 오른쪽 위로 각각 9×10⁹ N이므로 합은 1.8×10¹⁰ N이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "오른쪽 위, 1.8×10¹⁰ N"
+            ],
+            "choices": [
+              "오른쪽 위, 1.8×10¹⁰ N",
+              "왼쪽 아래, 1.8×10¹⁰ N",
+              "오른쪽 위, 9×10⁹ N",
+              "합력 0"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "오른쪽 위, 2.7×10¹⁰ N; -3 C이면 같은 크기로 왼쪽 아래",
+              "왼쪽 위, 2.7×10¹⁰ N; -3 C이면 같은 방향",
+              "오른쪽 아래, 5.4×10¹⁰ N; -3 C이면 왼쪽 위",
+              "합력 0; -3 C에서도 합력 0"
+            ],
+            "correctChoice": 1,
+            "answer": "오른쪽 위, 2.7×10¹⁰ N; -3 C이면 같은 크기로 왼쪽 아래",
+            "acceptableAnswers": [
+              "1",
+              "오른쪽 위, 2.7×10¹⁰ N; -3 C이면 같은 크기로 왼쪽 아래"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.5.1-physics1-r10-r14"
     },
     {
       "examId": "physics1-basic-r11",
       "courseId": "physics1-basic",
       "round": 11,
       "title": "물리1 11회차 복습 테스트",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.10-1"
+      "status": "ready",
+      "examDate": "",
+      "questionCount": 8,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics1/r11.pdf",
+      "pages": [
+        "assets/pages/physics1/r11-p1.png"
+      ],
+      "reviewStatus": "corrected",
+      "configVersion": "2026.08.30-r11-v1",
+      "sourceTitle": "물리1 11회차 복습 테스트",
+      "sourceNote": "5번 (2)는 q의 부호 조건을 보완하여 적용했다.",
+      "coreNote": {
+        "summary": "전기장·전위의 방향과 크기, 균일 전기장, 점전하 전위차 및 전류의 정의를 연결하는 회차",
+        "concepts": [
+          "전기장은 +전하에서 나와 -전하로 들어간다.",
+          "전기력선이 조밀할수록 전기장이 세고 전기장 방향으로 전위가 낮아진다.",
+          "전위는 스칼라 합, 전기장은 벡터 합이다.",
+          "음전하의 이동 방향과 관습적 전류 방향은 반대이다."
+        ],
+        "formulas": [
+          "E=kQ/r²",
+          "V=kQ/r",
+          "ΔV=-EΔx",
+          "I=Q/t"
+        ],
+        "mistakes": [
+          "전기장과 전위의 거리 의존성을 바꾸어 쓰는 것",
+          "전위차 기준 순서를 무시하는 것",
+          "전해질의 양·음이온 전류를 서로 빼는 것"
+        ],
+        "checklist": [
+          "전하 부호에 따른 전기장 방향을 표시했는가?",
+          "전위는 부호 포함 스칼라로 더했는가?",
+          "전류 방향을 양전하 이동 기준으로 바꾸었는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전기장과 전위",
+          "topic": "두 점전하의 전기장 상쇄",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              65,
+              590,
+              330
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "0 N/C",
+          "explanation": [
+            "A에서 +4 C까지 거리는 2 m이므로 전기장은 오른쪽으로 k·4/2²=k이다.",
+            "A에서 -1 C까지 거리는 1 m이므로 전기장은 왼쪽으로 k·1/1²=k이다.",
+            "크기가 같고 방향이 반대라 합성 전기장은 0이다."
+          ],
+          "formulas": [
+            "E=k|Q|/r²"
+          ],
+          "commonMistakes": [
+            "전기장은 스칼라처럼 더하는 것",
+            "-전하가 만드는 전기장의 방향을 바깥쪽으로 잡는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "각 전기장 크기",
+              "points": 4
+            },
+            {
+              "criterion": "각 방향",
+              "points": 3
+            },
+            {
+              "criterion": "합성 0 N/C",
+              "points": 3
+            }
+          ],
+          "similarProblem": {
+            "prompt": "+9 C가 x=0, -1 C가 x=2 m에 있고 점 P가 x=3 m에 있다. P의 전기장은?",
+            "answer": "0 N/C",
+            "explanation": "+9 C는 거리 3 m에서 오른쪽으로 k, -1 C는 거리 1 m에서 왼쪽으로 k를 만들어 상쇄된다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "0 N/C"
+            ],
+            "choices": [
+              "0 N/C",
+              "9×10⁹ N/C, 오른쪽",
+              "9×10⁹ N/C, 왼쪽",
+              "18×10⁹ N/C, 오른쪽"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "0 N/C",
+              "9×10⁹ N/C, 오른쪽",
+              "9×10⁹ N/C, 왼쪽",
+              "18×10⁹ N/C, 오른쪽"
+            ],
+            "correctChoice": 1,
+            "answer": "0 N/C",
+            "acceptableAnswers": [
+              "1",
+              "0 N/C"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 20,
+          "type": "subjective",
+          "unit": "전기장과 전위",
+          "topic": "전기장 방향으로 전하 부호·크기 추론",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              330,
+              590,
+              460
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "(1) B는 양전하 (2) |B|>|A| (3) r에서 전기장은 +x 방향",
+          "explanation": [
+            "A의 왼쪽 가까운 q에서는 A(-)의 전기장이 오른쪽으로 우세하지만 먼 p에서는 왼쪽 전기장이 우세하다.",
+            "왼쪽 방향 전기장을 만드는 B는 양전하이고, 먼 곳에서 우세하므로 |B|>|A|이다.",
+            "r은 B 오른쪽이므로 B(+)의 오른쪽 전기장이 A(-)의 왼쪽 전기장보다 커서 합성 방향은 +x이다."
+          ],
+          "formulas": [
+            "전기장은 +전하에서 나오고 -전하로 들어간다.",
+            "같은 직선 위 전기장은 부호를 정해 대수적으로 합성"
+          ],
+          "commonMistakes": [
+            "p와 q의 화살표를 전하가 움직이는 방향으로 오해하는 것",
+            "거리 효과를 무시하고 부호만 보는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "B 양전하",
+              "points": 5
+            },
+            {
+              "criterion": "B 전하량이 더 큼",
+              "points": 5
+            },
+            {
+              "criterion": "r에서 +x 방향과 근거",
+              "points": 10
+            }
+          ],
+          "similarProblem": {
+            "prompt": "A는 음전하이다. A 왼쪽의 가까운 점에서는 전기장이 오른쪽, 더 먼 점에서는 왼쪽이다. A 오른쪽에 있는 B의 부호와 크기 관계는?",
+            "answer": "B는 양전하이고 |B|>|A|",
+            "explanation": "먼 왼쪽에서 왼쪽 전기장이 우세하려면 B가 양전하이며, 거리상 더 불리한 B가 우세하므로 전하량도 더 커야 한다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "B는 양전하이고 |B|>|A|"
+            ],
+            "choices": [
+              "B는 양전하이고 |B|>|A|",
+              "B는 양전하이고 |B|<|A|",
+              "B는 음전하이고 |B|>|A|",
+              "B는 음전하이고 |B|<|A|"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "B는 양전하, |B|>|A|, r에서 +x",
+              "B는 음전하, |A|>|B|, r에서 -x",
+              "B는 양전하, |A|>|B|, r에서 -x",
+              "B는 음전하, |B|>|A|, r에서 +x"
+            ],
+            "correctChoice": 1,
+            "answer": "B는 양전하, |B|>|A|, r에서 +x",
+            "acceptableAnswers": [
+              "1",
+              "B는 양전하, |B|>|A|, r에서 +x"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전기장과 전위",
+          "topic": "전기력선 밀도와 전위 변화",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              720,
+              590,
+              430
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "전기장의 세기는 A가 더 크고, 전위도 A가 더 높다.",
+          "explanation": [
+            "전기력선이 더 조밀한 A에서 전기장이 더 세다.",
+            "전기력선 화살표 방향으로 전위는 낮아지므로 A에서 B로 갈수록 전위가 감소한다."
+          ],
+          "formulas": [
+            "전기력선 밀도 ∝ |E|",
+            "E=-dV/ds"
+          ],
+          "commonMistakes": [
+            "전기력선 화살표 방향으로 전위가 증가한다고 생각하는 것",
+            "점의 높낮이로 전위를 판단하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "전기장 A가 큼",
+              "points": 5
+            },
+            {
+              "criterion": "전위 A가 높음",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "전기력선이 왼쪽 X에서 조밀하고 오른쪽 Y로 갈수록 퍼지며 화살표는 오른쪽이다. X와 Y의 전기장·전위를 비교하면?",
+            "answer": "전기장 X>Y, 전위 X>Y",
+            "explanation": "밀도는 X가 크고, 전위는 전기장 방향으로 감소한다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "전기장 X>Y, 전위 X>Y"
+            ],
+            "choices": [
+              "전기장 X>Y, 전위 X>Y",
+              "전기장 X<Y, 전위 X>Y",
+              "전기장 X>Y, 전위 X<Y",
+              "전기장 X=Y, 전위 X=Y"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "전기장: A>B, 전위: A>B",
+              "전기장: B>A, 전위: A>B",
+              "전기장: A>B, 전위: B>A",
+              "전기장: A=B, 전위: A=B"
+            ],
+            "correctChoice": 1,
+            "answer": "전기장: A>B, 전위: A>B",
+            "acceptableAnswers": [
+              "1",
+              "전기장: A>B, 전위: A>B"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전기장과 전위",
+          "topic": "여러 점전하의 전위 합",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              1080,
+              590,
+              600
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "0 V",
+          "explanation": [
+            "정사각형 중심에서 네 꼭짓점까지 거리는 모두 같다.",
+            "전위는 스칼라이므로 V=(k/r)(Q-Q+2Q-2Q)=0이다."
+          ],
+          "formulas": [
+            "V=kQ/r",
+            "전위는 부호를 포함한 스칼라 합"
+          ],
+          "commonMistakes": [
+            "전기장처럼 방향 성분을 나누는 것",
+            "전하량의 부호를 빼먹는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "같은 거리 인식",
+              "points": 3
+            },
+            {
+              "criterion": "전위 스칼라 합",
+              "points": 4
+            },
+            {
+              "criterion": "0 V",
+              "points": 3
+            }
+          ],
+          "similarProblem": {
+            "prompt": "한 원 위 같은 거리에 +Q, +2Q, -Q, -2Q가 놓였다. 원 중심의 전위는?",
+            "answer": "0 V",
+            "explanation": "모든 거리가 같고 전하량의 대수합이 0이므로 전위도 0이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "0 V"
+            ],
+            "choices": [
+              "0 V",
+              "kQ/r",
+              "2kQ/r",
+              "6kQ/r"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "0 V",
+              "kQ/d",
+              "2kQ/d",
+              "4kQ/d"
+            ],
+            "correctChoice": 1,
+            "answer": "0 V",
+            "acceptableAnswers": [
+              "1",
+              "0 V"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 15,
+          "type": "subjective",
+          "unit": "전기장과 전위",
+          "topic": "균일 전기장의 전위·힘",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              55,
+              590,
+              760
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문 (2)에서 q의 부호가 제시되지 않았다. 양전하 q를 뜻하는 것으로 보완하며, 음전하이면 운동 방향이 반대임을 함께 명시했다.",
+          "answer": "(1) A (2) q>0이면 오른쪽, q<0이면 왼쪽 (3) E_A=E_B=E_C=E_D",
+          "explanation": [
+            "균일 전기장은 오른쪽이므로 전위는 왼쪽으로 갈수록 높다. A가 가장 왼쪽이다.",
+            "전기력은 F=qE이므로 양전하는 전기장 방향, 음전하는 반대 방향으로 움직인다.",
+            "균일 전기장이므로 위치와 무관하게 세기가 같다."
+          ],
+          "formulas": [
+            "ΔV=-EΔx",
+            "F=qE"
+          ],
+          "commonMistakes": [
+            "q의 부호가 없는데 한 방향으로 단정하는 것",
+            "등전위선 간격이 같다는 의미를 놓치는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "A 선택",
+              "points": 5
+            },
+            {
+              "criterion": "q 부호에 따른 방향",
+              "points": 5
+            },
+            {
+              "criterion": "전기장 모두 같음",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "균일 전기장이 왼쪽을 향한다. 같은 전기장 안의 X가 Y보다 오른쪽에 있을 때, 전위가 높은 점과 +q의 운동 방향은?",
+            "answer": "Y가 더 높고, +q는 왼쪽으로 움직인다.",
+            "explanation": "전위는 전기장 방향으로 감소하므로 오른쪽 Y가 더 높고 양전하는 전기장 방향인 왼쪽으로 움직인다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "Y가 더 높고, +q는 왼쪽으로 움직인다."
+            ],
+            "choices": [
+              "Y가 더 높고, +q는 왼쪽으로 움직인다.",
+              "X가 더 높고, +q는 왼쪽으로 움직인다.",
+              "Y가 더 높고, +q는 오른쪽으로 움직인다.",
+              "전위가 같고, +q는 정지한다."
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "A; q>0이면 오른쪽(q<0이면 왼쪽); 네 점의 전기장 같음",
+              "D; q>0이면 왼쪽; A의 전기장이 가장 큼",
+              "B; 전하는 움직이지 않음; C의 전기장이 가장 큼",
+              "C; q의 부호와 무관하게 오른쪽; 네 점의 전기장 다름"
+            ],
+            "correctChoice": 1,
+            "answer": "A; q>0이면 오른쪽(q<0이면 왼쪽); 네 점의 전기장 같음",
+            "acceptableAnswers": [
+              "1",
+              "A; q>0이면 오른쪽(q<0이면 왼쪽); 네 점의 전기장 같음"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 15,
+          "type": "subjective",
+          "unit": "전기장과 전위",
+          "topic": "점전하의 전기장과 전위차",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              720,
+              590,
+              580
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "A: 200 N/C, 오른쪽; B: 50 N/C, 오른쪽; V_A-V_B=300 V",
+          "explanation": [
+            "양전하가 만드는 전기장은 바깥쪽이다.",
+            "E_A=kQ/3²=200 N/C, E_B=kQ/6²=50 N/C이다.",
+            "V_A=kQ/3=600 V, V_B=kQ/6=300 V이므로 V_A-V_B=300 V이다."
+          ],
+          "formulas": [
+            "E=kQ/r²",
+            "V=kQ/r"
+          ],
+          "commonMistakes": [
+            "전기장에 1/r을 적용하는 것",
+            "전위차의 순서를 확인하지 않고 부호를 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "A 전기장",
+              "points": 3
+            },
+            {
+              "criterion": "B 전기장",
+              "points": 2
+            },
+            {
+              "criterion": "방향",
+              "points": 2
+            },
+            {
+              "criterion": "전위차 300 V",
+              "points": 8
+            }
+          ],
+          "similarProblem": {
+            "prompt": "+4×10⁻⁷ C에서 2 m, 4 m 떨어진 A, B가 있다. 각 전기장과 V_A-V_B는?",
+            "answer": "A 900 N/C, B 225 N/C, 모두 바깥쪽; V_A-V_B=900 V",
+            "explanation": "E_A=9×10⁹·4×10⁻⁷/4=900, E_B=225. 전위차는 kQ(1/2-1/4)=900 V이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "A 900 N/C, B 225 N/C, 모두 바깥쪽; V_A-V_B=900 V"
+            ],
+            "choices": [
+              "A 900 N/C, B 225 N/C, 모두 바깥쪽; V_A-V_B=900 V",
+              "A 450 N/C, B 225 N/C; V_A-V_B=450 V",
+              "A 900 N/C, B 450 N/C; V_A-V_B=1800 V",
+              "A 225 N/C, B 900 N/C; V_A-V_B=-900 V"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "A 200 N/C 오른쪽, B 50 N/C 오른쪽, V_A-V_B=300 V",
+              "A 600 N/C 오른쪽, B 300 N/C 오른쪽, V_A-V_B=150 V",
+              "A 200 N/C 왼쪽, B 50 N/C 왼쪽, V_A-V_B=-300 V",
+              "A 400 N/C 오른쪽, B 100 N/C 오른쪽, V_A-V_B=600 V"
+            ],
+            "correctChoice": 1,
+            "answer": "A 200 N/C 오른쪽, B 50 N/C 오른쪽, V_A-V_B=300 V",
+            "acceptableAnswers": [
+              "1",
+              "A 200 N/C 오른쪽, B 50 N/C 오른쪽, V_A-V_B=300 V"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 7,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전류",
+          "topic": "전하량과 전류",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              1240,
+              590,
+              250
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "20 A",
+          "explanation": [
+            "이동한 전하량은 Q=Ne=(6.25×10¹⁹)(1.6×10⁻¹⁹)=10 C이다.",
+            "I=Q/t=10/0.5=20 A이다."
+          ],
+          "formulas": [
+            "I=Q/t",
+            "Q=Ne"
+          ],
+          "commonMistakes": [
+            "전자 수의 지수를 잘못 곱하는 것",
+            "0.5초로 나누지 않고 곱하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "전하량 10 C",
+              "points": 5
+            },
+            {
+              "criterion": "전류 20 A",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "0.25초 동안 3.125×10¹⁹개의 전자가 단면을 통과했다. 전류의 세기는?",
+            "answer": "20 A",
+            "explanation": "전하량은 5 C, I=5/0.25=20 A이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "20 A"
+            ],
+            "choices": [
+              "20 A",
+              "10 A",
+              "40 A",
+              "5 A"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "20 A",
+              "10 A",
+              "5 A",
+              "40 A"
+            ],
+            "correctChoice": 1,
+            "answer": "20 A",
+            "acceptableAnswers": [
+              "1",
+              "20 A"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 8,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전류",
+          "topic": "전해질에서의 전류 방향과 합",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              1460,
+              590,
+              260
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "10 A, (+)극판에서 (-)극판 방향",
+          "explanation": [
+            "+10 C 양이온이 (-)극판으로 이동하면 같은 방향으로 10 C의 전류를 만든다.",
+            "-10 C 음이온이 반대쪽인 (+)극판으로 이동하는 것도 관습적 전류는 (-)극판 방향이다.",
+            "총 20 C가 2 s 동안 같은 관습적 방향의 전류를 만들므로 I=10 A이다."
+          ],
+          "formulas": [
+            "I=(|Q_+|+|Q_-|)/t"
+          ],
+          "commonMistakes": [
+            "양이온과 음이온의 효과가 상쇄된다고 생각하는 것",
+            "음전하 이동 방향과 전류 방향을 같게 잡는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "두 이온의 관습적 전류 방향",
+              "points": 5
+            },
+            {
+              "criterion": "10 A 계산",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "1초 동안 +6 C 양이온이 음극으로, -4 C 음이온이 양극으로 이동했다. 총전류는?",
+            "answer": "10 A, 양극→음극",
+            "explanation": "두 이동은 모두 양극에서 음극으로 향하는 관습적 전류를 만들고 총 전하량은 10 C이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "10 A, 양극→음극"
+            ],
+            "choices": [
+              "10 A, 양극→음극",
+              "2 A, 양극→음극",
+              "10 A, 음극→양극",
+              "0 A"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "10 A, (+)극판→(-)극판",
+              "0 A",
+              "5 A, (-)극판→(+)극판",
+              "20 A, (+)극판→(-)극판"
+            ],
+            "correctChoice": 1,
+            "answer": "10 A, (+)극판→(-)극판",
+            "acceptableAnswers": [
+              "1",
+              "10 A, (+)극판→(-)극판"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.5.1-physics1-r10-r14"
     },
     {
       "examId": "physics1-basic-r12",
       "courseId": "physics1-basic",
       "round": 12,
       "title": "물리1 12회차 복습 테스트",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.10-1"
+      "status": "ready",
+      "examDate": "",
+      "questionCount": 7,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics1/r12.pdf",
+      "pages": [
+        "assets/pages/physics1/r12-p1.png"
+      ],
+      "reviewStatus": "corrected",
+      "configVersion": "2026.08.30-r12-v1",
+      "sourceTitle": "물리1 12회차 복습 테스트",
+      "sourceNote": "3번 전위차는 B가 A보다 10 V 높다는 관계로 명확히 적용했다.",
+      "coreNote": {
+        "summary": "직렬·병렬 회로의 합성저항, 가지 전류, 전위 변화와 전력을 계산하는 회차",
+        "concepts": [
+          "병렬 연결의 전압은 같고 전류는 저항에 반비례한다.",
+          "복합회로는 가장 안쪽 직렬·병렬부터 단계적으로 단순화한다.",
+          "전류 방향으로 저항을 지나면 전위가 IR만큼 감소한다.",
+          "부피가 일정한 도선은 길이 변화에 따라 단면적도 함께 변한다."
+        ],
+        "formulas": [
+          "R=ρL/S",
+          "1/R_p=Σ1/R",
+          "V=IR",
+          "P=IV=I²R"
+        ],
+        "mistakes": [
+          "병렬 저항을 단순 합하는 것",
+          "전압과 전류를 같은 양처럼 분배하는 것",
+          "전지 극성과 ΔV 부호를 반대로 쓰는 것"
+        ],
+        "checklist": [
+          "노드가 같은 두 점을 표시했는가?",
+          "각 가지의 직렬·병렬 관계를 다시 확인했는가?",
+          "마지막에 전압·전류 합이 키르히호프 법칙을 만족하는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "병렬회로의 전압과 전류",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              60,
+              590,
+              430
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "I₁=6 A, I₂=3 A, V₁=6 V, V₂=6 V",
+          "explanation": [
+            "두 저항은 6 V 전지에 병렬로 연결되어 각 저항의 전압은 6 V이다.",
+            "I₁=6/1=6 A, I₂=6/2=3 A이다."
+          ],
+          "formulas": [
+            "병렬: V₁=V₂",
+            "I=V/R"
+          ],
+          "commonMistakes": [
+            "병렬 저항에 전류가 같다고 생각하는 것",
+            "전압을 저항비로 나누는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "I₁",
+              "points": 2.5
+            },
+            {
+              "criterion": "I₂",
+              "points": 2.5
+            },
+            {
+              "criterion": "V₁",
+              "points": 2.5
+            },
+            {
+              "criterion": "V₂",
+              "points": 2.5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "12 V 전지에 3 Ω과 6 Ω을 병렬 연결했다. 두 전류와 전압은?",
+            "answer": "4 A, 2 A, 각 12 V",
+            "explanation": "병렬 전압은 12 V이고 I=V/R이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "4 A, 2 A, 각 12 V"
+            ],
+            "choices": [
+              "4 A, 2 A, 각 12 V",
+              "2 A, 4 A, 각 6 V",
+              "6 A, 6 A, 각 12 V",
+              "4 A, 2 A, 각각 4 V와 8 V"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "I₁=6 A, I₂=3 A, V₁=V₂=6 V",
+              "I₁=3 A, I₂=6 A, V₁=2 V, V₂=4 V",
+              "I₁=I₂=2 A, V₁=2 V, V₂=4 V",
+              "I₁=9 A, I₂=3 A, V₁=V₂=3 V"
+            ],
+            "correctChoice": 1,
+            "answer": "I₁=6 A, I₂=3 A, V₁=V₂=6 V",
+            "acceptableAnswers": [
+              "1",
+              "I₁=6 A, I₂=3 A, V₁=V₂=6 V"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 20,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "직렬·병렬 복합회로",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              430,
+              590,
+              530
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "합성저항 1.5 Ω, I₁:I₂:I₃=2:1:1",
+          "explanation": [
+            "위쪽 안의 2 Ω 두 개는 병렬이므로 1 Ω이다.",
+            "그 앞의 2 Ω과 직렬이어서 위 가지는 3 Ω이고, 아래 가지도 3 Ω이다.",
+            "3 Ω 두 가지가 병렬이므로 전체는 1.5 Ω이다.",
+            "I₁은 병렬로 나뉘기 전 전류이며 두 2 Ω에 똑같이 나뉘므로 I₁=I₂+I₃, I₂=I₃이다."
+          ],
+          "formulas": [
+            "R_parallel=R/2 (같은 저항 2개)",
+            "1/R_eq=Σ1/R"
+          ],
+          "commonMistakes": [
+            "I₁·I₂·I₃를 세 가지 전체 전류로 보는 것",
+            "위쪽 2 Ω 세 개를 모두 병렬로 보는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "내부 병렬 1 Ω",
+              "points": 4
+            },
+            {
+              "criterion": "위 가지 3 Ω",
+              "points": 3
+            },
+            {
+              "criterion": "전체 1.5 Ω",
+              "points": 3
+            },
+            {
+              "criterion": "전류비 2:1:1",
+              "points": 10
+            }
+          ],
+          "similarProblem": {
+            "prompt": "한 가지는 4 Ω 직렬 뒤에 4 Ω 두 개 병렬, 다른 가지는 6 Ω 하나이다. 전체 합성저항과 분기 전류:두 병렬 전류의 비는?",
+            "answer": "3 Ω, 2:1:1",
+            "explanation": "첫 가지는 4+2=6 Ω, 다른 가지도 6 Ω이므로 전체 3 Ω이다. 첫 가지 전류는 두 같은 저항에 반씩 나뉜다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "3 Ω, 2:1:1"
+            ],
+            "choices": [
+              "3 Ω, 2:1:1",
+              "6 Ω, 1:1:1",
+              "4 Ω, 2:1:1",
+              "2 Ω, 1:2:2"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "1.5 Ω, 2:1:1",
+              "3 Ω, 1:1:1",
+              "2 Ω, 1:2:2",
+              "6 Ω, 2:1:1"
+            ],
+            "correctChoice": 1,
+            "answer": "1.5 Ω, 2:1:1",
+            "acceptableAnswers": [
+              "1",
+              "1.5 Ω, 2:1:1"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 20,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "복합회로 합성저항과 전위차",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              900,
+              590,
+              810
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문 ΔV_AB의 부호 정의가 명시되지 않았다. B가 A보다 10 V 높다는 물리적 관계를 우선 제시하고 두 관례의 부호를 함께 명시했다.",
+          "answer": "합성저항 50 Ω. B가 A보다 10 V 높다(V_B-V_A=10 V; V_A-V_B=-10 V).",
+          "explanation": [
+            "오른쪽의 70 Ω 두 개는 병렬이라 35 Ω이다.",
+            "위-오른쪽-아래 경로는 70+35+70=175 Ω이고, 왼쪽 70 Ω과 병렬이므로 전체는 50 Ω이다.",
+            "175 Ω 가지 전류는 50/175=2/7 A이다.",
+            "B-A 사이 병렬부 전압은 (2/7)×35=10 V이며 전류가 B에서 A로 흐르므로 B가 높다."
+          ],
+          "formulas": [
+            "R_p=R₁R₂/(R₁+R₂)",
+            "V=IR"
+          ],
+          "commonMistakes": [
+            "오른쪽 두 저항을 직렬로 보는 것",
+            "ΔV_AB의 부호 정의를 확인하지 않는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "오른쪽 병렬 35 Ω",
+              "points": 3
+            },
+            {
+              "criterion": "가지 175 Ω",
+              "points": 3
+            },
+            {
+              "criterion": "전체 50 Ω",
+              "points": 4
+            },
+            {
+              "criterion": "B가 10 V 높음",
+              "points": 10
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 구조에 모든 저항이 40 Ω이고 전지가 40 V이다. 전체 합성저항과 B-A 전위차는?",
+            "answer": "200/7 Ω, B가 A보다 8 V 높음",
+            "explanation": "직접 가지 40 Ω, 다른 가지 40+20+40=100 Ω이므로 전체 200/7 Ω. 100 Ω 가지 전류 0.4 A, 병렬부 전압 8 V이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "200/7 Ω, B가 A보다 8 V 높음"
+            ],
+            "choices": [
+              "200/7 Ω, B가 A보다 8 V 높음",
+              "40 Ω, A가 B보다 8 V 높음",
+              "20 Ω, B가 A보다 16 V 높음",
+              "80 Ω, A와 B의 전위가 같음"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "50 Ω, B가 A보다 10 V 높음",
+              "70 Ω, A가 B보다 10 V 높음",
+              "35 Ω, B가 A보다 20 V 높음",
+              "105 Ω, A와 B의 전위가 같음"
+            ],
+            "correctChoice": 1,
+            "answer": "50 Ω, B가 A보다 10 V 높음",
+            "acceptableAnswers": [
+              "1",
+              "50 Ω, B가 A보다 10 V 높음"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "비저항·길이·단면적 변화",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              60,
+              590,
+              430
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "R′=8ρL/S=8R",
+          "explanation": [
+            "부피 SL가 일정하고 길이가 2L이므로 새 단면적은 S/2이다.",
+            "비저항도 2ρ가 되므로 R′=(2ρ)(2L)/(S/2)=8ρL/S이다."
+          ],
+          "formulas": [
+            "R=ρL/S",
+            "부피 SL=일정"
+          ],
+          "commonMistakes": [
+            "길이만 2배라서 저항도 2배라고 하는 것",
+            "단면적 변화와 비저항 변화를 하나 빼먹는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "새 단면적 S/2",
+              "points": 3
+            },
+            {
+              "criterion": "새 비저항·길이 대입",
+              "points": 4
+            },
+            {
+              "criterion": "8ρL/S",
+              "points": 3
+            }
+          ],
+          "similarProblem": {
+            "prompt": "부피를 유지하며 길이를 3배로 늘리고 비저항이 절반인 물질로 바꾸었다. 새 저항은?",
+            "answer": "(9/2)R",
+            "explanation": "단면적은 S/3, R′=(ρ/2)(3L)/(S/3)=9ρL/(2S)=9R/2이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "(9/2)R"
+            ],
+            "choices": [
+              "(9/2)R",
+              "(3/2)R",
+              "9R",
+              "6R"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "8ρL/S",
+              "4ρL/S",
+              "2ρL/S",
+              "16ρL/S"
+            ],
+            "correctChoice": 1,
+            "answer": "8ρL/S",
+            "acceptableAnswers": [
+              "1",
+              "8ρL/S"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "회로를 따라 전위 변화",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              420,
+              590,
+              480
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "X가 Y보다 4 V 높다(V_X-V_Y=4 V).",
+          "explanation": [
+            "전류 방향으로 3 V 전지의 +극에서 -극으로 지나므로 전위가 3 V 내려간다.",
+            "1 Ω 저항에서도 전류 방향으로 IR=1 V 내려간다.",
+            "따라서 X에서 Y로 총 4 V 감소한다."
+          ],
+          "formulas": [
+            "전지 +→-: -ε",
+            "저항에서 전류 방향: -IR"
+          ],
+          "commonMistakes": [
+            "전지 기호의 긴 선이 +극임을 반대로 읽는 것",
+            "저항에서 전류 방향으로 전위가 오른다고 보는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "전지 전위 변화 -3 V",
+              "points": 3
+            },
+            {
+              "criterion": "저항 전위 변화 -1 V",
+              "points": 3
+            },
+            {
+              "criterion": "X가 4 V 높음",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "오른쪽으로 2 A가 흐르고, 긴 선이 왼쪽인 5 V 전지와 2 Ω 저항을 차례로 지난다. 왼쪽 P와 오른쪽 Q의 전위 관계는?",
+            "answer": "P가 Q보다 9 V 높다",
+            "explanation": "전지에서 5 V, 저항에서 4 V가 전류 방향으로 감소한다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "P가 Q보다 9 V 높다"
+            ],
+            "choices": [
+              "P가 Q보다 9 V 높다",
+              "Q가 P보다 9 V 높다",
+              "P가 Q보다 1 V 높다",
+              "P와 Q의 전위가 같다"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "X가 Y보다 4 V 높다",
+              "Y가 X보다 4 V 높다",
+              "X가 Y보다 2 V 높다",
+              "X와 Y의 전위가 같다"
+            ],
+            "correctChoice": 1,
+            "answer": "X가 Y보다 4 V 높다",
+            "acceptableAnswers": [
+              "1",
+              "X가 Y보다 4 V 높다"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "병렬 부하 추가와 전류계",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              820,
+              590,
+              450
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "A₁의 전류는 증가하고, A₂의 전류는 변하지 않는다.",
+          "explanation": [
+            "같은 전지에 전구를 병렬로 더 연결하면 전체 합성저항이 감소해 전지에서 나오는 전체 전류 A₁은 증가한다.",
+            "각 병렬 가지의 전압은 계속 전지 전압과 같으므로 기존 전구 가지의 전류 A₂는 변하지 않는다."
+          ],
+          "formulas": [
+            "병렬 추가 → R_eq 감소",
+            "각 병렬 가지 전압 일정"
+          ],
+          "commonMistakes": [
+            "전체 전류와 한 가지 전류를 혼동하는 것",
+            "전구 수가 늘면 모든 전구 전류가 나뉜다고 생각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "A₁ 증가",
+              "points": 5
+            },
+            {
+              "criterion": "A₂ 일정",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "이상적인 전지에 같은 저항을 병렬로 한 개 더 연결했다. 전지 바로 옆 전류계와 기존 한 가지 전류계의 변화는?",
+            "answer": "전체 전류는 증가, 기존 가지 전류는 일정",
+            "explanation": "병렬 가지 수가 늘어 합성저항은 감소하지만 각 가지 전압은 그대로다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "전체 전류는 증가, 기존 가지 전류는 일정"
+            ],
+            "choices": [
+              "전체 전류는 증가, 기존 가지 전류는 일정",
+              "전체 전류는 일정, 기존 가지 전류는 감소",
+              "둘 다 증가",
+              "둘 다 감소"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "A₁ 증가, A₂ 일정",
+              "A₁ 일정, A₂ 감소",
+              "A₁ 감소, A₂ 증가",
+              "A₁·A₂ 모두 감소"
+            ],
+            "correctChoice": 1,
+            "answer": "A₁ 증가, A₂ 일정",
+            "acceptableAnswers": [
+              "1",
+              "A₁ 증가, A₂ 일정"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 7,
+          "maxPoints": 20,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "병렬 분류와 전력",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              1200,
+              590,
+              520
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "20 Ω 저항 전류 3 A, 소비 전력 180 W",
+          "explanation": [
+            "20 Ω과 30 Ω의 병렬 합성은 12 Ω이다.",
+            "8 Ω과 직렬이므로 전체 저항은 20 Ω, 전체 전류는 100/20=5 A이다.",
+            "8 Ω 전압강하는 40 V라 병렬부 전압은 60 V이다.",
+            "I_20=60/20=3 A, P=I²R=9×20=180 W이다."
+          ],
+          "formulas": [
+            "R_p=20×30/(20+30)=12 Ω",
+            "P=IV=I²R"
+          ],
+          "commonMistakes": [
+            "20 Ω과 30 Ω을 직렬로 더하는 것",
+            "전체 전류 5 A가 20 Ω에 그대로 흐른다고 하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "합성저항과 전체 전류",
+              "points": 5
+            },
+            {
+              "criterion": "병렬부 전압",
+              "points": 5
+            },
+            {
+              "criterion": "20 Ω 전류",
+              "points": 5
+            },
+            {
+              "criterion": "전력",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "24 V 전지에 4 Ω을 직렬로 두고 그 뒤에 12 Ω과 6 Ω을 병렬 연결했다. 6 Ω의 전류와 전력은?",
+            "answer": "2 A, 24 W",
+            "explanation": "병렬 합성 4 Ω, 전체 8 Ω이므로 전체 전류 3 A. 병렬 전압 12 V, 6 Ω 전류 2 A, 전력 24 W이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "2 A, 24 W"
+            ],
+            "choices": [
+              "2 A, 24 W",
+              "3 A, 54 W",
+              "1 A, 6 W",
+              "2 A, 12 W"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "3 A, 180 W",
+              "5 A, 500 W",
+              "2 A, 80 W",
+              "3 A, 60 W"
+            ],
+            "correctChoice": 1,
+            "answer": "3 A, 180 W",
+            "acceptableAnswers": [
+              "1",
+              "3 A, 180 W"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.5.1-physics1-r10-r14"
     },
     {
       "examId": "physics1-basic-r13",
       "courseId": "physics1-basic",
       "round": 13,
       "title": "물리1 13회차 복습 테스트",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.10-1"
+      "status": "ready",
+      "examDate": "",
+      "questionCount": 15,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics1/r13.pdf",
+      "pages": [
+        "assets/pages/physics1/r13-p1.png",
+        "assets/pages/physics1/r13-p2.png"
+      ],
+      "reviewStatus": "needs-review",
+      "configVersion": "2026.08.30-r13-v1",
+      "sourceTitle": "물리1 13회차 복습 테스트",
+      "sourceNote": "7번 솔레노이드 권선 방향이 불명확하여 확인 필요로 표시했다.",
+      "coreNote": {
+        "summary": "전력·송전, 전구 회로, 전류가 만드는 자기장, 검전기와 전기장, 복합 저항을 한 회차에 종합하는 중간평가",
+        "concepts": [
+          "같은 전력을 보낼 때 승압하면 전류와 송전 손실이 감소한다.",
+          "전구 밝기는 실제 소비전력으로 비교한다.",
+          "직선·원형·솔레노이드 자기장은 오른손 법칙과 거리 관계를 함께 쓴다.",
+          "전기장 영점은 전하 부호와 크기에 따라 구간부터 판단한다."
+        ],
+        "formulas": [
+          "P=IV=V²/R=I²R",
+          "B_loop=μ₀I/(2R)",
+          "B_solenoid=μ₀NI/L",
+          "B_wire=μ₀I/(2πr)",
+          "R=ρL/S"
+        ],
+        "mistakes": [
+          "정격전력이 큰 전구의 저항도 크다고 생각하는 것",
+          "자기장 벡터를 크기만 더하는 것",
+          "권선 방향이 없는 솔레노이드의 극을 임의로 정하는 것"
+        ],
+        "checklist": [
+          "회로의 실제 연결(단락·병렬)을 다시 그렸는가?",
+          "자기장 방향을 오른손 법칙으로 표시했는가?",
+          "전기장 0이 가능한 구간부터 찾았는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 5,
+          "type": "subjective",
+          "unit": "전력과 송전",
+          "topic": "송전 손실 전력",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              55,
+              590,
+              360
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문은 P₀를 “에너지”라고 표현했지만 식과 단위상 전력이다. “공급 전력”으로 교정했다.",
+          "answer": "P₀=I₀V₀, ΔP_loss=I²R=(P₀/V₀)²R",
+          "explanation": [
+            "전달 전력은 전압과 전류의 곱이다.",
+            "I=P₀/V₀를 손실전력 I²R에 대입한다.",
+            "같은 전력을 보낼 때 전압을 높이면 손실은 전압의 제곱에 반비례한다."
+          ],
+          "formulas": [
+            "P=IV",
+            "P_loss=I²R=(P/V)²R"
+          ],
+          "commonMistakes": [
+            "P₀를 에너지 단위로 해석하는 것",
+            "손실전력이 전압에 반비례한다고만 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "P₀=I₀V₀",
+              "points": 2
+            },
+            {
+              "criterion": "I=P₀/V₀",
+              "points": 1
+            },
+            {
+              "criterion": "손실식 완성",
+              "points": 2
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 전력을 보내면서 송전 전압을 3배로 높였다. 송전선 저항이 같을 때 손실전력은 몇 배가 되는가?",
+            "answer": "1/9배",
+            "explanation": "전류는 1/3배, I²R 손실은 1/9배이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "1/9배"
+            ],
+            "choices": [
+              "1/9배",
+              "1/3배",
+              "3배",
+              "9배"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "P₀=I₀V₀, ΔP=(P₀/V₀)²R",
+              "P₀=I₀/V₀, ΔP=P₀V₀R",
+              "P₀=I₀²R, ΔP=P₀/V₀",
+              "P₀=V₀²/R, ΔP=I₀V₀"
+            ],
+            "correctChoice": 1,
+            "answer": "P₀=I₀V₀, ΔP=(P₀/V₀)²R",
+            "acceptableAnswers": [
+              "1",
+              "P₀=I₀V₀, ΔP=(P₀/V₀)²R"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전력과 송전",
+          "topic": "정격 전력과 전기에너지",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              390,
+              590,
+              350
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "저항 100 Ω, 사용 전기에너지 800 Wh",
+          "explanation": [
+            "R=V²/P=200²/400=100 Ω이다.",
+            "E=Pt=400 W×2 h=800 Wh이다."
+          ],
+          "formulas": [
+            "R=V²/P",
+            "E=Pt"
+          ],
+          "commonMistakes": [
+            "Wh를 J로 불필요하게 바꾸다 단위를 틀리는 것",
+            "R=V/P로 계산하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "저항 100 Ω",
+              "points": 5
+            },
+            {
+              "criterion": "800 Wh",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "220 V-1100 W 전열기를 정격 전압에 3시간 사용했다. 저항과 전기에너지는?",
+            "answer": "44 Ω, 3300 Wh",
+            "explanation": "R=220²/1100=44 Ω, E=1100×3=3300 Wh이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "44 Ω, 3300 Wh"
+            ],
+            "choices": [
+              "44 Ω, 3300 Wh",
+              "220 Ω, 3300 Wh",
+              "44 Ω, 1100 Wh",
+              "22 Ω, 6600 Wh"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "100 Ω, 800 Wh",
+              "50 Ω, 400 Wh",
+              "100 Ω, 400 Wh",
+              "200 Ω, 800 Wh"
+            ],
+            "correctChoice": 1,
+            "answer": "100 Ω, 800 Wh",
+            "acceptableAnswers": [
+              "1",
+              "100 Ω, 800 Wh"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "스위치에 의한 단락과 전구 밝기",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              700,
+              590,
+              430
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "A 밝아짐, B 밝아짐, C 꺼짐",
+          "explanation": [
+            "스위치를 열었을 때 A, B, C는 직렬이다.",
+            "스위치를 닫으면 a와 b가 도선으로 연결되어 C 양단이 같은 전위가 되고 C에는 전류가 흐르지 않는다.",
+            "전체 저항이 3R에서 2R로 줄어 A와 B 전류가 증가하므로 밝아진다."
+          ],
+          "formulas": [
+            "전구 밝기 ∝ 소비전력",
+            "단락된 소자 양단 전압 0"
+          ],
+          "commonMistakes": [
+            "C가 병렬로 추가된다고 보는 것",
+            "전류가 나뉘어 A,B가 어두워진다고 생각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "A 밝아짐",
+              "points": 3
+            },
+            {
+              "criterion": "B 밝아짐",
+              "points": 3
+            },
+            {
+              "criterion": "C 꺼짐 및 단락 설명",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 전구 3개가 직렬이고, 스위치를 닫으면 세 번째 전구 양단을 도선이 직접 연결한다. 변화는?",
+            "answer": "앞의 두 전구는 밝아지고 세 번째는 꺼진다.",
+            "explanation": "세 번째가 단락되고 전체 저항이 줄어 앞의 두 전구 전류가 증가한다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "앞의 두 전구는 밝아지고 세 번째는 꺼진다."
+            ],
+            "choices": [
+              "앞의 두 전구는 밝아지고 세 번째는 꺼진다.",
+              "앞의 두 전구는 어두워지고 세 번째는 밝아진다.",
+              "세 전구 모두 꺼진다.",
+              "세 전구 밝기가 변하지 않는다."
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "A·B 밝아짐, C 꺼짐",
+              "A·B 어두워짐, C 밝아짐",
+              "A 일정, B 밝아짐, C 꺼짐",
+              "A·B·C 모두 일정"
+            ],
+            "correctChoice": 1,
+            "answer": "A·B 밝아짐, C 꺼짐",
+            "acceptableAnswers": [
+              "1",
+              "A·B 밝아짐, C 꺼짐"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 5,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "정격 전구 저항과 밝기",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              1110,
+              590,
+              590
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "D > C > B > A",
+          "explanation": [
+            "정격저항은 R=V²/P이므로 A,D는 50 Ω, B,C는 100 Ω이다.",
+            "C와 D는 각각 100 V가 그대로 걸려 100 W, 200 W를 소비한다.",
+            "A-B 직렬 가지 전류는 100/(50+100)=2/3 A이므로 P_A≈22.2 W, P_B≈44.4 W이다."
+          ],
+          "formulas": [
+            "R=V²/P",
+            "P=I²R"
+          ],
+          "commonMistakes": [
+            "정격전력이 큰 전구의 저항도 크다고 생각하는 것",
+            "직렬 전구에 각각 100 V가 걸린다고 보는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "각 저항 비교",
+              "points": 2
+            },
+            {
+              "criterion": "각 소비전력 비교",
+              "points": 2
+            },
+            {
+              "criterion": "D>C>B>A",
+              "points": 1
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 회로에서 A,D는 100 V-100 W, B,C는 100 V-200 W이다. 밝기 순서는?",
+            "answer": "C>D>A>B",
+            "explanation": "A,D는 100 Ω, B,C는 50 Ω. C=200 W, D=100 W, AB 직렬에서 A≈44.4 W, B≈22.2 W이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "C>D>A>B"
+            ],
+            "choices": [
+              "C>D>A>B",
+              "D>C>B>A",
+              "C>A>D>B",
+              "A>B>C>D"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "D>C>B>A",
+              "C>D>A>B",
+              "D>B>C>A",
+              "A>B>C>D"
+            ],
+            "correctChoice": 1,
+            "answer": "D>C>B>A",
+            "acceptableAnswers": [
+              "1",
+              "D>C>B>A"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 5,
+          "type": "subjective",
+          "unit": "자기장",
+          "topic": "원형 전류의 중심 자기장",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              55,
+              590,
+              250
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문에 μ₀ 값이 제시되지 않아 표준값 μ₀=4π×10⁻⁷ T·m/A를 사용한다고 명시했다.",
+          "answer": "I=50/π A≈15.9 A",
+          "explanation": [
+            "원형 도선 중심의 자기장은 B=μ₀I/(2R)이다.",
+            "I=2RB/μ₀=2(0.05)(2.0×10⁻⁴)/(4π×10⁻⁷)=50/π A이다."
+          ],
+          "formulas": [
+            "B=μ₀I/(2R)",
+            "μ₀=4π×10⁻⁷ T·m/A"
+          ],
+          "commonMistakes": [
+            "반지름 5 cm를 5 m로 대입하는 것",
+            "μ₀ 또는 2R을 빼먹는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "공식·단위 변환",
+              "points": 2
+            },
+            {
+              "criterion": "50/π A",
+              "points": 3
+            }
+          ],
+          "similarProblem": {
+            "prompt": "반지름 0.10 m 원형 도선 중심에 2π×10⁻⁵ T를 만들려면 전류는?",
+            "answer": "10 A",
+            "explanation": "I=2RB/μ₀=2·0.1·2π×10⁻⁵/(4π×10⁻⁷)=10 A이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "10 A"
+            ],
+            "choices": [
+              "10 A",
+              "5 A",
+              "20 A",
+              "2 A"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "50/π A(약 15.9 A)",
+              "25/π A",
+              "100/π A",
+              "10π A"
+            ],
+            "correctChoice": 1,
+            "answer": "50/π A(약 15.9 A)",
+            "acceptableAnswers": [
+              "1",
+              "50/π A(약 15.9 A)"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 5,
+          "type": "subjective",
+          "unit": "자기장",
+          "topic": "솔레노이드 내부 자기장",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              290,
+              590,
+              260
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문에 μ₀ 값이 제시되지 않아 표준값을 사용한다고 명시했다.",
+          "answer": "B=4π×10⁻³ T≈1.26×10⁻² T",
+          "explanation": [
+            "단위길이당 감은 수 n=N/L=500/0.1=5000 m⁻¹이다.",
+            "B=μ₀nI=(4π×10⁻⁷)(5000)(2)=4π×10⁻³ T이다."
+          ],
+          "formulas": [
+            "B=μ₀(N/L)I"
+          ],
+          "commonMistakes": [
+            "N/L 대신 NL을 쓰는 것",
+            "cm와 m를 혼동하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "n=5000 m⁻¹",
+              "points": 2
+            },
+            {
+              "criterion": "4π×10⁻³ T",
+              "points": 3
+            }
+          ],
+          "similarProblem": {
+            "prompt": "길이 0.20 m, 1000회 감은 솔레노이드에 1 A가 흐른다. 내부 자기장은?",
+            "answer": "2π×10⁻³ T",
+            "explanation": "N/L=5000 m⁻¹이므로 B=4π×10⁻⁷·5000=2π×10⁻³ T이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "2π×10⁻³ T"
+            ],
+            "choices": [
+              "2π×10⁻³ T",
+              "4π×10⁻³ T",
+              "π×10⁻³ T",
+              "2π×10⁻⁴ T"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "4π×10⁻³ T",
+              "2π×10⁻³ T",
+              "4π×10⁻⁴ T",
+              "8π×10⁻³ T"
+            ],
+            "correctChoice": 1,
+            "answer": "4π×10⁻³ T",
+            "acceptableAnswers": [
+              "1",
+              "4π×10⁻³ T"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 7,
+          "maxPoints": 5,
+          "type": "subjective",
+          "unit": "자기장",
+          "topic": "솔레노이드 극성",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              520,
+              590,
+              340
+            ]
+          },
+          "reviewStatus": "needs-review",
+          "correctionNote": "권선의 감긴 방향과 앞·뒤 교차 표시가 없어 A/B 극을 유일하게 결정할 수 없다. 교사 확인 전 자동 정답 공개를 보류한다.",
+          "answer": "그림만으로는 결정할 수 없다. 권선이 앞·뒤에서 어떻게 연결되는지(감긴 방향)가 표시되어야 한다.",
+          "explanation": [
+            "전지의 극성만으로는 코일 각 고리의 시계·반시계 전류를 정할 수 없다.",
+            "2차원 타원만 반복된 그림에는 도선이 교차할 때 어느 선이 앞인지 표시가 없어 감김 방향이 두 가지로 해석된다.",
+            "감김 방향이 주어지면 한쪽 끝에서 전류가 반시계이면 그쪽이 N극이다."
+          ],
+          "formulas": [
+            "오른손 감기 법칙: 손가락=전류, 엄지=N극"
+          ],
+          "commonMistakes": [
+            "전지의 +극이 연결된 쪽이 무조건 N극이라고 생각하는 것",
+            "권선 방향을 확인하지 않는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "권선 방향 정보 필요 지적",
+              "points": 3
+            },
+            {
+              "criterion": "오른손 법칙 설명",
+              "points": 2
+            }
+          ],
+          "similarProblem": {
+            "prompt": "솔레노이드를 왼쪽 끝에서 보았을 때 전류가 시계방향으로 흐른다. 왼쪽 끝의 극은?",
+            "answer": "S극",
+            "explanation": "시계방향 전류가 보이는 끝은 자기장이 안으로 들어가는 S극이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "S극"
+            ],
+            "choices": [
+              "N극",
+              "S극",
+              "전류 세기에 따라 달라짐",
+              "결정할 수 없음"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "A가 N극",
+              "B가 N극",
+              "A와 B 모두 N극",
+              "권선의 앞·뒤 연결이 표시되지 않아 결정할 수 없다."
+            ],
+            "correctChoice": 4,
+            "answer": "권선의 앞·뒤 연결이 표시되지 않아 결정할 수 없다.",
+            "acceptableAnswers": [
+              "4",
+              "권선의 앞·뒤 연결이 표시되지 않아 결정할 수 없다."
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 8,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "자기장",
+          "topic": "두 평행 직선전류의 자기장",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              830,
+              590,
+              420
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "B_P:B_Q:B_R=6:3:14",
+          "explanation": [
+            "두 전류가 같은 방향이므로 두 도선 사이에서는 자기장 방향이 서로 반대이다.",
+            "공통상수 μ₀/(2πr)를 단위로 두면 P: |2-3/3|=1, Q: |2/2-3/2|=1/2, R: |2/3-3|=7/3이다.",
+            "1:1/2:7/3에 6을 곱하면 6:3:14이다."
+          ],
+          "formulas": [
+            "B=μ₀I/(2πr)"
+          ],
+          "commonMistakes": [
+            "두 자기장을 같은 방향으로 더하는 것",
+            "거리 비를 제곱하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "각 점 거리·방향",
+              "points": 3
+            },
+            {
+              "criterion": "P,Q,R 상대값",
+              "points": 4
+            },
+            {
+              "criterion": "6:3:14",
+              "points": 3
+            }
+          ],
+          "similarProblem": {
+            "prompt": "왼쪽 1 A, 오른쪽 4 A가 같은 방향으로 흐르고 두 도선 사이를 4등분한 P,Q,R에서 자기장 비는?",
+            "answer": "2:9:22",
+            "explanation": "상대값은 P=|1-4/3|=1/3, Q=|1/2-2|=3/2, R=|1/3-4|=11/3. 6을 곱해 2:9:22이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "2:9:22"
+            ],
+            "choices": [
+              "2:9:22",
+              "1:3:11",
+              "2:6:22",
+              "4:9:11"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "6:3:14",
+              "2:1:7",
+              "3:2:14",
+              "6:3:7"
+            ],
+            "correctChoice": 1,
+            "answer": "6:3:14",
+            "acceptableAnswers": [
+              "1",
+              "6:3:14"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 9,
+          "maxPoints": 5,
+          "type": "subjective",
+          "unit": "자기장",
+          "topic": "여러 직선전류의 자기장 벡터합",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              1210,
+              590,
+              500
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "5B₀",
+          "explanation": [
+            "(가)의 아래 도선 I는 O에서 +x 방향 B₀를 만든다. 위 3I 도선도 +x 방향 3B₀이므로 x성분은 4B₀이다.",
+            "왼쪽 I 도선은 +y 방향 B₀, 오른쪽 4I 도선은 거리 2L이라 +y 방향 2B₀를 만들어 y성분은 3B₀이다.",
+            "합성 크기는 √((4B₀)²+(3B₀)²)=5B₀이다."
+          ],
+          "formulas": [
+            "B=μ₀I/(2πr)",
+            "B=√(B_x²+B_y²)"
+          ],
+          "commonMistakes": [
+            "오른쪽 도선의 거리가 2L임을 놓치는 것",
+            "서로 수직인 성분을 단순 합하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "x성분 4B₀",
+              "points": 2
+            },
+            {
+              "criterion": "y성분 3B₀",
+              "points": 2
+            },
+            {
+              "criterion": "5B₀",
+              "points": 1
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 배치에서 위 도선 2I, 아래 I, 왼쪽 I, 오른쪽(거리 2L) 2I이고 방향은 원문과 같다. 합성 자기장 크기는?",
+            "answer": "√13 B₀",
+            "explanation": "x성분은 3B₀, y성분은 B₀+B₀=2B₀이므로 √13B₀이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "√13 B₀"
+            ],
+            "choices": [
+              "√13 B₀",
+              "5B₀",
+              "3B₀",
+              "13B₀"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "5B₀",
+              "7B₀",
+              "B₀",
+              "25B₀"
+            ],
+            "correctChoice": 1,
+            "answer": "5B₀",
+            "acceptableAnswers": [
+              "1",
+              "5B₀"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 10,
+          "maxPoints": 5,
+          "type": "subjective",
+          "unit": "정전기",
+          "topic": "검전기 접지 중 전하 분포",
+          "difficulty": "하",
+          "image": {
+            "page": 2,
+            "crop": [
+              20,
+              60,
+              590,
+              500
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "A(금속판): 양전하, B(금속박): 중성",
+          "explanation": [
+            "음전하 막대가 전자를 아래쪽으로 밀어낸다.",
+            "금속판을 손가락으로 접지하면 밀려난 전자가 지면으로 빠져나가 금속박은 중성이 되어 닫힌다.",
+            "막대 가까운 금속판에는 양전하가 유도된다."
+          ],
+          "formulas": [
+            "정전기 유도와 접지"
+          ],
+          "commonMistakes": [
+            "접지 중 검전기 전체가 양전하라고 하여 금속박도 반드시 양전하라 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "A 양전하",
+              "points": 3
+            },
+            {
+              "criterion": "B 중성",
+              "points": 2
+            }
+          ],
+          "similarProblem": {
+            "prompt": "양전하 막대를 가까이 한 채 금속판을 접지했다. 금속판과 금속박의 상태는?",
+            "answer": "금속판 음전하, 금속박 중성",
+            "explanation": "전자가 지면에서 유입되어 막대 가까운 판에 모이고 금속박은 닫힌다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "금속판 음전하, 금속박 중성"
+            ],
+            "choices": [
+              "금속판 음전하, 금속박 중성",
+              "금속판 양전하, 금속박 음전하",
+              "금속판 중성, 금속박 양전하",
+              "둘 다 양전하"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "A 양전하, B 중성",
+              "A 음전하, B 양전하",
+              "A 중성, B 음전하",
+              "A 양전하, B 음전하"
+            ],
+            "correctChoice": 1,
+            "answer": "A 양전하, B 중성",
+            "acceptableAnswers": [
+              "1",
+              "A 양전하, B 중성"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 11,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전기장과 전위",
+          "topic": "전기력선으로 전하 부호·크기 추론",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              20,
+              430,
+              590,
+              570
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "B는 양전하, |A|>|B|, 원점의 전기장은 +x 방향",
+          "explanation": [
+            "전기력선이 두 전하에서 바깥으로 뻗고 서로 연결되지 않으므로 B도 양전하이다.",
+            "A에서 나오는 전기력선 수가 더 많아 A의 전하량이 더 크다.",
+            "원점은 두 전하에서 같은 거리이고 A가 더 크므로 A가 만드는 +x 방향 전기장이 우세하다."
+          ],
+          "formulas": [
+            "전기력선 수 ∝ 전하량",
+            "양전하 전기장은 바깥쪽"
+          ],
+          "commonMistakes": [
+            "전기력선이 서로 닿지 않는 것을 반대 부호로 오해하는 것",
+            "원점에서 두 장이 무조건 상쇄된다고 하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "B 양전하",
+              "points": 3
+            },
+            {
+              "criterion": "A가 더 큼",
+              "points": 3
+            },
+            {
+              "criterion": "+x 방향",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 거리의 두 양전하가 x축에 있고 왼쪽 전하가 오른쪽의 2배이다. 중점 전기장 방향은?",
+            "answer": "오른쪽(+x)",
+            "explanation": "왼쪽 전하의 오른쪽 방향 전기장이 더 크다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "오른쪽(+x)"
+            ],
+            "choices": [
+              "오른쪽(+x)",
+              "왼쪽(-x)",
+              "0",
+              "위쪽(+y)"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "B 양전하, A가 더 큼, 원점 +x",
+              "B 음전하, A가 더 큼, 원점 -x",
+              "B 양전하, B가 더 큼, 원점 -x",
+              "B 음전하, 두 전하 같음, 원점 0"
+            ],
+            "correctChoice": 1,
+            "answer": "B 양전하, A가 더 큼, 원점 +x",
+            "acceptableAnswers": [
+              "1",
+              "B 양전하, A가 더 큼, 원점 +x"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 12,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전기장과 전위",
+          "topic": "서로 반대 부호 전하의 영점",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              20,
+              980,
+              590,
+              700
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "(1) C 구간 (2) -1 C의 오른쪽 1.5 m",
+          "explanation": [
+            "+9 C와 -1 C 사이(B)에서는 두 전기장이 같은 방향이라 상쇄되지 않는다.",
+            "영점은 작은 전하인 -1 C 바깥쪽 C에 있다.",
+            "-1 C에서 오른쪽으로 x라 두면 9/(x+3)²=1/x², 3x=x+3이므로 x=1.5 m이다."
+          ],
+          "formulas": [
+            "E=k|Q|/r²"
+          ],
+          "commonMistakes": [
+            "B 구간에서 두 장이 반대라고 생각하는 것",
+            "제곱근을 취하지 않고 9x=x+3으로 푸는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "C 구간",
+              "points": 5
+            },
+            {
+              "criterion": "방정식과 1.5 m",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "+4 C와 -1 C가 3 m 떨어져 있다. 전기장 영점은 어디이며 -1 C에서 얼마나 떨어지는가?",
+            "answer": "-1 C 바깥쪽, 3 m",
+            "explanation": "4/(x+3)²=1/x²에서 2x=x+3, x=3 m이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "-1 C 바깥쪽, 3 m"
+            ],
+            "choices": [
+              "-1 C 바깥쪽, 3 m",
+              "두 전하 사이, 1 m",
+              "+4 C 바깥쪽, 3 m",
+              "-1 C 바깥쪽, 1.5 m"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "C 구간, -1 C에서 오른쪽 1.5 m",
+              "B 구간, -1 C에서 왼쪽 1.5 m",
+              "A 구간, +9 C에서 왼쪽 1.5 m",
+              "C 구간, -1 C에서 오른쪽 3 m"
+            ],
+            "correctChoice": 1,
+            "answer": "C 구간, -1 C에서 오른쪽 1.5 m",
+            "acceptableAnswers": [
+              "1",
+              "C 구간, -1 C에서 오른쪽 1.5 m"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 13,
+          "maxPoints": 5,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "병렬회로 전류와 전체 전압",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              625,
+              60,
+              590,
+              650
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "V_AB=100 V",
+          "explanation": [
+            "20 Ω에 3 A가 흐르므로 병렬부 전압은 60 V이다.",
+            "30 Ω에는 2 A가 흐르므로 8 Ω을 지나는 전체 전류는 5 A이다.",
+            "8 Ω 전압강하는 40 V이므로 전체 A-B 전압은 40+60=100 V이다."
+          ],
+          "formulas": [
+            "V=IR",
+            "접합점 전류 보존"
+          ],
+          "commonMistakes": [
+            "8 Ω 전류를 3 A로 두는 것",
+            "병렬부 20 Ω과 30 Ω의 전압이 다르다고 하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "병렬 전압 60 V",
+              "points": 2
+            },
+            {
+              "criterion": "전체 전류 5 A",
+              "points": 1
+            },
+            {
+              "criterion": "100 V",
+              "points": 2
+            }
+          ],
+          "similarProblem": {
+            "prompt": "10 Ω 직렬 뒤에 20 Ω 두 개가 병렬이다. 한 20 Ω에 2 A가 흐를 때 전체 전압은?",
+            "answer": "80 V",
+            "explanation": "병렬 전압 40 V, 두 가지 총전류 4 A, 10 Ω 전압 40 V이므로 전체 80 V이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "80 V"
+            ],
+            "choices": [
+              "80 V",
+              "60 V",
+              "40 V",
+              "100 V"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "100 V",
+              "60 V",
+              "84 V",
+              "40 V"
+            ],
+            "correctChoice": 1,
+            "answer": "100 V",
+            "acceptableAnswers": [
+              "1",
+              "100 V"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 14,
+          "maxPoints": 5,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "도선 변형과 저항",
+          "difficulty": "하",
+          "image": {
+            "page": 2,
+            "crop": [
+              625,
+              610,
+              590,
+              500
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "9배",
+          "explanation": [
+            "부피가 일정하면 길이가 3배일 때 단면적은 1/3배이다.",
+            "R=ρL/S에서 R′/R=3/(1/3)=9이다."
+          ],
+          "formulas": [
+            "R=ρL/S",
+            "LS=일정"
+          ],
+          "commonMistakes": [
+            "길이만 보고 3배라고 하는 것",
+            "단면적이 3배라고 반대로 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "단면적 1/3",
+              "points": 2
+            },
+            {
+              "criterion": "9배",
+              "points": 3
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 재질 도선을 부피를 유지하며 길이 2배로 늘리면 저항은?",
+            "answer": "4배",
+            "explanation": "단면적은 절반이므로 R′/R=2/(1/2)=4이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "4배"
+            ],
+            "choices": [
+              "4배",
+              "2배",
+              "8배",
+              "1/2배"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "9배",
+              "3배",
+              "1/3배",
+              "27배"
+            ],
+            "correctChoice": 1,
+            "answer": "9배",
+            "acceptableAnswers": [
+              "1",
+              "9배"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 15,
+          "maxPoints": 5,
+          "type": "subjective",
+          "unit": "전기 회로",
+          "topic": "병렬 저항의 전류",
+          "difficulty": "하",
+          "image": {
+            "page": 2,
+            "crop": [
+              625,
+              1080,
+              590,
+              560
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "2 A",
+          "explanation": [
+            "60 Ω에 1 A가 흐르면 병렬 양단 전압은 60 V이다.",
+            "30 Ω에도 같은 60 V가 걸리므로 I=60/30=2 A이다."
+          ],
+          "formulas": [
+            "병렬 전압 동일",
+            "I=V/R"
+          ],
+          "commonMistakes": [
+            "저항이 절반이면 전류도 절반이라고 하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "전압 60 V",
+              "points": 2
+            },
+            {
+              "criterion": "2 A",
+              "points": 3
+            }
+          ],
+          "similarProblem": {
+            "prompt": "80 Ω 병렬 가지에 1.5 A가 흐른다. 40 Ω 가지 전류는?",
+            "answer": "3 A",
+            "explanation": "전압은 120 V이고 40 Ω 전류는 3 A이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "3 A"
+            ],
+            "choices": [
+              "3 A",
+              "0.75 A",
+              "1.5 A",
+              "6 A"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "2 A",
+              "0.5 A",
+              "1 A",
+              "4 A"
+            ],
+            "correctChoice": 1,
+            "answer": "2 A",
+            "acceptableAnswers": [
+              "1",
+              "2 A"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.5.1-physics1-r10-r14"
     },
     {
       "examId": "physics1-basic-r14",
       "courseId": "physics1-basic",
       "round": 14,
       "title": "물리1 14회차 복습 테스트",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.10-1"
+      "status": "ready",
+      "examDate": "",
+      "questionCount": 9,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics1/r14.pdf",
+      "pages": [
+        "assets/pages/physics1/r14-p1.png"
+      ],
+      "reviewStatus": "corrected",
+      "configVersion": "2026.08.30-r14-v1",
+      "sourceTitle": "물리1 14회차 복습 테스트",
+      "sourceNote": "4번의 Wb 단위를 자기장이 아닌 자속 변화율로 교정했다.",
+      "coreNote": {
+        "summary": "전류가 받는 자기력, 패러데이·렌츠 법칙, 진행파의 속도·위상·매질 운동을 다루는 회차",
+        "concepts": [
+          "자기력 방향은 전류와 자기장에 모두 수직이다.",
+          "유도기전력은 자속 자체가 아니라 자속의 변화율에 비례한다.",
+          "렌츠 법칙은 원래 자속의 “변화”를 방해하는 방향을 정한다.",
+          "진행파의 이동과 매질 입자의 상하 운동을 구분한다."
+        ],
+        "formulas": [
+          "F=ILB sinθ",
+          "|ε|=N|ΔΦ/Δt|",
+          "Φ=BA cosθ",
+          "v=fλ",
+          "a_y=-ω²y"
+        ],
+        "mistakes": [
+          "N→S 자기장 방향을 반대로 잡는 것",
+          "자속 감소일 때 원래 자기장과 반대 방향 유도장을 만든다고 오해하는 것",
+          "파의 진행속도와 입자 속도를 같게 보는 것"
+        ],
+        "checklist": [
+          "전류·자기장·힘 세 방향을 각각 표시했는가?",
+          "자속이 증가하는지 감소하는지 먼저 썼는가?",
+          "파장·이동거리·진폭을 그래프 축에서 따로 읽었는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전자기력",
+          "topic": "자기장 속 전류 도선의 힘",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              55,
+              590,
+              460
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "D 방향",
+          "explanation": [
+            "자기장은 N극에서 S극으로 향하므로 아래쪽 N에서 위쪽 S 방향이다.",
+            "전지의 긴 선이 +극이므로 도선의 전류는 오른쪽 뒤쪽 끝에서 왼쪽 앞쪽 끝으로 흐른다.",
+            "플레밍 왼손 법칙 또는 I×B를 적용하면 힘은 왼쪽 D 방향이다."
+          ],
+          "formulas": [
+            "F=IL×B",
+            "플레밍 왼손 법칙"
+          ],
+          "commonMistakes": [
+            "자기장 방향을 S→N으로 잡는 것",
+            "전자 이동 방향을 전류 방향으로 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "자기장 방향",
+              "points": 3
+            },
+            {
+              "criterion": "전류 방향",
+              "points": 3
+            },
+            {
+              "criterion": "D 방향",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "원문의 전지 극성을 반대로 연결하면 도선의 힘 방향은?",
+            "answer": "B 방향",
+            "explanation": "전류가 반대로 바뀌고 자기장은 그대로라 힘도 D의 반대인 B가 된다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "B 방향"
+            ],
+            "choices": [
+              "A 방향",
+              "B 방향",
+              "C 방향",
+              "D 방향"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "A 방향",
+              "B 방향",
+              "C 방향",
+              "D 방향"
+            ],
+            "correctChoice": 4,
+            "answer": "D 방향",
+            "acceptableAnswers": [
+              "4",
+              "D 방향"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전자기 유도",
+          "topic": "패러데이 법칙",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              450,
+              590,
+              260
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "1 V",
+          "explanation": [
+            "|ε|=N|ΔΦ|/Δt=250×(2×10⁻⁴)/0.05=1 V이다."
+          ],
+          "formulas": [
+            "|ε|=N|ΔΦ/Δt|"
+          ],
+          "commonMistakes": [
+            "감은 수 250을 빼먹는 것",
+            "0.05초를 5초로 넣는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "공식",
+              "points": 4
+            },
+            {
+              "criterion": "1 V",
+              "points": 6
+            }
+          ],
+          "similarProblem": {
+            "prompt": "500회 코일의 자속이 0.10초 동안 3×10⁻⁴ Wb 변했다. 유도기전력은?",
+            "answer": "1.5 V",
+            "explanation": "500×3×10⁻⁴/0.10=1.5 V이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "1.5 V"
+            ],
+            "choices": [
+              "1.5 V",
+              "0.15 V",
+              "15 V",
+              "3 V"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "1 V",
+              "0.1 V",
+              "10 V",
+              "5 V"
+            ],
+            "correctChoice": 1,
+            "answer": "1 V",
+            "acceptableAnswers": [
+              "1",
+              "1 V"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전자기 유도",
+          "topic": "자기장 변화와 코일 자속",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              660,
+              590,
+              260
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "0.48 V",
+          "explanation": [
+            "코일 면이 자기장에 수직이므로 한 회당 자속 변화는 AΔB=(3×10⁻³)(8-6)=6×10⁻³ Wb이다.",
+            "|ε|=N AΔB/Δt=40×6×10⁻³/0.5=0.48 V이다."
+          ],
+          "formulas": [
+            "Φ=BA",
+            "|ε|=NA|ΔB|/Δt"
+          ],
+          "commonMistakes": [
+            "40회를 곱하지 않는 것",
+            "자기장 변화량을 8 T로 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "자속 변화",
+              "points": 4
+            },
+            {
+              "criterion": "0.48 V",
+              "points": 6
+            }
+          ],
+          "similarProblem": {
+            "prompt": "100회, 면적 2×10⁻³ m² 코일에서 자기장이 0.2초 동안 1 T에서 4 T로 변한다. 기전력은?",
+            "answer": "3 V",
+            "explanation": "100×2×10⁻³×3/0.2=3 V이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "3 V"
+            ],
+            "choices": [
+              "3 V",
+              "1.5 V",
+              "6 V",
+              "0.3 V"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "0.48 V",
+              "0.24 V",
+              "4.8 V",
+              "0.12 V"
+            ],
+            "correctChoice": 1,
+            "answer": "0.48 V",
+            "acceptableAnswers": [
+              "1",
+              "0.48 V"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 15,
+          "type": "subjective",
+          "unit": "전자기 유도",
+          "topic": "자속 변화율과 유도전류",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              850,
+              590,
+              330
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문은 “자기장이 Wb로 변한다”고 썼으나 Wb는 자속 단위이다. “한 회를 지나는 자속이 매초 4.0×10⁻³ Wb 변한다”로 교정했다.",
+          "answer": "유도기전력 6 V, 30 Ω 연결 시 전류 0.2 A",
+          "explanation": [
+            "문장의 4.0×10⁻³ Wb/s는 코일 한 회를 지나는 자속 변화율이다.",
+            "|ε|=N|dΦ/dt|=1500×4.0×10⁻³=6 V이다.",
+            "I=ε/R=6/30=0.2 A이다."
+          ],
+          "formulas": [
+            "|ε|=N|dΦ/dt|",
+            "I=ε/R"
+          ],
+          "commonMistakes": [
+            "자기장의 단위를 Wb로 쓰는 오류를 그대로 받아들이는 것",
+            "1500을 나누는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "기전력 6 V",
+              "points": 10
+            },
+            {
+              "criterion": "전류 0.2 A",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "800회 코일의 한 회당 자속 변화율이 2.5×10⁻³ Wb/s이고 10 Ω을 연결했다. 기전력과 전류는?",
+            "answer": "2 V, 0.2 A",
+            "explanation": "ε=800×2.5×10⁻³=2 V, I=2/10=0.2 A이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "2 V, 0.2 A"
+            ],
+            "choices": [
+              "2 V, 0.2 A",
+              "20 V, 2 A",
+              "2 V, 5 A",
+              "0.2 V, 0.02 A"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "6 V, 0.2 A",
+              "0.006 V, 0.0002 A",
+              "60 V, 2 A",
+              "6 V, 5 A"
+            ],
+            "correctChoice": 1,
+            "answer": "6 V, 0.2 A",
+            "acceptableAnswers": [
+              "1",
+              "6 V, 0.2 A"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 15,
+          "type": "subjective",
+          "unit": "전자기 유도",
+          "topic": "면적 변화에 의한 유도전류",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              1050,
+              590,
+              650
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "유도전류 방향: 시계방향, 크기: 10 A, 유도기전력: 2 V",
+          "explanation": [
+            "면적 감소율은 0.2/0.1=2 m²/s이고 |ε|=B|dA/dt|=1×2=2 V이다.",
+            "I=ε/R=2/0.2=10 A이다.",
+            "지면 안쪽 자속이 감소하므로 이를 유지하려는 유도 자기장도 지면 안쪽이어야 하며, 오른손 법칙상 시계방향이다."
+          ],
+          "formulas": [
+            "|ε|=|d(BA)/dt|",
+            "I=ε/R",
+            "렌츠 법칙"
+          ],
+          "commonMistakes": [
+            "면적 감소이므로 무조건 반시계라고 하는 것",
+            "0.2 m²/0.1 s를 0.02로 계산하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "렌츠 법칙과 시계방향",
+              "points": 5
+            },
+            {
+              "criterion": "2 V",
+              "points": 5
+            },
+            {
+              "criterion": "10 A",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "지면 안쪽 0.5 T 자기장 속 원형도선의 면적이 0.1초당 0.3 m²씩 증가한다. R=0.3 Ω일 때?",
+            "answer": "반시계방향, 5 A, 1.5 V",
+            "explanation": "안쪽 자속 증가를 막기 위해 바깥쪽 자기장을 만드는 반시계 전류가 흐른다. ε=0.5×3=1.5 V, I=5 A이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "반시계방향, 5 A, 1.5 V"
+            ],
+            "choices": [
+              "반시계방향, 5 A, 1.5 V",
+              "시계방향, 5 A, 1.5 V",
+              "반시계방향, 1.5 A, 5 V",
+              "시계방향, 3 A, 0.9 V"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "시계방향, 10 A, 2 V",
+              "반시계방향, 10 A, 2 V",
+              "시계방향, 2 A, 10 V",
+              "반시계방향, 2 A, 0.4 V"
+            ],
+            "correctChoice": 1,
+            "answer": "시계방향, 10 A, 2 V",
+            "acceptableAnswers": [
+              "1",
+              "시계방향, 10 A, 2 V"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "전자기 유도",
+          "topic": "유도전류를 크게 하는 조건",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              55,
+              590,
+              400
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "예: 자석을 더 빠르게 움직인다, 더 강한 자석을 사용한다. 또한 코일 감은 수·단면적을 늘리거나 철심을 넣어도 된다.",
+          "explanation": [
+            "유도기전력은 자속 변화율과 감은 수에 비례한다.",
+            "자석을 빠르게 움직이거나 강한 자석을 쓰면 자속 변화가 커진다.",
+            "같은 저항이라면 유도기전력이 커질수록 전류도 커진다."
+          ],
+          "formulas": [
+            "|ε|=N|ΔΦ/Δt|",
+            "I=ε/R"
+          ],
+          "commonMistakes": [
+            "자석을 멀리 천천히 움직이는 것을 고르는 것",
+            "변화하지 않는 큰 자기장만 있으면 전류가 흐른다고 생각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "타당한 조건 1개",
+              "points": 5
+            },
+            {
+              "criterion": "서로 다른 타당한 조건 1개",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "다른 조건이 같을 때 유도기전력을 정확히 2배로 만드는 변화는?",
+            "answer": "코일 감은 수를 2배로 한다.",
+            "explanation": "ε=NΔΦ/Δt이므로 감은 수를 2배로 하면 정확히 2배가 된다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "코일 감은 수를 2배로 한다."
+            ],
+            "choices": [
+              "코일 감은 수를 2배로 한다.",
+              "코일 저항을 2배로 한다.",
+              "자석을 멈춘다.",
+              "코일 감은 수를 절반으로 한다."
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "자석을 더 빠르게 움직이고, 더 강한 자석 또는 감은 수가 많은 코일을 사용한다.",
+              "자석을 멈추고 코일 저항을 크게 한다.",
+              "자석을 더 멀리 두고 천천히 움직인다.",
+              "코일 감은 수를 줄이고 자석을 고정한다."
+            ],
+            "correctChoice": 1,
+            "answer": "자석을 더 빠르게 움직이고, 더 강한 자석 또는 감은 수가 많은 코일을 사용한다.",
+            "acceptableAnswers": [
+              "1",
+              "자석을 더 빠르게 움직이고, 더 강한 자석 또는 감은 수가 많은 코일을 사용한다."
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 7,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "파동",
+          "topic": "파동 그래프에서 파장·속력·진동수",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              420,
+              590,
+              580
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "f=1.25 Hz, T=0.8 s, λ=1 m, v=1.25 m/s, A=0.5 m",
+          "explanation": [
+            "실선은 x=0, 0.5, 1 m에서 축과 만나 한 파장 λ=1 m이다.",
+            "그래프에 표시된 두 파형의 이동 거리는 0.125 m이고 시간 간격은 0.1 s이므로 v=0.125/0.1=1.25 m/s이다.",
+            "f=v/λ=1.25 Hz, T=1/f=0.8 s이며 그래프 최대 변위는 0.5 m이다."
+          ],
+          "formulas": [
+            "v=fλ",
+            "T=1/f"
+          ],
+          "commonMistakes": [
+            "0.5 m를 파장으로 읽는 것",
+            "0.1초 표시를 주기로 해석하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "λ=1 m",
+              "points": 2
+            },
+            {
+              "criterion": "v=1.25 m/s",
+              "points": 2
+            },
+            {
+              "criterion": "f=1.25 Hz",
+              "points": 2
+            },
+            {
+              "criterion": "T=0.8 s",
+              "points": 2
+            },
+            {
+              "criterion": "A=0.5 m",
+              "points": 2
+            }
+          ],
+          "similarProblem": {
+            "prompt": "파장 2 m인 파가 0.25초 동안 오른쪽으로 0.5 m 이동하며 진폭은 0.3 m이다. f,T,v,A는?",
+            "answer": "f=1 Hz, T=1 s, v=2 m/s, A=0.3 m",
+            "explanation": "v=0.5/0.25=2 m/s, f=v/λ=1 Hz, T=1 s이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "f=1 Hz, T=1 s, v=2 m/s, A=0.3 m"
+            ],
+            "choices": [
+              "f=1 Hz, T=1 s, v=2 m/s, A=0.3 m",
+              "f=2 Hz, T=0.5 s, v=2 m/s, A=0.3 m",
+              "f=0.5 Hz, T=2 s, v=1 m/s, A=0.3 m",
+              "f=1 Hz, T=1 s, v=0.5 m/s, A=0.6 m"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "1.25 Hz, 0.8 s, 1 m, 1.25 m/s, 0.5 m",
+              "1 Hz, 1 s, 1 m, 1 m/s, 0.5 m",
+              "2.5 Hz, 0.4 s, 0.5 m, 1.25 m/s, 0.5 m",
+              "10 Hz, 0.1 s, 1 m, 10 m/s, 0.5 m"
+            ],
+            "correctChoice": 1,
+            "answer": "1.25 Hz, 0.8 s, 1 m, 1.25 m/s, 0.5 m",
+            "acceptableAnswers": [
+              "1",
+              "1.25 Hz, 0.8 s, 1 m, 1.25 m/s, 0.5 m"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 8,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "파동",
+          "topic": "진행파에서 매질 속도·가속도",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              920,
+              590,
+              370
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "(1) x=0.5 m (2) x=0.75 m",
+          "explanation": [
+            "왼쪽 진행파 y=f(x+vt)에서 매질의 순간속도는 ∂y/∂t=v∂y/∂x이므로 그래프 기울기와 같은 부호이다.",
+            "x=0.5 m는 하강하는 영점이라 기울기가 가장 음수이므로 아래쪽 속도가 최대이다.",
+            "매질 가속도는 a_y=-ω²y이므로 위쪽 가속도는 변위가 가장 아래인 골 x=0.75 m에서 최대이다."
+          ],
+          "formulas": [
+            "왼쪽 진행파: v_y=+v·∂y/∂x",
+            "a_y=-ω²y"
+          ],
+          "commonMistakes": [
+            "파의 진행속도와 매질 입자의 속도를 같은 것으로 보는 것",
+            "가속도가 영점에서 최대라고 생각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "속도 관계와 x=0.5 m",
+              "points": 5
+            },
+            {
+              "criterion": "가속도 관계와 x=0.75 m",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "오른쪽 진행파가 x=0,1,2 m에서 축을 만나고 x=0.5 m가 마루, x=1.5 m가 골이다. 아래쪽 속도 최대점과 위쪽 가속도 최대점은?",
+            "answer": "x=0 또는 2 m의 상승 영점, x=1.5 m",
+            "explanation": "오른쪽 진행파는 v_y=-v y_x이므로 상승 영점에서 아래쪽 속도가 최대이고, 골에서 위쪽 가속도가 최대이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "x=0 또는 2 m의 상승 영점, x=1.5 m"
+            ],
+            "choices": [
+              "x=0 또는 2 m의 상승 영점, x=1.5 m",
+              "x=1 m, x=0.5 m",
+              "x=0.5 m, x=1 m",
+              "x=1.5 m, x=0.5 m"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "아래쪽 속도 최대 x=0.5 m, 위쪽 가속도 최대 x=0.75 m",
+              "아래쪽 속도 최대 x=0.25 m, 위쪽 가속도 최대 x=0.5 m",
+              "아래쪽 속도 최대 x=0 m, 위쪽 가속도 최대 x=0.25 m",
+              "아래쪽 속도 최대 x=0.75 m, 위쪽 가속도 최대 x=0.25 m"
+            ],
+            "correctChoice": 1,
+            "answer": "아래쪽 속도 최대 x=0.5 m, 위쪽 가속도 최대 x=0.75 m",
+            "acceptableAnswers": [
+              "1",
+              "아래쪽 속도 최대 x=0.5 m, 위쪽 가속도 최대 x=0.75 m"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 9,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "파동",
+          "topic": "진행파의 공간 이동",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              1230,
+              590,
+              500
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "+x로 3λ/4 이동한 그래프는 원래 그래프를 오른쪽으로 3λ/4(또는 왼쪽으로 λ/4) 평행이동한다. -x로 3λ/4 이동한 그래프는 왼쪽으로 3λ/4(또는 오른쪽으로 λ/4) 평행이동한다.",
+          "explanation": [
+            "진행 방향으로 이동 거리만큼 그래프 전체를 평행이동한다.",
+            "주기성 때문에 +3λ/4 이동은 -λ/4 이동과 같은 모양이고, -3λ/4 이동은 +λ/4 이동과 같다.",
+            "초기 그래프를 sin형으로 보면 x=0에서 +x 이동 후에는 마루, -x 이동 후에는 골에서 시작한다."
+          ],
+          "formulas": [
+            "y(x,t)=f(x-vt) (+x)",
+            "y(x,t)=f(x+vt) (-x)"
+          ],
+          "commonMistakes": [
+            "파형을 상하 반전만 하는 것",
+            "3λ/4 이동을 3/4주기 뒤로만 생각하고 진행 방향을 놓치는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "+x 3λ/4 평행이동",
+              "points": 5
+            },
+            {
+              "criterion": "-x 3λ/4 평행이동",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "prompt": "초기 파형 y=A sin(2πx/λ)을 +x로 λ/4, -x로 λ/4 이동했다. x=0에서 각 변위는?",
+            "answer": "+x 이동: -A, -x 이동: +A",
+            "explanation": "y_+(0)=A sin(-π/2)=-A, y_-(0)=A sin(+π/2)=+A이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "+x 이동: -A, -x 이동: +A"
+            ],
+            "choices": [
+              "+x 이동: -A, -x 이동: +A",
+              "+x 이동: +A, -x 이동: -A",
+              "둘 다 0",
+              "둘 다 +A"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "+x 이동 그래프는 x=0에서 마루로 시작하고, -x 이동 그래프는 x=0에서 골로 시작한다.",
+              "두 그래프 모두 x=0에서 위로 지나는 영점으로 시작한다.",
+              "+x 이동은 골, -x 이동은 마루로 시작한다.",
+              "두 그래프 모두 원래 그래프와 완전히 같다."
+            ],
+            "correctChoice": 1,
+            "answer": "+x 이동 그래프는 x=0에서 마루로 시작하고, -x 이동 그래프는 x=0에서 골로 시작한다.",
+            "acceptableAnswers": [
+              "1",
+              "+x 이동 그래프는 x=0에서 마루로 시작하고, -x 이동 그래프는 x=0에서 골로 시작한다."
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.5.1-physics1-r10-r14"
     },
     {
       "examId": "physics1-basic-r15",
@@ -9712,5 +13449,5 @@
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.5.0-student-lifetime-portal"
+  "featureVersion": "3.5.1-physics1-r10-r14"
 }
