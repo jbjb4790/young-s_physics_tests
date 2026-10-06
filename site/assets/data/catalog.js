@@ -1,6 +1,6 @@
 window.YP_CATALOG = {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-10-06T05:45:00Z",
+  "generatedAt": "2026-10-06T06:10:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -14494,9 +14494,16 @@ window.YP_CATALOG = {
       "shortTitle": "역학 총괄평가",
       "assessmentType": "comprehensive",
       "section": "mechanics",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
+      "status": "ready",
+      "examDate": "",
+      "questionCount": 25,
+      "maxScore": 100,
+      "inputProfile": {
+        "objectiveRange": "1-20",
+        "subjectiveRange": "21-25",
+        "objectiveMode": "choice-number",
+        "subjectiveMode": "points"
+      },
       "historyExamIds": [
         "physics2-basic-r02",
         "physics2-basic-r03",
@@ -14508,14 +14515,2074 @@ window.YP_CATALOG = {
         "physics2-basic-r09"
       ],
       "historyLabel": "물리2 2~9회 복습 테스트",
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.24-total-choice-v1",
-      "inputProfile": {
-        "objectiveRange": "1-20",
-        "subjectiveRange": "21-25",
-        "objectiveMode": "choice-number",
-        "subjectiveMode": "points"
-      }
+      "pdf": "assets/documents/assessments/physics2/mechanics.pdf",
+      "solutionPdf": "assets/documents/assessments/physics2/mechanics-solution.pdf",
+      "pages": [
+        "assets/pages/assessments/physics2/mechanics/page-01.png",
+        "assets/pages/assessments/physics2/mechanics/page-02.png",
+        "assets/pages/assessments/physics2/mechanics/page-03.png",
+        "assets/pages/assessments/physics2/mechanics/page-04.png",
+        "assets/pages/assessments/physics2/mechanics/page-05.png",
+        "assets/pages/assessments/physics2/mechanics/page-06.png",
+        "assets/pages/assessments/physics2/mechanics/page-07.png",
+        "assets/pages/assessments/physics2/mechanics/page-08.png",
+        "assets/pages/assessments/physics2/mechanics/page-09.png",
+        "assets/pages/assessments/physics2/mechanics/page-10.png",
+        "assets/pages/assessments/physics2/mechanics/page-11.png",
+        "assets/pages/assessments/physics2/mechanics/page-12.png",
+        "assets/pages/assessments/physics2/mechanics/page-13.png",
+        "assets/pages/assessments/physics2/mechanics/page-14.png",
+        "assets/pages/assessments/physics2/mechanics/page-15.png",
+        "assets/pages/assessments/physics2/mechanics/page-16.png"
+      ],
+      "reviewStatus": "corrected",
+      "configVersion": "2026.10.06-physics2-mechanics-total-v1",
+      "sourceTitle": "물리 II 진단고사(역학)",
+      "sourceNote": "1~20번 객관식, 21~25번 서술형, 모든 문항 4점. 공식 해설을 재검산하여 Q19 조건 보완, Q20 해설 문구를 교정함.",
+      "coreNote": {
+        "summary": "벡터·운동학·포물선·운동량·원운동·단진동·만유인력·유체·열현상·열역학을 통합 점검하는 물리2 역학 총괄평가",
+        "concepts": [
+          "벡터의 내적·외적과 단위벡터",
+          "상대운동과 포물선 운동",
+          "운동량 보존과 완전탄성충돌",
+          "부력·원운동·단진동",
+          "만유인력과 케플러 법칙",
+          "열전도·열량 보존·이상기체·열기관"
+        ],
+        "formulas": [
+          "r̂=r/|r|, A·B=ABcosθ, A×B=-B×A",
+          "x=v₀t+(1/2)at², R=v₀²sin2θ/g",
+          "Σp_i=Σp_f, e=상대분리속력/상대접근속력",
+          "mv²/r=ΣF_r, T_spring=2π√(m/k)",
+          "U_g=-GMm/r, T²∝a³",
+          "Q=mcΔT, Q=mL, Q=ΔU+W, U=(3/2)nRT"
+        ],
+        "mistakes": [
+          "벡터 외적에 교환법칙을 적용",
+          "포물선의 전체 비행시간과 최고점 시간을 혼동",
+          "충돌 속도의 방향 부호를 누락",
+          "연직 원운동 최고점에서 수직항력 방향을 반대로 설정",
+          "중력 위치에너지의 음수 부호를 누락",
+          "P-V와 T-V 그래프를 혼동"
+        ],
+        "checklist": [
+          "벡터는 성분별로 부호를 확인했는가?",
+          "공통 중력가속도에서는 상대운동이 단순해지는지 확인했는가?",
+          "충돌 전후 x,y 운동량을 각각 보존했는가?",
+          "원운동은 중심방향 힘의 합을 썼는가?",
+          "열역학 과정에서 W=∫P dV와 Q=ΔU+W를 구분했는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "벡터",
+          "topic": "단위벡터",
+          "difficulty": "하",
+          "image": {
+            "page": 2,
+            "crop": [
+              35,
+              70,
+              1120,
+              690
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "③",
+          "explanation": [
+            "r=(3,4,5)의 크기는 |r|=√(3²+4²+5²)=√50=5√2이다.",
+            "단위벡터는 r/|r|이므로 각 성분은 3√2/10, 2√2/5, √2/2가 된다.",
+            "따라서 보기 ③이 일치한다."
+          ],
+          "formulas": [
+            "r̂=r/|r|",
+            "|r|=√(x²+y²+z²)"
+          ],
+          "commonMistakes": [
+            "벡터의 각 성분을 그대로 단위벡터 성분으로 쓰는 것",
+            "√50을 10으로 잘못 계산하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "벡터 a=2î-3ĵ+6k̂의 단위벡터는?",
+            "answer": "(2/7)î-(3/7)ĵ+(6/7)k̂",
+            "explanation": "|a|=√(4+9+36)=7이므로 각 성분을 7로 나눈다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "(2/7)î-(3/7)ĵ+(6/7)k̂"
+            ],
+            "choices": [
+              "(2/7)î-(3/7)ĵ+(6/7)k̂",
+              "(2/5)î-(3/5)ĵ+(6/5)k̂",
+              "(1/7)î-(3/7)ĵ+(3/7)k̂",
+              "(2/√7)î-(3/√7)ĵ+(6/√7)k̂"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 3,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "③",
+            "acceptableAnswers": [
+              "3",
+              "③"
+            ],
+            "correctChoice": 3,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "벡터",
+          "topic": "내적·외적 성질",
+          "difficulty": "하",
+          "image": {
+            "page": 2,
+            "crop": [
+              35,
+              760,
+              1120,
+              780
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "⑤",
+          "explanation": [
+            "내적 A·B는 스칼라이고 A·B=B·A이다.",
+            "외적 A×B는 벡터이며 A×B=-(B×A)의 반교환 법칙을 따른다.",
+            "따라서 A×B=B×A라고 한 ⑤가 틀리다."
+          ],
+          "formulas": [
+            "A·B=|A||B|cosθ",
+            "A×B=-(B×A)"
+          ],
+          "commonMistakes": [
+            "외적에도 교환법칙이 성립한다고 생각하는 것",
+            "내적 결과를 벡터로 착각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "다음 중 벡터 연산에 대한 설명으로 옳지 않은 것은?",
+            "answer": "A×B=B×A",
+            "explanation": "외적은 순서를 바꾸면 부호가 반대이므로 ③이 옳지 않다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "3",
+              "A×B=B×A"
+            ],
+            "choices": [
+              "A·B=B·A",
+              "A×B는 두 벡터 모두에 수직이다",
+              "A×B=B×A",
+              "A·A=|A|²"
+            ],
+            "correctChoice": 3,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 5,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "⑤",
+            "acceptableAnswers": [
+              "5",
+              "⑤"
+            ],
+            "correctChoice": 5,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "만유인력",
+          "topic": "쌍성의 질량중심과 주기",
+          "difficulty": "상",
+          "image": {
+            "page": 3,
+            "crop": [
+              35,
+              70,
+              1120,
+              760
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "④",
+          "explanation": [
+            "질량 M=4m인 행성과 질량 m인 위성은 공통 질량중심을 같은 각속도로 돈다.",
+            "질량중심 조건 MR=mr에서 R:r=1:4이고, v=ωr이므로 속력비도 1:4이다.",
+            "분리거리는 R+r=5R이다. 행성에 대해 4mRω²=G(4m·m)/(5R)²이므로 ω²=Gm/(25R³)이다.",
+            "따라서 T=2π/ω=10π√(R³/Gm)이고, 5π√(R³/Gm)이라고 한 ④가 옳지 않다."
+          ],
+          "formulas": [
+            "MR=mr",
+            "v=ωr",
+            "F=GMm/d²",
+            "T=2π/ω"
+          ],
+          "commonMistakes": [
+            "행성만 고정되어 있다고 두는 것",
+            "분리거리를 R로 두는 것",
+            "주기를 각 물체별로 다르게 두는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "질량 9m과 m인 두 천체가 공통 질량중심을 원운동한다. 무거운 천체와 가벼운 천체의 회전반지름 비는?",
+            "answer": "1:9",
+            "explanation": "질량중심 조건 9m·R=m·r이므로 R:r=1:9이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "1:9"
+            ],
+            "choices": [
+              "1:3",
+              "1:9",
+              "3:1",
+              "9:1"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "correctChoice": 4,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "운동학",
+          "topic": "등가속도 추월 문제",
+          "difficulty": "중",
+          "image": {
+            "page": 3,
+            "crop": [
+              35,
+              860,
+              1120,
+              660
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "④",
+          "explanation": [
+            "사람이 출발점에서 달린 거리는 x_p=8t이다.",
+            "기차 출입구의 위치는 x_t=d+(1/2)t²이다.",
+            "겨우 따라잡는 한계에서는 d=8t-(1/2)t²의 최댓값이므로 t=8 s이다.",
+            "d_max=64-32=32 m이므로 ④이다."
+          ],
+          "formulas": [
+            "x=vt",
+            "x=x₀+(1/2)at²",
+            "이차함수 최대 또는 접선 조건"
+          ],
+          "commonMistakes": [
+            "기차의 초기 위치 d를 누락하는 것",
+            "두 곡선의 단순 교점만 찾고 한계 조건을 확인하지 않는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "사람이 10 m/s로 달리고, 기차가 정지 상태에서 2 m/s²로 출발한다. 사람이 겨우 탈 수 있는 최대 초기거리 d는?",
+            "answer": "25 m",
+            "explanation": "d=10t-t²의 최댓값은 t=5 s에서 25 m이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "25 m"
+            ],
+            "choices": [
+              "20 m",
+              "25 m",
+              "30 m",
+              "50 m"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "correctChoice": 4,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "열운동",
+          "topic": "이상기체 압력과 분자 평균 운동에너지",
+          "difficulty": "중",
+          "image": {
+            "page": 4,
+            "crop": [
+              35,
+              70,
+              1120,
+              680
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "③",
+          "explanation": [
+            "A와 B는 온도와 분자수가 같고 부피가 V, 2V이므로 P=NkT/V에서 P_A=2P_B이다. 따라서 ㄱ은 참이다.",
+            "분자 1개의 평균 병진 운동에너지는 (3/2)kT이므로 질량과 무관하게 두 기체가 같다. ㄴ은 참이다.",
+            "분자 평균 속력은 같은 온도에서 질량의 제곱근에 반비례하므로 v_A/v_B=√2:1이다. 2:1은 아니다.",
+            "따라서 ㄱ, ㄴ인 ③이다."
+          ],
+          "formulas": [
+            "P=NkT/V",
+            "⟨K⟩=(3/2)kT",
+            "v∝√(T/m)"
+          ],
+          "commonMistakes": [
+            "평균 운동에너지가 질량에 비례한다고 생각하는 것",
+            "평균 속력비를 질량비의 역수로 바로 두는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 T, 같은 N의 이상기체 A,B가 부피 V,3V에 있고 분자 질량이 m,4m이다. 옳은 관계는?",
+            "answer": "P_A:P_B=3:1, v_A:v_B=2:1",
+            "explanation": "압력은 부피에 반비례해 3:1, 속력은 질량 제곱근에 반비례해 2:1이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "3",
+              "P_A:P_B=3:1, v_A:v_B=2:1"
+            ],
+            "choices": [
+              "P_A:P_B=1:3, v_A:v_B=2:1",
+              "P_A:P_B=3:1, v_A:v_B=1:2",
+              "P_A:P_B=3:1, v_A:v_B=2:1",
+              "P_A:P_B=9:1, v_A:v_B=4:1"
+            ],
+            "correctChoice": 3,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 3,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "③",
+            "acceptableAnswers": [
+              "3",
+              "③"
+            ],
+            "correctChoice": 3,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "운동학",
+          "topic": "같은 중력가속도 아래 상대운동",
+          "difficulty": "중",
+          "image": {
+            "page": 4,
+            "crop": [
+              35,
+              760,
+              1120,
+              770
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "①",
+          "explanation": [
+            "A와 B에는 같은 중력가속도가 아래쪽으로 작용하므로 상대가속도는 0이다.",
+            "서로 접근하는 상대속력은 10+10=20 m/s이고 초기 거리는 10 m이므로 충돌시간은 0.5 s로 지구와 달에서 같다.",
+            "B의 충돌 높이 10t-(1/2)gt²와 A의 충돌 직전 속력 10+gt는 g에 따라 달라진다.",
+            "따라서 ㄱ만 옳아 ①이다."
+          ],
+          "formulas": [
+            "상대가속도 a_rel=a_A-a_B",
+            "t=거리/상대속력"
+          ],
+          "commonMistakes": [
+            "각 물체의 낙하거리만 따로 계산해 충돌시간도 g에 의존한다고 보는 것",
+            "속력과 상대속력을 혼동하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 중력장 안에서 20 m 떨어진 두 물체를 서로 마주보게 각각 5 m/s로 동시에 발사한다. 공기저항이 없을 때 충돌시간은?",
+            "answer": "2 s",
+            "explanation": "두 물체의 중력가속도는 같아 상대가속도 0, 상대속력 10 m/s이므로 20/10=2 s이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "2 s"
+            ],
+            "choices": [
+              "1 s",
+              "2 s",
+              "4 s",
+              "중력가속도에 따라 달라짐"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 1,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "①",
+            "acceptableAnswers": [
+              "1",
+              "①"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 7,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "포물선 운동",
+          "topic": "비행시간과 특정 시점 높이",
+          "difficulty": "중",
+          "image": {
+            "page": 5,
+            "crop": [
+              35,
+              70,
+              1120,
+              690
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문에 중력가속도 값이 명시되어 있지 않다. 공식 해설과 보기 구성을 따라 g=10 m/s²를 적용함.",
+          "answer": "④",
+          "explanation": [
+            "그림에서 돌은 출발점과 같은 높이의 지면에 총 10 s 후 도달한다.",
+            "같은 높이로 되돌아오는 포물선 운동에서 v₀y=gT/2=50 m/s이다(g=10 m/s²).",
+            "1 s 후 높이는 y=50×1-5×1²=45 m이므로 ④이다."
+          ],
+          "formulas": [
+            "T=2v₀y/g",
+            "y=v₀y t-(1/2)gt²"
+          ],
+          "commonMistakes": [
+            "“그 다음 9초”를 총 9초로 읽는 것",
+            "수평 30 m 정보를 높이 계산에 직접 넣는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "돌이 같은 높이로 8 s 후 떨어지고, 1 s 후 수평으로 20 m 떨어진 지점을 지난다(g=10). 1 s 후 높이는?",
+            "answer": "35 m",
+            "explanation": "총 비행시간 8 s이므로 v₀y=40 m/s, 1 s 높이는 40-5=35 m이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "3",
+              "35 m"
+            ],
+            "choices": [
+              "25 m",
+              "30 m",
+              "35 m",
+              "40 m"
+            ],
+            "correctChoice": 3,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "correctChoice": 4,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 8,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "포물선 운동",
+          "topic": "수평발사 두 물체의 충돌",
+          "difficulty": "중",
+          "image": {
+            "page": 5,
+            "crop": [
+              35,
+              780,
+              1120,
+              720
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "④",
+          "explanation": [
+            "두 물체의 수평속력은 같은 방향으로 3v와 v이므로 상대속력은 2v이다.",
+            "충돌시간은 t=d/(2v)이다.",
+            "두 물체의 수직 낙하거리 h=(1/2)gt²이므로 h=gd²/(8v²)이다.",
+            "따라서 ④이다."
+          ],
+          "formulas": [
+            "t=d/(v₁-v₂)",
+            "h=(1/2)gt²"
+          ],
+          "commonMistakes": [
+            "상대속력을 4v로 더하는 것",
+            "수직 운동에 초기속도가 있다고 두는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 높이에서 수평으로 4v와 v로 같은 방향으로 던진 두 물체의 초기 간격이 d이다. 충돌점까지 낙하한 높이는?",
+            "answer": "gd²/(18v²)",
+            "explanation": "상대속력 3v, t=d/(3v), h=(1/2)g[d/(3v)]²=gd²/(18v²)이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "3",
+              "gd²/(18v²)"
+            ],
+            "choices": [
+              "gd²/(6v²)",
+              "gd²/(12v²)",
+              "gd²/(18v²)",
+              "gd²/(24v²)"
+            ],
+            "correctChoice": 3,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "correctChoice": 4,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 9,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "유체",
+          "topic": "부력과 뜨는 물체",
+          "difficulty": "중",
+          "image": {
+            "page": 6,
+            "crop": [
+              35,
+              70,
+              1120,
+              760
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "④",
+          "explanation": [
+            "얼음만 떠 있을 때 0.9ρV_ice g=ρ(V_ice-V)g이므로 V_ice=10V이다. ㄱ은 참이다.",
+            "곰이 올라간 뒤 추가로 잠긴 부피는 V-0.7V=0.3V이므로 곰 질량은 0.3ρV이다. ㄴ은 참이다.",
+            "부력은 얼음 무게와 곰이 누르는 힘의 합과 평형하므로 곰의 힘만과 같지 않다. ㄷ은 거짓이다.",
+            "따라서 ㄱ, ㄴ인 ④이다."
+          ],
+          "formulas": [
+            "F_B=ρ_fluid g V_sub",
+            "정지 시 ΣF_y=0"
+          ],
+          "commonMistakes": [
+            "부력을 추가 하중의 무게와만 같게 두는 것",
+            "수면 위 부피를 잠긴 부피로 착각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "밀도 0.8ρ인 얼음이 물에 떠 있고 수면 위 부피가 V이다. 얼음의 전체 부피는?",
+            "answer": "5V",
+            "explanation": "잠긴 비율이 0.8이므로 수면 위 비율은 0.2, 전체 부피는 V/0.2=5V이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "5V"
+            ],
+            "choices": [
+              "4V",
+              "5V",
+              "8V",
+              "10V"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "correctChoice": 4,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 10,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "운동량",
+          "topic": "1차원 완전탄성충돌",
+          "difficulty": "상",
+          "image": {
+            "page": 6,
+            "crop": [
+              35,
+              830,
+              1120,
+              680
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "④",
+          "explanation": [
+            "중성자의 질량을 m, 탄소를 12m로 두고 초기속도를 각각 +v, -v로 둔다.",
+            "1차원 완전탄성충돌 공식 v₁′=[(m₁-m₂)u₁+2m₂u₂]/(m₁+m₂)을 적용한다.",
+            "v₁′=[(-11) v+24(-v)]/13=-35v/13이므로 ④이다."
+          ],
+          "formulas": [
+            "v₁′=((m₁-m₂)u₁+2m₂u₂)/(m₁+m₂)",
+            "운동량 보존 + 상대속력 반전"
+          ],
+          "commonMistakes": [
+            "탄소의 초기속도 부호를 +v로 넣는 것",
+            "질량비 12를 속도비로 직접 적용하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "질량 m인 입자가 +u, 질량 3m인 입자가 -u로 운동하다 완전탄성충돌한다. 첫 입자의 충돌 후 속도는?",
+            "answer": "-2u",
+            "explanation": "v₁′=[(1-3)u+2·3(-u)]/4=-8u/4=-2u이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "-2u"
+            ],
+            "choices": [
+              "-2u",
+              "-u",
+              "0",
+              "u/2"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "correctChoice": 4,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 11,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "운동량",
+          "topic": "2차원 충돌과 운동량 성분 보존",
+          "difficulty": "상",
+          "image": {
+            "page": 7,
+            "crop": [
+              35,
+              70,
+              1120,
+              740
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "①",
+          "explanation": [
+            "충돌 전 전체 운동량은 x방향 2v₀, y방향 v₀이다.",
+            "충돌 후 A(1 kg)가 +x 방향 v₀/2로 움직이므로 A의 x운동량은 v₀/2이다.",
+            "따라서 B의 운동량 성분은 p_Bx=3v₀/2, p_By=v₀이고 B 질량이 2 kg이므로 v_Bx=3v₀/4, v_By=v₀/2이다.",
+            "tanθ=(v₀/2)/(3v₀/4)=2/3이므로 ①이다."
+          ],
+          "formulas": [
+            "Σp_x 보존",
+            "Σp_y 보존",
+            "tanθ=v_y/v_x"
+          ],
+          "commonMistakes": [
+            "질량 2 kg을 속도 성분에 나누지 않는 것",
+            "각도를 x축이 아니라 y축 기준으로 읽는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "질량 1 kg 물체가 +x 방향 v, 질량 1 kg 물체가 +y 방향 v로 충돌한다. 충돌 후 첫 물체가 +x 방향 v/2이면 두 번째 물체의 진행각 θ에 대해 tanθ는?",
+            "answer": "2",
+            "explanation": "두 번째 물체의 운동량은 (v/2, v)이므로 tanθ=v/(v/2)=2이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "2"
+            ],
+            "choices": [
+              "1",
+              "2",
+              "1/2",
+              "√2"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 1,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "①",
+            "acceptableAnswers": [
+              "1",
+              "①"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 12,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "원운동",
+          "topic": "마찰 없는 경사 원형 궤도",
+          "difficulty": "중",
+          "image": {
+            "page": 7,
+            "crop": [
+              35,
+              810,
+              1120,
+              700
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "④",
+          "explanation": [
+            "수직방향 평형에서 Ncosθ=mg이다.",
+            "수평방향 구심력에서 Nsinθ=mv²/r이다.",
+            "두 식을 나누면 tanθ=v²/(rg), 즉 mg tanθ=mv²/r이다.",
+            "따라서 ④이다."
+          ],
+          "formulas": [
+            "Ncosθ=mg",
+            "Nsinθ=mv²/r",
+            "tanθ=v²/(rg)"
+          ],
+          "commonMistakes": [
+            "N 자체를 구심력으로 두는 것",
+            "sin과 cos 성분을 바꾸는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "마찰 없는 뱅크각 θ의 원형도로에서 반지름 r, 속력 v로 달릴 때 옳은 관계는?",
+            "answer": "tanθ=v²/(rg)",
+            "explanation": "수직 성분 평형과 수평 구심력 식을 나누면 tanθ=v²/(rg)이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "tanθ=v²/(rg)"
+            ],
+            "choices": [
+              "tanθ=rg/v²",
+              "tanθ=v²/(rg)",
+              "sinθ=v²/(rg)",
+              "cosθ=v²/(rg)"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "correctChoice": 4,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 13,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "원운동",
+          "topic": "연직 원운동과 수직항력",
+          "difficulty": "상",
+          "image": {
+            "page": 8,
+            "crop": [
+              35,
+              70,
+              1120,
+              710
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "⑤",
+          "explanation": [
+            "A는 원 중심 O와 같은 높이이고 B는 A보다 R만큼 높다.",
+            "에너지 보존으로 v_B²=v₀²-2gR이다.",
+            "최고점에서 중심방향은 아래쪽이고 N+mg=mv_B²/R이다.",
+            "따라서 N=m(v₀²-2gR)/R-mg=mv₀²/R-3mg이므로 ⑤이다."
+          ],
+          "formulas": [
+            "(1/2)mv₀²=(1/2)mv_B²+mgR",
+            "N+mg=mv_B²/R"
+          ],
+          "commonMistakes": [
+            "A와 B의 높이차를 2R로 두는 것",
+            "최고점에서 N과 mg 방향을 반대로 두는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "물체가 연직 원궤도 맨 아래에서 속력 v₀로 출발해 내부면을 따라 운동한다. 최고점의 수직항력은?",
+            "answer": "mv₀²/R-5mg",
+            "explanation": "아래에서 위까지 높이차 2R이므로 v_top²=v₀²-4gR, N+mg=mv_top²/R에서 N=mv₀²/R-5mg이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "mv₀²/R-5mg"
+            ],
+            "choices": [
+              "mv₀²/R-5mg",
+              "mv₀²/R-3mg",
+              "mv₀²/R-mg",
+              "mv₀²/R+mg"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 5,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "⑤",
+            "acceptableAnswers": [
+              "5",
+              "⑤"
+            ],
+            "correctChoice": 5,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 14,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "단진동",
+          "topic": "수직 용수철의 주기와 평형점",
+          "difficulty": "중",
+          "image": {
+            "page": 8,
+            "crop": [
+              35,
+              790,
+              1120,
+              710
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "①",
+          "explanation": [
+            "평형에서 kℓ′=Mg이므로 M/k=ℓ′/g이다.",
+            "수직 용수철의 주기는 T=2π√(M/k)=2π√(ℓ′/g)로 ①이 맞다.",
+            "A는 평형점이므로 속력 최대·가속도 0이고, 자연길이 B는 평형점에서 ℓ′만큼 위쪽이므로 가속도 크기가 최대이다.",
+            "B에서 놓을 때 진폭은 AB=ℓ′이지 2ℓ′가 아니다."
+          ],
+          "formulas": [
+            "kℓ′=Mg",
+            "T=2π√(M/k)=2π√(ℓ′/g)"
+          ],
+          "commonMistakes": [
+            "중력이 주기에 직접 추가된다고 생각하는 것",
+            "평형점에서 속력과 가속도의 성질을 반대로 기억하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "수직 용수철에 질량 M을 달았을 때 평형 늘어난 길이가 x₀이다. 작은 진동의 주기는?",
+            "answer": "2π√(x₀/g)",
+            "explanation": "kx₀=Mg이므로 M/k=x₀/g, T=2π√(M/k)=2π√(x₀/g)이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "2π√(x₀/g)"
+            ],
+            "choices": [
+              "2π√(x₀/g)",
+              "2π√(g/x₀)",
+              "π√(x₀/g)",
+              "2π√(2x₀/g)"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 1,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "①",
+            "acceptableAnswers": [
+              "1",
+              "①"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 15,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "단진동",
+          "topic": "가속 좌표계의 단진자",
+          "difficulty": "상",
+          "image": {
+            "page": 9,
+            "crop": [
+              35,
+              70,
+              1120,
+              680
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "②",
+          "explanation": [
+            "마찰 없는 45° 경사면을 따라 지지점은 a=g sin45°=g/√2로 가속한다.",
+            "지지점과 함께 움직이는 좌표계에서는 경사면 방향 중력 성분이 관성력으로 상쇄되고, 유효중력은 경사면에 수직인 g cos45°=g/√2이다.",
+            "따라서 T=2π√(L/(g/√2))=2π√(√2L/g)로 ②이다."
+          ],
+          "formulas": [
+            "g_eff=g cosθ",
+            "T=2π√(L/g_eff)"
+          ],
+          "commonMistakes": [
+            "유효중력을 g 그대로 쓰는 것",
+            "경사면 방향 성분 g sinθ를 유효중력으로 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "마찰 없는 30° 경사면을 따라 지지점이 자유낙하하듯 미끄러질 때 길이 L 단진자의 작은 진동 주기는?",
+            "answer": "2π√(2L/(√3g))",
+            "explanation": "유효중력은 g cos30°=√3g/2이므로 T=2π√(2L/(√3g))이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "2π√(2L/(√3g))"
+            ],
+            "choices": [
+              "2π√(L/g)",
+              "2π√(2L/(√3g))",
+              "2π√(√3L/g)",
+              "π√(2L/g)"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 2,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "②",
+            "acceptableAnswers": [
+              "2",
+              "②"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 16,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "만유인력",
+          "topic": "케플러 법칙과 타원 궤도 에너지",
+          "difficulty": "중",
+          "image": {
+            "page": 9,
+            "crop": [
+              35,
+              750,
+              1120,
+              760
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "④",
+          "explanation": [
+            "그림의 A는 태양에 가장 가까운 근일점이므로 속력이 가장 빠르고 가속도 크기도 가장 크다. ㄱ, ㄹ은 참이다.",
+            "중력 위치에너지 U=-GMm/r이므로 A에서 가장 작다(가장 음수). ㄴ은 거짓이다.",
+            "마찰 등 비보존력이 없으므로 역학적 에너지는 궤도 어디서나 같다. ㄷ은 참이다.",
+            "따라서 ㄱ, ㄷ, ㄹ인 ④이다."
+          ],
+          "formulas": [
+            "U=-GMm/r",
+            "v_근일점>v_원일점",
+            "E=K+U 일정"
+          ],
+          "commonMistakes": [
+            "위치에너지의 음수 부호를 무시하는 것",
+            "근일점에서 속력은 크지만 에너지도 더 크다고 생각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "타원 궤도에서 행성이 중심별에 가장 가까운 점 P에 있을 때 옳은 것은?",
+            "answer": "속력 최대, 위치에너지 최소",
+            "explanation": "근일점에서는 r이 작아 중력과 가속도, 속력이 크고 U=-GMm/r는 가장 작다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "속력 최대, 위치에너지 최소"
+            ],
+            "choices": [
+              "속력 최소, 위치에너지 최대",
+              "속력 최대, 위치에너지 최소",
+              "속력 최대, 역학적에너지 최대",
+              "가속도 최소, 위치에너지 최소"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "correctChoice": 4,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 17,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "만유인력",
+          "topic": "중력 위치에너지와 발사속도",
+          "difficulty": "중",
+          "image": {
+            "page": 10,
+            "crop": [
+              35,
+              70,
+              1120,
+              700
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "②",
+          "explanation": [
+            "지표면의 중심거리 R에서 출발해 높이 R까지 올라가므로 최고점 중심거리는 2R이다.",
+            "최고점에서 속력이 0인 한계조건으로 (1/2)mv²-GMm/R=-GMm/(2R)이다.",
+            "정리하면 v²=GM/R, 따라서 v=√(GM/R)로 ②이다."
+          ],
+          "formulas": [
+            "U=-GMm/r",
+            "E_i=E_f"
+          ],
+          "commonMistakes": [
+            "높이 R을 최종 중심거리 R로 두는 것",
+            "지표면 근처 mgh를 그대로 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "지표면에서 발사한 물체가 높이 3R(최종 중심거리 4R)까지 올라가 정지한다. 필요한 초속도는?",
+            "answer": "√(3GM/2R)",
+            "explanation": "(1/2)v²=GM(1/R-1/4R)=3GM/(4R)이므로 v=√(3GM/(2R))이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "√(3GM/2R)"
+            ],
+            "choices": [
+              "√(GM/2R)",
+              "√(3GM/2R)",
+              "√(2GM/R)",
+              "√(3GM/R)"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 2,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "②",
+            "acceptableAnswers": [
+              "2",
+              "②"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 18,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "열현상",
+          "topic": "정상상태 열전도",
+          "difficulty": "중",
+          "image": {
+            "page": 10,
+            "crop": [
+              35,
+              810,
+              1120,
+              690
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "⑤",
+          "explanation": [
+            "정상상태에서는 두 막대를 통과하는 열전달률이 같다.",
+            "길이와 단면적이 같으므로 k_A(100-T)=k_B(T-0)이다.",
+            "k_A=4k_B이므로 4(100-T)=T, 따라서 T=80°C이다.",
+            "정답은 ⑤이다."
+          ],
+          "formulas": [
+            "Q/t=kAΔT/L",
+            "정상상태에서 열전달률 연속"
+          ],
+          "commonMistakes": [
+            "온도차를 열전도율에 비례하게 두는 것",
+            "접촉점 온도를 단순 평균 50°C로 두는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 길이·단면적의 A,B 막대가 90°C와 0°C 사이에 직렬 연결되어 있고 k_A=2k_B이다. 접촉점 온도는?",
+            "answer": "60°C",
+            "explanation": "2(90-T)=T에서 T=60°C이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "3",
+              "60°C"
+            ],
+            "choices": [
+              "30°C",
+              "45°C",
+              "60°C",
+              "75°C"
+            ],
+            "correctChoice": 3,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 5,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "⑤",
+            "acceptableAnswers": [
+              "5",
+              "⑤"
+            ],
+            "correctChoice": 5,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 19,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "열현상",
+          "topic": "열량 보존과 얼음의 융해",
+          "difficulty": "중",
+          "image": {
+            "page": 11,
+            "crop": [
+              35,
+              70,
+              1120,
+              660
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문에 물의 비열이 명시되어 있지 않아 표준값 c_water=1 kcal/(kg·°C)를 적용함. 사이트 해설에는 이 가정을 명시함.",
+          "answer": "④",
+          "explanation": [
+            "얼음 1 kg을 -10°C에서 0°C까지 데우는 데 0.5×1×10=5 kcal가 필요하다.",
+            "융해에 70 kcal가 필요하고, 녹은 물이 0°C에서 T까지 올라가는 데 T kcal가 필요하다.",
+            "50°C 물 9 kg이 잃는 열은 9(50-T) kcal이다(물의 비열 1 kcal/(kg·°C) 사용).",
+            "5+70+T=9(50-T)에서 T=37.5°C이므로 ④이다."
+          ],
+          "formulas": [
+            "Q=mcΔT",
+            "Q=mL_f",
+            "열량 보존: 잃은 열=얻은 열"
+          ],
+          "commonMistakes": [
+            "얼음을 0°C까지 올리는 열량을 빼먹는 것",
+            "녹은 물이 최종온도까지 데워지는 열량을 빼먹는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "40°C 물 4 kg에 0°C 얼음 1 kg을 넣는다. 물의 비열 1 kcal/(kg·°C), 융해열 80 kcal/kg일 때 최종온도는?",
+            "answer": "16°C",
+            "explanation": "4(40-T)=80+T에서 5T=80, T=16°C이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "3",
+              "16°C"
+            ],
+            "choices": [
+              "8°C",
+              "12°C",
+              "16°C",
+              "20°C"
+            ],
+            "correctChoice": 3,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "correctChoice": 4,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 20,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "열역학",
+          "topic": "T-V 그래프와 이상기체 과정",
+          "difficulty": "중",
+          "image": {
+            "page": 11,
+            "crop": [
+              35,
+              710,
+              1120,
+              800
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "공식 해설의 ㄱ 설명이 A와 B 압력 비교로 잘못 서술되어 있어, 실제 보기인 B와 C 압력 비교(P_C=2P_B)로 교정함.",
+          "answer": "④",
+          "explanation": [
+            "A=(T,V), B=(T,4V), C=(2T,4V)이다.",
+            "P=nRT/V이므로 P_B=nRT/(4V), P_C=2nRT/(4V)=2P_B이다. 따라서 “B의 압력이 C보다 작다”는 ㄱ은 참이다.",
+            "분자 평균 운동에너지는 온도에만 비례하므로 A와 B가 같아 ㄴ은 거짓이다.",
+            "B→C는 부피 일정인 등적과정이므로 W=0, Q=ΔU이다. ㄷ은 참이다.",
+            "따라서 ㄱ, ㄷ인 ④이다."
+          ],
+          "formulas": [
+            "P=nRT/V",
+            "⟨K⟩∝T",
+            "Q=ΔU+W",
+            "등적과정 W=0"
+          ],
+          "commonMistakes": [
+            "T-V 그래프를 P-V 그래프로 읽는 것",
+            "등적과정에서도 기체가 일을 한다고 보는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "정답 번호와 핵심 판단 근거가 일치함",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "prompt": "A=(T,V), B=(T,3V), C=(2T,3V)인 이상기체에서 옳은 설명은?",
+            "answer": "P_C=2P_B이고 B→C에서 Q=ΔU",
+            "explanation": "P∝T/V이므로 P_C=2P_B이며 B→C는 V 일정이라 W=0, Q=ΔU이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "P_C=2P_B이고 B→C에서 Q=ΔU"
+            ],
+            "choices": [
+              "P_B=P_C이고 A와 B의 평균운동에너지가 다르다",
+              "P_C=2P_B이고 B→C에서 Q=ΔU",
+              "P_A=P_B이고 B→C에서 W>0",
+              "P_C=P_B/2이고 A와 B의 평균운동에너지가 같다"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "correctChoice": 4,
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 21,
+          "maxPoints": 4,
+          "type": "subjective",
+          "inputMode": "points",
+          "unit": "포물선 운동",
+          "topic": "일반 투사체의 시간·최고점·도달거리",
+          "difficulty": "중",
+          "image": {
+            "page": 12,
+            "crop": [
+              35,
+              70,
+              1120,
+              1450
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "T=v₀sinθ/g, H=v₀²sin²θ/(2g), R=v₀²sin2θ/g",
+          "explanation": [
+            "수직속도는 v_y=v₀sinθ-gt이고 최고점에서 v_y=0이므로 T=v₀sinθ/g이다.",
+            "최고점 높이는 H=v₀sinθ·T-(1/2)gT²=v₀²sin²θ/(2g)이다.",
+            "총 비행시간은 2T이고 수평속도는 v₀cosθ이므로 R=v₀cosθ·2T=v₀²sin2θ/g이다."
+          ],
+          "formulas": [
+            "v_x=v₀cosθ",
+            "v_y=v₀sinθ-gt",
+            "R=v₀²sin2θ/g"
+          ],
+          "commonMistakes": [
+            "최고점 시간과 전체 비행시간을 혼동하는 것",
+            "H 계산에서 1/2을 누락하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "최고점 도달시간 T",
+              "points": 1
+            },
+            {
+              "criterion": "최고점 높이 H",
+              "points": 1
+            },
+            {
+              "criterion": "수평도달거리 R 도출",
+              "points": 2
+            }
+          ],
+          "similarProblem": {
+            "prompt": "수평면에서 속력 20 m/s, 각도 30°로 던진다(g=10). 최고점 도달시간, 최고점 높이, 수평도달거리는?",
+            "answer": "1 s, 5 m, 20√3 m",
+            "explanation": "v₀y=10이므로 T=1 s, H=10²/(2·10)=5 m, R=v₀²sin60°/10=20√3 m이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "1 s, 5 m, 20√3 m"
+            ],
+            "choices": [
+              "1 s, 5 m, 20√3 m",
+              "2 s, 10 m, 20√3 m",
+              "1 s, 10 m, 10√3 m",
+              "2 s, 5 m, 10√3 m"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "T=v₀sinθ/g, H=v₀²sin²θ/(2g), R=v₀²sin2θ/g",
+              "T=2v₀sinθ/g, H=v₀²sin²θ/g, R=v₀²sin2θ/(2g)",
+              "T=v₀cosθ/g, H=v₀²cos²θ/(2g), R=v₀²sinθ/g",
+              "T=v₀sinθ/(2g), H=v₀²sin²θ/(2g), R=2v₀²sin2θ/g"
+            ],
+            "correctChoice": 1,
+            "answer": "T=v₀sinθ/g, H=v₀²sin²θ/(2g), R=v₀²sin2θ/g",
+            "acceptableAnswers": [
+              "1",
+              "T=v₀sinθ/g, H=v₀²sin²θ/(2g), R=v₀²sin2θ/g"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 22,
+          "maxPoints": 4,
+          "type": "subjective",
+          "inputMode": "points",
+          "unit": "운동량",
+          "topic": "비스듬한 충돌과 반발계수",
+          "difficulty": "중",
+          "image": {
+            "page": 13,
+            "crop": [
+              35,
+              70,
+              1120,
+              1450
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "1) 10√2 m/s, 2) 2√29 m/s",
+          "explanation": [
+            "입사속력 10√2 m/s가 면과 45°이므로 면에 평행한 성분과 수직한 성분의 크기는 각각 10 m/s이다.",
+            "매끄러운 면에서는 평행 성분이 변하지 않는다.",
+            "완전탄성충돌(e=1)에서는 수직 성분의 방향만 반전되어 최종 속력은 다시 10√2 m/s이다.",
+            "e=0.4이면 반사 후 수직 성분은 4 m/s이고 평행 성분은 10 m/s이므로 v=√(10²+4²)=√116=2√29 m/s이다."
+          ],
+          "formulas": [
+            "v_∥′=v_∥",
+            "|v_⊥′|=e|v_⊥|",
+            "v=√(v_∥²+v_⊥²)"
+          ],
+          "commonMistakes": [
+            "반발계수를 전체 속력에 곱하는 것",
+            "평행 성분의 방향이나 크기도 바꾸는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "입사속도 성분 분해",
+              "points": 1
+            },
+            {
+              "criterion": "완전탄성 충돌 결과",
+              "points": 1
+            },
+            {
+              "criterion": "e=0.4 수직성분 적용",
+              "points": 1
+            },
+            {
+              "criterion": "비탄성 최종 속력",
+              "points": 1
+            }
+          ],
+          "similarProblem": {
+            "prompt": "속력 10√2 m/s로 45° 입사한 공이 매끄러운 면과 e=0.5로 충돌한다. 충돌 후 속력은?",
+            "answer": "5√5 m/s",
+            "explanation": "평행 성분 10, 수직 반사 성분 5이므로 √(100+25)=5√5 m/s이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "5√5 m/s"
+            ],
+            "choices": [
+              "5√5 m/s",
+              "5√2 m/s",
+              "10 m/s",
+              "10√2 m/s"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "1) 10√2 m/s, 2) 2√29 m/s",
+              "1) 10 m/s, 2) 4 m/s",
+              "1) 20 m/s, 2) 14 m/s",
+              "1) 10√2 m/s, 2) 4√2 m/s"
+            ],
+            "correctChoice": 1,
+            "answer": "1) 10√2 m/s, 2) 2√29 m/s",
+            "acceptableAnswers": [
+              "1",
+              "1) 10√2 m/s, 2) 2√29 m/s"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 23,
+          "maxPoints": 4,
+          "type": "subjective",
+          "inputMode": "points",
+          "unit": "역학적 에너지",
+          "topic": "수직 원궤도 최소 높이와 에너지 손실",
+          "difficulty": "상",
+          "image": {
+            "page": 14,
+            "crop": [
+              35,
+              70,
+              1120,
+              1450
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "h=7R/2",
+          "explanation": [
+            "원궤도 꼭대기에서 이탈하지 않는 최소조건은 N=0이므로 mg=mv²/R, 즉 v²=gR이다.",
+            "꼭대기의 역학적 에너지는 2mgR+(1/2)mgR=(5/2)mgR이다.",
+            "내려오는 동안 mgR의 에너지를 잃으므로 mgh-mgR=(5/2)mgR이다.",
+            "따라서 h=7R/2이다."
+          ],
+          "formulas": [
+            "최고점 최소조건 v²=gR",
+            "mgh-E_loss=2mgR+(1/2)mv²"
+          ],
+          "commonMistakes": [
+            "꼭대기에서 속력을 0으로 두는 것",
+            "마찰 손실 mgR을 오른쪽에 더하지 않는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "최고점 이탈 한계조건 v²=gR",
+              "points": 1
+            },
+            {
+              "criterion": "꼭대기 역학적에너지",
+              "points": 1
+            },
+            {
+              "criterion": "에너지 손실을 포함한 보존식",
+              "points": 1
+            },
+            {
+              "criterion": "h=7R/2",
+              "points": 1
+            }
+          ],
+          "similarProblem": {
+            "prompt": "반지름 R인 수직 원궤도에 들어가기 전 에너지 손실이 (1/2)mgR일 때, 정지 출발 최소 높이 h는?",
+            "answer": "3R",
+            "explanation": "최고점에 필요한 에너지는 (5/2)mgR이고 손실 (1/2)mgR을 더해 mgh=3mgR, h=3R이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "3R"
+            ],
+            "choices": [
+              "5R/2",
+              "3R",
+              "7R/2",
+              "4R"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "h=5R/2",
+              "h=3R",
+              "h=7R/2",
+              "h=4R"
+            ],
+            "correctChoice": 3,
+            "answer": "h=7R/2",
+            "acceptableAnswers": [
+              "3",
+              "h=7R/2"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 24,
+          "maxPoints": 4,
+          "type": "subjective",
+          "inputMode": "points",
+          "unit": "열역학",
+          "topic": "P-V 그래프의 등압·등온·단열·등적 과정과 일",
+          "difficulty": "중",
+          "image": {
+            "page": 15,
+            "crop": [
+              35,
+              70,
+              1120,
+              1450
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "A: 등압, B: 등온, C: 단열, D: 등적; |W_A|>|W_B|>|W_C|>|W_D|=0",
+          "explanation": [
+            "P-V 그래프에서 A는 수평선이므로 등압과정, D는 수직선이므로 등적과정이다.",
+            "같은 시작점에서 팽창할 때 단열곡선은 등온곡선보다 압력이 더 빠르게 낮아지므로 위쪽 B가 등온, 아래쪽 C가 단열이다.",
+            "기체가 한 일은 P-V 그래프 아래 면적이다. 같은 부피까지 팽창한다고 보면 A가 가장 크고 B, C 순이며 D는 ΔV=0이라 0이다."
+          ],
+          "formulas": [
+            "W=∫P dV",
+            "등적과정 W=0",
+            "팽창 시 단열곡선은 등온곡선보다 아래"
+          ],
+          "commonMistakes": [
+            "등온과 단열 곡선의 위아래를 바꾸는 것",
+            "등적과정에서도 압력이 변하므로 일이 있다고 생각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "A,D 과정 이름",
+              "points": 1
+            },
+            {
+              "criterion": "B,C 과정 이름",
+              "points": 1
+            },
+            {
+              "criterion": "일이 P-V 면적임을 적용",
+              "points": 1
+            },
+            {
+              "criterion": "A>B>C>D(=0) 비교",
+              "points": 1
+            }
+          ],
+          "similarProblem": {
+            "prompt": "같은 초기상태에서 동일한 최종부피까지 등압·등온·단열 팽창과 등적 변화가 있다. 기체가 한 일의 크기 순서는?",
+            "answer": "등압>등온>단열>등적",
+            "explanation": "P-V 그래프 아래 면적을 비교하면 팽창 압력이 큰 등압이 최대, 등온, 단열 순이고 등적은 0이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "1",
+              "등압>등온>단열>등적"
+            ],
+            "choices": [
+              "등압>등온>단열>등적",
+              "등온>등압>단열>등적",
+              "단열>등온>등압>등적",
+              "등압>단열>등온>등적"
+            ],
+            "correctChoice": 1,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "A 등압, B 등온, C 단열, D 등적; A>B>C>D",
+              "A 등온, B 등압, C 단열, D 등적; B>A>C>D",
+              "A 등압, B 단열, C 등온, D 등적; A>C>B>D",
+              "A 등압, B 등온, C 등적, D 단열; A>B>D>C"
+            ],
+            "correctChoice": 1,
+            "answer": "A 등압, B 등온, C 단열, D 등적; A>B>C>D",
+            "acceptableAnswers": [
+              "1",
+              "A 등압, B 등온, C 단열, D 등적; A>B>C>D"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 25,
+          "maxPoints": 4,
+          "type": "subjective",
+          "inputMode": "points",
+          "unit": "열역학",
+          "topic": "열기관 순환과 열효율",
+          "difficulty": "상",
+          "image": {
+            "page": 16,
+            "crop": [
+              35,
+              70,
+              1120,
+              1450
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "e=2/11",
+          "explanation": [
+            "A(V₀,P₀), B(V₀,2P₀), C(4V₀,2P₀), D(4V₀,P₀)이고 단원자 이상기체이므로 U=(3/2)nRT=(3/2)PV이다.",
+            "A→B 등적에서 Q_AB=ΔU=(3/2)(2P₀V₀-P₀V₀)=(3/2)P₀V₀이다.",
+            "B→C 등압에서 ΔU=(3/2)(8-2)P₀V₀=9P₀V₀, W=2P₀(3V₀)=6P₀V₀이므로 Q_BC=15P₀V₀이다.",
+            "따라서 Q_in=(33/2)P₀V₀이고 순환일은 직사각형 넓이 W=3P₀V₀이다.",
+            "효율 e=W/Q_in=3/(33/2)=2/11이다."
+          ],
+          "formulas": [
+            "U=(3/2)nRT=(3/2)PV",
+            "Q=ΔU+W",
+            "W_cycle=둘러싼 P-V 면적",
+            "e=W/Q_in"
+          ],
+          "commonMistakes": [
+            "B→C에서 내부에너지 변화량을 0으로 두는 것",
+            "받은 열을 순환일과 동일하게 보는 것",
+            "열효율 분모에 방출열까지 포함하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "A→B 흡수열",
+              "points": 1
+            },
+            {
+              "criterion": "B→C 흡수열",
+              "points": 1
+            },
+            {
+              "criterion": "순환일 W=3P₀V₀",
+              "points": 1
+            },
+            {
+              "criterion": "e=2/11",
+              "points": 1
+            }
+          ],
+          "similarProblem": {
+            "prompt": "1몰 단원자 기체가 A(V₀,P₀)→B(V₀,3P₀)→C(2V₀,3P₀)→D(2V₀,P₀)→A로 순환한다. 열효율은?",
+            "answer": "4/21",
+            "explanation": "순환일은 2P₀V₀. Q_AB=3P₀V₀, Q_BC=(15/2)P₀V₀이므로 Q_in=(21/2)P₀V₀, e=2/(21/2)=4/21이다.",
+            "inputMode": "choice",
+            "acceptableAnswers": [
+              "2",
+              "4/21"
+            ],
+            "choices": [
+              "2/21",
+              "4/21",
+              "1/4",
+              "2/9"
+            ],
+            "correctChoice": 2,
+            "displayMode": "choice-card"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "e=1/11",
+              "e=2/11",
+              "e=3/11",
+              "e=1/3"
+            ],
+            "correctChoice": 2,
+            "answer": "e=2/11",
+            "acceptableAnswers": [
+              "2",
+              "e=2/11"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.6.2-physics2-mechanics-total"
     },
     {
       "examId": "physics2-basic-total-electromagnetism",
@@ -14664,5 +16731,5 @@ window.YP_CATALOG = {
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.6.1-physics1-r15-r16"
+  "featureVersion": "3.6.2-physics2-mechanics-total"
 };
