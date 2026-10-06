@@ -1,10 +1,10 @@
 {
   "name": "youngs-physics-review-comprehensive-analysis",
-  "version": "3.5.1",
+  "version": "3.6.0",
   "private": true,
   "scripts": {
     "test": "node --test tests/run-tests.mjs",
     "serve": "python3 -m http.server 8080 -d site"
   },
-  "description": "Young's Physics student lifetime portal with Physics 1 weekly review rounds 10-14, cumulative analysis, answer editor, Excel/CSV import, and Apps Script hosted bridge"
+  "description": "Young's Physics class roster quick-entry, permanent student portal, editable/deletable assessment records, Physics 1 review 10-14, answer editor, Excel/CSV import, and Apps Script hosted bridge"
 }

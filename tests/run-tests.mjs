@@ -267,7 +267,7 @@ test("GitHub Pages workflow injects YP_API_URL and accepts legacy variable",()=>
 test("GitHub Pages workflow는 학생 통합 portal.html까지 배포 파일로 검증",()=>{
   const src=read(".github/workflows/pages.yml");
   assert.match(src,/test -f site\/portal\.html/);
-  assert.match(src,/3\.5\.0-student-lifetime-portal/);
+  assert.match(src,/3\.6\.0-class-roster-record-manager/);
   assert.match(src,/3\.3\.0-hosted-parent-bridge/);
 });
 
@@ -515,11 +515,11 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
   assert.match(src,/normalizeBridgeOriginInput_\(rawOrigin\)/);
 });
 
-// v3.5.1 physics1 r10-r14 data addition, student lifetime portal, and choice-based retry learning
+// v3.6.0 class roster quick entry, record management, hidden weighted cumulative percent
 
-test("v3.5.1은 학생 영구 통합 링크를 유지하며 물리1 10~14회를 추가",()=>{
+test("v3.6.0은 기존 3.5.1 시험 데이터를 유지하며 반별 학생 입력 기능을 추가",()=>{
   assert.equal(catalog.featureVersion,"3.5.1-physics1-r10-r14");
-  assert.equal(JSON.parse(read("package.json")).version,"3.5.1");
+  assert.equal(JSON.parse(read("package.json")).version,"3.6.0");
 });
 
 test("학생 통합 포털 페이지와 네 개의 학부모 탭이 존재",()=>{
@@ -594,14 +594,16 @@ test("기존 Reports를 학생 통합 프로필로 분할 마이그레이션하�
   assert.match(src,/reportsWithoutStudentId/);
 });
 
-test("학생 누적 분석은 시험 만점으로 가중하고 주간·총괄을 분리",()=>{
+test("학생 누적 분석은 주간·총괄을 분리하되 가중 누적 성취율 수치를 공개하지 않음",()=>{
   const weeklyExam=YP.getExam("physics1-basic-r02"),a=scoreRecord(weeklyExam,"영스고","누적학생"),b=scoreRecord(mech,"영스고","누적학생");
   a.token="r_week";a.updatedAt="2026-08-01T00:00:00.000Z";b.token="r_total";b.updatedAt="2026-08-02T00:00:00.000Z";
   const summary=YP.computeStudentPortalCumulative([a,b]);
   assert.equal(summary.cumulative.testCount,2);
   assert.equal(summary.cumulative.weeklyCount,1);
   assert.equal(summary.cumulative.comprehensiveCount,1);
-  assert.equal(summary.cumulative.weightedPercent,(a.score+b.score)/(a.maxScore+b.maxScore)*100);
+  assert.equal(Object.prototype.hasOwnProperty.call(summary.cumulative,"weightedPercent"),false);
+  assert.equal(Object.prototype.hasOwnProperty.call(summary.cumulative,"totalScore"),false);
+  assert.equal(Object.prototype.hasOwnProperty.call(summary.cumulative,"totalMaxScore"),false);
   assert.equal(summary.reports[0].reportToken,"r_total");
 });
 
@@ -776,3 +778,70 @@ test("학생 포털은 미연결 구버전 기록을 동명이인 여러 프로�
 
 test("학생 누적 포털은 Questions 시트를 한 번만 읽어 시험별로 묶음",()=>{const src=read("apps-script/Code.gs");assert.match(src,/listRows_\(SHEETS\.QUESTIONS\)\.forEach/);const block=src.slice(src.indexOf("function buildStudentPortalData_"),src.indexOf("function getStudentPortal_"));assert.doesNotMatch(block,/getQuestionRows_\(/)});
 
+
+
+test("학생 통합 페이지는 누적 가중 성취율 숫자를 화면과 공개 누적 객체에서 숨김",()=>{
+  const portal=read("site/assets/portal.js"),core=read("site/assets/core.js"),server=read("apps-script/Code.gs");
+  assert.doesNotMatch(portal,/누적 가중 성취율/);
+  assert.doesNotMatch(portal,/weightedPercent/);
+  const buildStart=server.indexOf("function buildStudentPortalData_"),buildEnd=server.indexOf("function getStudentPortal_",buildStart),block=server.slice(buildStart,buildEnd);
+  assert.doesNotMatch(block,/weightedPercent:/);
+  assert.doesNotMatch(block,/totalScore:/);
+  assert.doesNotMatch(block,/totalMaxScore:/);
+  assert.doesNotMatch(core,/weightedPercent:/);
+});
+
+test("교사용 홈페이지는 반 추가·학생 추가·기존 학생 배정·이름 클릭 빠른 입력 UI를 제공",()=>{
+  const html=read("site/index.html"),app=read("site/assets/app.js");
+  for(const id of ["classRoster","addClassBtn","classTabs","classStudentGrid","addStudentToClassBtn","assignExistingStudentBtn","selectedStudentQuickPanel"])assert.match(html,new RegExp(`id="${id}"`));
+  assert.match(app,/function renderClassRoster/);
+  assert.match(app,/function selectRosterStudent/);
+  assert.match(app,/scrollIntoView\(\{behavior:"smooth",block:"start"\}\)/);
+  assert.match(app,/saveStudentProfile/);
+  assert.match(app,/addStudentToClass/);
+});
+
+test("Apps Script는 Classes·ClassMembers 시트와 반 CRUD·학생 배정 API를 제공",()=>{
+  const src=read("apps-script/Code.gs");
+  assert.match(src,/CLASSES:\s*"Classes"/);
+  assert.match(src,/CLASS_MEMBERS:\s*"ClassMembers"/);
+  assert.match(src,/Classes:\s*\["ClassId","ClassName"/);
+  assert.match(src,/ClassMembers:\s*\["ClassId","StudentId"/);
+  for(const fn of ["listClasses_","saveClass_","deleteClass_","saveStudentProfile_","addStudentToClass_","removeStudentFromClass_"])assert.match(src,new RegExp(`function ${fn.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}`));
+  for(const action of ["listClasses","saveClass","deleteClass","saveStudentProfile","addStudentToClass","removeStudentFromClass"])assert.match(src,new RegExp(`case "${action}"`));
+});
+
+test("반 삭제는 학생·성적을 삭제하지 않고 멤버십만 비활성화",()=>{
+  const src=read("apps-script/Code.gs"),start=src.indexOf("function deleteClass_"),end=src.indexOf("function saveStudentProfile_",start),block=src.slice(start,end);
+  assert.match(block,/Active/);
+  assert.match(block,/unassignedMembers/);
+  assert.doesNotMatch(block,/deleteReport_/);
+  assert.doesNotMatch(block,/SHEETS\.REPORTS/);
+  assert.doesNotMatch(block,/SHEETS\.STUDENTS/);
+});
+
+test("선택 학생의 기존 시험 결과는 교사용 화면에서 즉시 수정·삭제 가능",()=>{
+  const html=read("site/index.html"),app=read("site/assets/app.js"),api=read("site/assets/api.js");
+  assert.match(html,/selectedStudentReportsBody/);
+  assert.match(app,/data-selected-report-action="edit"/);
+  assert.match(app,/data-selected-report-action="delete"/);
+  assert.match(app,/handleReportAction/);
+  assert.match(api,/deleteReport\(token\)/);
+  assert.match(app,/수정 모드: 저장해도 학생 영구 링크와 개별 시험 링크가 유지됩니다/);
+});
+
+test("학생 전환 시 이전 학생의 문항 입력값이 다른 학생에게 넘어가지 않도록 초기화",()=>{
+  const app=read("site/assets/app.js");
+  assert.match(app,/function resetScoreEntryForStudentSwitch/);
+  assert.match(app,/현재 저장하지 않은 문항 입력값이 있습니다/);
+  assert.match(app,/state\.inputs=Array\(state\.exam\.questionCount\|\|0\)\.fill\(""\)/);
+});
+
+
+test("반에서 선택한 학생의 동일 시험 재저장은 신규 중복행 대신 기존 기록을 자동 수정",()=>{
+  const src=read("apps-script/Code.gs"),start=src.indexOf("function saveReport_"),end=src.indexOf("function saveBatch_",start),block=src.slice(start,end);
+  assert.match(block,/else if\(String\(input\.studentId\|\|""\)\.trim\(\)\)/);
+  assert.match(block,/String\(r\.ExamId\)!==String\(input\.examId\)/);
+  assert.match(block,/String\(r\.StudentId\|\|embedded\.studentId\|\|""\)===selectedStudentId/);
+  assert.match(block,/중복 성적/);
+});

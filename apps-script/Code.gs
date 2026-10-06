@@ -22,6 +22,8 @@ const SHEETS = {
   QUESTIONS: "Questions",
   QUESTION_OVERRIDES: "QuestionOverrides",
   STUDENTS: "Students",
+  CLASSES: "Classes",
+  CLASS_MEMBERS: "ClassMembers",
   REPORTS: "Reports"
 };
 
@@ -31,12 +33,15 @@ const HEADERS = {
   Questions: ["ExamId","QuestionNo","Type","InputMode","MaxPoints","Unit","Topic","Difficulty","AnswerJSON","RubricJSON","ExplanationJSON","OriginalRetryJSON","SimilarProblemJSON","ReviewStatus","CorrectionNote","ImageJSON"],
   QuestionOverrides: ["ExamId","QuestionNo","AnswerJSON","OriginalRetryJSON","SimilarProblemJSON","RevisionNote","UpdatedAt"],
   Students: ["StudentId","PortalToken","PortalFingerprint","IdentitySeed","IdentityDigest","IdentityKey","School","Name","Grade","ClassNo","ExternalId","CreatedAt","UpdatedAt","Active"],
+  Classes: ["ClassId","ClassName","SortOrder","CreatedAt","UpdatedAt","Active"],
+  ClassMembers: ["ClassId","StudentId","AddedAt","SortOrder","Active"],
   Reports: ["Token","Fingerprint","IdentitySeed","IdentityDigest","StudentKey","ExamId","CourseId","School","Name","Grade","ClassNo","ResultInputsJSON","PartialModesJSON","ScoringJSON","RecordJSON","CreatedAt","UpdatedAt","StudentId"]
 };
 
 const API_VERSION = "3.3.0-hosted-parent-bridge";
-const FEATURE_VERSION = "3.5.0-student-lifetime-portal";
+const FEATURE_VERSION = "3.6.0-class-roster-record-manager";
 const STUDENT_PORTAL_SCHEMA_VERSION = "1";
+const CLASS_ROSTER_SCHEMA_VERSION = "1";
 const DEFAULT_SESSION_TTL_DAYS = 90;
 const DEFAULT_SETUP_TOKEN_TTL_MINUTES = 10;
 
@@ -510,6 +515,18 @@ function dispatchApiRequest_(body) {
       assertTeacherAuth_(body); return {ok:true, reports:listReports_(body), serverInstanceId:getServerInstanceId_()};
     case "listStudents":
       assertTeacherAuth_(body); return {ok:true, students:listStudents_(body), serverInstanceId:getServerInstanceId_(), featureVersion:FEATURE_VERSION};
+    case "listClasses":
+      assertTeacherAuth_(body); return listClasses_();
+    case "saveClass":
+      assertTeacherAuth_(body); return saveClass_(body.classInfo || body.class || {});
+    case "deleteClass":
+      assertTeacherAuth_(body); return deleteClass_(String(body.classId || ""));
+    case "saveStudentProfile":
+      assertTeacherAuth_(body); return saveStudentProfile_(body.student || {});
+    case "addStudentToClass":
+      assertTeacherAuth_(body); return addStudentToClass_(String(body.classId || ""), String(body.studentId || ""));
+    case "removeStudentFromClass":
+      assertTeacherAuth_(body); return removeStudentFromClass_(String(body.classId || ""), String(body.studentId || ""));
     case "reissueStudentPortal":
       assertTeacherAuth_(body); return reissueStudentPortal_(String(body.studentId || ""));
     case "migrateStudentPortals":
@@ -1384,6 +1401,16 @@ function saveReport_(input) {
       rowIndex=objects.findIndex(function(r){return String(r.Token)===String(input.token);});
       if(rowIndex<0) throw new Error("수정할 서버 토큰을 찾지 못했습니다.");
       old=objects[rowIndex];
+    } else if(String(input.studentId||"").trim()) {
+      // 반별 학생 카드에서 학생을 선택해 같은 시험을 다시 저장하면 기존 기록을 자동 수정한다.
+      // 이름 기반 신규 행을 만들지 않아 중복 성적·홍길동2 같은 의도치 않은 학생명이 생기지 않는다.
+      const selectedStudentId=String(input.studentId||"").trim();
+      rowIndex=objects.findIndex(function(r){
+        if(String(r.ExamId)!==String(input.examId))return false;
+        const embedded=safeJson_(r.RecordJSON,{});
+        return String(r.StudentId||embedded.studentId||"")===selectedStudentId;
+      });
+      if(rowIndex>=0) old=objects[rowIndex];
     } else if(String(input.importMode||"")==="upsert") {
       const key=reportIdentityKey_(input.examId,school,name);
       rowIndex=objects.findIndex(function(r){return reportIdentityKey_(r.ExamId,r.School,r.Name)===key;});
@@ -1699,7 +1726,7 @@ function buildStudentPortalData_(profile) {
   const units=Object.keys(unitMap).map(function(k){const u=unitMap[k];return Object.assign(u,{percent:u.maxPoints?u.score/u.maxPoints*100:0});}).sort(function(a,b){return b.percent-a.percent;});
   const courses=Object.keys(courseMap).map(function(k){const c=courseMap[k];return Object.assign(c,{percent:c.maxPoints?c.score/c.maxPoints*100:0});}).sort(function(a,b){return b.percent-a.percent;});
   const chronological=summaries.slice().sort(function(a,b){return String(a.updatedAt||a.createdAt).localeCompare(String(b.updatedAt||b.createdAt));});
-  return {student:studentPortalSummary_(profile),reports:summaries,cumulative:{testCount:summaries.length,weeklyCount:summaries.filter(function(x){return x.assessmentType!=="comprehensive";}).length,comprehensiveCount:summaries.filter(function(x){return x.assessmentType==="comprehensive";}).length,totalScore:totalScore,totalMaxScore:totalMax,weightedPercent:totalMax?totalScore/totalMax*100:0,averagePercent:summaries.length?percentSum/summaries.length:0,latestPercent:chronological.length?chronological[chronological.length-1].percent:0,counts:{full:full,partial:partial,wrong:wrong,ungraded:ungraded},units:units,courses:courses,trend:chronological.map(function(x){return {reportToken:x.reportToken,examId:x.examId,label:x.shortTitle,percent:x.percent,assessmentType:x.assessmentType,updatedAt:x.updatedAt};}),strongUnits:units.slice(0,3),weakUnits:units.slice().sort(function(a,b){return a.percent-b.percent;}).slice(0,3),weakItems:weakItems.sort(function(a,b){const sa=a.status==="wrong"?0:1,sb=b.status==="wrong"?0:1;return sa-sb;})},serverInstanceId:getServerInstanceId_(),featureVersion:FEATURE_VERSION,integrity:{portalTokenMatch:true,portalFingerprintMatch:true,identityMatch:true}};
+  return {student:studentPortalSummary_(profile),reports:summaries,cumulative:{testCount:summaries.length,weeklyCount:summaries.filter(function(x){return x.assessmentType!=="comprehensive";}).length,comprehensiveCount:summaries.filter(function(x){return x.assessmentType==="comprehensive";}).length,averagePercent:summaries.length?percentSum/summaries.length:0,latestPercent:chronological.length?chronological[chronological.length-1].percent:0,counts:{full:full,partial:partial,wrong:wrong,ungraded:ungraded},units:units,courses:courses,trend:chronological.map(function(x){return {reportToken:x.reportToken,examId:x.examId,label:x.shortTitle,percent:x.percent,assessmentType:x.assessmentType,updatedAt:x.updatedAt};}),strongUnits:units.slice(0,3),weakUnits:units.slice().sort(function(a,b){return a.percent-b.percent;}).slice(0,3),weakItems:weakItems.sort(function(a,b){const sa=a.status==="wrong"?0:1,sb=b.status==="wrong"?0:1;return sa-sb;})},serverInstanceId:getServerInstanceId_(),featureVersion:FEATURE_VERSION,integrity:{portalTokenMatch:true,portalFingerprintMatch:true,identityMatch:true}};
 }
 
 function getStudentPortal_(token,fp) {
@@ -1710,6 +1737,73 @@ function getStudentExamDetail_(token,fp,reportToken) {
   const profile=findStudentProfileByPortal_(token,fp),found=findReportRowByToken_(reportToken);if(!found)throwApiError_("REPORT_NOT_FOUND","선택한 시험 성적 기록을 찾을 수 없습니다.");
   const report=hydrateReportObject_(found.row),store=loadStudentStore_();if(!reportBelongsToStudent_(report,profile,store))throwApiError_("PORTAL_REPORT_MISMATCH","선택한 시험 결과가 이 학생 통합 페이지에 속하지 않습니다.");
   const detail=getReport_(report.token,String(found.row.Fingerprint||report.fingerprint||""));detail.student=studentPortalSummary_(profile);detail.featureVersion=FEATURE_VERSION;return detail;
+}
+
+
+/** 교사용 반별 학생 명단. 학생/성적 데이터와 분리해 여러 반에 같은 학생을 배정할 수 있다. */
+function ensureClassRosterSchema_() {
+  const props=PropertiesService.getScriptProperties();
+  [SHEETS.CLASSES,SHEETS.CLASS_MEMBERS].forEach(function(name){
+    const sh=getSheet_(name);ensureSheetSchema_(sh,HEADERS[name]);sh.setFrozenRows(1);
+    sh.getRange(1,1,1,HEADERS[name].length).setFontWeight("bold").setBackground("#0c2b50").setFontColor("#ffffff");
+  });
+  props.setProperty("CLASS_ROSTER_SCHEMA_VERSION",CLASS_ROSTER_SCHEMA_VERSION);
+}
+
+function classRowToSummary_(row){
+  return {classId:String(row.ClassId||""),className:String(row.ClassName||""),sortOrder:Number(row.SortOrder||0),createdAt:serializeCell_(row.CreatedAt),updatedAt:serializeCell_(row.UpdatedAt),active:String(row.Active).toLowerCase()!=="false"};
+}
+
+function listClasses_() {
+  ensureClassRosterSchema_();
+  const classes=listRows_(SHEETS.CLASSES).map(classRowToSummary_).filter(function(c){return c.active;}).sort(function(a,b){return (a.sortOrder-b.sortOrder)||a.className.localeCompare(b.className,"ko");});
+  const memberships=listRows_(SHEETS.CLASS_MEMBERS).filter(function(m){return String(m.Active).toLowerCase()!=="false";});
+  const students=listStudents_({}),studentMap={};students.forEach(function(s){studentMap[String(s.studentId)]=s;});
+  const memberStudentIds=new Set();
+  classes.forEach(function(c){
+    const members=memberships.filter(function(m){return String(m.ClassId)===c.classId;}).sort(function(a,b){return Number(a.SortOrder||0)-Number(b.SortOrder||0);});
+    c.students=members.map(function(m){const st=studentMap[String(m.StudentId)];if(st)memberStudentIds.add(String(st.studentId));return st;}).filter(Boolean);
+    c.memberCount=c.students.length;
+  });
+  const unassigned=students.filter(function(s){return !memberStudentIds.has(String(s.studentId));});
+  return {ok:true,classes:classes,unassignedStudents:unassigned,serverInstanceId:getServerInstanceId_(),featureVersion:FEATURE_VERSION};
+}
+
+function saveClass_(input) {
+  ensureClassRosterSchema_();
+  const name=String(input.className||input.name||"").trim();if(!name)throwApiError_("CLASS_NAME_REQUIRED","반 이름을 입력하세요.");
+  const sh=getSheet_(SHEETS.CLASSES),headers=HEADERS.Classes,now=new Date();let classId=String(input.classId||"").trim(),rowNo=0,createdAt=now;
+  if(sh.getLastRow()>=2){const rows=sh.getRange(2,1,sh.getLastRow()-1,headers.length).getValues();for(let i=0;i<rows.length;i++){const o=rowToObject_(headers,rows[i]);if(classId&&String(o.ClassId)===classId){rowNo=i+2;createdAt=o.CreatedAt||now;break;}if(!classId&&String(o.Active).toLowerCase()!=="false"&&normalizeIdentity_(o.ClassName)===normalizeIdentity_(name))throwApiError_("CLASS_NAME_DUPLICATE","같은 이름의 반이 이미 있습니다.");}}
+  if(!classId)classId="cls_"+newToken_();
+  const obj={ClassId:classId,ClassName:name,SortOrder:Number.isFinite(Number(input.sortOrder))?Number(input.sortOrder):999,CreatedAt:createdAt,UpdatedAt:now,Active:true};
+  const row=headers.map(function(h){return obj[h]===undefined?"":obj[h];});if(rowNo)sh.getRange(rowNo,1,1,headers.length).setValues([row]);else sh.getRange(sh.getLastRow()+1,1,1,headers.length).setValues([row]);
+  return {ok:true,classInfo:classRowToSummary_(obj),classes:listClasses_().classes};
+}
+
+function deleteClass_(classId) {
+  ensureClassRosterSchema_();classId=String(classId||"").trim();if(!classId)throwApiError_("CLASS_ID_REQUIRED","삭제할 반을 선택하세요.");
+  const sh=getSheet_(SHEETS.CLASSES),headers=HEADERS.Classes;let deleted=0;if(sh.getLastRow()>=2){const rows=sh.getRange(2,1,sh.getLastRow()-1,headers.length).getValues();for(let i=0;i<rows.length;i++){if(String(rows[i][0])===classId){rows[i][headers.indexOf("Active")]=false;rows[i][headers.indexOf("UpdatedAt")]=new Date();deleted=1;break;}}if(deleted)sh.getRange(2,1,rows.length,headers.length).setValues(rows);}
+  const mh=getSheet_(SHEETS.CLASS_MEMBERS),mhdr=HEADERS.ClassMembers;let unassigned=0;if(mh.getLastRow()>=2){const rows=mh.getRange(2,1,mh.getLastRow()-1,mhdr.length).getValues();rows.forEach(function(row){if(String(row[0])===classId&&String(row[mhdr.indexOf("Active")]).toLowerCase()!=="false"){row[mhdr.indexOf("Active")]=false;unassigned++;}});mh.getRange(2,1,rows.length,mhdr.length).setValues(rows);}
+  return {ok:true,deleted:deleted,unassignedMembers:unassigned};
+}
+
+function saveStudentProfile_(input) {
+  ensureStudentPortalSchema_();const lock=LockService.getScriptLock();lock.waitLock(20000);
+  try{const store=loadStudentStore_(),preferred=String(input.studentId||"").trim();let profile;if(preferred){profile=store.byId[preferred];if(!profile)throwApiError_("STUDENT_NOT_FOUND","수정할 학생을 찾을 수 없습니다.");profile=updateStudentProfileInStore_(store,profile,{school:input.school,name:input.name,grade:input.grade,classNo:input.classNo,externalStudentId:input.externalStudentId||input.externalId});}else{profile=resolveStudentProfileInStore_(store,{school:input.school,name:input.name,grade:input.grade,classNo:input.classNo,externalStudentId:input.externalStudentId||input.externalId,forceNewStudent:input.forceNewStudent===true},"");}persistStudentStore_(store);if(input.classId)addStudentToClass_(String(input.classId),profile.StudentId);return {ok:true,student:studentPortalSummary_(profile),featureVersion:FEATURE_VERSION};}finally{lock.releaseLock();}
+}
+
+function findClassMembershipRow_(classId,studentId) {
+  const sh=getSheet_(SHEETS.CLASS_MEMBERS),headers=HEADERS.ClassMembers;if(sh.getLastRow()<2)return {sh:sh,headers:headers,rowNumber:0};const rows=sh.getRange(2,1,sh.getLastRow()-1,headers.length).getValues();for(let i=0;i<rows.length;i++){if(String(rows[i][0])===String(classId)&&String(rows[i][1])===String(studentId))return {sh:sh,headers:headers,rowNumber:i+2,row:rows[i]};}return {sh:sh,headers:headers,rowNumber:0};
+}
+
+function addStudentToClass_(classId,studentId) {
+  ensureClassRosterSchema_();classId=String(classId||"").trim();studentId=String(studentId||"").trim();if(!classId||!studentId)throwApiError_("CLASS_MEMBER_REQUIRED","반과 학생을 선택하세요.");
+  const cls=listRows_(SHEETS.CLASSES).find(function(c){return String(c.ClassId)===classId&&String(c.Active).toLowerCase()!=="false";});if(!cls)throwApiError_("CLASS_NOT_FOUND","반을 찾을 수 없습니다.");const store=loadStudentStore_();if(!store.byId[studentId])throwApiError_("STUDENT_NOT_FOUND","학생 통합 프로필을 찾을 수 없습니다.");
+  const found=findClassMembershipRow_(classId,studentId),now=new Date(),row=[classId,studentId,found.row?found.row[2]||now:now,found.row?Number(found.row[3]||999):999,true];if(found.rowNumber)found.sh.getRange(found.rowNumber,1,1,found.headers.length).setValues([row]);else found.sh.getRange(found.sh.getLastRow()+1,1,1,found.headers.length).setValues([row]);return {ok:true,classId:classId,studentId:studentId};
+}
+
+function removeStudentFromClass_(classId,studentId) {
+  ensureClassRosterSchema_();const found=findClassMembershipRow_(String(classId||""),String(studentId||""));if(!found.rowNumber)return {ok:true,removed:0};found.row[found.headers.indexOf("Active")]=false;found.sh.getRange(found.rowNumber,1,1,found.headers.length).setValues([found.row]);return {ok:true,removed:1,classId:String(classId),studentId:String(studentId)};
 }
 
 function listStudents_(filter) {
