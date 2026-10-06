@@ -1,6 +1,6 @@
 window.YP_CATALOG = {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-08-30T18:00:00Z",
+  "generatedAt": "2026-10-06T05:45:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -8890,22 +8890,1237 @@ window.YP_CATALOG = {
       "courseId": "physics1-basic",
       "round": 15,
       "title": "물리1 15회차 복습 테스트",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.10-1"
+      "status": "ready",
+      "questionCount": 8,
+      "maxScore": 100,
+      "reviewStatus": "corrected",
+      "configVersion": "2026.10.06-r15-v1",
+      "examDate": "",
+      "pdf": "assets/documents/physics1/r15.pdf",
+      "pages": [
+        "assets/pages/physics1/r15-p1.png",
+        "assets/pages/physics1/r15-p2.png"
+      ],
+      "sourceTitle": "물리1 Quiz 15회차",
+      "sourceNote": "5번의 “투과파” 표현을 경계면 투과 모형으로 해석했고, 7번 O/X 지시문을 “옳은 것 O, 잘못된 것 X”로 교정했다.",
+      "coreNote": {
+        "summary": "굴절률·스넬 법칙, 파장과 속력 변화, 고정단·자유단 반사, 물결파 굴절을 종합하는 회차",
+        "concepts": [
+          "경계면을 지나도 파동의 진동수는 파원에 의해 정해져 변하지 않는다.",
+          "스넬 법칙은 굴절률과 입사·굴절각을 연결한다.",
+          "파장 변화는 같은 진동수에서 속력 변화와 같은 방향이다.",
+          "고정단 반사는 역위상, 자유단 반사는 동위상이다.",
+          "물결파는 얕은 곳에서 더 느리고 파장이 짧다."
+        ],
+        "formulas": [
+          "n₁sinθ₁=n₂sinθ₂",
+          "v=fλ",
+          "n=c/v",
+          "n₂/n₁=sinθ₁/sinθ₂"
+        ],
+        "mistakes": [
+          "굴절하면서 진동수도 변한다고 생각하는 것",
+          "상대 굴절률의 분자·분모를 뒤집는 것",
+          "고정단과 자유단의 반사 위상을 반대로 외우는 것",
+          "물결파의 깊이와 속력 관계를 반대로 쓰는 것"
+        ],
+        "checklist": [
+          "각도는 경계면이 아니라 법선 기준인지 확인했는가?",
+          "파장비와 속력비가 같은 방향임을 확인했는가?",
+          "반사파가 좌우로 진행 방향이 바뀐다는 점도 고려했는가?",
+          "파면 간격은 파면에 수직으로 비교했는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 15,
+          "type": "subjective",
+          "unit": "파동과 굴절",
+          "topic": "스넬 법칙과 파장·진동수",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              120,
+              590,
+              560
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "λ₁:λ₂=√3:1, n₁₂=√3, f₁:f₂=1:1",
+          "explanation": [
+            "경계면을 지날 때 진동수는 변하지 않는다.",
+            "스넰 법칙 n₁sin60°=n₂sin30°에서 n₂/n₁=√3이다.",
+            "v=fλ이고 f가 같으므로 λ₁/λ₂=v₁/v₂=n₂/n₁=√3이다."
+          ],
+          "formulas": [
+            "n₁sinθ₁=n₂sinθ₂",
+            "v=fλ",
+            "n∝1/v"
+          ],
+          "commonMistakes": [
+            "상대 굴절률의 분자·분모를 뒤집는 것",
+            "굴절하면서 진동수도 바뀐다고 생각하는 것",
+            "파장비와 굴절률비를 같은 방향으로 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "λ₁:λ₂=√3:1",
+              "points": 5
+            },
+            {
+              "criterion": "n₁₂=√3",
+              "points": 5
+            },
+            {
+              "criterion": "f₁:f₂=1:1",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "λ₁:λ₂=√2:1, n₂/n₁=√2, f₁:f₂=1:1",
+              "λ₁:λ₂=1:√2, n₂/n₁=√2, f₁:f₂=1:1",
+              "λ₁:λ₂=√2:1, n₂/n₁=1/√2, f₁:f₂=√2:1",
+              "λ₁:λ₂=1:1, n₂/n₁=√2, f₁:f₂=1:1"
+            ],
+            "correctChoice": 1,
+            "answer": "λ₁:λ₂=√2:1, n₂/n₁=√2, f₁:f₂=1:1",
+            "acceptableAnswers": [
+              "1",
+              "λ₁:λ₂=√2:1, n₂/n₁=√2, f₁:f₂=1:1"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "입사각 45°, 굴절각 30°인 두 매질 경계에서 λ₁:λ₂, n₂/n₁, f₁:f₂로 옳은 것은?",
+            "explanation": "n₂/n₁=sin45°/sin30°=√2이고, 진동수는 일정하므로 λ₁:λ₂=√2:1이다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "λ₁:λ₂=√3:1, n₁₂=√3, f₁:f₂=1:1",
+              "λ₁:λ₂=1:√3, n₁₂=1/√3, f₁:f₂=1:1",
+              "λ₁:λ₂=√3:1, n₁₂=1/√3, f₁:f₂=√3:1",
+              "λ₁:λ₂=1:1, n₁₂=√3, f₁:f₂=√3:1"
+            ],
+            "correctChoice": 1,
+            "answer": "λ₁:λ₂=√3:1, n₁₂=√3, f₁:f₂=1:1",
+            "acceptableAnswers": [
+              "1",
+              "λ₁:λ₂=√3:1, n₁₂=√3, f₁:f₂=1:1"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "파동과 굴절",
+          "topic": "다층 매질의 굴절과 파장",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              650,
+              590,
+              500
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "④ λ₂ < λ₃ < λ₁",
+          "explanation": [
+            "평행한 경계에서 공기 중 입사각과 출사각은 같고, 그림에서 매질 I의 굴절각 θ₂가 매질 II의 θ₃보다 작다.",
+            "굴절각이 더 작은 매질 I의 굴절률이 더 크므로 n_I>n_II>n_air이다.",
+            "진동수는 같고 λ=v/f∝1/n이므로 λ₂<λ₃<λ₁이다."
+          ],
+          "formulas": [
+            "n₁sinθ₁=n₂sinθ₂",
+            "λ=v/f",
+            "n=c/v"
+          ],
+          "commonMistakes": [
+            "각도가 작을수록 파장도 크다고 생각하는 것",
+            "공기-매질 경계를 지날 때 진동수가 바뀐다고 생각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "굴절각 비교",
+              "points": 3
+            },
+            {
+              "criterion": "굴절률 순서 n_I>n_II>n_air",
+              "points": 3
+            },
+            {
+              "criterion": "④ 선택",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "λ_A < λ_B < λ_air",
+              "λ_air < λ_B < λ_A",
+              "λ_B < λ_A < λ_air",
+              "λ_A = λ_B = λ_air"
+            ],
+            "correctChoice": 1,
+            "answer": "λ_A < λ_B < λ_air",
+            "acceptableAnswers": [
+              "1",
+              "λ_A < λ_B < λ_air"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "공기에서 굴절률이 n_A>n_B>1인 두 매질을 차례로 지나는 단색광의 파장 순서는?",
+            "explanation": "진동수는 같고 λ∝1/n이므로 굴절률이 큰 A에서 파장이 가장 짧다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "λ₃ < λ₂ < λ₁",
+              "λ₃ > λ₂ > λ₁",
+              "λ₃ < λ₁ < λ₂",
+              "λ₂ < λ₃ < λ₁",
+              "λ₁ = λ₂ = λ₃"
+            ],
+            "correctChoice": 4,
+            "answer": "λ₂ < λ₃ < λ₁",
+            "acceptableAnswers": [
+              "4",
+              "λ₂ < λ₃ < λ₁"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "파동과 굴절",
+          "topic": "원 도식으로 상대 굴절률 표현",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              1120,
+              590,
+              470
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "B′B / AA′",
+          "explanation": [
+            "원의 반지름을 R이라 하면 AA′=R sin i, B′B=R sin r이다.",
+            "스넬 법칙 n_I sin i=n_II sin r에서 n_I/n_II=sin r/sin i이다.",
+            "따라서 매질 II에 대한 매질 I의 굴절률은 B′B/AA′이다."
+          ],
+          "formulas": [
+            "n_I sin i=n_II sin r",
+            "n_I/n_II=sin r/sin i"
+          ],
+          "commonMistakes": [
+            "입사각과 굴절각의 사인을 거꾸로 놓는 것",
+            "OA, OB처럼 같은 반지름의 비를 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "AA′와 B′B의 사인 관계",
+              "points": 4
+            },
+            {
+              "criterion": "B′B/AA′",
+              "points": 6
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "AA′ / B′B",
+              "B′B / AA′",
+              "OA / OB",
+              "OB / OA"
+            ],
+            "correctChoice": 1,
+            "answer": "AA′ / B′B",
+            "acceptableAnswers": [
+              "1",
+              "AA′ / B′B"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "같은 도식에서 이번에는 매질 I에 대한 매질 II의 굴절률 n_II/n_I를 선분비로 나타내면?",
+            "explanation": "n_II/n_I=sin i/sin r=AA′/B′B이다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "B′B / AA′",
+              "AA′ / B′B",
+              "OA / OB",
+              "OB / OA"
+            ],
+            "correctChoice": 1,
+            "answer": "B′B / AA′",
+            "acceptableAnswers": [
+              "1",
+              "B′B / AA′"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "파동의 반사",
+          "topic": "자유단·고정단 반사 파형",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              630,
+              120,
+              590,
+              520
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "자유단 ④, 고정단 ③",
+          "explanation": [
+            "반사파는 진행 방향이 반대로 바뀌므로 파형의 좌우가 거울상처럼 바뀐다.",
+            "자유단 반사는 위상 반전이 없으므로 수직 방향은 그대로여서 ④이다.",
+            "고정단 반사는 위상이 π만큼 반전되어 위아래가 뒤집히므로 ③이다."
+          ],
+          "formulas": [
+            "자유단 반사: 위상 반전 없음",
+            "고정단 반사: 위상 π 반전"
+          ],
+          "commonMistakes": [
+            "반사할 때 좌우 모양이 바뀌는 것을 빼먹는 것",
+            "자유단과 고정단의 위상 반전을 반대로 외우는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "자유단 ④",
+              "points": 5
+            },
+            {
+              "criterion": "고정단 ③",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "자유단: 위상 반전 없음 / 고정단: 위상 반전",
+              "자유단: 위상 반전 / 고정단: 위상 반전 없음",
+              "둘 다 위상 반전",
+              "둘 다 위상 반전 없음"
+            ],
+            "correctChoice": 1,
+            "answer": "자유단: 위상 반전 없음 / 고정단: 위상 반전",
+            "acceptableAnswers": [
+              "1",
+              "자유단: 위상 반전 없음 / 고정단: 위상 반전"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "펄스가 줄의 끝에서 반사될 때 위상 변화로 옳은 것은?",
+            "explanation": "자유단에서는 뒤집히지 않고, 고정단에서는 위아래가 반전되어 돌아온다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "자유단 ②, 고정단 ①",
+              "자유단 ②, 고정단 ③",
+              "자유단 ④, 고정단 ①",
+              "자유단 ④, 고정단 ③"
+            ],
+            "correctChoice": 4,
+            "answer": "자유단 ④, 고정단 ③",
+            "acceptableAnswers": [
+              "4",
+              "자유단 ④, 고정단 ③"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "파동의 반사",
+          "topic": "경계에서 투과파·반사파의 위상",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              630,
+              600,
+              590,
+              390
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "이상적인 고정단·자유단 “끝”에서는 투과파가 없으므로, 원문의 투과파 항목은 표준 경계면 투과 모형(투과파 동위상)으로 해석해 적용했다.",
+          "answer": "고정단: 투과 동위상·반사 역위상 / 자유단: 투과 동위상·반사 동위상",
+          "explanation": [
+            "표준 줄 경계 모형에서 투과파의 변위 방향은 입사파와 같은 위상으로 잡는다.",
+            "고정단에 해당하는 큰 임피던스 경계의 반사파는 역위상이고 자유단에 해당하는 작은 임피던스 경계의 반사파는 동위상이다.",
+            "이상적인 “줄의 끝” 자체에는 투과파가 없으므로, 원문의 투과파 표현은 경계면 투과 모형으로 해석해 적용했다."
+          ],
+          "formulas": [
+            "고정단 반사계수의 부호: 음(-)",
+            "자유단 반사계수의 부호: 양(+)"
+          ],
+          "commonMistakes": [
+            "고정단 반사파가 동위상이라고 쓰는 것",
+            "자유단 반사파를 반전시키는 것",
+            "끝점 문제에서 실제 투과파가 존재한다고 혼동하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "고정단 반사 역위상",
+              "points": 3
+            },
+            {
+              "criterion": "자유단 반사 동위상",
+              "points": 3
+            },
+            {
+              "criterion": "투과파 동위상 해석",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "큰 임피던스 경계: 반사 역위상 / 작은 임피던스 경계: 반사 동위상",
+              "큰 임피던스 경계: 반사 동위상 / 작은 임피던스 경계: 반사 역위상",
+              "두 경우 모두 반사 역위상",
+              "두 경우 모두 반사 동위상"
+            ],
+            "correctChoice": 1,
+            "answer": "큰 임피던스 경계: 반사 역위상 / 작은 임피던스 경계: 반사 동위상",
+            "acceptableAnswers": [
+              "1",
+              "큰 임피던스 경계: 반사 역위상 / 작은 임피던스 경계: 반사 동위상"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "줄의 경계에서 반사파 위상에 대한 설명으로 옳은 것은?",
+            "explanation": "고정단에 가까운 큰 임피던스 경계는 반전, 자유단에 가까운 작은 임피던스 경계는 비반전 반사이다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "고정단: 투과 동위상·반사 역위상 / 자유단: 투과 동위상·반사 동위상",
+              "고정단: 투과 동위상·반사 동위상 / 자유단: 투과 동위상·반사 역위상",
+              "고정단: 투과 역위상·반사 역위상 / 자유단: 투과 역위상·반사 동위상",
+              "고정단·자유단 모두 투과·반사가 역위상"
+            ],
+            "correctChoice": 1,
+            "answer": "고정단: 투과 동위상·반사 역위상 / 자유단: 투과 동위상·반사 동위상",
+            "acceptableAnswers": [
+              "1",
+              "고정단: 투과 동위상·반사 역위상 / 자유단: 투과 동위상·반사 동위상"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 15,
+          "type": "subjective",
+          "unit": "빛의 굴절",
+          "topic": "굴절률·빛의 속력 비교",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              630,
+              930,
+              590,
+              650
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "X, O, X",
+          "explanation": [
+            "공기에서 같은 입사각으로 들어갈 때 굴절률이 클수록 법선 쪽으로 더 많이 꺾인다. 따라서 굴절 정도는 다이아몬드>유리>물이다.",
+            "일반적인 굴절률은 다이아몬드>유리>물 순이다.",
+            "빛의 속력은 v=c/n이므로 물질마다 다르며 굴절률이 큰 물질에서 더 느리다."
+          ],
+          "formulas": [
+            "n=c/v",
+            "n₁sinθ₁=n₂sinθ₂"
+          ],
+          "commonMistakes": [
+            "굴절각이 큰 것을 “더 많이 굴절”했다고 오해하는 것",
+            "진동수와 속력을 모두 변하지 않는 양으로 생각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "1) X",
+              "points": 5
+            },
+            {
+              "criterion": "2) O",
+              "points": 5
+            },
+            {
+              "criterion": "3) X",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "속력: 물>유리>다이아몬드",
+              "속력: 다이아몬드>유리>물",
+              "세 물질에서 속력은 같다",
+              "속력: 유리>물>다이아몬드"
+            ],
+            "correctChoice": 1,
+            "answer": "속력: 물>유리>다이아몬드",
+            "acceptableAnswers": [
+              "1",
+              "속력: 물>유리>다이아몬드"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "공기 중 같은 빛이 물·유리·다이아몬드에 들어갈 때 속력 순서로 옳은 것은?",
+            "explanation": "v=c/n이고 n은 다이아몬드>유리>물 순이므로 속력은 반대 순서이다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "X, O, X",
+              "O, X, O",
+              "X, O, O",
+              "O, O, X"
+            ],
+            "correctChoice": 1,
+            "answer": "X, O, X",
+            "acceptableAnswers": [
+              "1",
+              "X, O, X"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 7,
+          "maxPoints": 20,
+          "type": "subjective",
+          "unit": "물결파의 굴절",
+          "topic": "물결파 사진에서 깊이·속력·파장 비교",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              20,
+              100,
+              590,
+              650
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문 지시문의 “옳지 않은 것에 O, 잘못된 것에 X”는 서로 같은 뜻이므로 “옳은 것 O, 잘못된 것 X”로 교정해 적용했다.",
+          "answer": "O, X, O, O, O",
+          "explanation": [
+            "사진에서 A의 밝은 무늬 간격(파장)이 B보다 크다. 같은 파원에서 나온 파동은 경계 통과 전후 진동수가 같다.",
+            "v=fλ이므로 λ_A>λ_B에서 v_A>v_B이다. 얕은 물에서 물결파가 느려지므로 A가 B보다 깊다.",
+            "파면의 방향이 경계에서 달라졌으므로 전파 방향도 바뀌었다.",
+            "밝은 무늬는 같은 위상의 파면이므로 서로 이웃한 밝은 무늬 사이를 파면에 수직으로 잰 거리가 파장이다."
+          ],
+          "formulas": [
+            "v=fλ",
+            "같은 파원의 진동수는 경계 통과 전후 일정",
+            "얕은 물일수록 물결파 속력이 작다"
+          ],
+          "commonMistakes": [
+            "파면 사이 간격을 경계면 방향으로 재는 것",
+            "굴절하면서 진동수가 달라진다고 생각하는 것",
+            "물 깊이와 속력 관계를 반대로 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "1) O",
+              "points": 4
+            },
+            {
+              "criterion": "2) X",
+              "points": 4
+            },
+            {
+              "criterion": "3) O",
+              "points": 4
+            },
+            {
+              "criterion": "4) O",
+              "points": 4
+            },
+            {
+              "criterion": "5) O",
+              "points": 4
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "A가 더 깊고 v_A>v_B, f_A=f_B",
+              "B가 더 깊고 v_A<v_B, f_A>f_B",
+              "A가 더 깊고 v_A=v_B, f_A>f_B",
+              "B가 더 깊고 v_A>v_B, f_A=f_B"
+            ],
+            "correctChoice": 1,
+            "answer": "A가 더 깊고 v_A>v_B, f_A=f_B",
+            "acceptableAnswers": [
+              "1",
+              "A가 더 깊고 v_A>v_B, f_A=f_B"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "같은 파원에서 나온 물결파가 A에서 B로 가며 파장이 짧아졌다. 옳은 설명은?",
+            "explanation": "진동수는 그대로이고 파장이 짧아졌으므로 B에서 속력이 작다. 물결파는 얕은 곳에서 느리므로 A가 더 깊다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "O, X, O, O, O",
+              "O, O, O, X, O",
+              "X, X, O, X, O",
+              "O, X, X, O, X",
+              "X, O, O, O, O"
+            ],
+            "correctChoice": 1,
+            "answer": "O, X, O, O, O",
+            "acceptableAnswers": [
+              "1",
+              "O, X, O, O, O"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 8,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "물결파의 굴절",
+          "topic": "파면 굴절에서 진동수·속력 비교",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              630,
+              100,
+              590,
+              520
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "f₁=f₂, v₁>v₂",
+          "explanation": [
+            "경계면을 지나도 파원의 진동수는 변하지 않아 f₁=f₂이다.",
+            "파면과 경계면이 이루는 각은 진행 방향과 법선이 이루는 각과 같다. 그림에서 매질 2 쪽 각이 더 작아져 진행파가 법선 쪽으로 굴절했다.",
+            "따라서 매질 2에서 속력이 더 작아 v₁>v₂이다."
+          ],
+          "formulas": [
+            "f₁=f₂",
+            "sinθ₁/v₁=sinθ₂/v₂",
+            "v=fλ"
+          ],
+          "commonMistakes": [
+            "파면의 각과 진행 방향의 각을 혼동하는 것",
+            "굴절하면서 진동수가 변한다고 생각하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "f₁=f₂",
+              "points": 5
+            },
+            {
+              "criterion": "v₁>v₂",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "f_A=f_B, v_A<v_B",
+              "f_A=f_B, v_A>v_B",
+              "f_A>f_B, v_A=v_B",
+              "f_A<f_B, v_A<v_B"
+            ],
+            "correctChoice": 1,
+            "answer": "f_A=f_B, v_A<v_B",
+            "acceptableAnswers": [
+              "1",
+              "f_A=f_B, v_A<v_B"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "파면이 매질 A에서 B로 진행하면서 법선에서 더 멀어지는 방향으로 굴절했다. f와 v의 관계는?",
+            "explanation": "진동수는 일정하고 법선에서 멀어졌다면 굴절각이 커졌으므로 B에서 속력이 더 크다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "f₁=f₂, v₁>v₂",
+              "f₁=f₂, v₁<v₂",
+              "f₁>f₂, v₁=v₂",
+              "f₁<f₂, v₁>v₂"
+            ],
+            "correctChoice": 1,
+            "answer": "f₁=f₂, v₁>v₂",
+            "acceptableAnswers": [
+              "1",
+              "f₁=f₂, v₁>v₂"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.6.1-physics1-r15-r16"
     },
     {
       "examId": "physics1-basic-r16",
       "courseId": "physics1-basic",
       "round": 16,
       "title": "물리1 16회차 복습 테스트",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.10-1"
+      "status": "ready",
+      "examDate": "",
+      "questionCount": 6,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics1/r16.pdf",
+      "pages": [
+        "assets/pages/physics1/r16-p1.png"
+      ],
+      "reviewStatus": "corrected",
+      "configVersion": "2026.10.06-r16-v1",
+      "sourceTitle": "물리1 Quiz 16회차",
+      "sourceNote": "2번 원문에 배점 표기가 없어 전체 100점 구성을 기준으로 10점으로 보완했다. 5번은 볼록 거울의 초점거리 부호를 명시했다.",
+      "coreNote": {
+        "summary": "빛의 반사·굴절·분산·전반사와 오목·볼록 거울, 볼록 렌즈, 복합 렌즈의 결상을 다루는 회차",
+        "concepts": [
+          "오목 거울은 물체 위치에 따라 실상·허상과 확대·축소가 모두 달라진다.",
+          "볼록 거울은 항상 축소된 정립 허상을 만든다.",
+          "볼록 렌즈는 물체가 F 밖이면 실상, F 안이면 허상을 만든다.",
+          "거울·렌즈 식에서는 부호 규약과 물체·상 위치를 함께 관리한다.",
+          "복합 렌즈는 첫 렌즈의 상을 두 번째 렌즈의 물체로 다시 해석한다."
+        ],
+        "formulas": [
+          "1/f=1/p+1/q",
+          "m=-q/p=h′/h",
+          "볼록 거울: f<0",
+          "볼록 렌즈: f>0"
+        ],
+        "mistakes": [
+          "볼록 거울의 초점을 거울 앞에 두는 것",
+          "허상 q와 초점거리 f의 부호를 놓치는 것",
+          "2F와 F 사이 물체의 상을 축소로 판단하는 것",
+          "복합 렌즈에서 첫 상의 위치를 두 번째 렌즈 기준으로 변환하지 않는 것"
+        ],
+        "checklist": [
+          "거울인지 렌즈인지 먼저 확인했는가?",
+          "f, p, q 부호를 일관되게 썼는가?",
+          "배율의 부호로 정립·도립을 확인했는가?",
+          "두 번째 렌즈에서 첫 상이 왼쪽 실제 물체인지 오른쪽 가상 물체인지 확인했는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "빛의 성질",
+          "topic": "반사·굴절·분산·전반사·산란",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              110,
+              590,
+              340
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "① 하늘이 파랗게 보인다 - 빛의 회절",
+          "explanation": [
+            "하늘이 파랗게 보이는 주된 이유는 짧은 파장의 빛이 공기 분자에 의해 더 강하게 산란되는 레일리 산란이다.",
+            "무지개는 분산, 광섬유는 전반사, 거울은 반사, 겉보기 깊이는 굴절과 관련된다."
+          ],
+          "formulas": [
+            "레일리 산란: 산란 세기 ∝1/λ⁴"
+          ],
+          "commonMistakes": [
+            "산란과 회절을 같은 현상으로 보는 것",
+            "전반사와 단순 반사를 구분하지 않는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "① 선택",
+              "points": 10
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "푸른 하늘 - 산란",
+              "무지개 - 분산",
+              "광섬유 - 전반사",
+              "얇은 막 색 - 단순 굴절"
+            ],
+            "correctChoice": 4,
+            "answer": "얇은 막 색 - 단순 굴절",
+            "acceptableAnswers": [
+              "4",
+              "얇은 막 색 - 단순 굴절"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "빛의 성질과 현상의 연결 중 잘못된 것은?",
+            "explanation": "얇은 막의 색은 주로 간섭으로 설명한다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "하늘이 파랗게 보인다 - 빛의 회절",
+              "무지개 - 빛의 분산",
+              "광섬유 - 전반사",
+              "거울 - 빛의 반사",
+              "겉보기 깊이 - 빛의 굴절"
+            ],
+            "correctChoice": 1,
+            "answer": "하늘이 파랗게 보인다 - 빛의 회절",
+            "acceptableAnswers": [
+              "1",
+              "하늘이 파랗게 보인다 - 빛의 회절"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 10,
+          "type": "subjective",
+          "unit": "거울",
+          "topic": "오목 거울의 상",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              350,
+              590,
+              470
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문에 2번 배점 표기가 없지만 전체 총점이 100점이 되도록 10점으로 적용했다.",
+          "answer": "② 축소된 똑바로 선 모습",
+          "explanation": [
+            "오목 거울에서 물체가 초점 안쪽이면 확대된 정립 허상이 생긴다.",
+            "물체가 초점 바깥이면 도립 실상이 생기며 위치에 따라 확대·같은 크기·축소가 가능하다.",
+            "따라서 정립상이면서 축소된 상은 오목 거울로 만들 수 없다."
+          ],
+          "formulas": [
+            "1/f=1/p+1/q",
+            "m=-q/p"
+          ],
+          "commonMistakes": [
+            "정립이면 항상 확대라는 사실을 놓치는 것",
+            "볼록 거울의 축소 정립 허상과 혼동하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "② 선택",
+              "points": 10
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "축소된 정립 허상",
+              "확대된 정립 허상",
+              "축소된 도립 실상",
+              "확대된 도립 실상"
+            ],
+            "correctChoice": 1,
+            "answer": "축소된 정립 허상",
+            "acceptableAnswers": [
+              "1",
+              "축소된 정립 허상"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "오목 거울에서는 만들 수 없지만 볼록 거울에서는 항상 가능한 상은?",
+            "explanation": "볼록 거울은 항상 축소된 정립 허상을 만든다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "확대된 똑바로 선 모습",
+              "축소된 똑바로 선 모습",
+              "같은 크기의 거꾸로 된 모습",
+              "축소된 거꾸로 된 모습",
+              "확대된 거꾸로 된 모습"
+            ],
+            "correctChoice": 2,
+            "answer": "축소된 똑바로 선 모습",
+            "acceptableAnswers": [
+              "2",
+              "축소된 똑바로 선 모습"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 20,
+          "type": "subjective",
+          "unit": "거울",
+          "topic": "볼록 거울 상의 위치·성질·크기",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              20,
+              760,
+              590,
+              810
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "거울 뒤 5 cm, 축소된 정립 허상, 2 cm",
+          "explanation": [
+            "볼록 거울의 초점은 거울 뒤이므로 f=-10 cm, 물체 거리는 p=10 cm이다.",
+            "거울식 1/f=1/p+1/q에 대입하면 -1/10=1/10+1/q에서 q=-5 cm이다. 따라서 상은 거울 뒤 5 cm에 생기는 허상이다.",
+            "배율 m=-q/p=1/2이므로 정립이고 물체 높이 4 cm의 절반인 2 cm이다."
+          ],
+          "formulas": [
+            "1/f=1/p+1/q",
+            "m=-q/p=h′/h"
+          ],
+          "commonMistakes": [
+            "볼록 거울의 f를 +로 두는 것",
+            "허상의 q 부호를 양수로 쓰는 것",
+            "배율의 부호와 상의 정립·도립을 연결하지 않는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "거울 뒤 5 cm",
+              "points": 5
+            },
+            {
+              "criterion": "축소된 정립 허상",
+              "points": 10
+            },
+            {
+              "criterion": "2 cm",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "거울 뒤 20/3 cm / 축소된 정립 허상 / 2 cm",
+              "거울 뒤 15 cm / 같은 크기 정립 허상 / 6 cm",
+              "거울 앞 20/3 cm / 축소된 도립 실상 / 2 cm",
+              "거울 뒤 5 cm / 확대된 정립 허상 / 9 cm"
+            ],
+            "correctChoice": 1,
+            "answer": "거울 뒤 20/3 cm / 축소된 정립 허상 / 2 cm",
+            "acceptableAnswers": [
+              "1",
+              "거울 뒤 20/3 cm / 축소된 정립 허상 / 2 cm"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "초점거리 -10 cm인 볼록 거울 앞 20 cm에 높이 6 cm 물체가 있다. 상의 위치·성질·크기는?",
+            "explanation": "1/f=1/p+1/q에서 q=-20/3 cm, m=1/3이므로 거울 뒤 20/3 cm에 높이 2 cm의 축소 정립 허상이 생긴다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "거울 뒤 5 cm / 축소된 정립 허상 / 2 cm",
+              "거울 뒤 10 cm / 같은 크기 정립 허상 / 4 cm",
+              "거울 앞 5 cm / 축소된 도립 실상 / 2 cm",
+              "거울 뒤 20 cm / 확대된 정립 허상 / 8 cm"
+            ],
+            "correctChoice": 1,
+            "answer": "거울 뒤 5 cm / 축소된 정립 허상 / 2 cm",
+            "acceptableAnswers": [
+              "1",
+              "거울 뒤 5 cm / 축소된 정립 허상 / 2 cm"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 20,
+          "type": "subjective",
+          "unit": "렌즈",
+          "topic": "볼록 렌즈 상의 위치·성질·크기",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              630,
+              110,
+              590,
+              700
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "렌즈 오른쪽 30 cm, 확대된 도립 실상, 10 cm",
+          "explanation": [
+            "초점거리 f=10 cm이고 그림에서 물체는 렌즈 왼쪽 15 cm에 있다.",
+            "1/f=1/p+1/q에서 1/10=1/15+1/q이므로 q=30 cm이다.",
+            "배율 m=-q/p=-2이므로 도립 실상이고 높이는 5 cm의 2배인 10 cm이다."
+          ],
+          "formulas": [
+            "1/f=1/p+1/q",
+            "m=-q/p=h′/h"
+          ],
+          "commonMistakes": [
+            "물체가 2F에 있다고 오해하는 것",
+            "q=30 cm를 렌즈 왼쪽으로 쓰는 것",
+            "배율의 절댓값만 보고 정립이라고 쓰는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "렌즈 오른쪽 30 cm",
+              "points": 5
+            },
+            {
+              "criterion": "확대된 도립 실상",
+              "points": 10
+            },
+            {
+              "criterion": "10 cm",
+              "points": 5
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "렌즈 오른쪽 20 cm / 같은 크기 도립 실상 / 4 cm",
+              "렌즈 오른쪽 10 cm / 축소된 도립 실상 / 2 cm",
+              "렌즈 왼쪽 20 cm / 같은 크기 정립 허상 / 4 cm",
+              "렌즈 오른쪽 40 cm / 확대된 도립 실상 / 8 cm"
+            ],
+            "correctChoice": 1,
+            "answer": "렌즈 오른쪽 20 cm / 같은 크기 도립 실상 / 4 cm",
+            "acceptableAnswers": [
+              "1",
+              "렌즈 오른쪽 20 cm / 같은 크기 도립 실상 / 4 cm"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "초점거리 10 cm인 볼록 렌즈의 왼쪽 20 cm에 높이 4 cm 물체가 있다. 상의 위치·성질·크기는?",
+            "explanation": "물체가 2F에 있으므로 반대쪽 2F(20 cm)에 같은 크기의 도립 실상이 생긴다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "렌즈 오른쪽 30 cm / 확대된 도립 실상 / 10 cm",
+              "렌즈 오른쪽 15 cm / 같은 크기 도립 실상 / 5 cm",
+              "렌즈 왼쪽 30 cm / 확대된 정립 허상 / 10 cm",
+              "렌즈 오른쪽 20 cm / 축소된 도립 실상 / 2.5 cm"
+            ],
+            "correctChoice": 1,
+            "answer": "렌즈 오른쪽 30 cm / 확대된 도립 실상 / 10 cm",
+            "acceptableAnswers": [
+              "1",
+              "렌즈 오른쪽 30 cm / 확대된 도립 실상 / 10 cm"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 20,
+          "type": "subjective",
+          "unit": "거울",
+          "topic": "볼록 거울 초점거리",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              630,
+              760,
+              590,
+              260
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "초점거리의 부호 규약을 명확히 하기 위해 “거울 뒤 10 cm, 부호 포함 f=-10 cm”로 함께 제시했다.",
+          "answer": "f=-10 cm (초점은 거울 뒤 10 cm)",
+          "explanation": [
+            "물체 거리는 p=10 cm이고 허상이므로 q<0이다.",
+            "허상의 크기가 물체의 1/2이고 정립이므로 m=+1/2=-q/p에서 q=-5 cm이다.",
+            "거울식 1/f=1/10+1/(-5)=-1/10이므로 f=-10 cm이다. 초점거리의 크기는 10 cm이다."
+          ],
+          "formulas": [
+            "m=-q/p",
+            "1/f=1/p+1/q"
+          ],
+          "commonMistakes": [
+            "볼록 거울의 초점거리 부호를 +로 쓰는 것",
+            "1/2 배율에서 q=-20 cm로 잘못 놓는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "q=-5 cm 계산",
+              "points": 8
+            },
+            {
+              "criterion": "f=-10 cm",
+              "points": 12
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "-7.5 cm",
+              "-5 cm",
+              "+7.5 cm",
+              "+15 cm"
+            ],
+            "correctChoice": 1,
+            "answer": "-7.5 cm",
+            "acceptableAnswers": [
+              "1",
+              "-7.5 cm"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "볼록 거울 앞 15 cm 물체의 허상이 1/3 크기로 보였다. 초점거리는?",
+            "explanation": "m=1/3=-q/15에서 q=-5 cm, 1/f=1/15-1/5=-2/15이므로 f=-7.5 cm이다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "-10 cm (거울 뒤 10 cm)",
+              "-5 cm (거울 뒤 5 cm)",
+              "+5 cm (거울 앞 5 cm)",
+              "+10 cm (거울 앞 10 cm)"
+            ],
+            "correctChoice": 1,
+            "answer": "-10 cm (거울 뒤 10 cm)",
+            "acceptableAnswers": [
+              "1",
+              "-10 cm (거울 뒤 10 cm)"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 20,
+          "type": "subjective",
+          "unit": "렌즈",
+          "topic": "두 볼록 렌즈의 연속 결상",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              630,
+              900,
+              590,
+              680
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "④ 렌즈 B의 오른쪽 2.0 cm에 실상",
+          "explanation": [
+            "렌즈 A에서 f_A=8 cm, p_A=16 cm=2f_A이므로 첫 상은 A의 오른쪽 16 cm에 생긴다.",
+            "렌즈 B는 A의 오른쪽 12 cm에 있으므로 첫 상은 B의 오른쪽 4 cm에 있다. B에 들어가는 빛은 그 점으로 모이는 중이므로 B에게는 p_B=-4 cm인 가상 물체이다.",
+            "1/4=1/(-4)+1/q_B에서 1/q_B=1/2, q_B=2 cm이다. q_B>0이므로 B 오른쪽 2 cm의 실상이다."
+          ],
+          "formulas": [
+            "1/f=1/p+1/q",
+            "두 렌즈에서는 첫 렌즈의 상 위치를 두 번째 렌즈의 물체 위치로 변환"
+          ],
+          "commonMistakes": [
+            "첫 상의 위치를 B 기준으로 바꾸지 않는 것",
+            "B 오른쪽에 있는 첫 상을 실제 물체로 처리해 p_B=+4 cm로 넣는 것",
+            "q의 부호와 실상·허상을 반대로 연결하는 것"
+          ],
+          "rubric": [
+            {
+              "criterion": "렌즈 A의 첫 상 A 오른쪽 16 cm",
+              "points": 6
+            },
+            {
+              "criterion": "렌즈 B에 대해 p=-4 cm",
+              "points": 6
+            },
+            {
+              "criterion": "q=+2 cm 실상, ④",
+              "points": 8
+            }
+          ],
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "렌즈 B의 오른쪽 12/5 cm에 실상",
+              "렌즈 B의 왼쪽 12/5 cm에 허상",
+              "렌즈 B의 오른쪽 6 cm에 실상",
+              "렌즈 B의 왼쪽 6 cm에 허상"
+            ],
+            "correctChoice": 1,
+            "answer": "렌즈 B의 오른쪽 12/5 cm에 실상",
+            "acceptableAnswers": [
+              "1",
+              "렌즈 B의 오른쪽 12/5 cm에 실상"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문에서 렌즈 A와 물체 위치는 같고, 렌즈 B의 초점거리만 6 cm라면 최종 상은?",
+            "explanation": "A가 만든 첫 상은 여전히 B 오른쪽 4 cm이므로 p_B=-4 cm. 1/6=-1/4+1/q에서 1/q=5/12, q=12/5 cm로 B 오른쪽 실상이다."
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "렌즈 B의 왼쪽 2.0 cm에 허상",
+              "렌즈 B의 왼쪽 4.0 cm에 허상",
+              "렌즈 B의 오른쪽 2.0 cm에 허상",
+              "렌즈 B의 오른쪽 2.0 cm에 실상",
+              "렌즈 B의 오른쪽 4.0 cm에 실상"
+            ],
+            "correctChoice": 4,
+            "answer": "렌즈 B의 오른쪽 2.0 cm에 실상",
+            "acceptableAnswers": [
+              "4",
+              "렌즈 B의 오른쪽 2.0 cm에 실상"
+            ],
+            "displayMode": "choice-card"
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.6.1-physics1-r15-r16"
     },
     {
       "examId": "physics1-advanced-r02",
@@ -13449,5 +14664,5 @@ window.YP_CATALOG = {
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.5.1-physics1-r10-r14"
+  "featureVersion": "3.6.1-physics1-r15-r16"
 };

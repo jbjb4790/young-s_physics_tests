@@ -1,0 +1,525 @@
+{
+  "examId": "physics1-basic-r16",
+  "courseId": "physics1-basic",
+  "round": 16,
+  "title": "물리1 16회차 복습 테스트",
+  "status": "ready",
+  "examDate": "",
+  "questionCount": 6,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics1/r16.pdf",
+  "pages": [
+    "assets/pages/physics1/r16-p1.png"
+  ],
+  "reviewStatus": "corrected",
+  "configVersion": "2026.10.06-r16-v1",
+  "sourceTitle": "물리1 Quiz 16회차",
+  "sourceNote": "2번 원문에 배점 표기가 없어 전체 100점 구성을 기준으로 10점으로 보완했다. 5번은 볼록 거울의 초점거리 부호를 명시했다.",
+  "coreNote": {
+    "summary": "빛의 반사·굴절·분산·전반사와 오목·볼록 거울, 볼록 렌즈, 복합 렌즈의 결상을 다루는 회차",
+    "concepts": [
+      "오목 거울은 물체 위치에 따라 실상·허상과 확대·축소가 모두 달라진다.",
+      "볼록 거울은 항상 축소된 정립 허상을 만든다.",
+      "볼록 렌즈는 물체가 F 밖이면 실상, F 안이면 허상을 만든다.",
+      "거울·렌즈 식에서는 부호 규약과 물체·상 위치를 함께 관리한다.",
+      "복합 렌즈는 첫 렌즈의 상을 두 번째 렌즈의 물체로 다시 해석한다."
+    ],
+    "formulas": [
+      "1/f=1/p+1/q",
+      "m=-q/p=h′/h",
+      "볼록 거울: f<0",
+      "볼록 렌즈: f>0"
+    ],
+    "mistakes": [
+      "볼록 거울의 초점을 거울 앞에 두는 것",
+      "허상 q와 초점거리 f의 부호를 놓치는 것",
+      "2F와 F 사이 물체의 상을 축소로 판단하는 것",
+      "복합 렌즈에서 첫 상의 위치를 두 번째 렌즈 기준으로 변환하지 않는 것"
+    ],
+    "checklist": [
+      "거울인지 렌즈인지 먼저 확인했는가?",
+      "f, p, q 부호를 일관되게 썼는가?",
+      "배율의 부호로 정립·도립을 확인했는가?",
+      "두 번째 렌즈에서 첫 상이 왼쪽 실제 물체인지 오른쪽 가상 물체인지 확인했는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "빛의 성질",
+      "topic": "반사·굴절·분산·전반사·산란",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          110,
+          590,
+          340
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "① 하늘이 파랗게 보인다 - 빛의 회절",
+      "explanation": [
+        "하늘이 파랗게 보이는 주된 이유는 짧은 파장의 빛이 공기 분자에 의해 더 강하게 산란되는 레일리 산란이다.",
+        "무지개는 분산, 광섬유는 전반사, 거울은 반사, 겉보기 깊이는 굴절과 관련된다."
+      ],
+      "formulas": [
+        "레일리 산란: 산란 세기 ∝1/λ⁴"
+      ],
+      "commonMistakes": [
+        "산란과 회절을 같은 현상으로 보는 것",
+        "전반사와 단순 반사를 구분하지 않는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "① 선택",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "푸른 하늘 - 산란",
+          "무지개 - 분산",
+          "광섬유 - 전반사",
+          "얇은 막 색 - 단순 굴절"
+        ],
+        "correctChoice": 4,
+        "answer": "얇은 막 색 - 단순 굴절",
+        "acceptableAnswers": [
+          "4",
+          "얇은 막 색 - 단순 굴절"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "빛의 성질과 현상의 연결 중 잘못된 것은?",
+        "explanation": "얇은 막의 색은 주로 간섭으로 설명한다."
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "하늘이 파랗게 보인다 - 빛의 회절",
+          "무지개 - 빛의 분산",
+          "광섬유 - 전반사",
+          "거울 - 빛의 반사",
+          "겉보기 깊이 - 빛의 굴절"
+        ],
+        "correctChoice": 1,
+        "answer": "하늘이 파랗게 보인다 - 빛의 회절",
+        "acceptableAnswers": [
+          "1",
+          "하늘이 파랗게 보인다 - 빛의 회절"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 2,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "거울",
+      "topic": "오목 거울의 상",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          350,
+          590,
+          470
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "원문에 2번 배점 표기가 없지만 전체 총점이 100점이 되도록 10점으로 적용했다.",
+      "answer": "② 축소된 똑바로 선 모습",
+      "explanation": [
+        "오목 거울에서 물체가 초점 안쪽이면 확대된 정립 허상이 생긴다.",
+        "물체가 초점 바깥이면 도립 실상이 생기며 위치에 따라 확대·같은 크기·축소가 가능하다.",
+        "따라서 정립상이면서 축소된 상은 오목 거울로 만들 수 없다."
+      ],
+      "formulas": [
+        "1/f=1/p+1/q",
+        "m=-q/p"
+      ],
+      "commonMistakes": [
+        "정립이면 항상 확대라는 사실을 놓치는 것",
+        "볼록 거울의 축소 정립 허상과 혼동하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "② 선택",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "축소된 정립 허상",
+          "확대된 정립 허상",
+          "축소된 도립 실상",
+          "확대된 도립 실상"
+        ],
+        "correctChoice": 1,
+        "answer": "축소된 정립 허상",
+        "acceptableAnswers": [
+          "1",
+          "축소된 정립 허상"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "오목 거울에서는 만들 수 없지만 볼록 거울에서는 항상 가능한 상은?",
+        "explanation": "볼록 거울은 항상 축소된 정립 허상을 만든다."
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "확대된 똑바로 선 모습",
+          "축소된 똑바로 선 모습",
+          "같은 크기의 거꾸로 된 모습",
+          "축소된 거꾸로 된 모습",
+          "확대된 거꾸로 된 모습"
+        ],
+        "correctChoice": 2,
+        "answer": "축소된 똑바로 선 모습",
+        "acceptableAnswers": [
+          "2",
+          "축소된 똑바로 선 모습"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 3,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "거울",
+      "topic": "볼록 거울 상의 위치·성질·크기",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          20,
+          760,
+          590,
+          810
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "거울 뒤 5 cm, 축소된 정립 허상, 2 cm",
+      "explanation": [
+        "볼록 거울의 초점은 거울 뒤이므로 f=-10 cm, 물체 거리는 p=10 cm이다.",
+        "거울식 1/f=1/p+1/q에 대입하면 -1/10=1/10+1/q에서 q=-5 cm이다. 따라서 상은 거울 뒤 5 cm에 생기는 허상이다.",
+        "배율 m=-q/p=1/2이므로 정립이고 물체 높이 4 cm의 절반인 2 cm이다."
+      ],
+      "formulas": [
+        "1/f=1/p+1/q",
+        "m=-q/p=h′/h"
+      ],
+      "commonMistakes": [
+        "볼록 거울의 f를 +로 두는 것",
+        "허상의 q 부호를 양수로 쓰는 것",
+        "배율의 부호와 상의 정립·도립을 연결하지 않는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "거울 뒤 5 cm",
+          "points": 5
+        },
+        {
+          "criterion": "축소된 정립 허상",
+          "points": 10
+        },
+        {
+          "criterion": "2 cm",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "거울 뒤 20/3 cm / 축소된 정립 허상 / 2 cm",
+          "거울 뒤 15 cm / 같은 크기 정립 허상 / 6 cm",
+          "거울 앞 20/3 cm / 축소된 도립 실상 / 2 cm",
+          "거울 뒤 5 cm / 확대된 정립 허상 / 9 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "거울 뒤 20/3 cm / 축소된 정립 허상 / 2 cm",
+        "acceptableAnswers": [
+          "1",
+          "거울 뒤 20/3 cm / 축소된 정립 허상 / 2 cm"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "초점거리 -10 cm인 볼록 거울 앞 20 cm에 높이 6 cm 물체가 있다. 상의 위치·성질·크기는?",
+        "explanation": "1/f=1/p+1/q에서 q=-20/3 cm, m=1/3이므로 거울 뒤 20/3 cm에 높이 2 cm의 축소 정립 허상이 생긴다."
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "거울 뒤 5 cm / 축소된 정립 허상 / 2 cm",
+          "거울 뒤 10 cm / 같은 크기 정립 허상 / 4 cm",
+          "거울 앞 5 cm / 축소된 도립 실상 / 2 cm",
+          "거울 뒤 20 cm / 확대된 정립 허상 / 8 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "거울 뒤 5 cm / 축소된 정립 허상 / 2 cm",
+        "acceptableAnswers": [
+          "1",
+          "거울 뒤 5 cm / 축소된 정립 허상 / 2 cm"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 4,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "렌즈",
+      "topic": "볼록 렌즈 상의 위치·성질·크기",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          630,
+          110,
+          590,
+          700
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "렌즈 오른쪽 30 cm, 확대된 도립 실상, 10 cm",
+      "explanation": [
+        "초점거리 f=10 cm이고 그림에서 물체는 렌즈 왼쪽 15 cm에 있다.",
+        "1/f=1/p+1/q에서 1/10=1/15+1/q이므로 q=30 cm이다.",
+        "배율 m=-q/p=-2이므로 도립 실상이고 높이는 5 cm의 2배인 10 cm이다."
+      ],
+      "formulas": [
+        "1/f=1/p+1/q",
+        "m=-q/p=h′/h"
+      ],
+      "commonMistakes": [
+        "물체가 2F에 있다고 오해하는 것",
+        "q=30 cm를 렌즈 왼쪽으로 쓰는 것",
+        "배율의 절댓값만 보고 정립이라고 쓰는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "렌즈 오른쪽 30 cm",
+          "points": 5
+        },
+        {
+          "criterion": "확대된 도립 실상",
+          "points": 10
+        },
+        {
+          "criterion": "10 cm",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "렌즈 오른쪽 20 cm / 같은 크기 도립 실상 / 4 cm",
+          "렌즈 오른쪽 10 cm / 축소된 도립 실상 / 2 cm",
+          "렌즈 왼쪽 20 cm / 같은 크기 정립 허상 / 4 cm",
+          "렌즈 오른쪽 40 cm / 확대된 도립 실상 / 8 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "렌즈 오른쪽 20 cm / 같은 크기 도립 실상 / 4 cm",
+        "acceptableAnswers": [
+          "1",
+          "렌즈 오른쪽 20 cm / 같은 크기 도립 실상 / 4 cm"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "초점거리 10 cm인 볼록 렌즈의 왼쪽 20 cm에 높이 4 cm 물체가 있다. 상의 위치·성질·크기는?",
+        "explanation": "물체가 2F에 있으므로 반대쪽 2F(20 cm)에 같은 크기의 도립 실상이 생긴다."
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "렌즈 오른쪽 30 cm / 확대된 도립 실상 / 10 cm",
+          "렌즈 오른쪽 15 cm / 같은 크기 도립 실상 / 5 cm",
+          "렌즈 왼쪽 30 cm / 확대된 정립 허상 / 10 cm",
+          "렌즈 오른쪽 20 cm / 축소된 도립 실상 / 2.5 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "렌즈 오른쪽 30 cm / 확대된 도립 실상 / 10 cm",
+        "acceptableAnswers": [
+          "1",
+          "렌즈 오른쪽 30 cm / 확대된 도립 실상 / 10 cm"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 5,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "거울",
+      "topic": "볼록 거울 초점거리",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          630,
+          760,
+          590,
+          260
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "초점거리의 부호 규약을 명확히 하기 위해 “거울 뒤 10 cm, 부호 포함 f=-10 cm”로 함께 제시했다.",
+      "answer": "f=-10 cm (초점은 거울 뒤 10 cm)",
+      "explanation": [
+        "물체 거리는 p=10 cm이고 허상이므로 q<0이다.",
+        "허상의 크기가 물체의 1/2이고 정립이므로 m=+1/2=-q/p에서 q=-5 cm이다.",
+        "거울식 1/f=1/10+1/(-5)=-1/10이므로 f=-10 cm이다. 초점거리의 크기는 10 cm이다."
+      ],
+      "formulas": [
+        "m=-q/p",
+        "1/f=1/p+1/q"
+      ],
+      "commonMistakes": [
+        "볼록 거울의 초점거리 부호를 +로 쓰는 것",
+        "1/2 배율에서 q=-20 cm로 잘못 놓는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "q=-5 cm 계산",
+          "points": 8
+        },
+        {
+          "criterion": "f=-10 cm",
+          "points": 12
+        }
+      ],
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "-7.5 cm",
+          "-5 cm",
+          "+7.5 cm",
+          "+15 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "-7.5 cm",
+        "acceptableAnswers": [
+          "1",
+          "-7.5 cm"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "볼록 거울 앞 15 cm 물체의 허상이 1/3 크기로 보였다. 초점거리는?",
+        "explanation": "m=1/3=-q/15에서 q=-5 cm, 1/f=1/15-1/5=-2/15이므로 f=-7.5 cm이다."
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "-10 cm (거울 뒤 10 cm)",
+          "-5 cm (거울 뒤 5 cm)",
+          "+5 cm (거울 앞 5 cm)",
+          "+10 cm (거울 앞 10 cm)"
+        ],
+        "correctChoice": 1,
+        "answer": "-10 cm (거울 뒤 10 cm)",
+        "acceptableAnswers": [
+          "1",
+          "-10 cm (거울 뒤 10 cm)"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 6,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "렌즈",
+      "topic": "두 볼록 렌즈의 연속 결상",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          630,
+          900,
+          590,
+          680
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "④ 렌즈 B의 오른쪽 2.0 cm에 실상",
+      "explanation": [
+        "렌즈 A에서 f_A=8 cm, p_A=16 cm=2f_A이므로 첫 상은 A의 오른쪽 16 cm에 생긴다.",
+        "렌즈 B는 A의 오른쪽 12 cm에 있으므로 첫 상은 B의 오른쪽 4 cm에 있다. B에 들어가는 빛은 그 점으로 모이는 중이므로 B에게는 p_B=-4 cm인 가상 물체이다.",
+        "1/4=1/(-4)+1/q_B에서 1/q_B=1/2, q_B=2 cm이다. q_B>0이므로 B 오른쪽 2 cm의 실상이다."
+      ],
+      "formulas": [
+        "1/f=1/p+1/q",
+        "두 렌즈에서는 첫 렌즈의 상 위치를 두 번째 렌즈의 물체 위치로 변환"
+      ],
+      "commonMistakes": [
+        "첫 상의 위치를 B 기준으로 바꾸지 않는 것",
+        "B 오른쪽에 있는 첫 상을 실제 물체로 처리해 p_B=+4 cm로 넣는 것",
+        "q의 부호와 실상·허상을 반대로 연결하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "렌즈 A의 첫 상 A 오른쪽 16 cm",
+          "points": 6
+        },
+        {
+          "criterion": "렌즈 B에 대해 p=-4 cm",
+          "points": 6
+        },
+        {
+          "criterion": "q=+2 cm 실상, ④",
+          "points": 8
+        }
+      ],
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "렌즈 B의 오른쪽 12/5 cm에 실상",
+          "렌즈 B의 왼쪽 12/5 cm에 허상",
+          "렌즈 B의 오른쪽 6 cm에 실상",
+          "렌즈 B의 왼쪽 6 cm에 허상"
+        ],
+        "correctChoice": 1,
+        "answer": "렌즈 B의 오른쪽 12/5 cm에 실상",
+        "acceptableAnswers": [
+          "1",
+          "렌즈 B의 오른쪽 12/5 cm에 실상"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문에서 렌즈 A와 물체 위치는 같고, 렌즈 B의 초점거리만 6 cm라면 최종 상은?",
+        "explanation": "A가 만든 첫 상은 여전히 B 오른쪽 4 cm이므로 p_B=-4 cm. 1/6=-1/4+1/q에서 1/q=5/12, q=12/5 cm로 B 오른쪽 실상이다."
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "렌즈 B의 왼쪽 2.0 cm에 허상",
+          "렌즈 B의 왼쪽 4.0 cm에 허상",
+          "렌즈 B의 오른쪽 2.0 cm에 허상",
+          "렌즈 B의 오른쪽 2.0 cm에 실상",
+          "렌즈 B의 오른쪽 4.0 cm에 실상"
+        ],
+        "correctChoice": 4,
+        "answer": "렌즈 B의 오른쪽 2.0 cm에 실상",
+        "acceptableAnswers": [
+          "4",
+          "렌즈 B의 오른쪽 2.0 cm에 실상"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    }
+  ],
+  "featureVersion": "3.6.1-physics1-r15-r16"
+}
