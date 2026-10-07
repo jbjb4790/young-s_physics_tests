@@ -1,10 +1,10 @@
 {
   "name": "youngs-physics-review-comprehensive-analysis",
-  "version": "3.6.2",
+  "version": "3.6.3",
   "private": true,
   "scripts": {
     "test": "node --test tests/run-tests.mjs",
     "serve": "python3 -m http.server 8080 -d site"
   },
-  "description": "Young's Physics class roster, permanent student portal, editable/deletable records, Physics 1 review 10-16, Physics 1 comprehensive, Physics 2 mechanics comprehensive, answer editor, Excel/CSV import, and Apps Script hosted bridge"
+  "description": "Young's Physics cumulative comprehensive comments, class roster, permanent student portal, editable/deletable records, Physics 1 review 10-16, Physics 1/2 comprehensive, answer editor, Excel/CSV import, and Apps Script hosted bridge"
 }

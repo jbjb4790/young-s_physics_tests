@@ -65,7 +65,7 @@
      {content:[p("종합 점수","",{bold:true,color:"DCEBFF",size:20}),p(`${YP.formatNumber(record.score)} / ${exam.maxScore}`,"",{bold:true,color:"FFFFFF",size:46}),p(scoreMessage,"",{color:"EAF4FF",size:18})],fill:"0866E5",vAlign:"center",padX:220,padY:180},
      {content:[p("성취율","",{bold:true,color:"CFE5FF",size:17}),p(`${record.percent.toFixed(1)}%`,"",{bold:true,color:"FFFFFF",size:31}),p("전체 평균 대비","",{bold:true,color:"CFE5FF",size:17}),p(`${avgGap>=0?"+":""}${YP.formatNumber(avgGap)}%p`,"",{bold:true,color:"FFFFFF",size:27}),...(showStanding?[p("동일 평가 내 위치","",{bold:true,color:"FFE9A6",size:16}),p(standing.label,"",{bold:true,color:"FFF6D4",size:27}),p(`${standing.total}명 기준${standing.tied>1?` · 공동 ${standing.tied}명`:""}`,"",{color:"F6E9BE",size:14})]:[]),p(`전체 평균 ${YP.formatNumber(stats.average)}점 · ${stats.count}명`,"",{color:"DCEBFF",size:16})],fill:"063B8C",vAlign:"center",padX:180,padY:150}
    ]],[5100,3100],{noBorders:true}));
-   body.push(p(isTotal?"총괄평가 종합 분석":"종합 분석","Heading1"));body.push(p(YP.buildComment(exam,record,stats,history),"Quote"));
+   body.push(p(isTotal?"누적 데이터 기반 총괄평가 코멘트":"종합 분석","Heading1"));body.push(p(YP.buildComment(exam,record,stats,history),"Quote"));if(isTotal)body.push(p(`분석 근거 · 연결 복습 ${history?.count||0}회 · 현재 총괄평가 · 동일 평가 ${stats.count}명 · 단원별 누적 기록`,""));
    const scoreCanvas=document.getElementById("scoreChart"),distCanvas=document.getElementById("distChart");
    if(scoreCanvas)body.push(await addImage(dataBytes(scoreCanvas.toDataURL("image/png")),scoreCanvas.width,scoreCanvas.height,"점수 비교 그래프"));
    if(distCanvas)body.push(await addImage(dataBytes(distCanvas.toDataURL("image/png")),distCanvas.width,distCanvas.height,"점수 분포 그래프"));

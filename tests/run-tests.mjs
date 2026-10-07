@@ -538,7 +538,7 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
 
 test("v3.6.2는 반별 학생 기능과 물리1 15·16회를 유지하며 물리2 역학 총괄을 추가",()=>{
   assert.equal(catalog.featureVersion,"3.6.2-physics2-mechanics-total");
-  assert.equal(JSON.parse(read("package.json")).version,"3.6.2");
+  assert.equal(JSON.parse(read("package.json")).version,"3.6.3");
 });
 
 test("학생 통합 포털 페이지와 네 개의 학부모 탭이 존재",()=>{
@@ -868,7 +868,7 @@ test("반에서 선택한 학생의 동일 시험 재저장은 신규 중복행 
 
 test("v3.6.2 물리2 역학 총괄평가 25문항이 준비 완료",()=>{
   assert.equal(catalog.featureVersion,"3.6.2-physics2-mechanics-total");
-  assert.equal(JSON.parse(read("package.json")).version,"3.6.2");
+  assert.equal(JSON.parse(read("package.json")).version,"3.6.3");
   const e=catalog.exams.find(x=>x.examId==="physics2-basic-total-mechanics");
   assert.ok(e);assert.equal(e.status,"ready");assert.equal(e.questionCount,25);assert.equal(e.maxScore,100);
   assert.equal(e.questions.length,25);
@@ -902,4 +902,46 @@ test("물리2 역학 총괄 교정 사항 Q19·Q20 및 서술형 핵심답",()=>
   assert.match(q20.correctionNote,/B와 C/);
   assert.match(q23.answer,/7R\/2/);
   assert.equal(q25.answer,"e=2/11");
+});
+
+
+test("v3.6.3 총괄평가 코멘트는 연결 복습 흐름과 반복 강약점을 함께 반영",()=>{
+  const core=read("site/assets/core.js");
+  assert.match(core,/buildPortalCumulativeComment/);
+  assert.match(core,/최근 복습 흐름/);
+  assert.match(core,/반복적으로 보완 필요 신호/);
+  assert.match(core,/연결된 복습 테스트/);
+  assert.doesNotMatch(core,/누적 가중 성취율/);
+});
+
+test("총괄평가 탭과 상세 화면에 누적 데이터 기반 코멘트가 노출",()=>{
+  const portal=read("site/assets/portal.js");
+  assert.match(portal,/CUMULATIVE LEARNING COMMENT/);
+  assert.match(portal,/누적 데이터 기반 학습 코멘트/);
+  assert.match(portal,/누적 데이터 기반 학생 코멘트/);
+  assert.match(portal,/buildPortalCumulativeComment/);
+  assert.match(portal,/YP\.buildComment\(exam,record,stats,history\)/);
+});
+
+test("개별 총괄 성적표와 Word에도 누적 코멘트가 포함",()=>{
+  const report=read("site/assets/report.js"),docx=read("site/assets/vendor/docx-export.bundle.js");
+  assert.match(report,/누적 데이터 기반 총괄평가 코멘트/);
+  assert.match(report,/학부모·학생 학습 코멘트/);
+  assert.match(docx,/누적 데이터 기반 총괄평가 코멘트/);
+  assert.match(docx,/분석 근거/);
+});
+
+test("누적 코멘트 변경은 Apps Script 스키마를 요구하지 않음",()=>{
+  const pkg=JSON.parse(read("package.json"));
+  assert.equal(pkg.version,"3.6.3");
+  const code=read("apps-script/Code.gs");
+  assert.match(code,/FEATURE_VERSION = "3\.6\.0-class-roster-record-manager"/);
+});
+
+test("누적 총괄 코멘트 실제 생성값은 상승/강점/보완/오답 행동을 문장으로 반환",()=>{
+  const exam=YP.getExam("physics1-basic-total-mechanics"),record=scoreRecord(exam,"미기입","테스트학생");
+  record.resultInputs[1]="1";const normalized=YP.normalizeRecord(record),stats=YP.computeStats(exam,[normalized,scoreRecord(exam,"미기입","비교학생",Array(25).fill(1))]);
+  const history={count:4,expectedCount:7,percent:72,trend:[{percent:60},{percent:65},{percent:75},{percent:82}],units:[{unit:exam.questions[0].unit,percent:78}],records:[],score:0,maxScore:0};
+  const comment=YP.buildComment(exam,normalized,stats,history);
+  assert.equal(typeof comment,"string");assert.ok(comment.length>100);assert.match(comment,/복습 테스트 4회/);assert.match(comment,/최근 복습 흐름/);assert.doesNotMatch(comment,/NaN|undefined/);
 });
