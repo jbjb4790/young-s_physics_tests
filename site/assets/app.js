@@ -214,13 +214,20 @@
    if(serverInstanceId)params.set("sid",String(serverInstanceId));
    u.hash=params.toString();return u.toString();
  }
- function portalURL(student,serverInstanceId=state.serverInstanceId){
+ function portalDirectURL(student,serverInstanceId=state.serverInstanceId){
    const u=new URL(YP.config.portalPage||"portal.html",location.href),params=new URLSearchParams();
+   u.search="";u.hash="";
    params.set("id",String(student?.portalToken||""));params.set("fp",String(student?.portalFingerprint||""));
    const api=String(YP_API.apiUrl||YP.config.apiUrl||"").trim();
    if(/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(api))params.set("api",api);
    if(serverInstanceId)params.set("sid",String(serverInstanceId));
    u.hash=params.toString();return u.toString();
+ }
+ function portalURL(student,serverInstanceId=state.serverInstanceId){
+   const direct=portalDirectURL(student,serverInstanceId),api=String(YP_API.apiUrl||YP.config.apiUrl||"").trim();
+   if(!/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(api)||!student?.portalToken||!student?.portalFingerprint)return direct;
+   const site=new URL(YP.config.portalPage||"portal.html",location.href);site.search="";site.hash="";
+   const share=new URL(api);share.searchParams.set("view","portalShare");share.searchParams.set("token",String(student.portalToken));share.searchParams.set("fp",String(student.portalFingerprint));share.searchParams.set("site",site.toString());if(serverInstanceId)share.searchParams.set("sid",String(serverInstanceId));return share.toString();
  }
  function studentById(studentId){return state.students.find(s=>String(s.studentId)===String(studentId))||null}
  function profileLabel(s){return `${YP.normalizeSchool(s.school)} · ${s.name}${s.grade?` · ${s.grade}학년`:""}${s.classNo?` · ${s.classNo}`:""}`}

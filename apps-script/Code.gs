@@ -39,7 +39,7 @@ const HEADERS = {
 };
 
 const API_VERSION = "3.3.0-hosted-parent-bridge";
-const FEATURE_VERSION = "3.6.0-class-roster-record-manager";
+const FEATURE_VERSION = "3.6.4-personalized-portal-share-preview";
 const STUDENT_PORTAL_SCHEMA_VERSION = "1";
 const CLASS_ROSTER_SCHEMA_VERSION = "1";
 const DEFAULT_SESSION_TTL_DAYS = 90;
@@ -99,6 +99,14 @@ function doGet(e) {
   try {
     const parameters = (e && e.parameter) || {};
     const view = String(parameters.view || "");
+    if (view === "portalShare") {
+      return studentPortalShareHtml_(
+        String(parameters.token || ""),
+        String(parameters.fp || ""),
+        String(parameters.site || ""),
+        String(parameters.sid || "")
+      );
+    }
     if (view === "host") {
       return hostedBridgeShell_(String(parameters.site || ""));
     }
@@ -147,6 +155,95 @@ function doGet(e) {
   }
 }
 
+
+/**
+ * 카카오톡·문자·메신저에서 학생 영구 링크를 붙여넣었을 때 학생 이름이 포함된
+ * Open Graph 미리보기를 제공한다. GitHub Pages의 정적 HTML은 URL hash의 학생
+ * 토큰을 서버에서 볼 수 없으므로, 공유용 URL만 Apps Script가 렌더링한다.
+ *
+ * 공유 미리보기에는 학생 이름만 사용하고 점수·학교·시험 기록은 넣지 않는다.
+ * 실제 브라우저는 즉시 기존 hosted parent bridge로 이동하므로 학부모 UX는 동일하다.
+ */
+function studentPortalShareHtml_(token, fp, requestedSiteUrl, expectedServerId) {
+  const profile = findStudentProfileByPortal_(String(token || ""), String(fp || ""));
+  const rawSite = String(requestedSiteUrl || "").trim();
+  const origin = validateBridgeOrigin_(rawSite);
+  if (rawSite.indexOf(origin) !== 0) {
+    throwApiError_("PORTAL_SHARE_SITE_INVALID", "학생 통합 페이지 주소가 올바르지 않습니다.");
+  }
+  const suffix = rawSite.slice(origin.length, origin.length + 1);
+  if (suffix && suffix !== "/" && suffix !== "?" && suffix !== "#") {
+    throwApiError_("PORTAL_SHARE_SITE_INVALID", "학생 통합 페이지 주소와 origin이 일치하지 않습니다.");
+  }
+
+  const currentServerId = getServerInstanceId_();
+  const expected = String(expectedServerId || "").trim();
+  if (expected && !constantTimeEqual_(expected, currentServerId)) {
+    throwApiError_("PORTAL_SHARE_SERVER_MISMATCH", "학생 통합 링크를 만든 서버와 현재 Apps Script 서버가 다릅니다.");
+  }
+
+  const siteBase = rawSite.split("#")[0].split("?")[0];
+  if (!/\/portal\.html$/i.test(siteBase)) {
+    throwApiError_("PORTAL_SHARE_PAGE_INVALID", "학생 통합 페이지는 portal.html이어야 합니다.");
+  }
+
+  const serviceUrl = String(ScriptApp.getService().getUrl() || "").trim();
+  if (!/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(serviceUrl)) {
+    throwApiError_("WEB_APP_URL_UNAVAILABLE", "현재 Apps Script 웹 앱 /exec 주소를 확인할 수 없습니다.");
+  }
+
+  const directPortalUrl = siteBase +
+    "#id=" + encodeURIComponent(profile.PortalToken) +
+    "&fp=" + encodeURIComponent(profile.PortalFingerprint) +
+    "&api=" + encodeURIComponent(serviceUrl) +
+    "&sid=" + encodeURIComponent(currentServerId);
+  const hostedUrl = serviceUrl + "?view=host&site=" + encodeURIComponent(directPortalUrl);
+  const shareUrl = serviceUrl +
+    "?view=portalShare&token=" + encodeURIComponent(profile.PortalToken) +
+    "&fp=" + encodeURIComponent(profile.PortalFingerprint) +
+    "&site=" + encodeURIComponent(siteBase) +
+    "&sid=" + encodeURIComponent(currentServerId);
+  const imageUrl = siteBase.replace(/portal\.html$/i, "assets/images/logo.png");
+  const title = "Young's Physics " + String(profile.Name || "학생") + " 학생 학습페이지";
+  const description = "주간 복습·총괄평가 결과, 누적 학습 분석과 오답 학습을 한 페이지에서 확인합니다.";
+
+  const html = [
+    '<!doctype html>',
+    '<html lang="ko"><head><meta charset="utf-8">',
+    '<meta name="viewport" content="width=device-width,initial-scale=1">',
+    '<meta name="robots" content="noindex,nofollow">',
+    '<title>' + escapeHtmlForMeta_(title) + '</title>',
+    '<meta name="description" content="' + escapeHtmlForMeta_(description) + '">',
+    '<meta property="og:type" content="website">',
+    '<meta property="og:site_name" content="Young\'s Physics">',
+    '<meta property="og:title" content="' + escapeHtmlForMeta_(title) + '">',
+    '<meta property="og:description" content="' + escapeHtmlForMeta_(description) + '">',
+    '<meta property="og:url" content="' + escapeHtmlForMeta_(shareUrl) + '">',
+    '<meta property="og:image" content="' + escapeHtmlForMeta_(imageUrl) + '">',
+    '<meta name="twitter:card" content="summary_large_image">',
+    '<meta name="twitter:title" content="' + escapeHtmlForMeta_(title) + '">',
+    '<meta name="twitter:description" content="' + escapeHtmlForMeta_(description) + '">',
+    '<meta name="twitter:image" content="' + escapeHtmlForMeta_(imageUrl) + '">',
+    '<style>body{margin:0;font-family:Arial,"Noto Sans KR",sans-serif;background:#f4f8ff;color:#0b2c63;display:grid;place-items:center;min-height:100vh}.box{max-width:520px;margin:24px;padding:28px;border:1px solid #d5e3f8;border-radius:20px;background:#fff;box-shadow:0 18px 60px rgba(0,45,110,.12);text-align:center}.box img{max-width:260px;width:70%;height:auto}.box h1{font-size:21px;margin:18px 0 8px}.box p{color:#60748f;line-height:1.6}.box a{display:inline-block;margin-top:12px;padding:11px 16px;border-radius:10px;background:#0866e5;color:#fff;text-decoration:none;font-weight:700}</style>',
+    '</head><body><div class="box"><img src="' + escapeHtmlForMeta_(imageUrl) + '" alt="Young\'s Physics">',
+    '<h1>' + escapeHtmlForMeta_(title) + '</h1><p>학생 통합 학습 페이지로 이동합니다.</p>',
+    '<a href="' + escapeHtmlForMeta_(hostedUrl) + '">학습 페이지 열기</a></div>',
+    '<script>window.location.replace(' + safeJsonForHtml_(hostedUrl) + ');<\/script>',
+    '</body></html>'
+  ].join("");
+  return HtmlService.createHtmlOutput(html)
+    .setTitle(title)
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function escapeHtmlForMeta_(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
 /**
  * GitHub Pages 앱을 Apps Script HTML Service 안의 자식 iframe으로 실행한다.

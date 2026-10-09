@@ -6,6 +6,8 @@
  function formatDateTime(value){if(!value)return "—";const d=new Date(value);return Number.isNaN(d.getTime())?String(value).replace("T"," ").slice(0,16):d.toLocaleString("ko-KR",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"})}
  function statusClass(s){return s==="full"?"status-full":s==="partial"?"status-partial":s==="wrong"?"status-wrong":""}
  function reportURL(reportToken,fp,serverInstanceId=state.serverInstanceId){const u=new URL(YP.config.reportPage||"report.html",location.href),q=new URLSearchParams();q.set("id",String(reportToken||""));q.set("fp",String(fp||""));const api=String(YP_API.apiUrl||YP.config.apiUrl||"").trim();if(/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(api))q.set("api",api);if(serverInstanceId)q.set("sid",serverInstanceId);u.hash=q.toString();return u.toString()}
+ function portalShareURL(){const student=state.data?.student,api=String(YP_API.apiUrl||YP.config.apiUrl||"").trim();if(!student||!/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(api))return location.href;const site=new URL(YP.config.portalPage||"portal.html",location.href);site.search="";site.hash="";const u=new URL(api);u.searchParams.set("view","portalShare");u.searchParams.set("token",String(student.portalToken||state.token||""));u.searchParams.set("fp",String(student.portalFingerprint||state.fp||""));u.searchParams.set("site",site.toString());if(state.serverInstanceId)u.searchParams.set("sid",state.serverInstanceId);return u.toString()}
+ function updatePageMetadata(student){const title=`Young's Physics ${String(student?.name||"학생")} 학생 학습페이지`;document.title=title;document.querySelector('meta[name="description"]')?.setAttribute("content","주간 복습·총괄평가 결과, 누적 학습 분석과 오답 학습을 한 페이지에서 확인합니다.");document.querySelector('meta[property="og:title"]')?.setAttribute("content",title);document.querySelector('meta[name="twitter:title"]')?.setAttribute("content",title)}
  function portalError(message,detail=""){$("portalRoot").innerHTML=`<div class="card error-box"><h2>학생 통합 페이지를 열 수 없습니다.</h2><p>${YP.escapeHTML(message)}</p>${detail?`<div class="notice small">${detail}</div>`:""}<p class="muted">교사에게 학생 통합 링크를 다시 요청해 주세요.</p></div>`}
  function courseName(courseId){return YP.getCourse(courseId)?.courseName||courseId||"과정"}
  function assessmentLabel(report){return report.assessmentType==="comprehensive"?"총괄평가":"주간 복습"}
@@ -13,6 +15,7 @@
  function levelBadge(percent){const label=level(percent),cls=label==="강점"?"verified":label==="우선 보완"?"needs-review":"corrected";return `<span class="badge ${cls}">${label}</span>`}
  function renderShell(){
    const {student,cumulative,reports}=state.data,integrity=state.data.integrity||{};
+   updatePageMetadata(student);
    $("portalRoot").innerHTML=`
     <section class="card portal-hero-card">
      <div class="portal-hero-copy"><div class="portal-logo-row"><img src="assets/images/logo.png" alt="Young's Physics"><span class="badge verified">학생 영구 링크 검증 완료</span></div><div class="section-kicker">LIFETIME STUDENT LEARNING PORTAL</div><h1>${YP.escapeHTML(student.name)} 학생 통합 학습 페이지</h1><p>주간 복습 테스트와 총괄평가가 저장될 때마다 이 한 페이지에 자동으로 누적됩니다. 링크는 바뀌지 않습니다.</p><div class="portal-student-meta"><span>${YP.escapeHTML(YP.normalizeSchool(student.school))}</span>${student.grade?`<span>${YP.escapeHTML(student.grade)}학년</span>`:""}${student.classNo?`<span>${YP.escapeHTML(student.classNo)}</span>`:""}<span>최근 갱신 ${formatDateTime(student.updatedAt)}</span></div></div>
@@ -23,7 +26,7 @@
    bindTopActions();renderTab(state.activeTab);setActiveNav(state.activeTab);
  }
  function bindTopActions(){
-   $("portalCopyBtn").onclick=async()=>{await YP.copyText(location.href);YP.toast("학생 영구 학부모 링크를 복사했습니다.",5000)};
+   $("portalCopyBtn").onclick=async()=>{await YP.copyText(portalShareURL());YP.toast(`${state.data?.student?.name||"학생"} 학생 이름이 표시되는 영구 학부모 링크를 복사했습니다.`,5000)};
    $("portalPrintBtn").onclick=()=>window.print();
    document.querySelectorAll("[data-portal-tab]").forEach(btn=>btn.onclick=()=>renderTab(btn.dataset.portalTab));
  }
