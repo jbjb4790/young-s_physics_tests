@@ -191,7 +191,7 @@ test("학생 리포트는 원문 답 제출 전 정답·해설을 hidden 처리"
 test("학생 리포트 문항표에 총괄 객관식 학생 선택번호를 표시",()=>{const src=read("site/assets/report.js");assert.match(src,/function scoringInputLabel/);assert.match(src,/선택 \$\{YP\.choiceLabel\(selected\)\}/);assert.match(src,/record\.resultInputs\?\.\[i\]/)});
 test("동형 문제는 원문 제출 전 locked, 동형 제출 후 정답·해설 공개",()=>{const src=read("site/assets/report.js");assert.match(src,/similar-card locked/);assert.match(src,/원문 답을 먼저 제출하면 활성화/);assert.match(src,/동형 답 제출/);assert.match(src,/<b>정답<\/b>/)});
 test("확인 필요 문항은 정답 자동 공개를 차단",()=>assert.match(read("site/assets/report.js"),/\["ambiguous","needs-review"\]\.includes\(q\.reviewStatus\)/));
-test("학교 미기입은 '미기입'으로 저장하고 한 버튼으로 링크 복사",()=>{const src=read("site/assets/app.js"),html=read("site/index.html"),core=read("site/assets/core.js");assert.doesNotMatch(src,/학교를 반드시 입력/);assert.match(src,/YP\.normalizeSchool\(\$\("school"\)\.value\)/);assert.match(core,/v==="미입력"\|\|v==="미기입"\?"미기입"/);assert.match(html,/미기입 시 자동으로 ‘미기입’/);assert.match(html,/저장·성적 분석·학생 링크 복사/);assert.match(src,/await YP\.copyText\(url\)/)});
+test("학교 미기입은 '미기입'으로 저장하고 한 버튼으로 링크 복사",()=>{const src=read("site/assets/app.js"),html=read("site/index.html"),core=read("site/assets/core.js");assert.doesNotMatch(src,/학교를 반드시 입력/);assert.match(src,/YP\.normalizeSchool\(\$\("school"\)\.value\)/);assert.match(core,/v==="미입력"\|\|v==="미기입"\?"미기입"/);assert.match(html,/미기입 시 자동으로 ‘미기입’/);assert.match(html,/저장·성적 분석·학생 링크 복사/);assert.match(src,/await YP\.copyText\(portal\?portalCopyPayload\(portal/)});
 test("빈 학교와 구버전 '미입력' 기록은 '미기입'으로 정규화",()=>{for(const school of ["","미입력","미기입"]){const r=YP.normalizeRecord({examId:mech.examId,name:"학생",school,resultInputs:Array(25).fill("1"),partialModes:Array(25).fill(false)});assert.equal(r.school,"미기입");assert.equal(r.studentKey,YP.studentKey(mech.courseId,"미기입","학생"))}});
 test("'미입력'과 '미기입'은 같은 학생 학교 식별값으로 처리",()=>{assert.equal(YP.studentKey(mech.courseId,"미입력","학생"),YP.studentKey(mech.courseId,"미기입","학생"));assert.equal(YP.studentKey(mech.courseId,"","학생"),YP.studentKey(mech.courseId,"미기입","학생"))});
 test("교사용 화면은 CSV·Excel 자동 가져오기 모듈과 학생 선택번호 UI를 로드",()=>{const html=read("site/index.html"),app=read("site/assets/app.js");assert.match(html,/accept="[^"]*\.xlsx[^"]*\.csv/);assert.ok(html.indexOf("assets/csv-import.js")<html.indexOf("assets/xlsx-import.js"));assert.ok(html.indexOf("assets/xlsx-import.js")<html.indexOf("assets/app.js"));assert.match(app,/YP_CSV\.importAssessment/);assert.match(app,/YP_XLSX\.importAssessment/);assert.match(app,/객관식 학생 선택번호 1~5/);assert.match(app,/importMode:"upsert"/)});
@@ -538,7 +538,7 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
 
 test("v3.6.2는 반별 학생 기능과 물리1 15·16회를 유지하며 물리2 역학 총괄을 추가",()=>{
   assert.equal(catalog.featureVersion,"3.6.2-physics2-mechanics-total");
-  assert.equal(JSON.parse(read("package.json")).version,"3.6.6");
+  assert.equal(JSON.parse(read("package.json")).version,"3.6.7");
 });
 
 test("학생 통합 포털 페이지와 네 개의 학부모 탭이 존재",()=>{
@@ -868,7 +868,7 @@ test("반에서 선택한 학생의 동일 시험 재저장은 신규 중복행 
 
 test("v3.6.2 물리2 역학 총괄평가 25문항이 준비 완료",()=>{
   assert.equal(catalog.featureVersion,"3.6.2-physics2-mechanics-total");
-  assert.equal(JSON.parse(read("package.json")).version,"3.6.6");
+  assert.equal(JSON.parse(read("package.json")).version,"3.6.7");
   const e=catalog.exams.find(x=>x.examId==="physics2-basic-total-mechanics");
   assert.ok(e);assert.equal(e.status,"ready");assert.equal(e.questionCount,25);assert.equal(e.maxScore,100);
   assert.equal(e.questions.length,25);
@@ -933,7 +933,7 @@ test("개별 총괄 성적표와 Word에도 누적 코멘트가 포함",()=>{
 
 test("누적 코멘트 변경은 Apps Script 스키마를 요구하지 않음",()=>{
   const pkg=JSON.parse(read("package.json"));
-  assert.equal(pkg.version,"3.6.6");
+  assert.equal(pkg.version,"3.6.7");
   const code=read("apps-script/Code.gs");
   assert.match(code,/FEATURE_VERSION = "3\.6\.6-portal-share-safe-navigation"/);
 });
@@ -947,8 +947,8 @@ test("누적 총괄 코멘트 실제 생성값은 상승/강점/보완/오답 �
 });
 
 // Personalized student portal share preview v3.6.4
-test("학생 통합 링크 복사는 Apps Script portalShare URL을 사용",()=>{const src=read("site/assets/app.js");assert.match(src,/view","portalShare/);assert.match(src,/portalDirectURL/);assert.match(src,/share\.searchParams\.set\("token"/)});
-test("학생 통합 페이지 내부 복사도 학생 이름 공유 링크를 사용",()=>{const src=read("site/assets/portal.js");assert.match(src,/function portalShareURL/);assert.match(src,/updatePageMetadata/);assert.match(src,/학생 이름이 표시되는 공유 링크/)});
+test("학생 통합 링크 복사는 OG Worker 설정 또는 이름+직접 링크로 분기",()=>{const src=read("site/assets/app.js"),share=read("site/assets/share-link.js");assert.match(src,/YP_SHARE\.shareURL\(student,direct\)/);assert.match(src,/function portalCopyPayload/);assert.match(src,/portalCopyPayload\(student\)/);assert.match(share,/url\.hash = fragment\.toString/)});
+test("학생 통합 페이지 내부 복사도 OG Worker와 직접 링크를 분리",()=>{const src=read("site/assets/portal.js");assert.match(src,/function portalShareURL/);assert.match(src,/function portalCopyPayload/);assert.match(src,/YP_SHARE\.copyText/);assert.match(src,/updatePageMetadata/)});
 test("정적 portal 페이지는 OG fallback 메타를 포함",()=>{const html=read("site/portal.html");assert.match(html,/property="og:title"/);assert.match(html,/property="og:image"/);assert.match(html,/twitter:title/)});
 test("Apps Script는 검증된 학생 이름으로 개인화 Open Graph 공유 페이지를 렌더링",()=>{const src=read("apps-script/Code.gs");assert.match(src,/view === "portalShare"/);assert.match(src,/function studentPortalShareHtml_/);assert.match(src,/Young's Physics " \+ String\(profile\.Name/);assert.match(src,/property="og:title"/);assert.match(src,/findStudentProfileByPortal_/);assert.match(src,/target=\"_blank\"/);assert.doesNotMatch(src,/window\.location\.replace\(' \+ safeJsonForHtml_\(hostedUrl\)/)});
 
