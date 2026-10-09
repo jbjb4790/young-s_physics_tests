@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#075fdb">
 <title>Young's Physics 복습·총괄 통합 성적 분석</title>
 <link rel="icon" href="assets/images/favicon.png">
-<link rel="stylesheet" href="assets/styles.css?v=3.6.3">
+<link rel="stylesheet" href="assets/styles.css?v=3.6.5">
 </head>
 <body class="app-page">
 <div id="demoBanner" class="demo-banner hidden">Apps Script 자동 연결 주소가 배포에 설정되지 않아 현재 데모 모드입니다. GitHub 저장소 변수 <code>YP_API_URL</code>을 확인하세요.</div>
@@ -70,7 +70,7 @@
  <div class="section-title-row">
   <div class="section-icon">00</div>
   <div><div class="section-kicker">CLASS ROSTER · ONE CLICK ENTRY</div><h2>반별 학생 빠른 입력</h2><p class="section-desc">반을 만들어 학생을 묶어 두면 이름을 클릭하는 것만으로 학생 정보가 채워지고 바로 선택한 시험 결과를 입력할 수 있습니다.</p></div>
-  <div class="toolbar class-roster-actions"><button class="btn btn-primary" id="addClassBtn">+ 반 추가</button><button class="btn btn-light" id="renameClassBtn">반 이름 수정</button><button class="btn btn-light" id="deleteClassBtn">반 삭제</button><button class="btn btn-light" id="refreshRosterBtn">새로고침</button></div>
+  <div class="toolbar class-roster-actions"><button class="btn btn-primary" id="addClassBtn">+ 반 추가</button><button class="btn btn-light" id="renameClassBtn">반 이름 수정</button><button class="btn btn-light" id="deleteClassBtn">반 삭제</button><button class="btn btn-light" id="mergeStudentsOpenBtn">학생 데이터 병합</button><button class="btn btn-light" id="refreshRosterBtn">새로고침</button></div>
  </div>
  <div class="notice small"><b>반은 성적 데이터와 분리된 명단입니다.</b> 반을 삭제해도 학생 프로필·시험 결과·학부모 영구 링크는 삭제되지 않고 미분류 학생으로 남습니다.</div>
  <div id="classTabs" class="class-tabs"></div>
@@ -230,6 +230,24 @@
  <div class="modal-actions"><button class="btn btn-light" id="closeAssignStudentModalBtn">취소</button><button class="btn btn-primary" id="assignStudentConfirmBtn">현재 반에 배정</button></div>
 </div></div>
 
+<div id="studentMergeModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="studentMergeTitle">
+ <div class="modal roster-modal student-merge-modal">
+  <div class="modal-title-row"><div class="section-icon">⇄</div><div><div class="section-kicker">STUDENT RECORD MERGE</div><h2 id="studentMergeTitle">두 학생의 데이터 병합</h2><p class="small muted">병합 후에도 유지할 학생의 학부모 영구 링크는 그대로 사용됩니다.</p></div></div>
+  <div class="merge-select-grid">
+   <div class="field"><label for="mergeSourceStudent">흡수할 학생 · 병합 후 비활성화</label><select id="mergeSourceStudent"><option value="">선택하세요</option></select></div>
+   <div class="field"><label for="mergeTargetStudent">유지할 학생 · 학부모 링크 유지</label><select id="mergeTargetStudent"><option value="">선택하세요</option></select></div>
+  </div>
+  <div class="notice warn small"><b>중요</b> 동일인인지 먼저 확인하세요. 출처 학생의 기존 영구 링크와 개별 시험 링크는 비활성화됩니다. 두 학생에게 같은 시험이 있으면 보존할 성적을 직접 선택해야 하며, 선택하지 않은 기록은 복구용 시트에 백업 후 운영 성적에서 제외됩니다.</div>
+  <div class="toolbar merge-preview-actions"><button type="button" class="btn btn-light" id="mergePreviewBtn">병합 미리보기</button><span id="mergeModalStatus" class="small muted" role="status" aria-live="polite"></span></div>
+  <div id="mergePreviewContent" class="merge-preview-content hidden"></div>
+  <div id="mergeConfirmation" class="merge-confirmation hidden">
+   <div class="field"><label for="mergeTargetConfirmName">유지할 학생의 이름을 그대로 입력</label><input id="mergeTargetConfirmName" autocomplete="off" placeholder="유지할 학생 이름"></div>
+   <label class="merge-check"><input type="checkbox" id="mergeUnderstood"><span>서로 같은 학생임을 확인했고, 출처 학생 링크 비활성화 및 중복 성적 제외에 동의합니다.</span></label>
+  </div>
+  <div class="modal-actions"><button type="button" class="btn btn-light" id="mergeCloseBtn">취소</button><button type="button" class="btn btn-danger" id="mergeConfirmBtn" disabled>확인 후 학생 병합 실행</button></div>
+ </div>
+</div>
+
 <div id="toast" class="toast hidden"></div>
 
 <script src="assets/runtime-config.js?v=3.3.0"></script>
@@ -238,8 +256,8 @@
 <script src="assets/data/catalog.js?v=3.6.3"></script>
 <script src="assets/data/demo-data.js?v=3.6.3"></script>
 <script src="assets/core.js?v=3.6.3"></script>
-<script src="assets/api.js?v=3.6.3"></script>
+<script src="assets/api.js?v=3.6.5"></script>
 <script src="assets/csv-import.js?v=3.6.3"></script>
 <script src="assets/xlsx-import.js?v=3.6.3"></script>
-<script src="assets/app.js?v=3.6.4"></script>
+<script src="assets/app.js?v=3.6.5"></script>
 </body></html>

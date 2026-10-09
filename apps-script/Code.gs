@@ -24,6 +24,8 @@ const SHEETS = {
   STUDENTS: "Students",
   CLASSES: "Classes",
   CLASS_MEMBERS: "ClassMembers",
+  STUDENT_MERGES: "StudentMerges",
+  STUDENT_MERGE_ARCHIVES: "StudentMergeArchives",
   REPORTS: "Reports"
 };
 
@@ -35,11 +37,13 @@ const HEADERS = {
   Students: ["StudentId","PortalToken","PortalFingerprint","IdentitySeed","IdentityDigest","IdentityKey","School","Name","Grade","ClassNo","ExternalId","CreatedAt","UpdatedAt","Active"],
   Classes: ["ClassId","ClassName","SortOrder","CreatedAt","UpdatedAt","Active"],
   ClassMembers: ["ClassId","StudentId","AddedAt","SortOrder","Active"],
+  StudentMerges: ["MergeId","SourceStudentId","TargetStudentId","Status","ResolutionJSON","PreviewRevision","StartedAt","CompletedAt","AffectedReports","RemovedDuplicates","Note"],
+  StudentMergeArchives: ["MergeId","ItemType","ItemId","SnapshotJSON","CreatedAt"],
   Reports: ["Token","Fingerprint","IdentitySeed","IdentityDigest","StudentKey","ExamId","CourseId","School","Name","Grade","ClassNo","ResultInputsJSON","PartialModesJSON","ScoringJSON","RecordJSON","CreatedAt","UpdatedAt","StudentId"]
 };
 
 const API_VERSION = "3.3.0-hosted-parent-bridge";
-const FEATURE_VERSION = "3.6.4-personalized-portal-share-preview";
+const FEATURE_VERSION = "3.6.5-student-profile-merge";
 const STUDENT_PORTAL_SCHEMA_VERSION = "1";
 const CLASS_ROSTER_SCHEMA_VERSION = "1";
 const DEFAULT_SESSION_TTL_DAYS = 90;
@@ -615,21 +619,25 @@ function dispatchApiRequest_(body) {
     case "listClasses":
       assertTeacherAuth_(body); return listClasses_();
     case "saveClass":
-      assertTeacherAuth_(body); return saveClass_(body.classInfo || body.class || {});
+      assertTeacherAuth_(body); return withStudentMergeLock_(function(){return saveClass_(body.classInfo || body.class || {});});
     case "deleteClass":
-      assertTeacherAuth_(body); return deleteClass_(String(body.classId || ""));
+      assertTeacherAuth_(body); return withStudentMergeLock_(function(){return deleteClass_(String(body.classId || ""));});
     case "saveStudentProfile":
       assertTeacherAuth_(body); return saveStudentProfile_(body.student || {});
     case "addStudentToClass":
-      assertTeacherAuth_(body); return addStudentToClass_(String(body.classId || ""), String(body.studentId || ""));
+      assertTeacherAuth_(body); return withStudentMergeLock_(function(){return addStudentToClass_(String(body.classId || ""), String(body.studentId || ""));});
     case "removeStudentFromClass":
-      assertTeacherAuth_(body); return removeStudentFromClass_(String(body.classId || ""), String(body.studentId || ""));
+      assertTeacherAuth_(body); return withStudentMergeLock_(function(){return removeStudentFromClass_(String(body.classId || ""), String(body.studentId || ""));});
+    case "previewStudentMerge":
+      assertTeacherAuth_(body); return previewStudentMerge_(String(body.sourceStudentId || ""),String(body.targetStudentId || ""));
+    case "mergeStudentProfiles":
+      assertTeacherAuth_(body); return mergeStudentProfiles_(body);
     case "reissueStudentPortal":
-      assertTeacherAuth_(body); return reissueStudentPortal_(String(body.studentId || ""));
+      assertTeacherAuth_(body); return withStudentMergeLock_(function(){return reissueStudentPortal_(String(body.studentId || ""));});
     case "migrateStudentPortals":
       assertTeacherAuth_(body); return migrateStudentPortals_(Number(body.batchSize || 300));
     case "deleteReport":
-      assertTeacherAuth_(body); return {ok:true, deleted:deleteReport_(String(body.token || ""))};
+      assertTeacherAuth_(body); return withStudentMergeLock_(function(){return {ok:true, deleted:deleteReport_(String(body.token || ""))};});
     case "getExamStats":
       return {ok:true, stats:getExamStats_(String(body.examId || ""))};
     case "checkIntegrity":
@@ -1705,6 +1713,8 @@ function rebuildStudentStoreIndexes_(store) {
   store.rows.forEach(function(p){
     if(p.StudentId)store.byId[p.StudentId]=p;
     if(p.PortalToken)store.byToken[p.PortalToken]=p;
+    // 병합으로 비활성화한 프로필은 이름/학교 자동 연결의 후보로 삼지 않는다.
+    if(p.Active===false)return;
     if(p.IdentityKey)store.byIdentity[p.IdentityKey]=p;
     const base=makeStudentBaseIdentityKey_(p.School,p.Name);if(!store.byBase[base])store.byBase[base]=[];store.byBase[base].push(p);
     const ext=normalizeIdentity_(p.ExternalId);if(ext)store.byExternal[ext]=p;
@@ -1737,7 +1747,8 @@ function createStudentProfileInStore_(store,input) {
 
 function updateStudentProfileInStore_(store,profile,input) {
   const school=normalizeSchool_(input.school!==undefined?input.school:profile.School),name=String(input.name!==undefined?input.name:profile.Name||"").trim()||profile.Name,grade=String(input.grade!==undefined?input.grade:profile.Grade||"").trim(),classNo=String(input.classNo!==undefined?input.classNo:profile.ClassNo||"").trim(),externalId=String(input.externalStudentId||input.externalId||profile.ExternalId||"").trim();
-  const changed=profile.School!==school||profile.Name!==name||profile.Grade!==grade||profile.ClassNo!==classNo||profile.ExternalId!==externalId||profile.Active===false;
+  if(profile.Active===false)throwApiError_("STUDENT_PROFILE_INACTIVE","이 학생은 병합·비활성화된 프로필입니다. 유지된 학생을 선택해 주세요.");
+  const changed=profile.School!==school||profile.Name!==name||profile.Grade!==grade||profile.ClassNo!==classNo||profile.ExternalId!==externalId;
   if(changed){profile.School=school;profile.Name=name;profile.Grade=grade;profile.ClassNo=classNo;profile.ExternalId=externalId;profile.IdentityKey=makeStudentProfileIdentityKey_(school,name,grade,classNo,externalId);profile.IdentityDigest=makeStudentProfileDigest_(profile.StudentId,school,name,grade,classNo,externalId);profile.UpdatedAt=new Date();profile.Active=true;store.dirty=true;rebuildStudentStoreIndexes_(store);}
   return profile;
 }
@@ -1746,7 +1757,7 @@ function resolveStudentProfileInStore_(store,input,preferredStudentId) {
   const school=normalizeSchool_(input.school),name=String(input.name||"").trim(),grade=String(input.grade||"").trim(),classNo=String(input.classNo||"").trim(),externalId=String(input.externalStudentId||input.externalId||"").trim();
   if(!name)throw new Error("학생 이름이 필요합니다.");
   const preferred=String(preferredStudentId||input.studentId||"").trim();
-  if(preferred&&store.byId[preferred])return updateStudentProfileInStore_(store,store.byId[preferred],{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});
+  if(preferred&&store.byId[preferred]){if(!studentMergeActive_(store.byId[preferred]))throwApiError_("STUDENT_PROFILE_INACTIVE","병합·비활성화된 학생은 다시 저장할 수 없습니다. 유지된 학생을 선택하세요.");return updateStudentProfileInStore_(store,store.byId[preferred],{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});}
   if(input.forceNewStudent===true)return createStudentProfileInStore_(store,{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});
   const ext=normalizeIdentity_(externalId);if(ext&&store.byExternal[ext])return updateStudentProfileInStore_(store,store.byExternal[ext],{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});
   const exactKey=makeStudentProfileIdentityKey_(school,name,grade,classNo,externalId);if(store.byIdentity[exactKey])return updateStudentProfileInStore_(store,store.byIdentity[exactKey],{school:school,name:name,grade:grade,classNo:classNo,externalStudentId:externalId});
@@ -1799,7 +1810,7 @@ function listStudentReportRecords_(profile) {
 function findStudentProfileByPortal_(token,fp) {
   ensureStudentPortalSchema_();token=normalizeReportToken_(token);fp=String(fp||"").trim();if(!token||!fp)throwApiError_("PORTAL_LINK_INCOMPLETE","학생 통합 링크에 토큰 또는 지문이 없습니다.");
   const store=loadStudentStore_(),profile=store.byToken[token];if(!profile)throwApiError_("STUDENT_PORTAL_NOT_FOUND","학생 통합 페이지 토큰을 찾을 수 없습니다. 교사에게 최신 학생 통합 링크를 요청해 주세요.",{serverInstanceId:getServerInstanceId_()});
-  if(!profile.Active)throwApiError_("STUDENT_PORTAL_DISABLED","이 학생 통합 페이지는 비활성화되어 있습니다.");
+  if(!profile.Active)throwApiError_("STUDENT_PORTAL_DISABLED","이 학생 통합 페이지는 다른 학생 프로필로 병합되어 비활성화되었습니다. 담당 교사에게 유지된 학생의 새 링크를 요청해 주세요.");
   if(!constantTimeEqual_(profile.PortalFingerprint,fp))throwApiError_("PORTAL_FINGERPRINT_MISMATCH","학생 통합 링크의 지문이 일치하지 않습니다. 교사에게 링크를 다시 요청해 주세요.");
   const recomputed=makeStudentPortalFingerprint_(profile.PortalToken,profile.IdentitySeed);if(!constantTimeEqual_(recomputed,profile.PortalFingerprint))throwApiError_("PORTAL_FINGERPRINT_INTEGRITY","학생 통합 링크 무결성 검증에 실패했습니다.");
   const digest=makeStudentProfileDigest_(profile.StudentId,profile.School,profile.Name,profile.Grade,profile.ClassNo,profile.ExternalId);if(!constantTimeEqual_(digest,profile.IdentityDigest))throwApiError_("PORTAL_IDENTITY_INTEGRITY","학생 통합 정보 무결성 검증에 실패했습니다.");
@@ -1886,7 +1897,7 @@ function deleteClass_(classId) {
 
 function saveStudentProfile_(input) {
   ensureStudentPortalSchema_();const lock=LockService.getScriptLock();lock.waitLock(20000);
-  try{const store=loadStudentStore_(),preferred=String(input.studentId||"").trim();let profile;if(preferred){profile=store.byId[preferred];if(!profile)throwApiError_("STUDENT_NOT_FOUND","수정할 학생을 찾을 수 없습니다.");profile=updateStudentProfileInStore_(store,profile,{school:input.school,name:input.name,grade:input.grade,classNo:input.classNo,externalStudentId:input.externalStudentId||input.externalId});}else{profile=resolveStudentProfileInStore_(store,{school:input.school,name:input.name,grade:input.grade,classNo:input.classNo,externalStudentId:input.externalStudentId||input.externalId,forceNewStudent:input.forceNewStudent===true},"");}persistStudentStore_(store);if(input.classId)addStudentToClass_(String(input.classId),profile.StudentId);return {ok:true,student:studentPortalSummary_(profile),featureVersion:FEATURE_VERSION};}finally{lock.releaseLock();}
+  try{const store=loadStudentStore_(),preferred=String(input.studentId||"").trim();let profile;if(preferred){profile=store.byId[preferred];if(!profile)throwApiError_("STUDENT_NOT_FOUND","수정할 학생을 찾을 수 없습니다.");if(!studentMergeActive_(profile))throwApiError_("STUDENT_PROFILE_INACTIVE","병합된 학생의 프로필은 수정할 수 없습니다.");profile=updateStudentProfileInStore_(store,profile,{school:input.school,name:input.name,grade:input.grade,classNo:input.classNo,externalStudentId:input.externalStudentId||input.externalId});}else{profile=resolveStudentProfileInStore_(store,{school:input.school,name:input.name,grade:input.grade,classNo:input.classNo,externalStudentId:input.externalStudentId||input.externalId,forceNewStudent:input.forceNewStudent===true},"");}persistStudentStore_(store);if(input.classId)addStudentToClass_(String(input.classId),profile.StudentId);return {ok:true,student:studentPortalSummary_(profile),featureVersion:FEATURE_VERSION};}finally{lock.releaseLock();}
 }
 
 function findClassMembershipRow_(classId,studentId) {
@@ -1895,7 +1906,7 @@ function findClassMembershipRow_(classId,studentId) {
 
 function addStudentToClass_(classId,studentId) {
   ensureClassRosterSchema_();classId=String(classId||"").trim();studentId=String(studentId||"").trim();if(!classId||!studentId)throwApiError_("CLASS_MEMBER_REQUIRED","반과 학생을 선택하세요.");
-  const cls=listRows_(SHEETS.CLASSES).find(function(c){return String(c.ClassId)===classId&&String(c.Active).toLowerCase()!=="false";});if(!cls)throwApiError_("CLASS_NOT_FOUND","반을 찾을 수 없습니다.");const store=loadStudentStore_();if(!store.byId[studentId])throwApiError_("STUDENT_NOT_FOUND","학생 통합 프로필을 찾을 수 없습니다.");
+  const cls=listRows_(SHEETS.CLASSES).find(function(c){return String(c.ClassId)===classId&&String(c.Active).toLowerCase()!=="false";});if(!cls)throwApiError_("CLASS_NOT_FOUND","반을 찾을 수 없습니다.");const store=loadStudentStore_();if(!store.byId[studentId])throwApiError_("STUDENT_NOT_FOUND","학생 통합 프로필을 찾을 수 없습니다.");if(!studentMergeActive_(store.byId[studentId]))throwApiError_("STUDENT_PROFILE_INACTIVE","병합·비활성화된 학생은 반에 배정할 수 없습니다.");
   const found=findClassMembershipRow_(classId,studentId),now=new Date(),row=[classId,studentId,found.row?found.row[2]||now:now,found.row?Number(found.row[3]||999):999,true];if(found.rowNumber)found.sh.getRange(found.rowNumber,1,1,found.headers.length).setValues([row]);else found.sh.getRange(found.sh.getLastRow()+1,1,1,found.headers.length).setValues([row]);return {ok:true,classId:classId,studentId:studentId};
 }
 
@@ -1911,7 +1922,7 @@ function listStudents_(filter) {
 }
 
 function reissueStudentPortal_(studentId) {
-  ensureStudentPortalSchema_();const store=loadStudentStore_(),p=store.byId[String(studentId||"")];if(!p)throwApiError_("STUDENT_NOT_FOUND","학생 통합 프로필을 찾을 수 없습니다.");const token="sp_"+newToken_(),seed=newToken_();p.PortalToken=token;p.IdentitySeed=seed;p.PortalFingerprint=makeStudentPortalFingerprint_(token,seed);p.UpdatedAt=new Date();store.dirty=true;persistStudentStore_(store);return {ok:true,student:studentPortalSummary_(p),serverInstanceId:getServerInstanceId_()};
+  ensureStudentPortalSchema_();const store=loadStudentStore_(),p=store.byId[String(studentId||"")];if(!p)throwApiError_("STUDENT_NOT_FOUND","학생 통합 프로필을 찾을 수 없습니다.");if(!studentMergeActive_(p))throwApiError_("STUDENT_PROFILE_INACTIVE","병합된 학생의 포털 링크는 재발급할 수 없습니다.");const token="sp_"+newToken_(),seed=newToken_();p.PortalToken=token;p.IdentitySeed=seed;p.PortalFingerprint=makeStudentPortalFingerprint_(token,seed);p.UpdatedAt=new Date();store.dirty=true;persistStudentStore_(store);return {ok:true,student:studentPortalSummary_(p),serverInstanceId:getServerInstanceId_()};
 }
 
 function migrateStudentPortals_(batchSize) {
@@ -1920,7 +1931,7 @@ function migrateStudentPortals_(batchSize) {
     const sh=getSheet_(SHEETS.REPORTS),headers=HEADERS.Reports,lastRow=sh.getLastRow(),props=PropertiesService.getScriptProperties(),size=Math.max(10,Math.min(1000,Number(batchSize||300)));let startRow=Math.max(2,Number(props.getProperty("STUDENT_PORTAL_MIGRATION_NEXT_ROW")||2));
     if(lastRow<2||startRow>lastRow){props.deleteProperty("STUDENT_PORTAL_MIGRATION_NEXT_ROW");props.setProperty("STUDENT_PORTAL_MIGRATION_COMPLETE",STUDENT_PORTAL_SCHEMA_VERSION);return {ok:true,done:true,processed:0,linked:0,students:listRows_(SHEETS.STUDENTS).length,remainingRows:0};}
     const count=Math.min(size,lastRow-startRow+1),rows=sh.getRange(startRow,1,count,headers.length).getValues(),store=loadStudentStore_();let linked=0;
-    rows.forEach(function(row){const o=rowToObject_(headers,row),record=safeJson_(o.RecordJSON,{}),preferred=String(o.StudentId||record.studentId||""),profile=resolveStudentProfileInStore_(store,{school:o.School,name:o.Name,grade:o.Grade,classNo:o.ClassNo,studentId:preferred},preferred);if(String(o.StudentId||"")!==profile.StudentId||String(record.studentId||"")!==profile.StudentId){row[headers.indexOf("StudentId")]=profile.StudentId;record.studentId=profile.StudentId;row[headers.indexOf("RecordJSON")]=JSON.stringify(record);linked++;}});
+    rows.forEach(function(row){const o=rowToObject_(headers,row),record=safeJson_(o.RecordJSON,{}),preferred=String(o.StudentId||record.studentId||"");if(preferred&&store.byId[preferred]&&!studentMergeActive_(store.byId[preferred]))throwApiError_("STUDENT_MIGRATION_INACTIVE","비활성화된 학생 프로필에 미이관된 기록이 있습니다. StudentMerges 백업을 확인하세요.");const profile=resolveStudentProfileInStore_(store,{school:o.School,name:o.Name,grade:o.Grade,classNo:o.ClassNo,studentId:preferred},preferred);if(String(o.StudentId||"")!==profile.StudentId||String(record.studentId||"")!==profile.StudentId){row[headers.indexOf("StudentId")]=profile.StudentId;record.studentId=profile.StudentId;row[headers.indexOf("RecordJSON")]=JSON.stringify(record);linked++;}});
     if(linked)sh.getRange(startRow,1,count,headers.length).setValues(rows);persistStudentStore_(store);const next=startRow+count,done=next>lastRow;if(done){props.deleteProperty("STUDENT_PORTAL_MIGRATION_NEXT_ROW");props.setProperty("STUDENT_PORTAL_MIGRATION_COMPLETE",STUDENT_PORTAL_SCHEMA_VERSION);}else{props.deleteProperty("STUDENT_PORTAL_MIGRATION_COMPLETE");props.setProperty("STUDENT_PORTAL_MIGRATION_NEXT_ROW",String(next));}return {ok:true,done:done,processed:count,linked:linked,students:store.rows.length,nextRow:done?null:next,remainingRows:done?0:lastRow-next+1};
   } finally {lock.releaseLock();}
 }
@@ -2247,4 +2258,230 @@ function backupReports_() {
 
 function safeJson_(text,fallback) {
   try { return text===""||text===null||text===undefined?fallback:JSON.parse(String(text)); } catch(e) { return fallback; }
+}
+
+/**
+ * 학생 통합 프로필 병합. 운영 성적은 StudentId에 귀속시키며, 같은 시험의 중복
+ * 성적은 교사가 건별로 보존할 Token을 명시해야 한다. 모든 변경 전 원본은
+ * StudentMergeArchives에 기록한다. 토큰/지문은 절대 재발급하지 않는다.
+ */
+function ensureStudentMergeSchema_() {
+  [SHEETS.STUDENT_MERGES, SHEETS.STUDENT_MERGE_ARCHIVES].forEach(function(name) {
+    const sh=getSheet_(name);
+    ensureSheetSchema_(sh,HEADERS[name]);
+    sh.setFrozenRows(1);
+    sh.getRange(1,1,1,HEADERS[name].length).setFontWeight("bold").setBackground("#0c2b50").setFontColor("#ffffff");
+  });
+}
+
+function studentMergeActive_(p) {
+  return !!p && p.Active!==false;
+}
+
+function studentMergeSnapshotValue_(value) {
+  if(value instanceof Date)return value.toISOString();
+  return value===undefined?"":value;
+}
+
+function studentMergeReportOwner_(row) {
+  const id=HEADERS.Reports.indexOf("StudentId"),raw=String(row[id]||"").trim();
+  if(raw)return raw;
+  const record=safeJson_(row[HEADERS.Reports.indexOf("RecordJSON")],{});
+  return String(record.studentId||"").trim();
+}
+
+function buildStudentMergePlan_(sourceStudentId,targetStudentId,store,reportRows,memberRows) {
+  const source=store.byId[String(sourceStudentId||"")],target=store.byId[String(targetStudentId||"")];
+  if(!source||!target)throwApiError_("STUDENT_NOT_FOUND","병합할 학생 프로필을 찾을 수 없습니다.");
+  if(source.StudentId===target.StudentId)throwApiError_("STUDENT_MERGE_SAME","서로 다른 학생 두 명을 선택하세요.");
+  if(!studentMergeActive_(source)||!studentMergeActive_(target))throwApiError_("STUDENT_MERGE_INACTIVE","이미 병합되었거나 비활성화된 학생은 다시 병합할 수 없습니다.");
+  const sourceReports=[],targetReports=[],legacy=[];
+  reportRows.forEach(function(row,index){
+    const owner=studentMergeReportOwner_(row),o=rowToObject_(HEADERS.Reports,row);
+    if(owner===source.StudentId)sourceReports.push({row:row,index:index,record:o,owner:"source"});
+    else if(owner===target.StudentId)targetReports.push({row:row,index:index,record:o,owner:"target"});
+    else if(!owner && (
+      makeStudentBaseIdentityKey_(o.School,o.Name)===makeStudentBaseIdentityKey_(source.School,source.Name) ||
+      makeStudentBaseIdentityKey_(o.School,o.Name)===makeStudentBaseIdentityKey_(target.School,target.Name)
+    ))legacy.push(index+2);
+  });
+  if(legacy.length)throwApiError_("STUDENT_MERGE_UNLINKED","학생 ID가 없는 기존 시험 기록이 있습니다. 먼저 학생 통합 링크 마이그레이션을 완료하세요.",{unlinkedRows:legacy.length});
+  const grouped={};
+  sourceReports.concat(targetReports).forEach(function(item){
+    const examId=String(item.record.ExamId||"").trim();
+    if(!examId)throwApiError_("STUDENT_MERGE_BAD_REPORT","시험 ID가 없는 성적이 있어 병합을 중단했습니다.");
+    if(!grouped[examId])grouped[examId]=[];
+    grouped[examId].push(item);
+  });
+  const conflicts=Object.keys(grouped).filter(function(examId){return grouped[examId].length>1;}).sort();
+  const relatedMembers=memberRows.filter(function(row){return [source.StudentId,target.StudentId].indexOf(String(row[1]||""))>=0;});
+  const revisionPayload={
+    source:studentProfileToRow_(source).map(studentMergeSnapshotValue_),
+    target:studentProfileToRow_(target).map(studentMergeSnapshotValue_),
+    reports:sourceReports.concat(targetReports).map(function(item){return item.row.map(studentMergeSnapshotValue_);}).sort(function(a,b){return String(a[0]).localeCompare(String(b[0]));}),
+    memberships:relatedMembers.map(function(row){return row.map(studentMergeSnapshotValue_);}).sort(function(a,b){return [a[0],a[1]].join("|").localeCompare([b[0],b[1]].join("|"));})
+  };
+  return {
+    source:source,target:target,sourceReports:sourceReports,targetReports:targetReports,
+    grouped:grouped,conflicts:conflicts,relatedMembers:relatedMembers,
+    revision:hashText_(JSON.stringify(revisionPayload)),
+    sourceCount:sourceReports.length,targetCount:targetReports.length,
+    classIds:[...new Set(relatedMembers.filter(function(row){return String(row[1])===source.StudentId&&String(row[4]).toLowerCase()!=="false";}).map(function(row){return String(row[0]);}))]
+  };
+}
+
+function loadStudentMergePlan_(sourceId,targetId) {
+  ensureStudentPortalSchema_();ensureClassRosterSchema_();
+  const store=loadStudentStore_(),rs=getSheet_(SHEETS.REPORTS),ms=getSheet_(SHEETS.CLASS_MEMBERS);
+  const reportRows=rs.getLastRow()>1?rs.getRange(2,1,rs.getLastRow()-1,HEADERS.Reports.length).getValues():[];
+  const memberRows=ms.getLastRow()>1?ms.getRange(2,1,ms.getLastRow()-1,HEADERS.ClassMembers.length).getValues():[];
+  const plan=buildStudentMergePlan_(sourceId,targetId,store,reportRows,memberRows);
+  return {plan:plan,store:store,reportsSheet:rs,membersSheet:ms,reportRows:reportRows,memberRows:memberRows};
+}
+
+function previewStudentMerge_(sourceId,targetId) {
+  const data=loadStudentMergePlan_(sourceId,targetId),p=data.plan;
+  const examNames={};listRows_(SHEETS.EXAMS).forEach(function(ex){examNames[String(ex.ExamId)]=String(ex.Title||ex.ExamId);});
+  const conflicts=p.conflicts.map(function(examId){return {
+    examId:examId,examTitle:examNames[examId]||examId,
+    choices:p.grouped[examId].map(function(x){const rec=safeJson_(x.record.RecordJSON,{});return {token:String(x.record.Token),owner:x.owner,score:Number(rec.score||0),maxScore:Number(rec.maxScore||0),updatedAt:serializeCell_(x.record.UpdatedAt)};})
+  };});
+  return {ok:true,revision:p.revision,source:studentPortalSummary_(p.source),target:studentPortalSummary_(p.target),sourceCount:p.sourceCount,targetCount:p.targetCount,nonConflictingTransferCount:p.sourceReports.filter(function(x){return p.grouped[String(x.record.ExamId)].length===1;}).length,conflicts:conflicts,sourceClassCount:p.classIds.length,sourcePortalWillBeDisabled:true,targetPortalWillBePreserved:true,backupWillBeCreated:true,warnings:[
+    ...(normalizeIdentity_(p.source.Name)!==normalizeIdentity_(p.target.Name)?["두 학생의 이름이 다릅니다. 동일인인지 반드시 확인하세요."]:[]),
+    ...(normalizeIdentity_(normalizeSchool_(p.source.School))!==normalizeIdentity_(normalizeSchool_(p.target.School))?["두 학생의 학교가 다릅니다. 동일인인지 반드시 확인하세요."]:[]),
+    ...(p.source.ExternalId&&p.target.ExternalId&&p.source.ExternalId!==p.target.ExternalId?["두 학생의 고유 학생 ID가 다릅니다. 병합 후에는 유지할 학생의 ID를 사용합니다."]:[])
+  ]};
+}
+
+/** 한 번의 setValues로 원본을 재작성하고, 줄어든 마지막 행을 비운다. */
+function replaceStudentMergeTable_(sh,headers,rows,oldCount) {
+  if(rows.length){
+    if(sh.getMaxRows()<rows.length+1)sh.insertRowsAfter(sh.getMaxRows(),rows.length+1-sh.getMaxRows());
+    sh.getRange(2,1,rows.length,headers.length).setValues(rows);
+  }
+  if(oldCount>rows.length)sh.getRange(rows.length+2,1,oldCount-rows.length,headers.length).clearContent();
+}
+
+function mergeStudentProfiles_(request) {
+  const sourceId=String(request&&request.sourceStudentId||""),targetId=String(request&&request.targetStudentId||"");
+  const expectedRevision=String(request&&request.previewRevision||"");
+  if(!expectedRevision)throwApiError_("STUDENT_MERGE_PREVIEW_REQUIRED","먼저 병합 미리보기를 실행하세요.");
+  const lock=LockService.getScriptLock();if(!lock.tryLock(25000))throwApiError_("STUDENT_MERGE_BUSY","다른 학생 저장·병합 작업이 진행 중입니다. 잠시 후 다시 시도하세요.");
+  let logSheet=null,logRowNo=0,mergeId="",originalReports=null,originalMembers=null,originalStudents=null,rs=null,ms=null,store=null;
+  let changesStarted=false;
+  try {
+    const data=loadStudentMergePlan_(sourceId,targetId),p=data.plan;
+    rs=data.reportsSheet;ms=data.membersSheet;store=data.store;
+    if(expectedRevision!==p.revision)throwApiError_("STUDENT_MERGE_PREVIEW_STALE","미리보기 후 학생 정보나 성적이 변경되었습니다. 다시 미리보기 하세요.");
+    if(String(request.confirmTargetName||"").trim()!==p.target.Name||request.confirmed!==true)throwApiError_("STUDENT_MERGE_CONFIRM_REQUIRED","유지할 학생 이름을 정확히 입력하고 병합 주의사항에 동의하세요.");
+    const selections=Array.isArray(request.resolutions)?request.resolutions:[],choiceByExam={};
+    selections.forEach(function(item){
+      const id=String(item&&item.examId||""),token=String(item&&item.keepToken||"");
+      if(!p.conflicts.includes(id)||Object.prototype.hasOwnProperty.call(choiceByExam,id))throwApiError_("STUDENT_MERGE_BAD_RESOLUTION","시험 중복 처리 선택값이 중복되거나 올바르지 않습니다.");
+      if(!p.grouped[id].some(function(x){return String(x.record.Token)===token;}))throwApiError_("STUDENT_MERGE_BAD_RESOLUTION","해당 시험의 기존 기록 중에서 보존할 성적을 고르세요.");
+      choiceByExam[id]=token;
+    });
+    if(p.conflicts.some(function(id){return !choiceByExam[id];}))throwApiError_("STUDENT_MERGE_RESOLUTION_REQUIRED","중복 시험마다 남길 성적 기록을 직접 선택해야 합니다.");
+    affectedMergeTokens_(p.sourceReports.concat(p.targetReports));
+    const keptTokens=new Set(),removedTokens=new Set();
+    Object.keys(p.grouped).forEach(function(examId){
+      const group=p.grouped[examId],winner=group.length===1?String(group[0].record.Token):choiceByExam[examId];
+      group.forEach(function(item){(String(item.record.Token)===winner?keptTokens:removedTokens).add(String(item.record.Token));});
+    });
+    const now=new Date();mergeId="mrg_"+newToken_();
+    const affectedRecords=p.sourceReports.concat(p.targetReports);
+    const archiveItems=[
+      {kind:"student",key:p.source.StudentId,data:studentProfileToRow_(p.source)},
+      {kind:"student",key:p.target.StudentId,data:studentProfileToRow_(p.target)},
+      ...affectedRecords.map(function(x){return {kind:"report",key:String(x.record.Token),data:x.row};}),
+      ...p.relatedMembers.map(function(row){return {kind:"class-member",key:String(row[0])+"|"+String(row[1]),data:row};})
+    ];
+    const archiveRows=archiveItems.map(function(item){
+      const raw=JSON.stringify(item.data.map(studentMergeSnapshotValue_));
+      if(raw.length>44000)throwApiError_("STUDENT_MERGE_ARCHIVE_TOO_LARGE","성적 데이터가 시트 백업 제한을 초과했습니다. 관리자에게 문의하세요.");
+      return [mergeId,item.kind,item.key,raw,now];
+    });
+    ensureStudentMergeSchema_();
+    logSheet=getSheet_(SHEETS.STUDENT_MERGES);
+    const logRow=[mergeId,sourceId,targetId,"PREPARED",JSON.stringify(choiceByExam),p.revision,now,"",affectedRecords.length,removedTokens.size,"병합 전 기록은 StudentMergeArchives에 백업됨"];
+    logRowNo=logSheet.getLastRow()+1;
+    logSheet.getRange(logRowNo,1,1,HEADERS.StudentMerges.length).setValues([logRow]);
+    if(archiveRows.length){const ah=getSheet_(SHEETS.STUDENT_MERGE_ARCHIVES);ah.getRange(ah.getLastRow()+1,1,archiveRows.length,HEADERS.StudentMergeArchives.length).setValues(archiveRows);}
+    // 아래부터 운영 데이터 변경. 실패 시 메모리에 둔 스냅샷으로 가능한 범위에서 복구.
+    originalReports=data.reportRows.map(function(r){return r.slice();});originalMembers=data.memberRows.map(function(r){return r.slice();});
+    originalStudents=store.rows.map(function(r){return Object.assign({},r);});
+    const updates=new Map();affectedRecords.forEach(function(item){
+      const row=item.row.slice(),token=String(item.record.Token);
+      if(removedTokens.has(token))return;
+      if(item.owner==="source"){
+        const id=HEADERS.Reports.indexOf("StudentId"),school=normalizeSchool_(p.target.School),name=p.target.Name,courseId=String(item.record.CourseId),examId=String(item.record.ExamId);
+        // 출처 학생의 과거 개별 시험 링크로 대상 학생 정보를 열지 못하도록
+        // 이관하는 성적의 토큰/지문도 새로 발급한다. 새 값은 운영 시트에만 기록한다.
+        const newReportToken=newToken_(),newSeed=newToken_();
+        row[HEADERS.Reports.indexOf("Token")]=newReportToken;
+        row[HEADERS.Reports.indexOf("IdentitySeed")]=newSeed;
+        row[HEADERS.Reports.indexOf("Fingerprint")]=makeFingerprint_(newReportToken,newSeed);
+        row[id]=targetId;row[HEADERS.Reports.indexOf("School")]=school;row[HEADERS.Reports.indexOf("Name")]=name;
+        row[HEADERS.Reports.indexOf("Grade")]=p.target.Grade;row[HEADERS.Reports.indexOf("ClassNo")]=p.target.ClassNo;
+        row[HEADERS.Reports.indexOf("IdentityDigest")]=makeIdentityDigest_(examId,courseId,school,name);
+        row[HEADERS.Reports.indexOf("StudentKey")]=makeStudentKey_(courseId,school,name);
+        const record=safeJson_(row[HEADERS.Reports.indexOf("RecordJSON")],{});
+        Object.assign(record,{token:newReportToken,fingerprint:row[HEADERS.Reports.indexOf("Fingerprint")],studentId:targetId,school:school,name:name,grade:p.target.Grade,classNo:p.target.ClassNo,studentKey:row[HEADERS.Reports.indexOf("StudentKey")]});
+        row[HEADERS.Reports.indexOf("RecordJSON")]=JSON.stringify(record);
+      }
+      updates.set(item.index,row);
+    });
+    // 원래 행의 토큰을 기준으로 제외할 인덱스를 계산한다. 이관 중 토큰을 재발급하므로
+    // 변환 후 토큰 문자열을 대상으로 필터링하면 안 된다.
+    const removedRowIndexes=new Set(affectedRecords.filter(function(item){return removedTokens.has(String(item.record.Token));}).map(function(item){return item.index;}));
+    const rewrittenReports=data.reportRows.map(function(row,i){return updates.get(i)||row;}).filter(function(row,i){return !removedRowIndexes.has(i);});
+    changesStarted=true;
+    replaceStudentMergeTable_(rs,HEADERS.Reports,rewrittenReports,originalReports.length);
+    // 원본 반 편성을 대상 학생에게 합치고, 출처 학생의 배정만 비활성화한다.
+    const memberChanges=data.memberRows.map(function(row){return row.slice();});const targetClasses=new Set(memberChanges.filter(function(row){return String(row[1])===targetId&&String(row[4]).toLowerCase()!=="false";}).map(function(row){return String(row[0]);}));
+    const appended=[];let classesTransferred=0;
+    memberChanges.forEach(function(row){
+      if(String(row[1])!==sourceId||String(row[4]).toLowerCase()==="false")return;
+      const classId=String(row[0]);row[4]=false;
+      if(!targetClasses.has(classId)){
+        let reuse=memberChanges.find(function(m){return String(m[0])===classId&&String(m[1])===targetId;});
+        if(reuse)reuse[4]=true;
+        else appended.push([classId,targetId,now,Number(row[3]||999),true]);
+        targetClasses.add(classId);classesTransferred++;
+      }
+    });
+    replaceStudentMergeTable_(ms,HEADERS.ClassMembers,memberChanges.concat(appended),originalMembers.length);
+    p.source.Active=false;p.source.UpdatedAt=now;store.dirty=true;
+    p.target.UpdatedAt=now;store.dirty=true;
+    persistStudentStore_(store);
+    logSheet.getRange(logRowNo,4).setValue("COMPLETED");logSheet.getRange(logRowNo,8).setValue(new Date());
+    return {ok:true,mergeId:mergeId,sourceStudentId:sourceId,targetStudentId:targetId,transferredReports:p.sourceReports.filter(function(item){return keptTokens.has(String(item.record.Token));}).length,removedDuplicateReports:removedTokens.size,rotatedSourceReportLinks:p.sourceReports.filter(function(item){return keptTokens.has(String(item.record.Token));}).length,classesTransferred:classesTransferred,targetStudent:studentPortalSummary_(p.target),sourcePortalDisabled:true,targetPortalPreserved:true,backupRows:archiveRows.length};
+  } catch(error) {
+    if(changesStarted&&originalReports&&originalMembers&&originalStudents){
+      let rollbackErrors=[];
+      try{replaceStudentMergeTable_(rs,HEADERS.Reports,originalReports,Math.max(originalReports.length,rs.getLastRow()-1));}catch(e){rollbackErrors.push("Reports:"+String(e.message||e));}
+      try{replaceStudentMergeTable_(ms,HEADERS.ClassMembers,originalMembers,Math.max(originalMembers.length,ms.getLastRow()-1));}catch(e){rollbackErrors.push("ClassMembers:"+String(e.message||e));}
+      try{store.rows=originalStudents;store.dirty=true;persistStudentStore_(store);}catch(e){rollbackErrors.push("Students:"+String(e.message||e));}
+      if(logSheet&&logRowNo){try{logSheet.getRange(logRowNo,4).setValue(rollbackErrors.length?"RECOVERY_REQUIRED":"ROLLED_BACK");logSheet.getRange(logRowNo,11).setValue(rollbackErrors.join(" | ")||"운영 데이터 복구 완료");}catch(e){}}
+      if(rollbackErrors.length)throwApiError_("STUDENT_MERGE_RECOVERY_REQUIRED","병합 중 오류가 발생해 일부 복구에 실패했습니다. StudentMerges의 "+mergeId+" 기록과 백업 시트를 확인하고 관리자에게 문의하세요.");
+    } else if(logSheet&&logRowNo) {try{logSheet.getRange(logRowNo,4).setValue("NOT_APPLIED");}catch(e){}}
+    throw error;
+  } finally {lock.releaseLock();}
+}
+
+/** 실수로 중복 토큰이 저장된 시트는 먼저 정리하도록 요구한다. */
+function affectedMergeTokens_(items) {
+  const seen=new Set();
+  (items||[]).forEach(function(item){const token=String(item.record.Token||"").trim();
+    if(!token||seen.has(token))throwApiError_("STUDENT_MERGE_DUPLICATE_TOKEN","원본 성적 토큰이 비어 있거나 중복됩니다. 병합 전에 서버 기록 무결성을 점검하세요.");
+    seen.add(token);
+  });
+  return seen;
+}
+
+/** 학생 병합 도중 다른 교사의 반 관리·성적 삭제가 섞이지 않도록 같은 스크립트 락을 사용한다. */
+function withStudentMergeLock_(work) {
+  const lock=LockService.getScriptLock();
+  if(!lock.tryLock(20000))throwApiError_("STUDENT_MERGE_BUSY","다른 학생 저장·병합 작업이 진행 중입니다. 잠시 후 다시 시도하세요.");
+  try{return work();}finally{lock.releaseLock();}
 }

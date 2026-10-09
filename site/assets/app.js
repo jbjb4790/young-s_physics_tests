@@ -1,5 +1,5 @@
 (function(){
- const state={exam:null,inputs:[],partialModes:[],editToken:null,batchRows:[],batchMeta:null,reports:[],students:[],classes:[],unassignedStudents:[],selectedClassId:"",selectedStudentId:null,forceNewStudent:false,serverInstanceId:"",examLoadSeq:0,answerEditorDirty:false,inputEncoding:""};
+ const state={exam:null,inputs:[],partialModes:[],editToken:null,batchRows:[],batchMeta:null,reports:[],students:[],classes:[],unassignedStudents:[],selectedClassId:"",selectedStudentId:null,forceNewStudent:false,serverInstanceId:"",examLoadSeq:0,answerEditorDirty:false,inputEncoding:"",mergePreview:null,mergeRequestSeq:0};
  const $=id=>document.getElementById(id);
  const AUTH_ERROR_CODES=new Set(["AUTH_REQUIRED","AUTH_INVALID","AUTH_EXPIRED","AUTH_REVOKED"]);
  function defaultInputEncoding(exam){return YP.usesObjectiveChoiceNumbers(exam)?"objective-choice-v1":""}
@@ -247,6 +247,62 @@
    grid.innerHTML=students.length?students.map(st=>{const latest=st.latestReport;return `<button type="button" class="class-student-card ${String(st.studentId)===String(state.selectedStudentId)?"selected":""}" data-roster-student-id="${YP.escapeHTML(st.studentId)}"><span class="student-avatar">${YP.escapeHTML(String(st.name||"?").slice(0,1))}</span><span class="student-card-main"><b>${YP.escapeHTML(st.name)}</b><small>${YP.escapeHTML(YP.normalizeSchool(st.school))}${st.grade?` · ${YP.escapeHTML(st.grade)}학년`:""}${st.classNo?` · ${YP.escapeHTML(st.classNo)}`:""}</small></span><span class="student-card-stats"><b>${Number(st.reportCount||0)}회</b><small>${latest?`${YP.escapeHTML(latest.title||latest.examId)} ${YP.formatNumber(latest.percent)}%`:"성적 입력 대기"}</small></span></button>`}).join(""):`<div class="portal-empty"><b>${c?"이 반에 등록된 학생이 없습니다.":"미분류 학생이 없습니다."}</b><p>${c?"‘새 학생 추가’ 또는 ‘기존 학생 배정’을 사용하세요.":"반을 만들고 학생을 배정하면 빠르게 성적을 입력할 수 있습니다."}</p></div>`;
    grid.querySelectorAll("[data-roster-student-id]").forEach(b=>b.onclick=()=>selectRosterStudent(b.dataset.rosterStudentId));
  }
+
+ function mergeSelectStudentOptions(){
+   const options='<option value="">학생 선택</option>'+state.students.map(st=>`<option value="${YP.escapeHTML(st.studentId)}">${YP.escapeHTML(profileLabel(st))} · 식별 ${YP.escapeHTML(String(st.studentId).slice(-6))}</option>`).join("");
+   const source=$("mergeSourceStudent"),target=$("mergeTargetStudent");
+   const oldS=source.value,oldT=target.value;source.innerHTML=options;target.innerHTML=options;
+   if(state.students.some(st=>st.studentId===oldS))source.value=oldS;
+   if(state.students.some(st=>st.studentId===oldT))target.value=oldT;
+ }
+ function resetStudentMergePreview(){
+   state.mergeRequestSeq++;state.mergePreview=null;$("mergePreviewContent").classList.add("hidden");$("mergePreviewContent").innerHTML="";$("mergeConfirmation").classList.add("hidden");
+   $("mergeTargetConfirmName").value="";$("mergeUnderstood").checked=false;$("mergeConfirmBtn").disabled=true;$("mergeModalStatus").textContent="";
+ }
+ function openStudentMergeModal(){
+   if(YP_API.demo){YP.toast("학생 병합은 실제 Apps Script 서버에 연결한 후 사용할 수 있습니다.",5500);return}
+   if(!YP_API.isAuthenticated()){openSettings();return}
+   $("studentMergeModal").classList.remove("hidden");mergeSelectStudentOptions();resetStudentMergePreview();
+   if(state.selectedStudentId)$("mergeSourceStudent").value=state.selectedStudentId;
+ }
+ function closeStudentMergeModal(){$("studentMergeModal").classList.add("hidden");resetStudentMergePreview()}
+ function validateMergeConfirmation(){
+   const p=state.mergePreview;if(!p){$("mergeConfirmBtn").disabled=true;return}
+   const selected=[...$("mergePreviewContent").querySelectorAll("select[data-merge-exam]")];
+   const allSelected=selected.every(el=>!!el.value),nameOk=$("mergeTargetConfirmName").value.trim()===p.target.name;
+   $("mergeConfirmBtn").disabled=!(allSelected&&nameOk&&$("mergeUnderstood").checked);
+ }
+ function renderStudentMergePreview(preview){
+   const el=$("mergePreviewContent"),notice=(preview.warnings||[]).map(w=>`<div class="notice warn small">${YP.escapeHTML(w)}</div>`).join("");
+   const conflictHtml=(preview.conflicts||[]).length?`<div class="merge-conflict-section"><h3>중복된 시험 ${(preview.conflicts||[]).length}건 — 남길 성적 선택 필수</h3><p class="small muted">각 시험마다 하나의 성적만 남깁니다. 선택하지 않은 기록은 병합 백업 시트에 보관됩니다.</p>${preview.conflicts.map(item=>`<div class="merge-conflict-row"><label for="mergeExam_${YP.escapeHTML(item.examId)}">${YP.escapeHTML(item.examTitle)}</label><select id="mergeExam_${YP.escapeHTML(item.examId)}" data-merge-exam="${YP.escapeHTML(item.examId)}"><option value="">남길 성적을 선택하세요</option>${item.choices.map(choice=>`<option value="${YP.escapeHTML(choice.token)}">${choice.owner==="target"?"유지할 학생":"흡수할 학생"} · ${YP.formatNumber(choice.score)}/${YP.formatNumber(choice.maxScore)}점 · ${YP.escapeHTML(String(choice.updatedAt||"").slice(0,16).replace("T"," "))}</option>`).join("")}</select></div>`).join("")}</div>`:`<div class="notice success small">동일 시험 중복이 없습니다. 모든 시험 결과를 유지할 학생에게 이동합니다.</div>`;
+   el.innerHTML=`<div class="merge-summary-grid"><div><small>흡수할 학생</small><b>${YP.escapeHTML(preview.source.name)}</b><span>${Number(preview.sourceCount||0)}건 기록</span></div><div><small>유지할 학생</small><b>${YP.escapeHTML(preview.target.name)}</b><span>${Number(preview.targetCount||0)}건 기록 · 현재 학부모 링크 유지</span></div></div>${notice}${conflictHtml}<p class="small muted">새로 추가될 고유 시험 ${Number(preview.nonConflictingTransferCount||0)}건 · 흡수 학생이 속한 반 ${Number(preview.sourceClassCount||0)}개 확인 · 변경 전 서버 백업 생성</p>`;
+   el.classList.remove("hidden");$("mergeConfirmation").classList.remove("hidden");
+   el.querySelectorAll("select[data-merge-exam]").forEach(sel=>sel.onchange=validateMergeConfirmation);
+   validateMergeConfirmation();
+ }
+ async function previewStudentMerge(){
+   const source=$("mergeSourceStudent").value,target=$("mergeTargetStudent").value,status=$("mergeModalStatus"),btn=$("mergePreviewBtn");
+   resetStudentMergePreview();
+   if(!source||!target||source===target){status.textContent="서로 다른 학생 두 명을 선택하세요.";return}
+   const seq=state.mergeRequestSeq;btn.disabled=true;status.textContent="현재 Google Sheets 기록을 확인하는 중...";
+   try{const p=await YP_API.previewStudentMerge(source,target);if(seq!==state.mergeRequestSeq||source!==$("mergeSourceStudent").value||target!==$("mergeTargetStudent").value)return;state.mergePreview=p;renderStudentMergePreview(p);status.textContent="미리보기 완료 — 중복 시험을 확인하고 병합을 승인해 주세요."}
+   catch(e){handleAuthFailure(e);status.textContent=e.message;YP.toast(e.message,7000)}finally{btn.disabled=false}
+ }
+ async function confirmStudentMerge(){
+   const preview=state.mergePreview;if(!preview)return;
+   validateMergeConfirmation();if($( "mergeConfirmBtn").disabled)return;
+   const decisions=[...$("mergePreviewContent").querySelectorAll("select[data-merge-exam]")].map(sel=>({examId:sel.dataset.mergeExam,keepToken:sel.value}));
+   const message=`${preview.source.name} 학생의 성적과 반 편성을 ${preview.target.name} 학생에게 합칩니다.\n흡수 학생의 기존 학부모·개별 시험 링크는 더 이상 열리지 않습니다.\n계속하시겠습니까?`;
+   if(!confirm(message))return;
+   const btn=$("mergeConfirmBtn"),status=$("mergeModalStatus");btn.disabled=true;$("mergeCloseBtn").disabled=true;$("mergeSourceStudent").disabled=true;$("mergeTargetStudent").disabled=true;$("mergePreviewBtn").disabled=true;status.textContent="백업 생성 및 학생 데이터 병합 중... 창을 닫지 마세요.";
+   try{
+     const result=await YP_API.mergeStudentProfiles({sourceStudentId:preview.source.studentId,targetStudentId:preview.target.studentId,previewRevision:preview.revision,confirmTargetName:$("mergeTargetConfirmName").value.trim(),confirmed:$("mergeUnderstood").checked,resolutions:decisions});
+     closeStudentMergeModal();state.selectedStudentId=result.targetStudentId;state.editToken=null;state.forceNewStudent=false;
+     await refreshReports();const preserved=studentById(result.targetStudentId);if(preserved)applyStudentProfile(preserved.studentId,{keepExam:true});
+     if(preserved)await YP.copyText(portalURL(preserved));
+     YP.toast(`병합 완료: 시험 ${result.transferredReports}건 합침 · 중복 ${result.removedDuplicateReports}건 백업 · 유지된 학부모 링크 복사`,7500);
+   }catch(e){handleAuthFailure(e);status.textContent=e.message;YP.toast(e.message,8500)}finally{$("mergeCloseBtn").disabled=false;$("mergeSourceStudent").disabled=false;$("mergeTargetStudent").disabled=false;$("mergePreviewBtn").disabled=false;validateMergeConfirmation()}
+ }
  function selectedStudentReports(){return state.selectedStudentId?state.reports.filter(r=>String(r.studentId||"")===String(state.selectedStudentId)).sort((a,b)=>String(b.updatedAt||"").localeCompare(String(a.updatedAt||""))):[]}
  function renderSelectedStudentQuickPanel(){
    const panel=$("selectedStudentQuickPanel"),reportPanel=$("selectedStudentReportsPanel");if(!panel||!reportPanel)return;const st=studentById(state.selectedStudentId);
@@ -425,6 +481,7 @@
  }
  function bind(){
    $("courseSelect").onchange=renderExamOptions;$("examSelect").onchange=()=>loadExam();$("studentProfileSelect").onchange=e=>{const id=e.target.value;if(id)applyStudentProfile(id);else{state.selectedStudentId=null;state.forceNewStudent=false;renderStudentSelector()}};$("newStudentBtn").onclick=startNewStudent;$("applyPasteBtn").onclick=applyPaste;$("sampleBtn").onclick=fillSample;$("clearBtn").onclick=clearAll;$("saveReportBtn").onclick=saveCurrent;$("cancelEditBtn").onclick=cancelEdit;$("refreshReportsBtn").onclick=refreshReports;$("refreshStudentPortalsBtn").onclick=refreshReports;$("downloadCsvTemplateBtn").onclick=downloadTemplate;
+   $("mergeStudentsOpenBtn").onclick=openStudentMergeModal;$("mergeCloseBtn").onclick=closeStudentMergeModal;$("mergePreviewBtn").onclick=previewStudentMerge;$("mergeConfirmBtn").onclick=confirmStudentMerge;$("mergeSourceStudent").onchange=resetStudentMergePreview;$("mergeTargetStudent").onchange=resetStudentMergePreview;$("mergeUnderstood").onchange=validateMergeConfirmation;$("mergeTargetConfirmName").oninput=validateMergeConfirmation;$("studentMergeModal").addEventListener("click",e=>{if(e.target===$("studentMergeModal"))closeStudentMergeModal()});
    $("addClassBtn").onclick=addClass;$("renameClassBtn").onclick=renameClass;$("deleteClassBtn").onclick=deleteClass;$("refreshRosterBtn").onclick=refreshReports;$("addStudentToClassBtn").onclick=openRosterStudentModal;$("assignExistingStudentBtn").onclick=openAssignStudentModal;$("selectedStudentPortalCopyBtn").onclick=async()=>{const st=studentById(state.selectedStudentId);if(!st)return;await YP.copyText(portalURL(st));YP.toast("학생 영구 학부모 링크를 복사했습니다.",4000)};$("toggleSelectedStudentReportsBtn").onclick=()=>{$("selectedStudentReportsPanel").classList.toggle("hidden")};$("removeStudentFromClassBtn").onclick=removeSelectedStudentFromClass;$("closeRosterStudentModalBtn").onclick=closeRosterStudentModal;$("saveRosterStudentBtn").onclick=saveRosterStudent;$("closeAssignStudentModalBtn").onclick=closeAssignStudentModal;$("assignStudentConfirmBtn").onclick=assignExistingStudent;$("studentRosterModal").addEventListener("click",e=>{if(e.target===$("studentRosterModal"))closeRosterStudentModal()});$("assignStudentModal").addEventListener("click",e=>{if(e.target===$("assignStudentModal"))closeAssignStudentModal()});
    $("csvFile").onchange=e=>handleBatchFile(e.target.files?.[0]);$("saveBatchBtn").onclick=saveBatch;$("reloadAnswerEditorBtn").onclick=()=>loadExam({preserveInputs:true,resetBatch:false});$("saveAnswerEditorBtn").onclick=saveAnswerEditor;$("resetAnswerOverridesBtn").onclick=resetAnswerOverrides;$("answerRevisionNote").addEventListener("input",markAnswerEditorDirty);
    const drop=$("batchDropZone");if(drop){["dragenter","dragover"].forEach(type=>drop.addEventListener(type,e=>{e.preventDefault();drop.classList.add("dragover")}));["dragleave","drop"].forEach(type=>drop.addEventListener(type,e=>{e.preventDefault();drop.classList.remove("dragover")}));drop.addEventListener("drop",e=>handleBatchFile(e.dataTransfer?.files?.[0]))}
