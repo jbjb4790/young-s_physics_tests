@@ -43,7 +43,7 @@ const HEADERS = {
 };
 
 const API_VERSION = "3.3.0-hosted-parent-bridge";
-const FEATURE_VERSION = "3.6.5-student-profile-merge";
+const FEATURE_VERSION = "3.6.6-portal-share-safe-navigation";
 const STUDENT_PORTAL_SCHEMA_VERSION = "1";
 const CLASS_ROSTER_SCHEMA_VERSION = "1";
 const DEFAULT_SESSION_TTL_DAYS = 90;
@@ -201,7 +201,6 @@ function studentPortalShareHtml_(token, fp, requestedSiteUrl, expectedServerId) 
     "&fp=" + encodeURIComponent(profile.PortalFingerprint) +
     "&api=" + encodeURIComponent(serviceUrl) +
     "&sid=" + encodeURIComponent(currentServerId);
-  const hostedUrl = serviceUrl + "?view=host&site=" + encodeURIComponent(directPortalUrl);
   const shareUrl = serviceUrl +
     "?view=portalShare&token=" + encodeURIComponent(profile.PortalToken) +
     "&fp=" + encodeURIComponent(profile.PortalFingerprint) +
@@ -231,8 +230,9 @@ function studentPortalShareHtml_(token, fp, requestedSiteUrl, expectedServerId) 
     '<style>body{margin:0;font-family:Arial,"Noto Sans KR",sans-serif;background:#f4f8ff;color:#0b2c63;display:grid;place-items:center;min-height:100vh}.box{max-width:520px;margin:24px;padding:28px;border:1px solid #d5e3f8;border-radius:20px;background:#fff;box-shadow:0 18px 60px rgba(0,45,110,.12);text-align:center}.box img{max-width:260px;width:70%;height:auto}.box h1{font-size:21px;margin:18px 0 8px}.box p{color:#60748f;line-height:1.6}.box a{display:inline-block;margin-top:12px;padding:11px 16px;border-radius:10px;background:#0866e5;color:#fff;text-decoration:none;font-weight:700}</style>',
     '</head><body><div class="box"><img src="' + escapeHtmlForMeta_(imageUrl) + '" alt="Young\'s Physics">',
     '<h1>' + escapeHtmlForMeta_(title) + '</h1><p>학생 통합 학습 페이지로 이동합니다.</p>',
-    '<a href="' + escapeHtmlForMeta_(hostedUrl) + '">학습 페이지 열기</a></div>',
-    '<script>window.location.replace(' + safeJsonForHtml_(hostedUrl) + ');<\/script>',
+    '<p>학부모님께서는 아래 버튼을 눌러 학습 페이지를 열어 주세요.</p>',
+    '<a href="' + escapeHtmlForMeta_(directPortalUrl) + '" target="_blank" rel="noopener noreferrer">학생 학습 페이지 열기 ↗</a>',
+    '<p style="font-size:12px;margin-top:18px">버튼을 눌러도 열리지 않는다면 링크를 길게 누른 후 브라우저에서 여세요.</p></div>',
     '</body></html>'
   ].join("");
   return HtmlService.createHtmlOutput(html)

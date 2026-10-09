@@ -538,7 +538,7 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
 
 test("v3.6.2는 반별 학생 기능과 물리1 15·16회를 유지하며 물리2 역학 총괄을 추가",()=>{
   assert.equal(catalog.featureVersion,"3.6.2-physics2-mechanics-total");
-  assert.equal(JSON.parse(read("package.json")).version,"3.6.5");
+  assert.equal(JSON.parse(read("package.json")).version,"3.6.6");
 });
 
 test("학생 통합 포털 페이지와 네 개의 학부모 탭이 존재",()=>{
@@ -568,7 +568,7 @@ test("교사용 홈페이지는 기존 학생 선택과 학생별 영구 링크 
   assert.match(html,/studentPortalsBody/);
   assert.match(app,/function portalURL/);
   assert.match(app,/studentPortal/);
-  assert.match(app,/영구 링크 복사/);
+  assert.match(app,/직접 링크 복사/);
   assert.match(app,/forceNewStudent/);
 });
 
@@ -868,7 +868,7 @@ test("반에서 선택한 학생의 동일 시험 재저장은 신규 중복행 
 
 test("v3.6.2 물리2 역학 총괄평가 25문항이 준비 완료",()=>{
   assert.equal(catalog.featureVersion,"3.6.2-physics2-mechanics-total");
-  assert.equal(JSON.parse(read("package.json")).version,"3.6.5");
+  assert.equal(JSON.parse(read("package.json")).version,"3.6.6");
   const e=catalog.exams.find(x=>x.examId==="physics2-basic-total-mechanics");
   assert.ok(e);assert.equal(e.status,"ready");assert.equal(e.questionCount,25);assert.equal(e.maxScore,100);
   assert.equal(e.questions.length,25);
@@ -933,9 +933,9 @@ test("개별 총괄 성적표와 Word에도 누적 코멘트가 포함",()=>{
 
 test("누적 코멘트 변경은 Apps Script 스키마를 요구하지 않음",()=>{
   const pkg=JSON.parse(read("package.json"));
-  assert.equal(pkg.version,"3.6.5");
+  assert.equal(pkg.version,"3.6.6");
   const code=read("apps-script/Code.gs");
-  assert.match(code,/FEATURE_VERSION = "3\.6\.5-student-profile-merge"/);
+  assert.match(code,/FEATURE_VERSION = "3\.6\.6-portal-share-safe-navigation"/);
 });
 
 test("누적 총괄 코멘트 실제 생성값은 상승/강점/보완/오답 행동을 문장으로 반환",()=>{
@@ -948,9 +948,9 @@ test("누적 총괄 코멘트 실제 생성값은 상승/강점/보완/오답 �
 
 // Personalized student portal share preview v3.6.4
 test("학생 통합 링크 복사는 Apps Script portalShare URL을 사용",()=>{const src=read("site/assets/app.js");assert.match(src,/view","portalShare/);assert.match(src,/portalDirectURL/);assert.match(src,/share\.searchParams\.set\("token"/)});
-test("학생 통합 페이지 내부 복사도 학생 이름 공유 링크를 사용",()=>{const src=read("site/assets/portal.js");assert.match(src,/function portalShareURL/);assert.match(src,/updatePageMetadata/);assert.match(src,/학생 이름이 표시되는 영구 학부모 링크/)});
+test("학생 통합 페이지 내부 복사도 학생 이름 공유 링크를 사용",()=>{const src=read("site/assets/portal.js");assert.match(src,/function portalShareURL/);assert.match(src,/updatePageMetadata/);assert.match(src,/학생 이름이 표시되는 공유 링크/)});
 test("정적 portal 페이지는 OG fallback 메타를 포함",()=>{const html=read("site/portal.html");assert.match(html,/property="og:title"/);assert.match(html,/property="og:image"/);assert.match(html,/twitter:title/)});
-test("Apps Script는 검증된 학생 이름으로 개인화 Open Graph 공유 페이지를 렌더링",()=>{const src=read("apps-script/Code.gs");assert.match(src,/view === "portalShare"/);assert.match(src,/function studentPortalShareHtml_/);assert.match(src,/Young's Physics " \+ String\(profile\.Name/);assert.match(src,/property="og:title"/);assert.match(src,/findStudentProfileByPortal_/);assert.match(src,/window\.location\.replace/)});
+test("Apps Script는 검증된 학생 이름으로 개인화 Open Graph 공유 페이지를 렌더링",()=>{const src=read("apps-script/Code.gs");assert.match(src,/view === "portalShare"/);assert.match(src,/function studentPortalShareHtml_/);assert.match(src,/Young's Physics " \+ String\(profile\.Name/);assert.match(src,/property="og:title"/);assert.match(src,/findStudentProfileByPortal_/);assert.match(src,/target=\"_blank\"/);assert.doesNotMatch(src,/window\.location\.replace\(' \+ safeJsonForHtml_\(hostedUrl\)/)});
 
 
 test("학생 두 명 병합 기능 UI와 교사 전용 통신 메서드 등록",()=>{
