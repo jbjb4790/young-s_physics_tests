@@ -88,7 +88,7 @@ test('운영 HTML은 공유 전용 스크립트를 앱 로딩 전에 읽는다',
  for(const page of ['index.html','portal.html']){
    const s=fs.readFileSync(path.join(dir,'../site',page),'utf8');
    assert.ok(s.indexOf('share-config.js?v=3.6.7')<s.indexOf('share-link.js?v=3.6.7'));
-   const last = page==='index.html'?'app.js?v=3.6.6':'portal.js?v=3.6.6';
+   const last = page==='index.html'?'app.js?v=3.6.6':'portal.js?v=3.6.9';
    assert.ok(s.indexOf('share-link.js?v=3.6.7')<s.indexOf(last));
  }
 });

@@ -71,7 +71,7 @@ test("물리1 10~16회가 준비 완료 100점 시험으로 등록",()=>{
 });
 test("물리1 10~16회 문항 수는 5·8·7·15·9·8·6",()=>assert.deepEqual([10,11,12,13,14,15,16].map(r=>YP.getExam(`physics1-basic-r${r}`).questionCount),[5,8,7,15,9,8,6]));
 test("물리1 10~16회 총 58문항과 전체 준비 완료 199문항",()=>{const added=[10,11,12,13,14,15,16].flatMap(r=>YP.getExam(`physics1-basic-r${r}`).questions);assert.equal(added.length,58);assert.equal(catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).length,199)});
-test("13회 솔레노이드 극성 문항은 권선 정보 부족으로 확인 필요",()=>{const q=YP.getExam("physics1-basic-r13").questions.find(q=>q.no===7);assert.equal(q.reviewStatus,"needs-review");assert.match(q.answer,/결정할 수 없다/)});
+test("13회 솔레노이드는 A쪽 반시계 전류 조건을 추가해 조건부 해설 공개",()=>{const q=YP.getExam("physics1-basic-r13").questions.find(q=>q.no===7);assert.equal(q.reviewStatus,"corrected");assert.match(q.correctionNote,/원문 미기재/);assert.match(q.answer,/A가 N극/)});
 test("새 회차 핵심 정답 검산",()=>{assert.match(YP.getExam("physics1-basic-r10").questions[0].answer,/1\/8/);assert.equal(YP.getExam("physics1-basic-r11").questions[0].answer,"0 N/C");assert.match(YP.getExam("physics1-basic-r12").questions[6].answer,/180 W/);assert.equal(YP.getExam("physics1-basic-r13").questions[8].answer,"5B₀");assert.match(YP.getExam("physics1-basic-r14").questions[6].answer,/f=1\.25 Hz/);assert.match(YP.getExam("physics1-basic-r15").questions[0].answer,/√3:1/);assert.equal(YP.getExam("physics1-basic-r16").questions[1].answer,"② 축소된 똑바로 선 모습")});
 
 test("15회 교정 문항과 굴절 핵심 관계가 반영됨",()=>{
@@ -537,8 +537,8 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
 // v3.6.0 class roster quick entry, record management, hidden weighted cumulative percent
 
 test("v3.6.2는 반별 학생 기능과 물리1 15·16회를 유지하며 물리2 역학 총괄을 추가",()=>{
-  assert.equal(catalog.featureVersion,"3.6.8-physics2-r11-electric-field");
-  assert.equal(JSON.parse(read("package.json")).version,"3.6.8");
+  assert.equal(catalog.featureVersion,"3.6.9-conditional-reviewed-explanations");
+  assert.equal(JSON.parse(read("package.json")).version,"3.6.9");
 });
 
 test("학생 통합 포털 페이지와 네 개의 학부모 탭이 존재",()=>{
@@ -867,8 +867,8 @@ test("반에서 선택한 학생의 동일 시험 재저장은 신규 중복행 
 
 
 test("v3.6.2 물리2 역학 총괄평가 25문항이 준비 완료",()=>{
-  assert.equal(catalog.featureVersion,"3.6.8-physics2-r11-electric-field");
-  assert.equal(JSON.parse(read("package.json")).version,"3.6.8");
+  assert.equal(catalog.featureVersion,"3.6.9-conditional-reviewed-explanations");
+  assert.equal(JSON.parse(read("package.json")).version,"3.6.9");
   const e=catalog.exams.find(x=>x.examId==="physics2-basic-total-mechanics");
   assert.ok(e);assert.equal(e.status,"ready");assert.equal(e.questionCount,25);assert.equal(e.maxScore,100);
   assert.equal(e.questions.length,25);
@@ -933,7 +933,7 @@ test("개별 총괄 성적표와 Word에도 누적 코멘트가 포함",()=>{
 
 test("누적 코멘트 변경은 Apps Script 스키마를 요구하지 않음",()=>{
   const pkg=JSON.parse(read("package.json"));
-  assert.equal(pkg.version,"3.6.8");
+  assert.equal(pkg.version,"3.6.9");
   const code=read("apps-script/Code.gs");
   assert.match(code,/FEATURE_VERSION = "3\.6\.6-portal-share-safe-navigation"/);
 });

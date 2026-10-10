@@ -27,7 +27,7 @@ test('물리2 10회는 계속 제외하고 11회는 전자기 총괄의 누적 �
 });
 test('검수 해설은 Quiz 원문 PDF와 숙제노트 2~4페이지를 근거로 연결한다',()=>{
  for(const f of [e.pdf,e.solutionPdf])assert.ok(fs.existsSync(path.join(ROOT,'site',f)),f);
- assert.equal(e.solutionPdf,'assets/documents/physics2/r11-verified-solution.pdf');
+ assert.equal(e.solutionPdf,'assets/documents/physics2/r11-conditional-solution-v3.6.9.pdf');
  const bytes=fs.readFileSync(path.join(ROOT,'site',e.solutionPdf));const ascii=bytes.toString('latin1');assert.ok(ascii.startsWith('%PDF'));
  assert.match(e.sourceTitle,/숙제노트.*2~4페이지/);
 });
@@ -60,13 +60,13 @@ test('7번 잘못된 주기식은 g_eff=2g/√3으로 교정했고 원문 해설
  assert.match(q.answer,/√3 l\/\(2g\)/);assert.ok(q.explanation.some(x=>x.includes('g_eff=√(g²+(qE/m)²)=2g/√3')));
  assert.ok(q.rubric.some(x=>x.points===5));
 });
-test('8번 마찰 조건 누락 문항은 학생 정답·해설 자동 공개를 보류한다',()=>{
- const q=e.questions[7];assert.equal(q.reviewStatus,'needs-review');assert.match(q.correctionNote,/마찰/);
- assert.match(q.answer,/조건부/);assert.equal(q.originalRetry.inputMode,'choice');
+test('8번은 q>0·무마찰 조건을 먼저 명시하고 조건부 정답을 공개한다',()=>{
+ const q=e.questions[7];assert.equal(q.reviewStatus,'corrected');assert.match(q.correctionNote,/q>0/);assert.match(q.correctionNote,/마찰/);
+ assert.match(q.answer,/mg\/q/);assert.match(q.answer,/N=0/);assert.equal(q.originalRetry.inputMode,'choice');
  const report=read('site/assets/report.js');assert.match(report,/\["ambiguous","needs-review"\]\.includes\(q\.reviewStatus\)/);
 });
 test('원본 보너스 그림 2점은 공식 100점 범위에 추가하지 않는다',()=>{
- assert.equal(e.maxScore,100);assert.equal(e.questions.length,8);assert.match(e.sourceNote,/초파 2점은 100점 공식 배점 외/);
+ assert.equal(e.maxScore,100);assert.equal(e.questions.length,8);assert.match(e.sourceNote,/초파 2점은 시험 공식 만점 100점에서 제외/);
 });
 test('기존 Apps Script 통신 규격을 교체하지 않고 서버 카탈로그 동기화가 가능하다',()=>{
  const src=read('apps-script/Code.gs');assert.match(src,/function syncCatalog_\(/);assert.match(src,/q\.maxPoints/);
@@ -78,7 +78,7 @@ test('catalog.js와 JSON의 변경된 11회차 데이터를 정확히 같은 내
  assert.equal(JSON.stringify(bank),JSON.stringify(e));
 });
 test('교사·학부모 HTML 모두 catalog.js의 최신 배포 캐시 버전을 참조한다',()=>{
- for(const page of ['index.html','portal.html','report.html'])assert.match(read('site/'+page),/assets\/data\/catalog\.js\?v=3\.6\.8/);
+ for(const page of ['index.html','portal.html','report.html'])assert.match(read('site/'+page),/assets\/data\/catalog\.js\?v=3\.6\.9/);
 });
 test('답안 검수 상태 및 문항별 루브릭의 배점 합이 원문 점수와 일치한다',()=>{
  for(const q of e.questions){assert.equal(q.rubric.reduce((a,r)=>a+r.points,0),q.maxPoints);assert.ok(['verified','corrected','ambiguous','needs-review'].includes(q.reviewStatus));assert.ok(q.explanation.length>=2);assert.ok(q.commonMistakes.length>=2)}

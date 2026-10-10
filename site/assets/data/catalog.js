@@ -1,6 +1,6 @@
 window.YP_CATALOG = {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-10-10T12:00:00Z",
+  "generatedAt": "2026-10-10T14:00:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -735,10 +735,10 @@ window.YP_CATALOG = {
       "pages": [
         "assets/pages/physics1/r03-p1.png"
       ],
-      "reviewStatus": "needs-review",
-      "configVersion": "2026.08.10-1",
+      "reviewStatus": "corrected",
+      "configVersion": "2026.10.10-conditional-release-v3.6.9",
       "sourceTitle": "물리1 Quiz(02)",
-      "sourceNote": "업로드된 7개 파일을 2~8회 순서로 적용. 원문 표지는 Quiz(02)로 되어 있어 3회차로 교정·매핑함.",
+      "sourceNote": "업로드된 7개 파일을 2~8회 순서로 적용. 원문 표지는 Quiz(02)로 되어 있어 3회차로 교정·매핑함. | 7번은 위치-시간 그림을 눈금 없는 정성적 스케치로 보고, 기울기가 단조 감소한다는 조건을 추가하여 정성적 정답·해설을 공개한다. 등가속도 여부는 추정하지 않는다.",
       "coreNote": {
         "summary": "속도 그래프의 평균량, 벡터 성분, 상대속도, 시간기록계와 등가속도 운동",
         "concepts": [
@@ -1275,19 +1275,24 @@ window.YP_CATALOG = {
               310
             ]
           },
-          "reviewStatus": "ambiguous",
-          "correctionNote": "원문에는 축 눈금과 함수식이 없어 정확한 v-t 곡선의 모양(직선 여부)은 하나로 정해지지 않는다. 사이트에서는 부호와 정성적 변화만 공개하고, 정확한 개형은 '확인 필요'로 표시한다.",
-          "answer": "처음에는 s가 증가하므로 v>0, 최고점에서는 접선 기울기가 0이므로 v=0, 이후 s가 감소하므로 v<0이다. 곡선의 기울기가 계속 작아지는 모양이므로 v-t 그래프는 양수에서 0을 지나 음수로 내려가는 형태이다. 다만 원문 곡선만으로 v가 정확히 직선인지, 가속도가 일정한지는 확정할 수 없다.",
+          "reviewStatus": "corrected",
+          "correctionNote": "추가 풀이 조건(원문 미기재): 원문의 호 모양 s–t 그림은 눈금·함수식이 없는 정성적 스케치이다. 시간이 지남에 따라 위치 그래프의 접선 기울기가 양수→0→음수로 지속적으로 감소하고, 최대 위치에서 순간속도 0을 지난다고 해석한다. v–t 그래프의 정확한 직선 여부와 일정한 가속도 여부는 확정하지 않는다. 이 조건에서 아래 정성 해설을 공개한다.",
+          "answer": "정성적 v–t 개형: 처음 v>0에서 시간에 따라 감소하여 위치가 최대인 순간 v=0이 되고, 이후 v<0이다. 초기에는 오른쪽으로 감속, 정지 후 왼쪽으로 속력이 증가한다. 주어진 스케치만으로 v–t가 직선이라고 단정할 수 없다.",
           "explanation": [
-            "s-t 그래프의 기울기가 v이다.",
-            "위치가 최대인 순간 물체는 잠시 정지한 뒤 반대 방향으로 움직인다."
+            "원문을 정성적 위치-시간 스케치로 해석하고, 시간이 흐를수록 접선 기울기가 감소한다고 추가 가정한다.",
+            "순간속도는 v=ds/dt, 즉 위치-시간 그래프의 접선 기울기이다.",
+            "그래프의 상승 구간에서는 v>0, 위치가 최대인 순간 접선이 수평이므로 v=0, 하강 구간에서는 v<0이다.",
+            "이동 방향은 +x에서 −x로 바뀐다. 변화가 매끄럽다면 v–t 곡선은 양수에서 0을 지나 음수로 내려가는 형태이다.",
+            "s(t)의 정확한 수식이 없으므로 v(t)가 일차함수인지, 가속도가 일정한지는 알 수 없다. 등가속도 직선 그래프는 추가 가정을 더한 예시일 뿐이다."
           ],
           "formulas": [
-            "v=ds/dt"
+            "v=ds/dt (위치–시간 그래프의 순간 기울기)",
+            "a=dv/dt (속도–시간 그래프의 기울기)"
           ],
           "commonMistakes": [
-            "반원처럼 보인다는 이유로 정확한 함수식을 임의로 정하는 것",
-            "위치가 감소하는 구간을 속력 감소로 해석하는 것"
+            "그림이 매끄럽다는 이유만으로 s(t)가 정확한 이차함수 또는 가속도가 일정하다고 가정하는 것",
+            "위치가 내려간다는 것을 속력 감소로 해석하는 것",
+            "최고점에서 가속도도 반드시 0이라고 단정하는 것"
           ],
           "rubric": [
             {
@@ -1348,7 +1353,7 @@ window.YP_CATALOG = {
           "retryMode": "multiple-choice"
         }
       ],
-      "featureVersion": "3.4.4-all-retry-multiple-choice"
+      "featureVersion": "3.6.9-conditional-reviewed-explanations"
     },
     {
       "examId": "physics1-basic-r04",
@@ -2156,10 +2161,10 @@ window.YP_CATALOG = {
         "assets/pages/physics1/r05-p1.png",
         "assets/pages/physics1/r05-p2.png"
       ],
-      "reviewStatus": "needs-review",
-      "configVersion": "2026.08.10-1",
+      "reviewStatus": "corrected",
+      "configVersion": "2026.10.10-conditional-release-v3.6.9",
       "sourceTitle": "물리1 5회차 중간평가",
-      "sourceNote": "",
+      "sourceNote": "6번 (2)의 방향이 원문에 표시되지 않아, 학습용으로 C의 오른쪽에서 왼쪽으로 12 N을 가한다고 조건을 보충해 해설한다. 반대 방향의 결과도 병기한다.",
       "coreNote": {
         "summary": "정지·운동 마찰, 연결된 물체, 겉보기 무게와 누적 복습",
         "concepts": [
@@ -2601,28 +2606,33 @@ window.YP_CATALOG = {
               520
             ]
           },
-          "reviewStatus": "needs-review",
-          "correctionNote": "2번의 추가 12 N 힘 방향 화살표가 누락되어 복수 답이 가능하다. 사이트에서는 자동 정답 공개를 보류하고 두 방향의 계산을 모두 제시한다.",
-          "answer": "① 전체 질량 6 kg이므로 a=30/6=5 m/s². C(2 kg)에 작용하는 접촉력은 2×5=10 N. ② 'C의 오른쪽에서 12 N'의 방향이 그림에 없어 답이 하나로 정해지지 않는다. 왼쪽으로 12 N을 가하면 전체 a=(30-12)/6=3 m/s²이고 C에 대해 F_BC-12=2×3이므로 F_BC=18 N. 오른쪽으로 12 N이면 a=7 m/s², F_BC+12=14이므로 F_BC=2 N.",
+          "reviewStatus": "corrected",
+          "correctionNote": "추가 풀이 조건(원문 미기재): A(1 kg), B(3 kg), C(2 kg)는 마찰 없는 수평면에서 서로 접촉한 채 운동하고, (2)에서 C의 오른쪽에서 추가로 가하는 12 N의 힘은 왼쪽 방향(기존 30 N의 반대 방향)이다. 이 조건에서 (1) 10 N, (2) 18 N이다. 원문에는 12 N 힘의 화살표가 없어 오른쪽 방향으로 해석하면 (2)는 2 N으로 달라진다.",
+          "answer": "(1) B가 C를 미는 힘 10 N. (2) 추가 12 N을 C에 왼쪽으로 가한다고 보충하면 B가 C를 미는 힘 18 N. (반대로 오른쪽 힘이면 2 N; 원문만으로는 (2)의 방향이 정해지지 않는다.)",
           "explanation": [
-            "여러 물체의 공통 가속도를 전체 계로 구한다.",
-            "접촉력은 C만 분리해 힘의 합으로 계산한다."
+            "원문 세 블록의 질량은 A=1 kg, B=3 kg, C=2 kg이므로 전체 질량은 6 kg이다. 수평면은 마찰 없다고 보충한다.",
+            "(1) 전체 가속도 a=30 N/6 kg=5 m/s²이다. C만 분리하면 B가 C를 미는 접촉력 F_BC=2 kg×5 m/s²=10 N이다.",
+            "(2) C 오른쪽에서 왼쪽으로 12 N을 가한다고 정한 경우 순힘은 30−12=18 N, 가속도 a=18/6=3 m/s²이다.",
+            "C의 힘 평형(운동 방정식)은 F_BC−12=2×3이므로 F_BC=18 N이다.",
+            "원문에는 추가 힘 방향 표시가 없다. 만약 오른쪽으로 +12 N이라면 a=(30+12)/6=7 m/s², F_BC+12=2×7이므로 F_BC=2 N이다. 이 별도 경우를 원문 정답으로 혼동하지 않는다."
           ],
           "formulas": [
             "a=ΣF/(m_A+m_B+m_C)",
-            "C: ΣF=m_Ca"
+            "C에 대한 뉴턴 제2법칙: ΣF_C=m_C a",
+            "추가 12 N이 왼쪽: F_BC−12=2a"
           ],
           "commonMistakes": [
-            "추가 12 N의 방향을 확인하지 않고 하나의 답만 쓰는 것",
-            "B와 C의 합질량 5 kg에 30 N을 나누는 것"
+            "추가 12 N이 어느 쪽으로 작용하는지 확인 없이 답을 고르는 것",
+            "합성 가속도에 C의 질량 2 kg만 사용하는 것",
+            "C에 작용하는 12 N을 B가 미는 힘과 동일시하는 것"
           ],
           "rubric": [
             {
-              "criterion": "1) 공통 가속도와 접촉력 10 N",
+              "criterion": "(1) 전체 가속도 5 m/s² 및 F_BC=10 N",
               "points": 5
             },
             {
-              "criterion": "2) 방향 누락 인지 또는 교사 확정 방향에 맞는 풀이",
+              "criterion": "(2) 왼쪽 12 N 조건을 적고 a=3 m/s², F_BC=18 N 도출",
               "points": 5
             }
           ],
@@ -2647,16 +2657,16 @@ window.YP_CATALOG = {
           "originalRetry": {
             "inputMode": "choice",
             "choices": [
-              "1) 10 N / 2) 2 N만 가능",
-              "1) 10 N / 2) 18 N만 가능",
-              "1) 5 N / 2) 12 N",
-              "1) 10 N / 2) 힘 방향 미제시로 2 N 또는 18 N"
+              "(1) 10 N / (2) 2 N",
+              "(1) 10 N / (2) 18 N",
+              "(1) 5 N / (2) 12 N",
+              "(1) 10 N / (2) 30 N"
             ],
-            "correctChoice": 4,
-            "answer": "1) 10 N / 2) 힘 방향 미제시로 2 N 또는 18 N",
+            "correctChoice": 2,
+            "answer": "(1) 10 N / (2) 18 N",
             "acceptableAnswers": [
-              "4",
-              "1) 10 N / 2) 힘 방향 미제시로 2 N 또는 18 N"
+              "2",
+              "(1) 10 N / (2) 18 N"
             ],
             "displayMode": "choice-card"
           },
@@ -3385,7 +3395,7 @@ window.YP_CATALOG = {
           "retryMode": "multiple-choice"
         }
       ],
-      "featureVersion": "3.4.4-all-retry-multiple-choice"
+      "featureVersion": "3.6.9-conditional-reviewed-explanations"
     },
     {
       "examId": "physics1-basic-r06",
@@ -6899,10 +6909,10 @@ window.YP_CATALOG = {
         "assets/pages/physics1/r13-p1.png",
         "assets/pages/physics1/r13-p2.png"
       ],
-      "reviewStatus": "needs-review",
-      "configVersion": "2026.08.30-r13-v1",
+      "reviewStatus": "corrected",
+      "configVersion": "2026.10.10-conditional-release-v3.6.9",
       "sourceTitle": "물리1 13회차 복습 테스트",
-      "sourceNote": "7번 솔레노이드 권선 방향이 불명확하여 확인 필요로 표시했다.",
+      "sourceNote": "7번의 솔레노이드 권선 방향은 원문 그림에 없어 한 극을 지정할 수 없다. 학습용 추가 조건으로 A쪽에서 바라본 전류가 반시계방향이라고 명시하고 A=N·B=S라는 조건부 정답을 공개한다.",
       "coreNote": {
         "summary": "전력·송전, 전구 회로, 전류가 만드는 자기장, 검전기와 전기장, 복합 저항을 한 회차에 종합하는 중간평가",
         "concepts": [
@@ -7422,29 +7432,33 @@ window.YP_CATALOG = {
               340
             ]
           },
-          "reviewStatus": "needs-review",
-          "correctionNote": "권선의 감긴 방향과 앞·뒤 교차 표시가 없어 A/B 극을 유일하게 결정할 수 없다. 교사 확인 전 자동 정답 공개를 보류한다.",
-          "answer": "그림만으로는 결정할 수 없다. 권선이 앞·뒤에서 어떻게 연결되는지(감긴 방향)가 표시되어야 한다.",
+          "reviewStatus": "corrected",
+          "correctionNote": "추가 풀이 조건(원문 미기재): 솔레노이드의 오른쪽 끝 A를 마주보고 바라보았을 때 그 끝에서 도는 전류가 반시계방향이라고 가정한다(따라서 A쪽에서 본 권선 방향이 정해졌다). 원문에는 권선의 앞·뒤 연결이 표시되지 않으므로 A/B의 실제 극을 원문만으로 확정할 수 없다. 여기서는 추가 조건하에 A=N극·B=S극으로 공개하고, 시계방향을 가정하면 정반대가 됨을 함께 설명한다.",
+          "answer": "추가 조건(끝 A에서 본 전류가 반시계방향): A가 N극, B가 S극. 반대로 A에서 볼 때 시계방향이라면 A는 S극, B는 N극이다. 원문 그림만으로는 권선 방향을 알 수 없다.",
           "explanation": [
-            "전지의 극성만으로는 코일 각 고리의 시계·반시계 전류를 정할 수 없다.",
-            "2차원 타원만 반복된 그림에는 도선이 교차할 때 어느 선이 앞인지 표시가 없어 감김 방향이 두 가지로 해석된다.",
-            "감김 방향이 주어지면 한쪽 끝에서 전류가 반시계이면 그쪽이 N극이다."
+            "원래 솔레노이드 그림에는 도선이 코일 앞쪽과 뒤쪽에서 어떻게 연결되는지 표시되어 있지 않으므로 전지의 극성만으로 A/B의 극을 정할 수 없다.",
+            "학생 학습용으로 오른쪽 끝 A에서 바라본 전류가 반시계방향이라는 권선 조건을 추가한다.",
+            "오른손 손가락을 반시계방향 전류에 맞춰 감으면 엄지는 A쪽을 향하므로 A는 자기력선이 나오는 N극이다.",
+            "반대쪽 B는 S극이다. A에서 본 전류가 시계방향이면 A와 B의 극은 서로 바뀐다.",
+            "따라서 추가 조건 없이는 A/B를 하나로 특정할 수 없다는 원문의 한계를 별도로 기억해야 한다."
           ],
           "formulas": [
-            "오른손 감기 법칙: 손가락=전류, 엄지=N극"
+            "솔레노이드 오른손 감기 법칙: 손가락=관습적 전류 방향, 엄지=내부 자기장/N극",
+            "코일 끝을 마주보고 볼 때 반시계 전류→N극, 시계 전류→S극"
           ],
           "commonMistakes": [
-            "전지의 +극이 연결된 쪽이 무조건 N극이라고 생각하는 것",
-            "권선 방향을 확인하지 않는 것"
+            "전지가 연결된 쪽만 보고 N극이라고 판단하는 것",
+            "원문에 없는 권선 앞뒤 연결을 실제 그려진 것처럼 상상하는 것",
+            "전류를 반대쪽 끝에서 본 방향과 혼동하는 것"
           ],
           "rubric": [
             {
-              "criterion": "권선 방향 정보 필요 지적",
-              "points": 3
+              "criterion": "조건으로 주어진 A쪽에서 본 반시계 전류 확인",
+              "points": 2
             },
             {
-              "criterion": "오른손 법칙 설명",
-              "points": 2
+              "criterion": "오른손 법칙 적용해 A=N, B=S 도출",
+              "points": 3
             }
           ],
           "similarProblem": {
@@ -7468,16 +7482,16 @@ window.YP_CATALOG = {
           "originalRetry": {
             "inputMode": "choice",
             "choices": [
-              "A가 N극",
-              "B가 N극",
+              "A는 N극이고 B는 S극",
+              "A는 S극이고 B는 N극",
               "A와 B 모두 N극",
-              "권선의 앞·뒤 연결이 표시되지 않아 결정할 수 없다."
+              "전류의 크기에 따라 A와 B의 극이 바뀐다"
             ],
-            "correctChoice": 4,
-            "answer": "권선의 앞·뒤 연결이 표시되지 않아 결정할 수 없다.",
+            "correctChoice": 1,
+            "answer": "A는 N극이고 B는 S극",
             "acceptableAnswers": [
-              "4",
-              "권선의 앞·뒤 연결이 표시되지 않아 결정할 수 없다."
+              "1",
+              "A는 N극이고 B는 S극"
             ],
             "displayMode": "choice-card"
           },
@@ -8117,7 +8131,7 @@ window.YP_CATALOG = {
           "retryMode": "multiple-choice"
         }
       ],
-      "featureVersion": "3.5.1-physics1-r10-r14"
+      "featureVersion": "3.6.9-conditional-reviewed-explanations"
     },
     {
       "examId": "physics1-basic-r14",
@@ -10300,16 +10314,16 @@ window.YP_CATALOG = {
       "questionCount": 8,
       "maxScore": 100,
       "pdf": "assets/documents/physics2/r11.pdf",
-      "solutionPdf": "assets/documents/physics2/r11-verified-solution.pdf",
+      "solutionPdf": "assets/documents/physics2/r11-conditional-solution-v3.6.9.pdf",
       "pages": [
         "assets/pages/physics2/r11-p1.png",
         "assets/pages/physics2/r11-p2.png",
         "assets/pages/physics2/r11-p3.png"
       ],
       "reviewStatus": "corrected",
-      "configVersion": "2026.10.10-physics2-r11-v1",
+      "configVersion": "2026.10.10-conditional-release-v3.6.9",
       "sourceTitle": "물리2-Quiz 11회차 전기장 / 11회차(해답+숙제노트) 2~4페이지",
-      "sourceNote": "7번 (4) 유효중력/진동주기 계산 오류 교정. 8번 마찰 조건 누락으로 자동 해설 공개 보류. 시험지 하단의 초파 2점은 100점 공식 배점 외 선택 보너스. 학생용 검수 해설 PDF는 8번의 정답 공개를 보류한다.",
+      "sourceNote": "7번 (4)는 유효중력 g_eff=2g/√3으로 교정. 8번은 전하 q>0, 마찰 없는 빗면, E가 위/오른쪽이라는 추가 풀이 조건을 공개하고, (1)은 N=0인 접촉 한계 상태임을 명시함. 초파 2점은 시험 공식 만점 100점에서 제외.",
       "coreNote": {
         "summary": "균일 전기장의 전기력과 가속도, 두 점전하의 합성 전기장, 전기력·중력의 평형을 종합하는 물리2 11회차 전기장 복습 테스트",
         "concepts": [
@@ -10970,50 +10984,51 @@ window.YP_CATALOG = {
               890
             ]
           },
-          "reviewStatus": "needs-review",
-          "correctionNote": "원문에서 마찰력 존재 여부/마찰계수가 주어지지 않음. 마찰 없는 경우라는 추가 조건이 있어야 제공된 풀이 E=mg/q, mg/(√3q)를 적용할 수 있으며, (1)에서는 N=0인 접촉 경계 상태다. 교사 확인 전 학생 정답·해설 자동 공개 보류.",
-          "answer": "※ 마찰 없는 빗면으로 해석한 조건부 답: (1) E=mg/q (2) E=mg/(√3 q); 원문 마찰 조건 누락으로 교사 확인 필요",
+          "reviewStatus": "corrected",
+          "correctionNote": "추가 풀이 조건(원문 미기재): q>0인 물체, 정지 마찰·운동 마찰이 모두 0인 이상적인 30° 빗면, 전기장 방향은 (1) 연직 위쪽, (2) 수평 오른쪽이라고 가정한다. (1)의 E=mg/q에서는 수직항력 N=0으로, 물체가 빗면과 막 접촉하는 한계 상태다. 원문에서 마찰 유무가 없어 이 조건을 적용하지 않으면 E는 유일하지 않다.",
+          "answer": "추가 조건(q>0, 마찰 없는 30° 빗면): (1) E=mg/q (연직 위쪽, N=0인 접촉 한계), (2) E=mg/(√3 q) (수평 오른쪽).",
           "explanation": [
-            "원문 그림에서 블록의 전하는 +q이고 빗면의 경사각은 30°이다. 다만 원문에서 정지 마찰의 유무가 제시되지 않아 정지 조건을 유일하게 결정할 수 없다.",
-            "마찰이 없다고 추가 가정하면 경사면 방향 힘의 평형을 사용한다.",
-            "(1) 전기장이 연직 위쪽일 때 중력과 전기력의 경사면 방향 성분은 (mg−qE)sin30°로, E=mg/q가 되어야 한다. 이 순간 N=(mg−qE)cos30°=0으로 접촉의 경계이다.",
-            "(2) 전기장이 오른쪽이면 경사면 위쪽 방향 전기력 성분은 qEcos30°, 아래쪽 중력 성분은 mg sin30°이다. 따라서 E=mg tan30°/q=mg/(√3q)이다.",
-            "마찰이 존재하면 정지 마찰력도 미지수로 들어가므로 원문의 E 값은 유일하지 않다. 교사 확인 전 자동 해설 공개를 보류한다."
+            "원문은 전하의 부호와 마찰 조건이 부족하다. 학습용으로 q>0, 빗면에서 마찰이 전혀 없고 30° 경사가 오른쪽으로 올라간다는 조건을 추가한다.",
+            "정지 상태에서 경사면 접선 방향 합력은 0이다. 법선 방향 반력 N은 음수가 될 수 없다.",
+            "(1) 전기장이 연직 위쪽이면 접선 방향 평형식 (mg−qE)sin30°=0이므로 E=mg/q이다.",
+            "이때 법선 방향에서는 N=(mg−qE)cos30°=0이므로 물체는 빗면과의 접촉 한계에 있다. 단, 양(+) 전하를 기준으로 한 식이다.",
+            "(2) 전기장이 수평 오른쪽이면 접선 방향에서 qE cos30°=mg sin30°가 성립한다. E=mg tan30°/q=mg/(√3 q)이다.",
+            "이때 법선 반력은 N=mgcos30°+qEsin30°=2mg/√3이므로 N=2mg/√3>0으로 접촉이 유지된다. 마찰력이 있다면 두 식에 f_s가 포함되어 다른 정지 E값도 가능하다."
           ],
           "formulas": [
-            "ΣF_∥=0 (마찰이 없는 경우)",
-            "(mg−qE)sinθ=0 (전기장 ↑)",
-            "qEcosθ=mg sinθ (전기장 →)",
-            "정지마찰이 있다면 |f_s|≤μ_s N도 고려"
+            "경사면 마찰 없음: ΣF_∥=0",
+            "연직 위쪽 전기장: (mg−qE)sin30°=0 → E=mg/q",
+            "수평 오른쪽 전기장: qEcos30°=mg sin30° → E=mg/(√3 q)",
+            "N≥0, (1)에서 N=0, (2)에서 N=2mg/√3"
           ],
           "commonMistakes": [
-            "마찰 유무를 확인하지 않고 평형식을 바로 확정하는 실수",
-            "연직 방향 전기장과 경사면 평행 방향의 전기장 성분을 혼동하는 실수",
-            "E=mg/q이면 N=0인 접촉 경계임을 놓치는 실수"
+            "마찰 유무를 확인하지 않고 원문에서 유일한 답이 나온다고 주장하는 것",
+            "전기장과 전기력이 항상 같은 방향이라고 두고 전하 부호를 누락하는 것",
+            "(1) E=mg/q는 수직항력 N=0인 접촉 한계 상태라는 점을 놓치는 것"
           ],
           "rubric": [
             {
-              "criterion": "(마찰 없음 가정) 위쪽 전기장 E=mg/q",
+              "criterion": "(1) q>0·무마찰 보충 조건 및 E=mg/q, N=0 설명",
               "points": 5
             },
             {
-              "criterion": "(마찰 없음 가정) 오른쪽 전기장 E=mg/(√3q)",
+              "criterion": "(2) 무마찰 접선 평형으로 E=mg/(√3q) 도출",
               "points": 5
             }
           ],
           "originalRetry": {
             "inputMode": "choice",
             "choices": [
-              "위쪽 E=mg/(2q), 오른쪽 E=mg/(√3q)",
-              "(마찰이 없다고 가정) 위쪽 E=mg/q, 오른쪽 E=mg/(√3q)",
-              "위쪽 E=mg/q, 오른쪽 E=√3mg/q",
-              "위쪽 E=mg/q, 오른쪽 E=mg/q"
+              "(1) E=mg/(2q), (2) E=mg/(√3q)",
+              "(1) E=mg/q, (2) E=mg/(√3q)",
+              "(1) E=mg/q, (2) E=√3mg/q",
+              "(1) E=mg/q, (2) E=mg/q"
             ],
             "correctChoice": 2,
-            "answer": "(마찰이 없다고 가정) 위쪽 E=mg/q, 오른쪽 E=mg/(√3q)",
+            "answer": "(1) E=mg/q, (2) E=mg/(√3q)",
             "acceptableAnswers": [
               "2",
-              "(마찰이 없다고 가정) 위쪽 E=mg/q, 오른쪽 E=mg/(√3q)"
+              "(1) E=mg/q, (2) E=mg/(√3q)"
             ],
             "displayMode": "choice-card"
           },
@@ -11038,7 +11053,7 @@ window.YP_CATALOG = {
           "retryMode": "multiple-choice"
         }
       ],
-      "featureVersion": "3.6.8-physics2-r11-electric-field"
+      "featureVersion": "3.6.9-conditional-reviewed-explanations"
     },
     {
       "examId": "physics2-basic-r12",
@@ -17473,5 +17488,5 @@ window.YP_CATALOG = {
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.6.8-physics2-r11-electric-field"
+  "featureVersion": "3.6.9-conditional-reviewed-explanations"
 };

@@ -104,7 +104,7 @@
      body.push(p(`${q.no}번 · ${q.unit} / ${q.topic}`,"Heading2"));
      body.push(p(`학생 획득: ${YP.formatNumber(s.score||0)} / ${q.maxPoints}점 · ${YP.statusLabel(s.status)}`));
      const dataURL=await YP.cropDataURL(exam,q,1),tmp=await YP.loadImage(dataURL);body.push(await addImage(dataBytes(dataURL),tmp.naturalWidth,tmp.naturalHeight,`${q.no}번 원문 문제`,5.8,4.4));
-     if(q.correctionNote)body.push(p(`검수 메모: ${q.correctionNote}`,"Quote"));
+     if(q.correctionNote)body.push(p(`${q.correctionNote.startsWith("추가 풀이 조건")?"원문 보충 조건 · 검수 안내":"검수 메모"}: ${q.correctionNote}`,"Quote"));
      if(["ambiguous","needs-review"].includes(q.reviewStatus)){body.push(p("확인 필요: 원문 조건 부족 또는 복수 해석 가능성으로 공식 정답·해설 자동 공개를 보류했습니다."));continue}
      const originalChoices=choiceTable(q.originalRetry);if(originalChoices){body.push(p("원문 문제 객관식 재도전 보기","Heading3"));body.push(originalChoices);body.push(p("※ 학생 링크에서는 보기를 선택해 제출한 뒤 정답과 해설이 공개됩니다.","Quote"))}
      body.push(p("검수된 정답·모범답안","Heading3"));body.push(p(q.answer));
