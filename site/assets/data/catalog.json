@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-10-06T06:10:00Z",
+  "generatedAt": "2026-10-10T12:00:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -10291,12 +10291,754 @@
       "examId": "physics2-basic-r11",
       "courseId": "physics2-basic",
       "round": 11,
-      "title": "물리2 11회차 복습 테스트",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.10-1"
+      "title": "물리2 11회차 복습 테스트 · 전기장",
+      "shortTitle": "11회차 전기장",
+      "status": "ready",
+      "assessmentType": "weekly",
+      "section": "electromagnetism",
+      "examDate": "",
+      "questionCount": 8,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics2/r11.pdf",
+      "solutionPdf": "assets/documents/physics2/r11-verified-solution.pdf",
+      "pages": [
+        "assets/pages/physics2/r11-p1.png",
+        "assets/pages/physics2/r11-p2.png",
+        "assets/pages/physics2/r11-p3.png"
+      ],
+      "reviewStatus": "corrected",
+      "configVersion": "2026.10.10-physics2-r11-v1",
+      "sourceTitle": "물리2-Quiz 11회차 전기장 / 11회차(해답+숙제노트) 2~4페이지",
+      "sourceNote": "7번 (4) 유효중력/진동주기 계산 오류 교정. 8번 마찰 조건 누락으로 자동 해설 공개 보류. 시험지 하단의 초파 2점은 100점 공식 배점 외 선택 보너스. 학생용 검수 해설 PDF는 8번의 정답 공개를 보류한다.",
+      "coreNote": {
+        "summary": "균일 전기장의 전기력과 가속도, 두 점전하의 합성 전기장, 전기력·중력의 평형을 종합하는 물리2 11회차 전기장 복습 테스트",
+        "concepts": [
+          "균일 전기장은 높은 전위(+극판)에서 낮은 전위(−극판) 방향으로 향한다.",
+          "양전하의 전기력은 전기장과 같은 방향, 음전하는 반대 방향이다.",
+          "점전하 전기장 E=k|Q|/r²의 크기를 구한 다음 반드시 벡터로 합성한다.",
+          "대칭 배치에서는 서로 반대인 성분이 상쇄되고 같은 방향 성분이 더해진다.",
+          "전기장 속 평형은 힘의 수평·연직 또는 경사면 접선·법선 성분을 나누어 판단한다.",
+          "일정한 수평 전기력 아래 진자의 작은 진동은 유효중력 g_eff를 사용한다.",
+          "경사면 문제는 마찰·전하 부호·수직항력 조건을 먼저 확인한다."
+        ],
+        "formulas": [
+          "F=qE, |F|=|q|E",
+          "a=F/m",
+          "E=|ΔV|/d",
+          "E=k|Q|/r²",
+          "E_total=√[(ΣE_x)²+(ΣE_y)²]",
+          "tanθ=qE/(mg), S=mg/cosθ",
+          "g_eff=√[g²+(qE/m)²], T=2π√(l/g_eff)",
+          "마찰 없는 빗면: ΣF_∥=0"
+        ],
+        "mistakes": [
+          "전하량 μC→C 단위 변환 누락",
+          "전기장과 힘의 방향을 전하 부호와 무관하게 취급",
+          "전하 사이의 거리를 벡터 대신 단순 산술합",
+          "유효중력을 gcosθ로 잘못 두는 것(7번 공식 해설 정오)",
+          "8번에서 마찰 유무를 확인하지 않고 유일한 정답으로 확정"
+        ],
+        "checklist": [
+          "전하 부호와 전기장 화살표를 표시했는가?",
+          "거리·전위차·단위 변환을 마쳤는가?",
+          "합성 전기장은 x/y 성분으로 합산했는가?",
+          "평형 문제에서는 마찰력·수직항력 조건을 확인했는가?",
+          "7번의 진동 주기에서 g_eff=2g/√3을 사용했는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 20,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "균일 전기장",
+          "topic": "전기력·가속도",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              55,
+              190,
+              548,
+              735
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "전기력 6.0×10⁻² N, 오른쪽 / 가속도 1.0×10⁴ m/s², 오른쪽",
+          "explanation": [
+            "왼쪽 판은 양(+)전위, 오른쪽 판은 음(-)전위이므로 균일 전기장은 오른쪽이다. 양전하가 받는 전기력 방향도 오른쪽이다.",
+            "F=qE=(3.0×10⁻⁶ C)(2.0×10⁴ N/C)=6.0×10⁻² N.",
+            "a=F/m=(6.0×10⁻² N)/(6.0×10⁻⁶ kg)=1.0×10⁴ m/s²이며, 가속도의 방향은 알짜힘 방향인 오른쪽이다."
+          ],
+          "formulas": [
+            "F=qE (방향은 q의 부호에 따라 다름)",
+            "a=F/m"
+          ],
+          "commonMistakes": [
+            "μC를 C로 변환하지 않는 실수",
+            "양전하인데 전기력 방향을 전기장과 반대로 쓰는 실수",
+            "힘만 구하고 가속도를 빠뜨리는 실수"
+          ],
+          "rubric": [
+            {
+              "criterion": "전기력의 크기 계산",
+              "points": 5
+            },
+            {
+              "criterion": "전기력 방향",
+              "points": 5
+            },
+            {
+              "criterion": "가속도 크기 계산",
+              "points": 5
+            },
+            {
+              "criterion": "가속도 방향",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "전기력 0.060 N ←, 가속도 1.0×10⁴ m/s² ←",
+              "전기력 0.060 N →, 가속도 1.0×10⁴ m/s² →",
+              "전기력 0.0060 N →, 가속도 1.0×10³ m/s² →",
+              "전기력 0.60 N →, 가속도 1.0×10⁵ m/s² →"
+            ],
+            "correctChoice": 2,
+            "answer": "전기력 0.060 N →, 가속도 1.0×10⁴ m/s² →",
+            "acceptableAnswers": [
+              "2",
+              "전기력 0.060 N →, 가속도 1.0×10⁴ m/s² →"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "전기력 0.060 N →, 가속도 2.0×10⁴ m/s² →",
+              "전기력 0.0060 N ←, 가속도 2.0×10³ m/s² ←",
+              "전기력 0.060 N ←, 가속도 2.0×10⁴ m/s² ←",
+              "전기력 0.060 N ←, 가속도 2.0×10³ m/s² ←"
+            ],
+            "correctChoice": 3,
+            "answer": "전기력 0.060 N ←, 가속도 2.0×10⁴ m/s² ←",
+            "acceptableAnswers": [
+              "3",
+              "전기력 0.060 N ←, 가속도 2.0×10⁴ m/s² ←"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "전기장이 왼쪽으로 3.0×10⁴ N/C인 영역에 q=+2.0 μC, m=3.0×10⁻⁶ kg의 입자가 있다. 전기력과 가속도의 크기·방향은?",
+            "explanation": "F=qE=2.0×10⁻⁶×3.0×10⁴=0.060 N이고 a=0.060/(3.0×10⁻⁶)=2.0×10⁴ m/s²이다. 양전하이므로 모두 전기장 방향인 왼쪽이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "균일 전기장",
+          "topic": "전위차와 극판 간 거리",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              55,
+              1028,
+              547,
+              247
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "d=1.0×10⁻³ m=1.0 mm",
+          "explanation": [
+            "왼쪽 극판 +10 V, 오른쪽 극판 −10 V이므로 두 극판 사이 전위차의 크기는 |ΔV|=20 V이다.",
+            "균일한 전기장에 대해 E=|ΔV|/d이므로 d=20/(2.0×10⁴)=1.0×10⁻³ m=1.0 mm이다."
+          ],
+          "formulas": [
+            "E=|ΔV|/d",
+            "1 mm=10⁻³ m"
+          ],
+          "commonMistakes": [
+            "전위차를 10 V로만 놓는 실수",
+            "전기장 단위 N/C와 V/m가 같음을 놓치는 실수",
+            "m를 mm로 바꿀 때 1000배를 놓치는 실수"
+          ],
+          "rubric": [
+            {
+              "criterion": "전위차 20 V 파악",
+              "points": 3
+            },
+            {
+              "criterion": "E=|ΔV|/d 적용",
+              "points": 3
+            },
+            {
+              "criterion": "1.0×10⁻³ m 및 단위",
+              "points": 4
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "0.10 mm (1.0×10⁻⁴ m)",
+              "10 mm (1.0×10⁻² m)",
+              "0.50 mm (5.0×10⁻⁴ m)",
+              "1.0 mm (1.0×10⁻³ m)"
+            ],
+            "correctChoice": 4,
+            "answer": "1.0 mm (1.0×10⁻³ m)",
+            "acceptableAnswers": [
+              "4",
+              "1.0 mm (1.0×10⁻³ m)"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "0.25 mm (2.5×10⁻⁴ m)",
+              "0.50 mm (5.0×10⁻⁴ m)",
+              "2.0 mm (2.0×10⁻³ m)",
+              "5.0 mm (5.0×10⁻³ m)"
+            ],
+            "correctChoice": 2,
+            "answer": "0.50 mm (5.0×10⁻⁴ m)",
+            "acceptableAnswers": [
+              "2",
+              "0.50 mm (5.0×10⁻⁴ m)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "평행판의 전위가 각각 +15 V, −5 V이고 내부 전기장의 크기가 4.0×10⁴ N/C일 때 극판 간 거리는?",
+            "explanation": "전위차 크기는 20 V이므로 d=20/(4.0×10⁴)=5.0×10⁻⁴ m=0.50 mm이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "점전하의 전기장",
+          "topic": "전기장 0점 위치",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              618,
+              195,
+              592,
+              365
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "x=d",
+          "explanation": [
+            "두 전하 모두 양전하이므로 두 전하 사이에서만 전기장 방향이 반대가 된다.",
+            "위치 x에서 전기장 크기를 같게 놓으면 kQ/x²=k(4Q)/(3d−x)²이다.",
+            "(3d−x)=2x가 되어 3d=3x, 따라서 x=d이다."
+          ],
+          "formulas": [
+            "E=k|Q|/r²",
+            "같은 부호인 두 점전하 사이에서 E_1=E_2"
+          ],
+          "commonMistakes": [
+            "두 전기장을 거리와 무관하게 전하량만으로 비교하는 실수",
+            "두 전하가 같은 부호라 전기장이 어느 곳에서나 같은 방향이라고 생각하는 실수",
+            "크기비 4:1을 거리비 4:1로 그대로 적용하는 실수"
+          ],
+          "rubric": [
+            {
+              "criterion": "영점이 두 전하 사이임을 판단",
+              "points": 2
+            },
+            {
+              "criterion": "전기장 크기 등식",
+              "points": 4
+            },
+            {
+              "criterion": "거리 비와 x=d 도출",
+              "points": 4
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "x=d/2",
+              "x=3d/2",
+              "x=d",
+              "x=2d"
+            ],
+            "correctChoice": 3,
+            "answer": "x=d",
+            "acceptableAnswers": [
+              "3",
+              "x=d"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "x=2d",
+              "x=d",
+              "x=3d",
+              "x=4d"
+            ],
+            "correctChoice": 1,
+            "answer": "x=2d",
+            "acceptableAnswers": [
+              "1",
+              "x=2d"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "x=0에 +Q, x=6d에 +4Q가 고정되어 있다. 두 전하 사이에서 전기장이 0인 위치는?",
+            "explanation": "kQ/x²=4kQ/(6d−x)²에서 6d−x=2x이므로 x=2d이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "쿨롱 법칙",
+          "topic": "정사각형 배치의 힘 벡터합",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              624,
+              635,
+              585,
+              620
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "2.7×10¹⁰ N, 오른쪽 위(45°)",
+          "explanation": [
+            "정사각형의 한 변이 2 m이므로 중심에서 꼭짓점까지의 거리는 √2 m이다.",
+            "서로 대각선 위치인 +2 C와 +2 C가 중심의 +3 C에 작용하는 힘은 크기가 같고 방향이 반대여서 서로 상쇄된다.",
+            "왼쪽 아래 +1 C은 중심을 오른쪽 위로 밀고, 오른쪽 위 −1 C은 중심을 오른쪽 위로 당긴다.",
+            "각 힘은 k(3×1)/(√2)²=3k/2이므로 두 힘의 합력은 3k=2.7×10¹⁰ N이며 방향은 오른쪽 위이다."
+          ],
+          "formulas": [
+            "F=k|q₁q₂|/r²",
+            "F_합=Σ벡터 F"
+          ],
+          "commonMistakes": [
+            "+전하의 반발과 −전하의 인력을 혼동하는 실수",
+            "대각선 길이를 2 m라고 쓰는 실수",
+            "크기가 같은 +2 C 대각선 쌍의 상쇄를 보지 못하는 실수"
+          ],
+          "rubric": [
+            {
+              "criterion": "중심-꼭짓점 거리 √2 m",
+              "points": 2
+            },
+            {
+              "criterion": "+2 C 두 전하의 힘 상쇄 판단",
+              "points": 3
+            },
+            {
+              "criterion": "남은 힘의 크기 계산",
+              "points": 3
+            },
+            {
+              "criterion": "합력 방향",
+              "points": 2
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "1.35×10¹⁰ N, 오른쪽 위(↗)",
+              "2.7×10¹⁰ N, 오른쪽 위(↗)",
+              "2.7×10¹⁰ N, 왼쪽 아래(↙)",
+              "0 N (네 꼭짓점 힘 모두 상쇄)"
+            ],
+            "correctChoice": 2,
+            "answer": "2.7×10¹⁰ N, 오른쪽 위(↗)",
+            "acceptableAnswers": [
+              "2",
+              "2.7×10¹⁰ N, 오른쪽 위(↗)"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "9.0×10⁻³ N, 오른쪽 위(↗)",
+              "4.5×10⁻³ N, 오른쪽 위(↗)",
+              "9.0×10⁻³ N, 왼쪽 아래(↙)",
+              "1.8×10⁻² N, 오른쪽 위(↗)"
+            ],
+            "correctChoice": 1,
+            "answer": "9.0×10⁻³ N, 오른쪽 위(↗)",
+            "acceptableAnswers": [
+              "1",
+              "9.0×10⁻³ N, 오른쪽 위(↗)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "한 변이 2 m인 정사각형 중심에 +1 μC를 둔다. 왼쪽 위·오른쪽 아래에는 각각 +2 μC, 왼쪽 아래에는 +1 μC, 오른쪽 위에는 −1 μC가 있다. 중심 전하가 받는 합력은? (k=9×10⁹ N·m²/C²)",
+            "explanation": "대각선의 두 +2 μC가 만드는 힘은 서로 상쇄된다. 나머지 두 꼭짓점의 힘은 모두 오른쪽 위이고, 각 힘의 크기는 k×(1 μC)²/(√2 m)²=4.5×10⁻³ N이므로 합력은 9.0×10⁻³ N이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "점전하의 전기장",
+          "topic": "대칭 전하 전기장의 벡터합",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              60,
+              195,
+              559,
+              590
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "E=kQ/(√2 a²), +y(위쪽) 방향",
+          "explanation": [
+            "P에서 두 점전하까지의 거리는 √2 a이므로 전기장 크기는 각각 E₀=kQ/(2a²)이다.",
+            "두 +Q가 만드는 전기장의 수평 성분은 서로 상쇄되고, 수직 성분은 같은 방향으로 더해진다.",
+            "E_y=2E₀cos45°=kQ/(√2 a²)이므로 알짜 전기장은 +y(위쪽) 방향이다."
+          ],
+          "formulas": [
+            "E=k|Q|/r²",
+            "E_y=2E₀cos45°"
+          ],
+          "commonMistakes": [
+            "P까지의 거리를 a로 착각하는 실수",
+            "수평 성분을 더하고 수직 성분을 지우는 실수",
+            "전기장을 크기만 더하여 2E₀라고 하는 실수"
+          ],
+          "rubric": [
+            {
+              "criterion": "전하 한 개의 전기장 크기",
+              "points": 3
+            },
+            {
+              "criterion": "대칭성 및 성분 합성",
+              "points": 4
+            },
+            {
+              "criterion": "합력 크기·방향",
+              "points": 3
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "kQ/(2a²), 위쪽(+y)",
+              "kQ/(√2 a²), 위쪽(+y)",
+              "kQ/(√2 a²), 오른쪽(+x)",
+              "√2kQ/a², 위쪽(+y)"
+            ],
+            "correctChoice": 2,
+            "answer": "kQ/(√2 a²), 위쪽(+y)",
+            "acceptableAnswers": [
+              "2",
+              "kQ/(√2 a²), 위쪽(+y)"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "2kQ/(5b²), 위쪽(+y)",
+              "4kQ/(5√5 b²), 오른쪽(+x)",
+              "4kQ/(5√5 b²), 위쪽(+y)",
+              "2kQ/(5√5 b²), 위쪽(+y)"
+            ],
+            "correctChoice": 3,
+            "answer": "4kQ/(5√5 b²), 위쪽(+y)",
+            "acceptableAnswers": [
+              "3",
+              "4kQ/(5√5 b²), 위쪽(+y)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "두 +Q가 (-b,0), (b,0)에 있고 P=(0,2b)이다. P에서 알짜 전기장 크기·방향은?",
+            "explanation": "한 전하에서 P까지 거리는 √5b, 전기장 크기는 kQ/(5b²)이다. y성분 비율 2/√5를 곱하고 두 전하를 합하면 4kQ/(5√5 b²)이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "점전하의 전기장",
+          "topic": "서로 다른 부호 전하의 전기장 벡터합",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              626,
+              195,
+              585,
+              590
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "E=kQ/(√2 a²), +x(오른쪽) 방향",
+          "explanation": [
+            "왼쪽 +Q에 의한 전기장은 P에서 오른쪽 위, 오른쪽 −Q에 의한 전기장은 P에서 오른쪽 아래 방향이다.",
+            "두 전기장 크기는 각각 E₀=kQ/(2a²)로 같다.",
+            "수직 성분은 상쇄되고 수평 성분은 더해져 E_x=2E₀cos45°=kQ/(√2 a²)이다."
+          ],
+          "formulas": [
+            "E=k|Q|/r²",
+            "E_x=2E₀cos45°"
+          ],
+          "commonMistakes": [
+            "−Q가 만드는 전기장 방향을 전하에서 멀어지는 쪽으로 잡는 실수",
+            "수직 성분이 합쳐진다고 착각하는 실수",
+            "5번과 동일하게 위쪽이라고 쓰는 실수"
+          ],
+          "rubric": [
+            {
+              "criterion": "양·음전하 전기장 방향",
+              "points": 3
+            },
+            {
+              "criterion": "수직 성분 상쇄",
+              "points": 3
+            },
+            {
+              "criterion": "수평 성분 합·결과",
+              "points": 4
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "kQ/(√2 a²), 위쪽(+y)",
+              "kQ/(2a²), 오른쪽(+x)",
+              "√2kQ/a², 왼쪽(−x)",
+              "kQ/(√2 a²), 오른쪽(+x)"
+            ],
+            "correctChoice": 4,
+            "answer": "kQ/(√2 a²), 오른쪽(+x)",
+            "acceptableAnswers": [
+              "4",
+              "kQ/(√2 a²), 오른쪽(+x)"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "kQ/(√2 a²), 오른쪽(+x)",
+              "√2kQ/a², 오른쪽(+x)",
+              "√2kQ/a², 위쪽(+y)",
+              "√2kQ/a², 왼쪽(−x)"
+            ],
+            "correctChoice": 2,
+            "answer": "√2kQ/a², 오른쪽(+x)",
+            "acceptableAnswers": [
+              "2",
+              "√2kQ/a², 오른쪽(+x)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "점 (-a,0)에 +2Q, 점 (a,0)에 −2Q가 있다. P=(0,a)에서 알짜 전기장 크기·방향은?",
+            "explanation": "전하 각각의 전기장 크기는 k(2Q)/(2a²)=kQ/a²이다. 두 전기장의 수평 성분이 더해져 크기는 √2kQ/a²이고 방향은 오른쪽이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 7,
+          "maxPoints": 20,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "전기력 평형",
+          "topic": "전기장 속 기울어진 단진자",
+          "difficulty": "상",
+          "image": {
+            "page": 3,
+            "crop": [
+              55,
+              178,
+              543,
+              1122
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "숙제노트 4페이지의 (4) 주기식 오기: g_eff=(2/√3)g가 옳으므로 T=2π√(√3 l/(2g))로 교정. 줄장력과 진동주기의 기호 혼동을 막기 위해 장력은 S로 표기.",
+          "answer": "① 양전하 ② q=mg/(√3 E) ③ 줄의 장력 2mg/√3 ④ T=2π√(√3 l/(2g))",
+          "explanation": [
+            "실이 오른쪽으로 기울어져 있으므로 전기력이 오른쪽으로 작용한다. 전기장이 오른쪽이므로 대전체는 양전하이다.",
+            "평형에서 수평 방향: 줄장력 S·sin30°=qE, 연직 방향: S·cos30°=mg이다.",
+            "따라서 qE=mg·tan30°=mg/√3, q=mg/(√3 E)이다.",
+            "줄의 장력은 S=mg/cos30°=2mg/√3이다.",
+            "작은 진동에서는 중력과 일정한 수평 전기력을 합친 유효중력이 g_eff=√(g²+(qE/m)²)=2g/√3이다.",
+            "그러므로 T=2π√(l/g_eff)=2π√(√3 l/(2g))이다. 원본 숙제노트 4페이지의 주기식은 유효중력을 역으로 적용한 오류여서 교정했다."
+          ],
+          "formulas": [
+            "qE=mg tanθ",
+            "S=mg/cosθ",
+            "g_eff=√[g²+(qE/m)²]=g/cosθ",
+            "T=2π√(l/g_eff) (작은 진폭 근사)"
+          ],
+          "commonMistakes": [
+            "전기장이 오른쪽인데 음전하라고 판단하는 실수",
+            "tan30°와 tan60°를 혼동하는 실수",
+            "줄의 장력 S와 진동 주기 T의 기호를 구분하지 않는 실수",
+            "기존 해설처럼 유효중력을 (√3/2)g로 거꾸로 두는 실수"
+          ],
+          "rubric": [
+            {
+              "criterion": "양전하 판정",
+              "points": 5
+            },
+            {
+              "criterion": "q=mg/(√3E)",
+              "points": 5
+            },
+            {
+              "criterion": "S=2mg/√3",
+              "points": 5
+            },
+            {
+              "criterion": "주기 T=2π√(√3l/(2g))",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "(−), q=mg/(√3 E), S=2mg/√3, T=2π√(√3l/(2g))",
+              "(+), q=√3mg/E, S=mg/2, T=2π√(√3l/(2g))",
+              "(+), q=mg/(√3 E), S=2mg/√3, T=2π√(√3l/(2g))",
+              "(+), q=mg/(√3 E), S=2mg/√3, T=2π√(2l/(√3g))"
+            ],
+            "correctChoice": 3,
+            "answer": "(+), q=mg/(√3 E), S=2mg/√3, T=2π√(√3l/(2g))",
+            "acceptableAnswers": [
+              "3",
+              "(+), q=mg/(√3 E), S=2mg/√3, T=2π√(√3l/(2g))"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "(−), q=mg/E, S=√2mg, T=2π√(l/(√2g))",
+              "(+), q=√2mg/E, S=mg, T=2π√(l/g)",
+              "(+), q=mg/E, S=√2mg, T=2π√(√2l/g)",
+              "(+), q=mg/E, S=√2mg, T=2π√(l/(√2g))"
+            ],
+            "correctChoice": 4,
+            "answer": "(+), q=mg/E, S=√2mg, T=2π√(l/(√2g))",
+            "acceptableAnswers": [
+              "4",
+              "(+), q=mg/E, S=√2mg, T=2π√(l/(√2g))"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "오른쪽 균일 전기장 E에 놓인 대전체가 연직선에서 45° 오른쪽으로 기울어 평형이다. 대전체의 전하 부호, q의 크기, 장력 S, 작은 진동의 주기 T를 고르시오.",
+            "explanation": "tan45°=1이므로 qE=mg이고 S=mg/cos45°=√2mg이다. 유효중력은 √2g, 주기는 2π√(l/(√2g))이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 8,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "경사면에서의 전기력",
+          "topic": "전기력·중력의 평형과 마찰 조건",
+          "difficulty": "상",
+          "image": {
+            "page": 3,
+            "crop": [
+              618,
+              195,
+              592,
+              890
+            ]
+          },
+          "reviewStatus": "needs-review",
+          "correctionNote": "원문에서 마찰력 존재 여부/마찰계수가 주어지지 않음. 마찰 없는 경우라는 추가 조건이 있어야 제공된 풀이 E=mg/q, mg/(√3q)를 적용할 수 있으며, (1)에서는 N=0인 접촉 경계 상태다. 교사 확인 전 학생 정답·해설 자동 공개 보류.",
+          "answer": "※ 마찰 없는 빗면으로 해석한 조건부 답: (1) E=mg/q (2) E=mg/(√3 q); 원문 마찰 조건 누락으로 교사 확인 필요",
+          "explanation": [
+            "원문 그림에서 블록의 전하는 +q이고 빗면의 경사각은 30°이다. 다만 원문에서 정지 마찰의 유무가 제시되지 않아 정지 조건을 유일하게 결정할 수 없다.",
+            "마찰이 없다고 추가 가정하면 경사면 방향 힘의 평형을 사용한다.",
+            "(1) 전기장이 연직 위쪽일 때 중력과 전기력의 경사면 방향 성분은 (mg−qE)sin30°로, E=mg/q가 되어야 한다. 이 순간 N=(mg−qE)cos30°=0으로 접촉의 경계이다.",
+            "(2) 전기장이 오른쪽이면 경사면 위쪽 방향 전기력 성분은 qEcos30°, 아래쪽 중력 성분은 mg sin30°이다. 따라서 E=mg tan30°/q=mg/(√3q)이다.",
+            "마찰이 존재하면 정지 마찰력도 미지수로 들어가므로 원문의 E 값은 유일하지 않다. 교사 확인 전 자동 해설 공개를 보류한다."
+          ],
+          "formulas": [
+            "ΣF_∥=0 (마찰이 없는 경우)",
+            "(mg−qE)sinθ=0 (전기장 ↑)",
+            "qEcosθ=mg sinθ (전기장 →)",
+            "정지마찰이 있다면 |f_s|≤μ_s N도 고려"
+          ],
+          "commonMistakes": [
+            "마찰 유무를 확인하지 않고 평형식을 바로 확정하는 실수",
+            "연직 방향 전기장과 경사면 평행 방향의 전기장 성분을 혼동하는 실수",
+            "E=mg/q이면 N=0인 접촉 경계임을 놓치는 실수"
+          ],
+          "rubric": [
+            {
+              "criterion": "(마찰 없음 가정) 위쪽 전기장 E=mg/q",
+              "points": 5
+            },
+            {
+              "criterion": "(마찰 없음 가정) 오른쪽 전기장 E=mg/(√3q)",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "위쪽 E=mg/(2q), 오른쪽 E=mg/(√3q)",
+              "(마찰이 없다고 가정) 위쪽 E=mg/q, 오른쪽 E=mg/(√3q)",
+              "위쪽 E=mg/q, 오른쪽 E=√3mg/q",
+              "위쪽 E=mg/q, 오른쪽 E=mg/q"
+            ],
+            "correctChoice": 2,
+            "answer": "(마찰이 없다고 가정) 위쪽 E=mg/q, 오른쪽 E=mg/(√3q)",
+            "acceptableAnswers": [
+              "2",
+              "(마찰이 없다고 가정) 위쪽 E=mg/q, 오른쪽 E=mg/(√3q)"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "E=mg/q, N=√2mg",
+              "E=mg/(2q), N=mg/√2",
+              "E=mg/(2q), N=√2mg",
+              "E=mg/(2√2q), N=mg"
+            ],
+            "correctChoice": 3,
+            "answer": "E=mg/(2q), N=√2mg",
+            "acceptableAnswers": [
+              "3",
+              "E=mg/(2q), N=√2mg"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "마찰이 없는 경사각 45°의 빗면에 +2q인 물체(질량 m)가 정지해 있다. 균일한 전기장을 수평 오른쪽으로 가할 때 필요한 전기장 E와 수직항력 N은?",
+            "explanation": "경사면 방향에서 2qEcos45°=mg sin45°이므로 E=mg/(2q)이다. 수직항력은 N=mgcos45°+2qEsin45°=√2mg이다."
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.6.8-physics2-r11-electric-field"
     },
     {
       "examId": "physics2-basic-r12",
@@ -16731,5 +17473,5 @@
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.6.2-physics2-mechanics-total"
+  "featureVersion": "3.6.8-physics2-r11-electric-field"
 }

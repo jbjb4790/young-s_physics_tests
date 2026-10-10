@@ -1,10 +1,10 @@
 {
   "name": "youngs-physics-review-comprehensive-analysis",
-  "version": "3.6.7",
+  "version": "3.6.8",
   "private": true,
   "scripts": {
-    "test": "node --test tests/run-tests.mjs tests/student-merge.test.mjs tests/share-navigation.test.mjs tests/share-preview.test.mjs",
+    "test": "node --test tests/run-tests.mjs tests/student-merge.test.mjs tests/share-navigation.test.mjs tests/share-preview.test.mjs tests/physics2-r11.test.mjs",
     "serve": "python3 -m http.server 8080 -d site"
   },
-  "description": "Young's Physics class roster, lifetime student portals, cumulative evaluation, secure student profile merging with preview/conflict resolution/backup, guided assessment scoring and export; safer portal sharing with direct-link escape hatch; dynamic per-student Kakao OG preview via Cloudflare Worker with browser-only portal credentials"
+  "description": "Young's Physics class roster, lifetime student portals, cumulative evaluation, secure student profile merging with preview/conflict resolution/backup, guided assessment scoring and export; safer portal sharing with direct-link escape hatch; dynamic per-student Kakao OG preview via Cloudflare Worker with browser-only portal credentials; Physics II round 11 verified/conditionally held question bank"
 }
