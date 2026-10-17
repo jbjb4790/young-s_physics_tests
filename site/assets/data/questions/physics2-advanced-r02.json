@@ -1,0 +1,752 @@
+{
+  "examId": "physics2-advanced-r02",
+  "courseId": "physics2-advanced",
+  "round": 2,
+  "title": "물리2심화 2회차 복습 테스트 · 힘과 돌림힘의 평형",
+  "shortTitle": "2회차 힘과 돌림힘의 평형",
+  "status": "ready",
+  "assessmentType": "weekly",
+  "section": "mechanics",
+  "examDate": "",
+  "questionCount": 8,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics2-advanced/r02.pdf",
+  "solutionPdf": "assets/documents/physics2-advanced/r02-verified-solution.pdf",
+  "pages": [
+    "assets/pages/physics2-advanced/r02-p1.png",
+    "assets/pages/physics2-advanced/r02-p2.png",
+    "assets/pages/physics2-advanced/r02-p3.png"
+  ],
+  "reviewStatus": "corrected",
+  "configVersion": "2026.10.16-physics2-advanced-r02-reviewed-v3.7.1",
+  "sourceTitle": "물리2심화 Quiz 2회.pdf / 물리2심화 Quiz 2회 해답.pdf",
+  "sourceNote": "원문 기준 8문항 100점(10·10·10·10·10·20·20·10점). 2번 해답에 1/2 계수 누락이 있어 검수본에는 수평·수직 평형을 모두 사용한 정정식을 반영했으며 원본 해답 PDF를 별도 보존. 1번 질량 6kg과 중력가속도 g=10m/s²를 해설에 명시. 원문의 “초파를 그리면 2점”은 기본 100점 외 가산점으로 이 회차의 자동 채점 총점에 포함하지 않음.",
+  "coreNote": {
+    "summary": "힘의 정적 평형, 매끄러운 빗면, 도르래와 대칭 체인, 균일 막대·간판의 돌림힘, 중첩 막대의 장력, 턱을 넘는 바퀴의 임계조건을 다루는 물리2심화 2회차 복습 시험",
+    "concepts": [
+      "정지 또는 등속 운동하는 물체/계에서는 수평·수직 알짜힘이 각각 0이다.",
+      "회전 평형에서는 기준축에 대한 돌림힘의 대수합이 0이다. 미지의 반력이 있는 작용점을 회전축으로 잡으면 반력의 돌림힘을 제거할 수 있다.",
+      "빗면에 비스듬한 힘이 작용하면 평행·수직 성분을 각각 분해해야 한다.",
+      "이상적인 도르래와 가벼운 줄은 같은 줄에서 장력이 일정하며 움직도르래가 두 줄의 장력을 합해 지지한다.",
+      "대칭으로 매달린 유연한 체인의 최저점 장력은 수평방향 성분이다.",
+      "균일 막대의 무게는 중점에 작용하고, 다른 막대와 연결된 줄의 작용·반작용 방향에 유의한다.",
+      "바퀴가 턱에 막 걸릴 때 바닥 수직항력이 0이 되며 턱 모서리를 회전축으로 잡는다."
+    ],
+    "formulas": [
+      "ΣFₓ=0, ΣFᵧ=0",
+      "Στ_O=0",
+      "τ=F d_⊥",
+      "W_균일막대=mg (중점 작용)",
+      "대칭 체인: T sinθ=W/2, T cosθ=H",
+      "턱 임계: F_min=mg√(2rh−h²)/(2r−h)"
+    ],
+    "mistakes": [
+      "2번 해답에서 누락된 1/2 계수를 그대로 적용함",
+      "힘의 방향에 따른 sin·cos를 바꿈",
+      "균일 막대의 무게를 빠뜨림",
+      "좌우 도르래·막대 연결부의 장력 방향을 혼동함",
+      "턴 축에 따른 수직거리 대신 힘의 크기만 곱함"
+    ],
+    "checklist": [
+      "평형 문제의 물체 또는 물체계를 먼저 나눴는가?",
+      "수평/수직 힘의 합과 돌림힘의 합이 각각 0인지 확인했는가?",
+      "회전축을 힌지, 여러 힘의 작용점 또는 접촉 모서리에 적절히 잡았는가?",
+      "균일 막대의 자중을 중점에 포함했는가?",
+      "2번 원문 해답의 계수 누락을 인식했는가?",
+      "바퀴가 턱에 걸릴 때 바닥 수직항력이 0이라는 의미를 이해했는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "힘의 평형",
+      "topic": "빗면에서 비스듬한 힘과 수직항력",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          15,
+          168,
+          598,
+          330
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "원문 “무게 6kg”은 질량 6 kg으로 해석. 공식 숫자 정답에 사용된 중력가속도는 g=10 m/s²로 명시해 풀이에 적용하며 원문 시험지 자체는 수정하지 않음.",
+      "answer": "F = 20√3 N, 수직항력 N = 20√3 N (g = 10 m/s²)",
+      "explanation": [
+        "원문의 “무게 6kg”은 질량 6 kg으로 해석하고 제공 정답과 같이 g=10 m/s²를 적용한다. 빗면은 매끄러우므로 마찰력은 없다.",
+        "빗면에 평행한 방향의 힘 평형: F cos30° = mg sin30° = 60×(1/2)=30 N. 따라서 F=20√3 N.",
+        "빗면에 수직한 방향의 힘 평형: N + F sin30° = mg cos30°. 따라서 N = 60(√3/2) − 20√3(1/2)=20√3 N.",
+        "힘이 물체를 빗면에서 떼어 내는 방향의 수직 성분을 가지므로 수직항력은 그만큼 감소한다."
+      ],
+      "formulas": [
+        "ΣF∥=0 → F cos30°=mg sin30°",
+        "ΣF⊥=0 → N=mg cos30°−F sin30°"
+      ],
+      "commonMistakes": [
+        "힘 F가 빗면에 평행하다고 착각하여 cos30°를 생략함",
+        "힘 F의 위쪽 수직 성분을 수직항력에 더해 계산함",
+        "원문의 kg 표기를 힘의 단위 N으로 취급함"
+      ],
+      "rubric": [
+        {
+          "criterion": "F의 평행 성분에 대한 힘의 평형 및 F 계산",
+          "points": 5
+        },
+        {
+          "criterion": "수직방향 힘의 평형 및 N 계산",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "F=30 N, N=30√3 N",
+          "F=20√3 N, N=20√3 N",
+          "F=20√3 N, N=40√3 N",
+          "F=40 N, N=20 N"
+        ],
+        "correctChoice": 2,
+        "answer": "F=20√3 N, N=20√3 N",
+        "acceptableAnswers": [
+          "2",
+          "F=20√3 N, N=20√3 N"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 1번: 질량 6 kg의 물체가 경사각 30° 빗면에서 빗면과 30°를 이루는 힘 F를 받아 정지한다(g=10). F, N의 조합은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "F=20√2 N, N=20(√3−1) N",
+          "F=20 N, N=20√3 N",
+          "F=20√2 N, N=20(√3+1) N",
+          "F=40√2 N, N=20√3 N"
+        ],
+        "correctChoice": 1,
+        "answer": "F=20√2 N, N=20(√3−1) N",
+        "acceptableAnswers": [
+          "1",
+          "F=20√2 N, N=20(√3−1) N"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 질량 4 kg 물체가 마찰 없는 30° 빗면에서 빗면과 45°를 이루는 위쪽 힘 F로 정지해 있다(g=10). F와 수직항력 N은?",
+        "explanation": "빗면 방향: F cos45°=40 sin30°=20이므로 F=20√2 N. 수직방향: N=40 cos30°−F sin45°=20√3−20 N."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 2,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "힘의 평형",
+      "topic": "두 경사 줄의 수평·수직 힘 평형",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          23,
+          682,
+          584,
+          500
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "제공된 해답 PDF 1쪽 2번은 수직 평형식을 변형하는 과정에서 1/2를 빠뜨림. 정정: M=(m₁+√3m₂)/2, 수평 평형까지 적용하면 m₂=√3m₁, M=2m₁=2m₂/√3. 원본 해답은 증빙용으로 별도 보관.",
+      "answer": "m₁ cos30°=m₂ cos60° → m₁=m₂/√3; M=m₁ sin30°+m₂ sin60°=(m₁+√3m₂)/2=2m₁=2m₂/√3",
+      "explanation": [
+        "좌우 도르래는 마찰이 없고 추들이 정지하므로 두 사선 줄의 장력은 각각 T₁=m₁g, T₂=m₂g이다.",
+        "가운데 M 물체의 수평방향 평형: T₁ cos30°=T₂ cos60° → m₁√3/2=m₂/2 → m₂=√3m₁.",
+        "수직방향 평형: T₁ sin30°+T₂ sin60°=Mg → M=(m₁+√3m₂)/2.",
+        "수평 평형에서 구한 m₂=√3m₁을 대입하면 M=2m₁=2m₂/√3이다.",
+        "제공 해답의 첫 수직 평형식은 맞지만 이후 M=m₁+√3m₂로 정리한 줄에서 1/2 계수가 누락되었다. 공식 해답의 이 최종식은 채점 기준으로 쓰지 않는다."
+      ],
+      "formulas": [
+        "m₁g cos30°=m₂g cos60°",
+        "m₁g sin30°+m₂g sin60°=Mg",
+        "M=(m₁+√3m₂)/2=2m₁"
+      ],
+      "commonMistakes": [
+        "원본 해설에서 빠진 1/2를 그대로 옮겨 써 M을 두 배로 계산함",
+        "수평 평형을 적용하지 않고 수직방향 식만 제출함",
+        "각도가 수평면 기준임을 잊고 sin과 cos를 뒤집음"
+      ],
+      "rubric": [
+        {
+          "criterion": "장력 확인 및 수평방향 힘 평형",
+          "points": 4
+        },
+        {
+          "criterion": "수직방향 힘 평형과 1/2 계수",
+          "points": 4
+        },
+        {
+          "criterion": "질량 사이 관계식 정리",
+          "points": 2
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "m₁=√3m₂, M=m₁+√3m₂",
+          "m₁=m₂, M=m₁+m₂",
+          "m₁=m₂/√3, M=(m₁+√3m₂)/2",
+          "m₁=m₂/√3, M=m₁+√3m₂"
+        ],
+        "correctChoice": 3,
+        "answer": "m₁=m₂/√3, M=(m₁+√3m₂)/2",
+        "acceptableAnswers": [
+          "3",
+          "m₁=m₂/√3, M=(m₁+√3m₂)/2"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 2번: 왼쪽 줄 30°, 오른쪽 줄 60°(수평 기준)이며 가운데 M과 양 끝 m₁,m₂가 정지해 있다. 옳은 관계식은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "m₁=2m₂, M=m₁/√2",
+          "m₁=m₂, M=√2m₁",
+          "m₁=m₂, M=2m₁",
+          "m₁=m₂/√2, M=m₂"
+        ],
+        "correctChoice": 2,
+        "answer": "m₁=m₂, M=√2m₁",
+        "acceptableAnswers": [
+          "2",
+          "m₁=m₂, M=√2m₁"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 좌우 마찰 없는 도르래 줄이 모두 수평과 45°를 이루며 가운데 질량 M을 받치고, 양 끝 추의 질량이 m₁,m₂일 때 모두 정지한다. 옳은 식은?",
+        "explanation": "수평방향 평형에서 m₁g cos45°=m₂g cos45° → m₁=m₂. 수직방향: Mg=(m₁+m₂)g sin45°=√2 m₁g."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 3,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "연속체의 정적 평형",
+      "topic": "대칭 체인의 고리 장력과 기울기",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          630,
+          170,
+          587,
+          578
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "θ=45°, 각 고리가 체인에 작용하는 힘 T=20√2 N",
+      "explanation": [
+        "대칭인 체인에 작용하는 전체 아래쪽 힘은 40 N이므로 각 고리 장력의 수직 성분은 40/2=20 N이다.",
+        "가장 낮은 지점의 장력은 수평 방향이며 그 크기가 20 N이다. 정적 체인에서 수평 장력 성분은 일정하므로 T cosθ=20 N.",
+        "각 고리에서 T sinθ=20 N이므로 tanθ=20/20=1 → θ=45°.",
+        "T=√(20²+20²)=20√2 N이다."
+      ],
+      "formulas": [
+        "2T sinθ=40 N",
+        "T cosθ=20 N",
+        "tanθ=(40/2)/20=1",
+        "T=√((W/2)²+H²)"
+      ],
+      "commonMistakes": [
+        "40 N을 한쪽 고리의 수직 하중으로 사용함",
+        "가장 낮은 점에서 장력 방향을 수직으로 착각함",
+        "고리의 장력을 20 N이라고 그대로 답함"
+      ],
+      "rubric": [
+        {
+          "criterion": "고리의 각도 θ=45°를 힘 평형으로 계산",
+          "points": 5
+        },
+        {
+          "criterion": "각 고리 장력 T=20√2 N 계산",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "θ=30°, T=40 N",
+          "θ=45°, T=20√2 N",
+          "θ=60°, T=20√3 N",
+          "θ=45°, T=20 N"
+        ],
+        "correctChoice": 2,
+        "answer": "θ=45°, T=20√2 N",
+        "acceptableAnswers": [
+          "2",
+          "θ=45°, T=20√2 N"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 3번: 무게 40 N의 대칭 체인, 최저점 장력 20 N일 때 각 고리에서 수평면과 이루는 각도와 고리의 힘은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "tanθ=1/3, T=10√10 N",
+          "tanθ=3, T=30 N",
+          "tanθ=3, T=10√10 N",
+          "tanθ=6, T=20√10 N"
+        ],
+        "correctChoice": 3,
+        "answer": "tanθ=3, T=10√10 N",
+        "acceptableAnswers": [
+          "3",
+          "tanθ=3, T=10√10 N"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 무게 60 N의 대칭 체인의 가장 낮은 점에서 수평 장력은 10 N이다. 각 고리의 접선이 수평과 이루는 각 θ 및 장력 T는?",
+        "explanation": "한쪽 고리의 수직 성분은 W/2=30 N, 수평 성분은 10 N. tanθ=30/10=3, T=√(30²+10²)=10√10 N."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 4,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "도르래·역학적 평형",
+      "topic": "사람이 당기는 움직도르래 그네",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          630,
+          768,
+          583,
+          839
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "사람이 줄을 당기는 힘 F=mg, 그네가 사람에게 작용하는 수직항력 N=mg",
+      "explanation": [
+        "사람과 그네의 총 질량은 3m이며 함께 등속 상승하므로 가속도는 0이다.",
+        "사람+그네+움직도르래를 하나의 계로 보면 움직도르래를 위로 당기는 장력 2F와 사람 손을 위로 당기는 장력 F가 있다.",
+        "따라서 3F=3mg → F=mg.",
+        "사람만 분리해서 보면 위쪽 힘은 수직항력 N과 손에 작용하는 줄 장력 F, 아래쪽 힘은 2mg이다. N+F=2mg → N=mg."
+      ],
+      "formulas": [
+        "전체 계: 3F=(m+2m)g",
+        "사람: N+F=2mg"
+      ],
+      "commonMistakes": [
+        "움직도르래의 장력 2F만 세고 사람이 직접 받는 장력 F를 놓침",
+        "손에서 줄을 아래로 당기므로 줄이 사람에게도 아래로 작용한다고 판단함",
+        "전체 무게에서 그네 무게 mg를 빠뜨림"
+      ],
+      "rubric": [
+        {
+          "criterion": "전체 계에 작용하는 3F와 3mg로 F 계산",
+          "points": 5
+        },
+        {
+          "criterion": "사람만의 힘 평형으로 N 계산",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "F=3mg/2, N=mg/2",
+          "F=mg, N=2mg",
+          "F=mg, N=mg",
+          "F=3mg, N=mg"
+        ],
+        "correctChoice": 3,
+        "answer": "F=mg, N=mg",
+        "acceptableAnswers": [
+          "3",
+          "F=mg, N=mg"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 4번: 질량 m 그네에 질량 2m 사람이 앉아 등속 상승한다. 한 줄의 자유 끝을 사람이 당길 때 F, N은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "F=mg, N=2mg",
+          "F=4mg/3, N=5mg/3",
+          "F=2mg, N=mg",
+          "F=4mg/3, N=4mg/3"
+        ],
+        "correctChoice": 2,
+        "answer": "F=4mg/3, N=5mg/3",
+        "acceptableAnswers": [
+          "2",
+          "F=4mg/3, N=5mg/3"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 동일한 줄·움직도르래 그네에서 그네 질량 m, 사람 질량 3m이며 함께 등속 상승한다. 손으로 줄을 당기는 F와 그네가 사람에게 주는 수직항력 N은?",
+        "explanation": "전체 계에서 3F=(m+3m)g → F=4mg/3. 사람의 평형: N+F=3mg → N=3mg−4mg/3=5mg/3."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 5,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "돌림힘의 평형",
+      "topic": "힌지 축의 막대 돌림힘 계산",
+      "difficulty": "중",
+      "image": {
+        "page": 2,
+        "crop": [
+          22,
+          178,
+          585,
+          382
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "F=230 N (막대 질량 8 kg, g=10 m/s²)",
+      "explanation": [
+        "왼쪽 힌지를 회전축으로 잡으면 힌지 반력이 만드는 돌림힘은 0이다.",
+        "막대는 균일하므로 질량 8 kg에 의한 무게 80 N은 x=L/2에 작용한다. 다른 하향 힘은 120 N(x=L/3), 180 N(x=5L/6)이다.",
+        "힌지 기준 돌림힘 평형: F L=120(L/3)+80(L/2)+180(5L/6).",
+        "F=40+40+150=230 N(위쪽)이다."
+      ],
+      "formulas": [
+        "Στ힌지=0",
+        "F L=120L/3+(8×10)L/2+180×5L/6",
+        "F=230 N"
+      ],
+      "commonMistakes": [
+        "막대 자체의 무게 80 N을 누락함",
+        "막대의 무게를 힌지에 집중된 힘으로 처리함",
+        "위/아래 힘의 회전방향을 구분하지 않음"
+      ],
+      "rubric": [
+        {
+          "criterion": "힌지 기준 돌림힘 식(막대 자중 포함)",
+          "points": 6
+        },
+        {
+          "criterion": "F=230 N 계산과 방향",
+          "points": 4
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "F=190 N",
+          "F=230 N",
+          "F=270 N",
+          "F=310 N"
+        ],
+        "correctChoice": 2,
+        "answer": "F=230 N",
+        "acceptableAnswers": [
+          "2",
+          "F=230 N"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 5번: 8 kg 균일 막대의 x=L/3에서 120 N, x=5L/6에서 180 N이 아래로 작용한다(g=10). 오른쪽 끝의 위쪽 힘 F는?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "130 N",
+          "150 N",
+          "170 N",
+          "210 N"
+        ],
+        "correctChoice": 3,
+        "answer": "170 N",
+        "acceptableAnswers": [
+          "3",
+          "170 N"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 질량 6 kg인 균일 막대가 왼쪽에서 힌지 지지된다. x=L/4에서 80 N, x=3L/4에서 160 N이 아래로 작용한다(g=10). 오른쪽 끝에서 필요한 위쪽 힘 F는?",
+        "explanation": "힌지 기준: FL=80(L/4)+60(L/2)+160(3L/4)=20L+30L+120L → F=170 N."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 6,
+      "maxPoints": 20,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "돌림힘·힘의 평형",
+      "topic": "수평 간판 막대의 장력과 힌지 반력",
+      "difficulty": "상",
+      "image": {
+        "page": 2,
+        "crop": [
+          22,
+          610,
+          576,
+          950
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "줄 장력 T=4mg/√3; 힌지 반력 수평 성분 Fₓ=2mg/√3(오른쪽), 수직 성분 Fᵧ=mg(위쪽)",
+      "explanation": [
+        "힌지에서 막대 오른쪽 끝까지 L, 막대의 무게 mg는 L/2, 간판의 무게 2mg는 3L/4 지점에 작용한다.",
+        "힌지를 축으로 돌림힘 평형: T sin60°·L=mg·L/2+2mg·(3L/4)=2mgL.",
+        "따라서 T=2mg/sin60°=4mg/√3이다.",
+        "수평 힘 평형: Fₓ−T cos60°=0 → Fₓ=2mg/√3이며 힌지는 오른쪽으로 민다.",
+        "수직 힘 평형: Fᵧ+T sin60°−(mg+2mg)=0 → Fᵧ=mg(위쪽)."
+      ],
+      "formulas": [
+        "T L sin60°=(mg)(L/2)+(2mg)(3L/4)",
+        "T=4mg/√3",
+        "Fₓ=T cos60°=2mg/√3",
+        "Fᵧ=3mg−T sin60°=mg"
+      ],
+      "commonMistakes": [
+        "줄의 전체 장력 T에 L을 곱하고 sin60°를 빠뜨림",
+        "간판 위치 3L/4를 L/4로 읽음",
+        "힌지 수평력의 방향을 왼쪽으로 답함"
+      ],
+      "rubric": [
+        {
+          "criterion": "힌지 축 돌림힘으로 T 계산",
+          "points": 10
+        },
+        {
+          "criterion": "힌지 수평 반력 크기·방향",
+          "points": 5
+        },
+        {
+          "criterion": "힌지 수직 반력 크기·방향",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "T=4mg/√3, Fₓ=2mg/√3(오른쪽), Fᵧ=mg(위쪽)",
+          "T=2mg, Fₓ=mg(오른쪽), Fᵧ=2mg(위쪽)",
+          "T=4mg/√3, Fₓ=2mg/√3(왼쪽), Fᵧ=mg(위쪽)",
+          "T=4mg/√3, Fₓ=2mg/√3(오른쪽), Fᵧ=3mg(위쪽)"
+        ],
+        "correctChoice": 1,
+        "answer": "T=4mg/√3, Fₓ=2mg/√3(오른쪽), Fᵧ=mg(위쪽)",
+        "acceptableAnswers": [
+          "1",
+          "T=4mg/√3, Fₓ=2mg/√3(오른쪽), Fᵧ=mg(위쪽)"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 6번: 균일 막대 m, 간판 2m(힌지에서 3L/4), 끝 줄이 수평 막대와 60°이다. 옳은 장력과 힌지 성분은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "T=mg, (mg/2, mg)",
+          "T=2mg, (√3mg, mg)",
+          "T=2mg, (√3mg, 0)",
+          "T=√3mg, (2mg, mg)"
+        ],
+        "correctChoice": 2,
+        "answer": "T=2mg, (√3mg, mg)",
+        "acceptableAnswers": [
+          "2",
+          "T=2mg, (√3mg, mg)"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 균일 막대 질량 m이 수평 힌지로 고정되고, 힌지에서 L/2에 질량 m인 간판이 달린다. 오른쪽 끝 줄은 수평과 30°를 이룬다. 줄 장력 T와 힌지 반력 (Fₓ,Fᵧ)은?",
+        "explanation": "힌지 기준: T sin30°L=mg(L/2)+mg(L/2)=mgL → T=2mg. 수평 반력은 T cos30°=√3mg(오른쪽), 수직 반력은 2mg−T sin30°=mg(위쪽)."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 7,
+      "maxPoints": 20,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "다중 막대의 돌림힘",
+      "topic": "매달린 A·B 막대의 줄 장력",
+      "difficulty": "상",
+      "image": {
+        "page": 2,
+        "crop": [
+          626,
+          160,
+          589,
+          965
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "B 지지 줄: 왼쪽 T₁=mg/2, 오른쪽 T₂=5mg/2. A 천장 줄: 왼쪽 T₃=11mg/3, 오른쪽 T₄=13mg/3",
+      "explanation": [
+        "아래쪽 막대 B(길이 2L, 질량 m)를 먼저 분리한다. B 중심의 무게 mg는 왼쪽에서 L, B 오른쪽의 질량 2m 블록은 왼쪽에서 2L에 작용한다.",
+        "B의 왼쪽 지지점 기준: T₂(2L)=mg·L+2mg·(2L) → T₂=5mg/2.",
+        "B의 수직 힘 평형: T₁+T₂=3mg → T₁=mg/2.",
+        "이제 위쪽 막대 A(길이 6L, 질량 2m)의 왼쪽 천장 지지점을 축으로 잡는다. A에는 x=L에서 3mg, x=3L에서 2mg, x=4L에서 B의 장력 T₁, x=6L에서 B의 장력 T₂가 아래로 작용한다.",
+        "T₄(6L)=3mg·L+2mg·3L+(mg/2)·4L+(5mg/2)·6L=26mgL → T₄=13mg/3.",
+        "A의 수직 평형: T₃+T₄=(3m+2m)g+T₁+T₂=8mg → T₃=11mg/3."
+      ],
+      "formulas": [
+        "B: 2LT₂=Lmg+2L(2mg)",
+        "T₁+T₂=3mg",
+        "A: 6LT₄=L(3mg)+3L(2mg)+4LT₁+6LT₂",
+        "T₃+T₄=8mg"
+      ],
+      "commonMistakes": [
+        "막대 B의 두 줄이 막대 A에는 아래로 당기는 힘으로 작용함을 놓침",
+        "막대 A의 무게 중심 위치를 2L/4L로 오해함",
+        "블록 2m의 무게와 막대 B 질량 m의 무게를 합산하지 않음"
+      ],
+      "rubric": [
+        {
+          "criterion": "B 막대의 왼쪽 장력 T₁=mg/2",
+          "points": 5
+        },
+        {
+          "criterion": "B 막대의 오른쪽 장력 T₂=5mg/2",
+          "points": 5
+        },
+        {
+          "criterion": "A 막대의 왼쪽 천장 장력 T₃=11mg/3",
+          "points": 5
+        },
+        {
+          "criterion": "A 막대의 오른쪽 천장 장력 T₄=13mg/3",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "B: (mg/2, 5mg/2), A: (11mg/3, 13mg/3)",
+          "B: (3mg/2, 3mg/2), A: (4mg,4mg)",
+          "B: (mg/2, 5mg/2), A: (13mg/3, 11mg/3)",
+          "B: (5mg/2, mg/2), A: (11mg/3, 13mg/3)"
+        ],
+        "correctChoice": 1,
+        "answer": "B: (mg/2, 5mg/2), A: (11mg/3, 13mg/3)",
+        "acceptableAnswers": [
+          "1",
+          "B: (mg/2, 5mg/2), A: (11mg/3, 13mg/3)"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 7번: A(6L,2m)의 x=4L,6L에 B(2L,m)를 매달고 A의 x=L에 3m 블록, B 오른쪽에 2m 블록이 있다. B(왼/오), A(왼/오) 줄 장력의 조합은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "B: (mg,mg), A: (2mg,3mg)",
+          "B: (mg/2,3mg/2), A: (3mg,2mg)",
+          "B: (mg/2,3mg/2), A: (2mg,3mg)",
+          "B: (3mg/2,mg/2), A: (2mg,3mg)"
+        ],
+        "correctChoice": 3,
+        "answer": "B: (mg/2,3mg/2), A: (2mg,3mg)",
+        "acceptableAnswers": [
+          "3",
+          "B: (mg/2,3mg/2), A: (2mg,3mg)"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 균일 막대 A(길이 4L, 질량 2m)가 양 끝에서 매달리고 A의 x=2L, 4L에 B(길이 2L, 질량 m)를 매단다. A의 x=L에 m 블록, B 오른쪽에 m 블록이 있다. B의 왼/오 장력 및 A의 왼/오 장력은?",
+        "explanation": "B: 2LT₂=mgL+mg·2L → T₂=3mg/2, T₁=mg/2. A 왼쪽 기준 4LT₄=mgL+2mg·2L+(mg/2)·2L+(3mg/2)·4L=12mgL → T₄=3mg. 총 아래쪽 5mg이므로 T₃=2mg."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 8,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "돌림힘의 평형",
+      "topic": "바퀴가 턱에 막 걸리는 임계 힘",
+      "difficulty": "상",
+      "image": {
+        "page": 3,
+        "crop": [
+          25,
+          178,
+          584,
+          590
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "F_min = mg√(2rh−h²)/(2r−h) (0<h<r)",
+      "explanation": [
+        "바퀴가 턱을 넘기 시작하는 순간에는 지면 수직항력이 0이 되고, 턱 모서리가 순간적인 회전축이 된다.",
+        "턱 모서리와 바퀴 중심의 수직 거리는 r−h이고, 중심과 모서리의 거리는 r이므로 수평 거리는 √[r²−(r−h)²]=√(2rh−h²)이다.",
+        "무게 mg의 모서리 기준 돌림힘 팔은 이 수평 거리이고, 바퀴 꼭대기에서 수평으로 당기는 F의 돌림힘 팔은 2r−h이다.",
+        "넘기기 직전 임계 돌림힘 평형: F(2r−h)=mg√(2rh−h²). 따라서 F_min=mg√(2rh−h²)/(2r−h).",
+        "정적 임계조건이며 실의 질량 및 축·접촉 마찰에 의한 별도 손실은 무시한다."
+      ],
+      "formulas": [
+        "d_무게=√[r²−(r−h)²]=√(2rh−h²)",
+        "d_F=2r−h",
+        "F_min(2r−h)=mg√(2rh−h²)"
+      ],
+      "commonMistakes": [
+        "회전축을 바퀴 중심 또는 지면 접촉점으로 잡음",
+        "수평으로 작용하는 F의 힘팔을 수평 거리로 착각함",
+        "턱 높이 h를 바퀴 중심 높이 r과 혼동함"
+      ],
+      "rubric": [
+        {
+          "criterion": "턱 모서리 축과 무게의 수평 모멘트 팔 계산",
+          "points": 4
+        },
+        {
+          "criterion": "F의 힘팔 2r−h 설정",
+          "points": 3
+        },
+        {
+          "criterion": "최소 힘 식 유도",
+          "points": 3
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "mg(2r−h)/√(2rh−h²)",
+          "mg√(2rh−h²)/r",
+          "mg√(2rh−h²)/(2r−h)",
+          "mg(r−h)/(2r−h)"
+        ],
+        "correctChoice": 3,
+        "answer": "mg√(2rh−h²)/(2r−h)",
+        "acceptableAnswers": [
+          "3",
+          "mg√(2rh−h²)/(2r−h)"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 8번: 반지름 r, 질량 m인 바퀴를 꼭대기에서 수평으로 당겨 높이 h(0<h<r)인 턱을 넘기려 한다. 임계 최소 힘 F는?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "mg/√3",
+          "√3mg",
+          "mg/2",
+          "2mg/√3"
+        ],
+        "correctChoice": 1,
+        "answer": "mg/√3",
+        "acceptableAnswers": [
+          "1",
+          "mg/√3"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 같은 바퀴 턱 문제에서 턱 높이가 h=r/2라면 꼭대기 수평 힘의 임계 크기는?",
+        "explanation": "원문 식에 h=r/2를 대입하면 분자=mg(√3r/2), 분모=3r/2이므로 F_min=mg/√3."
+      },
+      "retryMode": "multiple-choice"
+    }
+  ],
+  "featureVersion": "3.7.1-physics2-advanced-r02-reviewed"
+}

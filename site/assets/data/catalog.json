@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-10-10T14:00:00Z",
+  "generatedAt": "2026-10-16T00:00:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -11059,12 +11059,754 @@
       "examId": "physics2-basic-r12",
       "courseId": "physics2-basic",
       "round": 12,
-      "title": "물리2 12회차 복습 테스트",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.10-1"
+      "title": "물리2 12회차 복습 테스트 · 전위·축전기",
+      "shortTitle": "12회차 전위·축전기",
+      "status": "ready",
+      "assessmentType": "weekly",
+      "section": "electromagnetism",
+      "examDate": "",
+      "questionCount": 8,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics2/r12.pdf",
+      "solutionPdf": "assets/documents/physics2/r12-verified-solution.pdf",
+      "pages": [
+        "assets/pages/physics2/r12-p1.png",
+        "assets/pages/physics2/r12-p2.png"
+      ],
+      "reviewStatus": "corrected",
+      "configVersion": "2026.10.11-physics2-r12-verified-v3.7.0",
+      "sourceTitle": "물리2-Quiz 12회차 전위, 축전기.pdf / 물리2-Quiz 12회차 전위, 축전기 해설.pdf",
+      "sourceNote": "공식 만점 100점(8문항, 배점 15·15·10·20·10·10·10·10점). 5번은 충분히 떨어진 금속구 근사를 추가 조건으로 명시함. 6번은 제공 해설에서 전하량 단위가 V로 잘못 표기되어 C로 교정함. k₁·k₂는 문제 표현에 따라 유전율로 해석하며, 상대유전율인 경우 ε₀가 필요함. 초파 그림 2점은 공식 만점 100점에서 제외.",
+      "coreNote": {
+        "summary": "축전기의 C·V·Q 변화, 전위차에 의한 에너지 변환, 도체구 전위 평형, 직렬·병렬 축전기, 유전체 면적·두께 분할을 묻는 물리2 12회차 주간 복습 테스트",
+        "concepts": [
+          "전지 연결 상태: 전압 V 일정, 충전된 전하 Q는 변할 수 있다.",
+          "전지 분리 상태: 전하량 Q 일정, 전압 V는 전기용량에 따라 변한다.",
+          "평행판 축전기는 C=εA/d: 면적이 커질수록 C 증가, 간격이 작을수록 C 증가.",
+          "전위차의 크기 |ΔV|와 전기장이 일정할 때 |ΔV|=Ed.",
+          "전기력만 일을 하면 운동에너지 증가량 ΔK=q(V_i−V_f) (양전하 기준).",
+          "도선으로 연결된 멀리 떨어진 금속구: 전위가 같아 Q₁/r₁=Q₂/r₂ (근사).",
+          "축전기 직렬은 전하량이 같고 역수로 합성한다. 병렬은 전압이 같고 전기용량을 더한다.",
+          "유전체가 전기장에 수직한 면적으로 나뉘면 병렬, 전기장 방향(두께)으로 층을 이루면 직렬이다."
+        ],
+        "formulas": [
+          "C=εA/d",
+          "Q=CV, U=(1/2)CV²=Q²/(2C)",
+          "ΔK=q(V_i−V_f)",
+          "|ΔV|=Ed",
+          "(1/2)mv²=q|ΔV|",
+          "금속구 충분히 멀리: V≈kQ/r",
+          "병렬 C_eq=ΣC_i, 직렬 1/C_eq=Σ1/C_i",
+          "층상 유전체: 1/C_eq=Σ[d_i/(ε_i A)]"
+        ],
+        "mistakes": [
+          "전지 연결 유무에 따른 보존량을 뒤집어 외움",
+          "전위차 부호 또는 cm→m 변환 실수",
+          "전하량의 단위를 V로 잘못 적음",
+          "병렬/직렬 유전체의 판별을 뒤바꿈",
+          "그림에서 k₁·k₂ 위치와 두께를 서로 바꿔 넣음"
+        ],
+        "checklist": [
+          "전지는 연결 상태인가, 분리 상태인가?",
+          "전하량(Q)의 단위는 C, 전압(V)의 단위는 V인지 확인했나?",
+          "에너지 계산에서 q의 부호와 전위차를 확인했나?",
+          "6번 회로의 직렬·병렬 관계를 표시했나?",
+          "7번은 면적 분할, 8번은 두께 분할인지 구분했나?",
+          "5번 금속구 전하 분배의 근사 조건을 인식했나?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "축전기의 기본 원리",
+          "topic": "전지 연결 상태에서 극판 간격 변화",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              62,
+              165,
+              546,
+              405
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "C 증가(2배), V 일정, Q 증가(2배)",
+          "explanation": [
+            "가장 먼저 전지가 계속 연결되어 있는지를 확인한다. 이상적인 전지는 축전기 양단 전압 V를 일정하게 유지한다.",
+            "평행판 축전기의 전기용량 C=εA/d이므로 d→d/2일 때 C→2C가 된다.",
+            "전하량은 Q=CV이다. V는 고정이고 C가 2배이므로 전하량도 2배로 증가한다."
+          ],
+          "formulas": [
+            "C=εA/d (가장자리 효과 무시)",
+            "Q=CV",
+            "전지 연결: V 일정"
+          ],
+          "commonMistakes": [
+            "전지가 연결되어 있는데 Q가 일정하다고 착각함",
+            "판 사이 간격을 반으로 줄이면 C도 반으로 준다고 착각함",
+            "전압과 전하량이 모두 일정하다고 생각함"
+          ],
+          "rubric": [
+            {
+              "criterion": "전기용량 C 증가",
+              "points": 5
+            },
+            {
+              "criterion": "전압 V 일정",
+              "points": 5
+            },
+            {
+              "criterion": "전하량 Q 증가",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "C 증가, V 증가, Q 일정",
+              "C 증가, V 일정, Q 증가",
+              "C 감소, V 일정, Q 감소",
+              "C 일정, V 일정, Q 일정"
+            ],
+            "correctChoice": 2,
+            "answer": "C 증가, V 일정, Q 증가",
+            "acceptableAnswers": [
+              "2",
+              "C 증가, V 일정, Q 증가"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "C 3배, V 일정, Q 3배",
+              "C 3배, V 3배, Q 일정",
+              "C 1/3배, V 일정, Q 1/3배",
+              "C 3배, V 1/3배, Q 일정"
+            ],
+            "correctChoice": 1,
+            "answer": "C 3배, V 일정, Q 3배",
+            "acceptableAnswers": [
+              "1",
+              "C 3배, V 일정, Q 3배"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "전지에 계속 연결된 평행판 축전기의 극판 간 거리를 원래의 1/3로 줄였다. C, V, Q 변화는?",
+            "explanation": "전지는 V를 일정하게 유지한다. C=εA/d에서 거리가 1/3이므로 C는 3배, Q=CV에서 Q도 3배이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "축전기의 기본 원리",
+          "topic": "전지 분리 상태에서 극판 면적 변화",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              62,
+              596,
+              548,
+              318
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "C 증가(2배), V 감소(1/2배), Q 일정",
+          "explanation": [
+            "전지가 끊어진 축전기는 전하의 출입 경로가 없으므로 저장 전하량 Q가 일정하다(누설·방전 무시).",
+            "전기용량 C=εA/d에서 면적 A→2A이면 C→2C이다.",
+            "V=Q/C이므로 Q가 고정된 상태에서 C가 2배가 되면 전압 V는 1/2배로 감소한다."
+          ],
+          "formulas": [
+            "C=εA/d",
+            "V=Q/C",
+            "전지 분리: Q 일정"
+          ],
+          "commonMistakes": [
+            "연결된 축전기와 분리된 축전기의 일정량을 뒤바꿈",
+            "면적이 늘면 전압도 증가한다고 오해함",
+            "전하량 Q가 0이 된다고 해석함"
+          ],
+          "rubric": [
+            {
+              "criterion": "전기용량 C 증가",
+              "points": 5
+            },
+            {
+              "criterion": "전압 V 감소",
+              "points": 5
+            },
+            {
+              "criterion": "전하량 Q 일정",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "C 증가, V 증가, Q 일정",
+              "C 일정, V 감소, Q 감소",
+              "C 증가, V 감소, Q 일정",
+              "C 감소, V 증가, Q 일정"
+            ],
+            "correctChoice": 3,
+            "answer": "C 증가, V 감소, Q 일정",
+            "acceptableAnswers": [
+              "3",
+              "C 증가, V 감소, Q 일정"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "C 일정, V 1/3배, Q 1/3배",
+              "C 3배, V 일정, Q 3배",
+              "C 1/3배, V 3배, Q 일정",
+              "C 3배, V 1/3배, Q 일정"
+            ],
+            "correctChoice": 4,
+            "answer": "C 3배, V 1/3배, Q 일정",
+            "acceptableAnswers": [
+              "4",
+              "C 3배, V 1/3배, Q 일정"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "완전히 충전한 뒤 전지를 떼어낸 평행판 축전기의 극판 면적을 3배로 늘렸다. C, V, Q 변화는?",
+            "explanation": "전하량 Q는 유지된다. C∝A로 3배가 되고 V=Q/C이므로 전압은 원래의 1/3배이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "전위와 전기 에너지",
+          "topic": "전위차에 의한 운동에너지 증가",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              63,
+              932,
+              544,
+              396
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "K=1.2×10⁻⁴ J (120 μJ)",
+          "explanation": [
+            "전기력만 작용하고 처음 정지했으므로 전기적 위치에너지의 감소량은 최종 운동에너지와 같다.",
+            "ΔK=q(V_i−V_f)=2.0×10⁻⁶ C×(80−20) V=1.2×10⁻⁴ J.",
+            "양전하는 높은 전위에서 낮은 전위로 이동할 때 전기장이 양의 일을 한다."
+          ],
+          "formulas": [
+            "K_f−K_i=q(V_i−V_f)",
+            "1 μC=10⁻⁶ C",
+            "1 J=1 C·V"
+          ],
+          "commonMistakes": [
+            "전위차를 80 V로 계산함",
+            "μC를 C로 바꾸지 않음",
+            "K의 부호를 −로 표기함"
+          ],
+          "rubric": [
+            {
+              "criterion": "60 V 전위차 확인",
+              "points": 3
+            },
+            {
+              "criterion": "qΔV 식 적용 및 단위",
+              "points": 4
+            },
+            {
+              "criterion": "1.2×10⁻⁴ J 계산",
+              "points": 3
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "1.2×10⁻⁵ J",
+              "1.2×10⁻⁴ J",
+              "1.6×10⁻⁴ J",
+              "2.0×10⁻⁶ J"
+            ],
+            "correctChoice": 2,
+            "answer": "1.2×10⁻⁴ J",
+            "acceptableAnswers": [
+              "2",
+              "1.2×10⁻⁴ J"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "1.8×10⁻⁴ J",
+              "1.2×10⁻⁴ J",
+              "3.0×10⁻⁴ J",
+              "6.0×10⁻⁵ J"
+            ],
+            "correctChoice": 1,
+            "answer": "1.8×10⁻⁴ J",
+            "acceptableAnswers": [
+              "1",
+              "1.8×10⁻⁴ J"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "q=+3.0 μC인 입자가 전위 100 V에서 정지 상태로 출발해 40 V 지점까지 전기력만 받으며 이동한다. 최종 운동에너지는?",
+            "explanation": "ΔK=q(V_i−V_f)=3.0×10⁻⁶×(100−40)=1.8×10⁻⁴ J이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 20,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "균일 전기장과 전위차",
+          "topic": "전위차와 전하의 도착 속력",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              628,
+              164,
+              550,
+              766
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "|ΔV|=4.0 V, v=4√2 m/s≈5.66 m/s",
+          "explanation": [
+            "극판 간 거리 d=20 cm=0.20 m, 전기장 E=20 N/C=20 V/m이다.",
+            "균일한 전기장에서 전위차의 크기는 |ΔV|=Ed=20×0.20=4.0 V이다.",
+            "양전하 q=8 C가 정지 상태로 출발해 전위가 높은 쪽에서 낮은 쪽으로 이동할 때 에너지 보존에 의해 q|ΔV|=(1/2)mv²이다.",
+            "8×4=(1/2)×2×v²이므로 v²=32, v=4√2 m/s이다."
+          ],
+          "formulas": [
+            "|ΔV|=Ed",
+            "(1/2)mv²=q|ΔV|",
+            "1 N/C=1 V/m"
+          ],
+          "commonMistakes": [
+            "20 cm를 20 m로 사용함",
+            "가속도와 최종 속력을 혼동함",
+            "v²=32에서 v=32라고 답함",
+            "전하량 8 C가 크다고 보고 임의로 바꿈"
+          ],
+          "rubric": [
+            {
+              "criterion": "전위차 4.0 V",
+              "points": 10
+            },
+            {
+              "criterion": "에너지 보존식",
+              "points": 5
+            },
+            {
+              "criterion": "최종 속력 4√2 m/s",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "전위차 4 V, 속력 4√2 m/s",
+              "전위차 4 V, 속력 4 m/s",
+              "전위차 40 V, 속력 4√2 m/s",
+              "전위차 0.4 V, 속력 2√2 m/s"
+            ],
+            "correctChoice": 1,
+            "answer": "전위차 4 V, 속력 4√2 m/s",
+            "acceptableAnswers": [
+              "1",
+              "전위차 4 V, 속력 4√2 m/s"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "전위차 6 V, 속력 6 m/s",
+              "전위차 12 V, 속력 3 m/s",
+              "전위차 6 V, 속력 3 m/s",
+              "전위차 3 V, 속력 3 m/s"
+            ],
+            "correctChoice": 3,
+            "answer": "전위차 6 V, 속력 3 m/s",
+            "acceptableAnswers": [
+              "3",
+              "전위차 6 V, 속력 3 m/s"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "평행판 간격 d=0.25 m, E=24 N/C이다. q=+3 C, m=4 kg인 전하를 정지 상태에서 높은 전위 쪽에서 놓으면 낮은 쪽에 도달할 때 전위차와 속력은?",
+            "explanation": "|ΔV|=Ed=24×0.25=6 V, qΔV=(1/2)mv²에서 18=2v², v=3 m/s이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "도체의 정전기적 평형",
+          "topic": "연결된 금속구 전위 평형과 전하 분배",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              628,
+              1054,
+              550,
+              508
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문에는 금속구 사이 거리 조건이 없다. 제공 공식 해설의 2Q:8Q 배분은 두 구가 충분히 떨어져 상호 정전 유도를 무시할 수 있을 때의 근사임을 추가 풀이 조건으로 명시한다.",
+          "answer": "반지름 R 구: 2Q, 반지름 4R 구: 8Q (두 구가 충분히 떨어진 근사)",
+          "explanation": [
+            "추가 풀이 조건: 두 금속구의 간격이 각각의 반지름보다 충분히 크고 같은 매질에 놓여 있어 상호 유도 효과를 무시한다.",
+            "정전기 평형에서는 연결된 금속구의 전위가 같다. 고립 구 근사 V=kQ/r에서 Q₁/R=Q₂/(4R)이다.",
+            "따라서 Q₁:Q₂=1:4이고 전체 전하 Q₁+Q₂=10Q이므로 Q₁=2Q, Q₂=8Q이다.",
+            "두 금속구가 서로 매우 가까운 경우의 정확한 전하 분포는 상호 영향과 기하학적 배치를 고려해야 하며, 단순 1:4 배분을 그대로 쓰기 어렵다."
+          ],
+          "formulas": [
+            "연결 도체의 정전기 평형: V₁=V₂",
+            "충분히 멀리 떨어진 도체구: V≈kQ/r",
+            "Q₁+Q₂=10Q"
+          ],
+          "commonMistakes": [
+            "반지름이 큰 구에 전하가 적다고 생각함",
+            "전하량을 두 구에 5Q씩 나눔",
+            "전위가 같다는 사실과 전하량이 같다는 사실을 혼동",
+            "두 구가 가까워도 무조건 1:4라고 생각함"
+          ],
+          "rubric": [
+            {
+              "criterion": "전위 같음 및 반지름 비 이용",
+              "points": 4
+            },
+            {
+              "criterion": "Q₁:Q₂=1:4",
+              "points": 3
+            },
+            {
+              "criterion": "2Q, 8Q",
+              "points": 3
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "5Q와 5Q",
+              "8Q와 2Q",
+              "2Q와 8Q",
+              "4Q와 6Q"
+            ],
+            "correctChoice": 3,
+            "answer": "2Q와 8Q",
+            "acceptableAnswers": [
+              "3",
+              "2Q와 8Q"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "반지름 R: 3Q, 반지름 3R: 9Q",
+              "반지름 R: 6Q, 반지름 3R: 6Q",
+              "반지름 R: 9Q, 반지름 3R: 3Q",
+              "반지름 R: 4Q, 반지름 3R: 8Q"
+            ],
+            "correctChoice": 1,
+            "answer": "반지름 R: 3Q, 반지름 3R: 9Q",
+            "acceptableAnswers": [
+              "1",
+              "반지름 R: 3Q, 반지름 3R: 9Q"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "같은 매질에서 서로 충분히 떨어진 반지름 R, 3R의 금속구를 가는 도선으로 연결하였다. 총 전하량이 12Q라면 각각의 전하량은?",
+            "explanation": "전위 평형 조건 Q₁/R=Q₂/(3R)에서 Q₁:Q₂=1:3이다. 합이 12Q이므로 각각 3Q, 9Q이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "축전기의 연결",
+          "topic": "C₁ 직렬·C₂와 C₃ 병렬 회로의 전하",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              62,
+              169,
+              549,
+              453
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "공식 해설의 Q₁, Q₂, Q₃ 계산값은 맞지만 전하량의 단위를 V라고 적은 오기. 정확한 단위는 C이며 학생 해설과 선택지에서 이를 바로잡았다.",
+          "answer": "Q₁=36/5 C (=7.2 C), Q₂=12/5 C (=2.4 C), Q₃=24/5 C (=4.8 C)",
+          "explanation": [
+            "회로 그림에서 C₂=1 F와 C₃=2 F는 병렬로 C₂₃=3 F이다. 이 조합은 C₁=2 F와 직렬이다.",
+            "직렬 연결 부분의 등가용량은 C_eq=(2×3)/(2+3)=6/5 F이다. 전체 전하량은 Q_series=C_eq×6 V=36/5 C이다.",
+            "직렬인 C₁에 저장되는 전하량 Q₁=36/5 C, 따라서 V₁=Q₁/C₁=18/5 V이다.",
+            "나머지 병렬 부분의 전압 V₂=V₃=6−18/5=12/5 V이므로 Q₂=1×12/5=12/5 C, Q₃=2×12/5=24/5 C이다.",
+            "공식 해설지에는 마지막 전하량 Q의 단위를 V로 인쇄했지만 전하량은 반드시 C이다."
+          ],
+          "formulas": [
+            "병렬 C₂₃=C₂+C₃",
+            "직렬 1/C_eq=1/C₁+1/C₂₃",
+            "Q=CV",
+            "직렬 부분 Q 동일, 병렬 부분 V 동일"
+          ],
+          "commonMistakes": [
+            "C₁·C₂·C₃를 전부 병렬/전부 직렬로 취급",
+            "직렬에서는 전압이 같다고 착각",
+            "Q에 전압 단위 V를 붙임",
+            "C₃=2F인데 Q₂와 같게 계산"
+          ],
+          "rubric": [
+            {
+              "criterion": "회로 직렬·병렬 식별",
+              "points": 3
+            },
+            {
+              "criterion": "합성용량·전압 분배",
+              "points": 3
+            },
+            {
+              "criterion": "Q₁,Q₂,Q₃ 및 C 단위",
+              "points": 4
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "Q₁=36/5 C, Q₂=24/5 C, Q₃=12/5 C",
+              "Q₁=36/5 C, Q₂=12/5 C, Q₃=24/5 C",
+              "Q₁=12 C, Q₂=6 C, Q₃=12 C",
+              "Q₁=6/5 C, Q₂=12/5 C, Q₃=24/5 C"
+            ],
+            "correctChoice": 2,
+            "answer": "Q₁=36/5 C, Q₂=12/5 C, Q₃=24/5 C",
+            "acceptableAnswers": [
+              "2",
+              "Q₁=36/5 C, Q₂=12/5 C, Q₃=24/5 C"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "Q₁=15 C, Q₂=5 C, Q₃=10 C",
+              "Q₁=30 C, Q₂=10 C, Q₃=20 C",
+              "Q₁=15 C, Q₂=15 C, Q₃=15 C",
+              "Q₁=15 C, Q₂=10 C, Q₃=5 C"
+            ],
+            "correctChoice": 4,
+            "answer": "Q₁=15 C, Q₂=10 C, Q₃=5 C",
+            "acceptableAnswers": [
+              "4",
+              "Q₁=15 C, Q₂=10 C, Q₃=5 C"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "C₁=3 F가, C₂=2 F와 C₃=1 F의 병렬 묶음과 직렬로 10 V 전지에 연결되었다. 각 축전기의 전하량은?",
+            "explanation": "C₂₃=3 F, C_eq=3×3/(3+3)=1.5 F이므로 직렬 전하량 Q₁=1.5×10=15 C이다. 두 묶음의 전압은 각각 5 V. Q₂=2×5=10 C, Q₃=1×5=5 C이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 7,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "유전체와 합성 전기용량",
+          "topic": "면적 분할 유전체의 병렬 등가용량",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              628,
+              169,
+              550,
+              639
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "C_eq=A(k₁+3k₂)/(4d)",
+          "explanation": [
+            "그림에서 왼쪽 유전체 k₁은 면적 A/4, 오른쪽 유전체 k₂는 면적 3A/4를 차지하고 두 영역의 판 사이 거리는 모두 d이다.",
+            "두 영역은 같은 두 도체판 사이에 있으므로 전압이 같고 병렬 연결 축전기와 같다.",
+            "C₁=k₁(A/4)/d, C₂=k₂(3A/4)/d이며 C_eq=C₁+C₂=A(k₁+3k₂)/(4d)이다.",
+            "여기서 k₁, k₂는 유전율(절대 유전율)이다. 상대유전율로 정의한 경우에는 ε₀를 추가로 곱해야 한다."
+          ],
+          "formulas": [
+            "평행판 C=εA/d",
+            "면적 방향 분할: C_eq=C₁+C₂",
+            "k가 상대유전율일 때는 ε=kε₀"
+          ],
+          "commonMistakes": [
+            "병렬인데 역수를 더함",
+            "면적 비 A/4,3A/4를 무시",
+            "두 유전체 사이 두께를 d/4,3d/4로 혼동"
+          ],
+          "rubric": [
+            {
+              "criterion": "두 영역이 병렬임을 판별",
+              "points": 3
+            },
+            {
+              "criterion": "각 영역 용량 C₁,C₂ 계산",
+              "points": 3
+            },
+            {
+              "criterion": "최종 합성식과 단위",
+              "points": 4
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "C_eq=4A/[d(k₁+3k₂)]",
+              "C_eq=A(k₁+k₂)/(2d)",
+              "C_eq=A(3k₁+k₂)/(4d)",
+              "C_eq=A(k₁+3k₂)/(4d)"
+            ],
+            "correctChoice": 4,
+            "answer": "C_eq=A(k₁+3k₂)/(4d)",
+            "acceptableAnswers": [
+              "4",
+              "C_eq=A(k₁+3k₂)/(4d)"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "C_eq=A(2k₁+k₂)/(3d)",
+              "C_eq=A(k₁+2k₂)/(3d)",
+              "C_eq=3A k₁k₂/[d(2k₁+k₂)]",
+              "C_eq=A(k₁+k₂)/d"
+            ],
+            "correctChoice": 2,
+            "answer": "C_eq=A(k₁+2k₂)/(3d)",
+            "acceptableAnswers": [
+              "2",
+              "C_eq=A(k₁+2k₂)/(3d)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "평행판 사이가 유전율 k₁인 물질로 면적 A/3, 유전율 k₂인 물질로 면적 2A/3만큼 채워져 있다. 두 영역의 두께가 모두 d일 때 합성용량은?",
+            "explanation": "같은 전압이 걸리는 병렬 배치이다. C=k₁(A/3)/d+k₂(2A/3)/d=A(k₁+2k₂)/(3d)이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 8,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "유전체와 합성 전기용량",
+          "topic": "두께 분할 유전체의 직렬 등가용량",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              628,
+              890,
+              550,
+              707
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "C_eq=3A k₁k₂/[d(2k₂+k₁)]",
+          "explanation": [
+            "그림을 기준으로 아래쪽 유전체 k₁은 두께 2d/3, 위쪽 유전체 k₂는 두께 d/3을 차지한다. 두 층을 같은 전기력선이 연속해서 통과한다.",
+            "따라서 두 유전체는 직렬 연결 축전기와 등가이며 1/C_eq=(2d/3)/(k₁A)+(d/3)/(k₂A)이다.",
+            "1/C_eq=d(2k₂+k₁)/(3A k₁k₂)이므로 C_eq=3A k₁k₂/[d(2k₂+k₁)]이다.",
+            "k₁, k₂를 상대유전율로 취급하면 C_eq 분자에 ε₀를 추가로 곱해야 한다."
+          ],
+          "formulas": [
+            "두께 방향 분할: 1/C_eq=d₁/(ε₁A)+d₂/(ε₂A)",
+            "C_eq=3A k₁k₂/[d(2k₂+k₁)]"
+          ],
+          "commonMistakes": [
+            "7번처럼 병렬로 더함",
+            "k₁과 k₂의 두께 비율을 반대로 대입",
+            "역수 계산 후 다시 역수를 취하지 않음"
+          ],
+          "rubric": [
+            {
+              "criterion": "두 층을 직렬로 판별",
+              "points": 3
+            },
+            {
+              "criterion": "각 층 두께별 역수 합 계산",
+              "points": 4
+            },
+            {
+              "criterion": "최종 합성식 정리",
+              "points": 3
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "C_eq=A(k₁+2k₂)/(3d)",
+              "C_eq=3A k₁k₂/[d(2k₁+k₂)]",
+              "C_eq=3A k₁k₂/[d(2k₂+k₁)]",
+              "C_eq=3A(k₁+k₂)/(d k₁k₂)"
+            ],
+            "correctChoice": 3,
+            "answer": "C_eq=3A k₁k₂/[d(2k₂+k₁)]",
+            "acceptableAnswers": [
+              "3",
+              "C_eq=3A k₁k₂/[d(2k₂+k₁)]"
+            ],
+            "displayMode": "choice-card"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "C_eq=A(k₁+3k₂)/(4d)",
+              "C_eq=4A k₁k₂/[d(k₁+3k₂)]",
+              "C_eq=4A k₁k₂/[d(k₂+3k₁)]",
+              "C_eq=A(k₁+k₂)/d"
+            ],
+            "correctChoice": 3,
+            "answer": "C_eq=4A k₁k₂/[d(k₂+3k₁)]",
+            "acceptableAnswers": [
+              "3",
+              "C_eq=4A k₁k₂/[d(k₂+3k₁)]"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "두께 d인 평행판 축전기의 전기장 방향으로 아래쪽 k₁ 유전체가 d/4, 위쪽 k₂ 유전체가 3d/4를 차지한다. 합성 전기용량은?",
+            "explanation": "직렬 층에서 1/C=d/(4Ak₁)+3d/(4Ak₂)=d(k₂+3k₁)/(4Ak₁k₂)이므로 C=4Ak₁k₂/[d(k₂+3k₁)]이다."
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.7.0-physics2-r12-reviewed"
     },
     {
       "examId": "physics2-basic-r13",
@@ -17401,6 +18143,758 @@
       }
     },
     {
+      "examId": "physics2-advanced-r02",
+      "courseId": "physics2-advanced",
+      "round": 2,
+      "title": "물리2심화 2회차 복습 테스트 · 힘과 돌림힘의 평형",
+      "shortTitle": "2회차 힘과 돌림힘의 평형",
+      "status": "ready",
+      "assessmentType": "weekly",
+      "section": "mechanics",
+      "examDate": "",
+      "questionCount": 8,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics2-advanced/r02.pdf",
+      "solutionPdf": "assets/documents/physics2-advanced/r02-verified-solution.pdf",
+      "pages": [
+        "assets/pages/physics2-advanced/r02-p1.png",
+        "assets/pages/physics2-advanced/r02-p2.png",
+        "assets/pages/physics2-advanced/r02-p3.png"
+      ],
+      "reviewStatus": "corrected",
+      "configVersion": "2026.10.16-physics2-advanced-r02-reviewed-v3.7.1",
+      "sourceTitle": "물리2심화 Quiz 2회.pdf / 물리2심화 Quiz 2회 해답.pdf",
+      "sourceNote": "원문 기준 8문항 100점(10·10·10·10·10·20·20·10점). 2번 해답에 1/2 계수 누락이 있어 검수본에는 수평·수직 평형을 모두 사용한 정정식을 반영했으며 원본 해답 PDF를 별도 보존. 1번 질량 6kg과 중력가속도 g=10m/s²를 해설에 명시. 원문의 “초파를 그리면 2점”은 기본 100점 외 가산점으로 이 회차의 자동 채점 총점에 포함하지 않음.",
+      "coreNote": {
+        "summary": "힘의 정적 평형, 매끄러운 빗면, 도르래와 대칭 체인, 균일 막대·간판의 돌림힘, 중첩 막대의 장력, 턱을 넘는 바퀴의 임계조건을 다루는 물리2심화 2회차 복습 시험",
+        "concepts": [
+          "정지 또는 등속 운동하는 물체/계에서는 수평·수직 알짜힘이 각각 0이다.",
+          "회전 평형에서는 기준축에 대한 돌림힘의 대수합이 0이다. 미지의 반력이 있는 작용점을 회전축으로 잡으면 반력의 돌림힘을 제거할 수 있다.",
+          "빗면에 비스듬한 힘이 작용하면 평행·수직 성분을 각각 분해해야 한다.",
+          "이상적인 도르래와 가벼운 줄은 같은 줄에서 장력이 일정하며 움직도르래가 두 줄의 장력을 합해 지지한다.",
+          "대칭으로 매달린 유연한 체인의 최저점 장력은 수평방향 성분이다.",
+          "균일 막대의 무게는 중점에 작용하고, 다른 막대와 연결된 줄의 작용·반작용 방향에 유의한다.",
+          "바퀴가 턱에 막 걸릴 때 바닥 수직항력이 0이 되며 턱 모서리를 회전축으로 잡는다."
+        ],
+        "formulas": [
+          "ΣFₓ=0, ΣFᵧ=0",
+          "Στ_O=0",
+          "τ=F d_⊥",
+          "W_균일막대=mg (중점 작용)",
+          "대칭 체인: T sinθ=W/2, T cosθ=H",
+          "턱 임계: F_min=mg√(2rh−h²)/(2r−h)"
+        ],
+        "mistakes": [
+          "2번 해답에서 누락된 1/2 계수를 그대로 적용함",
+          "힘의 방향에 따른 sin·cos를 바꿈",
+          "균일 막대의 무게를 빠뜨림",
+          "좌우 도르래·막대 연결부의 장력 방향을 혼동함",
+          "턴 축에 따른 수직거리 대신 힘의 크기만 곱함"
+        ],
+        "checklist": [
+          "평형 문제의 물체 또는 물체계를 먼저 나눴는가?",
+          "수평/수직 힘의 합과 돌림힘의 합이 각각 0인지 확인했는가?",
+          "회전축을 힌지, 여러 힘의 작용점 또는 접촉 모서리에 적절히 잡았는가?",
+          "균일 막대의 자중을 중점에 포함했는가?",
+          "2번 원문 해답의 계수 누락을 인식했는가?",
+          "바퀴가 턱에 걸릴 때 바닥 수직항력이 0이라는 의미를 이해했는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "힘의 평형",
+          "topic": "빗면에서 비스듬한 힘과 수직항력",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              15,
+              168,
+              598,
+              330
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "원문 “무게 6kg”은 질량 6 kg으로 해석. 공식 숫자 정답에 사용된 중력가속도는 g=10 m/s²로 명시해 풀이에 적용하며 원문 시험지 자체는 수정하지 않음.",
+          "answer": "F = 20√3 N, 수직항력 N = 20√3 N (g = 10 m/s²)",
+          "explanation": [
+            "원문의 “무게 6kg”은 질량 6 kg으로 해석하고 제공 정답과 같이 g=10 m/s²를 적용한다. 빗면은 매끄러우므로 마찰력은 없다.",
+            "빗면에 평행한 방향의 힘 평형: F cos30° = mg sin30° = 60×(1/2)=30 N. 따라서 F=20√3 N.",
+            "빗면에 수직한 방향의 힘 평형: N + F sin30° = mg cos30°. 따라서 N = 60(√3/2) − 20√3(1/2)=20√3 N.",
+            "힘이 물체를 빗면에서 떼어 내는 방향의 수직 성분을 가지므로 수직항력은 그만큼 감소한다."
+          ],
+          "formulas": [
+            "ΣF∥=0 → F cos30°=mg sin30°",
+            "ΣF⊥=0 → N=mg cos30°−F sin30°"
+          ],
+          "commonMistakes": [
+            "힘 F가 빗면에 평행하다고 착각하여 cos30°를 생략함",
+            "힘 F의 위쪽 수직 성분을 수직항력에 더해 계산함",
+            "원문의 kg 표기를 힘의 단위 N으로 취급함"
+          ],
+          "rubric": [
+            {
+              "criterion": "F의 평행 성분에 대한 힘의 평형 및 F 계산",
+              "points": 5
+            },
+            {
+              "criterion": "수직방향 힘의 평형 및 N 계산",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "F=30 N, N=30√3 N",
+              "F=20√3 N, N=20√3 N",
+              "F=20√3 N, N=40√3 N",
+              "F=40 N, N=20 N"
+            ],
+            "correctChoice": 2,
+            "answer": "F=20√3 N, N=20√3 N",
+            "acceptableAnswers": [
+              "2",
+              "F=20√3 N, N=20√3 N"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 1번: 질량 6 kg의 물체가 경사각 30° 빗면에서 빗면과 30°를 이루는 힘 F를 받아 정지한다(g=10). F, N의 조합은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "F=20√2 N, N=20(√3−1) N",
+              "F=20 N, N=20√3 N",
+              "F=20√2 N, N=20(√3+1) N",
+              "F=40√2 N, N=20√3 N"
+            ],
+            "correctChoice": 1,
+            "answer": "F=20√2 N, N=20(√3−1) N",
+            "acceptableAnswers": [
+              "1",
+              "F=20√2 N, N=20(√3−1) N"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 질량 4 kg 물체가 마찰 없는 30° 빗면에서 빗면과 45°를 이루는 위쪽 힘 F로 정지해 있다(g=10). F와 수직항력 N은?",
+            "explanation": "빗면 방향: F cos45°=40 sin30°=20이므로 F=20√2 N. 수직방향: N=40 cos30°−F sin45°=20√3−20 N."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "힘의 평형",
+          "topic": "두 경사 줄의 수평·수직 힘 평형",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              23,
+              682,
+              584,
+              500
+            ]
+          },
+          "reviewStatus": "corrected",
+          "correctionNote": "제공된 해답 PDF 1쪽 2번은 수직 평형식을 변형하는 과정에서 1/2를 빠뜨림. 정정: M=(m₁+√3m₂)/2, 수평 평형까지 적용하면 m₂=√3m₁, M=2m₁=2m₂/√3. 원본 해답은 증빙용으로 별도 보관.",
+          "answer": "m₁ cos30°=m₂ cos60° → m₁=m₂/√3; M=m₁ sin30°+m₂ sin60°=(m₁+√3m₂)/2=2m₁=2m₂/√3",
+          "explanation": [
+            "좌우 도르래는 마찰이 없고 추들이 정지하므로 두 사선 줄의 장력은 각각 T₁=m₁g, T₂=m₂g이다.",
+            "가운데 M 물체의 수평방향 평형: T₁ cos30°=T₂ cos60° → m₁√3/2=m₂/2 → m₂=√3m₁.",
+            "수직방향 평형: T₁ sin30°+T₂ sin60°=Mg → M=(m₁+√3m₂)/2.",
+            "수평 평형에서 구한 m₂=√3m₁을 대입하면 M=2m₁=2m₂/√3이다.",
+            "제공 해답의 첫 수직 평형식은 맞지만 이후 M=m₁+√3m₂로 정리한 줄에서 1/2 계수가 누락되었다. 공식 해답의 이 최종식은 채점 기준으로 쓰지 않는다."
+          ],
+          "formulas": [
+            "m₁g cos30°=m₂g cos60°",
+            "m₁g sin30°+m₂g sin60°=Mg",
+            "M=(m₁+√3m₂)/2=2m₁"
+          ],
+          "commonMistakes": [
+            "원본 해설에서 빠진 1/2를 그대로 옮겨 써 M을 두 배로 계산함",
+            "수평 평형을 적용하지 않고 수직방향 식만 제출함",
+            "각도가 수평면 기준임을 잊고 sin과 cos를 뒤집음"
+          ],
+          "rubric": [
+            {
+              "criterion": "장력 확인 및 수평방향 힘 평형",
+              "points": 4
+            },
+            {
+              "criterion": "수직방향 힘 평형과 1/2 계수",
+              "points": 4
+            },
+            {
+              "criterion": "질량 사이 관계식 정리",
+              "points": 2
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "m₁=√3m₂, M=m₁+√3m₂",
+              "m₁=m₂, M=m₁+m₂",
+              "m₁=m₂/√3, M=(m₁+√3m₂)/2",
+              "m₁=m₂/√3, M=m₁+√3m₂"
+            ],
+            "correctChoice": 3,
+            "answer": "m₁=m₂/√3, M=(m₁+√3m₂)/2",
+            "acceptableAnswers": [
+              "3",
+              "m₁=m₂/√3, M=(m₁+√3m₂)/2"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 2번: 왼쪽 줄 30°, 오른쪽 줄 60°(수평 기준)이며 가운데 M과 양 끝 m₁,m₂가 정지해 있다. 옳은 관계식은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "m₁=2m₂, M=m₁/√2",
+              "m₁=m₂, M=√2m₁",
+              "m₁=m₂, M=2m₁",
+              "m₁=m₂/√2, M=m₂"
+            ],
+            "correctChoice": 2,
+            "answer": "m₁=m₂, M=√2m₁",
+            "acceptableAnswers": [
+              "2",
+              "m₁=m₂, M=√2m₁"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 좌우 마찰 없는 도르래 줄이 모두 수평과 45°를 이루며 가운데 질량 M을 받치고, 양 끝 추의 질량이 m₁,m₂일 때 모두 정지한다. 옳은 식은?",
+            "explanation": "수평방향 평형에서 m₁g cos45°=m₂g cos45° → m₁=m₂. 수직방향: Mg=(m₁+m₂)g sin45°=√2 m₁g."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "연속체의 정적 평형",
+          "topic": "대칭 체인의 고리 장력과 기울기",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              630,
+              170,
+              587,
+              578
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "θ=45°, 각 고리가 체인에 작용하는 힘 T=20√2 N",
+          "explanation": [
+            "대칭인 체인에 작용하는 전체 아래쪽 힘은 40 N이므로 각 고리 장력의 수직 성분은 40/2=20 N이다.",
+            "가장 낮은 지점의 장력은 수평 방향이며 그 크기가 20 N이다. 정적 체인에서 수평 장력 성분은 일정하므로 T cosθ=20 N.",
+            "각 고리에서 T sinθ=20 N이므로 tanθ=20/20=1 → θ=45°.",
+            "T=√(20²+20²)=20√2 N이다."
+          ],
+          "formulas": [
+            "2T sinθ=40 N",
+            "T cosθ=20 N",
+            "tanθ=(40/2)/20=1",
+            "T=√((W/2)²+H²)"
+          ],
+          "commonMistakes": [
+            "40 N을 한쪽 고리의 수직 하중으로 사용함",
+            "가장 낮은 점에서 장력 방향을 수직으로 착각함",
+            "고리의 장력을 20 N이라고 그대로 답함"
+          ],
+          "rubric": [
+            {
+              "criterion": "고리의 각도 θ=45°를 힘 평형으로 계산",
+              "points": 5
+            },
+            {
+              "criterion": "각 고리 장력 T=20√2 N 계산",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "θ=30°, T=40 N",
+              "θ=45°, T=20√2 N",
+              "θ=60°, T=20√3 N",
+              "θ=45°, T=20 N"
+            ],
+            "correctChoice": 2,
+            "answer": "θ=45°, T=20√2 N",
+            "acceptableAnswers": [
+              "2",
+              "θ=45°, T=20√2 N"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 3번: 무게 40 N의 대칭 체인, 최저점 장력 20 N일 때 각 고리에서 수평면과 이루는 각도와 고리의 힘은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "tanθ=1/3, T=10√10 N",
+              "tanθ=3, T=30 N",
+              "tanθ=3, T=10√10 N",
+              "tanθ=6, T=20√10 N"
+            ],
+            "correctChoice": 3,
+            "answer": "tanθ=3, T=10√10 N",
+            "acceptableAnswers": [
+              "3",
+              "tanθ=3, T=10√10 N"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 무게 60 N의 대칭 체인의 가장 낮은 점에서 수평 장력은 10 N이다. 각 고리의 접선이 수평과 이루는 각 θ 및 장력 T는?",
+            "explanation": "한쪽 고리의 수직 성분은 W/2=30 N, 수평 성분은 10 N. tanθ=30/10=3, T=√(30²+10²)=10√10 N."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "도르래·역학적 평형",
+          "topic": "사람이 당기는 움직도르래 그네",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              630,
+              768,
+              583,
+              839
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "사람이 줄을 당기는 힘 F=mg, 그네가 사람에게 작용하는 수직항력 N=mg",
+          "explanation": [
+            "사람과 그네의 총 질량은 3m이며 함께 등속 상승하므로 가속도는 0이다.",
+            "사람+그네+움직도르래를 하나의 계로 보면 움직도르래를 위로 당기는 장력 2F와 사람 손을 위로 당기는 장력 F가 있다.",
+            "따라서 3F=3mg → F=mg.",
+            "사람만 분리해서 보면 위쪽 힘은 수직항력 N과 손에 작용하는 줄 장력 F, 아래쪽 힘은 2mg이다. N+F=2mg → N=mg."
+          ],
+          "formulas": [
+            "전체 계: 3F=(m+2m)g",
+            "사람: N+F=2mg"
+          ],
+          "commonMistakes": [
+            "움직도르래의 장력 2F만 세고 사람이 직접 받는 장력 F를 놓침",
+            "손에서 줄을 아래로 당기므로 줄이 사람에게도 아래로 작용한다고 판단함",
+            "전체 무게에서 그네 무게 mg를 빠뜨림"
+          ],
+          "rubric": [
+            {
+              "criterion": "전체 계에 작용하는 3F와 3mg로 F 계산",
+              "points": 5
+            },
+            {
+              "criterion": "사람만의 힘 평형으로 N 계산",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "F=3mg/2, N=mg/2",
+              "F=mg, N=2mg",
+              "F=mg, N=mg",
+              "F=3mg, N=mg"
+            ],
+            "correctChoice": 3,
+            "answer": "F=mg, N=mg",
+            "acceptableAnswers": [
+              "3",
+              "F=mg, N=mg"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 4번: 질량 m 그네에 질량 2m 사람이 앉아 등속 상승한다. 한 줄의 자유 끝을 사람이 당길 때 F, N은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "F=mg, N=2mg",
+              "F=4mg/3, N=5mg/3",
+              "F=2mg, N=mg",
+              "F=4mg/3, N=4mg/3"
+            ],
+            "correctChoice": 2,
+            "answer": "F=4mg/3, N=5mg/3",
+            "acceptableAnswers": [
+              "2",
+              "F=4mg/3, N=5mg/3"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 동일한 줄·움직도르래 그네에서 그네 질량 m, 사람 질량 3m이며 함께 등속 상승한다. 손으로 줄을 당기는 F와 그네가 사람에게 주는 수직항력 N은?",
+            "explanation": "전체 계에서 3F=(m+3m)g → F=4mg/3. 사람의 평형: N+F=3mg → N=3mg−4mg/3=5mg/3."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "돌림힘의 평형",
+          "topic": "힌지 축의 막대 돌림힘 계산",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              22,
+              178,
+              585,
+              382
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "F=230 N (막대 질량 8 kg, g=10 m/s²)",
+          "explanation": [
+            "왼쪽 힌지를 회전축으로 잡으면 힌지 반력이 만드는 돌림힘은 0이다.",
+            "막대는 균일하므로 질량 8 kg에 의한 무게 80 N은 x=L/2에 작용한다. 다른 하향 힘은 120 N(x=L/3), 180 N(x=5L/6)이다.",
+            "힌지 기준 돌림힘 평형: F L=120(L/3)+80(L/2)+180(5L/6).",
+            "F=40+40+150=230 N(위쪽)이다."
+          ],
+          "formulas": [
+            "Στ힌지=0",
+            "F L=120L/3+(8×10)L/2+180×5L/6",
+            "F=230 N"
+          ],
+          "commonMistakes": [
+            "막대 자체의 무게 80 N을 누락함",
+            "막대의 무게를 힌지에 집중된 힘으로 처리함",
+            "위/아래 힘의 회전방향을 구분하지 않음"
+          ],
+          "rubric": [
+            {
+              "criterion": "힌지 기준 돌림힘 식(막대 자중 포함)",
+              "points": 6
+            },
+            {
+              "criterion": "F=230 N 계산과 방향",
+              "points": 4
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "F=190 N",
+              "F=230 N",
+              "F=270 N",
+              "F=310 N"
+            ],
+            "correctChoice": 2,
+            "answer": "F=230 N",
+            "acceptableAnswers": [
+              "2",
+              "F=230 N"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 5번: 8 kg 균일 막대의 x=L/3에서 120 N, x=5L/6에서 180 N이 아래로 작용한다(g=10). 오른쪽 끝의 위쪽 힘 F는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "130 N",
+              "150 N",
+              "170 N",
+              "210 N"
+            ],
+            "correctChoice": 3,
+            "answer": "170 N",
+            "acceptableAnswers": [
+              "3",
+              "170 N"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 질량 6 kg인 균일 막대가 왼쪽에서 힌지 지지된다. x=L/4에서 80 N, x=3L/4에서 160 N이 아래로 작용한다(g=10). 오른쪽 끝에서 필요한 위쪽 힘 F는?",
+            "explanation": "힌지 기준: FL=80(L/4)+60(L/2)+160(3L/4)=20L+30L+120L → F=170 N."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 20,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "돌림힘·힘의 평형",
+          "topic": "수평 간판 막대의 장력과 힌지 반력",
+          "difficulty": "상",
+          "image": {
+            "page": 2,
+            "crop": [
+              22,
+              610,
+              576,
+              950
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "줄 장력 T=4mg/√3; 힌지 반력 수평 성분 Fₓ=2mg/√3(오른쪽), 수직 성분 Fᵧ=mg(위쪽)",
+          "explanation": [
+            "힌지에서 막대 오른쪽 끝까지 L, 막대의 무게 mg는 L/2, 간판의 무게 2mg는 3L/4 지점에 작용한다.",
+            "힌지를 축으로 돌림힘 평형: T sin60°·L=mg·L/2+2mg·(3L/4)=2mgL.",
+            "따라서 T=2mg/sin60°=4mg/√3이다.",
+            "수평 힘 평형: Fₓ−T cos60°=0 → Fₓ=2mg/√3이며 힌지는 오른쪽으로 민다.",
+            "수직 힘 평형: Fᵧ+T sin60°−(mg+2mg)=0 → Fᵧ=mg(위쪽)."
+          ],
+          "formulas": [
+            "T L sin60°=(mg)(L/2)+(2mg)(3L/4)",
+            "T=4mg/√3",
+            "Fₓ=T cos60°=2mg/√3",
+            "Fᵧ=3mg−T sin60°=mg"
+          ],
+          "commonMistakes": [
+            "줄의 전체 장력 T에 L을 곱하고 sin60°를 빠뜨림",
+            "간판 위치 3L/4를 L/4로 읽음",
+            "힌지 수평력의 방향을 왼쪽으로 답함"
+          ],
+          "rubric": [
+            {
+              "criterion": "힌지 축 돌림힘으로 T 계산",
+              "points": 10
+            },
+            {
+              "criterion": "힌지 수평 반력 크기·방향",
+              "points": 5
+            },
+            {
+              "criterion": "힌지 수직 반력 크기·방향",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "T=4mg/√3, Fₓ=2mg/√3(오른쪽), Fᵧ=mg(위쪽)",
+              "T=2mg, Fₓ=mg(오른쪽), Fᵧ=2mg(위쪽)",
+              "T=4mg/√3, Fₓ=2mg/√3(왼쪽), Fᵧ=mg(위쪽)",
+              "T=4mg/√3, Fₓ=2mg/√3(오른쪽), Fᵧ=3mg(위쪽)"
+            ],
+            "correctChoice": 1,
+            "answer": "T=4mg/√3, Fₓ=2mg/√3(오른쪽), Fᵧ=mg(위쪽)",
+            "acceptableAnswers": [
+              "1",
+              "T=4mg/√3, Fₓ=2mg/√3(오른쪽), Fᵧ=mg(위쪽)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 6번: 균일 막대 m, 간판 2m(힌지에서 3L/4), 끝 줄이 수평 막대와 60°이다. 옳은 장력과 힌지 성분은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "T=mg, (mg/2, mg)",
+              "T=2mg, (√3mg, mg)",
+              "T=2mg, (√3mg, 0)",
+              "T=√3mg, (2mg, mg)"
+            ],
+            "correctChoice": 2,
+            "answer": "T=2mg, (√3mg, mg)",
+            "acceptableAnswers": [
+              "2",
+              "T=2mg, (√3mg, mg)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 균일 막대 질량 m이 수평 힌지로 고정되고, 힌지에서 L/2에 질량 m인 간판이 달린다. 오른쪽 끝 줄은 수평과 30°를 이룬다. 줄 장력 T와 힌지 반력 (Fₓ,Fᵧ)은?",
+            "explanation": "힌지 기준: T sin30°L=mg(L/2)+mg(L/2)=mgL → T=2mg. 수평 반력은 T cos30°=√3mg(오른쪽), 수직 반력은 2mg−T sin30°=mg(위쪽)."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 7,
+          "maxPoints": 20,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "다중 막대의 돌림힘",
+          "topic": "매달린 A·B 막대의 줄 장력",
+          "difficulty": "상",
+          "image": {
+            "page": 2,
+            "crop": [
+              626,
+              160,
+              589,
+              965
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "B 지지 줄: 왼쪽 T₁=mg/2, 오른쪽 T₂=5mg/2. A 천장 줄: 왼쪽 T₃=11mg/3, 오른쪽 T₄=13mg/3",
+          "explanation": [
+            "아래쪽 막대 B(길이 2L, 질량 m)를 먼저 분리한다. B 중심의 무게 mg는 왼쪽에서 L, B 오른쪽의 질량 2m 블록은 왼쪽에서 2L에 작용한다.",
+            "B의 왼쪽 지지점 기준: T₂(2L)=mg·L+2mg·(2L) → T₂=5mg/2.",
+            "B의 수직 힘 평형: T₁+T₂=3mg → T₁=mg/2.",
+            "이제 위쪽 막대 A(길이 6L, 질량 2m)의 왼쪽 천장 지지점을 축으로 잡는다. A에는 x=L에서 3mg, x=3L에서 2mg, x=4L에서 B의 장력 T₁, x=6L에서 B의 장력 T₂가 아래로 작용한다.",
+            "T₄(6L)=3mg·L+2mg·3L+(mg/2)·4L+(5mg/2)·6L=26mgL → T₄=13mg/3.",
+            "A의 수직 평형: T₃+T₄=(3m+2m)g+T₁+T₂=8mg → T₃=11mg/3."
+          ],
+          "formulas": [
+            "B: 2LT₂=Lmg+2L(2mg)",
+            "T₁+T₂=3mg",
+            "A: 6LT₄=L(3mg)+3L(2mg)+4LT₁+6LT₂",
+            "T₃+T₄=8mg"
+          ],
+          "commonMistakes": [
+            "막대 B의 두 줄이 막대 A에는 아래로 당기는 힘으로 작용함을 놓침",
+            "막대 A의 무게 중심 위치를 2L/4L로 오해함",
+            "블록 2m의 무게와 막대 B 질량 m의 무게를 합산하지 않음"
+          ],
+          "rubric": [
+            {
+              "criterion": "B 막대의 왼쪽 장력 T₁=mg/2",
+              "points": 5
+            },
+            {
+              "criterion": "B 막대의 오른쪽 장력 T₂=5mg/2",
+              "points": 5
+            },
+            {
+              "criterion": "A 막대의 왼쪽 천장 장력 T₃=11mg/3",
+              "points": 5
+            },
+            {
+              "criterion": "A 막대의 오른쪽 천장 장력 T₄=13mg/3",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "B: (mg/2, 5mg/2), A: (11mg/3, 13mg/3)",
+              "B: (3mg/2, 3mg/2), A: (4mg,4mg)",
+              "B: (mg/2, 5mg/2), A: (13mg/3, 11mg/3)",
+              "B: (5mg/2, mg/2), A: (11mg/3, 13mg/3)"
+            ],
+            "correctChoice": 1,
+            "answer": "B: (mg/2, 5mg/2), A: (11mg/3, 13mg/3)",
+            "acceptableAnswers": [
+              "1",
+              "B: (mg/2, 5mg/2), A: (11mg/3, 13mg/3)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 7번: A(6L,2m)의 x=4L,6L에 B(2L,m)를 매달고 A의 x=L에 3m 블록, B 오른쪽에 2m 블록이 있다. B(왼/오), A(왼/오) 줄 장력의 조합은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "B: (mg,mg), A: (2mg,3mg)",
+              "B: (mg/2,3mg/2), A: (3mg,2mg)",
+              "B: (mg/2,3mg/2), A: (2mg,3mg)",
+              "B: (3mg/2,mg/2), A: (2mg,3mg)"
+            ],
+            "correctChoice": 3,
+            "answer": "B: (mg/2,3mg/2), A: (2mg,3mg)",
+            "acceptableAnswers": [
+              "3",
+              "B: (mg/2,3mg/2), A: (2mg,3mg)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 균일 막대 A(길이 4L, 질량 2m)가 양 끝에서 매달리고 A의 x=2L, 4L에 B(길이 2L, 질량 m)를 매단다. A의 x=L에 m 블록, B 오른쪽에 m 블록이 있다. B의 왼/오 장력 및 A의 왼/오 장력은?",
+            "explanation": "B: 2LT₂=mgL+mg·2L → T₂=3mg/2, T₁=mg/2. A 왼쪽 기준 4LT₄=mgL+2mg·2L+(mg/2)·2L+(3mg/2)·4L=12mgL → T₄=3mg. 총 아래쪽 5mg이므로 T₃=2mg."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 8,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "돌림힘의 평형",
+          "topic": "바퀴가 턱에 막 걸리는 임계 힘",
+          "difficulty": "상",
+          "image": {
+            "page": 3,
+            "crop": [
+              25,
+              178,
+              584,
+              590
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "F_min = mg√(2rh−h²)/(2r−h) (0<h<r)",
+          "explanation": [
+            "바퀴가 턱을 넘기 시작하는 순간에는 지면 수직항력이 0이 되고, 턱 모서리가 순간적인 회전축이 된다.",
+            "턱 모서리와 바퀴 중심의 수직 거리는 r−h이고, 중심과 모서리의 거리는 r이므로 수평 거리는 √[r²−(r−h)²]=√(2rh−h²)이다.",
+            "무게 mg의 모서리 기준 돌림힘 팔은 이 수평 거리이고, 바퀴 꼭대기에서 수평으로 당기는 F의 돌림힘 팔은 2r−h이다.",
+            "넘기기 직전 임계 돌림힘 평형: F(2r−h)=mg√(2rh−h²). 따라서 F_min=mg√(2rh−h²)/(2r−h).",
+            "정적 임계조건이며 실의 질량 및 축·접촉 마찰에 의한 별도 손실은 무시한다."
+          ],
+          "formulas": [
+            "d_무게=√[r²−(r−h)²]=√(2rh−h²)",
+            "d_F=2r−h",
+            "F_min(2r−h)=mg√(2rh−h²)"
+          ],
+          "commonMistakes": [
+            "회전축을 바퀴 중심 또는 지면 접촉점으로 잡음",
+            "수평으로 작용하는 F의 힘팔을 수평 거리로 착각함",
+            "턱 높이 h를 바퀴 중심 높이 r과 혼동함"
+          ],
+          "rubric": [
+            {
+              "criterion": "턱 모서리 축과 무게의 수평 모멘트 팔 계산",
+              "points": 4
+            },
+            {
+              "criterion": "F의 힘팔 2r−h 설정",
+              "points": 3
+            },
+            {
+              "criterion": "최소 힘 식 유도",
+              "points": 3
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "mg(2r−h)/√(2rh−h²)",
+              "mg√(2rh−h²)/r",
+              "mg√(2rh−h²)/(2r−h)",
+              "mg(r−h)/(2r−h)"
+            ],
+            "correctChoice": 3,
+            "answer": "mg√(2rh−h²)/(2r−h)",
+            "acceptableAnswers": [
+              "3",
+              "mg√(2rh−h²)/(2r−h)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 8번: 반지름 r, 질량 m인 바퀴를 꼭대기에서 수평으로 당겨 높이 h(0<h<r)인 턱을 넘기려 한다. 임계 최소 힘 F는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "mg/√3",
+              "√3mg",
+              "mg/2",
+              "2mg/√3"
+            ],
+            "correctChoice": 1,
+            "answer": "mg/√3",
+            "acceptableAnswers": [
+              "1",
+              "mg/√3"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 같은 바퀴 턱 문제에서 턱 높이가 h=r/2라면 꼭대기 수평 힘의 임계 크기는?",
+            "explanation": "원문 식에 h=r/2를 대입하면 분자=mg(√3r/2), 분모=3r/2이므로 F_min=mg/√3."
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.7.1-physics2-advanced-r02-reviewed"
+    },
+    {
       "examId": "physics2-advanced-total",
       "courseId": "physics2-advanced",
       "round": 0,
@@ -17412,8 +18906,10 @@
       "status": "coming-soon",
       "questionCount": 0,
       "maxScore": 0,
-      "historyExamIds": [],
-      "historyLabel": "물리2심화 복습 테스트 연결 범위 미설정",
+      "historyExamIds": [
+        "physics2-advanced-r02"
+      ],
+      "historyLabel": "물리2심화 2회차 복습 테스트",
       "reviewStatus": "not-uploaded",
       "configVersion": "2026.08.24-advanced-total-choice-v1",
       "inputProfile": {
@@ -17466,7 +18962,9 @@
         14,
         15
       ],
-      "physics2-advanced": []
+      "physics2-advanced": [
+        2
+      ]
     },
     "excludedRounds": {
       "physics1-basic": [
@@ -17488,5 +18986,5 @@
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.6.9-conditional-reviewed-explanations"
+  "featureVersion": "3.7.1-physics2-advanced-r02-reviewed"
 }

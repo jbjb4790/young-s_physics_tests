@@ -1,0 +1,9 @@
+﻿번호,배점,정답,검수상태
+1,10,"F = 20√3 N, 수직항력 N = 20√3 N (g = 10 m/s²)",corrected
+2,10,"m₁ cos30°=m₂ cos60° → m₁=m₂/√3; M=m₁ sin30°+m₂ sin60°=(m₁+√3m₂)/2=2m₁=2m₂/√3",corrected
+3,10,"θ=45°, 각 고리가 체인에 작용하는 힘 T=20√2 N",verified
+4,10,"사람이 줄을 당기는 힘 F=mg, 그네가 사람에게 작용하는 수직항력 N=mg",verified
+5,10,"F=230 N (막대 질량 8 kg, g=10 m/s²)",verified
+6,20,"줄 장력 T=4mg/√3; 힌지 반력 수평 성분 Fₓ=2mg/√3(오른쪽), 수직 성분 Fᵧ=mg(위쪽)",verified
+7,20,"B 지지 줄: 왼쪽 T₁=mg/2, 오른쪽 T₂=5mg/2. A 천장 줄: 왼쪽 T₃=11mg/3, 오른쪽 T₄=13mg/3",verified
+8,10,"F_min = mg√(2rh−h²)/(2r−h) (0<h<r)",verified
