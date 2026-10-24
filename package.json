@@ -1,10 +1,10 @@
 {
   "name": "youngs-physics-review-comprehensive-analysis",
-  "version": "3.7.1",
+  "version": "3.7.3",
   "private": true,
   "scripts": {
-    "test": "node --test tests/run-tests.mjs tests/student-merge.test.mjs tests/share-navigation.test.mjs tests/share-preview.test.mjs tests/physics2-r11.test.mjs tests/conditional-explanations.test.mjs tests/physics2-r12.test.mjs tests/physics2-advanced-r02.test.mjs",
+    "test": "node --test tests/run-tests.mjs tests/student-merge.test.mjs tests/share-navigation.test.mjs tests/share-preview.test.mjs tests/physics2-r11.test.mjs tests/conditional-explanations.test.mjs tests/physics2-r12.test.mjs tests/physics2-advanced-r02.test.mjs tests/physics1-r06-q04-revision.test.mjs tests/physics2-advanced-r03.test.mjs",
     "serve": "python3 -m http.server 8080 -d site"
   },
-  "description": "Young's Physics v3.7.1 — Physics 2 advanced weekly review round 2 (force equilibrium and torque), 8 questions / 100 points, reviewed corrected Q2 answer."
+  "description": "Young's Physics v3.7.3 — Physics 2 advanced weekly 3rd quiz (friction, pulley, projectile). Official Q8 solution corrected to stair 3; v3.7.2 features retained."
 }

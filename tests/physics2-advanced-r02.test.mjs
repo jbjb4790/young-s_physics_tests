@@ -19,18 +19,18 @@ const points=[10,10,10,10,10,20,20,10];
 function pngSize(rel){const b=fs.readFileSync(path.join(ROOT,'site',rel));assert.equal(b.toString('ascii',1,4),'PNG');return [b.readUInt32BE(16),b.readUInt32BE(20)];}
 function hash(rel){return crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT,rel))).digest('hex');}
 
-test('심화 2회차는 고유 ID로 시험 목록 41개 중 별도 주간시험으로 추가',()=>{
+test('심화 2회차는 고유 ID로 시험 목록 42개 중 별도 주간시험으로 추가',()=>{
  assert.ok(exam);assert.equal(exam.courseId,'physics2-advanced');assert.equal(exam.round,2);
  assert.equal(exam.assessmentType,'weekly');assert.equal(exam.status,'ready');
- assert.equal(catalog.exams.length,41);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,20);
- assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,41);
+ assert.equal(catalog.exams.length,42);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,21);
+ assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,42);
  assert.equal(exam.questionCount,8);assert.equal(exam.maxScore,100);
  assert.deepEqual(exam.questions.map(q=>q.maxPoints),points);
  assert.deepEqual(exam.questions.map(q=>q.no),[1,2,3,4,5,6,7,8]);
 });
 test('물리2심화 복습 2회만 운영 주간회차와 총괄 학습 이력에 추가',()=>{
- assert.deepEqual(catalog.operatingPolicy.weeklyRounds['physics2-advanced'],[2]);
- assert.deepEqual(catalog.exams.find(e=>e.examId==='physics2-advanced-total').historyExamIds,['physics2-advanced-r02']);
+ assert.deepEqual(catalog.operatingPolicy.weeklyRounds['physics2-advanced'],[2,3]);
+ assert.deepEqual(catalog.exams.find(e=>e.examId==='physics2-advanced-total').historyExamIds,['physics2-advanced-r02','physics2-advanced-r03']);
  assert.equal(catalog.exams.find(e=>e.examId==='physics2-advanced-total').status,'coming-soon');
  assert.equal(YP.getExam('physics1-advanced-total').status,'coming-soon');
  assert.equal(YP.getExam('physics2-basic-r12').status,'ready');
@@ -119,18 +119,18 @@ test('별도 문항 데이터, 브라우저 내장 카탈로그가 동일한 데
  assert.equal(JSON.stringify(exam),JSON.stringify(context.window.YP_CATALOG.exams.find(e=>e.examId===exam.examId)));
  assert.equal(JSON.stringify(catalog),JSON.stringify(context.window.YP_CATALOG));
 });
-test('학생·교사 카탈로그 캐시 버전이 3.7.1이며 서버 코드와 배포 설정은 보호',()=>{
- for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.1/);
- assert.equal(JSON.parse(read('package.json')).version,'3.7.1');
+test('학생·교사 카탈로그 캐시 버전이 3.7.3이며 서버 코드와 배포 설정은 보호',()=>{
+ for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.3/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.3');
  for(const name of ['apps-script/Code.gs','apps-script/appsscript.json','cloudflare-worker/index.mjs','.github/workflows/pages.yml','site/assets/runtime-config.js','site/assets/share-config.js']){
   assert.ok(fs.existsSync(path.join(ROOT,name)),`protected path absent: ${name}`);
  }
  assert.match(read('apps-script/Code.gs'),/function syncCatalog_\(/);
  assert.match(read('apps-script/Code.gs'),/function getStudentPortal_\(/);
 });
-test('추가 수량은 4과정 41시험(준비 20) 215문항, 기존 207문항 그대로 보존',()=>{
+test('추가 수량은 4과정 42시험(준비 21) 223문항, 기존 207문항 그대로 보존',()=>{
  assert.equal(catalog.courses.length,4);
- assert.equal(catalog.exams.length,41);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').length,20);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,215);
+ assert.equal(catalog.exams.length,42);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').length,21);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,223);
 });

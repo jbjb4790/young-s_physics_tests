@@ -1,0 +1,771 @@
+{
+  "examId": "physics2-advanced-r03",
+  "courseId": "physics2-advanced",
+  "round": 3,
+  "title": "물리2심화 3회차 복습 테스트 · 마찰과 포물선 운동",
+  "shortTitle": "3회차 마찰과 포물선 운동",
+  "status": "ready",
+  "assessmentType": "weekly",
+  "section": "mechanics",
+  "examDate": "",
+  "questionCount": 8,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics2-advanced/r03.pdf",
+  "solutionPdf": "assets/documents/physics2-advanced/r03-verified-solution.pdf",
+  "pages": [
+    "assets/pages/physics2-advanced/r03-p1.png",
+    "assets/pages/physics2-advanced/r03-p2.png",
+    "assets/pages/physics2-advanced/r03-p3.png"
+  ],
+  "reviewStatus": "corrected",
+  "configVersion": "2026.10.23-physics2-advanced-r03-reviewed-v3.7.3",
+  "sourceTitle": "물리2심화 Quiz 3회.pdf / 물리2심화 Quiz 3회 해답.pdf",
+  "sourceNote": "원문 8문항 100점(10·15·15·10·10·15·15·10점). 8번 공식 해설의 5번 계단은 물리적 검산 결과 오류(정답: 3번 계단 수평면)로 판정되어 검수 해설과 학생 재도전에는 3번을 사용한다. 원본 해설 PDF와 문제 PDF는 원형 그대로 보존한다. 1번은 바닥 마찰 없는 가정, 2번은 g=10m/s² 가정을 명시한다. 7번 소문항은 각 7.5점. “초파를 그리면 2점”은 100점 외 가산점으로 자동 총점에 포함하지 않음.",
+  "coreNote": {
+    "summary": "물리2심화 3회차: 정지·운동 마찰에 의한 블록의 동반·상대 운동, 경사 V자 홈통, 다단 도르래의 운동과 힘, 포물선 운동의 최고점·사거리·발사조건·계단 충돌",
+    "concepts": [
+      "상하 블록이 함께 가속할 때 위 물체에 필요한 마찰력은 f=m_A a이며 최대 정지마찰력 이하이어야 한다.",
+      "미끄러진 뒤에는 f_k=μ_k N으로 계산하여 위·아래 블록에 반대방향으로 작용시킨다.",
+      "V자 홈통은 양쪽 접촉면의 수직항력과 운동마찰력 둘을 모두 합해야 한다.",
+      "매끄러운 줄·도르래 연결계에서는 줄 길이 제약으로 연결된 물체의 상대 가속도 크기가 연결된다.",
+      "여러 움직도르래에서는 각 도르래 자체의 질량도 장력 균형에 포함한다.",
+      "포물선 운동: 최고점 시간 t_up=v sinθ/g, 높이 H=v² sin²θ/(2g), 사거리 R=v² sin2θ/g.",
+      "출발·착지 높이가 같고 P가 수평 중점이면 P는 최고점이다.",
+      "수평 발사와 계단 충돌에서는 포락선이 아닌 실제 n번째 계단 수평구간과 궤적의 교차를 먼저 점검한다."
+    ],
+    "formulas": [
+      "F_max=(m_A+m_B) μ_s g (위 블록 위·아래 단일 마찰, 바닥 마찰 무시)",
+      "f_k=μ_k m_A g",
+      "V자 홈통: N=mg/2, a=(1/2−μ)g (원문 기하)",
+      "t_up=v sinθ/g, H=v²sin²θ/(2g), R=v²sin2θ/g",
+      "tanθ=2h/d, v²=g(d²+4h²)/(2h)",
+      "수평 발사: y=−gx²/(2v²)",
+      "계단 n: x∈[2(n−1)h,2nh], y=−nh"
+    ],
+    "mistakes": [
+      "정지마찰·운동마찰의 크기를 같은 식으로 놓음",
+      "연결된 줄의 장력을 모든 위치에서 무게와 동일하다고 놓음",
+      "도르래 자체의 무게를 빠뜨림",
+      "sin²θ 항을 sinθ로 처리함",
+      "계단 모서리 연결 직선의 교점을 실제 첫 접촉점으로 취급하여 8번 원본 해설 오류를 그대로 사용함"
+    ],
+    "checklist": [
+      "두 물체가 미끄러지지 않는 상태인지 확인했는가?",
+      "마찰력 방향을 두 물체에 반대로 그렸는가?",
+      "도르래 시스템에서 줄의 수와 자체 하중을 모두 포함했는가?",
+      "발사·도착 높이가 같은지 확인하고 해당 사거리 식을 사용했는가?",
+      "계단 첫 충돌을 수평면 구간과 실제 궤적의 교점으로 판별했는가?",
+      "8번 원본의 5번 계단이 아니라 검수된 3번 계단으로 채점하는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "뉴턴 운동 법칙·정지마찰",
+      "topic": "위아래 블록의 최대 동반 가속도",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          40,
+          195,
+          565,
+          450
+        ]
+      },
+      "reviewStatus": "conditional",
+      "correctionNote": "원문 1번은 B-바닥 마찰계수를 제시하지 않음. 제공 해답 80 N은 바닥 마찰을 무시하는 가정에서만 결정됨. 채점·동형 문제에는 이를 명시.",
+      "answer": "F_max = (m_A+m_B) μ_s g = (2+6)×1×10 = 80 N (바닥 마찰 무시)",
+      "explanation": [
+        "A(2 kg)를 B(6 kg)가 끌고 갈 때 A에 작용하는 수평력은 A-B 사이 정지마찰력뿐이다.",
+        "함께 움직일 때 a=F/(m_A+m_B), 필요한 마찰력은 f_s=m_A a이다.",
+        "미끄러지지 않으려면 m_A a ≤ μ_s m_A g, 즉 a ≤ μ_s g=10 m/s².",
+        "따라서 F_max=(m_A+m_B) μ_s g=80 N. 원문에 B와 바닥 사이 마찰 조건이 명시되어 있지 않으므로 제공 해답처럼 바닥은 매끄럽다고 가정한다."
+      ],
+      "formulas": [
+        "a = F/(m_A+m_B)",
+        "f_s=m_A a ≤ μ_s m_A g",
+        "F_max=(m_A+m_B) μ_s g"
+      ],
+      "commonMistakes": [
+        "양쪽 블록의 질량 8 kg 대신 위 블록 질량 2 kg만 사용함",
+        "정지마찰력은 항상 μ_s N이라고 놓고 가속도 제한을 빠뜨림",
+        "바닥 마찰이 따로 주어졌다고 임의 가정함"
+      ],
+      "rubric": [
+        {
+          "criterion": "A가 함께 움직일 때 a=F/8 설정",
+          "points": 3
+        },
+        {
+          "criterion": "정지마찰 한계 a≤μ_s g",
+          "points": 4
+        },
+        {
+          "criterion": "F_max=80 N 및 단위",
+          "points": 3
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "20 N",
+          "80 N",
+          "60 N",
+          "40 N"
+        ],
+        "correctChoice": 2,
+        "answer": "80 N",
+        "acceptableAnswers": [
+          "2",
+          "80 N"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 1번: 2 kg 블록 A가 6 kg 블록 B 위에 있으며 μ_s=1, g=10이다. 바닥 마찰을 무시할 때 함께 움직이는 최대 F는?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "12 N",
+          "24 N",
+          "32 N",
+          "80 N"
+        ],
+        "correctChoice": 3,
+        "answer": "32 N",
+        "acceptableAnswers": [
+          "3",
+          "32 N"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 3 kg 블록이 5 kg 블록 위에 있고 μ_s=0.4, g=10이며 바닥은 마찰이 없다. 아래 블록을 당겨 두 블록이 함께 움직이는 최대 힘은?",
+        "explanation": "a_max=μ_s g=4 m/s², F_max=(3+5)×4=32 N."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 2,
+      "maxPoints": 15,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "뉴턴 운동 법칙·마찰",
+      "topic": "상부 블록에 가한 힘과 미끄러짐 전후 가속도",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          40,
+          825,
+          565,
+          630
+        ]
+      },
+      "reviewStatus": "conditional",
+      "correctionNote": "원문 2번에 g값이 직접 반복되어 있지 않음. 제공 해답의 수치 8 N, 8 m/s², 2/3 m/s²는 g=10 m/s²를 사용한 값.",
+      "answer": "(1) F_max=8 N. (2) F=20 N일 때 a_A=8 m/s², a_B=2/3 m/s² (g=10 m/s²)",
+      "explanation": [
+        "두 물체의 질량은 m_A=2 kg, m_B=6 kg이며 바닥에는 마찰이 없다. 답안과 동일하게 g=10 m/s²를 사용한다.",
+        "같이 움직이는 동안 a=F/8이고 B에 작용하는 정지마찰력은 f=m_B a=6F/8이다.",
+        "f≤μ_s m_A g=0.30×2×10=6 N이므로 F≤8 N.",
+        "F=20 N은 한계를 넘어 미끄러진다. 운동마찰력 f_k=μ_k m_A g=0.20×2×10=4 N.",
+        "A: a_A=(20−4)/2=8 m/s². B: a_B=4/6=2/3 m/s²."
+      ],
+      "formulas": [
+        "F_max=(m_A+m_B) μ_s m_A g/m_B=8 N",
+        "f_k=μ_k m_A g=4 N",
+        "a_A=(F−f_k)/m_A",
+        "a_B=f_k/m_B"
+      ],
+      "commonMistakes": [
+        "B의 마찰 한계를 μ_s m_B g로 계산함",
+        "20 N에도 두 물체가 같이 움직인다고 가정함",
+        "A와 B에 마찰력이 반대방향으로 작용함을 놓침"
+      ],
+      "rubric": [
+        {
+          "criterion": "함께 움직이는 경우 힘 평형과 최대 정지마찰력",
+          "points": 5
+        },
+        {
+          "criterion": "운동마찰력 f_k=4 N",
+          "points": 3
+        },
+        {
+          "criterion": "A의 가속도 a_A=8 m/s²",
+          "points": 4
+        },
+        {
+          "criterion": "B의 가속도 a_B=2/3 m/s²",
+          "points": 3
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "F최대=8 N, aA=8 m/s², aB=2/3 m/s²",
+          "F최대=6 N, aA=10 m/s², aB=0",
+          "F최대=8 N, aA=2/3 m/s², aB=8 m/s²",
+          "F최대=24 N, aA=aB=2.5 m/s²"
+        ],
+        "correctChoice": 1,
+        "answer": "F최대=8 N, aA=8 m/s², aB=2/3 m/s²",
+        "acceptableAnswers": [
+          "1",
+          "F최대=8 N, aA=8 m/s², aB=2/3 m/s²"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 2번: 위 A=2 kg, 아래 B=6 kg, μ_s=0.30, μ_k=0.20, g=10이다. A를 F로 끌 때 최대 동반 힘과 F=20 N의 두 가속도는?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "F최대=5 N, aA=8 m/s², aB=0",
+          "F최대=7.5 N, aA=0.75 m/s², aB=6.5 m/s²",
+          "F최대=7.5 N, aA=6.5 m/s², aB=0.75 m/s²",
+          "F최대=15 N, aA=aB=8/3 m/s²"
+        ],
+        "correctChoice": 3,
+        "answer": "F최대=7.5 N, aA=6.5 m/s², aB=0.75 m/s²",
+        "acceptableAnswers": [
+          "3",
+          "F최대=7.5 N, aA=6.5 m/s², aB=0.75 m/s²"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 위 A=2 kg, 아래 B=4 kg, μ_s=0.25, μ_k=0.15, g=10, 바닥 마찰 없음. A를 F로 끌 때 F최대와 F=16 N인 경우 가속도는?",
+        "explanation": "정지마찰 최대=0.25×2×10=5 N, a_B,max=5/4=1.25, F_max=6×1.25=7.5 N. F=16 N에서 f_k=0.15×2×10=3 N, aA=(16−3)/2=6.5, aB=3/4=0.75 m/s²."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 3,
+      "maxPoints": 15,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "경사면·마찰",
+      "topic": "120° V자 홈통 경사운동에서 수직항력·마찰",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          630,
+          195,
+          565,
+          790
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "(1) 양쪽 면 수직항력 각각 N=mg/2. (2) a=g/2. (3) a=g/2−μg (아래쪽을 +로, 실제로 미끄러져 내려가는 경우)",
+      "explanation": [
+        "홈통의 V자 단면 각 120°가 대칭이므로 각 면의 수직항력은 홈통 단면에서 중앙을 기준으로 각각 30° 기울어져 있다.",
+        "경사진 홈통의 축 방향 가속도는 g sin30°=g/2이다. 축에 수직한 중력성분은 mg cos30°이다.",
+        "축에 수직한 방향 힘평형은 2N cos30°=mg cos30° → N=mg/2.",
+        "운동마찰계수가 μ일 때 홈통을 거슬러 올라가는 마찰력은 각 접촉에서 μN이며 합계 2μN=μmg이다.",
+        "축을 따라 ma=mg sin30°−2μN → a=g/2−μg. μ가 너무 크면 주어진 하강 가정의 운동상태가 달라질 수 있다."
+      ],
+      "formulas": [
+        "2N cos30° = mg cos30°",
+        "N=mg/2",
+        "a_0=g sin30°=g/2",
+        "ma=mg/2−2μN → a=(1/2−μ)g"
+      ],
+      "commonMistakes": [
+        "한쪽 면의 수직항력만으로 중력의 수직 성분을 받친다고 가정함",
+        "홈통 두 면에서의 마찰력을 하나만 더함",
+        "단면 각 120°와 홈통의 경사각 30°를 같은 방향의 각으로 혼동함"
+      ],
+      "rubric": [
+        {
+          "criterion": "단면 힘 평형으로 N=mg/2",
+          "points": 5
+        },
+        {
+          "criterion": "마찰 없는 가속도 g/2",
+          "points": 5
+        },
+        {
+          "criterion": "마찰이 있을 때 두 면을 반영하여 g/2−μg",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "(mg, g/2, g/2−2μg)",
+          "(mg/2, g/2, g/2−μg)",
+          "(mg/√3, g sin60°, g/2−μg)",
+          "(mg/2, g, g−μg)"
+        ],
+        "correctChoice": 2,
+        "answer": "(mg/2, g/2, g/2−μg)",
+        "acceptableAnswers": [
+          "2",
+          "(mg/2, g/2, g/2−μg)"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 3번: 꼭짓각 120°인 대칭 V홈통이 수평과 30° 경사지고 질량 m 물체가 양면과 접촉한다. (N, 마찰 없는 a, 마찰계수 μ일 때 a)의 옳은 조합은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "N=20 N, a0=5 m/s², aμ=3 m/s²",
+          "N=10 N, a0=10 m/s², aμ=8 m/s²",
+          "N=10 N, a0=5 m/s², aμ=3 m/s²",
+          "N=10 N, a0=5 m/s², aμ=4 m/s²"
+        ],
+        "correctChoice": 4,
+        "answer": "N=10 N, a0=5 m/s², aμ=4 m/s²",
+        "acceptableAnswers": [
+          "4",
+          "N=10 N, a0=5 m/s², aμ=4 m/s²"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 동일한 V홈통(꼭짓각 120°, 경사 30°)에서 m=2 kg, g=10 m/s², 운동마찰계수 μ=0.10이다. 각각의 N과 무마찰·유마찰 가속도는?",
+        "explanation": "N=mg/2=10 N, a0=g/2=5 m/s², aμ=(1/2−0.10)×10=4 m/s²."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 4,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "도르래·운동 방정식",
+      "topic": "등속 운동하는 받침대와 연결된 두 물체",
+      "difficulty": "상",
+      "image": {
+        "page": 2,
+        "crop": [
+          40,
+          188,
+          570,
+          615
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "F_1=2mg/3 (A는 등속도, 이상적인 줄·도르래)",
+      "explanation": [
+        "A(질량 3m)는 등속도 운동하므로 수평 방향 알짜힘이 0이다. 도르래가 A에 주는 수평 장력이 T이므로 F_1=T.",
+        "B(질량 2m)는 A의 윗면을 마찰 없이 움직이므로 T=2m a_B.",
+        "C(질량 m)는 A의 측면을 따라 아래로 움직이며 mg−T=m a_C.",
+        "끈의 길이가 일정하고 A의 수평 가속도가 0이므로 B의 상대 수평 가속도와 C의 아래쪽 가속도 크기는 a_B=a_C=a.",
+        "따라서 T=2ma, mg−T=ma → a=g/3, T=2mg/3."
+      ],
+      "formulas": [
+        "F_1=T",
+        "T=2m a",
+        "mg−T=m a",
+        "F_1=2mg/3"
+      ],
+      "commonMistakes": [
+        "F_1=(3m+2m+m)g로 계산함",
+        "C의 무게가 모두 줄의 장력이 된다고 놓침",
+        "A가 등속도라는 조건을 다른 두 물체도 등속도라고 혼동함"
+      ],
+      "rubric": [
+        {
+          "criterion": "A의 수평 힘 평형 F_1=T",
+          "points": 3
+        },
+        {
+          "criterion": "B·C 연결 운동방정식 및 같은 가속도 관계",
+          "points": 4
+        },
+        {
+          "criterion": "T=F_1=2mg/3",
+          "points": 3
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "mg/3",
+          "mg/2",
+          "2mg/3",
+          "mg"
+        ],
+        "correctChoice": 3,
+        "answer": "2mg/3",
+        "acceptableAnswers": [
+          "3",
+          "2mg/3"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 4번: 받침대 A(3m)는 등속도, 위 B(2m)와 오른쪽 C(m)가 마찰 없는 줄·도르래로 연결되어 있다. 받침대를 밀어 주는 힘 F₁은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "mg/3",
+          "mg/2",
+          "3mg/4",
+          "mg"
+        ],
+        "correctChoice": 3,
+        "answer": "3mg/4",
+        "acceptableAnswers": [
+          "3",
+          "3mg/4"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 받침대 A(4m)가 등속도로 움직이고, 위 B(3m)와 오른쪽 C(m)를 마찰 없는 도르래로 연결했다. A에 필요한 힘 F₁은?",
+        "explanation": "T=3ma, mg−T=ma이므로 4ma=mg → T=3mg/4, 등속인 A에서 F₁=T."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 5,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "도르래·힘의 평형",
+      "topic": "세 단계 움직도르래 질량과 하중을 포함한 장력",
+      "difficulty": "상",
+      "image": {
+        "page": 2,
+        "crop": [
+          40,
+          911,
+          570,
+          450
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "F=11Mg/8 (세 움직도르래 각각 질량 M, 매단 물체 4M)",
+      "explanation": [
+        "도르래 세 개의 질량을 각각 M으로 포함한다. 모든 도르래와 하중이 등속 상승하므로 각 도르래는 힘의 평형 상태다.",
+        "맨 아래 단계: 아래 도르래(M)+하중(4M)=5Mg를 두 줄이 지지하므로 2T_1=5Mg → T_1=5Mg/2.",
+        "중간 단계: 중간 도르래 무게 Mg와 아래 줄 장력 T_1을 두 줄이 지지하므로 2T_2=Mg+T_1 → T_2=7Mg/4.",
+        "맨 위 단계: 위 도르래 무게 Mg와 아래 단계의 줄 장력 T_2를 두 줄이 지지하므로 2F=Mg+T_2 → F=11Mg/8."
+      ],
+      "formulas": [
+        "2T_1=(4M+M)g=5Mg",
+        "2T_2=Mg+T_1 → T_2=7Mg/4",
+        "2F=Mg+T_2 → F=11Mg/8"
+      ],
+      "commonMistakes": [
+        "세 도르래의 질량 M을 모두 무시함",
+        "각 단계 두 줄이 지지한다는 점을 놓침",
+        "위쪽 단계에 전달되는 아랫줄 장력 방향을 반대로 취급함"
+      ],
+      "rubric": [
+        {
+          "criterion": "아래 도르래의 장력 T₁=5Mg/2",
+          "points": 3
+        },
+        {
+          "criterion": "중간 도르래의 장력 T₂=7Mg/4",
+          "points": 3
+        },
+        {
+          "criterion": "윗줄 힘 F=11Mg/8",
+          "points": 4
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "5Mg/8",
+          "11Mg/8",
+          "13Mg/8",
+          "2Mg"
+        ],
+        "correctChoice": 2,
+        "answer": "11Mg/8",
+        "acceptableAnswers": [
+          "2",
+          "11Mg/8"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 5번: 각각 질량 M인 움직도르래 세 개로 질량 4M 물체를 등속 상승시킨다. 그림과 같은 이상적인 줄에서 당기는 힘 F는?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "13Mg/8",
+          "11Mg/8",
+          "7Mg/4",
+          "3Mg/2"
+        ],
+        "correctChoice": 1,
+        "answer": "13Mg/8",
+        "acceptableAnswers": [
+          "1",
+          "13Mg/8"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 같은 세 단계 움직도르래에서 각 도르래는 질량 M, 하중만 6M으로 바뀌었다. 등속 상승을 위한 힘 F는?",
+        "explanation": "아래 T₁=(6M+M)g/2=7Mg/2, 중간 T₂=(Mg+7Mg/2)/2=9Mg/4, 위 F=(Mg+9Mg/4)/2=13Mg/8."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 6,
+      "maxPoints": 15,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "포물선 운동",
+      "topic": "서로 보각인 발사각의 최고점·사거리 비",
+      "difficulty": "중",
+      "image": {
+        "page": 2,
+        "crop": [
+          629,
+          188,
+          568,
+          765
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "A:B = (1) 최고점 도달 시간 √3:1, (2) 최고점 높이 3:1, (3) 수평 도달거리 1:1",
+      "explanation": [
+        "동일한 초기속도 v에서 공 A는 60°, B는 30°로 발사되며 두 공은 같은 높이로 착지한다.",
+        "최고점까지 시간 t_up=v sinθ/g이므로 t_A:t_B=sin60°:sin30°=√3:1.",
+        "최고점 높이 H=(v sinθ)²/(2g)이므로 H_A:H_B=sin²60°:sin²30°=3:1.",
+        "동일 높이 도착 사거리 R=v² sin(2θ)/g이므로 R_A:R_B=sin120°:sin60°=1:1."
+      ],
+      "formulas": [
+        "t_up=v sinθ/g",
+        "H=v² sin²θ/(2g)",
+        "R=v² sin(2θ)/g"
+      ],
+      "commonMistakes": [
+        "최고점 높이의 비를 sinθ가 아닌 sin²θ로 계산해야 한다는 점을 놓침",
+        "60°와 30° 발사각이 보각(합 90°)인 경우 사거리가 같음을 놓침",
+        "발사각의 크기만으로 모든 이동거리와 시간이 같은 비라고 가정함"
+      ],
+      "rubric": [
+        {
+          "criterion": "최고점 시간의 비 √3:1",
+          "points": 5
+        },
+        {
+          "criterion": "최고점 높이의 비 3:1",
+          "points": 5
+        },
+        {
+          "criterion": "수평 도달거리의 비 1:1",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "√3:1, 3:1, 1:1",
+          "3:1, √3:1, 1:1",
+          "1:√3, 1:3, 1:1",
+          "√3:1, 3:1, √3:1"
+        ],
+        "correctChoice": 1,
+        "answer": "√3:1, 3:1, 1:1",
+        "acceptableAnswers": [
+          "1",
+          "√3:1, 3:1, 1:1"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 6번: 같은 지점에서 같은 v로 60°(A),30°(B) 발사했을 때 A:B의 최고점 시간, 높이, 수평 도달거리 비는?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "√2:1, 2:1, √3:2",
+          "√2:1, 2:1, 2:√3",
+          "2:1, √2:1, 2:√3",
+          "1:√2, 1:2, √3:2"
+        ],
+        "correctChoice": 2,
+        "answer": "√2:1, 2:1, 2:√3",
+        "acceptableAnswers": [
+          "2",
+          "√2:1, 2:1, 2:√3"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 같은 v로 45°(A),30°(B) 발사하고 같은 높이에 착지한다. A:B의 최고점 시간·높이·사거리 비는?",
+        "explanation": "t 비 sin45/sin30=√2, H 비 sin²45/sin²30=2, 사거리 비 sin90/sin60=2/√3, 따라서 √2:1, 2:1, 2:√3."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 7,
+      "maxPoints": 15,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "포물선 운동",
+      "topic": "최고점 링을 지나는 발사각과 초기속도",
+      "difficulty": "상",
+      "image": {
+        "page": 3,
+        "crop": [
+          42,
+          194,
+          568,
+          570
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "(1) tanθ=2h/d, 따라서 θ=arctan(2h/d). (2) v=√[g(d²+4h²)/(2h)]",
+      "explanation": [
+        "링 P는 출발점 O에서 수평거리 d에 있고, P에서 지면의 착지점 Q까지도 수평거리 d이다.",
+        "수평 이동거리 OQ=2d이고 출발·도착 높이가 같으므로 궤적은 x=d에서 대칭이며 링 P는 최고점이다.",
+        "최고점 높이 h=(v sinθ)²/(2g), 최대수평거리 2d=v² sin(2θ)/g를 사용한다.",
+        "최고점까지의 시간 t=√(2h/g), 수평 성분 vx=d/t=d√[g/(2h)], 수직 성분 vy=gt=√(2gh).",
+        "따라서 tanθ=vy/vx=2h/d, v=√(vx²+vy²)=√[g(d²+4h²)/(2h)]."
+      ],
+      "formulas": [
+        "R=v² sin(2θ)/g=2d",
+        "h=v² sin²θ/(2g)",
+        "tanθ=2h/d",
+        "v²=g(d²+4h²)/(2h)"
+      ],
+      "commonMistakes": [
+        "링이 최고점에 있다는 대칭 조건을 놓침",
+        "tanθ를 h/d로 계산해 계수 2를 빠뜨림",
+        "초기속도를 연직속력만으로 구하여 수평속력을 빠뜨림"
+      ],
+      "rubric": [
+        {
+          "criterion": "P가 최고점임을 보이고 tanθ=2h/d 도출",
+          "points": 7.5
+        },
+        {
+          "criterion": "v²=g(d²+4h²)/(2h) 및 초기속도 정리",
+          "points": 7.5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "tanθ=h/d, v=√[g(d²+h²)/(2h)]",
+          "tanθ=2h/d, v=√[g(d²+4h²)/(4h)]",
+          "tanθ=2h/d, v=√[g(d²+4h²)/(2h)]",
+          "tanθ=d/(2h), v=√[g(d²+4h²)/(2h)]"
+        ],
+        "correctChoice": 3,
+        "answer": "tanθ=2h/d, v=√[g(d²+4h²)/(2h)]",
+        "acceptableAnswers": [
+          "3",
+          "tanθ=2h/d, v=√[g(d²+4h²)/(2h)]"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 7번: O에서 발사하여 (d,h)의 링 P를 지나 (2d,0)의 Q에 착지한다. 발사각 θ와 필요한 속력 v의 올바른 조합은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "tanθ=1/2, v=10√3 m/s",
+          "tanθ=1/4, v=10√3 m/s",
+          "tanθ=1/2, v=10√2 m/s",
+          "tanθ=2, v=10√3 m/s"
+        ],
+        "correctChoice": 1,
+        "answer": "tanθ=1/2, v=10√3 m/s",
+        "acceptableAnswers": [
+          "1",
+          "tanθ=1/2, v=10√3 m/s"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: O에서 발사해 수평거리 d=12 m, 높이 h=3 m인 링 P를 통과한 뒤 다시 12 m 가서 착지한다(g=10). tanθ와 v는?",
+        "explanation": "tanθ=2h/d=6/12=1/2. v²=g(d²+4h²)/(2h)=10(144+36)/6=300이므로 v=10√3 m/s."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 8,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "포물선 운동·충돌",
+      "topic": "수평 발사체와 계단의 최초 충돌 위치",
+      "difficulty": "상",
+      "image": {
+        "page": 3,
+        "crop": [
+          629,
+          195,
+          566,
+          490
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "공식 해답 3쪽의 8번 정답 ‘5번 계단 모서리’는 계단 폭 b=2h를 적용하지 않은 결과로 확인됨. 교점 x=5h는 계단 모서리가 아니며, 실제 최초 충돌은 x=√30h인 3번 계단 수평면. 원본 해설 PDF 별도 보존.",
+      "answer": "최초 충돌은 3번 계단의 수평면 (공식 제공 해설의 5번 계단은 계산 오류)",
+      "explanation": [
+        "원점 O를 첫 계단의 맨 위 모서리로 잡고 오른쪽 x>0, 위쪽 y>0으로 잡는다. v=√(5gh)이므로 t=x/v와 y=−gt²/2에서 y=−x²/(10h).",
+        "계단 폭 b=2h, 높이 a=h이다. n번째 수평면은 x∈[2(n−1)h, 2nh], y=−nh이다.",
+        "1번의 끝 x=2h에서 낙하량 (2h)²/(10h)=0.4h<1h이므로 1번과 만나지 않는다.",
+        "2번 끝 x=4h에서 낙하량=1.6h<2h이므로 2번과 만나지 않는다.",
+        "3번의 수평면 y=−3h와 교차할 때 x²/(10h)=3h → x=√30h≈5.477h. 4h<x<6h이므로 3번 계단에서 처음 충돌한다.",
+        "원본 해답의 y=−x/2는 계단 모서리를 연결한 포락 직선일 뿐, 실제 계단 수평면이 아니다. 원본 해답의 ‘5번 계단 모서리’는 x·계단 번호 관계에도 맞지 않는다. 원본 PDF는 그대로 보존한다."
+      ],
+      "formulas": [
+        "x=v t, y=−gt²/2",
+        "v²=5gh → y=−x²/(10h)",
+        "n번 계단: 2(n−1)h≤x≤2nh, y=−nh",
+        "x_3=√30h∈(4h,6h) → 3번"
+      ],
+      "commonMistakes": [
+        "계단 모서리 연결선 y=−x/2와의 교점을 실제 계단 접촉점으로 간주함",
+        "폭 b=2h를 무시하고 x/h를 계단 번호로 해석함",
+        "원본 그림의 파선 궤적 모양을 실제 주어진 속력에 맞게 검산하지 않음"
+      ],
+      "rubric": [
+        {
+          "criterion": "수평 발사 궤적 y=−x²/(10h) 도출",
+          "points": 3
+        },
+        {
+          "criterion": "폭 2h를 이용한 1·2번 계단 통과 판정",
+          "points": 3
+        },
+        {
+          "criterion": "3번 수평면의 x=√30h 교점과 구간 확인",
+          "points": 4
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "2번 계단",
+          "3번 계단",
+          "5번 계단",
+          "9번 계단"
+        ],
+        "correctChoice": 2,
+        "answer": "3번 계단",
+        "acceptableAnswers": [
+          "2",
+          "3번 계단"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 8번: 계단의 높이 h·폭 2h, O에서 속력 √(5gh)로 수평 발사했을 때 가장 먼저 닿는 계단은? (원본 해답 ‘5번’은 오류)"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "3번",
+          "4번",
+          "5번",
+          "6번"
+        ],
+        "correctChoice": 3,
+        "answer": "5번",
+        "acceptableAnswers": [
+          "3",
+          "5번"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형: 계단 높이 h·폭 2h인 같은 구조에서 발사속력을 √(9gh)로 바꿨다. 처음 닿는 계단 번호는?",
+        "explanation": "y=−x²/(18h), 4번 계단 끝 x=8h에서 낙하량 64h/18<4h라 통과. 5번 수평면 y=−5h와 x=√90h≈9.49h에서 만나며 8h<x<10h이므로 5번."
+      },
+      "retryMode": "multiple-choice"
+    }
+  ],
+  "featureVersion": "3.7.3-physics2-advanced-r03-reviewed"
+}

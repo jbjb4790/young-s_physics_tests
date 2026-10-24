@@ -1,0 +1,144 @@
+{
+  "baseline": "YoungsPhysics_v3.7.2_물리1_6회_4번_전체소스.zip",
+  "baselineFileCount": 286,
+  "sourceDate": "2026-10-23",
+  "currentExamCount": 42,
+  "readyExamCount": 21,
+  "questionCount": 223,
+  "protectedFileCount": 20,
+  "protected": [
+    {
+      "path": ".github/workflows/pages.yml",
+      "sha256": "f61953d3c0365dcf290bf93e282bb8b91215b676ed460798a847d85fc2f2d3c5",
+      "matched": true
+    },
+    {
+      "path": "apps-script/Code.gs",
+      "sha256": "85185997e8a8b7b4e357cad6287b15b988a798a8b210027e076cf8ad7783a078",
+      "matched": true
+    },
+    {
+      "path": "apps-script/appsscript.json",
+      "sha256": "0d70abbcecabdbf3b9a05dd0d00a44778e8e22650beec52fa52052d066639ae4",
+      "matched": true
+    },
+    {
+      "path": "cloudflare-worker/index.mjs",
+      "sha256": "1e2b93ea3047024661c4d5c1327a503c9d3a2541817339174beed9265ea42f9e",
+      "matched": true
+    },
+    {
+      "path": "site/assets/runtime-config.js",
+      "sha256": "560543b890e6de4b1d5a2897cd17e6e77273692847ee0f1415cbc384d054da18",
+      "matched": true
+    },
+    {
+      "path": "site/assets/share-config.js",
+      "sha256": "dbd69d197c6c5c3f71efe9005bd4a20ca96ecd3b56d7ede31ef686aa6ef8856a",
+      "matched": true
+    },
+    {
+      "path": "site/assets/api.js",
+      "sha256": "218abd7119e1075cd41d4d1030ff61a9c521fdba97074559ff2d51404e2e090a",
+      "matched": true
+    },
+    {
+      "path": "site/assets/core.js",
+      "sha256": "78271e02dbe735bb62c9e7b35ba70c83bea5c7fe99495e34ce8103259810a224",
+      "matched": true
+    },
+    {
+      "path": "site/assets/app.js",
+      "sha256": "7146af0ba96f7b3e90646054b23da4d39d2f85f00bedfcfd5d6c797dde687ee9",
+      "matched": true
+    },
+    {
+      "path": "site/assets/portal.js",
+      "sha256": "21ec7d660967422a6f4b4f4be0c8d99a8117cdbb4b46dda74b66ab862f5e2561",
+      "matched": true
+    },
+    {
+      "path": "site/assets/report.js",
+      "sha256": "5b6605aa73e4257154c68c977a9ab93a3c24a1c632dd60785b323dd263fe33f2",
+      "matched": true
+    },
+    {
+      "path": "site/assets/share-link.js",
+      "sha256": "ed9ddf150eba65d8ba395e4ebb247891a8279a3735c76bab7c41b09026d34495",
+      "matched": true
+    },
+    {
+      "path": "site/assets/config.js",
+      "sha256": "e761fafd6d8fc30d98927d99e585a569c344cfe3eb4afdbc955e2d183f6b6b44",
+      "matched": true
+    },
+    {
+      "path": "site/assets/launch.js",
+      "sha256": "51c40c9ba28f366a877269a6f9fa388eeb6d79fd0054ced3e213a30e0989e104",
+      "matched": true
+    },
+    {
+      "path": "site/assets/csv-import.js",
+      "sha256": "a0671a00cc2c1304f6ea8db07fe280b9a31b06353227a88247dfb880ad95c73d",
+      "matched": true
+    },
+    {
+      "path": "site/assets/xlsx-import.js",
+      "sha256": "1f46843bf243daab3ef567bbbcb38307a12ff5dc02f842cff05e26fb01169705",
+      "matched": true
+    },
+    {
+      "path": "site/assets/images/logo.png",
+      "sha256": "7ddc19d881a52e21b023c12bb3083a96155ee54af916a857e35f551eece648ae",
+      "matched": true
+    },
+    {
+      "path": "site/assets/images/logo-mark.png",
+      "sha256": "df3fb1026b3c3703183588487de1621ebb0a02339504588f6a365e45c61e634c",
+      "matched": true
+    },
+    {
+      "path": "site/assets/images/favicon.png",
+      "sha256": "555afb4f126e36c421031586bf000e66ba9a348a1483e2ea23e26591ae0dfb7c",
+      "matched": true
+    },
+    {
+      "path": "site/assets/vendor/docx-export.bundle.js",
+      "sha256": "223024d731eaaab93748a5b1ab86ec05ef14cd7f35f03d7f15d0827fa1d06e98",
+      "matched": true
+    }
+  ],
+  "removedFiles": [],
+  "changedPaths": [
+    "package.json",
+    "site/assets/data/catalog.js",
+    "site/assets/data/catalog.json",
+    "site/index.html",
+    "site/portal.html",
+    "site/report.html",
+    "tests/conditional-explanations.test.mjs",
+    "tests/physics1-r06-q04-revision.test.mjs",
+    "tests/physics2-advanced-r02.test.mjs",
+    "tests/physics2-r11.test.mjs",
+    "tests/physics2-r12.test.mjs",
+    "tests/run-tests.mjs"
+  ],
+  "addedPaths": [
+    "docs/물리2심화_3회차_자동테스트_v3.7.3.log",
+    "docs/물리2심화_3회차_정답요약.csv",
+    "sample-data/physics2-advanced-r03-학생입력예시.csv",
+    "site/assets/data/questions/physics2-advanced-r03.json",
+    "site/assets/documents/physics2-advanced/r03-original-solution.pdf",
+    "site/assets/documents/physics2-advanced/r03-verified-solution.pdf",
+    "site/assets/documents/physics2-advanced/r03.pdf",
+    "site/assets/pages/physics2-advanced/r03-p1.png",
+    "site/assets/pages/physics2-advanced/r03-p2.png",
+    "site/assets/pages/physics2-advanced/r03-p3.png",
+    "tests/physics2-advanced-r03.test.mjs"
+  ],
+  "unchangedPriorExamCount": 40,
+  "totalHistoryChangeOnly": true,
+  "existingExamIDUnchanged": true,
+  "problemOriginalSHA256": "9daf1ccf56a8e12b77bb78cf95bc763ced8e6b208e6af6be04e6b9d6774989ee",
+  "solutionOriginalSHA256": "9e739cf2a1161e6842d7e56ad8bb74022ca31f1db869270dac02ab3e528986fa"
+}
