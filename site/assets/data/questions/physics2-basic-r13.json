@@ -1,0 +1,693 @@
+{
+  "examId": "physics2-basic-r13",
+  "courseId": "physics2-basic",
+  "round": 13,
+  "title": "물리2 13회차 복습 테스트 · 전기회로",
+  "shortTitle": "13회차 전기회로",
+  "status": "ready",
+  "assessmentType": "weekly",
+  "section": "electromagnetism",
+  "examDate": "",
+  "questionCount": 7,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics2/r13.pdf",
+  "solutionPdf": "assets/documents/physics2/r13-verified-solution.pdf",
+  "pages": [
+    "assets/pages/physics2/r13-p1.png",
+    "assets/pages/physics2/r13-p2.png",
+    "assets/pages/physics2/r13-p3.png"
+  ],
+  "reviewStatus": "conditional",
+  "configVersion": "2026.10.23-physics2-basic-r13-reviewed-v3.7.4",
+  "sourceTitle": "물리2기본-Quiz 13회차 회로.pdf / 13회차(해답+숙제노트).hwp (1~7번)",
+  "sourceNote": "7문항 총100점(20·10·15·25·10·10·10점). HWP 공식 답 1~7 독립 검산 일치: 1번 초기 무충전 전제, 3번 정상상태 전제·축전기 극성, 4번 전위차 크기6V(부호 Va−Vb=−6V), 6번 동일한 네 전지 전제 안내. 원본 문제 PDF/HWP 그대로 보존, 별도 PDF 검수해설 제공. ‘초파를 그리면 2점’은 공식 만점 100점에 자동 합산하지 않음.",
+  "coreNote": {
+    "summary": "물리2 13회차 전기회로: 축전기 직류 과도·정상 상태, 기전력·내부저항 추정, 분압 브리지의 축전기 전하, 키르히호프·휘트스톤 브리지, 직렬·병렬 전지의 등가 기전력·저항, 공유저항 메시 전류",
+    "concepts": [
+      "처음 무충전 축전기는 닫는 순간 도선처럼, 충분히 지난 후 직류에서는 개방 회로처럼 동작한다.",
+      "단자 전압은 V=ε−Ir, V-I 그래프의 y절편이 ε이고 기울기 -r이다.",
+      "정상상태 축전기는 전류가 흐르지 않고 두 분압 중간점의 전위차에 따라 전하가 쌓인다.",
+      "균형 브리지에서는 중앙 저항 양단 전압이 0이어서 전류도 0이다.",
+      "내부저항이 있는 전지를 직렬 연결하면 ε와 r이 더해지며 같은 전지의 병렬 연결은 ε 동일, r/n이다.",
+      "메쉬법에서 공유저항 전류는 반대 방향의 두 메쉬 전류의 차이다."
+    ],
+    "formulas": [
+      "RC 직류: I(0⁺)=E/R, V_C(0⁺)=0; I(∞)=0, V_C(∞)=E (초기무충전)",
+      "V=ε−Ir, r=−ΔV/ΔI",
+      "V_a=V Rx/(R+Rx), V_b=V/2",
+      "Q=C|V_a−V_b|",
+      "P=I²R",
+      "동일한 전지 둘 병렬: E_eq=E, r_eq=r/2",
+      "메쉬 원문: 4I₁−2I₂=6, −2I₁+3I₂=−1"
+    ],
+    "mistakes": [
+      "축전기 직후/장시간 전류를 바꿔 판단함",
+      "V-I 그래프의 x절편을 기전력이라고 함",
+      "축전기 상단의 전하 부호와 전하량 크기를 구분하지 못함",
+      "회로의 전지 방향을 읽지 않고 합성 기전력을 계산함",
+      "메쉬의 공유 저항 전류를 단순히 더함"
+    ],
+    "checklist": [
+      "스위치 직후 축전기의 초기 전하 조건을 확인했는가?",
+      "V-I 그래프에서 기울기 단위 Ω를 확인했는가?",
+      "분압·중간 노드 전위의 기준을 통일했는가?",
+      "a,b 전위차의 부호와 크기를 구별했는가?",
+      "병렬 전지의 등가 내부 저항을 확인했는가?",
+      "가운데 2Ω 저항에서 메시 전류를 뺐는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 20,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "직류 회로·RC 과도 상태",
+      "topic": "스위치 직후와 충분히 시간이 지난 축전기",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          52,
+          180,
+          556,
+          630
+        ]
+      },
+      "reviewStatus": "conditional",
+      "correctionNote": "해설의 I(0⁺)=3 A는 처음 축전기가 충전되지 않은 상태(Q₀=0)임을 전제로 한다. 스위치 닫기 전 초기 전하가 주어지지 않았으므로 일반적인 무충전 초기조건을 공개한다.",
+      "answer": "닫은 직후(I=3 A, V_C=0 V), 충분한 시간 후(I=0 A, V_C=9 V)",
+      "explanation": [
+        "초기 전하가 0인 이상적 축전기는 닫는 순간 V_C(0⁺)=V_C(0⁻)=0 V로, 순간적으로 도선처럼 작용한다.",
+        "따라서 닫은 직후 회로 전류는 I(0⁺)=9 V/3 Ω=3 A이고 축전기 전압은 0 V이다.",
+        "직류 정상상태가 되면 축전기에는 전류가 흐르지 않는다: I(∞)=0 A.",
+        "저항에서 전압 강하가 0이므로 축전기 양단 전압은 전지 전압과 같은 V_C(∞)=9 V이다."
+      ],
+      "formulas": [
+        "I(0⁺)=E/R (초기 무충전)",
+        "V_C(0⁺)=0, I(∞)=0",
+        "V_C(∞)=E",
+        "τ=RC=18 μs (선택 심화)"
+      ],
+      "commonMistakes": [
+        "3 Ω에서 3 A 대신 9 A로 계산함",
+        "축전기의 처음과 마지막을 모두 개방 회로로 간주함",
+        "충전 중 전압이 즉시 9 V가 되는 것으로 착각함"
+      ],
+      "rubric": [
+        {
+          "criterion": "닫은 직후 회로 전류 3 A",
+          "points": 5
+        },
+        {
+          "criterion": "닫은 직후 축전기 전압 0 V",
+          "points": 5
+        },
+        {
+          "criterion": "충분히 지난 후 회로 전류 0 A",
+          "points": 5
+        },
+        {
+          "criterion": "충분히 지난 후 축전기 전압 9 V",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 1번: 초기 무충전 6 μF 축전기와 3 Ω 저항을 9 V 전지에 직렬로 연결한다. 닫은 직후와 장시간 후 (전류, 축전기 전압)의 순서로 옳은 것은?",
+        "choices": [
+          "처음 (0 A, 9 V) / 나중 (3 A, 0 V)",
+          "처음 (3 A, 0 V) / 나중 (0 A, 9 V)",
+          "처음 (3 A, 9 V) / 나중 (0 A, 0 V)",
+          "처음 (0 A, 0 V) / 나중 (3 A, 9 V)"
+        ],
+        "correctChoice": 2,
+        "answer": "처음 (3 A, 0 V) / 나중 (0 A, 9 V)",
+        "acceptableAnswers": [
+          "2",
+          "처음 (3 A, 0 V) / 나중 (0 A, 9 V)"
+        ]
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 처음에 충전되지 않은 8 μF 축전기, 4 Ω 저항, 12 V 전지를 직렬 연결했다. 스위치 직후와 충분한 시간 뒤 (I, V_C)는?",
+        "choices": [
+          "처음 (0 A, 0 V) / 나중 (3 A, 12 V)",
+          "처음 (3 A, 12 V) / 나중 (0 A, 0 V)",
+          "처음 (3 A, 0 V) / 나중 (0 A, 12 V)",
+          "처음 (12 A, 0 V) / 나중 (0 A, 4 V)"
+        ],
+        "correctChoice": 3,
+        "answer": "처음 (3 A, 0 V) / 나중 (0 A, 12 V)",
+        "acceptableAnswers": [
+          "3",
+          "처음 (3 A, 0 V) / 나중 (0 A, 12 V)"
+        ],
+        "explanation": "초기 I=12/4=3 A, V_C=0 V. 직류 정상상태에서는 I=0 A, V_C=12 V."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 2,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "전지의 기전력과 내부 저항",
+      "topic": "단자 전압-전류 그래프에서 기전력과 내부저항",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          52,
+          835,
+          556,
+          805
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "기전력 ε=1.8 V, 내부저항 r=1 Ω",
+      "explanation": [
+        "전류계 전류 I가 흐를 때 전지의 단자 전압은 V=ε−Ir이다.",
+        "그래프의 (0.2 A,1.6 V), (0.4 A,1.4 V) 두 점을 읽으면 기울기는 (1.4−1.6)/(0.4−0.2)=−1 V/A이다.",
+        "따라서 r=1 Ω이며 y절편은 ε=1.6+(0.2)(1)=1.8 V이다."
+      ],
+      "formulas": [
+        "V=ε−Ir",
+        "r=−ΔV/ΔI",
+        "ε=V+Ir"
+      ],
+      "commonMistakes": [
+        "음의 기울기를 내부저항 −1 Ω이라 적음",
+        "기전력을 그래프의 x절편으로 착각함",
+        "A와 V의 단위 차이를 무시함"
+      ],
+      "rubric": [
+        {
+          "criterion": "기전력 ε=1.8 V",
+          "points": 5
+        },
+        {
+          "criterion": "내부 저항 r=1 Ω",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 2번: 단자전압–전류 그래프가 (0.2 A, 1.6 V), (0.4 A, 1.4 V)를 지난다. 기전력과 내부저항은?",
+        "choices": [
+          "1.8 V, 1 Ω",
+          "1.6 V, 2 Ω",
+          "1.4 V, 1 Ω",
+          "2.0 V, 0.5 Ω"
+        ],
+        "correctChoice": 1,
+        "answer": "1.8 V, 1 Ω",
+        "acceptableAnswers": [
+          "1",
+          "1.8 V, 1 Ω"
+        ]
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 전지의 단자 전압을 측정하니 (I,V)=(0.2 A,2.4 V),(0.6 A,2.0 V)였다. ε와 r은?",
+        "choices": [
+          "2.6 V, 0.5 Ω",
+          "2.8 V, 1 Ω",
+          "2.0 V, 1 Ω",
+          "2.6 V, 1 Ω"
+        ],
+        "correctChoice": 4,
+        "answer": "2.6 V, 1 Ω",
+        "acceptableAnswers": [
+          "4",
+          "2.6 V, 1 Ω"
+        ],
+        "explanation": "r=(2.4−2.0)/(0.6−0.2)=1 Ω, ε=2.4+0.2×1=2.6 V."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 3,
+      "maxPoints": 15,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "저항-축전기 혼합 회로",
+      "topic": "가변저항이 있는 브리지 회로의 축전기 전하·전위차",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          628,
+          202,
+          561,
+          830
+        ]
+      },
+      "reviewStatus": "conditional",
+      "correctionNote": "직류 회로에서 각 저항값을 고정하고 충분한 시간이 지난 정상상태의 축전기 전하 및 전위차를 계산한다. Rx를 변화시키는 도중의 순간 과도 전하량은 변화 속도·초기 전하에 따라 달라질 수 있다. V는 전지의 기전력, C는 축전기 전기용량이다.",
+      "answer": "Rx=R/2일 때 |Q|=CV/6 (a−b=−V/6); Rx=3R일 때 |V_C|=V/4 (a−b=+V/4)",
+      "explanation": [
+        "직류 정상상태에서 축전기는 개방되어 상단 R-Rx와 하단 2R-2R 전압분배가 각각 독립적으로 이루어진다.",
+        "전지의 왼쪽 노드를 V, 오른쪽을 0으로 잡으면 a점 V_a=V Rx/(R+Rx), b점 V_b=V/2이다.",
+        "Rx=R/2이면 V_a=V/3, 따라서 V_a−V_b=−V/6, 축전기의 전하량 크기는 |Q|=C|ΔV|=CV/6이다.",
+        "Rx=3R이면 V_a=3V/4, 따라서 축전기의 전압 크기 |V_a−V_b|=V/4이다.",
+        "제공된 HWP 해설의 전하량 CV/6과 전위차 V/4를 그대로 보존하고, 극성(부호)과 정상상태 조건을 명시한다."
+      ],
+      "formulas": [
+        "V_a=V·Rx/(R+Rx)",
+        "V_b=V/2",
+        "Q=C(V_a−V_b), |Q|=C|ΔV|"
+      ],
+      "commonMistakes": [
+        "축전기가 정상상태에서 저항처럼 전류를 흘린다고 가정함",
+        "V_a와 V_b를 동일한 기준 없이 계산함",
+        "충전 전하량의 크기와 상단 극판 부호를 혼동함"
+      ],
+      "rubric": [
+        {
+          "criterion": "Rx=R/2일 때 Va=V/3 및 Vb=V/2",
+          "points": 4
+        },
+        {
+          "criterion": "Rx=R/2일 때 |ΔV|=V/6과 |Q|=CV/6",
+          "points": 6
+        },
+        {
+          "criterion": "Rx=3R일 때 Va=3V/4, Vb=V/2",
+          "points": 3
+        },
+        {
+          "criterion": "Rx=3R일 때 |ΔV|=V/4",
+          "points": 2
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 3번: 회로가 각 저항값에서 충분히 정상상태가 되었을 때 Rx=R/2의 축전기 전하량 크기와 Rx=3R의 전위차 크기는?",
+        "choices": [
+          "CV/4, V/6",
+          "CV/6, V/4",
+          "CV/3, V/2",
+          "CV/2, V/4"
+        ],
+        "correctChoice": 2,
+        "answer": "CV/6, V/4",
+        "acceptableAnswers": [
+          "2",
+          "CV/6, V/4"
+        ]
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 같은 회로에서 Rx=R일 때 축전기 전하량, Rx=2R일 때 축전기 전압 크기는?",
+        "choices": [
+          "0, V/6",
+          "CV/6, V/6",
+          "0, V/3",
+          "CV/2, V/6"
+        ],
+        "correctChoice": 1,
+        "answer": "0, V/6",
+        "acceptableAnswers": [
+          "1",
+          "0, V/6"
+        ],
+        "explanation": "Rx=R일 때 양쪽 분압이 모두 V/2로 같아 Q=0. Rx=2R이면 a=2V/3, b=V/2이므로 |ΔV|=V/6."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 4,
+      "maxPoints": 25,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "키르히호프 법칙·브리지 회로",
+      "topic": "반대 극성 전지 2개와 저항 5개의 전류·전위차·전력",
+      "difficulty": "상",
+      "image": {
+        "page": 2,
+        "crop": [
+          52,
+          180,
+          560,
+          1000
+        ]
+      },
+      "reviewStatus": "conditional",
+      "correctionNote": "공식 HWP 해설은 a와 b의 전위차 크기를 6 V로 제시한다. 회로 그림에서 b점은 오른쪽 전지의 양극이므로 부호를 갖는 V_a−V_b는 −6 V이고, 두 점 사이 전위차의 크기는 6 V이다. 크기 질문으로 채점하고 부호·기준점을 설명한다.",
+      "answer": "|I_R1|=3 A, I_R3=0 A, |I_R5|=3 A; 전위차 크기 |V_a−V_b|=6 V (V_a−V_b=−6 V); P_R3=0 W",
+      "explanation": [
+        "왼쪽 전지의 위쪽이 +, 오른쪽 전지의 아래쪽이 +이며, 각 저항은 모두 2 Ω이다.",
+        "대칭에 의해 가운데 a와 아래쪽 가운데 노드 c의 전위가 같아서 R3의 전류는 0이다.",
+        "바깥 직렬 고리에서 저항 네 개의 합은 8 Ω, 전지는 동일 고리를 따라 기전력 12+12=24 V이므로 전류는 I=24/8=3 A이다.",
+        "따라서 R1과 R5를 흐르는 전류 크기는 3 A, R3는 0 A이다.",
+        "b=0 V로 잡으면 오른쪽 전지 위쪽 노드는 −12 V이고, a점은 −6 V이다. 따라서 V_a−V_b=−6 V, 전위차 크기는 6 V이다.",
+        "R3에는 전류가 없으므로 P_R3=I_R3²R3=0 W이다."
+      ],
+      "formulas": [
+        "I=24 V/(4×2 Ω)=3 A",
+        "I_R3=0 A (좌우 균형 브리지)",
+        "|V_a−V_b|=I·R5=6 V",
+        "P_R3=I_R3²R3=0 W"
+      ],
+      "commonMistakes": [
+        "두 전지의 극성을 확인하지 않고 12−12=0 V라 놓음",
+        "가운데 R3에 3 A가 흐른다고 착각함",
+        "부호 있는 Va−Vb와 전위차의 크기를 혼동함"
+      ],
+      "rubric": [
+        {
+          "criterion": "R1 전류 크기 3 A",
+          "points": 4
+        },
+        {
+          "criterion": "R3 전류 0 A",
+          "points": 3
+        },
+        {
+          "criterion": "R5 전류 크기 3 A",
+          "points": 3
+        },
+        {
+          "criterion": "균형 브리지 또는 등가 전압 설명",
+          "points": 3
+        },
+        {
+          "criterion": "a와 b의 전위차 크기 6 V",
+          "points": 7
+        },
+        {
+          "criterion": "R3 소비전력 계산식",
+          "points": 2
+        },
+        {
+          "criterion": "R3 소비전력 0 W",
+          "points": 3
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 4번: 그림과 같은 두 전지(각 12 V, 오른쪽 아래 +), 다섯 저항(각 2 Ω)에서 R1/R3/R5 전류 크기, |Va−Vb|, R3 소비전력은?",
+        "choices": [
+          "3 A / 3 A / 3 A, 6 V, 18 W",
+          "6 A / 0 A / 6 A, 12 V, 0 W",
+          "3 A / 0 A / 3 A, 6 V, 0 W",
+          "3 A / 0 A / 3 A, 0 V, 0 W"
+        ],
+        "correctChoice": 3,
+        "answer": "3 A / 0 A / 3 A, 6 V, 0 W",
+        "acceptableAnswers": [
+          "3",
+          "3 A / 0 A / 3 A, 6 V, 0 W"
+        ]
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 같은 구조에서 각 전지를 8 V, 각 저항을 4 Ω으로 바꾼다(양극 방향 동일). R1/R3/R5 전류 크기, 전위차 크기, R3 전력은?",
+        "choices": [
+          "1 A / 0 A / 1 A, 4 V, 0 W",
+          "2 A / 0 A / 2 A, 8 V, 0 W",
+          "1 A / 1 A / 1 A, 4 V, 4 W",
+          "1 A / 0 A / 1 A, 0 V, 0 W"
+        ],
+        "correctChoice": 1,
+        "answer": "1 A / 0 A / 1 A, 4 V, 0 W",
+        "acceptableAnswers": [
+          "1",
+          "1 A / 0 A / 1 A, 4 V, 0 W"
+        ],
+        "explanation": "바깥 고리의 합성기전력 16 V, 4개 저항 합 16 Ω이므로 각 가지 1 A. 가운데는 평형이므로 0 A, 한 저항의 전압차는 4 V."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 5,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "전지 내부저항",
+      "topic": "직렬 전지 2개와 전구의 전류·단자 전압",
+      "difficulty": "하",
+      "image": {
+        "page": 2,
+        "crop": [
+          633,
+          180,
+          549,
+          650
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "전체 전류 I=0.5 A, 전구 양단 전압 V=2.8 V",
+      "explanation": [
+        "두 전지가 같은 방향으로 직렬 연결되어 전체 기전력은 1.5+1.5=3 V이다.",
+        "내부저항도 직렬로 합쳐져 0.2+0.2=0.4 Ω, 여기에 전구 5.6 Ω이 더해져 합성 저항은 6.0 Ω이다.",
+        "옴의 법칙으로 회로 전류는 I=3/6=0.5 A이다.",
+        "전구 전압은 V_bulb=IR=0.5×5.6=2.8 V이다."
+      ],
+      "formulas": [
+        "ε_eq=ε₁+ε₂=3 V",
+        "R_total=5.6+0.2+0.2=6 Ω",
+        "I=ε_eq/R_total",
+        "V_bulb=I·5.6 Ω"
+      ],
+      "commonMistakes": [
+        "내부저항을 하나만 계산함",
+        "전구 양단 전압이 기전력 3 V와 같다고 함",
+        "두 전지가 반대 극성이라고 착각함"
+      ],
+      "rubric": [
+        {
+          "criterion": "기전력 3 V, 전체 저항 6 Ω로부터 전류 0.5 A",
+          "points": 5
+        },
+        {
+          "criterion": "전구 양단의 전압 2.8 V",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 5번: 1.5 V, 내부저항 0.2 Ω 전지 2개를 같은 방향 직렬 연결하고 5.6 Ω 전구를 연결했다. 전류와 전구 전압은?",
+        "choices": [
+          "0.5 A, 3.0 V",
+          "0.6 A, 2.8 V",
+          "0.5 A, 2.8 V",
+          "0.25 A, 1.4 V"
+        ],
+        "correctChoice": 3,
+        "answer": "0.5 A, 2.8 V",
+        "acceptableAnswers": [
+          "3",
+          "0.5 A, 2.8 V"
+        ]
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 기전력 2.0 V, 내부저항 0.3 Ω 전지 2개를 같은 방향 직렬 연결하고 7.4 Ω 전구를 연결했다. 전류와 전구 전압은?",
+        "choices": [
+          "0.5 A, 3.7 V",
+          "0.5 A, 4.0 V",
+          "0.4 A, 3.0 V",
+          "0.8 A, 3.7 V"
+        ],
+        "correctChoice": 1,
+        "answer": "0.5 A, 3.7 V",
+        "acceptableAnswers": [
+          "1",
+          "0.5 A, 3.7 V"
+        ],
+        "explanation": "기전력 합 4.0 V, 내부저항 합 0.6 Ω, 전체 저항 8.0 Ω, I=0.5 A, 전구 전압=0.5×7.4=3.7 V."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 6,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "직렬·병렬 전지 회로",
+      "topic": "병렬 전지 두 개와 직렬 전지 두 개가 있는 회로",
+      "difficulty": "상",
+      "image": {
+        "page": 3,
+        "crop": [
+          52,
+          180,
+          558,
+          650
+        ]
+      },
+      "reviewStatus": "conditional",
+      "correctionNote": "그림의 네 전지를 모두 동일한 E=25 V, r=1 Ω 전지로 해석한다. 왼쪽 두 전지는 병렬(r/2), 나머지 두 전지는 직렬이다. 제공 HWP 해설 또한 유효 기전력 3E, 유효 내부저항 5r/2를 적용하여 I=6 A로 계산한다.",
+      "answer": "저항 R을 흐르는 전류 크기 I=6 A",
+      "explanation": [
+        "그림 왼쪽의 같은 방향 전지 2개는 병렬이므로 등가 기전력 E, 등가 내부저항 r/2이다.",
+        "이 병렬 전지 묶음과 오른쪽의 단일 전지 2개가 직렬로 연결되어 있으므로 등가 기전력은 E+E+E=3E=75 V이다.",
+        "등가 내부저항은 r/2+r+r=5r/2=2.5 Ω이다.",
+        "외부저항 R=10 Ω을 포함한 총저항은 12.5 Ω이므로 I=75/12.5=6 A이다."
+      ],
+      "formulas": [
+        "E_eq=3E=75 V",
+        "r_eq=(1/2+1+1)r=2.5 Ω",
+        "I=3E/[R+(5/2)r]=6 A"
+      ],
+      "commonMistakes": [
+        "병렬 전지 두 개의 기전력이 2E라고 계산함",
+        "병렬 부분의 내부저항을 2r로 놓음",
+        "단일 전지 두 개의 직렬 내부저항을 빠뜨림"
+      ],
+      "rubric": [
+        {
+          "criterion": "왼쪽 병렬 묶음의 등가 E, r/2",
+          "points": 3
+        },
+        {
+          "criterion": "전체 기전력 3E 및 내부저항 5r/2",
+          "points": 4
+        },
+        {
+          "criterion": "I=6 A",
+          "points": 3
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 6번: 동일한 네 전지(E=25 V, r=1 Ω)의 왼쪽 2개가 병렬이고 나머지 2개가 직렬인 회로에서 R=10 Ω에 흐르는 전류는?",
+        "choices": [
+          "7.5 A",
+          "5 A",
+          "2 A",
+          "6 A"
+        ],
+        "correctChoice": 4,
+        "answer": "6 A",
+        "acceptableAnswers": [
+          "4",
+          "6 A"
+        ]
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 동일한 전지 E=12 V, r=2 Ω 네 개를 원문처럼 왼쪽 2개 병렬 + 나머지 2개 직렬로 연결하고 외부저항 R=7 Ω을 연결했다. 전류는?",
+        "choices": [
+          "2 A",
+          "3 A",
+          "4 A",
+          "6 A"
+        ],
+        "correctChoice": 2,
+        "answer": "3 A",
+        "acceptableAnswers": [
+          "2",
+          "3 A"
+        ],
+        "explanation": "합성기전력 3E=36 V, 내부저항 (5/2)r=5 Ω, 전체 12 Ω, I=36/12=3 A."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 7,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "메시 해석·키르히호프 제2법칙",
+      "topic": "두 고리의 메쉬전류와 공유 저항 전류",
+      "difficulty": "상",
+      "image": {
+        "page": 3,
+        "crop": [
+          630,
+          205,
+          552,
+          600
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "시계 방향 메쉬 전류 I₁=2 A, I₂=1 A; 가운데 2 Ω 저항 실제 전류는 아래 방향 1 A",
+      "explanation": [
+        "두 고리 메쉬전류를 그림대로 모두 시계 방향으로 가정한다.",
+        "왼쪽 루프에 대해 6−2I₁−2(I₁−I₂)=0, 즉 4I₁−2I₂=6이다.",
+        "오른쪽 루프에 대해 1+1·I₂−2(I₁−I₂)=0, 즉 −2I₁+3I₂=−1이다.",
+        "연립하여 I₁=2 A, I₂=1 A를 얻는다.",
+        "공유한 가운데 2 Ω에는 I₁과 I₂가 반대 방향으로 흐르므로 I_middle=I₁−I₂=1 A, 위쪽에서 아래쪽 방향이다."
+      ],
+      "formulas": [
+        "4I₁−2I₂=6",
+        "−2I₁+3I₂=−1",
+        "I₁=2 A, I₂=1 A",
+        "I_middle=I₁−I₂=1 A (아래)"
+      ],
+      "commonMistakes": [
+        "가운데 공유 저항의 전류를 I₁+I₂로 더함",
+        "오른쪽 1 V 전지의 부호를 바꿔 기록함",
+        "메쉬 방향과 실제 가지 전류 방향을 혼동함"
+      ],
+      "rubric": [
+        {
+          "criterion": "왼쪽 루프 KVL 및 I₁=2 A",
+          "points": 3
+        },
+        {
+          "criterion": "오른쪽 루프 KVL 및 I₂=1 A",
+          "points": 3
+        },
+        {
+          "criterion": "공유저항의 실제 전류 크기 1 A와 아래 방향",
+          "points": 4
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 7번: 왼쪽 전지 6 V, 오른쪽 전지 1 V, 윗저항 2 Ω·1 Ω, 가운데 2 Ω인 두 메쉬 회로에서 시계 방향 메쉬전류 I₁·I₂, 가운데 실제 전류는?",
+        "choices": [
+          "I₁=2 A, I₂=1 A, 가운데 1 A 아래",
+          "I₁=1 A, I₂=2 A, 가운데 1 A 위",
+          "I₁=2 A, I₂=1 A, 가운데 3 A 아래",
+          "I₁=1 A, I₂=1 A, 가운데 0 A"
+        ],
+        "correctChoice": 1,
+        "answer": "I₁=2 A, I₂=1 A, 가운데 1 A 아래",
+        "acceptableAnswers": [
+          "1",
+          "I₁=2 A, I₂=1 A, 가운데 1 A 아래"
+        ]
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 원문과 저항은 그대로 두고 왼쪽 전지를 8 V, 오른쪽을 2 V로 바꾼다(극성·메쉬 방향 동일). I₁, I₂, 가운데 저항 전류는?",
+        "choices": [
+          "2 A, 1 A, 1 A 아래",
+          "2.5 A, 1 A, 3.5 A 아래",
+          "2.5 A, 1 A, 1.5 A 아래",
+          "2.5 A, 1.5 A, 1 A 아래"
+        ],
+        "correctChoice": 3,
+        "answer": "2.5 A, 1 A, 1.5 A 아래",
+        "acceptableAnswers": [
+          "3",
+          "2.5 A, 1 A, 1.5 A 아래"
+        ],
+        "explanation": "왼쪽 4I₁−2I₂=8, 오른쪽 −2I₁+3I₂=−2를 풀면 I₁=2.5 A, I₂=1 A, 가운데 I₁−I₂=1.5 A(아래)."
+      },
+      "retryMode": "multiple-choice"
+    }
+  ]
+}

@@ -85,7 +85,7 @@ test('Questions 원본 JSON과 catalog.js의 등록 데이터는 완전히 같�
  assert.deepEqual(JSON.stringify(ctx.window.YP_CATALOG.exams.find(x=>x.examId===exam.examId)),JSON.stringify(exam));
 });
 test('교사용·학부모 페이지가 새 카탈로그 캐시버전 3.7.3을 참조',()=>{
- for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.3/);
+ for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.4/);
 });
 test('Server Code.gs 및 인증·기존 학생 링크는 수정 없이 사이트 서버 동기화로 적용 가능',()=>{
  const gs=read('apps-script/Code.gs');assert.match(gs,/function syncCatalog_\(/);

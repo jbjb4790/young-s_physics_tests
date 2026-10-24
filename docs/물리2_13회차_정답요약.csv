@@ -1,0 +1,8 @@
+﻿번호,배점,검수정답,검수상태
+1,20,"닫은 직후(I=3 A, V_C=0 V), 충분한 시간 후(I=0 A, V_C=9 V)",conditional
+2,10,"기전력 ε=1.8 V, 내부저항 r=1 Ω",verified
+3,15,Rx=R/2일 때 |Q|=CV/6 (a−b=−V/6); Rx=3R일 때 |V_C|=V/4 (a−b=+V/4),conditional
+4,25,"|I_R1|=3 A, I_R3=0 A, |I_R5|=3 A; 전위차 크기 |V_a−V_b|=6 V (V_a−V_b=−6 V); P_R3=0 W",conditional
+5,10,"전체 전류 I=0.5 A, 전구 양단 전압 V=2.8 V",verified
+6,10,저항 R을 흐르는 전류 크기 I=6 A,conditional
+7,10,"시계 방향 메쉬 전류 I₁=2 A, I₂=1 A; 가운데 2 Ω 저항 실제 전류는 아래 방향 1 A",verified

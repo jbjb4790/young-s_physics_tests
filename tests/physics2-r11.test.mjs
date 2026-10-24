@@ -78,7 +78,7 @@ test('catalog.js와 JSON의 변경된 11회차 데이터를 정확히 같은 내
  assert.equal(JSON.stringify(bank),JSON.stringify(e));
 });
 test('교사·학부모 HTML 모두 catalog.js의 최신 배포 캐시 버전을 참조한다',()=>{
- for(const page of ['index.html','portal.html','report.html'])assert.match(read('site/'+page),/assets\/data\/catalog\.js\?v=3\.7\.3/);
+ for(const page of ['index.html','portal.html','report.html'])assert.match(read('site/'+page),/assets\/data\/catalog\.js\?v=3\.7\.4/);
 });
 test('답안 검수 상태 및 문항별 루브릭의 배점 합이 원문 점수와 일치한다',()=>{
  for(const q of e.questions){assert.equal(q.rubric.reduce((a,r)=>a+r.points,0),q.maxPoints);assert.ok(['verified','corrected','ambiguous','needs-review'].includes(q.reviewStatus));assert.ok(q.explanation.length>=2);assert.ok(q.commonMistakes.length>=2)}

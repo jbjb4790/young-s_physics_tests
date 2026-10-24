@@ -1,0 +1,135 @@
+{
+  "version": "3.7.4",
+  "baseline": "YoungsPhysics_v3.7.3_물리2심화_3회차_전체소스.zip",
+  "examId": "physics2-basic-r13",
+  "changedFiles": [
+    {
+      "path": "package.json",
+      "sha256": "517db1bbada59081dc5ad6d23acad5cebbdd1d22f03231946634a16cbf2a74f2"
+    },
+    {
+      "path": "site/assets/data/catalog.js",
+      "sha256": "84e515fbd522187314d14b4c001f9951dd0b9ba7fde0f242324ed9c53d125300"
+    },
+    {
+      "path": "site/assets/data/catalog.json",
+      "sha256": "7662e26f3e846da730dc9fcba548e2741a899055094a6d4b4c0f90de8249c362"
+    },
+    {
+      "path": "site/index.html",
+      "sha256": "ac8bdf4b15d760a7257a5da1e86b02e65bc3ac9a8cacc248b687e640b174c532"
+    },
+    {
+      "path": "site/portal.html",
+      "sha256": "50fde23d87e89834683469dce7f2b1d59b529571f1a1a00500d3c040d12397d8"
+    },
+    {
+      "path": "site/report.html",
+      "sha256": "2067a3974a87cad937e7f3cfd46eacf50c6302d43d8eac40c939e6cc677131f1"
+    },
+    {
+      "path": "tests/conditional-explanations.test.mjs",
+      "sha256": "ebaaeb2a16f3f7095da4adc50c17186e2119aef33417d383ba2e841ccddd0b5e"
+    },
+    {
+      "path": "tests/physics1-r06-q04-revision.test.mjs",
+      "sha256": "83ce92a1d7bc52619c3ae01f910a3861a98b16cd181a53df29e9b3035566cef1"
+    },
+    {
+      "path": "tests/physics2-advanced-r02.test.mjs",
+      "sha256": "9f8072da2449bd269706d1b2d0d8d3cb92897a29c37f4380c42df8d16d4229c8"
+    },
+    {
+      "path": "tests/physics2-advanced-r03.test.mjs",
+      "sha256": "d18d679507355ca7399788234eb74d0d537bda52ef7300dc1285c6317668644f"
+    },
+    {
+      "path": "tests/physics2-r11.test.mjs",
+      "sha256": "0ada7145c56398d0f98cc65ef7b73fa291d20e49a3e9113ffc02558a1bcc1ec7"
+    },
+    {
+      "path": "tests/physics2-r12.test.mjs",
+      "sha256": "bbea5a4087fc5626fc095d810ee5b1911e91c620c2e6e2151016891f2c62413d"
+    },
+    {
+      "path": "tests/run-tests.mjs",
+      "sha256": "9f7cca343dcb89bd5d6b5f242320f023ce765361a92a5e2db24fd2e96ab3e138"
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "README_물리2_13회차_추가_v3.7.4.md",
+      "sha256": "734b003b51d05c14101baaa675ecda87f5ec63254aeb960038393ab78f91f621"
+    },
+    {
+      "path": "docs/물리2_13회차_검수등록보고서_v3.7.4.md",
+      "sha256": "2157e35c12a14dbd9fa4a24b0908b5dc1864e25f8e20ad66a56e80efa87aa823"
+    },
+    {
+      "path": "docs/물리2_13회차_원본해설_숙제노트.hwp",
+      "sha256": "c68946e3d236529e871be260027fee3b24289f661575f171470400a2da264f12"
+    },
+    {
+      "path": "docs/물리2_13회차_자동테스트_v3.7.4.log",
+      "sha256": "8e353cee390ec2da83c99963785618ea31042f3ef98f902b6e37b03a6adf2e9f"
+    },
+    {
+      "path": "docs/물리2_13회차_정답요약.csv",
+      "sha256": "08657e2b8f99902c1c5332f73f1a988ad95b25d205859fee115b6440e116851b"
+    },
+    {
+      "path": "docs/물리2_13회차_패치무결성_v3.7.4.json",
+      "sha256": "22ddfbd15b8dd0036ee5b0db08d8454ae6f48467cef9ca35c12ca1047ab2edde"
+    },
+    {
+      "path": "sample-data/physics2-basic-r13-학생입력예시.csv",
+      "sha256": "18e5173ba8f00f188b85c68bc62984a44c41f0cea72855ed45fde217cf501c34"
+    },
+    {
+      "path": "site/assets/data/questions/physics2-basic-r13.json",
+      "sha256": "ef23413f6d075451d30773a713a9f810912ca4feea09548d1f70b1c8543be621"
+    },
+    {
+      "path": "site/assets/documents/physics2/r13-original-solution.hwp",
+      "sha256": "c68946e3d236529e871be260027fee3b24289f661575f171470400a2da264f12"
+    },
+    {
+      "path": "site/assets/documents/physics2/r13-verified-solution.pdf",
+      "sha256": "b7aa2534c5d5f53db1edb9c7010c009b007e1f711a56efd9c3c8cffff69b88e0"
+    },
+    {
+      "path": "site/assets/documents/physics2/r13.pdf",
+      "sha256": "652c4762fcc5031150728d16aff8b770a9c8907be8dd661d900a87555bd8d1f2"
+    },
+    {
+      "path": "site/assets/pages/physics2/r13-p1.png",
+      "sha256": "996e910b73314cbf261a74c5870aaafff83f45e7c62d6dd363df44c929914ea0"
+    },
+    {
+      "path": "site/assets/pages/physics2/r13-p2.png",
+      "sha256": "2f45361c9ab1c86fed7922b641ae32f2080f8adf0a349f709cdad0605c90b109"
+    },
+    {
+      "path": "site/assets/pages/physics2/r13-p3.png",
+      "sha256": "026178de53d20e1830b4a0207d31e683d963aa6f6311a865cb7a067e0b165d30"
+    },
+    {
+      "path": "tests/physics2-r13.test.mjs",
+      "sha256": "d316e72b06d8a4b6875a7fba289a9c2167771abc293c015d783e7a3711b04efd"
+    }
+  ],
+  "deletedFiles": [],
+  "protectedFileCount": 20,
+  "protectedFilesUnchanged": true,
+  "tests": {
+    "total": 281,
+    "passed": 280,
+    "skipped": 1,
+    "failed": 0
+  },
+  "deploymentPerformed": false,
+  "originals": {
+    "problem_pdf_sha256": "652c4762fcc5031150728d16aff8b770a9c8907be8dd661d900a87555bd8d1f2",
+    "official_hwp_sha256": "c68946e3d236529e871be260027fee3b24289f661575f171470400a2da264f12"
+  }
+}

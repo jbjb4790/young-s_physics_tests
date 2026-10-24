@@ -33,8 +33,8 @@ test('물리2심화 3회차 신규 고유 ID, 8문항 100점, 기존 과정·카
  assert.equal(exam.maxScore,100);assert.deepEqual(exam.questions.map(x=>x.no),[1,2,3,4,5,6,7,8]);
  assert.deepEqual(exam.questions.map(x=>x.maxPoints),pts);
  assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,42);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').length,21);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,223);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').length,22);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,230);
  assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,42);
 });
 
@@ -155,9 +155,9 @@ test('별도 문항 JSON과 내장 카탈로그 JS와 JSON은 동일',()=>{
 });
 
 test('v3.7.3 HTML 캐시 버전 / package / 기존 v3.7.2 시험 ID와 정답 보존',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.3');
- assert.equal(catalog.featureVersion,'3.7.3-physics2-advanced-r03-reviewed');
- for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.3/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.4');
+ assert.equal(catalog.featureVersion,'3.7.4-physics2-basic-r13-reviewed');
+ for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.4/);
  assert.equal(catalog.exams.filter(e=>e.examId==='physics1-basic-r06').length,1);
  assert.equal(catalog.exams.filter(e=>e.examId==='physics2-advanced-r02').length,1);
  assert.equal(catalog.exams.filter(e=>e.examId==='physics2-basic-r12').length,1);
