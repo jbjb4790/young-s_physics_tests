@@ -70,7 +70,7 @@ test('동기화 원본 JSON과 카탈로그 데이터, JS 배포 형식 일치',
  for(const id of Object.keys(cases))assert.equal(JSON.stringify(JSON.parse(read(`site/assets/data/questions/${id}.json`))),JSON.stringify(catalog.exams.find(e=>e.examId===id)));
  const context={window:{}};vm.createContext(context);vm.runInContext(read('site/assets/data/catalog.js'),context);
  assert.equal(JSON.stringify(context.window.YP_CATALOG),JSON.stringify(catalog));
- for(const page of ['index.html','report.html','portal.html'])assert.match(read(`site/${page}`),/assets\/data\/catalog\.js\?v=3\.7\.4/);
+ for(const page of ['index.html','report.html','portal.html'])assert.match(read(`site/${page}`),/assets\/data\/catalog\.js\?v=3\.7\.5/);
 });
 test('기존 Apps Script 인증/Google Sheets/학부모 링크 코드를 교체하지 않음',()=>{
  const gs=read('apps-script/Code.gs');assert.match(gs,/getStudentPortal_/);assert.match(gs,/function syncCatalog_/);

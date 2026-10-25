@@ -1,0 +1,575 @@
+{
+  "examId": "physics1-basic-r16-v2",
+  "courseId": "physics1-basic",
+  "round": 16,
+  "title": "물리1 16회차 복습 테스트 (개정)",
+  "status": "ready",
+  "examDate": "",
+  "questionCount": 7,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics1/r16-v2.pdf",
+  "pages": [
+    "assets/pages/physics1/r16-v2-p1.png"
+  ],
+  "reviewStatus": "corrected",
+  "configVersion": "2026.10.25-r16-v2",
+  "sourceTitle": "물리1 Quiz(16회차) — 2026-10-25 최종 수정본 (4번 가로등 거리 3m)",
+  "sourceNote": "기존 6문항 시험(physics1-basic-r16)과 별도 시험 ID. 이전 저장된 성적·분석·원문·동형은 기존 버전으로 보존. 최종 수정 문제지의 4번 가로등 거리는 사람 뒤 3m로, 해답의 2m와 일치한다.",
+  "coreNote": {
+    "summary": "빛의 현상, 오목·볼록 거울과 볼록 렌즈의 상, 평면거울의 최소 크기, 두 매질 사이의 겉보기 깊이를 평가하는 개정 16회차",
+    "concepts": [
+      "빛의 회절과 산란은 서로 다른 현상이다.",
+      "오목 거울에서 축소된 정립상은 생기지 않는다.",
+      "볼록 거울은 항상 축소된 정립 허상을 만든다.",
+      "거울·렌즈 식에서 실상·허상의 부호를 구분한다.",
+      "평면거울에서 필요한 높이는 눈-거울과 등-거울의 거리비로 결정된다.",
+      "수면을 수직에 가깝게 보는 경우 물속 깊이는 실제 깊이/굴절률로 보인다."
+    ],
+    "formulas": [
+      "1/f=1/p+1/q",
+      "m=-q/p",
+      "거울에 비친 광원 전체를 보는 최소 길이=광원 높이×(눈-거울)/(광원-거울+눈-거울)",
+      "공기 중 관찰자: 물속 겉보기 깊이=d/n",
+      "물속 관찰자: 공기 중 겉보기 높이=n h"
+    ],
+    "mistakes": [
+      "물체가 거울 앞 1m, 뒤 가로등까지 사람에게서 3m 떨어지면 가로등-거울 거리는 4m임을 놓침",
+      "양쪽 관찰자에게 같은 굴절률을 나누는 오류",
+      "거울·렌즈 실상·허상 거리 부호를 혼동"
+    ],
+    "checklist": [
+      "현재 학생 기록의 시험 ID가 기존 16회인지 개정판인지 확인했는가?",
+      "4번 문제를 수정 문제지의 사람 뒤 3m 기준으로 계산하여 거울 길이 2m를 얻었는가?",
+      "7번에서 어느 쪽에서 어느 쪽을 바라보는지 확인했는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "빛의 성질",
+      "topic": "반사·굴절·분산·전반사·산란",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          38,
+          158,
+          575,
+          230
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "① 하늘이 파랗게 보인다 - 빛의 회절",
+      "explanation": [
+        "하늘이 파랗게 보이는 주된 이유는 짧은 파장의 빛이 공기 분자에 의해 더 강하게 산란되는 레일리 산란이다.",
+        "무지개는 분산, 광섬유는 전반사, 거울은 반사, 겉보기 깊이는 굴절과 관련된다."
+      ],
+      "formulas": [
+        "레일리 산란: 산란 세기 ∝1/λ⁴"
+      ],
+      "commonMistakes": [
+        "산란과 회절을 같은 현상으로 보는 것",
+        "전반사와 단순 반사를 구분하지 않는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "① 선택",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "푸른 하늘 - 산란",
+          "무지개 - 분산",
+          "광섬유 - 전반사",
+          "얇은 막 색 - 단순 굴절"
+        ],
+        "correctChoice": 4,
+        "answer": "얇은 막 색 - 단순 굴절",
+        "acceptableAnswers": [
+          "4",
+          "얇은 막 색 - 단순 굴절"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "빛의 성질과 현상의 연결 중 잘못된 것은?",
+        "explanation": "얇은 막의 색은 주로 간섭으로 설명한다."
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "하늘이 파랗게 보인다 - 빛의 회절",
+          "무지개 - 빛의 분산",
+          "겉보기 깊이 - 빛의 굴절",
+          "거울 - 빛의 반사"
+        ],
+        "correctChoice": 1,
+        "answer": "하늘이 파랗게 보인다 - 빛의 회절",
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 2,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "거울",
+      "topic": "오목 거울의 상",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          38,
+          385,
+          575,
+          455
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "원문에 2번 배점 표기가 없지만 전체 총점이 100점이 되도록 10점으로 적용했다.",
+      "answer": "② 축소된 똑바로 선 모습",
+      "explanation": [
+        "오목 거울에서 물체가 초점 안쪽이면 확대된 정립 허상이 생긴다.",
+        "물체가 초점 바깥이면 도립 실상이 생기며 위치에 따라 확대·같은 크기·축소가 가능하다.",
+        "따라서 정립상이면서 축소된 상은 오목 거울로 만들 수 없다."
+      ],
+      "formulas": [
+        "1/f=1/p+1/q",
+        "m=-q/p"
+      ],
+      "commonMistakes": [
+        "정립이면 항상 확대라는 사실을 놓치는 것",
+        "볼록 거울의 축소 정립 허상과 혼동하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "② 선택",
+          "points": 10
+        }
+      ],
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "축소된 정립 허상",
+          "확대된 정립 허상",
+          "축소된 도립 실상",
+          "확대된 도립 실상"
+        ],
+        "correctChoice": 1,
+        "answer": "축소된 정립 허상",
+        "acceptableAnswers": [
+          "1",
+          "축소된 정립 허상"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "오목 거울에서는 만들 수 없지만 볼록 거울에서는 항상 가능한 상은?",
+        "explanation": "볼록 거울은 항상 축소된 정립 허상을 만든다."
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "확대된 똑바로 선 모습",
+          "축소된 똑바로 선 모습",
+          "축소된 거꾸로 된 모습",
+          "확대된 거꾸로 된 모습"
+        ],
+        "correctChoice": 2,
+        "answer": "축소된 똑바로 선 모습",
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 3,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "거울",
+      "topic": "볼록 거울 상의 위치·성질·크기",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          38,
+          844,
+          575,
+          523
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "거울 뒤 5 cm, 축소된 정립 허상, 2 cm",
+      "explanation": [
+        "볼록 거울의 초점은 거울 뒤이므로 f=-10 cm, 물체 거리는 p=10 cm이다.",
+        "거울식 1/f=1/p+1/q에 대입하면 -1/10=1/10+1/q에서 q=-5 cm이다. 따라서 상은 거울 뒤 5 cm에 생기는 허상이다.",
+        "배율 m=-q/p=1/2이므로 정립이고 물체 높이 4 cm의 절반인 2 cm이다."
+      ],
+      "formulas": [
+        "1/f=1/p+1/q",
+        "m=-q/p=h′/h"
+      ],
+      "commonMistakes": [
+        "볼록 거울의 f를 +로 두는 것",
+        "허상의 q 부호를 양수로 쓰는 것",
+        "배율의 부호와 상의 정립·도립을 연결하지 않는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "거울 뒤 5 cm",
+          "points": 5
+        },
+        {
+          "criterion": "축소된 정립 허상",
+          "points": 10
+        },
+        {
+          "criterion": "2 cm",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "거울 뒤 20/3 cm / 축소된 정립 허상 / 2 cm",
+          "거울 뒤 15 cm / 같은 크기 정립 허상 / 6 cm",
+          "거울 앞 20/3 cm / 축소된 도립 실상 / 2 cm",
+          "거울 뒤 5 cm / 확대된 정립 허상 / 9 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "거울 뒤 20/3 cm / 축소된 정립 허상 / 2 cm",
+        "acceptableAnswers": [
+          "1",
+          "거울 뒤 20/3 cm / 축소된 정립 허상 / 2 cm"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "초점거리 -10 cm인 볼록 거울 앞 20 cm에 높이 6 cm 물체가 있다. 상의 위치·성질·크기는?",
+        "explanation": "1/f=1/p+1/q에서 q=-20/3 cm, m=1/3이므로 거울 뒤 20/3 cm에 높이 2 cm의 축소 정립 허상이 생긴다."
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "거울 뒤 5 cm / 축소된 정립 허상 / 2 cm",
+          "거울 뒤 10 cm / 같은 크기 정립 허상 / 4 cm",
+          "거울 앞 5 cm / 축소된 도립 실상 / 2 cm",
+          "거울 뒤 20 cm / 확대된 정립 허상 / 8 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "거울 뒤 5 cm / 축소된 정립 허상 / 2 cm",
+        "acceptableAnswers": [
+          "1",
+          "거울 뒤 5 cm / 축소된 정립 허상 / 2 cm"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 4,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "빛의 반사",
+      "topic": "평면거울의 최소 세로 길이",
+      "difficulty": "중",
+      "reviewStatus": "verified",
+      "correctionNote": "최종 수정 문제지의 가로등 위치는 사람 뒤 3 m이며, 첨부 해답의 2 m와 일치한다. 기존 16회차 구형 문항에는 영향을 주지 않는다.",
+      "answer": "2 m",
+      "explanation": [
+        "거울 앞 사람-거울 거리는 1 m, 사람 뒤 가로등 거리는 3 m이므로 가로등-거울 거리는 4 m이다.",
+        "평면거울 뒤의 가상 가로등은 거울에서 4 m 떨어져 있다. 관찰자의 눈과 가상 가로등 사이 거리는 1+4=5 m이다.",
+        "닮음비를 적용하면 거울 최소 세로 길이는 10×1/5=2 m이다.",
+        "최종 수정 시험지의 3 m 조건과 제공 해답의 2 m가 일치한다."
+      ],
+      "formulas": [
+        "h_mirror/H = d_eye / (d_eye+d_lamp)",
+        "d_lamp=1+3=4 m, h_mirror=10×1/(1+4)=2 m"
+      ],
+      "commonMistakes": [
+        "가로등-거울 거리가 3 m라고 생각해 관찰자-거울 1 m를 더하지 않는 것",
+        "양쪽에서 가상의 가로등까지의 거리를 구할 때 관찰자의 1 m를 빠뜨리는 것",
+        "수정 이전 문제의 4 m 조건을 대입하여 5/3 m라고 답하는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "가로등-거울 4 m, 눈-가상광원 5 m 설정",
+          "points": 4
+        },
+        {
+          "criterion": "닮음비 적용해 2 m 도출",
+          "points": 6
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "2 m",
+          "5/3 m",
+          "2.5 m",
+          "5 m"
+        ],
+        "correctChoice": 1,
+        "answer": "2 m",
+        "displayMode": "choice-card"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "prompt": "거울 앞 2 m에 선 관찰자의 뒤 2 m에 높이 12 m 가로등이 있다. 가로등 전체를 보기 위해 필요한 평면거울의 최소 세로 길이는?",
+        "choices": [
+          "3 m",
+          "4 m",
+          "6 m",
+          "8 m"
+        ],
+        "correctChoice": 2,
+        "answer": "4 m",
+        "explanation": "관찰자-거울 2 m, 가로등-거울 4 m. 최소 크기=12×2/(2+4)=4 m.",
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice",
+      "image": {
+        "page": 1,
+        "crop": [
+          38,
+          1367,
+          575,
+          242
+        ]
+      }
+    },
+    {
+      "no": 5,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "렌즈",
+      "topic": "볼록 렌즈 상의 위치·성질·크기",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          173,
+          570,
+          521
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "렌즈 오른쪽 30 cm, 확대된 도립 실상, 10 cm",
+      "explanation": [
+        "초점거리 f=10 cm이고 그림에서 물체는 렌즈 왼쪽 15 cm에 있다.",
+        "1/f=1/p+1/q에서 1/10=1/15+1/q이므로 q=30 cm이다.",
+        "배율 m=-q/p=-2이므로 도립 실상이고 높이는 5 cm의 2배인 10 cm이다."
+      ],
+      "formulas": [
+        "1/f=1/p+1/q",
+        "m=-q/p=h′/h"
+      ],
+      "commonMistakes": [
+        "물체가 2F에 있다고 오해하는 것",
+        "q=30 cm를 렌즈 왼쪽으로 쓰는 것",
+        "배율의 절댓값만 보고 정립이라고 쓰는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "렌즈 오른쪽 30 cm",
+          "points": 5
+        },
+        {
+          "criterion": "확대된 도립 실상",
+          "points": 10
+        },
+        {
+          "criterion": "10 cm",
+          "points": 5
+        }
+      ],
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "렌즈 오른쪽 20 cm / 같은 크기 도립 실상 / 4 cm",
+          "렌즈 오른쪽 10 cm / 축소된 도립 실상 / 2 cm",
+          "렌즈 왼쪽 20 cm / 같은 크기 정립 허상 / 4 cm",
+          "렌즈 오른쪽 40 cm / 확대된 도립 실상 / 8 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "렌즈 오른쪽 20 cm / 같은 크기 도립 실상 / 4 cm",
+        "acceptableAnswers": [
+          "1",
+          "렌즈 오른쪽 20 cm / 같은 크기 도립 실상 / 4 cm"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "초점거리 10 cm인 볼록 렌즈의 왼쪽 20 cm에 높이 4 cm 물체가 있다. 상의 위치·성질·크기는?",
+        "explanation": "물체가 2F에 있으므로 반대쪽 2F(20 cm)에 같은 크기의 도립 실상이 생긴다."
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "렌즈 오른쪽 30 cm / 확대된 도립 실상 / 10 cm",
+          "렌즈 오른쪽 15 cm / 같은 크기 도립 실상 / 5 cm",
+          "렌즈 왼쪽 30 cm / 확대된 정립 허상 / 10 cm",
+          "렌즈 오른쪽 20 cm / 축소된 도립 실상 / 2.5 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "렌즈 오른쪽 30 cm / 확대된 도립 실상 / 10 cm",
+        "acceptableAnswers": [
+          "1",
+          "렌즈 오른쪽 30 cm / 확대된 도립 실상 / 10 cm"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 6,
+      "maxPoints": 10,
+      "type": "subjective",
+      "unit": "거울",
+      "topic": "볼록 거울 초점거리",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          690,
+          570,
+          207
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "초점거리의 부호 규약을 명확히 하기 위해 “거울 뒤 10 cm, 부호 포함 f=-10 cm”로 함께 제시했다.",
+      "answer": "f=-10 cm (초점은 거울 뒤 10 cm)",
+      "explanation": [
+        "물체 거리는 p=10 cm이고 허상이므로 q<0이다.",
+        "허상의 크기가 물체의 1/2이고 정립이므로 m=+1/2=-q/p에서 q=-5 cm이다.",
+        "거울식 1/f=1/10+1/(-5)=-1/10이므로 f=-10 cm이다. 초점거리의 크기는 10 cm이다."
+      ],
+      "formulas": [
+        "m=-q/p",
+        "1/f=1/p+1/q"
+      ],
+      "commonMistakes": [
+        "볼록 거울의 초점거리 부호를 +로 쓰는 것",
+        "1/2 배율에서 q=-20 cm로 잘못 놓는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "허상거리 q=-5 cm와 배율 1/2",
+          "points": 4
+        },
+        {
+          "criterion": "거울의 초점거리 f=-10 cm",
+          "points": 6
+        }
+      ],
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "-7.5 cm",
+          "-5 cm",
+          "+7.5 cm",
+          "+15 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "-7.5 cm",
+        "acceptableAnswers": [
+          "1",
+          "-7.5 cm"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "볼록 거울 앞 15 cm 물체의 허상이 1/3 크기로 보였다. 초점거리는?",
+        "explanation": "m=1/3=-q/15에서 q=-5 cm, 1/f=1/15-1/5=-2/15이므로 f=-7.5 cm이다."
+      },
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "-10 cm (거울 뒤 10 cm)",
+          "-5 cm (거울 뒤 5 cm)",
+          "+5 cm (거울 앞 5 cm)",
+          "+10 cm (거울 앞 10 cm)"
+        ],
+        "correctChoice": 1,
+        "answer": "-10 cm (거울 뒤 10 cm)",
+        "acceptableAnswers": [
+          "1",
+          "-10 cm (거울 뒤 10 cm)"
+        ],
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 7,
+      "maxPoints": 20,
+      "type": "subjective",
+      "unit": "빛의 굴절",
+      "topic": "공기와 액체에서 서로 바라본 겉보기 거리",
+      "difficulty": "중",
+      "reviewStatus": "verified",
+      "correctionNote": "물고기의 실제 깊이 30 cm와 사람의 실제 수면 위 높이 20 cm를 함께 더한 겉보기 거리로 계산.",
+      "answer": "(1) 40 cm, (2) 60 cm",
+      "explanation": [
+        "물의 굴절률은 1.5, 공기의 굴절률은 약 1이라고 놓는다. 수면에 거의 수직으로 볼 때 공기에서 물고기를 보면 물고기 수중 깊이는 30/1.5=20 cm로 보인다. 사람은 수면 위 20 cm이므로 총 겉보기 거리는 20+20=40 cm이다.",
+        "물속 물고기에서 공기 중 사람을 보면 수면 위 실제 20 cm는 1.5×20=30 cm로 보인다. 물고기는 수면 아래 30 cm이므로 총 겉보기 거리는 30+30=60 cm이다."
+      ],
+      "formulas": [
+        "d_apparent (공기 관찰자)=h_air+d_water/n",
+        "d_apparent (물속 관찰자)=d_water+n h_air"
+      ],
+      "commonMistakes": [
+        "두 상황 모두 수중 깊이를 1.5로 나누는 것",
+        "수면에서 측정한 겉보기 깊이만 계산하고 사람-물고기의 거리 합산을 빠뜨리는 것"
+      ],
+      "rubric": [
+        {
+          "criterion": "사람 기준: 20 + 30/1.5=40 cm",
+          "points": 10
+        },
+        {
+          "criterion": "물고기 기준: 30 + 20×1.5=60 cm",
+          "points": 10
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "(1) 40 cm, (2) 60 cm",
+          "(1) 30 cm, (2) 45 cm",
+          "(1) 60 cm, (2) 40 cm",
+          "(1) 50 cm, (2) 50 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "(1) 40 cm, (2) 60 cm",
+        "displayMode": "choice-card"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "prompt": "굴절률 4/3인 물속 24 cm 아래에 물고기가 있고 사람이 수면 12 cm 위에 있다. (1) 사람이 본 물고기까지 겉보기 거리와 (2) 물고기가 본 사람까지 겉보기 거리의 쌍은?",
+        "choices": [
+          "(1) 30 cm, (2) 40 cm",
+          "(1) 36 cm, (2) 40 cm",
+          "(1) 30 cm, (2) 36 cm",
+          "(1) 40 cm, (2) 30 cm"
+        ],
+        "correctChoice": 1,
+        "answer": "(1) 30 cm, (2) 40 cm",
+        "explanation": "공기 관찰자는 12+24/(4/3)=30 cm, 수중 물고기는 24+12×(4/3)=40 cm로 본다.",
+        "displayMode": "choice-card"
+      },
+      "retryMode": "multiple-choice",
+      "image": {
+        "page": 1,
+        "crop": [
+          625,
+          900,
+          570,
+          385
+        ]
+      }
+    }
+  ],
+  "featureVersion": "3.6.1-physics1-r15-r16",
+  "replacesExamId": "physics1-basic-r16",
+  "shortTitle": "16회차 (개정)",
+  "solutionPdf": "assets/documents/physics1/r16-v2-verified-solution.pdf"
+}

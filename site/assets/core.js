@@ -4,6 +4,7 @@
  YP.config=window.YP_CONFIG;
  YP.getCourse=id=>YP.catalog.courses.find(c=>c.courseId===id);
  YP.getExam=id=>YP.catalog.exams.find(e=>e.examId===id);
+ YP.examVersionGroupId=id=>YP.getExam(id)?.replacesExamId||id;
  YP.readyExams=()=>YP.catalog.exams.filter(e=>e.status==="ready");
  YP.isComprehensive=ex=>ex?.assessmentType==="comprehensive";
  YP.parseQuestionRange=value=>{
@@ -32,7 +33,7 @@
    }
    return exam;
  };
- YP.roundLabel=ex=>YP.isComprehensive(ex)?`${YP.getCourse(ex.courseId)?.courseName||ex.courseId} · ${ex.shortTitle||ex.title}`:`${YP.getCourse(ex.courseId)?.courseName||ex.courseId} ${ex.round}회`;
+ YP.roundLabel=ex=>YP.isComprehensive(ex)?`${YP.getCourse(ex.courseId)?.courseName||ex.courseId} · ${ex.shortTitle||ex.title}`:`${YP.getCourse(ex.courseId)?.courseName||ex.courseId} ${ex.round}회${ex.replacesExamId?" (개정)":""}`;
  YP.escapeHTML=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
  YP.formatNumber=(n,d=1)=>Number(n||0).toLocaleString("ko-KR",{maximumFractionDigits:d,minimumFractionDigits:Number.isInteger(Number(n))?0:Math.min(d,1)});
  YP.statusLabel=s=>({full:"만점",partial:"부분점수",wrong:"0점",ungraded:"미입력",invalid:"오류"}[s]||s);
@@ -171,13 +172,26 @@
    return {eligible:count>=2&&exactPercent<=50+epsilon,count,total:count,higher,tied,rank,exactPercent,topPercent,label:`상위 ${YP.formatNumber(topPercent)}%`};
  };
  YP.computeStudentUnits=function(exam,record,stats){return [...new Set(exam.questions.map(q=>q.unit))].map(unit=>{const idx=exam.questions.map((q,i)=>q.unit===unit?i:-1).filter(i=>i>=0),max=idx.reduce((a,i)=>a+exam.questions[i].maxPoints,0),score=idx.reduce((a,i)=>a+Number(record.scoring[i]?.score??0),0),avg=stats?.units?.find(u=>u.unit===unit)?.averagePercent??0,percent=max?score/max*100:0;return {unit,score,maxPoints:max,percent,averagePercent:avg,questionCount:idx.length,level:percent>=85?"강점":percent>=65?"안정":percent>=45?"보완":"우선 보완"}})};
- YP.getLinkedHistory=function(exam,record,records){if(!YP.isComprehensive(exam)||!exam.historyExamIds?.length)return [];const key=YP.studentKey(exam.courseId,record.school,record.name);return (records||[]).map(YP.normalizeRecord).filter(r=>exam.historyExamIds.includes(r.examId)&&YP.studentKey(r.courseId,r.school,r.name)===key).sort((a,b)=>{const ea=YP.getExam(a.examId),eb=YP.getExam(b.examId);return (ea?.round||0)-(eb?.round||0)})};
+ YP.getLinkedHistory=function(exam,record,records){
+   if(!YP.isComprehensive(exam)||!exam.historyExamIds?.length)return [];
+   const key=YP.studentKey(exam.courseId,record.school,record.name),byGroup=new Map();
+   const linked=(records||[]).map(YP.normalizeRecord).filter(r=>exam.historyExamIds.includes(r.examId)&&YP.studentKey(r.courseId,r.school,r.name)===key);
+   linked.forEach(r=>{
+     const group=YP.examVersionGroupId(r.examId),old=byGroup.get(group);
+     // 같은 학생이 구형/개정 16회차를 모두 응시한 경우, 총괄 누적 계산은 개정 기록을 우선한다.
+     // 개별 학생 성적과 문제는 삭제하거나 변경하지 않는다.
+     const newer=!!YP.getExam(r.examId)?.replacesExamId,oldNewer=!!YP.getExam(old?.examId)?.replacesExamId;
+     if(!old||(newer&&!oldNewer)||(newer===oldNewer&&String(r.updatedAt||r.createdAt||"")>String(old.updatedAt||old.createdAt||"")))byGroup.set(group,r);
+   });
+   return linked.filter(r=>byGroup.get(YP.examVersionGroupId(r.examId))===r).sort((a,b)=>{const ea=YP.getExam(a.examId),eb=YP.getExam(b.examId);return (ea?.round||0)-(eb?.round||0)});
+ };
  YP.computeHistorySummary=function(exam,record,records){
    const linked=YP.getLinkedHistory(exam,record,records);let earned=0,max=0;const unitMap=new Map();
    linked.forEach(r=>{earned+=Number(r.score||0);max+=Number(r.maxScore||0);const ex=YP.getExam(r.examId);(ex?.questions||[]).forEach((q,i)=>{const u=unitMap.get(q.unit)||{unit:q.unit,score:0,maxPoints:0,questionCount:0};u.score+=Number(r.scoring?.[i]?.score??0);u.maxPoints+=q.maxPoints;u.questionCount++;unitMap.set(q.unit,u)})});
    const units=[...unitMap.values()].map(u=>({...u,percent:u.maxPoints?u.score/u.maxPoints*100:0,level:(u.maxPoints?u.score/u.maxPoints*100:0)>=85?"강점":(u.maxPoints?u.score/u.maxPoints*100:0)>=65?"안정":(u.maxPoints?u.score/u.maxPoints*100:0)>=45?"보완":"우선 보완"})).sort((a,b)=>b.percent-a.percent);
    const trend=linked.map(r=>({examId:r.examId,label:`${YP.getExam(r.examId)?.round||""}회`,percent:r.percent,score:r.score,maxScore:r.maxScore}));
-   return {records:linked,count:linked.length,score:earned,maxScore:max,percent:max?earned/max*100:0,units,trend,expectedCount:exam.historyExamIds?.length||0,coverage:exam.historyExamIds?.length?linked.length/exam.historyExamIds.length*100:0};
+   const expectedCount=new Set((exam.historyExamIds||[]).map(YP.examVersionGroupId)).size;
+   return {records:linked,count:linked.length,score:earned,maxScore:max,percent:max?earned/max*100:0,units,trend,expectedCount,coverage:expectedCount?linked.length/expectedCount*100:0};
  };
  /** 한 학생의 여러 시험 기록을 누적 분석한다. 서버 포털과 데모 모드가 같은 계산 규칙을 사용한다. */
  YP.computeStudentPortalCumulative=function(records){
