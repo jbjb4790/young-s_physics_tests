@@ -1,0 +1,826 @@
+{
+  "examId": "physics2-basic-r14",
+  "courseId": "physics2-basic",
+  "round": 14,
+  "title": "물리2 14회차 복습 테스트 · 평행 도선과 로렌츠 힘",
+  "shortTitle": "14회차 평행도선·로렌츠 힘",
+  "status": "ready",
+  "assessmentType": "weekly",
+  "section": "electromagnetism",
+  "examDate": "",
+  "questionCount": 9,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics2/r14.pdf",
+  "solutionPdf": "assets/documents/physics2/r14-verified-solution.pdf",
+  "pages": [
+    "assets/pages/physics2/r14-p1.png",
+    "assets/pages/physics2/r14-p2.png",
+    "assets/pages/physics2/r14-p3.png"
+  ],
+  "reviewStatus": "conditional",
+  "configVersion": "2026.10.30-physics2-basic-r14-reviewed-v3.7.6",
+  "sourceTitle": "물리2기본-Quiz 14회차 평행도선, 로렌츠힘.pdf / 물리2기본-Quiz 14회차 해설 평행도선, 로렌츠힘.pdf",
+  "sourceNote": "9문항/100점, 배점 10·10·10·10·10·10·10·20·10. 6번 원문 반지름 계산 누락 및 1kg 질량에 따른 r=3×10¹⁰ m(반원 모식도 축척 불일치); 8번 α·β·γ 진행 방향은 타당하나 반지름 비는 미정. 원본 문제·해설 PDF는 원형 보존, 웹 검수 해설 별도 제공. 시험지의 초파 가산 2점은 공식 100점에 자동 가산하지 않음.",
+  "coreNote": {
+    "summary": "물리2 14회차: 휘트스톤 브리지의 균형, 평행도선 사이의 힘, 직선도선·전류고리의 합력, 로렌츠 힘과 자기장 원운동, α/β/γ 방사선 경로, 속도 선택기",
+    "concepts": [
+      "휘트스톤 브리지에서 검류계 전류가 0이면 양 중간점의 전위가 같고 저항비가 같다.",
+      "평행 직선도선은 같은 방향 전류일 때 인력, 반대 방향일 때 척력이다.",
+      "직선 도선 주위 자기장은 거리 r의 역수에 비례하고 여러 도선의 자기장을 벡터 합한다.",
+      "정사각형 전류고리의 위·아래 수평변 힘은 상쇄되며 가까운 세로변의 힘이 더 크다.",
+      "수직 입사 전하의 자기력 F=qvB는 속도에 직각, 양전하는 v×B 방향이다.",
+      "자기장 원운동: 반지름은 속력에 비례, 주기는 비상대론적 범위에서 속력과 무관하다.",
+      "α선과 β선은 전하 부호가 달라 반대 방향으로 휘고, 중성인 γ선은 직진한다.",
+      "직진 속도 선택기는 전기력과 자기력의 균형 조건 v=E/B를 만족한다."
+    ],
+    "formulas": [
+      "휘트스톤: R₁R₄=R₂R₃ (그림 2R=3×4)",
+      "F_parallel=(μ₀/2π)(I₁I₂L/r)",
+      "B_wire=μ₀I/(2πr)",
+      "F_loop=(μ₀/2π)I²a²/[d(d+a)]",
+      "F_B=|q|vB sinθ",
+      "r=mv/(|q|B)",
+      "T=2πm/(|q|B)",
+      "v_selector=E/B"
+    ],
+    "mistakes": [
+      "평행 회로의 전류를 직렬로 계산함",
+      "전류 방향에 따른 인력·척력 구분 실패",
+      "자기장 방향과 도선이 받는 힘 방향을 혼동함",
+      "μC→C 단위 변환 실수",
+      "6번 1 kg을 그대로 썼을 때의 엄청난 반지름을 해설 그림의 반원과 동일시함",
+      "γ선은 중성이므로 굽지 않음을 놓침",
+      "전기력과 자기력의 방향을 바꾸어 v=E/B를 놓침"
+    ],
+    "checklist": [
+      "검류계 G에 전류가 흐르지 않는 조건을 확인했는가?",
+      "평행 도선 힘의 방향은 같은/반대 전류로 판단했는가?",
+      "거리 단위 cm→m와 μC→C를 변환했는가?",
+      "v×B의 방향을 양전하 기준으로 정했는가?",
+      "6번 원문 수치를 유지하여 r=3×10¹⁰ m로 계산했는가?",
+      "8번 궤적 방향과 정량적인 굽힘 정도를 구분했는가?",
+      "9번 전기장과 자기장의 힘이 서로 상쇄되는지 확인했는가?"
+    ]
+  },
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "직류회로·휘트스톤 브리지",
+      "topic": "검류계 전류가 0인 브리지의 저항과 총전류",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          30,
+          200,
+          590,
+          550
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "R=6 Ω, 전지 전체 전류 I=3 A",
+      "explanation": [
+        "검류계에 전류가 흐르지 않으므로 A와 B의 전위가 같고, 저항비가 균형을 이룬다.",
+        "원문 그림의 2 Ω, 3 Ω, 4 Ω, R에 대해 2R=3×4를 만족하므로 R=6 Ω이다.",
+        "위쪽 가지 합성저항은 2+3=5 Ω, 아래쪽 가지는 4+6=10 Ω이며 두 가지가 병렬이다.",
+        "따라서 전체 전류 I=10/5+10/10=3 A이다."
+      ],
+      "formulas": [
+        "2R=3×4",
+        "R=6 Ω",
+        "I=10/(2+3)+10/(4+6)=3 A"
+      ],
+      "commonMistakes": [
+        "R만 구하고 I를 계산하지 않음",
+        "5 Ω와 10 Ω을 직렬로 합해 전체 전류를 계산함",
+        "균형 상태에서 검류계에도 전류가 흐른다고 판단함"
+      ],
+      "rubric": [
+        {
+          "criterion": "저항비 균형에서 R=6 Ω",
+          "points": 5
+        },
+        {
+          "criterion": "두 병렬 가지의 총전류 I=3 A",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 1번: 10 V 브리지에서 위쪽 두 저항 2 Ω·3 Ω, 아래쪽 4 Ω·R, 검류계 전류가 0이다. R과 전체 전류 I는?",
+        "choices": [
+          "R=6 Ω, I=3 A",
+          "R=6 Ω, I=2 A",
+          "R=8 Ω, I=3 A",
+          "R=3 Ω, I=4 A"
+        ],
+        "correctChoice": 1,
+        "answer": "R=6 Ω, I=3 A",
+        "acceptableAnswers": [
+          "1",
+          "R=6 Ω, I=3 A"
+        ],
+        "explanation": "2R=3×4 → R=6 Ω. 병렬 가지 5 Ω와 10 Ω의 전류는 2 A와 1 A이므로 합 3 A."
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 18 V 브리지에서 위쪽 3 Ω·6 Ω, 아래쪽 4 Ω·R에 대해 검류계 전류가 0일 때 R과 전체 전류는?",
+        "choices": [
+          "R=8 Ω, I=3.5 A",
+          "R=8 Ω, I=1.5 A",
+          "R=6 Ω, I=3 A",
+          "R=12 Ω, I=2 A"
+        ],
+        "correctChoice": 1,
+        "answer": "R=8 Ω, I=3.5 A",
+        "acceptableAnswers": [
+          "1",
+          "R=8 Ω, I=3.5 A"
+        ],
+        "explanation": "3R=6×4 → R=8 Ω, 두 병렬 가지 9 Ω·12 Ω이므로 I=18/9+18/12=3.5 A."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 2,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "평행 전류 도선의 상호작용",
+      "topic": "같은 방향으로 흐르는 두 평행도선의 힘",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          30,
+          812,
+          590,
+          545
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "인력, F=2.4×10⁻⁵ N (서로를 향하는 방향)",
+      "explanation": [
+        "전류가 같은 방향으로 흐르는 평행 도선 사이에는 인력이 작용한다.",
+        "두 도선 사이 거리 r=10 cm=0.10 m, 전류 I₁=2 A, I₂=3 A, 공통 길이 L=2 m이다.",
+        "F=(μ₀/2π) I₁I₂L/r=2×10⁻⁷×2×3×2/0.10=2.4×10⁻⁵ N이다."
+      ],
+      "formulas": [
+        "F=(μ₀/2π)(I₁I₂L/r)",
+        "μ₀/2π=2×10⁻⁷ N/A²",
+        "F=2.4×10⁻⁵ N"
+      ],
+      "commonMistakes": [
+        "같은 방향 전류를 척력으로 판단함",
+        "10 cm를 10 m로 대입함",
+        "길이 L=2 m를 빼먹음"
+      ],
+      "rubric": [
+        {
+          "criterion": "힘의 방향: 인력",
+          "points": 5
+        },
+        {
+          "criterion": "힘의 크기 2.4×10⁻⁵ N",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 2번: 전류 2 A·3 A가 같은 방향인 두 평행 도선(간격 0.10 m, 길이 2 m)의 힘은?",
+        "choices": [
+          "척력, 2.4×10⁻⁵ N",
+          "인력, 2.4×10⁻⁵ N",
+          "인력, 1.2×10⁻⁵ N",
+          "척력, 4.8×10⁻⁵ N"
+        ],
+        "correctChoice": 2,
+        "answer": "인력, 2.4×10⁻⁵ N",
+        "acceptableAnswers": [
+          "2",
+          "인력, 2.4×10⁻⁵ N"
+        ],
+        "explanation": "같은 방향이므로 인력이고, F=2×10⁻⁷×(2×3×2/0.1)=2.4×10⁻⁵ N."
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 4 A·5 A가 반대 방향으로 흐르는 두 도선이 0.20 m 떨어져 있고 길이는 3 m이다. 힘은?",
+        "choices": [
+          "인력, 6.0×10⁻⁵ N",
+          "척력, 3.0×10⁻⁵ N",
+          "인력, 3.0×10⁻⁵ N",
+          "척력, 6.0×10⁻⁵ N"
+        ],
+        "correctChoice": 4,
+        "answer": "척력, 6.0×10⁻⁵ N",
+        "acceptableAnswers": [
+          "4",
+          "척력, 6.0×10⁻⁵ N"
+        ],
+        "explanation": "반대 방향이므로 척력. F=2×10⁻⁷×4×5×3/0.2=6.0×10⁻⁵ N."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 3,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "자기장 중첩·도선 사이 힘",
+      "topic": "네 평행도선의 P에서 합성 자기장 0과 C의 힘",
+      "difficulty": "상",
+      "image": {
+        "page": 1,
+        "crop": [
+          622,
+          197,
+          595,
+          675
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "④ ㄱ, ㄷ (A는 아래로 I, C가 받는 합력은 오른쪽, B와 D는 인력)",
+      "explanation": [
+        "P를 x=0으로 두면 A=-2r, B=-r, C=+r, D=+2r이다. 위쪽 전류는 오른쪽에서 종이 안쪽, 왼쪽에서 종이 바깥쪽 자기장을 만든다.",
+        "P에서 B의 2I가 만든 자기장(안쪽)은 C의 I와 D의 I가 만든 자기장(바깥쪽)보다 I/(2r)에 비례하는 크기만큼 크다.",
+        "A는 P에서 바깥쪽 자기장을 만들어야 하므로 아래 방향 I가 흐른다. ㄱ은 참이다.",
+        "C에 대한 B와 D의 인력은 각각 k I²/r 크기로 서로 상쇄되지만 A와 C는 반대 방향 전류라 밀어내므로 C의 알짜힘은 오른쪽이다. ㄴ은 거짓이다.",
+        "B와 D는 같은 방향(위쪽)의 전류이므로 서로 인력이 작용하여 ㄷ은 참이다."
+      ],
+      "formulas": [
+        "B∝I/r",
+        "B_B=2kI/r, B_C=kI/r, B_D=kI/(2r), B_A=kI/(2r) (바깥쪽)",
+        "F_C∝(kI²/r−kI²/r+kI²/(3r)) → 오른쪽"
+      ],
+      "commonMistakes": [
+        "P에서 전류·도선 거리의 역수 법칙을 무시함",
+        "각 도선의 자기장과 도선에 작용하는 힘을 혼동함",
+        "B와 D의 같은 방향 전류를 척력이라고 판단함"
+      ],
+      "rubric": [
+        {
+          "criterion": "옳은 문항 ④ ㄱ, ㄷ 선택",
+          "points": 10
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 3번(4지 재구성): 등간격 A-B-P-C-D에서 B=2I↑, C=I↑, D=I↑이며 P의 합성 자기장은 0. ㄱ(A의 전류는 아래 I), ㄴ(C의 힘은 왼쪽), ㄷ(B와 D는 인력) 중 참은?",
+        "choices": [
+          "ㄱ만",
+          "ㄴ만",
+          "ㄱ, ㄴ",
+          "ㄱ, ㄷ"
+        ],
+        "correctChoice": 4,
+        "answer": "ㄱ, ㄷ",
+        "acceptableAnswers": [
+          "4",
+          "ㄱ, ㄷ"
+        ],
+        "explanation": "A는 아래 I가 되어야 P에서 자기장이 상쇄된다. C의 합력은 오른쪽, B·D에는 인력이 작용한다."
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 등간격 A-B-P-C-D에서 B=3I↑, C=I↑, D=I↑이며 P의 합성 자기장이 0이다. A의 전류는?",
+        "choices": [
+          "위쪽 I",
+          "아래쪽 I",
+          "아래쪽 3I",
+          "위쪽 3I"
+        ],
+        "correctChoice": 3,
+        "answer": "아래쪽 3I",
+        "acceptableAnswers": [
+          "3",
+          "아래쪽 3I"
+        ],
+        "explanation": "B가 P에서 종이 안쪽 3kI/r, C와 D는 바깥쪽 1.5kI/r, A는 거리 2r에서 바깥쪽 1.5kI/r를 만들어야 하므로 아래쪽 3I."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 4,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "직선 도선과 사각형 전류고리",
+      "topic": "긴 직선도선 옆 정사각형 고리에 작용하는 알짜힘",
+      "difficulty": "상",
+      "image": {
+        "page": 2,
+        "crop": [
+          30,
+          204,
+          590,
+          443
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "왼쪽, F=(μ₀/2π) I²a²/[d(d+a)]",
+      "explanation": [
+        "고리의 왼쪽 수직 변은 긴 직선도선과 같은 방향의 전류가 흘러 왼쪽으로 인력이 작용한다.",
+        "고리의 오른쪽 수직 변은 긴 직선도선과 반대 방향의 전류이므로 오른쪽으로 척력이 작용한다.",
+        "위·아래 수평 변의 힘은 크기가 같고 방향이 반대라 상쇄된다.",
+        "가까운 변의 힘은 k I²a/d, 먼 변의 힘은 k I²a/(d+a)이므로 합력은 kI²a(1/d−1/(d+a))=kI²a²/[d(d+a)], 방향은 왼쪽이다."
+      ],
+      "formulas": [
+        "k=μ₀/(2π)",
+        "F_near=kI²a/d, F_far=kI²a/(d+a)",
+        "F_net=kI²a²/[d(d+a)] (왼쪽)"
+      ],
+      "commonMistakes": [
+        "두 수직 변의 힘을 모두 같은 방향으로 더함",
+        "수평 변의 힘이 상쇄됨을 누락함",
+        "근거리와 원거리의 d, d+a를 혼동함"
+      ],
+      "rubric": [
+        {
+          "criterion": "각 수직 변의 힘·방향 및 수평 성분 상쇄",
+          "points": 4
+        },
+        {
+          "criterion": "알짜힘 식 전개",
+          "points": 4
+        },
+        {
+          "criterion": "왼쪽 방향 및 최종식",
+          "points": 2
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 4번: 위쪽 전류 I의 긴 직선도선 오른쪽 d부터 한 변 a인 시계방향 전류 I의 정사각형 고리가 있다. 고리의 합력은?",
+        "choices": [
+          "오른쪽, kI²a²/[d(d+a)]",
+          "왼쪽, kI²a²/[d(d+a)]",
+          "왼쪽, 2kI²a/d",
+          "0"
+        ],
+        "correctChoice": 2,
+        "answer": "왼쪽, kI²a²/[d(d+a)]",
+        "acceptableAnswers": [
+          "2",
+          "왼쪽, kI²a²/[d(d+a)]"
+        ],
+        "explanation": "가까운 세로변 인력이 더 크고 먼 세로변 척력은 작아 왼쪽으로 kI²a²/[d(d+a)]."
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 긴 직선도선에 위쪽 2I, 정사각형 고리에는 시계방향 I가 흐른다(거리 d, 변 a). 알짜힘은?",
+        "choices": [
+          "왼쪽, 2kI²a²/[d(d+a)]",
+          "오른쪽, 2kI²a²/[d(d+a)]",
+          "왼쪽, kI²a²/[d(d+a)]",
+          "0"
+        ],
+        "correctChoice": 1,
+        "answer": "왼쪽, 2kI²a²/[d(d+a)]",
+        "acceptableAnswers": [
+          "1",
+          "왼쪽, 2kI²a²/[d(d+a)]"
+        ],
+        "explanation": "전류곱이 원문의 두 배이므로 힘도 두 배, 방향은 왼쪽."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 5,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "로렌츠 힘",
+      "topic": "수직 입사 양전하의 자기력 방향·크기",
+      "difficulty": "하",
+      "image": {
+        "page": 2,
+        "crop": [
+          30,
+          804,
+          590,
+          485
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "위쪽, F=3×10⁻² N",
+      "explanation": [
+        "양전하가 오른쪽으로 움직이고 자기장은 종이 안쪽(×)이므로 v×B는 종이의 위쪽을 향한다.",
+        "입자 전하량 q=+2.0 μC=2×10⁻⁶ C, 속력 3×10⁴ m/s, B=0.5 T이며 입사각 90°이다.",
+        "F=|q|vB=2×10⁻⁶×3×10⁴×0.5=3×10⁻² N이다."
+      ],
+      "formulas": [
+        "F=|q|vB sinθ",
+        "θ=90°, sinθ=1",
+        "F=0.03 N"
+      ],
+      "commonMistakes": [
+        "양전하임에도 왼손법칙 방향을 적용함",
+        "μC를 10⁻³ C로 변환함",
+        "자기장 방향(×)을 종이 바깥쪽이라고 판단함"
+      ],
+      "rubric": [
+        {
+          "criterion": "위쪽 방향",
+          "points": 5
+        },
+        {
+          "criterion": "3×10⁻² N",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 5번: +2.0 μC 입자가 오른쪽 3×10⁴ m/s로 종이 안쪽 0.5 T 자기장에 입사한다. 자기력은?",
+        "choices": [
+          "아래쪽, 0.03 N",
+          "위쪽, 0.03 N",
+          "위쪽, 0.30 N",
+          "종이 바깥, 0.03 N"
+        ],
+        "correctChoice": 2,
+        "answer": "위쪽, 0.03 N",
+        "acceptableAnswers": [
+          "2",
+          "위쪽, 0.03 N"
+        ],
+        "explanation": "q(v×B)는 위쪽, qvB=0.03 N."
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: +3 μC 입자가 오른쪽 2×10⁴ m/s로 종이 안쪽 0.4 T 자기장에 입사한다. 자기력은?",
+        "choices": [
+          "위쪽, 0.024 N",
+          "아래쪽, 0.024 N",
+          "위쪽, 0.24 N",
+          "아래쪽, 0.012 N"
+        ],
+        "correctChoice": 1,
+        "answer": "위쪽, 0.024 N",
+        "acceptableAnswers": [
+          "1",
+          "위쪽, 0.024 N"
+        ],
+        "explanation": "3×10⁻⁶×2×10⁴×0.4=0.024 N, 위쪽."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 6,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "자기장 속 원운동",
+      "topic": "자기장에 수직하게 들어간 양전하의 경로와 반지름",
+      "difficulty": "상",
+      "image": {
+        "page": 2,
+        "crop": [
+          622,
+          202,
+          595,
+          438
+        ]
+      },
+      "reviewStatus": "conditional",
+      "correctionNote": "원문 해설에는 반지름 수치가 빠져 있고, 원문에 적힌 1 kg 질량으로 계산하면 r=3×10¹⁰ m이므로 작은 자기장 영역에서 반원형으로 크게 휘는 해설 그림과 일치하지 않는다. 원문 수치 및 공식 해설 PDF를 수정하지 않고 물리적으로 일치하는 검수값과 축척 주의를 공개한다.",
+      "answer": "초기 위쪽으로 굽는 원운동, r=3×10¹⁰ m (원본 m=1 kg 기준)",
+      "explanation": [
+        "원문 5번에서 입자는 양전하이므로 자기력이 위쪽으로 작용하며, 궤적의 초기 곡률 방향도 위쪽이다.",
+        "자기력의 크기는 qvB이며 원운동 구심력 mv²/r와 같다.",
+        "r=mv/(|q|B)=1×(3×10⁴)/[(2×10⁻⁶)×0.5]=3×10¹⁰ m이다.",
+        "제공 해설은 반지름 수치를 생략하였으며 그림의 급격히 굽는 반원은 이 엄청난 반지름과 정량적으로 양립하지 않는다. 실제 그림 크기의 자기장 영역에서는 궤적이 거의 직선으로 보인다."
+      ],
+      "formulas": [
+        "|q|vB=mv²/r",
+        "r=mv/(|q|B)",
+        "r=3×10¹⁰ m"
+      ],
+      "commonMistakes": [
+        "원본 해설의 반원 그림을 실제 크기의 정량적 경로로 취급함",
+        "5번의 힘 0.03 N을 반지름으로 착각함",
+        "1 kg을 임의로 다른 질량으로 바꿔 계산함"
+      ],
+      "rubric": [
+        {
+          "criterion": "양전하이므로 처음 위쪽으로 휘는 방향",
+          "points": 4
+        },
+        {
+          "criterion": "r=mv/(|q|B)와 r=3×10¹⁰ m",
+          "points": 6
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 6번: 5번의 q=+2 μC, v=3×10⁴ m/s, B=0.5 T, 질량 1 kg을 그대로 사용하면 반지름과 초기 휘어짐 방향은?",
+        "choices": [
+          "r=3×10⁴ m, 위쪽",
+          "r=3×10¹⁰ m, 아래쪽",
+          "r=3×10¹⁰ m, 위쪽",
+          "r=3×10⁸ m, 위쪽"
+        ],
+        "correctChoice": 3,
+        "answer": "r=3×10¹⁰ m, 위쪽",
+        "acceptableAnswers": [
+          "3",
+          "r=3×10¹⁰ m, 위쪽"
+        ],
+        "explanation": "수치에 충실하면 r=mv/(qB)=3×10¹⁰ m. 양전하는 위쪽으로 휜다. 원문 해설 반원 모식도는 축척과 맞지 않는다."
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 질량 1.6×10⁻²⁶ kg, +1.6×10⁻¹⁹ C 입자가 오른쪽 2×10⁵ m/s로 종이 안쪽 0.5 T 자기장에 수직 입사한다. 초기 휘어짐과 r은?",
+        "choices": [
+          "위쪽, 0.040 m",
+          "위쪽, 0.004 m",
+          "아래쪽, 0.040 m",
+          "위쪽, 0.400 m"
+        ],
+        "correctChoice": 1,
+        "answer": "위쪽, 0.040 m",
+        "acceptableAnswers": [
+          "1",
+          "위쪽, 0.040 m"
+        ],
+        "explanation": "r=(1.6×10⁻²⁶×2×10⁵)/(1.6×10⁻¹⁹×0.5)=0.040 m, 양전하이므로 위쪽."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 7,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "자기장 속 원운동",
+      "topic": "속력 2배에 따른 원운동 반지름·주기",
+      "difficulty": "하",
+      "image": {
+        "page": 2,
+        "crop": [
+          622,
+          1014,
+          595,
+          280
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "반지름 2배, 회전 주기 1배 (불변)",
+      "explanation": [
+        "비상대론적 운동이며 입자의 질량·전하량·균일한 자기장은 변하지 않는다고 놓는다.",
+        "원운동 반지름 r=mv/(|q|B)는 v에 비례하므로 속력을 2배로 하면 반지름은 2배다.",
+        "회전 주기 T=2πm/(|q|B)는 속력과 무관하므로 변하지 않는다."
+      ],
+      "formulas": [
+        "r=mv/(|q|B)",
+        "T=2πm/(|q|B)",
+        "v→2v ⇒ r→2r, T→T"
+      ],
+      "commonMistakes": [
+        "회전 주기까지 2배라고 답함",
+        "r이 속력의 제곱에 비례한다고 답함",
+        "속력 변화가 질량이나 자기장까지 바꾼다고 가정함"
+      ],
+      "rubric": [
+        {
+          "criterion": "반지름 2배",
+          "points": 5
+        },
+        {
+          "criterion": "회전 주기 1배",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 7번: 위 문제의 비상대론적 입자 속력을 2배로 하면 (반지름, 주기)는 각각?",
+        "choices": [
+          "(2배, 2배)",
+          "(2배, 1배)",
+          "(4배, 2배)",
+          "(1배, 2배)"
+        ],
+        "correctChoice": 2,
+        "answer": "(2배, 1배)",
+        "acceptableAnswers": [
+          "2",
+          "(2배, 1배)"
+        ],
+        "explanation": "r∝v, T=2πm/(qB)로 속력에 독립."
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 균일한 자기장에 수직 입사한 입자의 속력을 3배로 하고 m,q,B는 일정하게 유지한다. (반지름, 주기)는?",
+        "choices": [
+          "(9배, 3배)",
+          "(3배, 3배)",
+          "(3배, 1배)",
+          "(1배, 3배)"
+        ],
+        "correctChoice": 3,
+        "answer": "(3배, 1배)",
+        "acceptableAnswers": [
+          "3",
+          "(3배, 1배)"
+        ],
+        "explanation": "반지름 3배, 주기 변화 없음."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 8,
+      "maxPoints": 20,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "방사성 입자·로렌츠 힘",
+      "topic": "자기장 안쪽에서 α·β·γ선의 진행 경로",
+      "difficulty": "중",
+      "image": {
+        "page": 3,
+        "crop": [
+          30,
+          198,
+          590,
+          670
+        ]
+      },
+      "reviewStatus": "conditional",
+      "correctionNote": "원본 해설의 α·β·γ 진행 방향은 맞지만, 굽은 정도(곡률반지름)의 정량 비교는 각 입자의 운동량·속력 등이 제시되지 않아 결정할 수 없다. 그림은 방향 판정을 위한 모식도로만 사용한다.",
+      "answer": "α선: 오른쪽으로 굽음, β선(전자): 왼쪽으로 굽음, γ선: 직진",
+      "explanation": [
+        "그림에서 세 입자는 아래쪽으로 입사하고 자기장은 종이 안쪽(×)을 향한다.",
+        "입사 방향 아래쪽 v와 종이 안쪽 B에 대해 v×B는 오른쪽이므로 양전하인 α선(+2e)은 오른쪽으로 굽는다.",
+        "전자 β선(−e)은 음전하이므로 힘의 방향이 반대인 왼쪽으로 굽는다.",
+        "감마선 γ는 전하량이 0이므로 로렌츠 힘을 받지 않아 직진한다.",
+        "제공 해설 그림의 곡률 차이는 정성적 모식도이다. 각 입자의 실제 반지름 비율을 계산하려면 속력 또는 운동량 등의 추가 정보가 필요하다."
+      ],
+      "formulas": [
+        "F=q(v×B)",
+        "r=p/(|q|B) (대전입자)",
+        "q_α=+2e, q_β=−e, q_γ=0"
+      ],
+      "commonMistakes": [
+        "β선의 음전하 성질을 놓쳐 α와 같은 방향으로 그림",
+        "γ선이 중성이므로 자기력 없음에도 굽힌다고 그림",
+        "α·β의 정확한 곡률 비율을 조건 없이 단정함"
+      ],
+      "rubric": [
+        {
+          "criterion": "α선은 오른쪽 방향으로 휘는 궤적",
+          "points": 7
+        },
+        {
+          "criterion": "β선은 왼쪽 방향으로 휘는 궤적",
+          "points": 7
+        },
+        {
+          "criterion": "γ선은 직선 경로",
+          "points": 6
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 8번을 보기형으로 변환: α(+2e), β(전자 −e), γ(중성)가 모두 아래로 향해 종이 안쪽(×) 자기장에 입사한다. 진행 방향은?",
+        "choices": [
+          "α 왼쪽 / β 오른쪽 / γ 직진",
+          "α 오른쪽 / β 왼쪽 / γ 직진",
+          "α 오른쪽 / β 오른쪽 / γ 직진",
+          "α 직진 / β 왼쪽 / γ 오른쪽"
+        ],
+        "correctChoice": 2,
+        "answer": "α 오른쪽 / β 왼쪽 / γ 직진",
+        "acceptableAnswers": [
+          "2",
+          "α 오른쪽 / β 왼쪽 / γ 직진"
+        ],
+        "explanation": "v↓×B(안쪽)=→, 양전하 오른쪽, 음전하 왼쪽, 중성은 직진."
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: α(+2e), β(−e), γ(0)가 모두 아래로 들어갈 때 이번에는 자기장이 종이 바깥쪽(·)이라면?",
+        "choices": [
+          "α 오른쪽 / β 왼쪽 / γ 직진",
+          "α 왼쪽 / β 오른쪽 / γ 왼쪽",
+          "α 왼쪽 / β 왼쪽 / γ 직진",
+          "α 왼쪽 / β 오른쪽 / γ 직진"
+        ],
+        "correctChoice": 4,
+        "answer": "α 왼쪽 / β 오른쪽 / γ 직진",
+        "acceptableAnswers": [
+          "4",
+          "α 왼쪽 / β 오른쪽 / γ 직진"
+        ],
+        "explanation": "B가 반전되면 대전입자 힘의 방향이 반전되어 α는 왼쪽, β는 오른쪽, γ는 그대로 직진."
+      },
+      "retryMode": "multiple-choice"
+    },
+    {
+      "no": 9,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "전기장·자기장에 수직 입사",
+      "topic": "전기력과 자기력 상쇄에 의한 속도 선택기",
+      "difficulty": "중",
+      "image": {
+        "page": 3,
+        "crop": [
+          622,
+          197,
+          595,
+          449
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "v=E/B",
+      "explanation": [
+        "양전하는 오른쪽 속력 v로 이동하고 전기장 E는 아래 방향이므로 전기력 qE가 아래쪽이다.",
+        "자기장 B는 종이 안쪽이므로 자기력 qvB가 위쪽이다.",
+        "입자가 곧게 가려면 두 힘이 상쇄되어 qvB=qE이어야 한다.",
+        "q≠0이므로 v=E/B. 입자의 질량 m과 전하량 q는 소거된다."
+      ],
+      "formulas": [
+        "F_E=qE (아래)",
+        "F_B=qvB (위)",
+        "qE=qvB ⇒ v=E/B"
+      ],
+      "commonMistakes": [
+        "힘을 같은 방향이라고 판단함",
+        "전기력·자기력에 중력을 임의로 추가함",
+        "질량이나 전하량이 최종 v에 남는다고 판단함"
+      ],
+      "rubric": [
+        {
+          "criterion": "두 힘 방향과 qvB=qE 평형",
+          "points": 5
+        },
+        {
+          "criterion": "v=E/B",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "원문 9번: 아래 방향 E, 종이 안쪽 B에서 양전하가 오른쪽으로 직진하려면 속력은?",
+        "choices": [
+          "v=B/E",
+          "v=qE/(mB)",
+          "v=E/B",
+          "v=mE/(qB)"
+        ],
+        "correctChoice": 3,
+        "answer": "v=E/B",
+        "acceptableAnswers": [
+          "3",
+          "v=E/B"
+        ],
+        "explanation": "전기력은 아래쪽, 자기력은 위쪽. qE=qvB이므로 v=E/B."
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "displayMode": "choice-card",
+        "prompt": "동형: 양전하가 같은 배치의 속도 선택기를 직진할 때 E=60 N/C, B=0.20 T이다. 속력은?",
+        "choices": [
+          "12 m/s",
+          "300 m/s",
+          "0.0033 m/s",
+          "1,200 m/s"
+        ],
+        "correctChoice": 2,
+        "answer": "300 m/s",
+        "acceptableAnswers": [
+          "2",
+          "300 m/s"
+        ],
+        "explanation": "v=E/B=60/0.2=300 m/s."
+      },
+      "retryMode": "multiple-choice"
+    }
+  ]
+}

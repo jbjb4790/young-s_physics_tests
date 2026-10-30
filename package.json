@@ -1,10 +1,10 @@
 {
   "name": "youngs-physics-review-comprehensive-analysis",
-  "version": "3.7.5",
+  "version": "3.7.6",
   "private": true,
   "scripts": {
-    "test": "node --test tests/run-tests.mjs tests/student-merge.test.mjs tests/share-navigation.test.mjs tests/share-preview.test.mjs tests/physics2-r11.test.mjs tests/conditional-explanations.test.mjs tests/physics2-r12.test.mjs tests/physics2-advanced-r02.test.mjs tests/physics1-r06-q04-revision.test.mjs tests/physics2-advanced-r03.test.mjs tests/physics2-r13.test.mjs tests/physics1-r16-versioning.test.mjs",
+    "test": "node --test tests/run-tests.mjs tests/student-merge.test.mjs tests/share-navigation.test.mjs tests/share-preview.test.mjs tests/physics2-r11.test.mjs tests/conditional-explanations.test.mjs tests/physics2-r12.test.mjs tests/physics2-advanced-r02.test.mjs tests/physics1-r06-q04-revision.test.mjs tests/physics2-advanced-r03.test.mjs tests/physics2-r13.test.mjs tests/physics1-r16-versioning.test.mjs tests/physics2-r14.test.mjs",
     "serve": "python3 -m http.server 8080 -d site"
   },
-  "description": "Young's Physics v3.7.5 — Physics 1 R16 split into immutable legacy 6-question record and new 7-question edition, without touching server/student identifiers."
+  "description": "Young's Physics v3.7.6 — activate Physics 2 R14 with independent magnetic-force review; preserves R16 legacy/new split and all server integrations."
 }
