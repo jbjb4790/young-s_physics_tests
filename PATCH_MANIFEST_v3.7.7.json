@@ -1,0 +1,168 @@
+{
+  "baseVersion": "3.7.6",
+  "targetVersion": "3.7.7",
+  "examId": "physics2-advanced-r04",
+  "baseSourceArchive": "YoungsPhysics_v3.7.6_물리2_14회차_전체소스.zip",
+  "newSourceArchive": "YoungsPhysics_v3.7.7_물리2심화_4회차_전체소스.zip",
+  "sourceHashSha256": "6676c0382a635d9c5d7eb57a4650a1f28e650807f36d7158a42f0f9c1bcdb3da",
+  "note": "최신 운영 GitHub 상태는 확인하지 않음; 코드상 정본 v3.7.6에만 적용. 패치 내 파일경로 그대로 GitHub에 덮어쓰기. 실제 배포 전 사용자 승인 필요.",
+  "modified": [
+    {
+      "path": "package.json",
+      "beforeSha256": "6c41bf91ead2e297e4e19a8e9914f4d00083ccf24920405230ce747418f76381",
+      "afterSha256": "8506b7ac18be5ea4ace0965b0b198c33c35706c4d6f7c3f1e5c76cab77934d58"
+    },
+    {
+      "path": "site/assets/data/catalog.js",
+      "beforeSha256": "f566e37dd5b4adb2815bbb22fa098dcedc011032a1730a718f1f0da7ff4ba1d3",
+      "afterSha256": "e4e100dc20bf0f4304e871e9b122a94e4018bdb206afbc51313a110aad52031d"
+    },
+    {
+      "path": "site/assets/data/catalog.json",
+      "beforeSha256": "9c1d1051750822325f5eab06077841da093402c8172562fe11a172d1036f9934",
+      "afterSha256": "2904b79d7cc1a417d855fbe4347cf30b32dad846eedbf224eef71865dddbe06a"
+    },
+    {
+      "path": "site/index.html",
+      "beforeSha256": "7fef1388c3672640ecb5e4deda299336fafa915926fafcf1bc4db9b54499809e",
+      "afterSha256": "4f8cc90b3863e40371b999598cb29dbb8c01439b25513ff4cbabe655a6a478f1"
+    },
+    {
+      "path": "site/portal.html",
+      "beforeSha256": "90efa2b2c2f053f249290210901e09f79a3cf7d16ba00cccd5f0abf619dc370d",
+      "afterSha256": "0249c09d0eb2696cf0353aa6e743a56610cfd6ce5db68e9cd3dc0510f819edfc"
+    },
+    {
+      "path": "site/report.html",
+      "beforeSha256": "02726454971db5ff0c9a06a395ab044d658f436e388b6591655b5fbc005fa432",
+      "afterSha256": "d2602da904879044b0d443737aeda81074c92e9ad053e2540a1406747e55a4c9"
+    },
+    {
+      "path": "tests/conditional-explanations.test.mjs",
+      "beforeSha256": "1be14094044b7b4fc8a53fa7bd914258a80dd29b49af12028df9016314c7795c",
+      "afterSha256": "0257650ae52c2163465fc84f66e32ab87f86707ba2fb35b0f387fd1149c7cb68"
+    },
+    {
+      "path": "tests/physics1-r06-q04-revision.test.mjs",
+      "beforeSha256": "7a587a51267576409733883889ed887622a672fdafbc7816209d941bb68ef5d3",
+      "afterSha256": "62e1be1269afcb7578521e47ff68de23a4b4d2da9354b74f6587fc05a83dd914"
+    },
+    {
+      "path": "tests/physics1-r16-versioning.test.mjs",
+      "beforeSha256": "d0a4ecf5848b5b0b87968e40e642b2280ed7c4674b892f151a10571758252b90",
+      "afterSha256": "289bc212800faf534b042e94f0fcf3955813f02815b93c8a050f3409e4456a86"
+    },
+    {
+      "path": "tests/physics2-advanced-r02.test.mjs",
+      "beforeSha256": "733d8f82bfc961ed318eed170203e2bee989c68879fd6eb6fb01941ae013c78a",
+      "afterSha256": "b80d8c9cb876d44b1e41a5f62deef41d6fc276fb9b33905dc714db5d90b66c53"
+    },
+    {
+      "path": "tests/physics2-advanced-r03.test.mjs",
+      "beforeSha256": "4fc73ea2d7a883fba3437440cc8695e6c891100a19f1c1620462f796bfde0cb4",
+      "afterSha256": "5f2adfa61157ad18baaf9c002f952e26a4479c21a2e73abf0e21872a576cf03e"
+    },
+    {
+      "path": "tests/physics2-r11.test.mjs",
+      "beforeSha256": "36bb44f3a6f342dc0ea35272052bc31c2d1a79d596aebb96fc1fff83c3d4820b",
+      "afterSha256": "4581672b6789292f873cee6c6766e2de1faecfaf729688c69e5162b16af522d4"
+    },
+    {
+      "path": "tests/physics2-r12.test.mjs",
+      "beforeSha256": "192b500510da6beb9c31807f46bd3ccae27fa7086c08d7a8694fbaa7bb6baac3",
+      "afterSha256": "bd23649916a77a0054fd51958acc9c13f6cc564b5e91ed2e60a21a2f1c0528e5"
+    },
+    {
+      "path": "tests/physics2-r13.test.mjs",
+      "beforeSha256": "70b8827d93741b8f8fdb33a483b1701b806dc7bffc5b4653550d59ca03e0e27e",
+      "afterSha256": "4734fb6e5fb5bb322914c4c7560b4441588b3a39c5d7abf289d8b59ddc6ab099"
+    },
+    {
+      "path": "tests/physics2-r14.test.mjs",
+      "beforeSha256": "64fd590bdf164308d4eaf221da4264a23ee1da61044a053f51c4c28e47960de9",
+      "afterSha256": "abb1b0f58ade0152363a0c1db2e401f55e0dcbb6a478064592a3738f2aa3336e"
+    },
+    {
+      "path": "tests/run-tests.mjs",
+      "beforeSha256": "c9d536b129f30c1bb88ea1ddcd82ecf6a888719fcd9990974375f67c52e2ed2b",
+      "afterSha256": "d28192376092ce46130773b835517535dc2b0dd62f8f48eb3a1c65a04cdb666f"
+    }
+  ],
+  "added": [
+    {
+      "path": "README_물리2심화_4회차_추가_v3.7.7.md",
+      "sha256": "ad0e0167e7485b2384e98172ee2591dd0b3f1c34e955669ff185317b9e650f6f"
+    },
+    {
+      "path": "docs/물리2심화_4회차_v3.7.7_검증보고서.md",
+      "sha256": "3438cd59c961d022f6f0dd3bbf33f2124a172b8369a13cb796ca225996cec774"
+    },
+    {
+      "path": "docs/물리2심화_4회차_검수보고서_v3.7.7.md",
+      "sha256": "7065a3cd16d713d0ea3a261b4040956f1ad7d032a2bb185159f4d3e3c80a1bae"
+    },
+    {
+      "path": "docs/물리2심화_4회차_자동테스트_v3.7.7.log",
+      "sha256": "8a7ada0c637aa35f092bc78e3541d310c3567548d54a0c05a7d3bf725aeebe67"
+    },
+    {
+      "path": "sample-data/physics2-advanced-r04-학생입력예시.csv",
+      "sha256": "50738f5bb6d1c7f687cfa7ffef4485e5913fbcae83eb52207b83c2c7433abadd"
+    },
+    {
+      "path": "site/assets/data/questions/physics2-advanced-r04.json",
+      "sha256": "9a3230c8aff227392a202957d5e879b045dfb7430955b3eaeb2abd9c9cac73f6"
+    },
+    {
+      "path": "site/assets/documents/physics2-advanced/r04-original-solution.pdf",
+      "sha256": "8fae77af00bff6b5ce4c519c54ebb5caeb1d5b5e6cf4d702a7b28ccde32daa53"
+    },
+    {
+      "path": "site/assets/documents/physics2-advanced/r04-verified-solution.pdf",
+      "sha256": "1cb30fde7c04d24f5a7279055bf355321d0e447a9a44306a08f5ada4390099e8"
+    },
+    {
+      "path": "site/assets/documents/physics2-advanced/r04.pdf",
+      "sha256": "c62a373c76d84d6cbe3d6a27380cbbe154c2e6394017cbee619f5b360790853b"
+    },
+    {
+      "path": "site/assets/pages/physics2-advanced/r04-p1.png",
+      "sha256": "9077fabcc6b9678ef23c31db1f8d7c9f0f4bd5b2ddd9ccf1f765cefeffd759d6"
+    },
+    {
+      "path": "site/assets/pages/physics2-advanced/r04-p2.png",
+      "sha256": "c4a5edadfcb2b786463a472c673a2c79733af701b12615b4a2967dd06a1af95a"
+    },
+    {
+      "path": "site/assets/pages/physics2-advanced/r04-p3.png",
+      "sha256": "16c95650a136f074e8c34d32fbc7a657b65be54bdcd6a25154ab10a2b3751868"
+    },
+    {
+      "path": "site/assets/pages/physics2-advanced/r04-p4.png",
+      "sha256": "7ec2e785dfb54f11ed83e6b406b70b8647a697756e097535a49693f6928bca57"
+    },
+    {
+      "path": "tests/physics2-advanced-r04.test.mjs",
+      "sha256": "69704a68d4385027c0e89ea424aa57b8a9c76a98e02f95e114cf4b1abf7173a1"
+    }
+  ],
+  "deleted": [],
+  "unchangedProtected": {
+    ".github/workflows/pages.yml": "f61953d3c0365dcf290bf93e282bb8b91215b676ed460798a847d85fc2f2d3c5",
+    "apps-script/Code.gs": "85185997e8a8b7b4e357cad6287b15b988a798a8b210027e076cf8ad7783a078",
+    "apps-script/appsscript.json": "0d70abbcecabdbf3b9a05dd0d00a44778e8e22650beec52fa52052d066639ae4",
+    "cloudflare-worker/index.mjs": "1e2b93ea3047024661c4d5c1327a503c9d3a2541817339174beed9265ea42f9e",
+    "site/assets/runtime-config.js": "560543b890e6de4b1d5a2897cd17e6e77273692847ee0f1415cbc384d054da18",
+    "site/assets/share-config.js": "dbd69d197c6c5c3f71efe9005bd4a20ca96ecd3b56d7ede31ef686aa6ef8856a",
+    "site/assets/core.js": "8d91f19514116f0016c6e3805308f4844eb967a61c47ac2e80519214d4862ec1",
+    "site/assets/app.js": "da9e4cb46058a6ab883b40afdddc1e599cf8d5d7dde7d95f31271f2a898d466a",
+    "site/assets/report.js": "5b6605aa73e4257154c68c977a9ab93a3c24a1c632dd60785b323dd263fe33f2",
+    "site/assets/portal.js": "21ec7d660967422a6f4b4f4be0c8d99a8117cdbb4b46dda74b66ab862f5e2561",
+    "site/assets/share-link.js": "ed9ddf150eba65d8ba395e4ebb247891a8279a3735c76bab7c41b09026d34495",
+    "site/assets/xlsx-import.js": "1f46843bf243daab3ef567bbbcb38307a12ff5dc02f842cff05e26fb01169705",
+    "site/assets/csv-import.js": "a0671a00cc2c1304f6ea8db07fe280b9a31b06353227a88247dfb880ad95c73d",
+    "site/assets/styles.css": "29db1a51437872ad03a62fd729af94108d63967153f90db99bb17783c573f066",
+    "site/assets/images/logo-source.png": "87569238980437609528d25638acdb7615777b023c779eefd2224f0047524268",
+    "site/assets/vendor/docx-export.bundle.js": "223024d731eaaab93748a5b1ab86ec05ef14cd7f35f03d7f15d0827fa1d06e98"
+  }
+}

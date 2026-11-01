@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-10-30T00:00:00Z",
+  "generatedAt": "2026-11-01T00:00:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -21746,6 +21746,711 @@
       "featureVersion": "3.7.3-physics2-advanced-r03-reviewed"
     },
     {
+      "examId": "physics2-advanced-r04",
+      "courseId": "physics2-advanced",
+      "round": 4,
+      "title": "물리2심화 4회차 복습 테스트 · 상대운동·포물선·충돌",
+      "shortTitle": "4회차 상대운동·포물선·충돌",
+      "status": "ready",
+      "assessmentType": "weekly",
+      "section": "mechanics",
+      "examDate": "",
+      "questionCount": 7,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics2-advanced/r04.pdf",
+      "solutionPdf": "assets/documents/physics2-advanced/r04-verified-solution.pdf",
+      "pages": [
+        "assets/pages/physics2-advanced/r04-p1.png",
+        "assets/pages/physics2-advanced/r04-p2.png",
+        "assets/pages/physics2-advanced/r04-p3.png",
+        "assets/pages/physics2-advanced/r04-p4.png"
+      ],
+      "reviewStatus": "conditional",
+      "configVersion": "2026.11.01-physics2-advanced-r04-reviewed-v3.7.7",
+      "sourceTitle": "물리2심화 Quiz 4회.pdf / 물리2심화 Quiz 4회 해설.pdf",
+      "sourceNote": "원문 7문항 총100점, 배점 15·10·10·20·20·15·10점. 공식 해설 수식은 검산 후 적용. 단 3번은 구슬 연속 충돌의 1초 평균힘 근사로만 성립하며 μ<√3 조건에서 상한이 유한하고 실제 충돌수는 정수 처리한다. 원본 문제 PDF4쪽·해설 PDF5쪽(끝 1쪽 공백)은 그대로 보존. “초파를 그리면 2점”은 정규100점에 합산하지 않는다.",
+      "coreNote": {
+        "summary": "가속 좌표계 상대운동, 높이가 다른 포물선 궤도, 연속 충돌의 평균 힘·정지마찰, 빗면과 포물선 교점, 대차 반동, 연속 완전탄성충돌",
+        "concepts": [
+          "가속하는 대차 기준으로 공의 상대 가속도는 중력과 대차 관성가속도로 분해한다.",
+          "다른 발사각으로 던진 두 물체는 수평속도와 수직초기속도 차이를 이용해 착지시간 차를 구한다.",
+          "연속 입자의 충돌은 단위시간당 운동량 변화로 평균힘을 구하며 순간 접촉과 구분한다.",
+          "빗면과 포물선의 교점을 찾을 때 빗면 좌표·수평 좌표 중 하나를 일관되게 사용한다.",
+          "외부 수평력이 없으면 사람+대차의 계 운동량이 보존된다.",
+          "완전탄성충돌에서는 운동량과 상대속도 관계를 함께 사용한다."
+        ],
+        "formulas": [
+          "x_rel=v₀cosθt−at²/2, y_rel=v₀sinθt−gt²/2",
+          "R=(v₀²/g)(sin2θ+cos2θ−1) (a=g)",
+          "Δx=v₀cos30°·(v₀/g)=√3v₀²/(2g)",
+          "nmvcos30°≤μ(Mg+nmv sin30°)",
+          "t_slope=2v₀sinθ/(gcosφ)",
+          "d_slope=2v₀²sinθcos(θ+φ)/(gcos²φ)",
+          "mu+MV=0, u−V=v",
+          "완전탄성: v₂′−v₁′=v₁−v₂"
+        ],
+        "mistakes": [
+          "대차 가속도를 무시하고 일반 포물선 사거리 식 사용",
+          "수직초기속도 부호가 다른 두 공의 낙하시간을 같게 처리",
+          "정지마찰력의 수직항력에서 구슬 충돌의 아래쪽 평균힘 누락",
+          "빗면 길이를 단순 수평거리로 계산",
+          "상대속도와 절대속도 혼동",
+          "완전탄성충돌의 운동량식만 사용"
+        ],
+        "checklist": [
+          "가속하는 좌표계 기준 상대운동으로 적었는가?",
+          "도착 시간의 양의 해만 사용했는가?",
+          "3번의 평균힘·마찰 가정과 μ 범위를 확인했는가?",
+          "θ가 빗면 기준인지 수평 기준인지 구분했는가?",
+          "대차 이동의 왼쪽 방향 부호를 기록했는가?",
+          "두 번의 탄성충돌을 분리해 계산했는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "비관성계·포물선 운동",
+          "topic": "가속하는 대차 안 공의 상대 사거리",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              30,
+              177,
+              605,
+              870
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "R=(v₀²/g)(sin2θ+cos2θ−1); 최대 각도 θ=22.5°",
+          "explanation": [
+            "대차와 같이 움직이는 좌표계에서 공은 수평으로 −g, 수직으로 −g의 상대 가속도를 갖는다.",
+            "상대좌표 x=v₀cosθ·t−(g/2)t², y=v₀sinθ·t−(g/2)t²이다.",
+            "바구니 높이는 발사 높이와 같으므로 t=2v₀sinθ/g (t>0).",
+            "따라서 R=x(t)=(v₀²/g)(sin2θ−2sin²θ)=(v₀²/g)(sin2θ+cos2θ−1).",
+            "sin2θ+cos2θ의 최대는 √2이고 2θ=45°일 때이므로 θ=22.5°."
+          ],
+          "formulas": [
+            "x_rel=v₀cosθ·t−gt²/2",
+            "y_rel=v₀sinθ·t−gt²/2",
+            "t=2v₀sinθ/g",
+            "R=(v₀²/g)(sin2θ+cos2θ−1)",
+            "θ_max=π/8=22.5°"
+          ],
+          "commonMistakes": [
+            "차량이 가속하는데 지상 기준 포물선 사거리 v₀²sin2θ/g를 그대로 사용함",
+            "최대각 45°라고 단정함",
+            "비관성계의 수평 관성가속도 −g를 빠뜨림"
+          ],
+          "rubric": [
+            {
+              "criterion": "차량 기준 x·y 상대운동 식",
+              "points": 4
+            },
+            {
+              "criterion": "귀환시간 t 도출",
+              "points": 4
+            },
+            {
+              "criterion": "사거리 R 계산",
+              "points": 4
+            },
+            {
+              "criterion": "θ 최대값 22.5°",
+              "points": 3
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "45°",
+              "22.5°",
+              "30°",
+              "60°"
+            ],
+            "correctChoice": 2,
+            "answer": "22.5°",
+            "acceptableAnswers": [
+              "2",
+              "22.5°"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 1번: 대차가 오른쪽으로 g만큼 가속하며 같은 높이 바구니에 공을 넣는다. R이 최대인 발사각 θ는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "v₀²/(2g)",
+              "v₀²/g",
+              "0",
+              "3v₀²/(2g)"
+            ],
+            "correctChoice": 1,
+            "answer": "v₀²/(2g)",
+            "acceptableAnswers": [
+              "1",
+              "v₀²/(2g)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 대차 수평가속도가 g/2이고 공을 θ=45°로 던졌다. 같은 높이로 되돌아올 때 대차 기준 수평거리 R은?",
+            "explanation": "t=√2v₀/g이며 R=v₀cos45°·t−(g/4)t²=v₀²/(2g)."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "포물선 운동",
+          "topic": "절벽 위·아래 30° 발사와 사거리 차",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              615,
+              177,
+              580,
+              600
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "v₀=2√(√3·gh) (동치: v₀²=4√3·gh)",
+          "explanation": [
+            "높이 h에서 수평 속력 v₀cos30°는 두 공에 같다.",
+            "수직 초기속도가 +v₀sin30°와 −v₀sin30°이므로 지면 도달 시간의 차는 t_A−t_B=2v₀sin30°/g=v₀/g이다.",
+            "수평 도착점 차 6h=v₀cos30°(t_A−t_B)=√3v₀²/(2g).",
+            "따라서 v₀²=4√3 gh이고 v₀=2√(√3 gh)."
+          ],
+          "formulas": [
+            "Δt=2v₀sin30°/g=v₀/g",
+            "Δx=v₀cos30°·Δt",
+            "v₀²=4√3 gh"
+          ],
+          "commonMistakes": [
+            "두 공의 낙하 시간을 같게 취급함",
+            "속도 벡터의 수평 성분이 동일함을 놓침",
+            "속력 제곱 관계에서 제곱근을 누락함"
+          ],
+          "rubric": [
+            {
+              "criterion": "동일 수평 속도 및 비행시간 차",
+              "points": 4
+            },
+            {
+              "criterion": "Δx=6h 관계식",
+              "points": 3
+            },
+            {
+              "criterion": "속력 v₀와 단위 정리",
+              "points": 3
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "2√3 gh",
+              "4√3 gh",
+              "6gh",
+              "12gh"
+            ],
+            "correctChoice": 2,
+            "answer": "4√3 gh",
+            "acceptableAnswers": [
+              "2",
+              "4√3 gh"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 2번: 높이 h에서 각각 ±30°로 같은 속력으로 던진 두 공의 착지점 차이가 6h다. v₀²은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "√3 gh",
+              "2√3 gh",
+              "4√3 gh",
+              "3gh"
+            ],
+            "correctChoice": 2,
+            "answer": "2√3 gh",
+            "acceptableAnswers": [
+              "2",
+              "2√3 gh"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 두 공의 착지점 차이가 6h가 아닌 3h라면 같은 조건의 초기속력 제곱 v₀²은?",
+            "explanation": "Δx=√3v₀²/(2g)=3h이므로 v₀²=2√3 gh."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "충격량·정지마찰",
+          "topic": "구슬 연속 충돌의 평균힘과 수레 정지 조건",
+          "difficulty": "상",
+          "image": {
+            "page": 2,
+            "crop": [
+              30,
+              177,
+              605,
+              610
+            ]
+          },
+          "reviewStatus": "conditional",
+          "correctionNote": "원본 해설은 구슬의 충격력을 1초 평균힘으로 취급하는 근사이다. 실제 순간 충돌 중 정지 여부까지 보장하지 않는다. μ<√3에서만 식이 유한한 상한이며 정수 n은 내림 처리가 필요하다.",
+          "answer": "n_max=2μMg/[mv(√3−μ)] (0≤μ<√3, 평균 힘 근사); 정수 충돌수는 이 상한의 정수부분",
+          "explanation": [
+            "한 구슬의 수평·아래쪽 운동량 성분은 각각 mvcos30° 및 mvsin30°이다.",
+            "1초에 n개가 박히므로 평균 수평 힘은 nmvcos30°, 평균 아래쪽 힘은 nmvsin30°이다.",
+            "수레 수직항력은 N=Mg+nmv sin30°로 평균 모델에서 증가한다.",
+            "정지 조건 nmvcos30° ≤ μ(Mg+nmv sin30°)을 정리하면 n ≤ 2μMg/[mv(√3−μ)]이다.",
+            "단 μ<√3일 때 유한한 상한이며, n이 실제 정수라면 바닥함수를 적용한다. 개별 충격의 순간적인 미끄러짐은 평균힘 모델만으로 판단할 수 없다."
+          ],
+          "formulas": [
+            "F_x(avg)=nmvcos30°=√3nmv/2",
+            "N(avg)=Mg+nmv sin30°=Mg+nmv/2",
+            "F_x≤μN",
+            "n_max=2μMg/[mv(√3−μ)]"
+          ],
+          "commonMistakes": [
+            "수직 충격량으로 증가한 수직항력을 무시함",
+            "구슬 하나의 힘과 초당 n개 평균 힘을 혼동함",
+            "μ≥√3에서도 같은 유한한 최대 n을 제시함"
+          ],
+          "rubric": [
+            {
+              "criterion": "충격량과 초당 평균 수평힘",
+              "points": 3
+            },
+            {
+              "criterion": "수직항력 증가 및 최대정지마찰력",
+              "points": 3
+            },
+            {
+              "criterion": "n 부등식과 정리",
+              "points": 3
+            },
+            {
+              "criterion": "적용 조건·정수처리",
+              "points": 1
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "μMg/(mv)",
+              "2μMg/[mv(√3−μ)]",
+              "2μMg/[mv(√3+μ)]",
+              "μMg/(mv√3)"
+            ],
+            "correctChoice": 2,
+            "answer": "2μMg/[mv(√3−μ)]",
+            "acceptableAnswers": [
+              "2",
+              "2μMg/[mv(√3−μ)]"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 3번: 평균 힘 모델에서 구슬이 초당 n개 30° 아래 방향으로 충돌할 때 정지 조건으로 도출되는 n 상한은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "Mg/(μmv)",
+              "μMg/(mv)",
+              "2μMg/(mv)",
+              "0"
+            ],
+            "correctChoice": 2,
+            "answer": "μMg/(mv)",
+            "acceptableAnswers": [
+              "2",
+              "μMg/(mv)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 구슬이 수평으로만 날아와 붙으면, 구슬 질량 증가를 무시한 평균 힘 근사에서 초당 최대 충돌수 n은?",
+            "explanation": "수평 충격으로 수직항력이 증가하지 않으므로 nmv≤μMg. 단 평균힘 모델이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 20,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "포물선 운동·경사면",
+          "topic": "경사면에 되돌아올 때 이동거리와 시간",
+          "difficulty": "상",
+          "image": {
+            "page": 2,
+            "crop": [
+              613,
+              173,
+              584,
+              810
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "t=2v₀sinθ/(gcosφ), d=2v₀²sinθcos(θ+φ)/(gcos²φ) (θ는 빗면에 대한 발사각)",
+          "explanation": [
+            "원문 그림의 θ는 수평면이 아니라 빗면에 대해 잰 발사각이다.",
+            "빗면 평행 좌표 x∥=v₀cosθ·t−(g sinφ/2)t², 수직 좌표 y⊥=v₀sinθ·t−(g cosφ/2)t²이다.",
+            "다시 빗면 위에 떨어지는 시각은 y⊥=0의 양의 해 t=2v₀sinθ/(gcosφ)이다.",
+            "이를 x∥에 대입하면 d=(2v₀²sinθ/gcos²φ)[cosθcosφ−sinθsinφ]=2v₀²sinθcos(θ+φ)/(gcos²φ).",
+            "그림과 같이 앞쪽 빗면에 착지하려면 θ>0, θ+φ<90°이다."
+          ],
+          "formulas": [
+            "x∥=v₀cosθt−g sinφ·t²/2",
+            "y⊥=v₀sinθt−g cosφ·t²/2",
+            "t=2v₀sinθ/(g cosφ)",
+            "d=2v₀²sinθcos(θ+φ)/(g cos²φ)"
+          ],
+          "commonMistakes": [
+            "θ를 수평면 기준 각도로 잘못 사용함",
+            "중력의 빗면 평행·수직 성분을 바꿈",
+            "d를 수평거리로 취급함"
+          ],
+          "rubric": [
+            {
+              "criterion": "빗면 좌표 운동식",
+              "points": 6
+            },
+            {
+              "criterion": "착지시간 t",
+              "points": 5
+            },
+            {
+              "criterion": "빗면 거리 d",
+              "points": 7
+            },
+            {
+              "criterion": "조건과 방향",
+              "points": 2
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "2v₀sinθ/(gcosφ)",
+              "2v₀sinθ/g",
+              "2v₀cosθ/(gcosφ)",
+              "v₀sinθ/(gcosφ)"
+            ],
+            "correctChoice": 1,
+            "answer": "2v₀sinθ/(gcosφ)",
+            "acceptableAnswers": [
+              "1",
+              "2v₀sinθ/(gcosφ)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 4번: 빗면 기준 발사각 θ, 빗면 경사각 φ일 때 다시 빗면에 도달하는 시간 t는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "2v₀/g",
+              "v₀/g",
+              "√3v₀/g",
+              "v₀/(2g)"
+            ],
+            "correctChoice": 2,
+            "answer": "v₀/g",
+            "acceptableAnswers": [
+              "2",
+              "v₀/g"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 수평면(φ=0°)에서 θ=30°로 발사하여 같은 높이로 돌아오는 시간 t는?",
+            "explanation": "t=2v₀sin30°/g=v₀/g."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 20,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "포물선 운동·경사면",
+          "topic": "건물 옥상 발사와 빗면의 첫 교점",
+          "difficulty": "상",
+          "image": {
+            "page": 3,
+            "crop": [
+              30,
+              175,
+              605,
+              930
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "A=v₀(sinθ−cosθ tanα); t=[A+√(A²+2gh)]/g, s=v₀cosθ·t/cosα",
+          "explanation": [
+            "건물 밑바닥에서 빗면이 시작하는 지점을 원점으로 잡는다.",
+            "물체: x=v₀cosθ·t, y=h+v₀sinθ·t−gt²/2. 빗면: y=x tanα이다.",
+            "두 y식을 놓고 A=v₀(sinθ−cosθ tanα)로 두면 (g/2)t²−At−h=0이다.",
+            "t>0인 해는 t=[A+√(A²+2gh)]/g이다.",
+            "빗면을 따른 길이는 수평 변위의 1/cosα배이므로 s=v₀cosθ·t/cosα이다."
+          ],
+          "formulas": [
+            "x=v₀cosθt",
+            "y=h+v₀sinθt−gt²/2",
+            "y_slope=x tanα",
+            "t=[A+√(A²+2gh)]/g",
+            "s=x/cosα"
+          ],
+          "commonMistakes": [
+            "빗면 착지 높이가 발사점과 같다고 가정함",
+            "시간의 음의 해를 선택함",
+            "빗면 거리 s와 수평거리 x를 혼동함"
+          ],
+          "rubric": [
+            {
+              "criterion": "포물선 좌표·빗면 방정식",
+              "points": 6
+            },
+            {
+              "criterion": "교점 이차방정식",
+              "points": 5
+            },
+            {
+              "criterion": "양의 시간해 t",
+              "points": 5
+            },
+            {
+              "criterion": "빗면 거리 s",
+              "points": 4
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "[−A+√(A²+2gh)]/g",
+              "[A+√(A²+2gh)]/g",
+              "[A−√(A²+2gh)]/g",
+              "√(2h/g)"
+            ],
+            "correctChoice": 2,
+            "answer": "[A+√(A²+2gh)]/g",
+            "acceptableAnswers": [
+              "2",
+              "[A+√(A²+2gh)]/g"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 5번: A=v₀(sinθ−cosθtanα)라고 놓을 때 양의 착지시간 t는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "√(h/g)",
+              "2h/g",
+              "√(2h/g)",
+              "v₀/g"
+            ],
+            "correctChoice": 3,
+            "answer": "√(2h/g)",
+            "acceptableAnswers": [
+              "3",
+              "√(2h/g)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 경사각 α=0이고 옥상에서 수평(θ=0)으로 발사했다. 지면까지 걸리는 시간은?",
+            "explanation": "y=h−gt²/2=0에서 t=√(2h/g)."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "운동량 보존·상대운동",
+          "topic": "사람이 걷는 동안 대차의 반작용 운동",
+          "difficulty": "중",
+          "image": {
+            "page": 3,
+            "crop": [
+              612,
+              175,
+              587,
+              945
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "대차 속도 V=−mv/(M+m) (왼쪽); 대차 변위 Δx=−mL/(M+m) (왼쪽)",
+          "explanation": [
+            "지면 기준 대차 속도를 V, 학생 속도를 u라 하고 오른쪽을 +로 잡는다.",
+            "학생이 대차 기준 오른쪽으로 속력 v로 걷기 때문에 u−V=v이다.",
+            "외부 수평력이 없어 운동량이 보존되므로 mu+MV=0이다.",
+            "u=V+v를 대입하면 (M+m)V+mv=0, 따라서 V=−mv/(M+m)이다.",
+            "상대 이동시간 t=L/v이므로 대차 변위 Δx=Vt=−mL/(M+m)이다."
+          ],
+          "formulas": [
+            "u−V=v",
+            "mu+MV=0",
+            "V=−mv/(M+m)",
+            "t=L/v",
+            "Δx=−mL/(M+m)"
+          ],
+          "commonMistakes": [
+            "대차가 정지해 있다고 가정하고 사람의 지면 속도를 v라 놓음",
+            "상대속도를 u+V로 잘못 표현함",
+            "대차가 움직이는 방향의 마이너스 부호를 누락함"
+          ],
+          "rubric": [
+            {
+              "criterion": "상대속도 정의",
+              "points": 3
+            },
+            {
+              "criterion": "운동량 보존",
+              "points": 4
+            },
+            {
+              "criterion": "대차 속력·방향",
+              "points": 4
+            },
+            {
+              "criterion": "대차 변위·방향",
+              "points": 4
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "오른쪽 mv/(M+m)",
+              "왼쪽 mv/(M+m)",
+              "왼쪽 2mv/(M+m)",
+              "정지"
+            ],
+            "correctChoice": 2,
+            "answer": "왼쪽 mv/(M+m)",
+            "acceptableAnswers": [
+              "2",
+              "왼쪽 mv/(M+m)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 6번: 질량 M 대차 위 질량 m 학생이 대차 기준 오른쪽 속력 v로 걷는다. 대차의 지면 기준 속도는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "v/2, 왼쪽",
+              "v, 왼쪽",
+              "v/2, 오른쪽",
+              "0"
+            ],
+            "correctChoice": 1,
+            "answer": "v/2, 왼쪽",
+            "acceptableAnswers": [
+              "1",
+              "v/2, 왼쪽"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: 학생과 대차의 질량이 같고 대차 기준으로 속력 v로 오른쪽으로 걷는다. 대차의 지면 기준 속력과 이동 방향은?",
+            "explanation": "m=M일 때 V=−mv/(M+m)=−v/2이다."
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 7,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "운동량·운동에너지 보존",
+          "topic": "1차원 완전탄성충돌의 연속 적용",
+          "difficulty": "중",
+          "image": {
+            "page": 4,
+            "crop": [
+              30,
+              178,
+              605,
+              1140
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "1차 충돌 직후 A=−5 m/s(왼쪽), B=+10 m/s(오른쪽); 2차 충돌 직후 B=−2 m/s(왼쪽), C=+8 m/s(오른쪽), A=−5 m/s(왼쪽)",
+          "explanation": [
+            "오른쪽을 +로 하고 첫 충돌에 운동량 보존 1×15=1v_A+2v_B를 적용한다.",
+            "탄성충돌 상대속도 관계 v_B−v_A=15를 함께 풀면 v_A=−5 m/s, v_B=+10 m/s이다.",
+            "두 번째 B(2 kg, +10 m/s)와 C(3 kg, 정지)의 충돌에 2×10=2v_B′+3v_C′를 적용한다.",
+            "탄성충돌 상대속도 관계 v_C′−v_B′=10을 풀면 v_B′=−2 m/s, v_C′=+8 m/s이다.",
+            "A는 두 번째 B-C 충돌에 참여하지 않으므로 v_A=−5 m/s를 유지한다."
+          ],
+          "formulas": [
+            "첫 충돌: 15=v_A+2v_B, v_B−v_A=15",
+            "A=−5, B=+10 m/s",
+            "두 번째: 20=2v_B′+3v_C′, v_C′−v_B′=10",
+            "B′=−2, C′=+8 m/s"
+          ],
+          "commonMistakes": [
+            "모든 충돌을 하나의 3물체 충돌로 취급함",
+            "반발계수 1의 상대속도 부호를 잘못 사용함",
+            "두 번째 충돌 뒤 A 속도까지 다시 바꿈"
+          ],
+          "rubric": [
+            {
+              "criterion": "첫 번째 충돌의 두 속도",
+              "points": 5
+            },
+            {
+              "criterion": "두 번째 B·C 속도 및 A의 최종 속도",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "A −5, B −2, C +8 m/s",
+              "A +5, B −2, C +8 m/s",
+              "A −5, B +2, C +8 m/s",
+              "A 0, B +10, C +5 m/s"
+            ],
+            "correctChoice": 1,
+            "answer": "A −5, B −2, C +8 m/s",
+            "acceptableAnswers": [
+              "1",
+              "A −5, B −2, C +8 m/s"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 7번: A(1 kg, +15 m/s), B(2 kg), C(3 kg)의 순차 완전탄성충돌 후 A·B·C 최종 속도는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "B +4, C +8 m/s",
+              "B −4, C +8 m/s",
+              "B −8, C +4 m/s",
+              "B 0, C +12 m/s"
+            ],
+            "correctChoice": 2,
+            "answer": "B −4, C +8 m/s",
+            "acceptableAnswers": [
+              "2",
+              "B −4, C +8 m/s"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형: A(1 kg)가 +12 m/s로 B(1 kg, 정지)와 완전탄성충돌한 뒤 B가 C(2 kg, 정지)와 충돌한다. 최종 B·C 속도는?",
+            "explanation": "동일 질량 A·B 첫 충돌로 B는 +12 m/s, 두 번째 질량 1:2 탄성충돌에서 B′=−4 m/s, C′=+8 m/s."
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "featureVersion": "3.7.7-physics2-advanced-r04-reviewed"
+    },
+    {
       "examId": "physics2-advanced-total",
       "courseId": "physics2-advanced",
       "round": 0,
@@ -21759,7 +22464,8 @@
       "maxScore": 0,
       "historyExamIds": [
         "physics2-advanced-r02",
-        "physics2-advanced-r03"
+        "physics2-advanced-r03",
+        "physics2-advanced-r04"
       ],
       "historyLabel": "물리2심화 2회차 복습 테스트",
       "reviewStatus": "not-uploaded",
@@ -21816,7 +22522,8 @@
       ],
       "physics2-advanced": [
         2,
-        3
+        3,
+        4
       ]
     },
     "excludedRounds": {
@@ -21839,5 +22546,5 @@
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.7.6-physics2-r14-reviewed"
+  "featureVersion": "3.7.7-physics2-advanced-r04-reviewed"
 }
