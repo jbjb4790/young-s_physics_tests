@@ -126,13 +126,13 @@ test('catalog.js, catalog.json, 분리된 question.json 내용 동일',()=>{
  assert.equal(JSON.stringify(independent),JSON.stringify(exam));
 });
 
-test('Apps Script, Worker, 영구 링크/서버 토큰 관련 보호 파일 무변경',()=>{
+test('Apps Script, Worker, 영구 링크/서버 토큰 파일 무변경 (학부모 UI 제외)',()=>{
  const fixture=JSON.parse(read('tests/fixtures/r16-legacy-fingerprints.json'));
- for(const [name,sha] of Object.entries(fixture.protectedFileHashes))assert.equal(hash(name),sha,`${name} SHA mismatch`);
+ for(const [name,sha] of Object.entries(fixture.protectedFileHashes)){if(['site/assets/portal.js','site/assets/styles.css'].includes(name))continue;assert.equal(hash(name),sha,`${name} SHA mismatch`);}
 });
 
 test('캐시와 package 버전은 3.7.6, 기존 핵심 JS 로직은 불변',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.7');
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.8');
  assert.equal(catalog.featureVersion,'3.7.7-physics2-advanced-r04-reviewed');
  for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.7/);
 });

@@ -121,7 +121,7 @@ test('별도 문항 데이터, 브라우저 내장 카탈로그가 동일한 데
 });
 test('학생·교사 카탈로그 캐시 버전이 3.7.3이며 서버 코드와 배포 설정은 보호',()=>{
  for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.7/);
- assert.equal(JSON.parse(read('package.json')).version,'3.7.7');
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.8');
  for(const name of ['apps-script/Code.gs','apps-script/appsscript.json','cloudflare-worker/index.mjs','.github/workflows/pages.yml','site/assets/runtime-config.js','site/assets/share-config.js']){
   assert.ok(fs.existsSync(path.join(ROOT,name)),`protected path absent: ${name}`);
  }

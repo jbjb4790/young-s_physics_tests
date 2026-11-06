@@ -1,0 +1,100 @@
+{
+  "patch": "YoungsPhysics v3.7.8 parent portal comprehensive report CTA",
+  "from": "v3.7.7 full project, recovery baseline (2026-11-02)",
+  "to": "v3.7.8 (local, not deployed)",
+  "builtOn": "2026-11-05",
+  "requiresLiveSourceHashMatch": true,
+  "appsScriptChange": false,
+  "googleSheetsChange": false,
+  "cloudflareWorkerChange": false,
+  "removed": [],
+  "changed": {
+    "package.json": {
+      "sha256_before": "8506b7ac18be5ea4ace0965b0b198c33c35706c4d6f7c3f1e5c76cab77934d58",
+      "sha256_after": "931d48e6aca8448feef5f725707a489d8a3fe03ef0626e54996afff63c1dd32d"
+    },
+    "site/assets/portal.js": {
+      "sha256_before": "21ec7d660967422a6f4b4f4be0c8d99a8117cdbb4b46dda74b66ab862f5e2561",
+      "sha256_after": "878d4628f44ca506834a20defd1d08449e3c093f48fb392487f8a69675ae6e71"
+    },
+    "site/assets/styles.css": {
+      "sha256_before": "29db1a51437872ad03a62fd729af94108d63967153f90db99bb17783c573f066",
+      "sha256_after": "0482230b29a7d0d4922fd1394efb9070a4a3c57931bf0795419f0325a25c654a"
+    },
+    "site/portal.html": {
+      "sha256_before": "0249c09d0eb2696cf0353aa6e743a56610cfd6ce5db68e9cd3dc0510f819edfc",
+      "sha256_after": "4ceb567fa6dd3298fdfc138862fbe5172e8e5f053a7580b19f4cf4f61b6f5ba7"
+    },
+    "tests/physics1-r06-q04-revision.test.mjs": {
+      "sha256_before": "62e1be1269afcb7578521e47ff68de23a4b4d2da9354b74f6587fc05a83dd914",
+      "sha256_after": "7e634f6a407aebecff984d6ceceac8386c029a5e1f9d1eef91df7246be765096"
+    },
+    "tests/physics1-r16-versioning.test.mjs": {
+      "sha256_before": "289bc212800faf534b042e94f0fcf3955813f02815b93c8a050f3409e4456a86",
+      "sha256_after": "daa7a5f0a1bdc8ca2c61c67b5cebdcf7c8433ea657cc46e536e9548f2d027f5a"
+    },
+    "tests/physics2-advanced-r02.test.mjs": {
+      "sha256_before": "b80d8c9cb876d44b1e41a5f62deef41d6fc276fb9b33905dc714db5d90b66c53",
+      "sha256_after": "3fdfdb7fff7f2f5a77b4a0531e2f71917420c74f3fa1f486c4ea94b9b43a5691"
+    },
+    "tests/physics2-advanced-r03.test.mjs": {
+      "sha256_before": "5f2adfa61157ad18baaf9c002f952e26a4479c21a2e73abf0e21872a576cf03e",
+      "sha256_after": "f9cb5b87faf8a091be295737e185c32c73c664b0e229a4b092d6f9a1417151c0"
+    },
+    "tests/physics2-advanced-r04.test.mjs": {
+      "sha256_before": "69704a68d4385027c0e89ea424aa57b8a9c76a98e02f95e114cf4b1abf7173a1",
+      "sha256_after": "5226a0f55dbb6673cb22f9fb6602ee75840936f93d211e9fc40f0d1aa94c69a5"
+    },
+    "tests/physics2-r13.test.mjs": {
+      "sha256_before": "4734fb6e5fb5bb322914c4c7560b4441588b3a39c5d7abf289d8b59ddc6ab099",
+      "sha256_after": "dfc58440b43212658d020857c3062281afcf0bfe937d5268113816850be61002"
+    },
+    "tests/physics2-r14.test.mjs": {
+      "sha256_before": "abb1b0f58ade0152363a0c1db2e401f55e0dcbb6a478064592a3738f2aa3336e",
+      "sha256_after": "dce40cf604bf4c8a02d3d81b8df5d6cc607180ab6b82d10b25fb55799a2a36f5"
+    },
+    "tests/run-tests.mjs": {
+      "sha256_before": "d28192376092ce46130773b835517535dc2b0dd62f8f48eb3a1c65a04cdb666f",
+      "sha256_after": "10a1dcadf068e67f62433a0aa22f3242b2c1065d1af8640c7fabebd14a134122"
+    },
+    "tests/share-preview.test.mjs": {
+      "sha256_before": "c27f6b3478a6fb10d6f95c2b708cbce70b2b15b6ebc52d1c3fcfb8d000a5802d",
+      "sha256_after": "dd7229bd2340fc52d4d83c8e965e0314c34fc6f09da35a16fb41f46982837888"
+    }
+  },
+  "added": {
+    "README_학부모_총괄평가_성적표바로보기_v3.7.8.md": {
+      "sha256_after": "124412fd00b7d44db8b9a1039a5870aa2939c683f96a37625dbb9b89b990dd7c"
+    },
+    "tests/portal-comprehensive-reports.test.mjs": {
+      "sha256_after": "0f8485fd261de95028f094a5abad5372817e2847358f360306bae777994a1bad"
+    }
+  },
+  "protectedUnchangedCount": 18,
+  "protectedUnchanged": {
+    "apps-script/Code.gs": "85185997e8a8b7b4e357cad6287b15b988a798a8b210027e076cf8ad7783a078",
+    "apps-script/appsscript.json": "0d70abbcecabdbf3b9a05dd0d00a44778e8e22650beec52fa52052d066639ae4",
+    "cloudflare-worker/index.mjs": "1e2b93ea3047024661c4d5c1327a503c9d3a2541817339174beed9265ea42f9e",
+    ".github/workflows/pages.yml": "f61953d3c0365dcf290bf93e282bb8b91215b676ed460798a847d85fc2f2d3c5",
+    "site/assets/runtime-config.js": "560543b890e6de4b1d5a2897cd17e6e77273692847ee0f1415cbc384d054da18",
+    "site/assets/share-config.js": "dbd69d197c6c5c3f71efe9005bd4a20ca96ecd3b56d7ede31ef686aa6ef8856a",
+    "site/assets/config.js": "e761fafd6d8fc30d98927d99e585a569c344cfe3eb4afdbc955e2d183f6b6b44",
+    "site/assets/api.js": "218abd7119e1075cd41d4d1030ff61a9c521fdba97074559ff2d51404e2e090a",
+    "site/assets/report.js": "5b6605aa73e4257154c68c977a9ab93a3c24a1c632dd60785b323dd263fe33f2",
+    "site/assets/vendor/docx-export.bundle.js": "223024d731eaaab93748a5b1ab86ec05ef14cd7f35f03d7f15d0827fa1d06e98",
+    "site/assets/share-link.js": "ed9ddf150eba65d8ba395e4ebb247891a8279a3735c76bab7c41b09026d34495",
+    "site/assets/xlsx-import.js": "1f46843bf243daab3ef567bbbcb38307a12ff5dc02f842cff05e26fb01169705",
+    "site/assets/images/logo.png": "7ddc19d881a52e21b023c12bb3083a96155ee54af916a857e35f551eece648ae",
+    "site/assets/images/logo-mark.png": "df3fb1026b3c3703183588487de1621ebb0a02339504588f6a365e45c61e634c",
+    "site/assets/images/logo-source.png": "87569238980437609528d25638acdb7615777b023c779eefd2224f0047524268",
+    "site/assets/images/favicon.png": "555afb4f126e36c421031586bf000e66ba9a348a1483e2ea23e26591ae0dfb7c",
+    "site/assets/launch.js": "51c40c9ba28f366a877269a6f9fa388eeb6d79fd0054ced3e213a30e0989e104",
+    "site/assets/csv-import.js": "a0671a00cc2c1304f6ea8db07fe280b9a31b06353227a88247dfb880ad95c73d"
+  },
+  "tests": {
+    "total": 347,
+    "pass": 346,
+    "skip": 1,
+    "fail": 0
+  }
+}

@@ -149,8 +149,8 @@ test('43개 시험 및 23개 ready, 237개 문항 / 기타 과정 동일',()=>{
  assert.equal(catalog.exams.filter(e=>e.status==='ready').length,25);
  assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,253);
 });
-test('보안 설정, GAS, Worker, 로고 출력 코어 등 보호 파일 SHA256 전부 이전판 동일',()=>{
- for(const [file,hash] of Object.entries(snapshot.protectedFileHashes))assert.equal(digest(file),hash,file)
+test('서버·영구 링크·로고 등 보호 파일 SHA256 유지 (승인된 학부모 UI 2파일 제외)',()=>{
+ for(const [file,hash] of Object.entries(snapshot.protectedFileHashes)){if(['site/assets/portal.js','site/assets/styles.css'].includes(file))continue;assert.equal(digest(file),hash,file)}
 });
 test('세 HTML의 catalog 캐시가 3.7.5로 갱신',()=>{
  for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.7/);

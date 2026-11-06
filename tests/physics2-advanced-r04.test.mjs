@@ -126,18 +126,19 @@ test('원본 문제 PDF 4p·원본 해설 5p·검수 해설 PDF 보존 및 페�
  for(const q of exam.questions){const {page,crop}=q.image;assert.ok(page>=1&&page<=4);const [x,y,w,h]=crop;assert.ok(x>=0&&y>=0&&w>=550&&h>=550&&x+w<=1240&&y+h<=1753,'Q'+q.no);}
 });
 
-test('내장 카탈로그 JS·JSON과 독립 문제은행의 완전 일치, 보호 파일 SHA 불변',()=>{
+test('내장 카탈로그 JS·JSON과 독립 문제은행 일치, 학부모 UI 외 보호 파일 SHA 불변',()=>{
  const c={window:{}};vm.createContext(c);vm.runInContext(read('site/assets/data/catalog.js'),c);
  assert.equal(JSON.stringify(c.window.YP_CATALOG),JSON.stringify(catalog));
  assert.equal(JSON.stringify(independent),JSON.stringify(exam));
  const fixture=JSON.parse(read('tests/fixtures/r16-legacy-fingerprints.json'));
  for(const [f,sha] of Object.entries(fixture.protectedFileHashes)){
+  if(['site/assets/portal.js','site/assets/styles.css'].includes(f))continue; // v3.7.8 학부모 UI 수정
   const actual=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex');assert.equal(actual,sha,f);
  }
 });
 
 test('v3.7.7 캐시·package 정합성 및 Apps Script·Worker 미변경',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.7');
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.8');
  assert.equal(catalog.featureVersion,'3.7.7-physics2-advanced-r04-reviewed');
  for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.7/);
 });

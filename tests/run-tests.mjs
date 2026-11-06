@@ -538,7 +538,7 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
 
 test("v3.6.2는 반별 학생 기능과 물리1 15·16회를 유지하며 물리2 역학 총괄을 추가",()=>{
   assert.equal(catalog.featureVersion,"3.7.7-physics2-advanced-r04-reviewed");
-  assert.equal(JSON.parse(read("package.json")).version,"3.7.7");
+  assert.equal(JSON.parse(read("package.json")).version,"3.7.8");
 });
 
 test("학생 통합 포털 페이지와 네 개의 학부모 탭이 존재",()=>{
@@ -868,7 +868,7 @@ test("반에서 선택한 학생의 동일 시험 재저장은 신규 중복행 
 
 test("v3.6.2 물리2 역학 총괄평가 25문항이 준비 완료",()=>{
   assert.equal(catalog.featureVersion,"3.7.7-physics2-advanced-r04-reviewed");
-  assert.equal(JSON.parse(read("package.json")).version,"3.7.7");
+  assert.equal(JSON.parse(read("package.json")).version,"3.7.8");
   const e=catalog.exams.find(x=>x.examId==="physics2-basic-total-mechanics");
   assert.ok(e);assert.equal(e.status,"ready");assert.equal(e.questionCount,25);assert.equal(e.maxScore,100);
   assert.equal(e.questions.length,25);
@@ -933,7 +933,7 @@ test("개별 총괄 성적표와 Word에도 누적 코멘트가 포함",()=>{
 
 test("누적 코멘트 변경은 Apps Script 스키마를 요구하지 않음",()=>{
   const pkg=JSON.parse(read("package.json"));
-  assert.equal(pkg.version,"3.7.7");
+  assert.equal(pkg.version,"3.7.8");
   const code=read("apps-script/Code.gs");
   assert.match(code,/FEATURE_VERSION = "3\.6\.6-portal-share-safe-navigation"/);
 });
