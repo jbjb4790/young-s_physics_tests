@@ -22,8 +22,8 @@ function pngSize(rel){const b=fs.readFileSync(path.join(root,'site',rel));assert
  assert.equal(exam.status,'ready');assert.equal(exam.assessmentType,'weekly');assert.equal(exam.questionCount,7);assert.equal(exam.maxScore,100);
  assert.deepEqual(exam.questions.map(q=>q.no),[1,2,3,4,5,6,7]);assert.deepEqual(exam.questions.map(q=>q.maxPoints),points);
  assert.equal(exam.questions.reduce((a,q)=>a+q.maxPoints,0),100);assert.equal(catalog.exams.length,44);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').length,25);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,253);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').length,26);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,262);
  assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,44);
 });
 
@@ -138,7 +138,7 @@ test('내장 카탈로그 JS·JSON과 독립 문제은행 일치, 학부모 UI �
 });
 
 test('v3.7.7 캐시·package 정합성 및 Apps Script·Worker 미변경',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.8');
- assert.equal(catalog.featureVersion,'3.7.7-physics2-advanced-r04-reviewed');
- for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.7/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.9');
+ assert.equal(catalog.featureVersion,'3.7.9-physics2-basic-r15-reviewed');
+ for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.9/);
 });

@@ -1,6 +1,6 @@
 window.YP_CATALOG = {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-11-01T00:00:00Z",
+  "generatedAt": "2026-11-07T00:00:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -13913,12 +13913,819 @@ window.YP_CATALOG = {
       "examId": "physics2-basic-r15",
       "courseId": "physics2-basic",
       "round": 15,
-      "title": "물리2 15회차 복습 테스트",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.10-1"
+      "title": "물리2 15회차 복습 테스트 · 유도기와 전반사",
+      "shortTitle": "15회차 유도기·전반사",
+      "status": "ready",
+      "assessmentType": "weekly",
+      "section": "electromagnetism",
+      "examDate": "",
+      "questionCount": 9,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics2/r15.pdf",
+      "solutionPdf": "assets/documents/physics2/r15-verified-solution.pdf",
+      "pages": [
+        "assets/pages/physics2/r15-p1.png",
+        "assets/pages/physics2/r15-p2.png",
+        "assets/pages/physics2/r15-shared-circuit.png"
+      ],
+      "reviewStatus": "conditional",
+      "configVersion": "2026.11.07-physics2-basic-r15-reviewed-v3.7.9",
+      "sourceTitle": "물리2기본-Quiz 15회차 유도기, 전반사.pdf / 물리2기본-Quiz 15회차 유도기, 전반사 해설.pdf",
+      "sourceNote": "원본 2쪽·9문항·100점, 배점 10·10·10·10·10·15·15·10·10. 6번 7+8점, 7번 10+5점, 8번 이유 미기재 0점을 유지. 3·5·6번의 초기 전류 0 및 이상적 유도기 전제를 해설에 명시. 9번 제공 답 2/√3은 경계값으로 보존하고 실제 전반사 n>2/√3 및 등호의 임계조건을 분리 설명. 원본 PDF는 수정하지 않으며 추가된 세 번째 이미지는 4·5번에 공통 회로를 붙인 표시용 발췌 이미지다. 초파 가산 2점은 기본 100점에 자동 가산하지 않음.",
+      "coreNote": {
+        "summary": "자체 유도 기전력과 RL 회로의 순간·정상상태, 임계각·전반사 및 프리즘의 경계 굴절률을 확인하는 회차",
+        "concepts": [
+          "자체 유도 기전력의 크기는 자체 유도계수와 전류 변화율의 곱이다.",
+          "유도기 전류는 순간적으로 바뀌지 않는다. 초기 전류 0 조건과 일반 성질을 구분한다.",
+          "이상적 유도기의 정상상태 직류 전압은 0이다.",
+          "과도상태에는 전원 전압이 저항과 유도기에 나뉘어 걸린다.",
+          "전반사는 큰 굴절률에서 작은 굴절률로 가며 입사각이 임계각보다 클 때 일어난다.",
+          "굴절률은 매질 속 빛의 속력에 반비례한다.",
+          "임계조건의 등호와 실제 전반사 조건의 부등호를 구분한다."
+        ],
+        "formulas": [
+          "|ε|=L|ΔI/Δt|",
+          "V_R=IR",
+          "V=V_R+V_L",
+          "I_L(0+)=I_L(0−)",
+          "직류 정상상태: V_L=0",
+          "n=c/v",
+          "sinθ_c=n_2/n_1 (n_1>n_2)",
+          "전반사: θ_i>θ_c"
+        ],
+        "mistakes": [
+          "μH 단위 변환 누락",
+          "초기·과도·정상상태 혼동",
+          "유도기 병렬 가지를 직렬로 합산",
+          "전반사의 진행 방향을 뒤집음",
+          "8번에서 이유를 생략함",
+          "9번 경계값과 실제 전반사 조건 혼동"
+        ],
+        "checklist": [
+          "μH를 H로 변환했는가?",
+          "전류의 변화량을 사용했는가?",
+          "처음 유도기 전류가 0이라는 전제를 확인했는가?",
+          "어느 시점의 회로를 묻는지 확인했는가?",
+          "전류계 위치와 병렬 가지를 구분했는가?",
+          "입사각을 법선 기준으로 읽었는가?",
+          "전반사 방향에 굴절률 비교 이유를 썼는가?",
+          "9번에서 경계값과 등호의 의미를 구분했는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "전자기 유도",
+          "topic": "자체 유도 기전력의 크기와 단위 변환",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              35,
+              195,
+              580,
+              220
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "2 V",
+          "explanation": [
+            "원문 해설은 유도 기전력의 크기에 |ε|=L|ΔI/Δt|를 적용한다.",
+            "100 μH=100×10⁻⁶ H=1.0×10⁻⁴ H로 바꾼다.",
+            "|ε|=(1.0×10⁻⁴)×20,000=2 V이다. 방향이 아니라 크기를 묻기 때문에 양수로 답한다."
+          ],
+          "formulas": [
+            "|ε|=L|ΔI/Δt|",
+            "100 μH=1.0×10⁻⁴ H",
+            "|ε|=2 V"
+          ],
+          "commonMistakes": [
+            "μH를 H로 바꿀 때 10⁻⁶을 빠뜨림",
+            "전류 변화율 대신 전류값을 대입함"
+          ],
+          "rubric": [
+            {
+              "criterion": "μH→H 변환 및 |ε|=L|ΔI/Δt| 적용",
+              "points": 5
+            },
+            {
+              "criterion": "유도 기전력 크기 2 V",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "원문 1번: 자체 유도계수 100 μH인 코일의 전류 변화율이 20,000 A/s이다. 유도 기전력의 크기는?",
+            "choices": [
+              "0.2 V",
+              "2 V",
+              "20 V",
+              "200 V"
+            ],
+            "correctChoice": 2,
+            "answer": "2 V",
+            "acceptableAnswers": [
+              "2",
+              "2 V"
+            ],
+            "explanation": "100×10⁻⁶×20,000=2 V이다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "동형: 자체 유도계수 250 μH인 코일의 전류가 초당 12,000 A씩 변한다. 유도 기전력의 크기는?",
+            "choices": [
+              "0.3 V",
+              "30 V",
+              "3 V",
+              "300 V"
+            ],
+            "correctChoice": 3,
+            "answer": "3 V",
+            "acceptableAnswers": [
+              "3",
+              "3 V"
+            ],
+            "explanation": "250×10⁻⁶×12,000=3 V이다."
+          },
+          "retryMode": "multiple-choice",
+          "rubricSource": "문항 총점 10점은 원문 기준. 풀이·결과의 5+5점 세부 기준은 사이트용 제안이다."
+        },
+        {
+          "no": 2,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "전자기 유도",
+          "topic": "전류의 변화로부터 자체 유도계수 계산",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              35,
+              440,
+              580,
+              365
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "3 H",
+          "explanation": [
+            "원문에서 전류는 1.5 s 동안 2 A에서 8 A로 일정하게 증가한다.",
+            "전류 변화율은 (8−2)/1.5=4 A/s이다.",
+            "12=L×4이므로 L=3 H이다. 최종 전류 8 A가 아니라 변화량 6 A를 사용한다."
+          ],
+          "formulas": [
+            "ΔI/Δt=(8−2)/1.5=4 A/s",
+            "L=|ε|/(ΔI/Δt)=3 H"
+          ],
+          "commonMistakes": [
+            "전류 변화량을 8 A로 잘못 사용함",
+            "변화율과 변화 시간을 뒤집음"
+          ],
+          "rubric": [
+            {
+              "criterion": "ΔI/Δt=4 A/s 계산",
+              "points": 5
+            },
+            {
+              "criterion": "자체 유도계수 L=3 H",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "원문 2번: 1.5 s 동안 전류가 2 A에서 8 A로 증가하고 유도 기전력의 크기가 12 V이다. L은?",
+            "choices": [
+              "2 H",
+              "8 H",
+              "18 H",
+              "3 H"
+            ],
+            "correctChoice": 4,
+            "answer": "3 H",
+            "acceptableAnswers": [
+              "4",
+              "3 H"
+            ],
+            "explanation": "L=12/[(8−2)/1.5]=3 H이다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "동형: 코일의 전류가 0.5 s 동안 1 A에서 5 A로 증가한다. 유도 기전력의 크기가 8 V이면 L은?",
+            "choices": [
+              "1 H",
+              "2 H",
+              "4 H",
+              "8 H"
+            ],
+            "correctChoice": 1,
+            "answer": "1 H",
+            "acceptableAnswers": [
+              "1",
+              "1 H"
+            ],
+            "explanation": "ΔI/Δt=4/0.5=8 A/s, L=8/8=1 H이다."
+          },
+          "retryMode": "multiple-choice",
+          "rubricSource": "문항 총점 10점은 원문 기준. 세부 5+5점은 사이트용 제안이다."
+        },
+        {
+          "no": 3,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "유도기 회로",
+          "topic": "직렬 RL 회로의 스위치 직후 전류와 유도기 전압",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              35,
+              885,
+              580,
+              395
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "풀이 전제(원문 회로 및 제공 해설의 이상화): 스위치를 닫기 전 유도기 전류는 0이며, 코일·전원·전류계의 내부저항은 무시한다. 유도기가 닫은 직후 항상 끊긴 도선처럼 되는 것은 아니고, 초기 전류가 0인 이 회로에 대한 설명이다.",
+          "answer": "I=0 A, V_L=12 V",
+          "explanation": [
+            "원문 공통 회로는 12 V 전원, 4 Ω 저항, 유도기 L의 직렬 회로이다.",
+            "제공 해설은 초기 유도기 전류가 0인 경우를 전제로 한다. 전류는 순간적으로 뛰어 바뀌지 않으므로 I(0+)=0 A이다.",
+            "닫은 직후 저항 전압은 IR=0 V이고, 전원 전압 전체가 유도기에 걸려 V_L=12 V이다."
+          ],
+          "formulas": [
+            "I(0+)=I(0−)=0",
+            "V_R=IR=0 V",
+            "V_L=12−V_R=12 V"
+          ],
+          "commonMistakes": [
+            "유도기를 처음부터 도선으로 취급함",
+            "전류가 0이면 모든 소자의 전압도 0이라고 판단함"
+          ],
+          "rubric": [
+            {
+              "criterion": "스위치 직후 I=0 A",
+              "points": 5
+            },
+            {
+              "criterion": "유도기 전압 V_L=12 V",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "원문 3번: 12 V 전원과 4 Ω 저항 및 초기 전류 0인 이상적 유도기가 직렬이다. 스위치를 닫은 직후 I와 V_L은?",
+            "choices": [
+              "I=0 A, V_L=12 V",
+              "I=3 A, V_L=0 V",
+              "I=0 A, V_L=0 V",
+              "I=3 A, V_L=12 V"
+            ],
+            "correctChoice": 1,
+            "answer": "I=0 A, V_L=12 V",
+            "acceptableAnswers": [
+              "1",
+              "I=0 A, V_L=12 V"
+            ],
+            "explanation": "초기 유도기 전류는 유지되어 0 A이다. IR=0이므로 V_L=12 V."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "동형: 20 V 전원과 5 Ω 저항, 초기 전류가 0인 이상적 유도기의 직렬 회로에서 스위치를 닫은 직후 I와 V_L은?",
+            "choices": [
+              "I=4 A, V_L=20 V",
+              "I=4 A, V_L=0 V",
+              "I=0 A, V_L=0 V",
+              "I=0 A, V_L=20 V"
+            ],
+            "correctChoice": 4,
+            "answer": "I=0 A, V_L=20 V",
+            "acceptableAnswers": [
+              "4",
+              "I=0 A, V_L=20 V"
+            ],
+            "explanation": "초기 전류 0이 유지되므로 저항 전압은 0, 유도기 전압은 20 V이다."
+          },
+          "retryMode": "multiple-choice",
+          "rubricSource": "총점은 원문 기준. 두 소문항의 5+5점 배분은 사이트용 제안이다."
+        },
+        {
+          "no": 4,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "유도기 회로",
+          "topic": "RL 과도상태에서 저항·유도기 전압 분배",
+          "difficulty": "중",
+          "image": {
+            "page": 3,
+            "crop": [
+              30,
+              30,
+              580,
+              500
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "V_R=8 V, V_L=4 V",
+          "explanation": [
+            "3~5번 공통 회로의 전원은 12 V이고 저항은 4 Ω이다.",
+            "어느 순간 I=2 A이므로 저항 전압 V_R=IR=2×4=8 V이다.",
+            "폐회로 전압 관계 12=V_R+V_L에서 V_L=12−8=4 V이다. 이 값은 전압의 크기이다."
+          ],
+          "formulas": [
+            "V_R=IR=8 V",
+            "12=V_R+V_L",
+            "V_L=4 V"
+          ],
+          "commonMistakes": [
+            "유도기 전압도 IR로 구함",
+            "닫은 직후나 충분히 지난 뒤의 값으로 잘못 대답함"
+          ],
+          "rubric": [
+            {
+              "criterion": "저항 전압 V_R=8 V",
+              "points": 5
+            },
+            {
+              "criterion": "유도기 전압 V_L=4 V",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "원문 4번: 12 V 전원·4 Ω 저항·이상적 유도기의 직렬 회로에서 I=2 A이다. 저항 전압과 유도기 전압은?",
+            "choices": [
+              "V_R=4 V, V_L=8 V",
+              "V_R=12 V, V_L=0 V",
+              "V_R=8 V, V_L=4 V",
+              "V_R=8 V, V_L=12 V"
+            ],
+            "correctChoice": 3,
+            "answer": "V_R=8 V, V_L=4 V",
+            "acceptableAnswers": [
+              "3",
+              "V_R=8 V, V_L=4 V"
+            ],
+            "explanation": "V_R=2×4=8 V, V_L=12−8=4 V이다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "동형: 20 V 전원·5 Ω 저항·이상적 유도기의 직렬 회로에서 I=3 A인 순간 V_R과 V_L은?",
+            "choices": [
+              "V_R=5 V, V_L=15 V",
+              "V_R=15 V, V_L=5 V",
+              "V_R=20 V, V_L=0 V",
+              "V_R=15 V, V_L=20 V"
+            ],
+            "correctChoice": 2,
+            "answer": "V_R=15 V, V_L=5 V",
+            "acceptableAnswers": [
+              "2",
+              "V_R=15 V, V_L=5 V"
+            ],
+            "explanation": "V_R=3×5=15 V이고 V_L=20−15=5 V이다."
+          },
+          "retryMode": "multiple-choice",
+          "sourcePage": 1,
+          "imageNote": "원문 1쪽의 4번 질문과 3~5번 공통 회로를 발췌해 함께 배치한 문항 표시용 보조 이미지. 문구와 회로는 수정하지 않음.",
+          "rubricSource": "총점은 원문 기준. 두 전압의 5+5점 배분은 사이트용 제안이다."
+        },
+        {
+          "no": 5,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "유도기 회로",
+          "topic": "직렬 RL 회로의 직류 정상상태",
+          "difficulty": "하",
+          "image": {
+            "page": 3,
+            "crop": [
+              630,
+              30,
+              580,
+              500
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "제공 해설의 이상적 유도기(내부저항 무시)를 따른다. 실제 코일의 저항에 의한 전압강하는 별도 문제이다.",
+          "answer": "I=3 A, V_L=0 V",
+          "explanation": [
+            "스위치를 닫고 충분한 시간이 지난 직류 정상상태에서는 유도기 전류의 시간 변화가 0이다.",
+            "이상적 유도기의 전압 V_L=L dI/dt는 0 V이며, 이때 유도기는 도선과 같이 작용한다.",
+            "전원 12 V가 4 Ω 저항에 걸리므로 전체 전류 I=12/4=3 A이다."
+          ],
+          "formulas": [
+            "dI/dt=0 → V_L=0",
+            "I=12/4=3 A"
+          ],
+          "commonMistakes": [
+            "정상상태에도 유도기를 끊긴 도선으로 판단함",
+            "전압이 0이면 전류도 0이라고 오해함"
+          ],
+          "rubric": [
+            {
+              "criterion": "정상상태 I=3 A",
+              "points": 5
+            },
+            {
+              "criterion": "유도기 전압 V_L=0 V",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "원문 5번: 12 V 전원·4 Ω 저항·이상적 유도기의 직렬 회로에서 충분한 시간이 지난 뒤 I와 V_L은?",
+            "choices": [
+              "I=0 A, V_L=12 V",
+              "I=3 A, V_L=0 V",
+              "I=3 A, V_L=12 V",
+              "I=0 A, V_L=0 V"
+            ],
+            "correctChoice": 2,
+            "answer": "I=3 A, V_L=0 V",
+            "acceptableAnswers": [
+              "2",
+              "I=3 A, V_L=0 V"
+            ],
+            "explanation": "정상상태 V_L=0 V, I=12/4=3 A이다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "동형: 18 V 전원·6 Ω 저항·이상적 유도기의 직렬 회로에서 충분한 시간이 지난 뒤 I와 V_L은?",
+            "choices": [
+              "I=0 A, V_L=18 V",
+              "I=3 A, V_L=18 V",
+              "I=3 A, V_L=0 V",
+              "I=0 A, V_L=0 V"
+            ],
+            "correctChoice": 3,
+            "answer": "I=3 A, V_L=0 V",
+            "acceptableAnswers": [
+              "3",
+              "I=3 A, V_L=0 V"
+            ],
+            "explanation": "유도기 전압 0 V, I=18/6=3 A이다."
+          },
+          "retryMode": "multiple-choice",
+          "sourcePage": 1,
+          "imageNote": "원문 1쪽의 5번 질문과 3~5번 공통 회로를 발췌해 함께 배치한 보조 이미지.",
+          "rubricSource": "총점은 원문 기준. 두 답의 5+5점 배분은 사이트용 제안이다."
+        },
+        {
+          "no": 6,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "유도기 회로",
+          "topic": "유도기와 저항의 병렬 가지가 포함된 RL 회로",
+          "difficulty": "중",
+          "image": {
+            "page": 1,
+            "crop": [
+              625,
+              825,
+              590,
+              570
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "풀이 전제(원문 회로 및 제공 해설의 이상화): 스위치를 닫기 전 유도기 전류는 0이며, 코일·전원·전류계의 내부저항은 무시한다. 유도기가 닫은 직후 항상 끊긴 도선처럼 되는 것은 아니고, 초기 전류가 0인 이 회로에 대한 설명이다.",
+          "answer": "(1) 2 A  (2) 3 A",
+          "explanation": [
+            "원문 회로는 18 V 전원과 6 Ω 저항이 직렬이고, 그 뒤에 3 Ω 저항과 유도기가 병렬로 놓여 있다.",
+            "처음 유도기 전류가 0이므로 닫은 직후에는 유도기 가지에 전류가 흐르지 않는다. 전체 전류는 6 Ω와 3 Ω을 지나 I=18/(6+3)=2 A이다.",
+            "충분한 시간이 지나면 이상적 유도기가 3 Ω 저항을 우회하는 도선이 된다. 3 Ω 저항의 전압·전류는 0이고 I=18/6=3 A이다.",
+            "전류계는 병렬 가지로 나뉘기 전에 있으므로 회로 전체 전류를 읽는다. 원문 소문항 배점 7점·8점을 그대로 따른다."
+          ],
+          "formulas": [
+            "I(0+)=18/(6+3)=2 A",
+            "V_L(∞)=0 → I_R2(∞)=0",
+            "I(∞)=18/6=3 A"
+          ],
+          "commonMistakes": [
+            "처음부터 3 Ω 저항을 우회한다고 판단함",
+            "정상상태에서 6 Ω와 3 Ω을 계속 직렬로 계산함",
+            "전류계를 유도기 가지 전류만 측정하는 것으로 오해함"
+          ],
+          "rubric": [
+            {
+              "criterion": "닫은 직후 전체 전류 2 A",
+              "points": 7
+            },
+            {
+              "criterion": "충분한 시간 후 전체 전류 3 A",
+              "points": 8
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "원문 6번: 18 V 전원에 6 Ω 저항과 (3 Ω 저항∥이상적 유도기)가 직렬 연결되어 있다. 초기 유도기 전류는 0이다. 전체 전류의 직후 값과 정상상태 값은?",
+            "choices": [
+              "직후 3 A, 이후 2 A",
+              "직후 0 A, 이후 3 A",
+              "직후 2 A, 이후 2 A",
+              "직후 2 A, 이후 3 A"
+            ],
+            "correctChoice": 4,
+            "answer": "직후 2 A, 이후 3 A",
+            "acceptableAnswers": [
+              "4",
+              "직후 2 A, 이후 3 A"
+            ],
+            "explanation": "직후는 6+3=9 Ω로 2 A, 정상상태는 3 Ω 저항이 우회되어 6 Ω만 남으므로 3 A이다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "동형: 24 V 전원에 4 Ω 저항과 (8 Ω 저항∥이상적 유도기)가 직렬 연결되어 있다. 초기 유도기 전류는 0이다. 전체 전류의 직후 값과 정상상태 값은?",
+            "choices": [
+              "직후 2 A, 이후 6 A",
+              "직후 0 A, 이후 6 A",
+              "직후 6 A, 이후 2 A",
+              "직후 2 A, 이후 3 A"
+            ],
+            "correctChoice": 1,
+            "answer": "직후 2 A, 이후 6 A",
+            "acceptableAnswers": [
+              "1",
+              "직후 2 A, 이후 6 A"
+            ],
+            "explanation": "직후 I=24/(4+8)=2 A, 정상상태 I=24/4=6 A이다."
+          },
+          "retryMode": "multiple-choice",
+          "rubricSource": "원문 명시 배점 7점+8점을 유지."
+        },
+        {
+          "no": 7,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "빛의 굴절과 전반사",
+          "topic": "임계각의 사인값과 전반사 판단",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              35,
+              195,
+              580,
+              645
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "(1) sinθ_c=3/4  (2) 전반사",
+          "explanation": [
+            "원문은 굴절률 4/3인 물질에서 굴절률 1인 공기로 나가는 빛을 다룬다.",
+            "임계각 조건은 (4/3)sinθ_c=1이므로 sinθ_c=3/4이다.",
+            "입사각 60°에서 sin60°=√3/2>3/4이다. 입사각이 임계각보다 크므로 전반사가 일어난다."
+          ],
+          "formulas": [
+            "sinθ_c=n_2/n_1=3/4",
+            "sin60°=√3/2>3/4",
+            "θ_i>θ_c → 전반사"
+          ],
+          "commonMistakes": [
+            "굴절률의 비를 뒤집어 sinθ_c>1로 구함",
+            "경계면과 광선 사이 각도를 입사각으로 사용함"
+          ],
+          "rubric": [
+            {
+              "criterion": "sinθ_c=3/4",
+              "points": 10
+            },
+            {
+              "criterion": "60°에서 전반사 판단",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "원문 7번: 굴절률 4/3인 물질에서 공기로 나가는 빛이다. sinθ_c와 입사각 60°에서의 현상은?",
+            "choices": [
+              "sinθ_c=3/4, 전반사",
+              "sinθ_c=3/4, 굴절광 존재",
+              "sinθ_c=4/3, 전반사",
+              "sinθ_c=1/2, 굴절광 존재"
+            ],
+            "correctChoice": 1,
+            "answer": "sinθ_c=3/4, 전반사",
+            "acceptableAnswers": [
+              "1",
+              "sinθ_c=3/4, 전반사"
+            ],
+            "explanation": "sinθ_c=1/(4/3)=3/4, sin60°>3/4이므로 전반사한다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "동형: 굴절률 2인 물질에서 공기로 나가는 빛의 입사각이 45°이다. sinθ_c와 현상은?",
+            "choices": [
+              "sinθ_c=2, 전반사",
+              "sinθ_c=1/2, 굴절광 존재",
+              "sinθ_c=√2/2, 전반사",
+              "sinθ_c=1/2, 전반사"
+            ],
+            "correctChoice": 4,
+            "answer": "sinθ_c=1/2, 전반사",
+            "acceptableAnswers": [
+              "4",
+              "sinθ_c=1/2, 전반사"
+            ],
+            "explanation": "sinθ_c=1/2이므로 θ_c=30°. 45°>30°라 전반사한다."
+          },
+          "retryMode": "multiple-choice",
+          "rubricSource": "원문 명시 배점 10점+5점을 유지."
+        },
+        {
+          "no": 8,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "빛의 굴절과 전반사",
+          "topic": "빛의 속력·굴절률과 전반사 가능 방향",
+          "difficulty": "중",
+          "image": {
+            "page": 2,
+            "crop": [
+              35,
+              960,
+              580,
+              360
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "B → A. v_B<v_A이므로 n_B>n_A이며, 굴절률이 큰 매질에서 작은 매질로 진행해야 전반사가 가능하다.",
+          "explanation": [
+            "원문 해설처럼 전반사는 굴절률이 큰 매질에서 작은 매질로 진행할 때 가능하다.",
+            "n=c/v이므로 같은 빛에 대해 v_B=1.5×10⁸ m/s가 v_A=2×10⁸ m/s보다 작아 n_B>n_A이다.",
+            "따라서 진행 방향은 B→A이다. 이 방향은 필요한 조건이고, 실제 전반사를 위해서는 입사각도 임계각보다 커야 한다.",
+            "원문 채점 지시가 “이유 안쓰면 0점”이므로 방향만 맞은 답에는 점수를 주지 않는다. 교사가 이유를 확인하여 입력한다."
+          ],
+          "formulas": [
+            "n=c/v",
+            "v_B<v_A → n_B>n_A",
+            "전반사: n_입사>n_굴절, θ_i>θ_c"
+          ],
+          "commonMistakes": [
+            "속력이 큰 매질의 굴절률이 크다고 판단함",
+            "B→A만 쓰고 이유를 생략함",
+            "B→A로 진행하기만 하면 모든 입사각에서 전반사한다고 단정함"
+          ],
+          "rubric": [
+            {
+              "criterion": "B→A와 v_B<v_A ⇒ n_B>n_A 및 큰 굴절률→작은 굴절률이라는 이유를 함께 제시(이유 없으면 0점)",
+              "points": 10
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "원문 8번: v_A=2×10⁸ m/s, v_B=1.5×10⁸ m/s이다. 전반사가 가능한 진행 방향과 그 이유를 함께 옳게 설명한 것은?",
+            "choices": [
+              "A→B, A에서 빛의 속력이 더 빠르므로 n_A>n_B이다.",
+              "B→A, B에서 빛의 속력이 더 느려 n_B>n_A이다.",
+              "B→A, B에서 빛의 속력이 더 느려 n_B<n_A이다.",
+              "A→B, 전반사는 작은 굴절률에서 큰 굴절률로 갈 때 가능하다."
+            ],
+            "correctChoice": 2,
+            "answer": "B→A, B에서 빛의 속력이 더 느려 n_B>n_A이다.",
+            "acceptableAnswers": [
+              "2",
+              "B→A, B에서 빛의 속력이 더 느려 n_B>n_A이다."
+            ],
+            "explanation": "n=c/v이므로 n_B>n_A이다. 큰 굴절률에서 작은 굴절률로 향하는 B→A가 가능 방향이며, 실제로는 임계각 조건도 필요하다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "동형: v_A=2.4×10⁸ m/s, v_B=2.0×10⁸ m/s이다. 전반사가 가능한 진행 방향과 근거는?",
+            "choices": [
+              "A→B, n_A>n_B",
+              "A→B, 속력이 증가해야 하므로",
+              "B→A, v_B<v_A여서 n_B>n_A",
+              "B→A, n_B<n_A"
+            ],
+            "correctChoice": 3,
+            "answer": "B→A, v_B<v_A여서 n_B>n_A",
+            "acceptableAnswers": [
+              "3",
+              "B→A, v_B<v_A여서 n_B>n_A"
+            ],
+            "explanation": "속력이 더 느린 B의 굴절률이 더 크므로 B→A로 갈 때 임계각을 초과하면 전반사할 수 있다."
+          },
+          "retryMode": "multiple-choice",
+          "rubricSource": "원문의 “이유 안쓰면 0점” 조건을 필수 채점 조건으로 그대로 유지."
+        },
+        {
+          "no": 9,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "빛의 굴절과 전반사",
+          "topic": "정삼각형 프리즘의 임계 굴절률",
+          "difficulty": "상",
+          "image": {
+            "page": 2,
+            "crop": [
+              625,
+              195,
+              590,
+              530
+            ]
+          },
+          "reviewStatus": "conditional",
+          "correctionNote": "원문 해설의 n=2/√3은 유지하되 “굴절률 경계값”으로 구분한다. 시험지는 “얼마 이상”을 묻고 그림에는 경계면을 따라 나가는 광선이 그려져 있어 임계각 상황을 나타낸다. 검수 보충: n=2/√3이면 θ_i=θ_c인 임계조건이고, 임계각을 초과하는 실제 전반사 조건은 n>2/√3이다. 원문 답을 임의로 오답 처리하지 않으며, 교사 채점은 경계값 도출을 기준으로 한다.",
+          "answer": "원문 해설의 경계값 n_c=2/√3≈1.155. 전반사 조건 n>2/√3; 등호는 임계각 경계.",
+          "explanation": [
+            "원문에서 빛은 정삼각형 프리즘의 첫 면에 수직으로 입사하므로 입사 시 진행 방향이 꺾이지 않는다.",
+            "정삼각형의 기하에 따라 오른쪽 면의 법선과 내부 광선이 이루는 입사각은 60°이다.",
+            "제공 해설은 임계조건 n_c sin60°=1을 적용하여 n_c=2/√3을 구한다. 이 경계값은 그대로 보존한다.",
+            "검수 보충: 실제 전반사는 θ_i>θ_c일 때이므로 n sin60°>1, 즉 n>2/√3이다. 등호에서는 굴절각이 90°인 임계조건이 된다.",
+            "원문 그림에서 경계면을 따라 나가는 빨간 광선은 반사광선이 아니라 임계각에서의 굴절 방향을 표현한 것이다. 원본 그림·문구를 바꾸지 않고 해설에서 구분한다."
+          ],
+          "formulas": [
+            "θ_i=60°",
+            "n_c sin60°=1 → n_c=2/√3",
+            "전반사: n sin60°>1 → n>2/√3"
+          ],
+          "commonMistakes": [
+            "입사각을 법선이 아닌 경계면 기준 30°로 사용함",
+            "경계값과 전반사의 엄밀한 부등식 조건을 혼동함",
+            "경계면을 따라 나가는 광선을 전반사 광선으로 해석함"
+          ],
+          "rubric": [
+            {
+              "criterion": "정삼각형 기하에서 두 번째 면의 입사각 60° 도출",
+              "points": 5
+            },
+            {
+              "criterion": "원문 해설의 경계값 2/√3 도출(엄밀한 조건 n>2/√3도 정답, 등호는 임계조건)",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "원문 9번의 정삼각형 프리즘에서 오른쪽 면 입사각은 60°이다. 제공 해설의 굴절률 경계값 n_c와 전반사의 엄밀한 조건을 바르게 짝지은 것은?",
+            "choices": [
+              "n_c=√3/2, n>√3/2",
+              "n_c=√2, n>√2",
+              "n_c=2, n>2",
+              "n_c=2/√3, n>2/√3"
+            ],
+            "correctChoice": 4,
+            "answer": "n_c=2/√3, n>2/√3",
+            "acceptableAnswers": [
+              "4",
+              "n_c=2/√3, n>2/√3"
+            ],
+            "explanation": "n_c sin60°=1에서 n_c=2/√3이다. n=n_c는 임계각 경계이며 이를 넘는 n에서 전반사한다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "displayMode": "choice-card",
+            "prompt": "동형: 프리즘 내부에서 공기로 향하는 빛의 입사각이 45°이다. 굴절률 경계값 n_c와 전반사의 엄밀한 조건은?",
+            "choices": [
+              "n_c=√2, n>√2",
+              "n_c=1/√2, n>1/√2",
+              "n_c=2, n>2",
+              "n_c=√2, n<√2"
+            ],
+            "correctChoice": 1,
+            "answer": "n_c=√2, n>√2",
+            "acceptableAnswers": [
+              "1",
+              "n_c=√2, n>√2"
+            ],
+            "explanation": "n_c sin45°=1에서 n_c=√2. 실제 전반사는 n>√2이며 등호는 임계조건이다."
+          },
+          "retryMode": "multiple-choice",
+          "rubricSource": "총점 10점은 원문 기준. 5+5 세부 배점은 사이트용 제안이며 원문 경계값 답을 보존."
+        }
+      ]
     },
     {
       "examId": "physics1-basic-total-mechanics",
@@ -22546,5 +23353,5 @@ window.YP_CATALOG = {
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.7.7-physics2-advanced-r04-reviewed"
+  "featureVersion": "3.7.9-physics2-basic-r15-reviewed"
 };
