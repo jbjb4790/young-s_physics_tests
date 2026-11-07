@@ -357,7 +357,7 @@
  function showLinkModal(data,url){const portal=data.studentPortal||studentById(data.record?.studentId)||null,directUrl=portal?portalDirectURL(portal,state.serverInstanceId):url,back=document.createElement("div");back.className="modal-backdrop";back.innerHTML=`<div class="modal"><div class="modal-success">✓</div><h2>저장·학생 통합 페이지 업데이트 완료</h2><p><b>${YP.escapeHTML(data.record.name)}</b> · ${YP.escapeHTML(YP.roundLabel(YP.getExam(data.record.examId)))} · ${YP.formatNumber(data.record.score)} / ${data.record.maxScore}점</p><div class="field"><label>학부모 전달용 학생 영구 링크</label><input id="generatedLink" readonly value="${YP.escapeHTML(url)}"></div><div class="notice success"><b>이 링크는 학생 한 명에게 한 번만 발급됩니다.</b><br>이후 주간 복습·총괄평가를 저장하면 같은 페이지에 자동으로 추가되며, 학부모는 누적 결과·시험별 분석·오답 학습을 탭으로 계속 확인할 수 있습니다.</div><div class="small muted">${portal?`이번 시험까지 같은 링크에 누적됨 · 학생 ID ${YP.escapeHTML(String(portal.studentId||"").slice(-10))}`:"학생 통합 링크 생성 완료"}</div><div class="modal-actions"><button class="btn btn-light" id="closeGenerated">닫기</button><a class="btn btn-primary" target="_blank" rel="noopener" href="${YP.escapeHTML(directUrl)}">학생 통합 페이지 열기</a></div></div>`;document.body.appendChild(back);back.querySelector("#closeGenerated").onclick=()=>back.remove()}
 
  async function saveCurrent(){
-   if(!state.editToken&&state.exam?.examId&&YP.catalog.exams.some(e=>e.replacesExamId===state.exam.examId&&e.status==="ready")){switchLegacyExamToCurrent();return YP.toast("새 16회차 성적은 개정 시험에서 입력해 주세요. 개정판으로 전환했습니다.",5500)}
+   if(!state.editToken&&state.exam?.examId&&YP.catalog.exams.some(e=>e.replacesExamId===state.exam.examId&&e.status==="ready")){switchLegacyExamToCurrent();return YP.toast("새 성적은 개정 시험에서 입력해 주세요. 개정판으로 전환했습니다.",5500)}
    const result=updateScore();if(!state.exam||!$("studentName").value.trim())return YP.toast("학생 이름을 입력하세요.");if(!result.valid)return YP.toast("입력 오류 문항을 먼저 수정하세요.");if(result.counts.ungraded&&!confirm(`${result.counts.ungraded}개 문항이 미입력입니다. 미채점 상태로 저장할까요?`))return;if(!YP_API.demo&&!YP_API.isAuthenticated()){openSettings();return YP.toast("교사 PIN으로 이 컴퓨터를 먼저 연결하세요.",5000)}
    const btn=$("saveReportBtn");btn.disabled=true;btn.textContent="저장·학생 통합 페이지 업데이트 중...";
    try{
@@ -460,12 +460,14 @@
  }
  async function handleBatchFile(file){
    if(!file)return;
+   const newer=YP.catalog.exams.find(e=>e.replacesExamId===state.exam?.examId&&e.status==="ready");
+   if(newer){state.editToken=null;renderExamOptions({selectExamId:newer.examId,load:false});await loadExam();return YP.toast("일괄 입력용 개정 시험으로 전환했습니다. 개정 시험의 결과 파일을 다시 선택해 주세요.",6500)}
    resetBatchPreview(false);const summary=$("batchImportSummary");summary.classList.remove("hidden");summary.innerHTML='<div class="batch-summary-card"><span>파일 분석</span><b>학생 행과 문항 열을 확인하는 중...</b></div>';
    try{if(/\.xlsx$/i.test(file.name))await previewExcel(file);else if(/\.csv$/i.test(file.name))await previewCsv(file);else throw new Error(".xlsx 또는 .csv 파일만 첨부할 수 있습니다.")}
    catch(err){state.batchRows=[];summary.classList.remove("hidden");summary.innerHTML=`<div class="batch-summary-card warn"><span>가져오기 실패</span><b>${YP.escapeHTML(err.message)}</b></div>`;$("csvPreview").classList.add("hidden");$("saveBatchBtn").classList.add("hidden");YP.toast(err.message,7000)}
  }
  async function saveBatch(){
-   if(!state.editToken&&state.exam?.examId&&YP.catalog.exams.some(e=>e.replacesExamId===state.exam.examId&&e.status==="ready"))return YP.toast("기존 16회차로 신규 일괄입력할 수 없습니다. 개정 시험을 선택하세요.",6000);
+   if(state.exam?.examId&&YP.catalog.exams.some(e=>e.replacesExamId===state.exam.examId&&e.status==="ready"))return YP.toast("구형 시험으로 일괄 입력할 수 없습니다. 개정 시험을 선택하세요. 기존 기록은 개별 수정으로만 변경할 수 있습니다.",6000);
    const rows=state.batchRows.filter(x=>x.saveable),records=rows.map(x=>x.record);if(!records.length)return YP.toast("저장 가능한 학생 기록이 없습니다.");
    if(!YP_API.demo&&!YP_API.isAuthenticated()){openSettings();return YP.toast("교사 PIN으로 이 컴퓨터를 먼저 연결하세요.",5000)}
    const button=$("saveBatchBtn");button.disabled=true;button.textContent=`${records.length}명 Google Sheets 저장 중...`;

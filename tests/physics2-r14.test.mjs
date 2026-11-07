@@ -23,9 +23,9 @@ test('물리2 14회 기존 비활성 시험 ID 그대로 활성화, 9문항 100�
  assert.equal(exam.assessmentType,'weekly');assert.equal(exam.questionCount,9);assert.equal(exam.maxScore,100);
  assert.deepEqual(exam.questions.map(q=>q.maxPoints),points);assert.deepEqual(exam.questions.map(q=>q.no),[1,2,3,4,5,6,7,8,9]);
  assert.equal(catalog.exams.filter(e=>e.examId===exam.examId).length,1);
- assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,44);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').length,26);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,262);
+ assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,45);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').length,27);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,269);
 });
 
 test('기존 13회 및 물리1 16회 신구 분리 등록 유지',()=>{
@@ -132,7 +132,7 @@ test('Apps Script, Worker, 영구 링크/서버 토큰 파일 무변경 (학부�
 });
 
 test('캐시와 package 버전은 3.7.6, 기존 핵심 JS 로직은 불변',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.9');
- assert.equal(catalog.featureVersion,'3.7.9-physics2-basic-r15-reviewed');
- for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.9/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.10');
+ assert.equal(catalog.featureVersion,'3.7.10-physics2-advanced-r04-versioned');
+ for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.10/);
 });

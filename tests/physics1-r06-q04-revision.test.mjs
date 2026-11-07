@@ -126,17 +126,17 @@ test('개별 JSON, 내장 카탈로그, catalog.json의 4번이 완전히 동일
 });
 
 test('카탈로그 버전 3.7.3와 교사·학생 페이지의 캐시 무효화',()=>{
-  assert.equal(JSON.parse(read('package.json')).version,'3.7.9');
-  assert.equal(data.featureVersion,'3.7.9-physics2-basic-r15-reviewed');
+  assert.equal(JSON.parse(read('package.json')).version,'3.7.10');
+  assert.equal(data.featureVersion,'3.7.10-physics2-advanced-r04-versioned');
   for(const f of ['index.html','report.html','portal.html']){
-    assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.9/);
+    assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.10/);
   }
 });
 
 test('직전 물리2심화 2회 및 물리2 12회 포함 전체 카탈로그와 누적 연결 보존',()=>{
-  assert.equal(data.exams.length,44);
-  assert.equal(data.exams.filter(e=>e.status==='ready').length,26);
-  assert.equal(data.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,262);
+  assert.equal(data.exams.length,45);
+  assert.equal(data.exams.filter(e=>e.status==='ready').length,27);
+  assert.equal(data.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,269);
   assert.equal(data.courses.length,4);
   assert.equal(data.exams.find(e=>e.examId==='physics2-advanced-r02').status,'ready');
   assert.equal(data.exams.find(e=>e.examId==='physics2-basic-r12').status,'ready');
