@@ -21,15 +21,15 @@ function pngSize(rel){const b=fs.readFileSync(path.join(root,'site',rel));assert
  assert.ok(exam);assert.equal(exam.courseId,'physics2-advanced');assert.equal(exam.round,4);
  assert.equal(exam.status,'ready');assert.equal(exam.assessmentType,'weekly');assert.equal(exam.questionCount,7);assert.equal(exam.maxScore,100);
  assert.deepEqual(exam.questions.map(q=>q.no),[1,2,3,4,5,6,7]);assert.deepEqual(exam.questions.map(q=>q.maxPoints),points);
- assert.equal(exam.questions.reduce((a,q)=>a+q.maxPoints,0),100);assert.equal(catalog.exams.length,45);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').length,27);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,269);
- assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,45);
+ assert.equal(exam.questions.reduce((a,q)=>a+q.maxPoints,0),100);assert.equal(catalog.exams.length,46);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').length,28);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,276);
+ assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,46);
 });
 
 test('심화 총괄 누적 연결 [2,3,4], 다른 회차와 물리1 16회 신구분리 유지',()=>{
- assert.deepEqual(catalog.operatingPolicy.weeklyRounds['physics2-advanced'],[2,3,4]);
- assert.deepEqual(catalog.exams.find(e=>e.examId==='physics2-advanced-total').historyExamIds,['physics2-advanced-r02','physics2-advanced-r03','physics2-advanced-r04','physics2-advanced-r04-v2']);
+ assert.deepEqual(catalog.operatingPolicy.weeklyRounds['physics2-advanced'],[2,3,4,5]);
+ assert.deepEqual(catalog.exams.find(e=>e.examId==='physics2-advanced-total').historyExamIds,['physics2-advanced-r02','physics2-advanced-r03','physics2-advanced-r04','physics2-advanced-r04-v2','physics2-advanced-r05']);
  for(const id of ['physics2-advanced-r02','physics2-advanced-r03','physics2-basic-r14','physics1-basic-r16','physics1-basic-r16-v2'])assert.equal(YP.getExam(id).status,'ready');
  assert.equal(YP.getExam('physics1-basic-r16').questionCount,6);assert.equal(YP.getExam('physics1-basic-r16-v2').questionCount,7);
  assert.equal(YP.getExam('physics1-basic-r16-v2').questions[3].answer,'2 m');
@@ -138,7 +138,7 @@ test('내장 카탈로그 JS·JSON과 독립 문제은행 일치, 학부모 UI �
 });
 
 test('v3.7.7 캐시·package 정합성 및 Apps Script·Worker 미변경',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.10');
- assert.equal(catalog.featureVersion,'3.7.10-physics2-advanced-r04-versioned');
- for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.10/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.11');
+ assert.equal(catalog.featureVersion,'3.7.11-physics2-advanced-r05');
+ for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.11/);
 });

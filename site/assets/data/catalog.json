@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-11-07T00:00:00Z",
+  "generatedAt": "2026-11-09T00:00:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -23956,6 +23956,705 @@
       "sourceSolutionPdf": "assets/documents/physics2-advanced/r04-v2-original-solution.pdf"
     },
     {
+      "examId": "physics2-advanced-r05",
+      "courseId": "physics2-advanced",
+      "round": 5,
+      "title": "물리2심화 5회차 복습 테스트 · 충돌·에너지·원운동",
+      "shortTitle": "5회차 충돌·에너지·원운동",
+      "status": "ready",
+      "assessmentType": "weekly",
+      "section": "mechanics",
+      "examDate": "",
+      "questionCount": 7,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics2-advanced/r05-original.pdf",
+      "solutionPdf": "assets/documents/physics2-advanced/r05-original-solution.pdf",
+      "pages": [
+        "assets/pages/physics2-advanced/r05-original-p1.png",
+        "assets/pages/physics2-advanced/r05-original-p2.png",
+        "assets/pages/physics2-advanced/r05-original-p3.png",
+        "assets/pages/physics2-advanced/r05-original-p4.png"
+      ],
+      "reviewStatus": "conditional",
+      "configVersion": "2026.11.09-physics2-advanced-r05-original-v3.7.11",
+      "sourceTitle": "물리2심화 Quiz 5회(2).pdf / 물리2심화 Quiz 5회 해답(2).pdf",
+      "sourceNote": "이번에 첨부한 문제지와 해답지의 원본 PDF를 바이트 변경 없이 포함했다. 화면 문항은 원본 문제 PDF를 200 dpi로 렌더링한 페이지에서 문장·수식·그림을 함께 자른 것이며 재작성·재작도하지 않았다. 7문항·100점, 배점 15·15·15·15·15·15·10점. 6번 문제지는 15점(10+5), 해답지는 20점(10+10)으로 다르므로 입력 배점은 문제지를 따른다. 원문 해답과 검수 보충을 구분하고, 새 동형 문항은 원문과 별도인 학습용 문제로 표시했다. 초파 가산2점은 기본100점에 자동 합산하지 않는다.",
+      "assetProvenance": {
+        "kind": "original-pdf-render-crop",
+        "originalPdfIncluded": true,
+        "originalAnswerPdfIncluded": true,
+        "sourceQuestionFile": "물리2심화 Quiz 5회(2).pdf",
+        "sourceAnswerFile": "물리2심화 Quiz 5회 해답(2).pdf",
+        "sourceQuestionSha256": "a887d63fcb1ecec8ac328dda9e2107e17056d9402966abcac42427af9ebb1abc",
+        "sourceAnswerSha256": "8291dfc8a500f690939251495ae7c687e6505d11296db178da1a5b9ad68878a2",
+        "originalQuestionPageCount": 4,
+        "originalAnswerPageCount": 4,
+        "renderDpi": 200,
+        "redrawn": false,
+        "retypedQuestionText": false,
+        "questionPageSource": "question PDF only; no answer-page images in question crops"
+      },
+      "coreNote": {
+        "summary": "탄성·완전비탄성충돌, 상대운동, 탄성력과 원운동, 연직 궤도의 접촉, 움직이는 빗면의 에너지와 운동량",
+        "concepts": [
+          "충돌 순간과 충돌 이후 상승 과정을 나누어 보존 법칙을 적용한다.",
+          "반발계수는 두 물체의 상대속도 관계이다.",
+          "탄성력 kx의 x는 원운동 반지름이 아니라 자연길이에서 늘어난 길이이다.",
+          "연직 원운동의 구심력은 중심방향 힘의 합이며, 접촉 한계에서는 수직항력이 0이다.",
+          "마찰 구간에서 감소한 역학적 에너지를 원형 궤도 진입 조건에 연결한다.",
+          "움직이는 상자에서 탈출할 때는 상대속도로 시간을 구한다.",
+          "움직이는 빗면에서는 최대 높이에서도 계가 함께 수평으로 움직일 수 있다."
+        ],
+        "formulas": [
+          "p_before=p_after",
+          "e=(분리 상대속력)/(접근 상대속력)",
+          "k(ρ−r)=mρω²",
+          "최고점 mg+N=mv²/R",
+          "최저점 N−mg=mv²/R",
+          "W_f=−μmgL",
+          "t_exit=L/(V−v′)",
+          "h=Mv₀²/[2g(M+m)]"
+        ],
+        "mistakes": [
+          "비탄성충돌에서도 운동에너지 보존을 적용함",
+          "장력·수직항력 그 자체를 구심력으로 놓음",
+          "지면 기준 속도와 상대속도를 혼동함",
+          "움직이는 빗면을 고정된 빗면으로 간주함"
+        ],
+        "checklist": [
+          "충돌 전후와 충돌 이후 운동의 보존 법칙을 구분했는가?",
+          "상대속도와 속도 부호를 일관되게 정했는가?",
+          "용수철의 늘어난 길이와 원운동 반지름을 구분했는가?",
+          "최고점 접촉 조건을 확인했는가?",
+          "6번 배점은 시험지의 10+5점으로 채점했는가?"
+        ]
+      },
+      "featureVersion": "3.7.11-physics2-advanced-r05",
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "탄성충돌·에너지",
+          "topic": "두 공의 낙하와 연속 탄성충돌",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              83,
+              261,
+              742,
+              1148
+            ]
+          },
+          "reviewStatus": "conditional",
+          "correctionNote": "[검수 보충] 첨부 해답은 두 공의 크기·간격 및 공끼리 충돌하는 높이를 h에 비해 무시하는 이상화를 사용한다. 원문 그림·문장은 수정하지 않았다.",
+          "answer": "(1) 2√(2gh), 위쪽  (2) 4h",
+          "explanation": [
+            "[첨부 해답] 충돌 직전 A는 아래로, B는 위로 각각 √(2gh)의 속력으로 운동한다.",
+            "위쪽을 양(+)으로 정하고 u=√(2gh)라 두면 운동량 보존식은 3mu−mu=3mv_B+mv_A이다.",
+            "완전탄성충돌의 상대속도 관계는 v_A−v_B=2u이다. 두 식을 연립하면 v_B=0, v_A=2u이다.",
+            "첨부 해답처럼 충돌 높이를 바닥으로 근사하면 최고 높이는 (2u)²/(2g)=4h이다."
+          ],
+          "formulas": [
+            "u=√(2gh)",
+            "3mu−mu=3mv_B+mv_A",
+            "v_A−v_B=2u",
+            "H=v_A²/(2g)=4h"
+          ],
+          "commonMistakes": [
+            "두 공의 충돌 직전 속도의 부호를 같게 놓음",
+            "공 A 하나의 운동에너지가 충돌 과정에서도 보존된다고 판단함",
+            "속력이 2배일 때 상승 높이도 2배라고 계산함"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 충돌 직후 A의 속력 2√(2gh)",
+              "points": 10
+            },
+            {
+              "criterion": "(2) 최고 높이 4h",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "√(2gh), h",
+              "2√(2gh), 2h",
+              "2√(2gh), 4h",
+              "3√(2gh), 9h"
+            ],
+            "correctChoice": 3,
+            "answer": "2√(2gh), 4h",
+            "acceptableAnswers": [
+              "3",
+              "2√(2gh), 4h"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 1번: 첨부 해답의 작은 공·충돌 높이 무시 모형에서 A의 충돌 직후 속력과 최고 높이는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "4h",
+              "8h",
+              "12h",
+              "16h"
+            ],
+            "correctChoice": 4,
+            "answer": "16h",
+            "acceptableAnswers": [
+              "4",
+              "16h"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 질량 m, 3m인 두 공을 높이 4h에서 떨어뜨린다. 바닥·공 사이 충돌이 모두 완전탄성이며 공 크기와 충돌 높이를 무시할 때 작은 공의 최고 높이는?",
+            "explanation": "첨부 원문의 모형에서 최고 높이는 낙하 높이의 4배이다. 낙하 높이 4h이므로 최고 높이는 16h이다."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "질량이 각각 m, 3m인 작은 공 A, B가 같은 수직선 위에 놓여 있다. B가 아래쪽에 있고 두 공은 바닥으로부터 높이 h인 지점에서 동시에 정지 상태로 떨어지기 시작한다. B는 먼저 바닥과 완전 탄성 충돌한 뒤 곧바로 A와 탄성 충돌한다.",
+          "sourceSubquestions": [
+            "(1) A가 B와 충돌한 직후 속력을 g와 h로 나타내시오. [10점]",
+            "(2) A가 바닥으로부터 도달하는 최고 높이를 h로 나타내시오. [5점]"
+          ]
+        },
+        {
+          "no": 2,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "운동량·역학적 에너지",
+          "topic": "점토와 추의 완전비탄성충돌 후 진자 운동",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              833,
+              261,
+              776,
+              1081
+            ]
+          },
+          "reviewStatus": "conditional",
+          "correctionNote": "[검수 보충] 첨부 해답은 줄이 팽팽하게 유지되며 최고점에서 순간 정지하는 진자 운동 범위를 전제로 한다. 줄이 느슨해지거나 한 바퀴 도는 경우까지 같은 식으로 확장하지 않는다.",
+          "answer": "(1) v/4  (2) cosθ=1−v²/(32gL)",
+          "explanation": [
+            "[첨부 해답] 충돌 순간 수평방향 운동량 보존으로 mv=4mV이므로 V=v/4이다.",
+            "충돌하여 붙는 과정에서는 운동에너지가 보존되지 않는다. 충돌 직후부터 올라가는 과정에 역학적 에너지 보존을 적용한다.",
+            "올라간 높이는 L(1−cosθ)이다. (1/2)(4m)(v/4)²=4mgL(1−cosθ)이다.",
+            "원문 해답의 1−cosθ=v²/(32gL)를 질문 형태에 맞게 정리하면 cosθ=1−v²/(32gL)이다."
+          ],
+          "formulas": [
+            "mv=4mV",
+            "V=v/4",
+            "Δh=L(1−cosθ)",
+            "cosθ=1−v²/(32gL)"
+          ],
+          "commonMistakes": [
+            "점토가 박히는 충돌 전후에 운동에너지 보존을 적용함",
+            "충돌 후 질량을 3m으로 유지함",
+            "L(1−cosθ)를 Lsinθ로 혼동함"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 충돌 후 속력 v/4",
+              "points": 5
+            },
+            {
+              "criterion": "(2) cosθ=1−v²/(32gL)",
+              "points": 10
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "V=v/4, cosθ=1−v²/(32gL)",
+              "V=v/3, cosθ=1−v²/(18gL)",
+              "V=v/4, cosθ=1−v²/(8gL)",
+              "V=v, cosθ=1−v²/(2gL)"
+            ],
+            "correctChoice": 1,
+            "answer": "V=v/4, cosθ=1−v²/(32gL)",
+            "acceptableAnswers": [
+              "1",
+              "V=v/4, cosθ=1−v²/(32gL)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 2번: 질량 m의 점토가 정지한 질량 3m의 추에 박힌다. 충돌 직후 속력 V와 줄이 팽팽한 채 올라가 멈추는 각의 cosθ는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "v/4, 1−v²/(32gL)",
+              "v/2, 1−v²/(8gL)",
+              "v/2, 1−v²/(2gL)",
+              "v, 1−v²/(8gL)"
+            ],
+            "correctChoice": 2,
+            "answer": "v/2, 1−v²/(8gL)",
+            "acceptableAnswers": [
+              "2",
+              "v/2, 1−v²/(8gL)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 정지한 추의 질량만 m으로 바꾸고 질량 m의 점토를 속력 v로 충돌시킨다. 줄이 팽팽한 채 올라가 멈추는 경우 V와 cosθ는?",
+            "explanation": "총질량 2m이므로 V=v/2. 이후 V²/(2g)=L(1−cosθ)이므로 cosθ=1−v²/(8gL)이다."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "길이 L의 가벼운 줄 끝에 질량 3m인 추가 정지해 있다. 질량 m인 점토 A가 수평 속력 v로 날아와 추 B에 박혀 움직인다. 충돌 후 합쳐진 물체는 올라가 최고점에서 줄이 연직선과 이루는 각도가 θ가 된다.",
+          "sourceSubquestions": [
+            "(1) 충돌 후 합쳐진 물체의 속력을 v로 나타내시오. [5점]",
+            "(2) cosθ를 주어진 문자들로 나타내시오. [10점]"
+          ]
+        },
+        {
+          "no": 3,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "원운동·탄성력",
+          "topic": "용수철의 늘어난 길이와 구심력",
+          "difficulty": "상",
+          "image": {
+            "page": 2,
+            "crop": [
+              83,
+              261,
+              742,
+              1098
+            ]
+          },
+          "reviewStatus": "conditional",
+          "correctionNote": "[검수 보충] 원문의 서로 다른 두 등속 원운동 상태를 비교한다. 각속도가 변하는 실제 전환 과정이나 외력이 없는 각운동량 보존 과정은 문제에서 제시하지 않았다.",
+          "answer": "(1) k=3mω²  (2) 새로운 반지름=3r",
+          "explanation": [
+            "[첨부 해답] 첫 원운동의 반지름은 3r/2이고, 용수철이 늘어난 길이는 r/2이다.",
+            "탄성력이 구심력이므로 k(r/2)=m(3r/2)ω²에서 k=3mω²이다.",
+            "새로운 등속 원운동의 반지름을 ρ라 두면 k(ρ−r)=mρ(√2 ω)²이다.",
+            "k=3mω²를 대입하면 3(ρ−r)=2ρ이므로 ρ=3r이다."
+          ],
+          "formulas": [
+            "k(r/2)=m(3r/2)ω²",
+            "k=3mω²",
+            "k(ρ−r)=mρ(√2 ω)²",
+            "ρ=3r"
+          ],
+          "commonMistakes": [
+            "용수철의 늘어난 길이를 원운동 반지름과 같게 놓음",
+            "구심력 식의 ω²를 ω로 계산함",
+            "새 반지름에서도 늘어난 길이를 r/2로 고정함"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) k=3mω²",
+              "points": 5
+            },
+            {
+              "criterion": "(2) 새로운 반지름 3r",
+              "points": 10
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "mω², 2r",
+              "2mω², 3r",
+              "3mω², 3r/2",
+              "3mω², 3r"
+            ],
+            "correctChoice": 4,
+            "answer": "3mω², 3r",
+            "acceptableAnswers": [
+              "4",
+              "3mω², 3r"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 3번: 자연길이 r인 용수철이 반지름 3r/2, 각속도 ω의 원운동을 만든다. k와 각속도 √2 ω에서의 새 반지름은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "r",
+              "6r/5",
+              "3r/2",
+              "2r"
+            ],
+            "correctChoice": 2,
+            "answer": "6r/5",
+            "acceptableAnswers": [
+              "2",
+              "6r/5"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 같은 용수철(k=3mω²)로 각속도 ω/√2인 새로운 등속 원운동을 한다. 반지름은?",
+            "explanation": "3mω²(ρ−r)=mρω²/2이므로 (5/2)ρ=3r, 즉 ρ=6r/5이다."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "마찰이 없는 수평면 위 중심 O에 한쪽 끝이 고정된 자연길이 r, 용수철상수 k의 용수철에 질량 m인 물체가 연결되어 있다. 물체가 각속도 ω로 등속 원운동할 때, 원운동 반지름이 (3/2)r이었다.",
+          "sourceSubquestions": [
+            "(1) 용수철 상수 k를 m, ω로 나타내시오. [5점]",
+            "(2) 각속도가 √2 ω로 바뀌면 새로운 원운동 반지름을 r로 나타내시오. [10점]"
+          ]
+        },
+        {
+          "no": 4,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "연직 원운동·마찰과 에너지",
+          "topic": "거친 수평 구간 후 원형 궤도의 접촉 조건",
+          "difficulty": "상",
+          "image": {
+            "page": 2,
+            "crop": [
+              833,
+              261,
+              779,
+              1301
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "(1) √(gR)  (2) L_max=2R",
+          "explanation": [
+            "[첨부 해답] 최고점에서 중심방향 힘은 mg+N=mv_top²/R이다. 접촉 한계에서는 N=0이므로 v_top,min=√(gR)이다.",
+            "한계 상태의 최고점 운동에너지와 위치에너지 합은 (1/2)mgR+2mgR=(5/2)mgR이다.",
+            "거친 구간에 진입할 때 운동에너지는 (1/2)m(6gR)=3mgR이고, 마찰에 의해 잃는 에너지는 mgL/4이다.",
+            "3mgR−mgL/4=(5/2)mgR이므로 L_max=2R이다."
+          ],
+          "formulas": [
+            "mg+N=mv_top²/R",
+            "N=0 → v_top,min=√(gR)",
+            "3mgR−mgL/4=(5/2)mgR",
+            "L_max=2R"
+          ],
+          "commonMistakes": [
+            "최고점에 도달하기만 하면 한 바퀴 돌 수 있다고 판단함",
+            "최고점 속력을 0으로 놓음",
+            "마찰 일을 원형 궤도에도 적용함"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 최고점 최소 속력 √(gR)",
+              "points": 5
+            },
+            {
+              "criterion": "(2) 거친 구간 최대 길이 2R",
+              "points": 10
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "0, 4R",
+              "√(gR), R",
+              "√(gR), 2R",
+              "√(2gR), 2R"
+            ],
+            "correctChoice": 3,
+            "answer": "√(gR), 2R",
+            "acceptableAnswers": [
+              "3",
+              "√(gR), 2R"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 4번: 진입 속력 √(6gR), 거친 구간 μ=1/4인 연직 원형 궤도이다. 최고점 최소 속력과 L의 최댓값은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "R",
+              "2R",
+              "3R",
+              "4R"
+            ],
+            "correctChoice": 4,
+            "answer": "4R",
+            "acceptableAnswers": [
+              "4",
+              "4R"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 진입 속력만 √(7gR)로 높였다. 다른 조건은 원문 4번과 같을 때 접촉을 유지하는 거친 구간 L의 최댓값은?",
+            "explanation": "필요한 최저점 에너지는 (5/2)mgR. 진입 에너지 (7/2)mgR와의 차 mgR=mgL/4이므로 L_max=4R이다."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "질량 m인 작은 물체가 속력 √(6gR)로 길이 L인 거친 수평 구간에 진입한 뒤, 반지름 R인 고정된 연직 원형 궤도의 안쪽 면을 따라 운동한다. 거친 수평 구간은 원형 궤도의 최저점과 매끄럽게 연결되어 있다. 거친 구간의 운동 마찰 계수는 1/4이고, 나머지 구간에는 마찰이 없다. 물체는 궤도에 고정되어 있지 않으며, 물체의 크기와 회전 및 공기 저항은 무시한다. 중력 가속도는 g이다.",
+          "sourceSubquestions": [
+            "(1) 물체가 원형 궤도의 최고점에서 접촉을 유지하기 위한 속력의 최솟값을 구하시오. [5점]",
+            "(2) 물체가 궤도에서 떨어지지 않고 한 바퀴 돌 수 있는 거친 구간의 길이 L의 최댓값을 구하시오. [10점]"
+          ]
+        },
+        {
+          "no": 5,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "연직 원운동·에너지",
+          "topic": "최저점에서의 수직항력과 출발 높이",
+          "difficulty": "상",
+          "image": {
+            "page": 3,
+            "crop": [
+              83,
+              261,
+              742,
+              1170
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "answer": "(1) √(gR)  (2) H=R/2",
+          "explanation": [
+            "[첨부 해답] 최저점 B의 중심방향은 위쪽이므로 고리의 힘 2mg에서 중력 mg를 빼야 한다.",
+            "2mg−mg=mv_B²/R에서 v_B=√(gR)이다.",
+            "출발점에서 정지했으므로 에너지 보존식은 mgH=(1/2)mv_B²이다.",
+            "v_B²=gR을 대입하면 H=R/2이다."
+          ],
+          "formulas": [
+            "2mg−mg=mv_B²/R",
+            "v_B=√(gR)",
+            "mgH=(1/2)mv_B²",
+            "H=R/2"
+          ],
+          "commonMistakes": [
+            "고리가 가하는 힘 2mg 자체를 구심력으로 사용함",
+            "최저점에서 중력과 고리의 힘을 더함",
+            "속력과 높이 사이의 에너지 관계에서 1/2을 빠뜨림"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 최저점 속력 √(gR)",
+              "points": 5
+            },
+            {
+              "criterion": "(2) 출발 높이 R/2",
+              "points": 10
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "√(gR), R/2",
+              "√(2gR), R",
+              "√(gR), R",
+              "√(3gR), 3R/2"
+            ],
+            "correctChoice": 1,
+            "answer": "√(gR), R/2",
+            "acceptableAnswers": [
+              "1",
+              "√(gR), R/2"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 5번: 최저점에서 고리가 구슬에 가하는 힘이 2mg이다. 속력 v_B와 출발 높이 H는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "√(gR), R/2",
+              "√(3gR), 3R/2",
+              "√(2gR), R",
+              "2√(gR), 2R"
+            ],
+            "correctChoice": 3,
+            "answer": "√(2gR), R",
+            "acceptableAnswers": [
+              "3",
+              "√(2gR), R"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 최저점에서 고리의 힘이 3mg였다면 속력과 정지 출발 높이는?",
+            "explanation": "3mg−mg=mv²/R에서 v²=2gR. mgH=mv²/2이므로 H=R이다."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "반지름 R인 수직 원형 고리 위의 점 P에서 질량 m인 작은 구슬을 정지 상태로 놓았더니 마찰 없이 미끄러져 최저점 B를 지났다. 이때 B에서 고리가 구슬에 작용하는 힘의 크기는 2mg였다. B에서 구슬의 속력과 출발점 P의 높이 H를 각각 구하여라. 단, H는 B를 기준으로 잰 높이이다.",
+          "sourceSubquestions": [
+            "(1) 구슬이 B를 지날 때의 속력을 g와 R로 나타내시오. [5점]",
+            "(2) 높이 H를 R로 나타내시오. [10점]"
+          ]
+        },
+        {
+          "no": 6,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "충돌·상대운동",
+          "topic": "열린 상자 속 공의 반발계수와 탈출",
+          "difficulty": "상",
+          "image": {
+            "page": 3,
+            "crop": [
+              833,
+              261,
+              779,
+              1287
+            ]
+          },
+          "reviewStatus": "conditional",
+          "correctionNote": "[배점 불일치] 문제지는 총15점(10+5점), 해답지는 총20점(10+10점)으로 다르다. 시험 입력은 문제지를 우선해 15점으로 등록하며 전체 100점을 유지한다. [원문 해답의 전제] 충돌 전 상자가 정지한 경우의 답이며, 상자의 초기 속도가 따로 주어진 경우와 구분한다.",
+          "answer": "(1) 공 v/4, 상자 3v/4 (둘 다 오른쪽)  (2) 3L/2",
+          "explanation": [
+            "[첨부 해답] 충돌 전 상자가 정지한 경우를 사용한다. 오른쪽을 양으로 놓으면 mv=mv′+mV이다.",
+            "반발계수는 (V−v′)/v=1/2이다. 두 식으로 공 속도 v′=v/4, 상자 속도 V=3v/4를 얻는다.",
+            "공과 상자 모두 지면 기준 오른쪽으로 움직이지만 공의 상자에 대한 상대속도는 v′−V=−v/2이다.",
+            "공이 오른쪽 벽에서 왼쪽 입구까지 상대거리 L을 이동하는 시간은 t=L/(v/2)=2L/v이다.",
+            "그동안 상자가 이동한 거리는 s=Vt=(3v/4)(2L/v)=3L/2이다. 등록 배점은 문제지의 10+5점이다."
+          ],
+          "formulas": [
+            "v=v′+V",
+            "V−v′=v/2",
+            "v′=v/4, V=3v/4",
+            "t=2L/v",
+            "s=3L/2"
+          ],
+          "commonMistakes": [
+            "공이 왼쪽 출구로 나오므로 지면 기준으로도 왼쪽이라고 판단함",
+            "반발계수에 지면 기준 속력의 비를 넣음",
+            "탈출 시간을 L/(v/4)로 계산함"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 공 v/4, 상자 3v/4",
+              "points": 10
+            },
+            {
+              "criterion": "(2) 상자 이동 거리 3L/2",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "v/2, v/2, L",
+              "v/4, 3v/4, 3L/2",
+              "v/4, 3v/4, 3L",
+              "3v/4, v/4, L/2"
+            ],
+            "correctChoice": 2,
+            "answer": "v/4, 3v/4, 3L/2",
+            "acceptableAnswers": [
+              "2",
+              "v/4, 3v/4, 3L/2"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 6번: 원문 해답처럼 처음 정지한 상자에 같은 질량의 공이 속력 v로 들어온다. e=1/2일 때 공 속력, 상자 속력, 상자 이동 거리의 올바른 조합은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "v/3, 2v/3, 2L",
+              "v/3, 2v/3, L",
+              "2v/3, v/3, 2L",
+              "v/6, 5v/6, 5L/4"
+            ],
+            "correctChoice": 1,
+            "answer": "v/3, 2v/3, 2L",
+            "acceptableAnswers": [
+              "1",
+              "v/3, 2v/3, 2L"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 처음 정지한 질량 m 상자에 질량 m 공이 속력 v로 들어오며 반발계수만 1/3이다. 충돌 직후 공 속력, 상자 속력, 탈출까지 상자 이동 거리는?",
+            "explanation": "v′+V=v, V−v′=v/3에서 v′=v/3, V=2v/3이다. 탈출 시간은 3L/v이므로 상자 이동 거리는 2L이다."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "마찰이 없는 수평면 위에 질량 m, 길이 L인 상자가 있고 왼쪽 면이 열려 있다. 질량 m인 공이 오른쪽으로 속력 v로 들어와 상자 안쪽 오른쪽 벽과 1차원 충돌한다. 공과 벽 사이의 반발계수는 1/2이고, 중력은 무시한다. 공이 다시 왼쪽 입구를 빠져나오기까지를 생각할 때 다음을 구하여라.",
+          "sourceSubquestions": [
+            "(1) 충돌 직후 공의 속력과 상자의 속력을 각각 구하여라. [10점]",
+            "(2) 공이 상자를 빠져나올 때까지 상자가 이동한 거리를 구하여라. [5점]"
+          ]
+        },
+        {
+          "no": 7,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "운동량·역학적 에너지",
+          "topic": "움직이는 빗면에서 블록의 최대 높이",
+          "difficulty": "상",
+          "image": {
+            "page": 4,
+            "crop": [
+              83,
+              261,
+              742,
+              545
+            ]
+          },
+          "reviewStatus": "conditional",
+          "correctionNote": "[원문 해답의 전제] 수평 운동량과 역학적 에너지가 보존되는 이상적 진입을 사용한다. 블록이 빗면 입구에서 별도의 비탄성 충돌로 에너지를 잃는 경우는 첨부 자료에 제시되어 있지 않다. 원문에 소문항별 배점이 없으므로 총10점으로 등록했다.",
+          "answer": "h=Mv₀²/[2g(M+m)]",
+          "explanation": [
+            "[첨부 해답] 최대 높이에서 블록과 빗면의 상대운동이 순간적으로 멈추므로 수평 속도를 V로 같이 둔다.",
+            "수평 운동량 보존으로 mv₀=(M+m)V이고 V=mv₀/(M+m)이다.",
+            "원문 해답의 역학적 에너지 보존식은 (1/2)mv₀²=(1/2)(M+m)V²+mgh이다.",
+            "V를 대입하고 정리하면 h=Mv₀²/[2g(M+m)]이다."
+          ],
+          "formulas": [
+            "mv₀=(M+m)V",
+            "V=mv₀/(M+m)",
+            "(1/2)mv₀²=(1/2)(M+m)V²+mgh",
+            "h=Mv₀²/[2g(M+m)]"
+          ],
+          "commonMistakes": [
+            "빗면이 고정되어 있다고 놓고 h=v₀²/(2g)로 답함",
+            "최대 높이에서 블록과 빗면의 지면 기준 속도를 모두 0으로 놓음",
+            "수평 운동량 보존을 사용하지 않음"
+          ],
+          "rubric": [
+            {
+              "criterion": "운동량·에너지 관계를 이용하여 최대 높이를 구함(원문 총배점)",
+              "points": 10
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "v₀²/(2g)",
+              "Mv₀²/[g(M+m)]",
+              "Mv₀²/[2g(M+m)]",
+              "(M+m)v₀²/(2gM)"
+            ],
+            "correctChoice": 3,
+            "answer": "Mv₀²/[2g(M+m)]",
+            "acceptableAnswers": [
+              "3",
+              "Mv₀²/[2g(M+m)]"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 7번: 움직일 수 있는 질량 M의 빗면 위로 질량 m 블록이 속력 v₀로 올라간다. 첨부 해답의 보존법칙 모형에서 최대 높이는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "v₀²/(8g)",
+              "v₀²/(4g)",
+              "v₀²/(2g)",
+              "3v₀²/(8g)"
+            ],
+            "correctChoice": 4,
+            "answer": "3v₀²/(8g)",
+            "acceptableAnswers": [
+              "4",
+              "3v₀²/(8g)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 원문 7번의 빗면 질량이 M=3m일 때 최대 높이는?",
+            "explanation": "h=Mv₀²/[2g(M+m)]에 M=3m을 대입하면 h=3v₀²/(8g)이다."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "매끄러운 수평면 위에 질량 M인 빗면이 놓여 있다. 질량 m인 작은 블록을 바닥에서 오른쪽으로 속력 v₀로 보내 빗면을 올라가게 했다. 블록이 빗면 위에서 도달하는 최대 높이 h를 구하여라. 단 마찰은 없다.",
+          "sourceSubquestions": [
+            "블록이 빗면 위에서 도달하는 최대 높이 h를 구하여라. [10점]"
+          ]
+        }
+      ],
+      "sourceSolutionPdf": "assets/documents/physics2-advanced/r05-original-solution.pdf"
+    },
+    {
       "examId": "physics2-advanced-total",
       "courseId": "physics2-advanced",
       "round": 0,
@@ -23971,7 +24670,8 @@
         "physics2-advanced-r02",
         "physics2-advanced-r03",
         "physics2-advanced-r04",
-        "physics2-advanced-r04-v2"
+        "physics2-advanced-r04-v2",
+        "physics2-advanced-r05"
       ],
       "historyLabel": "물리2심화 2회차 복습 테스트",
       "reviewStatus": "not-uploaded",
@@ -24029,7 +24729,8 @@
       "physics2-advanced": [
         2,
         3,
-        4
+        4,
+        5
       ]
     },
     "excludedRounds": {
@@ -24052,5 +24753,5 @@
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.7.10-physics2-advanced-r04-versioned"
+  "featureVersion": "3.7.11-physics2-advanced-r05"
 }

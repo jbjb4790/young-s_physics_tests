@@ -39,7 +39,7 @@ test('4회 개정판은 별도 ID와 replacesExamId, 7문항 100점 유지',()=>
 });
 test('기존 모든 44시험 정의 보존: 심화 총괄 history에 개정 ID만 추가',()=>{
  for(const [id,sha] of Object.entries(snap.examHashes)){
-  const e=clean(catalog.exams.find(e=>e.examId===id));if(id===TOTAL)e.historyExamIds=e.historyExamIds.filter(x=>x!==NEW);
+  const e=clean(catalog.exams.find(e=>e.examId===id));if(id===TOTAL)e.historyExamIds=e.historyExamIds.filter(x=>x!==NEW&&x!=='physics2-advanced-r05');
   assert.equal(hashObject(e),sha,id);
  }
  assert.equal(hashObject(old),snap.examHashes[OLD]);
@@ -103,7 +103,7 @@ test('총괄 연결에서 양 버전4회는 한 회차로 집계, 구형만 있�
  const total=YP.getExam(TOTAL),a=record(old),b=record(revised);
  assert.ok(total.historyExamIds.includes(OLD));assert.ok(total.historyExamIds.includes(NEW));
  assert.equal(YP.computeHistorySummary(total,a,[a]).count,1);assert.equal(YP.getLinkedHistory(total,a,[a])[0].examId,OLD);
- assert.equal(YP.computeHistorySummary(total,b,[a,b]).count,1);assert.equal(YP.computeHistorySummary(total,b,[a,b]).expectedCount,3);assert.equal(YP.getLinkedHistory(total,b,[a,b])[0].examId,NEW);
+ assert.equal(YP.computeHistorySummary(total,b,[a,b]).count,1);assert.equal(YP.computeHistorySummary(total,b,[a,b]).expectedCount,4);assert.equal(YP.getLinkedHistory(total,b,[a,b])[0].examId,NEW);
 });
 test('교사 시험 선택에는 구형4회가 숨겨지고 개정판 노출',()=>{
  const {h,node}=uiHarness();h.renderExamOptions({selectExamId:NEW,load:false});const html=node('examSelect').innerHTML;
@@ -149,10 +149,10 @@ test('새 자료 경로는 구형과 분리, 내용 있는4쪽의 문항 crop가
 test('카탈로그 JS·JSON·독립 개정문항 JSON이 완전 동일',()=>{
  const ctx={window:{}};vm.createContext(ctx);vm.runInContext(read('site/assets/data/catalog.js'),ctx);assert.equal(JSON.stringify(ctx.window.YP_CATALOG),JSON.stringify(catalog));assert.deepEqual(JSON.parse(read('site/assets/data/questions/'+NEW+'.json')),revised);
 });
-test('v3.7.10 카탈로그 45시험/27ready/269문항, 물리215회 및 물리116회 보존',()=>{
- assert.equal(catalog.exams.length,45);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,27);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,269);
+test('v3.7.11 카탈로그 46시험/28ready/276문항, 물리215회 및 물리116회 보존',()=>{
+ assert.equal(catalog.exams.length,46);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,28);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,276);
  assert.equal(YP.getExam('physics2-basic-r15').questionCount,9);assert.equal(YP.getExam('physics1-basic-r16').questionCount,6);assert.equal(YP.getExam('physics1-basic-r16-v2').questions[3].answer,'2 m');
- assert.equal(JSON.parse(read('package.json')).version,'3.7.10');assert.equal(catalog.featureVersion,'3.7.10-physics2-advanced-r04-versioned');
- for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.10/);
- assert.match(read('site/index.html'),/app\.js\?v=3\.7\.10/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.11');assert.equal(catalog.featureVersion,'3.7.11-physics2-advanced-r05');
+ for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.11/);
+ assert.match(read('site/index.html'),/app\.js\?v=3\.7\.11/);
 });

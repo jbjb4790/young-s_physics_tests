@@ -1,0 +1,27 @@
+{
+  "sevenInputFields": true,
+  "fullScore100": true,
+  "newRecordSaved": true,
+  "existingRecordUnchanged": true,
+  "studentIdPreserved": true,
+  "storedInputsZero": true,
+  "sevenQuestionCanvases": true,
+  "canvasPixelMatchesOriginal": {
+    "1": true,
+    "2": true,
+    "3": true,
+    "4": true,
+    "5": true,
+    "6": true,
+    "7": true
+  },
+  "solutionsHiddenBeforeSubmission": true,
+  "allSevenOriginalAndSimilarRetries": true,
+  "questionPdfLink": true,
+  "answerPdfLink": true,
+  "mobileOverflowPx": 0,
+  "legacyR04ReportOpens": true,
+  "externalRequests": [],
+  "jsErrors": [],
+  "scope": "Offline Chromium: bundled JS inlined; test-only memory localStorage, data URI image resolver and report rendering hook. Demo API only. NOT live or full HTTP end-to-end."
+}

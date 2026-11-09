@@ -1,0 +1,165 @@
+{
+  "sourceFiles": {
+    "assets/documents/physics2-advanced/r05-original.pdf": {
+      "name": "물리2심화 Quiz 5회(2).pdf",
+      "size": 133527,
+      "sha256": "a887d63fcb1ecec8ac328dda9e2107e17056d9402966abcac42427af9ebb1abc"
+    },
+    "assets/documents/physics2-advanced/r05-original-solution.pdf": {
+      "name": "물리2심화 Quiz 5회 해답(2).pdf",
+      "size": 141458,
+      "sha256": "8291dfc8a500f690939251495ae7c687e6505d11296db178da1a5b9ad68878a2"
+    }
+  },
+  "pageRenders": {
+    "assets/pages/physics2-advanced/r05-original-p1.png": {
+      "sha256": "58bb67cb139bf751ad2fb6c4daf0c4bf1c5a607fe52ac91f42f1d7753a48dd56",
+      "width": 1653,
+      "height": 2337
+    },
+    "assets/pages/physics2-advanced/r05-original-p2.png": {
+      "sha256": "910bca2ce7d0a724528cf25bedf59433121e701c5414cacff11e77ef9b4ebff0",
+      "width": 1653,
+      "height": 2337
+    },
+    "assets/pages/physics2-advanced/r05-original-p3.png": {
+      "sha256": "e04fe9ec818a4f8bf7cddee80ede196f7e79c2969b081ffe7206e8c354742bd6",
+      "width": 1653,
+      "height": 2337
+    },
+    "assets/pages/physics2-advanced/r05-original-p4.png": {
+      "sha256": "ad0340b7a76994f3449b212d9beccc326cd08c17b71e8f00dcc90424ace7f540",
+      "width": 1653,
+      "height": 2337
+    }
+  },
+  "crops": {
+    "1": {
+      "page": 1,
+      "pdfRectPt": [
+        30,
+        94,
+        297,
+        507
+      ],
+      "cropPx": [
+        83,
+        261,
+        742,
+        1148
+      ],
+      "pixelSha256": "6dc3043d88c70504bc4d4dce0039bb5f4cc4481d57a81daafb8aafc31b54ed92",
+      "width": 742,
+      "height": 1148
+    },
+    "2": {
+      "page": 1,
+      "pdfRectPt": [
+        300,
+        94,
+        579,
+        483
+      ],
+      "cropPx": [
+        833,
+        261,
+        776,
+        1081
+      ],
+      "pixelSha256": "8b0b654d8e3f94d3db51262e6074426e9d2972f9cb6f20129e84a003bf3294e7",
+      "width": 776,
+      "height": 1081
+    },
+    "3": {
+      "page": 2,
+      "pdfRectPt": [
+        30,
+        94,
+        297,
+        489
+      ],
+      "cropPx": [
+        83,
+        261,
+        742,
+        1098
+      ],
+      "pixelSha256": "b920412f1600d1b7911b876ba7439c3a66eec0d1139cbd87c61d1cd41c9d8d60",
+      "width": 742,
+      "height": 1098
+    },
+    "4": {
+      "page": 2,
+      "pdfRectPt": [
+        300,
+        94,
+        580,
+        562
+      ],
+      "cropPx": [
+        833,
+        261,
+        779,
+        1301
+      ],
+      "pixelSha256": "f5ded795b6551d330ff0fa6ad48fbe6e4a0917530b5d74dbbf54a47b0c0b677c",
+      "width": 779,
+      "height": 1301
+    },
+    "5": {
+      "page": 3,
+      "pdfRectPt": [
+        30,
+        94,
+        297,
+        515
+      ],
+      "cropPx": [
+        83,
+        261,
+        742,
+        1170
+      ],
+      "pixelSha256": "292c7c6c754c49b88e5c22dc92fcb3163c7b105b495ac72007d5379923ae2f0e",
+      "width": 742,
+      "height": 1170
+    },
+    "6": {
+      "page": 3,
+      "pdfRectPt": [
+        300,
+        94,
+        580,
+        557
+      ],
+      "cropPx": [
+        833,
+        261,
+        779,
+        1287
+      ],
+      "pixelSha256": "bc3b4630e835c53ff92630d80687a8bd62677b871401f584f540820a04ee2338",
+      "width": 779,
+      "height": 1287
+    },
+    "7": {
+      "page": 4,
+      "pdfRectPt": [
+        30,
+        94,
+        297,
+        290
+      ],
+      "cropPx": [
+        83,
+        261,
+        742,
+        545
+      ],
+      "pixelSha256": "e525aa0b46b8c214678bd3fd31c55310bbc4793d702bbd6a0c90e1c7b5a37dfb",
+      "width": 742,
+      "height": 545
+    }
+  },
+  "method": "Original PDF rendered by PyMuPDF at 200dpi; crop is an unmodified rectangular pixel subset."
+}
