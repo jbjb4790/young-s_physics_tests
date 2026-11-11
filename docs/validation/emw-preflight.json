@@ -1,0 +1,22 @@
+[
+  {
+    "case": "base",
+    "returncode": 0,
+    "firstLine": "PASS_BASE: 확인된 v3.7.10 기준입니다. Sheets 백업 및 현재 운영 커밋 확인 후 이번 패치 하나만 적용하세요."
+  },
+  {
+    "case": "complete",
+    "returncode": 0,
+    "firstLine": "ALREADY_COMPLETE: 이 v3.7.12 누적 패치가 이미 반영되어 있습니다. 재적용은 필요하지 않습니다."
+  },
+  {
+    "case": "older",
+    "returncode": 2,
+    "firstLine": "STOP: 확인된 v3.7.10 기준과 일치하지 않습니다. 덮어쓰지 마세요."
+  },
+  {
+    "case": "changed app",
+    "returncode": 2,
+    "firstLine": "STOP: 확인된 v3.7.10 기준과 일치하지 않습니다. 덮어쓰지 마세요."
+  }
+]

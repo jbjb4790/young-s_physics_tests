@@ -25,8 +25,8 @@ test('물리2 일반 13회 기존 placeholder만 ready 활성화 (7문항, 100�
  assert.deepEqual(exam.questions.map(x=>x.maxPoints),arr);
  assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,46);
  assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,46);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').length,28);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,276);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').length,29);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,301);
 });
 
 test('기존 11·12회, 심화2·3회, 물리1 6회 4번과 총괄 연결 보존',()=>{
@@ -34,7 +34,7 @@ test('기존 11·12회, 심화2·3회, 물리1 6회 4번과 총괄 연결 보존
   assert.equal(YP.getExam(id).status,'ready');
  }
  const t=YP.getExam('physics2-basic-total-electromagnetism');
- assert.equal(t.status,'coming-soon');
+ assert.equal(t.status,'ready');
  assert.ok(t.historyExamIds.includes('physics2-basic-r13'));
  assert.deepEqual(catalog.operatingPolicy.weeklyRounds['physics2-basic'],[1,2,3,4,5,6,7,8,9,11,12,13,14,15]);
  assert.equal(YP.getExam('physics1-basic-r06').questions[3].originalRetry.answer,'0.2 m');
@@ -144,9 +144,9 @@ test('독립 문항 JSON, catalog.json, catalog.js 객체 일치',()=>{
 });
 
 test('v3.7.4 클라이언트 캐시 무효화, 기존 API 및 보안 설정 존재',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.11');
- assert.equal(catalog.featureVersion,'3.7.11-physics2-advanced-r05');
- for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.11/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.12');
+ assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');
+ for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.12/);
  for(const name of ['.github/workflows/pages.yml','apps-script/Code.gs','apps-script/appsscript.json','cloudflare-worker/index.mjs','site/assets/runtime-config.js','site/assets/share-config.js'])assert.ok(exists(name));
  assert.match(read('apps-script/Code.gs'),/function syncCatalog_\(/);
  assert.match(read('apps-script/Code.gs'),/function getStudentPortal_\(/);

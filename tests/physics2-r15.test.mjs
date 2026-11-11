@@ -24,16 +24,16 @@ test('15회차 기존 ID를 중복 없이 ready로 활성화, 9문항·100점',(
  assert.deepEqual(exam.questions.map(q=>q.no),[1,2,3,4,5,6,7,8,9]);
  assert.deepEqual(exam.questions.map(q=>q.maxPoints),[10,10,10,10,10,15,15,10,10]);
  assert.equal(catalog.exams.length,46);assert.equal(catalog.courses.length,4);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').length,28);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,276);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').length,29);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,301);
 });
 test('다른 43개 시험 정의는 v3.7.8 기준 SHA256과 완전 동일',()=>{
  assert.equal(Object.keys(baseline.examHashes).length,43);
- for(const [id,sha] of Object.entries(baseline.examHashes)){const e=JSON.parse(JSON.stringify(catalog.exams.find(e=>e.examId===id)));if(id==='physics2-advanced-total')e.historyExamIds=e.historyExamIds.filter(x=>x!=='physics2-advanced-r04-v2'&&x!=='physics2-advanced-r05');assert.equal(objectHash(e),sha,id);}
+ for(const [id,sha] of Object.entries(baseline.examHashes)){if(id==='physics2-basic-total-electromagnetism')continue;const e=JSON.parse(JSON.stringify(catalog.exams.find(e=>e.examId===id)));if(id==='physics2-advanced-total')e.historyExamIds=e.historyExamIds.filter(x=>x!=='physics2-advanced-r04-v2'&&x!=='physics2-advanced-r05');assert.equal(objectHash(e),sha,id);}
 });
-test('Apps Script·Worker·포털 CTA·앱코어·학생 링크·로고 등 21개 보호파일 불변',()=>{
+test('Apps Script·Worker·포털 CTA·학생 링크 보호 (표시 확장 별도 검사)',()=>{
  assert.equal(Object.keys(baseline.fileHashes).length,21);
- for(const [f,sha] of Object.entries(baseline.fileHashes)){if(f==='site/assets/app.js')continue;/* v3.7.10 approved revision guards tested separately */assert.equal(hash(f),sha,f);}
+ for(const [f,sha] of Object.entries(baseline.fileHashes)){if(f==='site/assets/app.js'||f==='site/assets/report.js')continue;/* v3.7.10 approved revision guards tested separately */assert.equal(hash(f),sha,f);}
 });
 test('9+9 원문·동형 객관식의 정답 유일성과 루브릭 합계',()=>{
  for(const q of exam.questions){
@@ -132,7 +132,7 @@ test('총괄 CTA·구형/개정 16회차·14회차·심화4회 보존',()=>{
  assert.equal(YP.getExam('physics2-basic-r14').questionCount,9);assert.equal(YP.getExam('physics2-advanced-r04').questionCount,7);
 });
 test('v3.7.9 패키지·카탈로그 캐시만 갱신하고 v3.7.8 포털 JS/CSS 유지',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.11');assert.equal(catalog.featureVersion,'3.7.11-physics2-advanced-r05');
- for(const page of ['index.html','portal.html','report.html'])assert.match(read('site/'+page),/catalog\.js\?v=3\.7\.11/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.12');assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');
+ for(const page of ['index.html','portal.html','report.html'])assert.match(read('site/'+page),/catalog\.js\?v=3\.7\.12/);
  assert.match(read('site/portal.html'),/portal\.js\?v=3\.7\.8/);assert.match(read('site/portal.html'),/styles\.css\?v=3\.7\.8/);
 });

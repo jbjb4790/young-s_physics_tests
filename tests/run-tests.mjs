@@ -60,7 +60,7 @@ test("총괄평가 연결 범위가 요구사항과 일치",()=>{
   };
   for(const [id,ids] of Object.entries(expected))assert.deepEqual(YP.getExam(id).historyExamIds,ids,id);
 });
-test("현재 자료가 있는 물리1 역학·전자기와 물리2 역학 총괄이 준비 완료",()=>assert.deepEqual(comprehensive.filter(e=>e.status==="ready").map(e=>e.examId),["physics1-basic-total-mechanics","physics1-basic-total-electromagnetism","physics2-basic-total-mechanics"]));
+test("현재 자료가 있는 물리1 역학·전자기와 물리2 역학·전자기 총괄이 준비 완료",()=>assert.deepEqual(comprehensive.filter(e=>e.status==="ready").map(e=>e.examId),["physics1-basic-total-mechanics","physics1-basic-total-electromagnetism","physics2-basic-total-mechanics","physics2-basic-total-electromagnetism"]));
 test("물리2 일반 총괄 준비 항목은 1~20 선택번호 정책을 예약",()=>comprehensive.filter(e=>e.courseId==="physics2-basic").forEach(e=>{assert.equal(e.inputProfile.objectiveMode,"choice-number");assert.equal(e.inputProfile.objectiveRange,"1-20");assert.equal(e.inputProfile.subjectiveMode,"points")}));
 test("물리1심화·물리2심화 총괄은 1~25 전체 선택번호 정책",()=>["physics1-advanced-total","physics2-advanced-total"].forEach(id=>{const e=YP.getExam(id);assert.equal(e.inputProfile.objectiveMode,"choice-number");assert.equal(e.inputProfile.objectiveRange,"1-25");assert.equal(e.inputProfile.subjectiveMode,"none")}));
 
@@ -70,7 +70,7 @@ test("물리1 10~16회가 준비 완료 100점 시험으로 등록",()=>{
   for(const round of [10,11,12,13,14,15,16]){const e=YP.getExam(`physics1-basic-r${String(round).padStart(2,"0")}`);assert.equal(e.status,"ready");assert.equal(e.maxScore,100);assert.equal(e.questions.reduce((a,q)=>a+q.maxPoints,0),100);assert.ok(e.pdf.endsWith(`r${round}.pdf`));}
 });
 test("물리1 10~16회 문항 수는 5·8·7·15·9·8·6",()=>assert.deepEqual([10,11,12,13,14,15,16].map(r=>YP.getExam(`physics1-basic-r${r}`).questionCount),[5,8,7,15,9,8,6]));
-test("물리1 10~16회 구형 58문항 유지, 개정 7문항 포함 전체 준비 완료 276문항",()=>{const added=[10,11,12,13,14,15,16].flatMap(r=>YP.getExam(`physics1-basic-r${r}`).questions);assert.equal(added.length,58);assert.equal(catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).length,276)});
+test("물리1 10~16회 구형 58문항 유지, 개정 7문항 포함 전체 준비 완료 301문항",()=>{const added=[10,11,12,13,14,15,16].flatMap(r=>YP.getExam(`physics1-basic-r${r}`).questions);assert.equal(added.length,58);assert.equal(catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).length,301)});
 test("13회 솔레노이드는 A쪽 반시계 전류 조건을 추가해 조건부 해설 공개",()=>{const q=YP.getExam("physics1-basic-r13").questions.find(q=>q.no===7);assert.equal(q.reviewStatus,"corrected");assert.match(q.correctionNote,/원문 미기재/);assert.match(q.answer,/A가 N극/)});
 test("새 회차 핵심 정답 검산",()=>{assert.match(YP.getExam("physics1-basic-r10").questions[0].answer,/1\/8/);assert.equal(YP.getExam("physics1-basic-r11").questions[0].answer,"0 N/C");assert.match(YP.getExam("physics1-basic-r12").questions[6].answer,/180 W/);assert.equal(YP.getExam("physics1-basic-r13").questions[8].answer,"5B₀");assert.match(YP.getExam("physics1-basic-r14").questions[6].answer,/f=1\.25 Hz/);assert.match(YP.getExam("physics1-basic-r15").questions[0].answer,/√3:1/);assert.equal(YP.getExam("physics1-basic-r16").questions[1].answer,"② 축소된 똑바로 선 모습")});
 
@@ -537,8 +537,8 @@ test("Apps Script form POST handler는 정의되지 않은 origin helper를 참�
 // v3.6.0 class roster quick entry, record management, hidden weighted cumulative percent
 
 test("v3.6.2는 반별 학생 기능과 물리1 15·16회를 유지하며 물리2 역학 총괄을 추가",()=>{
-  assert.equal(catalog.featureVersion,"3.7.11-physics2-advanced-r05");
-  assert.equal(JSON.parse(read("package.json")).version,"3.7.11");
+  assert.equal(catalog.featureVersion,"3.7.12-physics2-emw-total");
+  assert.equal(JSON.parse(read("package.json")).version,"3.7.12");
 });
 
 test("학생 통합 포털 페이지와 네 개의 학부모 탭이 존재",()=>{
@@ -633,9 +633,9 @@ test("설정과 상위 브리지는 report.html과 portal.html을 모두 공개 
   assert.match(launch,/report\|portal/);
 });
 
-test("준비 완료 276문항의 원문 재도전은 모두 보기 선택 방식",()=>{
+test("준비 완료 301문항의 원문 재도전은 모두 보기 선택 방식",()=>{
   const readyQuestions=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]);
-  assert.equal(readyQuestions.length,276);
+  assert.equal(readyQuestions.length,301);
   readyQuestions.forEach(q=>{
     const r=q.originalRetry||{};
     assert.equal(r.inputMode,"choice",`원문 ${q.no}`);
@@ -645,7 +645,7 @@ test("준비 완료 276문항의 원문 재도전은 모두 보기 선택 방식
   });
 });
 
-test("준비 완료 276문항의 동형 문제도 모두 보기 선택 방식",()=>{
+test("준비 완료 301문항의 동형 문제도 모두 보기 선택 방식",()=>{
   const readyQuestions=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]);
   readyQuestions.forEach(q=>{
     const r=q.similarProblem||{};
@@ -656,9 +656,9 @@ test("준비 완료 276문항의 동형 문제도 모두 보기 선택 방식",(
   });
 });
 
-test("문자열 입력 대상 216문항도 자유 입력 없이 정답 보기 선택",()=>{
+test("문자열 입력 대상 221문항도 자유 입력 없이 정답 보기 선택",()=>{
   const qs=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).filter(q=>q.type!=="objective"||q.answerKey==null);
-  assert.equal(qs.length,216);
+  assert.equal(qs.length,221);
   qs.forEach(q=>{assert.equal(q.originalRetry.inputMode,"choice");assert.ok([4,5].includes(q.originalRetry.choices.length));assert.equal(q.similarProblem.inputMode,"choice")});
 });
 
@@ -675,9 +675,9 @@ test("학생 리포트는 원문·동형을 ①~⑤ 라디오 카드로만 제�
 });
 
 
-test("단답형·서술형 214문항의 원문과 동형 문제도 모두 4지·5지 객관식",()=>{
+test("단답형·서술형 219문항의 원문과 동형 문제도 모두 4지·5지 객관식",()=>{
   const qs=catalog.exams.filter(e=>e.status==="ready").flatMap(e=>e.questions||[]).filter(q=>q.type==="subjective");
-  assert.equal(qs.length,214);
+  assert.equal(qs.length,219);
   for(const q of qs)for(const key of ["originalRetry","similarProblem"]){
     const c=q[key];assert.equal(c.inputMode,"choice");assert.ok([4,5].includes(c.choices.length));assert.ok(c.correctChoice>=1&&c.correctChoice<=c.choices.length);
   }
@@ -867,8 +867,8 @@ test("반에서 선택한 학생의 동일 시험 재저장은 신규 중복행 
 
 
 test("v3.6.2 물리2 역학 총괄평가 25문항이 준비 완료",()=>{
-  assert.equal(catalog.featureVersion,"3.7.11-physics2-advanced-r05");
-  assert.equal(JSON.parse(read("package.json")).version,"3.7.11");
+  assert.equal(catalog.featureVersion,"3.7.12-physics2-emw-total");
+  assert.equal(JSON.parse(read("package.json")).version,"3.7.12");
   const e=catalog.exams.find(x=>x.examId==="physics2-basic-total-mechanics");
   assert.ok(e);assert.equal(e.status,"ready");assert.equal(e.questionCount,25);assert.equal(e.maxScore,100);
   assert.equal(e.questions.length,25);
@@ -933,7 +933,7 @@ test("개별 총괄 성적표와 Word에도 누적 코멘트가 포함",()=>{
 
 test("누적 코멘트 변경은 Apps Script 스키마를 요구하지 않음",()=>{
   const pkg=JSON.parse(read("package.json"));
-  assert.equal(pkg.version,"3.7.11");
+  assert.equal(pkg.version,"3.7.12");
   const code=read("apps-script/Code.gs");
   assert.match(code,/FEATURE_VERSION = "3\.6\.6-portal-share-safe-navigation"/);
 });

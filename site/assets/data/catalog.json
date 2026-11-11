@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-11-09T00:00:00Z",
+  "generatedAt": "2026-11-10T00:00:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -20979,9 +20979,9 @@
       "shortTitle": "전자기·파동 총괄평가",
       "assessmentType": "comprehensive",
       "section": "electromagnetism",
-      "status": "coming-soon",
-      "questionCount": 0,
-      "maxScore": 0,
+      "status": "ready",
+      "questionCount": 25,
+      "maxScore": 100,
       "historyExamIds": [
         "physics2-basic-r11",
         "physics2-basic-r12",
@@ -20990,13 +20990,2380 @@
         "physics2-basic-r15"
       ],
       "historyLabel": "물리2 11~15회 복습 테스트",
-      "reviewStatus": "not-uploaded",
-      "configVersion": "2026.08.24-total-choice-v1",
+      "reviewStatus": "공식해답기준",
+      "configVersion": "2026.11.10-physics2-electromagnetism-total-v1",
       "inputProfile": {
         "objectiveRange": "1-20",
         "subjectiveRange": "21-25",
         "objectiveMode": "choice-number",
         "subjectiveMode": "points"
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "경사면에서의 전기력",
+          "topic": "빗면 위 대전 물체의 평형",
+          "source": {
+            "questionPdfPage": 2,
+            "solutionPdfPage": 2,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "③",
+          "explanation": [
+            "첨부 해설의 답은 ③이다.",
+            "첨부 해설은 필요한 전기장을 E=mg tanθ/q=mg/(√3q)로 제시한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 2,
+            "crop": [
+              214,
+              248,
+              1357,
+              847
+            ]
+          },
+          "answerKey": 3,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 3,
+            "answer": "③",
+            "acceptableAnswers": [
+              "3",
+              "③"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "E=mg tanθ/q"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=2",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s01.png",
+            "label": "1번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 마찰 없는 45° 빗면의 질량 m, 음전하 크기 q인 물체를 수평 전기장으로 정지시킨다. 필요한 전기장 크기는?",
+            "choices": [
+              "mg/(2q)",
+              "mg/q",
+              "√3mg/q",
+              "2mg/q"
+            ],
+            "correctChoice": 2,
+            "answer": "mg/q",
+            "acceptableAnswers": [
+              "2",
+              "mg/q"
+            ],
+            "explanation": "첨부 1번 해설의 E=mg tanθ/q에 θ=45°를 넣으면 E=mg/q이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 2,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "도체의 정전기적 평형",
+          "topic": "금속구 접촉과 전하 분배",
+          "source": {
+            "questionPdfPage": 2,
+            "solutionPdfPage": 3,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "②",
+          "explanation": [
+            "첨부 해설의 답은 ②이다.",
+            "해설에 제시된 접촉 후 전하: 첫 접촉 후 A=2 C, B=4 C, C=0 C. 두 번째 접촉 후 A=0.5 C, B=4 C, C=1.5 C.",
+            "첨부 해설의 최종 전하 곱은 3이다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 2,
+            "crop": [
+              202,
+              1175,
+              1366,
+              581
+            ]
+          },
+          "answerKey": 2,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 2,
+            "answer": "②",
+            "acceptableAnswers": [
+              "2",
+              "②"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "접촉 후 전하량의 비=반지름의 비 (첨부 해설 기준)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=3",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s02.png",
+            "label": "2번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 서로 충분히 멀리 놓인 반지름 r, 2r의 도체구를 가는 도선으로 연결했다. 전체 전하가 9Q이고 외부 전하가 없을 때 평형 전하량 (작은 구, 큰 구)은?",
+            "choices": [
+              "(3Q, 6Q)",
+              "(6Q, 3Q)",
+              "(9Q/2, 9Q/2)",
+              "(Q, 8Q)"
+            ],
+            "correctChoice": 1,
+            "answer": "(3Q, 6Q)",
+            "acceptableAnswers": [
+              "1",
+              "(3Q, 6Q)"
+            ],
+            "explanation": "첨부 해설의 반지름 비에 따른 분배 관계를 사용한다. 같은 전위에서 전하 비는 1:2이고 전체 9Q이므로 3Q와 6Q이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 3,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "점전하의 전기장",
+          "topic": "두 점전하의 전기장과 등전위",
+          "source": {
+            "questionPdfPage": 3,
+            "solutionPdfPage": 4,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "②",
+          "explanation": [
+            "첨부 해설의 답은 ②이다.",
+            "첨부 해설은 y축의 전위가 0이므로 y축을 따라 전하를 이동할 때 전기력이 한 일은 0이라고 설명한다.",
+            "④의 문구는 문제지와 해설지 재수록본이 다르므로 별도 확인 메모를 참조한다.",
+            "원문 대조 메모: 문제지 ④는 전기장 방향이 반대, 해설지 재수록 ④는 같다고 적혀 있다. 공식 정답 ②는 보존한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "원문 대조 안내: 문제·해설 표현에 확인할 부분이 있습니다. 이번 채점은 첨부 공식 정답표를 사용하며, 상세 메모는 답 제출 후 해설에서 확인할 수 있습니다.",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 3,
+            "crop": [
+              201,
+              248,
+              1369,
+              682
+            ]
+          },
+          "answerKey": 2,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 2,
+            "answer": "②",
+            "acceptableAnswers": [
+              "2",
+              "②"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "sourceReviewNote": "문제지 ④는 전기장 방향이 반대, 해설지 재수록 ④는 같다고 적혀 있다. 공식 정답 ②는 보존한다.",
+          "requiresTeacherReview": true,
+          "formulas": [
+            "W=Q(V_i−V_f)",
+            "y축 위 V=0"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=4",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s03.png",
+            "label": "3번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · x축의 (−a,0)에 +q, (a,0)에 −q가 있다. 시험전하 Q를 y축 위의 한 점에서 다른 점으로 이동시킬 때 전기력이 한 일은?",
+            "choices": [
+              "kqQ/a",
+              "2kqQ/a",
+              "0",
+              "이동 거리만큼 증가한다"
+            ],
+            "correctChoice": 3,
+            "answer": "0",
+            "acceptableAnswers": [
+              "3",
+              "0"
+            ],
+            "explanation": "첨부 3번 해설과 같이 두 전하에서의 거리가 같은 y축 위에서는 전위가 0이므로 전위차와 전기력이 한 일도 0이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 4,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "점전하의 전기장",
+          "topic": "전위와 전기장 중첩",
+          "source": {
+            "questionPdfPage": 3,
+            "solutionPdfPage": 5,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "③",
+          "explanation": [
+            "첨부 해설의 답은 ③(ㄱ, ㄷ)이다.",
+            "첨부 해설은 ㄴ의 전기장 x성분을 2kbQ/(a²+b²)^(3/2)로 제시한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 3,
+            "crop": [
+              201,
+              1012,
+              1368,
+              1172
+            ]
+          },
+          "answerKey": 3,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 3,
+            "answer": "③",
+            "acceptableAnswers": [
+              "3",
+              "③"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "V=2kQ/√(a²+b²)",
+            "E_x=2kbQ/(a²+b²)^(3/2)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=5",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s04.png",
+            "label": "4번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · y축의 (0,a),(0,−a)에 같은 +Q를 놓았다. P(b,0)의 전위는? 무한대의 전위를 0으로 정한다.",
+            "choices": [
+              "kQ/√(a²+b²)",
+              "2kQ/(a²+b²)",
+              "0",
+              "2kQ/√(a²+b²)"
+            ],
+            "correctChoice": 4,
+            "answer": "2kQ/√(a²+b²)",
+            "acceptableAnswers": [
+              "4",
+              "2kQ/√(a²+b²)"
+            ],
+            "explanation": "두 전하에서 P까지의 거리는 각각 √(a²+b²)이다. 첨부 해설의 전위 중첩대로 두 값을 더한다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 5,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "축전기의 기본 원리",
+          "topic": "전원 분리 후 극판 간격 변화",
+          "source": {
+            "questionPdfPage": 4,
+            "solutionPdfPage": 6,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "②",
+          "explanation": [
+            "첨부 해설의 답은 ②이다.",
+            "첨부 해설은 전원을 분리하여 Q가 일정하고, d를 줄이면 C가 증가하여 V가 감소한다고 설명한다.",
+            "해설의 ③에는 감소한다는 문구와 일정하다는 결론이 함께 있어 검토 메모로 분리한다.",
+            "원문 대조 메모: 해설의 ③에 감소한다는 문구와 일정하다는 결론이 혼재한다. 원문 파일의 내용을 수정하지 않는다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "원문 대조 안내: 문제·해설 표현에 확인할 부분이 있습니다. 이번 채점은 첨부 공식 정답표를 사용하며, 상세 메모는 답 제출 후 해설에서 확인할 수 있습니다.",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 4,
+            "crop": [
+              201,
+              248,
+              1367,
+              766
+            ]
+          },
+          "answerKey": 2,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 2,
+            "answer": "②",
+            "acceptableAnswers": [
+              "2",
+              "②"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "sourceReviewNote": "해설의 ③에 감소한다는 문구와 일정하다는 결론이 혼재한다. 원문 파일의 내용을 수정하지 않는다.",
+          "requiresTeacherReview": true,
+          "formulas": [
+            "C=ε₀A/d",
+            "Q=CV",
+            "W=Q²/(2C)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=6",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s05.png",
+            "label": "5번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 충전 후 전원에서 분리한 이상적인 평행판 축전기의 판 간격을 절반으로 줄였다. (전기용량, 전압)은 처음의 몇 배인가?",
+            "choices": [
+              "(1/2배, 2배)",
+              "(2배, 1/2배)",
+              "(2배, 2배)",
+              "(1배, 1배)"
+            ],
+            "correctChoice": 2,
+            "answer": "(2배, 1/2배)",
+            "acceptableAnswers": [
+              "2",
+              "(2배, 1/2배)"
+            ],
+            "explanation": "첨부 5번의 Q 일정과 C∝1/d, Q=CV 관계를 사용하면 C는 2배, V는 1/2배이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 6,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "유전체와 합성 전기용량",
+          "topic": "유전체 배치와 합성 전기용량",
+          "source": {
+            "questionPdfPage": 4,
+            "solutionPdfPage": 7,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "⑤",
+          "explanation": [
+            "첨부 해설의 답은 ⑤(ㄱ, ㄴ, ㄷ)이다.",
+            "첨부 해설은 왼쪽을 직렬 연결, 오른쪽을 병렬 연결에 대응시킨다.",
+            "첨부된 해설의 합성 전기용량은 왼쪽 ε₁ε₂A/[(ε₁+ε₂)d], 오른쪽 (ε₁+ε₂)A/(2d)이다.",
+            "원문 대조 메모: 문제 본문 왼쪽 극판 간격의 설명과 그림의 두 층 d,d 표기를 대조해야 한다. 제공 정답 ⑤를 보존한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "원문 대조 안내: 문제·해설 표현에 확인할 부분이 있습니다. 이번 채점은 첨부 공식 정답표를 사용하며, 상세 메모는 답 제출 후 해설에서 확인할 수 있습니다.",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 4,
+            "crop": [
+              201,
+              1097,
+              1368,
+              991
+            ]
+          },
+          "answerKey": 5,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 5,
+            "answer": "⑤",
+            "acceptableAnswers": [
+              "5",
+              "⑤"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "sourceReviewNote": "문제 본문 왼쪽 극판 간격의 설명과 그림의 두 층 d,d 표기를 대조해야 한다. 제공 정답 ⑤를 보존한다.",
+          "requiresTeacherReview": true,
+          "formulas": [
+            "C_series=ε₁ε₂A/[(ε₁+ε₂)d]",
+            "C_parallel=(ε₁+ε₂)A/(2d)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=7",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s06.png",
+            "label": "6번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 각각 극판 넓이 A, 두께 d인 유전체 ε와 2ε의 두 층을 전기장 방향으로 겹친 축전기의 합성 전기용량은?",
+            "choices": [
+              "2εA/(3d)",
+              "3εA/(2d)",
+              "2εA/d",
+              "3εA/d"
+            ],
+            "correctChoice": 1,
+            "answer": "2εA/(3d)",
+            "acceptableAnswers": [
+              "1",
+              "2εA/(3d)"
+            ],
+            "explanation": "첨부 6번의 직렬 관계 C=ε₁ε₂A/[(ε₁+ε₂)d]에서 ε₁=ε, ε₂=2ε를 대입한다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 7,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "축전기의 연결",
+          "topic": "충전한 축전기의 병렬 연결",
+          "source": {
+            "questionPdfPage": 5,
+            "solutionPdfPage": 8,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "③",
+          "explanation": [
+            "첨부 해설의 답은 ③, 24 V이다.",
+            "첨부 해설은 먼저 C₁에 Q=120 μC가 충전되고, 이후 두 축전기의 전압이 같아질 때까지 전하가 나뉜다고 설명한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 5,
+            "crop": [
+              201,
+              248,
+              1370,
+              627
+            ]
+          },
+          "answerKey": 3,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 3,
+            "answer": "③",
+            "acceptableAnswers": [
+              "3",
+              "③"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "Q₁+Q₂=120 μC",
+            "V₁=V₂=24 V"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=8",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s07.png",
+            "label": "7번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 2 μF 축전기를 30 V로 충전한 뒤 전원을 분리하고, 미충전 4 μF 축전기와 병렬 연결한다. 최종 전압은?",
+            "choices": [
+              "5 V",
+              "15 V",
+              "10 V",
+              "30 V"
+            ],
+            "correctChoice": 3,
+            "answer": "10 V",
+            "acceptableAnswers": [
+              "3",
+              "10 V"
+            ],
+            "explanation": "첨부 7번의 전하 보존과 공통 전압 관계를 사용한다. 총 전하 60 μC를 합성 6 μF로 나누면 10 V이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 8,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "빛의 간섭",
+          "topic": "물속 이중슬릿의 밝은 무늬 간격",
+          "source": {
+            "questionPdfPage": 5,
+            "solutionPdfPage": 9,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "①",
+          "explanation": [
+            "첨부 해설의 답은 ①이다.",
+            "첨부 해설은 물속 파장을 λ/n으로 놓아 밝은 무늬 간격을 Lλ/(nd)로 제시한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 5,
+            "crop": [
+              201,
+              1049,
+              1368,
+              827
+            ]
+          },
+          "answerKey": 1,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 1,
+            "answer": "①",
+            "acceptableAnswers": [
+              "1",
+              "①"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "λ_medium=λ/n",
+            "Δx=Lλ/(nd)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=9",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s08.png",
+            "label": "8번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 진공에서 파장 λ인 빛을 굴절률 2인 매질 속 이중슬릿에 비춘다. 슬릿 간격 d, 스크린 거리 L이고 근축 근사에서 밝은 무늬 간격은?",
+            "choices": [
+              "2Lλ/d",
+              "Lλ/d",
+              "Lλ/(4d)",
+              "Lλ/(2d)"
+            ],
+            "correctChoice": 4,
+            "answer": "Lλ/(2d)",
+            "acceptableAnswers": [
+              "4",
+              "Lλ/(2d)"
+            ],
+            "explanation": "첨부 8번의 Δx=Lλ/(nd)에 n=2를 대입한다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 9,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "직렬·병렬 전지 회로",
+          "topic": "전지의 직렬·병렬 연결과 내부저항",
+          "source": {
+            "questionPdfPage": 6,
+            "solutionPdfPage": 10,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "①",
+          "explanation": [
+            "첨부 해설의 답은 ①이다.",
+            "첨부 해설에서 전체 기전력은 (n+1)V, 전체 저항은 (n+1/m)r+R이다.",
+            "따라서 해설이 제시한 전류는 (n+1)V/[(n+1/m)r+R]이다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 6,
+            "crop": [
+              201,
+              294,
+              1369,
+              1018
+            ]
+          },
+          "answerKey": 1,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 1,
+            "answer": "①",
+            "acceptableAnswers": [
+              "1",
+              "①"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "E_total=(n+1)V",
+            "R_total=(n+1/m)r+R"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=10",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s09.png",
+            "label": "9번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 기전력 V, 내부저항 r인 같은 전지 2개를 병렬로 묶고, 같은 전지 1개를 같은 방향으로 직렬 연결해 저항 R에 연결했다. 전류는?",
+            "choices": [
+              "V/(R+r)",
+              "2V/(R+3r/2)",
+              "3V/(R+2r)",
+              "2V/(R+2r)"
+            ],
+            "correctChoice": 2,
+            "answer": "2V/(R+3r/2)",
+            "acceptableAnswers": [
+              "2",
+              "2V/(R+3r/2)"
+            ],
+            "explanation": "첨부 9번 식에서 m=2,n=1이다. 전체 기전력 2V, 내부저항 3r/2이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 10,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "메시 해석·키르히호프 제2법칙",
+          "topic": "두 전지가 있는 회로의 전위차",
+          "source": {
+            "questionPdfPage": 6,
+            "solutionPdfPage": 11,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "③",
+          "explanation": [
+            "첨부 해설의 답은 ③, 6 V이다.",
+            "해설은 10−4I₁−2(I₁+I₂)=0, 5−2I₂−2(I₁+I₂)=0을 사용한다.",
+            "해설에 제시된 값은 I₁=1.5 A, I₂=0.5 A이며, 4 Ω 양단의 전위차는 6 V이다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 6,
+            "crop": [
+              201,
+              1397,
+              1356,
+              564
+            ]
+          },
+          "answerKey": 3,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 3,
+            "answer": "③",
+            "acceptableAnswers": [
+              "3",
+              "③"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "10−4I₁−2(I₁+I₂)=0",
+            "5−2I₂−2(I₁+I₂)=0"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=11",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s10.png",
+            "label": "10번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 회로 해석 결과 두 전류가 12−4I₁−2(I₁+I₂)=0, 6−2I₂−2(I₁+I₂)=0을 만족한다. 4 Ω 저항의 전압은?",
+            "choices": [
+              "7.2 V",
+              "4.8 V",
+              "6 V",
+              "12 V"
+            ],
+            "correctChoice": 1,
+            "answer": "7.2 V",
+            "acceptableAnswers": [
+              "1",
+              "7.2 V"
+            ],
+            "explanation": "두 식은 6I₁+2I₂=12, 2I₁+4I₂=6이다. I₁=1.8 A이므로 4I₁=7.2 V이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 11,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "키르히호프 법칙·브리지 회로",
+          "topic": "다섯 저항 회로의 전류·전위차·전력",
+          "source": {
+            "questionPdfPage": 7,
+            "solutionPdfPage": 12,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "③",
+          "explanation": [
+            "첨부 해설의 답은 ③(ㄱ, ㄴ)이다.",
+            "해설에 제시된 두 고리 전류는 모두 3 A이다.",
+            "해설은 R₁과 R₅ 전류가 같고, a점의 전위가 b점보다 6 V 낮으며, R₃의 소비전력은 0 W라고 판정한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 7,
+            "crop": [
+              201,
+              248,
+              1370,
+              974
+            ]
+          },
+          "answerKey": 3,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 3,
+            "answer": "③",
+            "acceptableAnswers": [
+              "3",
+              "③"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "I₁=I₂=3 A",
+            "P₃=0 W"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=12",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s11.png",
+            "label": "11번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 2 Ω 저항 5개와 같은 크기의 두 전지 회로에서 I₁=I₂=2 A이고 가운데 저항 전류가 I₁−I₂라면, 가운데 저항의 소비전력은?",
+            "choices": [
+              "2 W",
+              "4 W",
+              "0 W",
+              "8 W"
+            ],
+            "correctChoice": 3,
+            "answer": "0 W",
+            "acceptableAnswers": [
+              "3",
+              "0 W"
+            ],
+            "explanation": "첨부 11번처럼 가운데 가지 전류는 0이다. P=I²R=0이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 12,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "전지의 기전력과 내부 저항",
+          "topic": "단자전압 그래프와 기전력·내부저항",
+          "source": {
+            "questionPdfPage": 7,
+            "solutionPdfPage": 13,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "⑤",
+          "explanation": [
+            "첨부 해설의 답은 ⑤이다.",
+            "첨부 해설은 V=E−Ir의 y절편으로부터 기전력 1.8 V, 기울기로부터 내부저항 1 Ω을 구한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 7,
+            "crop": [
+              215,
+              1296,
+              1342,
+              848
+            ]
+          },
+          "answerKey": 5,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 5,
+            "answer": "⑤",
+            "acceptableAnswers": [
+              "5",
+              "⑤"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "V_terminal=E−Ir"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=13",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s12.png",
+            "label": "12번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 전지의 단자전압과 전류가 V_terminal=3.0−0.5I (SI 단위) 관계를 만족한다. (기전력, 내부저항)은?",
+            "choices": [
+              "(0.5 V, 3 Ω)",
+              "(3 V, 2 Ω)",
+              "(1.5 V, 0.5 Ω)",
+              "(3 V, 0.5 Ω)"
+            ],
+            "correctChoice": 4,
+            "answer": "(3 V, 0.5 Ω)",
+            "acceptableAnswers": [
+              "4",
+              "(3 V, 0.5 Ω)"
+            ],
+            "explanation": "첨부 12번의 V_terminal=E−Ir에서 절편은 3 V, 기울기 절댓값은 0.5 Ω이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 13,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "자기장 속 원운동",
+          "topic": "자기장에 비스듬히 입사한 입자의 궤도",
+          "source": {
+            "questionPdfPage": 8,
+            "solutionPdfPage": 14,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "②",
+          "explanation": [
+            "첨부 해설의 답은 ②이다.",
+            "첨부 해설은 입자가 음전하이고 자기장 속 속력은 v로 일정하다고 설명한다.",
+            "해설의 ㄷ 설명에는 보기와 같은 질량식이 제시되어 있다. q의 부호 또는 크기 해석을 확인하기 전에는 정답 번호를 바꾸지 않는다.",
+            "원문 대조 메모: 공식 정답은 ②이나 해설의 ㄷ에는 보기와 같은 질량식이 있다. 전하 q의 부호와 크기 표기 기준의 교사 확인이 필요하다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "원문 대조 안내: 문제·해설 표현에 확인할 부분이 있습니다. 이번 채점은 첨부 공식 정답표를 사용하며, 상세 메모는 답 제출 후 해설에서 확인할 수 있습니다.",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 8,
+            "crop": [
+              201,
+              250,
+              1370,
+              966
+            ]
+          },
+          "answerKey": 2,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 2,
+            "answer": "②",
+            "acceptableAnswers": [
+              "2",
+              "②"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "sourceReviewNote": "공식 정답은 ②이나 해설의 ㄷ에는 보기와 같은 질량식이 있다. 전하 q의 부호와 크기 표기 기준의 교사 확인이 필요하다.",
+          "requiresTeacherReview": true,
+          "formulas": [
+            "v=일정",
+            "r=L/√2",
+            "q의 부호와 크기 표기는 원문 대조 메모 참조"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=14",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s13.png",
+            "label": "13번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 균일한 자기장에 수직 입사한 입자에 자기력만 작용한다. 입자의 질량·전하량 크기·속력은 각각 m, |q|, v이다. 자기장 크기를 2배로 하면 원운동 반지름은?",
+            "choices": [
+              "2배",
+              "1/2배",
+              "1배",
+              "4배"
+            ],
+            "correctChoice": 2,
+            "answer": "1/2배",
+            "acceptableAnswers": [
+              "2",
+              "1/2배"
+            ],
+            "explanation": "자기력과 구심력 관계 r=mv/(B|q|)에서 B만 2배가 되면 반지름은 1/2배가 된다. 원문의 전하 부호 논점과 구별한 새 문제이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 14,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "직선 도선과 사각형 전류고리",
+          "topic": "직선도선과 두 폐회로 사이 자기력",
+          "source": {
+            "questionPdfPage": 8,
+            "solutionPdfPage": 15,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "④",
+          "explanation": [
+            "첨부 해설의 답은 ④, 3:7이다.",
+            "해설은 F_A=kI₁I₂/2, F_B=7kI₁I₂/6으로 제시한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 8,
+            "crop": [
+              201,
+              1342,
+              1367,
+              793
+            ]
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 4,
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "F_A=kI₁I₂/2",
+            "F_B=7kI₁I₂/6"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=15",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s14.png",
+            "label": "14번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 긴 직선도선과 정사각형 도선 사이 힘이 F=kI₁I₂/2인 배치에서 I₁만 3배로 바꾼다. 다른 조건이 같을 때 힘은?",
+            "choices": [
+              "3F",
+              "F/3",
+              "9F",
+              "F"
+            ],
+            "correctChoice": 1,
+            "answer": "3F",
+            "acceptableAnswers": [
+              "1",
+              "3F"
+            ],
+            "explanation": "첨부 14번 식은 I₁에 비례하므로 전류 I₁을 3배로 하면 힘도 3배가 된다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 15,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "자기장 속 원운동",
+          "topic": "싸이클로트론",
+          "source": {
+            "questionPdfPage": 9,
+            "solutionPdfPage": 16,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "⑤",
+          "explanation": [
+            "첨부 해설의 답은 ⑤이다.",
+            "첨부 해설은 두 디이 사이 구간에서 전기장에 의해 가속되고, 디이 내부에서는 자기장에 의해 원운동한다고 설명한다.",
+            "문제 ①의 주기 표현은 별도 검토 항목으로 두며, 공식 정답 ⑤를 임의로 변경하지 않는다.",
+            "원문 대조 메모: 공식 정답은 ⑤이다. ①에 적힌 πm/(Bq)가 교류 전압의 전체 주기인지 극성 반전 간격인지 확인해야 한다. 단일 정답 조건과 관련되어 배포 전 교사 확인 대상으로 둔다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "원문 대조 안내: 문제·해설 표현에 확인할 부분이 있습니다. 이번 채점은 첨부 공식 정답표를 사용하며, 상세 메모는 답 제출 후 해설에서 확인할 수 있습니다.",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 9,
+            "crop": [
+              201,
+              248,
+              1369,
+              795
+            ]
+          },
+          "answerKey": 5,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 5,
+            "answer": "⑤",
+            "acceptableAnswers": [
+              "5",
+              "⑤"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "sourceReviewNote": "공식 정답은 ⑤이다. ①에 적힌 πm/(Bq)가 교류 전압의 전체 주기인지 극성 반전 간격인지 확인해야 한다. 단일 정답 조건과 관련되어 배포 전 교사 확인 대상으로 둔다.",
+          "requiresTeacherReview": true,
+          "formulas": [
+            "전기장 가속 구간: 두 디이 사이 (첨부 해설)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=16",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s15.png",
+            "label": "15번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 첨부 해설과 같은 이상적인 싸이클로트론에서 입자가 전기장에 의해 가속되는 곳은?",
+            "choices": [
+              "디이 내부 전체",
+              "자기장 영역 전체",
+              "두 디이 사이의 틈",
+              "어느 곳에서도 가속되지 않는다"
+            ],
+            "correctChoice": 3,
+            "answer": "두 디이 사이의 틈",
+            "acceptableAnswers": [
+              "3",
+              "두 디이 사이의 틈"
+            ],
+            "explanation": "첨부 15번 해설은 전기장 가속 구간이 두 디이 사이이며, 디이 내부에서는 자기장에 의해 원운동한다고 설명한다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 16,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "자기장 속 원운동",
+          "topic": "나선 운동의 반지름과 주기",
+          "source": {
+            "questionPdfPage": 9,
+            "solutionPdfPage": 17,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "①",
+          "explanation": [
+            "첨부 해설의 답은 ①(ㄱ)이다.",
+            "해설에 제시된 반지름은 mv₀sinθ/(Bq), 주기는 2πm/(Bq)이다.",
+            "첨부 해설은 각도가 커지면 반지름만 커지고 주기와 속력은 일정하다고 설명한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 9,
+            "crop": [
+              201,
+              1171,
+              1369,
+              865
+            ]
+          },
+          "answerKey": 1,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 1,
+            "answer": "①",
+            "acceptableAnswers": [
+              "1",
+              "①"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "r=mv₀sinθ/(Bq)",
+            "T=2πm/(Bq) (첨부 양전하 조건)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=17",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s16.png",
+            "label": "16번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 같은 m, |q|, v, B에서 입사각을 자기장 기준 30°에서 60°로 바꾼다. (나선 반지름 비 r₂/r₁, 주기 비 T₂/T₁)는?",
+            "choices": [
+              "(1, √3)",
+              "(2, 1)",
+              "(√3, √3)",
+              "(√3, 1)"
+            ],
+            "correctChoice": 4,
+            "answer": "(√3, 1)",
+            "acceptableAnswers": [
+              "4",
+              "(√3, 1)"
+            ],
+            "explanation": "첨부 16번 식에 따라 r∝sinθ이므로 비는 √3, T=2πm/(B|q|)는 각도와 무관하다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 17,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "유도기 회로",
+          "topic": "RL 회로의 초기 및 정상상태",
+          "source": {
+            "questionPdfPage": 10,
+            "solutionPdfPage": 18,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "②",
+          "explanation": [
+            "첨부 해설의 답은 ②(ㄴ)이다.",
+            "해설에서 스위치를 닫는 순간 전류는 V/(R₁+R₂), 인덕터 전압은 R₂V/(R₁+R₂)이다.",
+            "충분한 시간이 지난 뒤 인덕터 양단 전압은 0 V로 제시된다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 10,
+            "crop": [
+              201,
+              248,
+              1433,
+              819
+            ]
+          },
+          "answerKey": 2,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 2,
+            "answer": "②",
+            "acceptableAnswers": [
+              "2",
+              "②"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "I(0+)=V/(R₁+R₂)",
+            "V_L(0+)=R₂V/(R₁+R₂)",
+            "V_L(충분한 시간 후)=0"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=18",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s17.png",
+            "label": "17번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 18 V 전지와 6 Ω 저항이 직렬이고, 그 뒤에 3 Ω 저항과 이상적 유도기의 병렬 가지가 있다. 초기 유도기 전류는 0이다. 스위치를 닫은 직후 전체 전류는?",
+            "choices": [
+              "3 A",
+              "2 A",
+              "6 A",
+              "0 A"
+            ],
+            "correctChoice": 2,
+            "answer": "2 A",
+            "acceptableAnswers": [
+              "2",
+              "2 A"
+            ],
+            "explanation": "첨부 17번의 초기 I=V/(R₁+R₂)에 18,6,3을 넣으면 2 A이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 18,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "도플러 효과",
+          "topic": "움직이는 반사체의 도플러 효과",
+          "source": {
+            "questionPdfPage": 10,
+            "solutionPdfPage": 19,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "①",
+          "explanation": [
+            "첨부 해설의 답은 ①이다.",
+            "첨부 해설은 자동차에서 수신하는 진동수에 접근·이탈에 따른 도플러 효과를 적용한 뒤, 반사되어 A에 돌아오는 진동수를 다시 구한다.",
+            "해설의 최종 비는 f/f₀=(v−v₀)/(v+v₀)이다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 10,
+            "crop": [
+              201,
+              1193,
+              1370,
+              486
+            ]
+          },
+          "answerKey": 1,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 1,
+            "answer": "①",
+            "acceptableAnswers": [
+              "1",
+              "①"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "f/f₀=(v−v₀)/(v+v₀)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=19",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s18.png",
+            "label": "18번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 음속이 v이고 반사체가 정지한 송수신기에서 v/5로 멀어진다. 반사 후 되돌아온 음파의 진동수 비 f/f₀는?",
+            "choices": [
+              "2/3",
+              "3/2",
+              "4/5",
+              "5/6"
+            ],
+            "correctChoice": 1,
+            "answer": "2/3",
+            "acceptableAnswers": [
+              "1",
+              "2/3"
+            ],
+            "explanation": "첨부 18번의 비 (v−v₀)/(v+v₀)에 v₀=v/5를 넣으면 (4/5)/(6/5)=2/3이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 19,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "저항-축전기 혼합 회로",
+          "topic": "가변저항과 브리지 축전기",
+          "source": {
+            "questionPdfPage": 11,
+            "solutionPdfPage": 20,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "⑤",
+          "explanation": [
+            "첨부 해설의 답은 ⑤이다.",
+            "해설은 R_x=R일 때 축전기 전위차와 전하량이 0이라고 설명한다.",
+            "R_x=2R일 때 전위차 V/6, 전하량 CV/6, 에너지 CV²/72를 제시한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 11,
+            "crop": [
+              201,
+              248,
+              1369,
+              999
+            ]
+          },
+          "answerKey": 5,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 5,
+            "answer": "⑤",
+            "acceptableAnswers": [
+              "5",
+              "⑤"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "Q=CV/6",
+            "U=CV²/72 (R_x=2R)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=20",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s19.png",
+            "label": "19번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 첨부 브리지 회로에서 정상상태 R_x=2R, 전원 전압 12 V, 축전기 전기용량 3 μF일 때 축전기 전하량 크기는?",
+            "choices": [
+              "36 μC",
+              "12 μC",
+              "6 μC",
+              "2 μC"
+            ],
+            "correctChoice": 3,
+            "answer": "6 μC",
+            "acceptableAnswers": [
+              "3",
+              "6 μC"
+            ],
+            "explanation": "첨부 19번의 Q=CV/6을 사용하면 3 μF×12 V/6=6 μC이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 20,
+          "maxPoints": 4,
+          "type": "objective",
+          "inputMode": "objective-choice",
+          "unit": "균일 전기장",
+          "topic": "평행판 사이 전자의 운동",
+          "source": {
+            "questionPdfPage": 12,
+            "solutionPdfPage": 21,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "④",
+          "explanation": [
+            "첨부 해설의 답은 ④이다.",
+            "해설에서 통과 시간은 L/v, 가속도 크기는 eV/(md)이다.",
+            "해설에 제시된 수직 이동 거리는 eVL²/(2mdv²)로, 보기 ④의 식과 다르다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "첨부 공식 정답표와 학생 선택번호 일치",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 12,
+            "crop": [
+              202,
+              248,
+              1370,
+              960
+            ]
+          },
+          "answerKey": 4,
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "①",
+              "②",
+              "③",
+              "④",
+              "⑤"
+            ],
+            "correctChoice": 4,
+            "answer": "④",
+            "acceptableAnswers": [
+              "4",
+              "④"
+            ],
+            "displayMode": "choice-card"
+          },
+          "difficulty": "중",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "t=L/v",
+            "a=eV/(md)",
+            "s=eVL²/(2mdv²)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=21",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s20.png",
+            "label": "20번 원문 해설"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 평행판 안에서 일정한 수평속력 v로 이동하는 입자의 수직 가속도는 일정하다. 판 길이를 2배로 하고 다른 조건을 유지하면 수직 변위는?",
+            "choices": [
+              "1배",
+              "2배",
+              "1/2배",
+              "4배"
+            ],
+            "correctChoice": 4,
+            "answer": "4배",
+            "acceptableAnswers": [
+              "4",
+              "4배"
+            ],
+            "explanation": "첨부 20번의 s=a(L/v)²/2이므로 길이가 2배면 수직 변위는 4배이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 21,
+          "maxPoints": 4,
+          "type": "subjective",
+          "inputMode": "points",
+          "unit": "전위와 전기 에너지",
+          "topic": "정사면체 꼭짓점의 네 전하",
+          "source": {
+            "questionPdfPage": 13,
+            "solutionPdfPage": 22,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "6kq²/a",
+          "explanation": [
+            "첨부 해설의 답은 6kq²/a이다.",
+            "해설은 거리 a인 전하쌍이 6쌍이며, 각 쌍의 에너지를 kq²/a로 합한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "교사가 원문 풀이를 기준으로 채점한 실제 획득 점수 (원문에 세부 배점 없음)",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 13,
+            "crop": [
+              202,
+              247,
+              1369,
+              638
+            ]
+          },
+          "difficulty": "상",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "U=6kq²/a"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=22",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s21.png",
+            "label": "21번 원문 해설"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "3kq²/a",
+              "6kq²/a",
+              "4kq²/a",
+              "12kq²/a"
+            ],
+            "correctChoice": 2,
+            "answer": "6kq²/a",
+            "acceptableAnswers": [
+              "2",
+              "6kq²/a"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 풀이에 대응하도록 작성한 재도전 선택지입니다. 원문 문제는 위 이미지를 사용합니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 한 변이 2a인 정사면체의 네 꼭짓점에 같은 +q를 놓는다. 무한대에서 조립하는 정전기 에너지는?",
+            "choices": [
+              "6kq²/a",
+              "3kq²/a",
+              "12kq²/a",
+              "kq²/(2a)"
+            ],
+            "correctChoice": 2,
+            "answer": "3kq²/a",
+            "acceptableAnswers": [
+              "2",
+              "3kq²/a"
+            ],
+            "explanation": "첨부 21번처럼 서로 다른 전하쌍은 6쌍이다. 각 쌍은 kq²/(2a)이므로 합은 3kq²/a이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 22,
+          "maxPoints": 4,
+          "type": "subjective",
+          "inputMode": "points",
+          "unit": "자기장 속 원운동",
+          "topic": "나선 운동 반지름과 피치",
+          "source": {
+            "questionPdfPage": 14,
+            "solutionPdfPage": 23,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "(1) r=0.1 m  (2) p=√3π/5 m",
+          "explanation": [
+            "첨부 해설의 답은 (1) 0.1 m, (2) √3π/5 m이다.",
+            "해설은 반지름 r=mv sinθ/(Bq), 주기 T=2πm/(Bq)를 사용한다.",
+            "피치는 p=v cosθ·T로 제시한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "교사가 원문 풀이를 기준으로 채점한 실제 획득 점수 (원문에 세부 배점 없음)",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 14,
+            "crop": [
+              202,
+              251,
+              1368,
+              988
+            ]
+          },
+          "difficulty": "상",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "r=mv sinθ/(Bq)",
+            "T=2πm/(Bq)",
+            "p=v cosθ·T"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=23",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s22.png",
+            "label": "22번 원문 해설"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "r=0.1 m, p=√3π/5 m",
+              "r=0.2 m, p=√3π/5 m",
+              "r=0.1 m, p=π/5 m",
+              "r=√3/10 m, p=π/5 m"
+            ],
+            "correctChoice": 1,
+            "answer": "r=0.1 m, p=√3π/5 m",
+            "acceptableAnswers": [
+              "1",
+              "r=0.1 m, p=√3π/5 m"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 풀이에 대응하도록 작성한 재도전 선택지입니다. 원문 문제는 위 이미지를 사용합니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 나선 운동에서 m=1×10⁻⁶ kg, |q|=2×10⁻⁶ C, B=5 T, v=2 m/s이고 자기장과의 각도를 60°로 한다. (반지름, 피치)는?",
+            "choices": [
+              "(√3/10 m, π/5 m)",
+              "(1/10 m, √3π/5 m)",
+              "(√3/5 m, 2π/5 m)",
+              "(1/5 m, π/10 m)"
+            ],
+            "correctChoice": 1,
+            "answer": "(√3/10 m, π/5 m)",
+            "acceptableAnswers": [
+              "1",
+              "(√3/10 m, π/5 m)"
+            ],
+            "explanation": "첨부 22번 관계로 r=mv sin60°/(B|q|)=√3/10 m, T=π/5 s, 피치는 v cos60° T=π/5 m이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 23,
+          "maxPoints": 4,
+          "type": "subjective",
+          "inputMode": "points",
+          "unit": "빛의 굴절과 전반사",
+          "topic": "직각 프리즘의 전반사 조건",
+          "source": {
+            "questionPdfPage": 15,
+            "solutionPdfPage": 24,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "n≥√2 (최소값 √2)",
+          "explanation": [
+            "첨부 해설의 답은 n≥√2이다.",
+            "첨부 해설은 첫 면의 굴절과 두 번째 면의 전반사를 결합하여 n²≥1+sin²θ_i를 얻는다.",
+            "입사각의 주어진 전체 범위에서 만족해야 하는 조건으로 n²≥2를 제시한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "교사가 원문 풀이를 기준으로 채점한 실제 획득 점수 (원문에 세부 배점 없음)",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 15,
+            "crop": [
+              202,
+              248,
+              1369,
+              673
+            ]
+          },
+          "difficulty": "상",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "sinθ₁=sinθ_i/n",
+            "n²≥1+sin²θ_i"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=24",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s23.png",
+            "label": "23번 원문 해설"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "n_min=1",
+              "n_min=√3",
+              "n_min=√2",
+              "n_min=2"
+            ],
+            "correctChoice": 3,
+            "answer": "n_min=√2",
+            "acceptableAnswers": [
+              "3",
+              "n_min=√2"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 풀이에 대응하도록 작성한 재도전 선택지입니다. 원문 문제는 위 이미지를 사용합니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 직각 프리즘의 조건 n²≥1+sin²θ_i를 적용한다. 입사각을 0<θ_i≤30°로 제한할 때 모든 각도에서 이 부등식을 만족하는 최소 n은?",
+            "choices": [
+              "1",
+              "√2",
+              "√5/2",
+              "2"
+            ],
+            "correctChoice": 3,
+            "answer": "√5/2",
+            "acceptableAnswers": [
+              "3",
+              "√5/2"
+            ],
+            "explanation": "첨부 23번의 부등식 오른쪽 최댓값은 1+sin²30°=5/4이므로 최소 n은 √5/2이다. 전반사 경계값을 묻는 새 부등식 문제이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 24,
+          "maxPoints": 4,
+          "type": "subjective",
+          "inputMode": "points",
+          "unit": "빛의 간섭",
+          "topic": "쐐기형 공기층의 간섭",
+          "source": {
+            "questionPdfPage": 16,
+            "solutionPdfPage": 25,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "(1) d=11λ/4  (2) 접점 쪽에서 넓고, 머리카락 쪽으로 갈수록 간격이 좁아진다.",
+          "explanation": [
+            "첨부 해설의 답은 (1) d=11λ/4이다.",
+            "첨부 해설은 오른쪽 끝이 6번째 보강간섭 무늬라고 판정하여 2d=(5+1/2)λ를 사용한다.",
+            "(2) 해설의 설명은 접점 쪽 간격이 넓고, 머리카락 쪽으로 갈수록 좁아진다는 것이다.",
+            "해설 중 위아래 재료 이름은 문제 그림과 순서가 달라 별도 메모로 남긴다.",
+            "원문 대조 메모: 문제에서는 위가 플라스틱, 아래가 유리이나 해설의 반사 설명에는 재료 이름 순서가 뒤바뀐 표현이 있다. 첨부 정답·그림은 그대로 유지한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "원문 대조 안내: 문제·해설 표현에 확인할 부분이 있습니다. 이번 채점은 첨부 공식 정답표를 사용하며, 상세 메모는 답 제출 후 해설에서 확인할 수 있습니다.",
+          "rubric": [
+            {
+              "criterion": "교사가 원문 풀이를 기준으로 채점한 실제 획득 점수 (원문에 세부 배점 없음)",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 16,
+            "crop": [
+              202,
+              248,
+              1367,
+              1780
+            ]
+          },
+          "difficulty": "상",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "sourceReviewNote": "문제에서는 위가 플라스틱, 아래가 유리이나 해설의 반사 설명에는 재료 이름 순서가 뒤바뀐 표현이 있다. 첨부 정답·그림은 그대로 유지한다.",
+          "requiresTeacherReview": true,
+          "formulas": [
+            "2d=mλ (상쇄)",
+            "2d=(m+1/2)λ (보강)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=25",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s24.png",
+            "label": "24번 원문 해설"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "d=11λ/4, 접점 쪽에서 좁고 머리카락 쪽으로 넓어짐",
+              "d=5λ/2, 간격 일정",
+              "d=3λ, 접점 쪽에서 넓고 머리카락 쪽으로 좁아짐",
+              "d=11λ/4, 접점 쪽에서 넓고 머리카락 쪽으로 좁아짐"
+            ],
+            "correctChoice": 4,
+            "answer": "d=11λ/4, 접점 쪽에서 넓고 머리카락 쪽으로 좁아짐",
+            "acceptableAnswers": [
+              "4",
+              "d=11λ/4, 접점 쪽에서 넓고 머리카락 쪽으로 좁아짐"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 풀이에 대응하도록 작성한 재도전 선택지입니다. 원문 문제는 위 이미지를 사용합니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 첨부 해설의 공기층 반사 간섭 조건 2d=(m+1/2)λ를 적용한다. 첫 밝은 무늬를 m=0으로 세어 4번째 밝은 무늬에 해당하는 두께는?",
+            "choices": [
+              "λ/4",
+              "5λ/4",
+              "9λ/4",
+              "7λ/4"
+            ],
+            "correctChoice": 4,
+            "answer": "7λ/4",
+            "acceptableAnswers": [
+              "4",
+              "7λ/4"
+            ],
+            "explanation": "4번째 밝은 무늬는 m=3이므로 2d=(3+1/2)λ, d=7λ/4이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        },
+        {
+          "no": 25,
+          "maxPoints": 4,
+          "type": "subjective",
+          "inputMode": "points",
+          "unit": "전기장·자기장에 수직 입사",
+          "topic": "자기장과 전기장을 차례로 지나는 두 입자",
+          "source": {
+            "questionPdfPage": 17,
+            "solutionPdfPage": 26,
+            "answerSource": "제공 해설지 1쪽 정답표 및 문항별 해설",
+            "questionTextRetyped": false
+          },
+          "answer": "R_A:R_B=2:√2",
+          "explanation": [
+            "첨부 해설의 답은 R_A:R_B=2:√2이다.",
+            "해설은 같은 수평 이동 거리에서 t_A:t_B=2:1을 구한다.",
+            "전기장 영역에서 R_A:R_B=4q_A:q_B, 자기장 영역에서 R_A:R_B=(v/q_A):(2v/q_B)를 결합한다."
+          ],
+          "explanationProvenance": "source-derived-paraphrase",
+          "reviewStatus": "공식해답기준",
+          "correctionNote": "",
+          "rubric": [
+            {
+              "criterion": "교사가 원문 풀이를 기준으로 채점한 실제 획득 점수 (원문에 세부 배점 없음)",
+              "points": 4
+            }
+          ],
+          "image": {
+            "page": 17,
+            "crop": [
+              202,
+              248,
+              1368,
+              585
+            ]
+          },
+          "difficulty": "상",
+          "difficultyProvenance": "사이트 학습 분류용 추정 태그; 원문 난이도 표기가 아님",
+          "formulas": [
+            "t_A:t_B=2:1",
+            "R_A:R_B=4q_A:q_B",
+            "R_A:R_B=(v/q_A):(2v/q_B)"
+          ],
+          "commonMistakes": [
+            "원문에서 제시한 조건과 기호를 다르게 읽지 않도록 확인합니다.",
+            "첨부 해설의 관계식에서 단위와 적용 조건을 함께 확인합니다."
+          ],
+          "answerHeading": "첨부 해답의 정답·모범답안",
+          "sourceSolution": {
+            "pdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf#page=26",
+            "image": "assets/pages/assessments/physics2/electromagnetism/solutions/s25.png",
+            "label": "25번 원문 해설"
+          },
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "R_A:R_B=1:2",
+              "R_A:R_B=2:√2",
+              "R_A:R_B=2:1",
+              "R_A:R_B=1:√2"
+            ],
+            "correctChoice": 2,
+            "answer": "R_A:R_B=2:√2",
+            "acceptableAnswers": [
+              "2",
+              "R_A:R_B=2:√2"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 풀이에 대응하도록 작성한 재도전 선택지입니다. 원문 문제는 위 이미지를 사용합니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "prompt": "동형 (새 작성) · 같은 질량의 입자 A,B가 자기장과 전기장을 차례로 지나 같은 수평거리의 점에 도달한다. 첨부 25번과 같은 배치에서 입사 속력이 각각 v,3v라면 R_A:R_B는?",
+            "choices": [
+              "3:1",
+              "√3:1",
+              "1:√3",
+              "9:1"
+            ],
+            "correctChoice": 2,
+            "answer": "√3:1",
+            "acceptableAnswers": [
+              "2",
+              "√3:1"
+            ],
+            "explanation": "같은 수평거리에서 t_A:t_B=3:1이다. 전기장에서는 R_A/R_B=9q_A/q_B, 자기장에서는 R_A/R_B=q_B/(3q_A)이므로 두 식의 곱으로 (R_A/R_B)²=3이다.",
+            "displayMode": "choice-card",
+            "provenance": "첨부 문제의 개념·관계식을 활용하여 별도로 작성한 연습문항; 원본 아님"
+          },
+          "retryMode": "multiple-choice"
+        }
+      ],
+      "sourceTitle": "물리 II 진단고사(전자기/파동)",
+      "sourceNote": "첨부 문제지·해설지 원본 보존. 객관식 20문항+서술형 5문항, 각4점·100점. 제공 정답표를 그대로 채점에 사용하며 3·5·6·13·15·24번의 원문 표현 대조 메모를 별도로 남겼습니다. 정답을 임의로 교정하거나 복수 정답을 추가하지 않았습니다.",
+      "examDate": "",
+      "featureVersion": "3.7.12-physics2-emw-total",
+      "pdf": "assets/documents/assessments/physics2/electromagnetism-original.pdf",
+      "solutionPdf": "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf",
+      "pages": [
+        "assets/pages/assessments/physics2/electromagnetism/page-01.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-02.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-03.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-04.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-05.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-06.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-07.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-08.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-09.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-10.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-11.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-12.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-13.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-14.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-15.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-16.png",
+        "assets/pages/assessments/physics2/electromagnetism/page-17.png"
+      ],
+      "reviewSummary": "원본 문제지와 해설지의 정답표·배점·문항 연결을 대조했습니다. 채점 기준은 첨부 공식 정답표이며, 표현 불일치가 있는 문항은 교사 확인 메모를 남겼습니다. 원본의 정답과 그림은 수정하지 않았습니다.",
+      "sourceHashes": {
+        "questions": "6c9935820ca4273bcbc58f761fd1699e7946a1664c3d184cdb53e8bf114a3ee5",
+        "solutions": "e7597337eb1f395b9e4360163e73fbe36f8f39974cb2b0b62895efb1c2c808ee"
+      },
+      "coreNote": {
+        "summary": "첨부 전자기/파동 진단고사의 전기장·전위·축전기·회로·자기장·간섭·굴절·도플러 효과 점검",
+        "concepts": [
+          "전기장과 전위",
+          "축전기와 직류회로",
+          "자기장 속 입자 운동",
+          "전자기 유도",
+          "빛의 간섭·굴절·전반사",
+          "도플러 효과"
+        ],
+        "formulas": [
+          "Q=CV",
+          "V_terminal=E−Ir",
+          "r=mv/(B|q|)",
+          "Δx=Lλ/(nd)",
+          "f/f₀=(v−v₀)/(v+v₀)"
+        ],
+        "mistakes": [
+          "정답표의 번호와 학생 선택번호를 혼동",
+          "객관식 번호와 서술형 실제 점수를 혼동",
+          "원문 표현 대조 메모 미확인"
+        ],
+        "checklist": [
+          "객관식은 선택번호를 입력했는가?",
+          "서술형은 교사가 채점한 0~4점을 입력했는가?",
+          "원본 해설과 확인 메모를 함께 보았는가?"
+        ]
       }
     },
     {
@@ -24753,5 +27120,5 @@
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.7.11-physics2-advanced-r05"
+  "featureVersion": "3.7.12-physics2-emw-total"
 }

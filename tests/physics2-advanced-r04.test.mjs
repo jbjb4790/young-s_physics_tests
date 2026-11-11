@@ -22,8 +22,8 @@ function pngSize(rel){const b=fs.readFileSync(path.join(root,'site',rel));assert
  assert.equal(exam.status,'ready');assert.equal(exam.assessmentType,'weekly');assert.equal(exam.questionCount,7);assert.equal(exam.maxScore,100);
  assert.deepEqual(exam.questions.map(q=>q.no),[1,2,3,4,5,6,7]);assert.deepEqual(exam.questions.map(q=>q.maxPoints),points);
  assert.equal(exam.questions.reduce((a,q)=>a+q.maxPoints,0),100);assert.equal(catalog.exams.length,46);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').length,28);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,276);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').length,29);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,301);
  assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,46);
 });
 
@@ -132,13 +132,13 @@ test('내장 카탈로그 JS·JSON과 독립 문제은행 일치, 학부모 UI �
  assert.equal(JSON.stringify(independent),JSON.stringify(exam));
  const fixture=JSON.parse(read('tests/fixtures/r16-legacy-fingerprints.json'));
  for(const [f,sha] of Object.entries(fixture.protectedFileHashes)){
-  if(['site/assets/portal.js','site/assets/styles.css'].includes(f))continue; // v3.7.8 학부모 UI 수정
+  if(['site/assets/portal.js','site/assets/styles.css','site/assets/report.js'].includes(f))continue; // v3.7.8 학부모 UI 수정
   const actual=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex');assert.equal(actual,sha,f);
  }
 });
 
 test('v3.7.7 캐시·package 정합성 및 Apps Script·Worker 미변경',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.11');
- assert.equal(catalog.featureVersion,'3.7.11-physics2-advanced-r05');
- for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.11/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.12');
+ assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');
+ for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.12/);
 });

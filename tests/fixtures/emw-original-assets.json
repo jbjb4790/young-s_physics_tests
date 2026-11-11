@@ -1,0 +1,814 @@
+{
+  "originalPDFs": {
+    "assets/documents/assessments/physics2/electromagnetism-original.pdf": "6c9935820ca4273bcbc58f761fd1699e7946a1664c3d184cdb53e8bf114a3ee5",
+    "assets/documents/assessments/physics2/electromagnetism-original-solution.pdf": "e7597337eb1f395b9e4360163e73fbe36f8f39974cb2b0b62895efb1c2c808ee"
+  },
+  "questionPages": [
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-01.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "e97cfe5c9172ec3173ac61a3afe9913d71afd06f3aee8d5580903cd413e5d48e"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-02.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "5453362674fff0447041db9a25aa3e1437868c460835bf329bcb48648b062a87"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-03.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "8aacbbf9e6138c38268031ea315dc3816f39970b609cfa198e15b3a2ee8af78a"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-04.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "f4927a09aa5b664b287d4c971bf024022a63c11b1d76ceb155d48c99f83a12c8"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-05.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "3e2870c1e30ef1722452f1834cb56437821844149f21cac980edd3af078b0f86"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-06.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "d827b5969f177d65ce0fdbec0eeb4a636a72fcb17e6ecb9e90b2d3d424452fdb"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-07.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "69266e2cf20f7859f2cd9b427c5654aaef44d4d3eefd77bea0e3c2d5778dafb5"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-08.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "fe9ae27e3e1353f2299efb92ad2195dd99ba7574150f3b13ae8818c72b13074a"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-09.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "c5da20c105d3bff38ce20f63acb936aa1cf04a5a6d9740c8faf36ffdb2ae4368"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-10.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "8967c72e1ee01f05d98416e858351cf6a1a370f2b292c73b33578d95a35e991b"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-11.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "c6efa81cf412c4156415b3f3c3c1b3edf7c6fff99552e8fbb7b62b7e487bbdf3"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-12.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "7a22ba8859b0f4977deb613b9702586b8fe5afbb1e8aed31d56768201193050c"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-13.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "e3819f082f5b90f158fb519815e940b0e04ccaefeb35cf456f6509c45cc09d23"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-14.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "d502181b3dd3c983b159f5a950ecb1124a529c93cc7a72c2ef31f50159e4b8f1"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-15.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "737bd5a68cfd9f08526d96bd066a2e5f098e0f3d682c2b618d1a0629f6a515f4"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-16.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "ab090777a0666c149646130ac3cacc7a254b9523a0abcd4f86706fd109bf8590"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/page-17.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "9f6e8077f6145d2581adb720c4c4d78f905d535020c621d820c2f3007704c64b"
+    }
+  ],
+  "solutionCrops": [
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s01.png",
+      "width": 1367,
+      "height": 1136,
+      "sha256": "e15b7dae7e59cf19460276651f062f205d25ad49d2360cff3575ffefe4838380"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s02.png",
+      "width": 1366,
+      "height": 1027,
+      "sha256": "6af2cef764124a723d443bff0ac23233ce35568337e1e480686fe3ac45206289"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s03.png",
+      "width": 1369,
+      "height": 1134,
+      "sha256": "326e24a5fdf59a1ed964c255f08941d58b9b6e3365b4bcbd629c31908c686c96"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s04.png",
+      "width": 1368,
+      "height": 1398,
+      "sha256": "5bf86b8cb7c9f0a84fd9269295ef8a72e22d4c80a844745cdec3756340ebaa81"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s05.png",
+      "width": 1367,
+      "height": 1495,
+      "sha256": "68199121b4e3bc92b9d109550bd25ff9c83487301409427c96ff7b5abfc60c2b"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s06.png",
+      "width": 1368,
+      "height": 1246,
+      "sha256": "282b80ddff5f94265c66fb8a857342934fcbc579f46df09811bdf27c671993be"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s07.png",
+      "width": 1370,
+      "height": 925,
+      "sha256": "78415d34fc393977b80603fa66d8ce62482d5bc4dd2e9bd414a4fe2d4d096ec2"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s08.png",
+      "width": 1368,
+      "height": 1119,
+      "sha256": "3b3c51a4dcbdd49b09f69bbb621d4616807c1c83dcbee260b9ece384d6e668ea"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s09.png",
+      "width": 1369,
+      "height": 1424,
+      "sha256": "7f9e72d4a9620ffa9871743cc94877bd38a4c7cbe36c7cf50ad960c540510035"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s10.png",
+      "width": 1358,
+      "height": 1037,
+      "sha256": "eebf5bf5ccd35cd69f6e107ca7fa451ded6429c4b62a9cc7c64fe59f76826949"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s11.png",
+      "width": 1370,
+      "height": 1302,
+      "sha256": "95f0737961bf12bd23eca969f2823a4962059cd13ba85c8d9806b7b8cc346231"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s12.png",
+      "width": 1353,
+      "height": 1136,
+      "sha256": "8ddf388610a85ea58ca0181c954da276a23280cce3bd3a8e6177edba4e22c88e"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s13.png",
+      "width": 1370,
+      "height": 1242,
+      "sha256": "4b93108365b4493c26a6b98e58f2497ff5e0c2507095d3b7bc45ea4bc6c0eeb3"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s14.png",
+      "width": 1370,
+      "height": 1797,
+      "sha256": "f323e1bc9aef99448ecd923eac09dc0693c05605b175b63e761c0d22763cfda4"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s15.png",
+      "width": 1369,
+      "height": 934,
+      "sha256": "9b0b5ea92f34e1f1750b5329b0190ab0caaa39bc23b7b2440c8a9f40aaa765e0"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s16.png",
+      "width": 1369,
+      "height": 1314,
+      "sha256": "e063055718ece9a204f6f96b4f09d43f177b26314b9a3f0b21c0f8ba763a2777"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s17.png",
+      "width": 1433,
+      "height": 1316,
+      "sha256": "a52e2ef470c00a5a868afaf9a037a2603e26c4fed4224d9ed426fe6baa9f6d14"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s18.png",
+      "width": 1368,
+      "height": 874,
+      "sha256": "9159bc72e81965af1147df3b8fb454036e2bd3a8247422fff7110a7fb25b868f"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s19.png",
+      "width": 1369,
+      "height": 1467,
+      "sha256": "3747a98820ec8e9e467dc950be82ec68254b26969e25dea508e0565f792eece9"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s20.png",
+      "width": 1373,
+      "height": 1916,
+      "sha256": "a2d73926313a6d76bc5feec2120122009ab14364fe802918b8f76a34317cf175"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s21.png",
+      "width": 1366,
+      "height": 1197,
+      "sha256": "33ba3b568351c20a4a2016d0187b85da55e43d674ff49a9fc8ca07919f844aa4"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s22.png",
+      "width": 1368,
+      "height": 1463,
+      "sha256": "3292108b1d8c88fcfc61f010150c69d56be096c0f0cabb4f1bbc2882fde7e46f"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s23.png",
+      "width": 1369,
+      "height": 1659,
+      "sha256": "484e68ab09f753bb228bec70ccb92a0d6521ce5877e69e8c8ca3a6898451685e"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s24.png",
+      "width": 1367,
+      "height": 1960,
+      "sha256": "7cd69c7d95249165b3a7c8274ef648bb2d1d55d9772d61af0cd5963d17141c73"
+    },
+    {
+      "path": "assets/pages/assessments/physics2/electromagnetism/solutions/s25.png",
+      "width": 1368,
+      "height": 1414,
+      "sha256": "c427394bfc4a98412e9d8ca9d6305e7fdfcc5a9a2a806794864020b8b3217226"
+    }
+  ],
+  "questionCrops": [
+    {
+      "question": 1,
+      "source_page": 2,
+      "path": "assets/question_crops/q01.png",
+      "source_page_image": "assets/question_pages/page_02.png",
+      "crop_px": [
+        214,
+        248,
+        1571,
+        1095
+      ],
+      "crop_pt": [
+        77.04,
+        89.28,
+        565.56,
+        394.2
+      ],
+      "width": 1357,
+      "height": 847,
+      "sha256": "d9dfde09cec303648897549cb554871538a2a0ef88cbd6e4d5f908f4a0c2d248",
+      "pixel_match": true
+    },
+    {
+      "question": 2,
+      "source_page": 2,
+      "path": "assets/question_crops/q02.png",
+      "source_page_image": "assets/question_pages/page_02.png",
+      "crop_px": [
+        202,
+        1175,
+        1568,
+        1756
+      ],
+      "crop_pt": [
+        72.72,
+        423.0,
+        564.48,
+        632.16
+      ],
+      "width": 1366,
+      "height": 581,
+      "sha256": "b8a310ef965dac920403db683c79e617b199e1407b45be9e2a45d643c3425cc1",
+      "pixel_match": true
+    },
+    {
+      "question": 3,
+      "source_page": 3,
+      "path": "assets/question_crops/q03.png",
+      "source_page_image": "assets/question_pages/page_03.png",
+      "crop_px": [
+        201,
+        248,
+        1570,
+        930
+      ],
+      "crop_pt": [
+        72.36,
+        89.28,
+        565.2,
+        334.8
+      ],
+      "width": 1369,
+      "height": 682,
+      "sha256": "1d66a6f0204fac647917fe067ff7f5e6e9103fa68a60c0abd64278805fbec07d",
+      "pixel_match": true
+    },
+    {
+      "question": 4,
+      "source_page": 3,
+      "path": "assets/question_crops/q04.png",
+      "source_page_image": "assets/question_pages/page_03.png",
+      "crop_px": [
+        201,
+        1012,
+        1569,
+        2184
+      ],
+      "crop_pt": [
+        72.36,
+        364.32,
+        564.84,
+        786.24
+      ],
+      "width": 1368,
+      "height": 1172,
+      "sha256": "9731555234cee9988ba5e1a5ed80cf179d619d372971c6ee62ef174f22e93daf",
+      "pixel_match": true
+    },
+    {
+      "question": 5,
+      "source_page": 4,
+      "path": "assets/question_crops/q05.png",
+      "source_page_image": "assets/question_pages/page_04.png",
+      "crop_px": [
+        201,
+        248,
+        1568,
+        1014
+      ],
+      "crop_pt": [
+        72.36,
+        89.28,
+        564.48,
+        365.04
+      ],
+      "width": 1367,
+      "height": 766,
+      "sha256": "f5e5f6dc022461ceace1f4883da2af18b6643a215d74fe6ddcc632985187b8f1",
+      "pixel_match": true
+    },
+    {
+      "question": 6,
+      "source_page": 4,
+      "path": "assets/question_crops/q06.png",
+      "source_page_image": "assets/question_pages/page_04.png",
+      "crop_px": [
+        201,
+        1097,
+        1569,
+        2088
+      ],
+      "crop_pt": [
+        72.36,
+        394.92,
+        564.84,
+        751.68
+      ],
+      "width": 1368,
+      "height": 991,
+      "sha256": "c1626f67b5e1b9811668a7c1f484a655ba25f7cd371728cc316d425f0e16624a",
+      "pixel_match": true
+    },
+    {
+      "question": 7,
+      "source_page": 5,
+      "path": "assets/question_crops/q07.png",
+      "source_page_image": "assets/question_pages/page_05.png",
+      "crop_px": [
+        201,
+        248,
+        1571,
+        875
+      ],
+      "crop_pt": [
+        72.36,
+        89.28,
+        565.56,
+        315.0
+      ],
+      "width": 1370,
+      "height": 627,
+      "sha256": "c0b720d2fbf1a614d32d052d49c2f01663a69fb21d474260ef9f50cd4773b351",
+      "pixel_match": true
+    },
+    {
+      "question": 8,
+      "source_page": 5,
+      "path": "assets/question_crops/q08.png",
+      "source_page_image": "assets/question_pages/page_05.png",
+      "crop_px": [
+        201,
+        1049,
+        1569,
+        1876
+      ],
+      "crop_pt": [
+        72.36,
+        377.64,
+        564.84,
+        675.36
+      ],
+      "width": 1368,
+      "height": 827,
+      "sha256": "d42cf974e098bfc2bde23468c0ada25ecc82081a183291efc821443279517a5c",
+      "pixel_match": true
+    },
+    {
+      "question": 9,
+      "source_page": 6,
+      "path": "assets/question_crops/q09.png",
+      "source_page_image": "assets/question_pages/page_06.png",
+      "crop_px": [
+        201,
+        294,
+        1570,
+        1312
+      ],
+      "crop_pt": [
+        72.36,
+        105.84,
+        565.2,
+        472.32
+      ],
+      "width": 1369,
+      "height": 1018,
+      "sha256": "75d64aa1522e144b1a04fb019be1fa1fa427f31dbbe308d4903decb5e07e7f27",
+      "pixel_match": true
+    },
+    {
+      "question": 10,
+      "source_page": 6,
+      "path": "assets/question_crops/q10.png",
+      "source_page_image": "assets/question_pages/page_06.png",
+      "crop_px": [
+        201,
+        1397,
+        1557,
+        1961
+      ],
+      "crop_pt": [
+        72.36,
+        502.92,
+        560.52,
+        705.96
+      ],
+      "width": 1356,
+      "height": 564,
+      "sha256": "b505aa2ebb46f5942fa51dc0cca3f3ace92e1f8c1055190e1666a9701e26efc4",
+      "pixel_match": true
+    },
+    {
+      "question": 11,
+      "source_page": 7,
+      "path": "assets/question_crops/q11.png",
+      "source_page_image": "assets/question_pages/page_07.png",
+      "crop_px": [
+        201,
+        248,
+        1571,
+        1222
+      ],
+      "crop_pt": [
+        72.36,
+        89.28,
+        565.56,
+        439.92
+      ],
+      "width": 1370,
+      "height": 974,
+      "sha256": "1f6aea2ba460682da0c9c0586ec387abec1c9300261b62fce58e62a9f9f6a7e0",
+      "pixel_match": true
+    },
+    {
+      "question": 12,
+      "source_page": 7,
+      "path": "assets/question_crops/q12.png",
+      "source_page_image": "assets/question_pages/page_07.png",
+      "crop_px": [
+        215,
+        1296,
+        1557,
+        2144
+      ],
+      "crop_pt": [
+        77.4,
+        466.56,
+        560.52,
+        771.84
+      ],
+      "width": 1342,
+      "height": 848,
+      "sha256": "f83ea221ce69756090fc8d376806fb835257a93841051842605b49bc192a67d5",
+      "pixel_match": true
+    },
+    {
+      "question": 13,
+      "source_page": 8,
+      "path": "assets/question_crops/q13.png",
+      "source_page_image": "assets/question_pages/page_08.png",
+      "crop_px": [
+        201,
+        250,
+        1571,
+        1216
+      ],
+      "crop_pt": [
+        72.36,
+        90.0,
+        565.56,
+        437.76
+      ],
+      "width": 1370,
+      "height": 966,
+      "sha256": "bb9e5173b935f3511b8182b58d9f41e6ec20911e1d034563fc8c70a368e056d0",
+      "pixel_match": true
+    },
+    {
+      "question": 14,
+      "source_page": 8,
+      "path": "assets/question_crops/q14.png",
+      "source_page_image": "assets/question_pages/page_08.png",
+      "crop_px": [
+        201,
+        1342,
+        1568,
+        2135
+      ],
+      "crop_pt": [
+        72.36,
+        483.12,
+        564.48,
+        768.6
+      ],
+      "width": 1367,
+      "height": 793,
+      "sha256": "7bd1ad9098ae3053a36e82b68ecf866e7e5be5507d92e0ed4185a0fce9f149b5",
+      "pixel_match": true
+    },
+    {
+      "question": 15,
+      "source_page": 9,
+      "path": "assets/question_crops/q15.png",
+      "source_page_image": "assets/question_pages/page_09.png",
+      "crop_px": [
+        201,
+        248,
+        1570,
+        1043
+      ],
+      "crop_pt": [
+        72.36,
+        89.28,
+        565.2,
+        375.48
+      ],
+      "width": 1369,
+      "height": 795,
+      "sha256": "0d817e4711ca25cbf0dee930dfcdc6c8b5c55f5f19b1be10904211fba38482de",
+      "pixel_match": true
+    },
+    {
+      "question": 16,
+      "source_page": 9,
+      "path": "assets/question_crops/q16.png",
+      "source_page_image": "assets/question_pages/page_09.png",
+      "crop_px": [
+        201,
+        1171,
+        1570,
+        2036
+      ],
+      "crop_pt": [
+        72.36,
+        421.56,
+        565.2,
+        732.96
+      ],
+      "width": 1369,
+      "height": 865,
+      "sha256": "33cb7f1aba30edec59113561ddd79eb48e3093211567ad778714d815871d82ee",
+      "pixel_match": true
+    },
+    {
+      "question": 17,
+      "source_page": 10,
+      "path": "assets/question_crops/q17.png",
+      "source_page_image": "assets/question_pages/page_10.png",
+      "crop_px": [
+        201,
+        248,
+        1634,
+        1067
+      ],
+      "crop_pt": [
+        72.36,
+        89.28,
+        588.24,
+        384.12
+      ],
+      "width": 1433,
+      "height": 819,
+      "sha256": "52cb08ab1468c12e77462e39ba84e92e5b7b31695c71c9d380606e4670a4fa94",
+      "pixel_match": true
+    },
+    {
+      "question": 18,
+      "source_page": 10,
+      "path": "assets/question_crops/q18.png",
+      "source_page_image": "assets/question_pages/page_10.png",
+      "crop_px": [
+        201,
+        1193,
+        1571,
+        1679
+      ],
+      "crop_pt": [
+        72.36,
+        429.48,
+        565.56,
+        604.44
+      ],
+      "width": 1370,
+      "height": 486,
+      "sha256": "9fd8232bb926221c86a2bea972d385f3d91a8169bd9d40d6225a57b84c407f4c",
+      "pixel_match": true
+    },
+    {
+      "question": 19,
+      "source_page": 11,
+      "path": "assets/question_crops/q19.png",
+      "source_page_image": "assets/question_pages/page_11.png",
+      "crop_px": [
+        201,
+        248,
+        1570,
+        1247
+      ],
+      "crop_pt": [
+        72.36,
+        89.28,
+        565.2,
+        448.92
+      ],
+      "width": 1369,
+      "height": 999,
+      "sha256": "265160e5b5d31768adef3f11db8a8037f112fb3128a95da6c3425a8e64bfb4a9",
+      "pixel_match": true
+    },
+    {
+      "question": 20,
+      "source_page": 12,
+      "path": "assets/question_crops/q20.png",
+      "source_page_image": "assets/question_pages/page_12.png",
+      "crop_px": [
+        202,
+        248,
+        1572,
+        1208
+      ],
+      "crop_pt": [
+        72.72,
+        89.28,
+        565.92,
+        434.88
+      ],
+      "width": 1370,
+      "height": 960,
+      "sha256": "edd0cdab86a9c24b3b373a445a9bfadfc475433dc966d69de66114dd10f5e7b1",
+      "pixel_match": true
+    },
+    {
+      "question": 21,
+      "source_page": 13,
+      "path": "assets/question_crops/q21.png",
+      "source_page_image": "assets/question_pages/page_13.png",
+      "crop_px": [
+        202,
+        247,
+        1571,
+        885
+      ],
+      "crop_pt": [
+        72.72,
+        88.92,
+        565.56,
+        318.6
+      ],
+      "width": 1369,
+      "height": 638,
+      "sha256": "807303209d60974293c879caf63d8cbfdf49f99bef7ef1f17757dfaef04431bd",
+      "pixel_match": true
+    },
+    {
+      "question": 22,
+      "source_page": 14,
+      "path": "assets/question_crops/q22.png",
+      "source_page_image": "assets/question_pages/page_14.png",
+      "crop_px": [
+        202,
+        251,
+        1570,
+        1239
+      ],
+      "crop_pt": [
+        72.72,
+        90.36,
+        565.2,
+        446.04
+      ],
+      "width": 1368,
+      "height": 988,
+      "sha256": "709911082af38d9bbd020cef3a05972022b729a5fa7962c3e9bfc5ab0d5cf96e",
+      "pixel_match": true
+    },
+    {
+      "question": 23,
+      "source_page": 15,
+      "path": "assets/question_crops/q23.png",
+      "source_page_image": "assets/question_pages/page_15.png",
+      "crop_px": [
+        202,
+        248,
+        1571,
+        921
+      ],
+      "crop_pt": [
+        72.72,
+        89.28,
+        565.56,
+        331.56
+      ],
+      "width": 1369,
+      "height": 673,
+      "sha256": "06ef6bfc422fe328b08ffdb3014343fe8d400170c6b692fd09baa27481c5ded2",
+      "pixel_match": true
+    },
+    {
+      "question": 24,
+      "source_page": 16,
+      "path": "assets/question_crops/q24.png",
+      "source_page_image": "assets/question_pages/page_16.png",
+      "crop_px": [
+        202,
+        248,
+        1569,
+        2028
+      ],
+      "crop_pt": [
+        72.72,
+        89.28,
+        564.84,
+        730.08
+      ],
+      "width": 1367,
+      "height": 1780,
+      "sha256": "ee5db6b678dfc7da4ee590cf7a524aff4dbe22bcbe5879e5139a21498cf429ad",
+      "pixel_match": true
+    },
+    {
+      "question": 25,
+      "source_page": 17,
+      "path": "assets/question_crops/q25.png",
+      "source_page_image": "assets/question_pages/page_17.png",
+      "crop_px": [
+        202,
+        248,
+        1570,
+        833
+      ],
+      "crop_pt": [
+        72.72,
+        89.28,
+        565.2,
+        299.88
+      ],
+      "width": 1368,
+      "height": 585,
+      "sha256": "05037c9613639d1084c0045b41cfc9885fe83e4a2c12eb4855ec49a1338b0ee2",
+      "pixel_match": true
+    }
+  ]
+}

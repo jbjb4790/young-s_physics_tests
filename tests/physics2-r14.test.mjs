@@ -24,8 +24,8 @@ test('물리2 14회 기존 비활성 시험 ID 그대로 활성화, 9문항 100�
  assert.deepEqual(exam.questions.map(q=>q.maxPoints),points);assert.deepEqual(exam.questions.map(q=>q.no),[1,2,3,4,5,6,7,8,9]);
  assert.equal(catalog.exams.filter(e=>e.examId===exam.examId).length,1);
  assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,46);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').length,28);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,276);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').length,29);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,301);
 });
 
 test('기존 13회 및 물리1 16회 신구 분리 등록 유지',()=>{
@@ -128,11 +128,11 @@ test('catalog.js, catalog.json, 분리된 question.json 내용 동일',()=>{
 
 test('Apps Script, Worker, 영구 링크/서버 토큰 파일 무변경 (학부모 UI 제외)',()=>{
  const fixture=JSON.parse(read('tests/fixtures/r16-legacy-fingerprints.json'));
- for(const [name,sha] of Object.entries(fixture.protectedFileHashes)){if(['site/assets/portal.js','site/assets/styles.css'].includes(name))continue;assert.equal(hash(name),sha,`${name} SHA mismatch`);}
+ for(const [name,sha] of Object.entries(fixture.protectedFileHashes)){if(['site/assets/portal.js','site/assets/styles.css','site/assets/report.js'].includes(name))continue;assert.equal(hash(name),sha,`${name} SHA mismatch`);}
 });
 
 test('캐시와 package 버전은 3.7.6, 기존 핵심 JS 로직은 불변',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.11');
- assert.equal(catalog.featureVersion,'3.7.11-physics2-advanced-r05');
- for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.11/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.12');
+ assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');
+ for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.12/);
 });

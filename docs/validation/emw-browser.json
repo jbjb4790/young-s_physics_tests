@@ -1,0 +1,180 @@
+{
+  "teacherInputCount": 25,
+  "subjectivePointsInputCount": 5,
+  "teacherScoreText": "100 / 100",
+  "oldRecordUnchanged": true,
+  "newRecordStudentIdPreserved": true,
+  "savedScore": 100,
+  "linkedHistoryCount": 1,
+  "fingerprintRejected": true,
+  "reportQuestionCanvasCount": 25,
+  "originalSolutionHiddenBeforeSubmit": true,
+  "qaSourceSummaryVisible": true,
+  "retryChecks": [
+    {
+      "no": 1,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 2,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 3,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 4,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 5,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 6,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 7,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 8,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 9,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 10,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 11,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 12,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 13,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 14,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 15,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 16,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 17,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 18,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 19,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 20,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 21,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 22,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 23,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 24,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    },
+    {
+      "no": 25,
+      "solutionVisible": true,
+      "originalCorrect": true,
+      "similarCorrect": true
+    }
+  ],
+  "mobileOverflow": 0,
+  "sourceImagesLoaded": true,
+  "docxGenerated": true,
+  "portalComprehensiveCards": 1,
+  "portalEMWTitle": true,
+  "portalDetailExamId": "physics2-basic-total-electromagnetism",
+  "portalStudentMismatchRejected": true,
+  "errors": [],
+  "externalRequests": [],
+  "scope": "Offline Chromium, actual scripts with test-only entry hooks, memory demo API, data URI images. HTTP navigation was blocked by runtime; not live server E2E.",
+  "questionPixelMatches": 25,
+  "sourceSolutionCropMatches": 25,
+  "packagedQuestionPagePixelMatches": 17,
+  "docxMediaCount": 5,
+  "docxRenderedPageCount": 8
+}
