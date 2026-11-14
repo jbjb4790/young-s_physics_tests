@@ -33,7 +33,7 @@ test('다른 43개 시험 정의는 v3.7.8 기준 SHA256과 완전 동일',()=>{
 });
 test('Apps Script·Worker·포털 CTA·학생 링크 보호 (표시 확장 별도 검사)',()=>{
  assert.equal(Object.keys(baseline.fileHashes).length,21);
- for(const [f,sha] of Object.entries(baseline.fileHashes)){if(f==='site/assets/app.js'||f==='site/assets/report.js')continue;/* v3.7.10 approved revision guards tested separately */assert.equal(hash(f),sha,f);}
+ for(const [f,sha] of Object.entries(baseline.fileHashes)){if(['site/assets/app.js','site/assets/report.js','site/assets/styles.css'].includes(f))continue;/* v3.7.10 approved revision guards tested separately */assert.equal(hash(f),sha,f);}
 });
 test('9+9 원문·동형 객관식의 정답 유일성과 루브릭 합계',()=>{
  for(const q of exam.questions){
@@ -132,7 +132,7 @@ test('총괄 CTA·구형/개정 16회차·14회차·심화4회 보존',()=>{
  assert.equal(YP.getExam('physics2-basic-r14').questionCount,9);assert.equal(YP.getExam('physics2-advanced-r04').questionCount,7);
 });
 test('v3.7.9 패키지·카탈로그 캐시만 갱신하고 v3.7.8 포털 JS/CSS 유지',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.12');assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.13');assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');
  for(const page of ['index.html','portal.html','report.html'])assert.match(read('site/'+page),/catalog\.js\?v=3\.7\.12/);
  assert.match(read('site/portal.html'),/portal\.js\?v=3\.7\.8/);assert.match(read('site/portal.html'),/styles\.css\?v=3\.7\.8/);
 });

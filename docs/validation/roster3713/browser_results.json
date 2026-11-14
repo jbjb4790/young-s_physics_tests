@@ -1,0 +1,107 @@
+{
+  "environment": "Chromium, actual HTML/CSS/app/core/API bundle; inline assets + memory-only synthetic API/localStorage; navigation policy blocks localhost; no live server/Sheets access",
+  "checks": [
+    {
+      "name": "현재 반 이름 부분 검색",
+      "passed": true
+    },
+    {
+      "name": "전체 학생 이름 검색·동명이인 2명 표시",
+      "passed": true
+    },
+    {
+      "name": "검색 결과 클릭으로 정확한 학생·학교 선택",
+      "passed": true
+    },
+    {
+      "name": "다른 반 학생은 잘못된 반 제외 버튼을 표시하지 않음",
+      "passed": true
+    },
+    {
+      "name": "배정 전 명시 선택 필수",
+      "passed": true
+    },
+    {
+      "name": "이미 배정된 학생 비활성",
+      "passed": true
+    },
+    {
+      "name": "키보드로 검색 결과 선택",
+      "passed": true
+    },
+    {
+      "name": "선택만으로 서버 쓰기 없음",
+      "passed": true
+    },
+    {
+      "name": "선택 학생 ID를 기존 프로필 생성 없이 배정",
+      "passed": true
+    },
+    {
+      "name": "원래 다른 반 소속 유지",
+      "passed": true
+    },
+    {
+      "name": "학생 추가 화면의 기존 학생 검색→선택 배정 전환",
+      "passed": true
+    },
+    {
+      "name": "기존 학생 추가 시 중복 프로필 생성 없음",
+      "passed": true
+    },
+    {
+      "name": "동명이인 생성 경고 취소시 새 데이터 없음",
+      "passed": true
+    },
+    {
+      "name": "학교 수정 반영 및 입력중 점수 보존",
+      "passed": true
+    },
+    {
+      "name": "학교 요청은 ID/학교명 2필드만",
+      "passed": true
+    },
+    {
+      "name": "과거 성적 JSON 전체 그대로 보존",
+      "passed": true
+    },
+    {
+      "name": "동명이인 학교·학생 링크 불변",
+      "passed": true
+    },
+    {
+      "name": "저장 실패시 모달 유지·현재 학교 유지",
+      "passed": true
+    },
+    {
+      "name": "과거 학교 재저장 경고 취소시 저장 안함",
+      "passed": true
+    },
+    {
+      "name": "확인 후 현재 학교로만 재저장, 기존 기록 token/fp 유지",
+      "passed": true
+    },
+    {
+      "name": "390px 모바일 가로 넘침 없음",
+      "passed": true
+    },
+    {
+      "name": "모바일 검색·선택 UI 가로 넘침 없음",
+      "passed": true
+    },
+    {
+      "name": "모바일 기존학생 선택 가능",
+      "passed": true
+    },
+    {
+      "name": "브라우저 JavaScript 오류 없음",
+      "passed": true
+    },
+    {
+      "name": "외부 서버 요청 없음",
+      "passed": true
+    }
+  ],
+  "javascriptErrors": [],
+  "externalRequests": []
+}

@@ -132,7 +132,7 @@ test('Apps Script, Worker, 영구 링크/서버 토큰 파일 무변경 (학부�
 });
 
 test('캐시와 package 버전은 3.7.6, 기존 핵심 JS 로직은 불변',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.12');
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.13');
  assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');
  for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.12/);
 });

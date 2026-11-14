@@ -144,7 +144,7 @@ test('독립 문항 JSON, catalog.json, catalog.js 객체 일치',()=>{
 });
 
 test('v3.7.4 클라이언트 캐시 무효화, 기존 API 및 보안 설정 존재',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.12');
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.13');
  assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');
  for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.12/);
  for(const name of ['.github/workflows/pages.yml','apps-script/Code.gs','apps-script/appsscript.json','cloudflare-worker/index.mjs','site/assets/runtime-config.js','site/assets/share-config.js'])assert.ok(exists(name));

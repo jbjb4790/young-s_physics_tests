@@ -155,7 +155,7 @@ test('별도 문항 JSON과 내장 카탈로그 JS와 JSON은 동일',()=>{
 });
 
 test('v3.7.3 HTML 캐시 버전 / package / 기존 v3.7.2 시험 ID와 정답 보존',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.12');
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.13');
  assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');
  for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.12/);
  assert.equal(catalog.exams.filter(e=>e.examId==='physics1-basic-r06').length,1);

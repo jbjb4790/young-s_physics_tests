@@ -1,0 +1,2834 @@
+
+> youngs-physics-review-comprehensive-analysis@3.7.13 test
+> node --test tests/run-tests.mjs tests/student-merge.test.mjs tests/share-navigation.test.mjs tests/share-preview.test.mjs tests/physics2-r11.test.mjs tests/conditional-explanations.test.mjs tests/physics2-r12.test.mjs tests/physics2-advanced-r02.test.mjs tests/physics1-r06-q04-revision.test.mjs tests/physics2-advanced-r03.test.mjs tests/physics2-r13.test.mjs tests/physics1-r16-versioning.test.mjs tests/physics2-r14.test.mjs tests/physics2-advanced-r04.test.mjs tests/portal-comprehensive-reports.test.mjs tests/physics2-r15.test.mjs tests/physics2-advanced-r04-versioning.test.mjs tests/physics2-advanced-r05.test.mjs tests/physics2-emw-total.test.mjs tests/roster-search-school.test.mjs
+
+TAP version 13
+# Subtest: 4개 확인 필요 문항은 원문에 추가 조건을 표시해 corrected 상태로 등록
+ok 1 - 4개 확인 필요 문항은 원문에 추가 조건을 표시해 corrected 상태로 등록
+  ---
+  duration_ms: 1.509929
+  type: 'test'
+  ...
+# Subtest: 물리1 3회 7번은 질적 개형만 도출하며 등가속도 단정을 하지 않음
+ok 2 - 물리1 3회 7번은 질적 개형만 도출하며 등가속도 단정을 하지 않음
+  ---
+  duration_ms: 0.240652
+  type: 'test'
+  ...
+# Subtest: 물리1 5회 6번은 12N 왼쪽 가정하에 10N·18N을 도출하고 다른 방향 결과 설명
+ok 3 - 물리1 5회 6번은 12N 왼쪽 가정하에 10N·18N을 도출하고 다른 방향 결과 설명
+  ---
+  duration_ms: 0.155914
+  type: 'test'
+  ...
+# Subtest: 물리1 13회 7번은 A쪽 반시계 전류일 때 A=N, B=S를 표시하고 원문의 한계도 고지
+ok 4 - 물리1 13회 7번은 A쪽 반시계 전류일 때 A=N, B=S를 표시하고 원문의 한계도 고지
+  ---
+  duration_ms: 0.160782
+  type: 'test'
+  ...
+# Subtest: 물리2 11회 8번은 q>0·무마찰, N=0 접촉한계와 수평 오른쪽 E를 설명
+ok 5 - 물리2 11회 8번은 q>0·무마찰, N=0 접촉한계와 수평 오른쪽 E를 설명
+  ---
+  duration_ms: 0.309836
+  type: 'test'
+  ...
+# Subtest: 모든 준비 완료 시험의 flagged 문항은 학습 조건을 확인한 상태이고 미래 flagged는 보호
+ok 6 - 모든 준비 완료 시험의 flagged 문항은 학습 조건을 확인한 상태이고 미래 flagged는 보호
+  ---
+  duration_ms: 1.354735
+  type: 'test'
+  ...
+# Subtest: 원문 재도전·동형 문제의 객관식 정답 단일성 및 루브릭 배점 검증
+ok 7 - 원문 재도전·동형 문제의 객관식 정답 단일성 및 루브릭 배점 검증
+  ---
+  duration_ms: 0.353461
+  type: 'test'
+  ...
+# Subtest: 동기화 원본 JSON과 카탈로그 데이터, JS 배포 형식 일치
+ok 8 - 동기화 원본 JSON과 카탈로그 데이터, JS 배포 형식 일치
+  ---
+  duration_ms: 33.374038
+  type: 'test'
+  ...
+# Subtest: 기존 Apps Script 인증/Google Sheets/학부모 링크 코드를 교체하지 않음
+ok 9 - 기존 Apps Script 인증/Google Sheets/학부모 링크 코드를 교체하지 않음
+  ---
+  duration_ms: 1.605753
+  type: 'test'
+  ...
+# Subtest: 4번 개정 시험은 기존 ID, 6문항, 100점 총점, 10점 배점을 유지
+ok 10 - 4번 개정 시험은 기존 ID, 6문항, 100점 총점, 10점 배점을 유지
+  ---
+  duration_ms: 1.392332
+  type: 'test'
+  ...
+# Subtest: 문항 4는 요람 문제가 아닌 양쪽에서 당기는 Hooke 법칙의 용수철 문제
+ok 11 - 문항 4는 요람 문제가 아닌 양쪽에서 당기는 Hooke 법칙의 용수철 문제
+  ---
+  duration_ms: 0.395053
+  type: 'test'
+  ...
+# Subtest: 숙제노트 2페이지 공식 풀이대로 힘의 합 20N이 아닌 장력 10N을 사용
+ok 12 - 숙제노트 2페이지 공식 풀이대로 힘의 합 20N이 아닌 장력 10N을 사용
+  ---
+  duration_ms: 0.15987
+  type: 'test'
+  ...
+# Subtest: 10점 서술형 채점 루브릭과 주간 교사 성적 입력 규칙이 유지
+ok 13 - 10점 서술형 채점 루브릭과 주간 교사 성적 입력 규칙이 유지
+  ---
+  duration_ms: 0.579231
+  type: 'test'
+  ...
+# Subtest: 원문 4지 재도전의 정답은 0.2m이며 기존 요람 답안이 남지 않음
+ok 14 - 원문 4지 재도전의 정답은 0.2m이며 기존 요람 답안이 남지 않음
+  ---
+  duration_ms: 0.35946
+  type: 'test'
+  ...
+# Subtest: 동형 4지 재도전은 k=80 N/m, 좌우 12 N일 때 0.15 m로 독립 검산
+ok 15 - 동형 4지 재도전은 k=80 N/m, 좌우 12 N일 때 0.15 m로 독립 검산
+  ---
+  duration_ms: 0.185469
+  type: 'test'
+  ...
+# Subtest: 다른 1~3·5~6번 문항 내용은 v3.7.1 정본과 동일(5·6 이미지 좌표 변경만 예외)
+ok 16 - 다른 1~3·5~6번 문항 내용은 v3.7.1 정본과 동일(5·6 이미지 좌표 변경만 예외)
+  ---
+  duration_ms: 1.08483
+  type: 'test'
+  ...
+# Subtest: 원본 PDF는 최신 사용자가 올린 시험지이며 PNG는 1488x2103
+ok 17 - 원본 PDF는 최신 사용자가 올린 시험지이며 PNG는 1488x2103
+  ---
+  duration_ms: 0.813662
+  type: 'test'
+  ...
+# Subtest: 개정 PDF의 페이지 1 문항 4·5·6 이미지 자르기 영역은 서로 겹치지 않으며 온전함
+ok 18 - 개정 PDF의 페이지 1 문항 4·5·6 이미지 자르기 영역은 서로 겹치지 않으며 온전함
+  ---
+  duration_ms: 0.355314
+  type: 'test'
+  ...
+# Subtest: 개별 JSON, 내장 카탈로그, catalog.json의 4번이 완전히 동일
+ok 19 - 개별 JSON, 내장 카탈로그, catalog.json의 4번이 완전히 동일
+  ---
+  duration_ms: 22.423328
+  type: 'test'
+  ...
+# Subtest: 카탈로그 버전 3.7.3와 교사·학생 페이지의 캐시 무효화
+ok 20 - 카탈로그 버전 3.7.3와 교사·학생 페이지의 캐시 무효화
+  ---
+  duration_ms: 0.423427
+  type: 'test'
+  ...
+# Subtest: 직전 물리2심화 2회 및 물리2 12회 포함 전체 카탈로그와 누적 연결 보존
+ok 21 - 직전 물리2심화 2회 및 물리2 12회 포함 전체 카탈로그와 누적 연결 보존
+  ---
+  duration_ms: 0.191187
+  type: 'test'
+  ...
+# Subtest: 옛 16회차 ID와 모든 6문항은 정본 SHA256을 그대로 유지
+ok 22 - 옛 16회차 ID와 모든 6문항은 정본 SHA256을 그대로 유지
+  ---
+  duration_ms: 2.350682
+  type: 'test'
+  ...
+# Subtest: 총괄 누적 history 목록을 제외한 옛 41개 시험 정의 모두 그대로
+ok 23 - 총괄 누적 history 목록을 제외한 옛 41개 시험 정의 모두 그대로
+  ---
+  duration_ms: 3.413459
+  type: 'test'
+  ...
+# Subtest: 신규 ID는 16회차 (개정)이며 과거 회차/학생 식별자를 건드리지 않음
+ok 24 - 신규 ID는 16회차 (개정)이며 과거 회차/학생 식별자를 건드리지 않음
+  ---
+  duration_ms: 0.250487
+  type: 'test'
+  ...
+# Subtest: 새 7문항은 [10,10,20,10,20,10,20]으로 총점 100점
+ok 25 - 새 7문항은 [10,10,20,10,20,10,20]으로 총점 100점
+  ---
+  duration_ms: 0.816757
+  type: 'test'
+  ...
+# Subtest: 구형 6문항 [10,10,20,20,20,20] 채점 구조는 고정
+ok 26 - 구형 6문항 [10,10,20,20,20,20] 채점 구조는 고정
+  ---
+  duration_ms: 0.143246
+  type: 'test'
+  ...
+# Subtest: 개정 4번 최종 시험지 3m 조건과 정답 2m가 일치하고 재도전도 갱신됨
+ok 27 - 개정 4번 최종 시험지 3m 조건과 정답 2m가 일치하고 재도전도 갱신됨
+  ---
+  duration_ms: 0.163045
+  type: 'test'
+  ...
+# Subtest: 개정 4번 문제지 PDF는 사용자가 제공한 3m 수정본 그대로
+ok 28 - 개정 4번 문제지 PDF는 사용자가 제공한 3m 수정본 그대로
+  ---
+  duration_ms: 0.405479
+  type: 'test'
+  ...
+# Subtest: 새 7번 굴절 양방향 40cm·60cm와 부분점수 10+10
+ok 29 - 새 7번 굴절 양방향 40cm·60cm와 부분점수 10+10
+  ---
+  duration_ms: 0.300982
+  type: 'test'
+  ...
+# Subtest: 옛 6번 복합 렌즈는 신판 7번 굴절 문제로 덮어쓰지 않음
+ok 30 - 옛 6번 복합 렌즈는 신판 7번 굴절 문제로 덮어쓰지 않음
+  ---
+  duration_ms: 0.359921
+  type: 'test'
+  ...
+# Subtest: 두 버전 점수는 문항 수대로 따로 계산 (옛 6개, 신 7개)
+ok 31 - 두 버전 점수는 문항 수대로 따로 계산 (옛 6개, 신 7개)
+  ---
+  duration_ms: 2.745335
+  type: 'test'
+  ...
+# Subtest: 옛 점수 오류 6번은 20점, 개정 7번 오답은 20점; 분석 항목이 분리
+ok 32 - 옛 점수 오류 6번은 20점, 개정 7번 오답은 20점; 분석 항목이 분리
+  ---
+  duration_ms: 0.400722
+  type: 'test'
+  ...
+# Subtest: 각 버전별 시험 전체 평균에 상대편 응시 기록이 섞이지 않음
+ok 33 - 각 버전별 시험 전체 평균에 상대편 응시 기록이 섞이지 않음
+  ---
+  duration_ms: 1.01819
+  type: 'test'
+  ...
+# Subtest: 영구 학생 ID·리포트 토큰·지문을 정규화 과정에서 변경하지 않음
+ok 34 - 영구 학생 ID·리포트 토큰·지문을 정규화 과정에서 변경하지 않음
+  ---
+  duration_ms: 0.235413
+  type: 'test'
+  ...
+# Subtest: 기존 16회만 있는 학생 총괄 분석은 기존 16회 결과를 유지
+ok 35 - 기존 16회만 있는 학생 총괄 분석은 기존 16회 결과를 유지
+  ---
+  duration_ms: 0.836718
+  type: 'test'
+  ...
+# Subtest: 앞으로 새 16회만 있는 학생도 총괄 연결, 7회 기준 유지
+ok 36 - 앞으로 새 16회만 있는 학생도 총괄 연결, 7회 기준 유지
+  ---
+  duration_ms: 0.294373
+  type: 'test'
+  ...
+# Subtest: 같은 학생의 옛 16회와 개정 16회가 모두 있어도 총괄에서는 16회를 1회만 집계
+ok 37 - 같은 학생의 옛 16회와 개정 16회가 모두 있어도 총괄에서는 16회를 1회만 집계
+  ---
+  duration_ms: 0.348063
+  type: 'test'
+  ...
+# Subtest: 학생 통합 포털의 시험별 문항 분석은 두 버전 모두 남음
+ok 38 - 학생 통합 포털의 시험별 문항 분석은 두 버전 모두 남음
+  ---
+  duration_ms: 9.935599
+  type: 'test'
+  ...
+# Subtest: 웹 교사 화면은 새 16회 기본 노출, 옛 16회는 수정 중에만 노출
+ok 39 - 웹 교사 화면은 새 16회 기본 노출, 옛 16회는 수정 중에만 노출
+  ---
+  duration_ms: 0.588495
+  type: 'test'
+  ...
+# Subtest: 학생 변경·새 학생·포털 선택 시 구형 16회 수정 모드를 해제하고 새 성적은 신판으로 분기
+ok 40 - 학생 변경·새 학생·포털 선택 시 구형 16회 수정 모드를 해제하고 새 성적은 신판으로 분기
+  ---
+  duration_ms: 0.861514
+  type: 'test'
+  ...
+# Subtest: 원문과 동형 문제는 두 버전에서 각각 검사 가능
+ok 41 - 원문과 동형 문제는 두 버전에서 각각 검사 가능
+  ---
+  duration_ms: 1.640075
+  type: 'test'
+  ...
+# Subtest: 새 1·2번 원문 보기 4지 정확히 반영, 옛 것은 그대로
+ok 42 - 새 1·2번 원문 보기 4지 정확히 반영, 옛 것은 그대로
+  ---
+  duration_ms: 0.149024
+  type: 'test'
+  ...
+# Subtest: 옛 PDF·PNG 경로 유지, 새 PDF·PNG 별도 독립 파일
+ok 43 - 옛 PDF·PNG 경로 유지, 새 PDF·PNG 별도 독립 파일
+  ---
+  duration_ms: 0.830578
+  type: 'test'
+  ...
+# Subtest: 개정판 검수 해설 PDF가 4번 3m·2m 내용으로 제공
+ok 44 - 개정판 검수 해설 PDF가 4번 3m·2m 내용으로 제공
+  ---
+  duration_ms: 0.187522
+  type: 'test'
+  ...
+# Subtest: 개정판 원본 문제와 해답 PDF는 각각 별도 보존
+ok 45 - 개정판 원본 문제와 해답 PDF는 각각 별도 보존
+  ---
+  duration_ms: 0.155924
+  type: 'test'
+  ...
+# Subtest: catalog JS, catalog JSON, 독립 문제 JSON의 개정 16회차 문항 일치
+ok 46 - catalog JS, catalog JSON, 독립 문제 JSON의 개정 16회차 문항 일치
+  ---
+  duration_ms: 26.31704
+  type: 'test'
+  ...
+# Subtest: 43개 시험 및 23개 ready, 237개 문항 / 기타 과정 동일
+ok 47 - 43개 시험 및 23개 ready, 237개 문항 / 기타 과정 동일
+  ---
+  duration_ms: 0.281162
+  type: 'test'
+  ...
+# Subtest: 서버·영구 링크·로고 등 보호 파일 SHA256 유지 (승인된 학부모 UI 및 3.7.12 원문해설 표시 확장 제외)
+ok 48 - 서버·영구 링크·로고 등 보호 파일 SHA256 유지 (승인된 학부모 UI 및 3.7.12 원문해설 표시 확장 제외)
+  ---
+  duration_ms: 2.624434
+  type: 'test'
+  ...
+# Subtest: 세 HTML의 catalog 캐시가 3.7.5로 갱신
+ok 49 - 세 HTML의 catalog 캐시가 3.7.5로 갱신
+  ---
+  duration_ms: 0.665871
+  type: 'test'
+  ...
+# Subtest: 심화 2회차는 고유 ID로 시험 목록 43개 중 별도 주간시험으로 추가
+ok 50 - 심화 2회차는 고유 ID로 시험 목록 43개 중 별도 주간시험으로 추가
+  ---
+  duration_ms: 1.83046
+  type: 'test'
+  ...
+# Subtest: 물리2심화 복습 2회만 운영 주간회차와 총괄 학습 이력에 추가
+ok 51 - 물리2심화 복습 2회만 운영 주간회차와 총괄 학습 이력에 추가
+  ---
+  duration_ms: 0.285349
+  type: 'test'
+  ...
+# Subtest: 교사 성적 입력에서 문항별 0/1/부분점수/공란 의미와 총점 100점을 유지
+ok 52 - 교사 성적 입력에서 문항별 0/1/부분점수/공란 의미와 총점 100점을 유지
+  ---
+  duration_ms: 0.798039
+  type: 'test'
+  ...
+# Subtest: 교정 해답은 제공 PDF 2번 잘못된 질량 평형식을 그대로 반복하지 않음
+ok 53 - 교정 해답은 제공 PDF 2번 잘못된 질량 평형식을 그대로 반복하지 않음
+  ---
+  duration_ms: 0.193681
+  type: 'test'
+  ...
+# Subtest: 물리 공식 및 정답 1·3·4·5·6·7·8번 검산값 일치
+ok 54 - 물리 공식 및 정답 1·3·4·5·6·7·8번 검산값 일치
+  ---
+  duration_ms: 0.304778
+  type: 'test'
+  ...
+# Subtest: 전 문항 서술형 부분점수 루브릭이 배점과 일치하고 5점 하위문항 배점 보존
+ok 55 - 전 문항 서술형 부분점수 루브릭이 배점과 일치하고 5점 하위문항 배점 보존
+  ---
+  duration_ms: 0.185819
+  type: 'test'
+  ...
+# Subtest: 오답 학습은 원문과 동형 각각 4지 서로 다른 선택지, 원문·동형 정답 일치
+ok 56 - 오답 학습은 원문과 동형 각각 4지 서로 다른 선택지, 원문·동형 정답 일치
+  ---
+  duration_ms: 1.188996
+  type: 'test'
+  ...
+# Subtest: 동형 문제에서 독립 검산한 정답 8개가 일치
+ok 57 - 동형 문제에서 독립 검산한 정답 8개가 일치
+  ---
+  duration_ms: 0.118228
+  type: 'test'
+  ...
+# Subtest: 문제와 원본 해설 3페이지 PDF 및 별도 교정 해설 PDF가 모두 포함
+ok 58 - 문제와 원본 해설 3페이지 PDF 및 별도 교정 해설 PDF가 모두 포함
+  ---
+  duration_ms: 2.810864
+  type: 'test'
+  ...
+# Subtest: 8문항 이미지 crop 영역이 각 3페이지의 물리 제약을 만족
+ok 59 - 8문항 이미지 crop 영역이 각 3페이지의 물리 제약을 만족
+  ---
+  duration_ms: 0.602475
+  type: 'test'
+  ...
+# Subtest: 별도 문항 데이터, 브라우저 내장 카탈로그가 동일한 데이터를 제공
+ok 60 - 별도 문항 데이터, 브라우저 내장 카탈로그가 동일한 데이터를 제공
+  ---
+  duration_ms: 23.717278
+  type: 'test'
+  ...
+# Subtest: 학생·교사 카탈로그 캐시 버전이 3.7.3이며 서버 코드와 배포 설정은 보호
+ok 61 - 학생·교사 카탈로그 캐시 버전이 3.7.3이며 서버 코드와 배포 설정은 보호
+  ---
+  duration_ms: 4.326672
+  type: 'test'
+  ...
+# Subtest: 추가 수량은 4과정 42시험(준비 21) 223문항, 기존 207문항 그대로 보존
+ok 62 - 추가 수량은 4과정 42시험(준비 21) 223문항, 기존 207문항 그대로 보존
+  ---
+  duration_ms: 0.160862
+  type: 'test'
+  ...
+# Subtest: 물리2심화 3회차 신규 고유 ID, 8문항 100점, 기존 과정·카탈로그 수량
+ok 63 - 물리2심화 3회차 신규 고유 ID, 8문항 100점, 기존 과정·카탈로그 수량
+  ---
+  duration_ms: 1.49067
+  type: 'test'
+  ...
+# Subtest: 심화 주간 운영 회차 [2,3,4] 및 총괄 누적 연결 [2,3,4] 정확히 반영
+ok 64 - 심화 주간 운영 회차 [2,3,4] 및 총괄 누적 연결 [2,3,4] 정확히 반영
+  ---
+  duration_ms: 0.242444
+  type: 'test'
+  ...
+# Subtest: 교사 성적 입력 1/0/P1/실수 부분점수와 공란, 100점 만점
+ok 65 - 교사 성적 입력 1/0/P1/실수 부분점수와 공란, 100점 만점
+  ---
+  duration_ms: 0.870749
+  type: 'test'
+  ...
+# Subtest: 서술형 8문항별 부분점수 루브릭의 합과 7번 7.5점×2
+ok 66 - 서술형 8문항별 부분점수 루브릭의 합과 7번 7.5점×2
+  ---
+  duration_ms: 0.266521
+  type: 'test'
+  ...
+# Subtest: 원문 재도전 8개·동형 문제 8개 모두 보기 네 개이며 정답 검사 정상
+ok 67 - 원문 재도전 8개·동형 문제 8개 모두 보기 네 개이며 정답 검사 정상
+  ---
+  duration_ms: 1.261085
+  type: 'test'
+  ...
+# Subtest: 문항 1·2 수치, 정지·운동마찰 물리식을 정답과 일치시키고 조건 주석 보존
+ok 68 - 문항 1·2 수치, 정지·운동마찰 물리식을 정답과 일치시키고 조건 주석 보존
+  ---
+  duration_ms: 0.415084
+  type: 'test'
+  ...
+# Subtest: 문항 3·4·5 공식 정답과 주석 검산
+ok 69 - 문항 3·4·5 공식 정답과 주석 검산
+  ---
+  duration_ms: 0.2461
+  type: 'test'
+  ...
+# Subtest: 문항 6·7 최고점 시간·높이·사거리와 링 통과 초기속력
+ok 70 - 문항 6·7 최고점 시간·높이·사거리와 링 통과 초기속력
+  ---
+  duration_ms: 0.151928
+  type: 'test'
+  ...
+# Subtest: 8번 원문 정답: 폭2h를 적용하면 최초 충돌은 계단3, 공식 해설5는 오답
+ok 71 - 8번 원문 정답: 폭2h를 적용하면 최초 충돌은 계단3, 공식 해설5는 오답
+  ---
+  duration_ms: 0.617528
+  type: 'test'
+  ...
+# Subtest: 8번 동형 √(9gh)일 때 실제 최초 충돌은 5번 계단
+ok 72 - 8번 동형 √(9gh)일 때 실제 최초 충돌은 5번 계단
+  ---
+  duration_ms: 0.591088
+  type: 'test'
+  ...
+# Subtest: 그림 PDF·원본 해설 PDF·검수 PDF가 각각 3페이지로 존재, 페이지 이미지 1240x1753
+ok 73 - 그림 PDF·원본 해설 PDF·검수 PDF가 각각 3페이지로 존재, 페이지 이미지 1240x1753
+  ---
+  duration_ms: 3.323114
+  type: 'test'
+  ...
+# Subtest: 8개 원문 이미지 crop 박스는 원본 페이지 바깥으로 나가지 않고 서로 겹치지 않음
+ok 74 - 8개 원문 이미지 crop 박스는 원본 페이지 바깥으로 나가지 않고 서로 겹치지 않음
+  ---
+  duration_ms: 0.202825
+  type: 'test'
+  ...
+# Subtest: 별도 문항 JSON과 내장 카탈로그 JS와 JSON은 동일
+ok 75 - 별도 문항 JSON과 내장 카탈로그 JS와 JSON은 동일
+  ---
+  duration_ms: 21.538424
+  type: 'test'
+  ...
+# Subtest: v3.7.3 HTML 캐시 버전 / package / 기존 v3.7.2 시험 ID와 정답 보존
+ok 76 - v3.7.3 HTML 캐시 버전 / package / 기존 v3.7.2 시험 ID와 정답 보존
+  ---
+  duration_ms: 1.012362
+  type: 'test'
+  ...
+# Subtest: 학생 링크·서버 권한 및 배포 보호 파일은 존재하고 기존 API 구조 유지
+ok 77 - 학생 링크·서버 권한 및 배포 보호 파일은 존재하고 기존 API 구조 유지
+  ---
+  duration_ms: 2.230742
+  type: 'test'
+  ...
+# Subtest: 4회 개정판은 별도 ID와 replacesExamId, 7문항 100점 유지
+ok 78 - 4회 개정판은 별도 ID와 replacesExamId, 7문항 100점 유지
+  ---
+  duration_ms: 5.129658
+  type: 'test'
+  ...
+# Subtest: 기존 모든 44시험 정의 보존: 심화 총괄 history에 개정 ID만 추가
+ok 79 - 기존 모든 44시험 정의 보존: 심화 총괄 history에 개정 ID만 추가
+  ---
+  duration_ms: 12.937421
+  type: 'test'
+  ...
+# Subtest: 구형 문제 JSON·PDF·PNG·기존 해설 파일 전부 바이트 보존
+ok 80 - 구형 문제 JSON·PDF·PNG·기존 해설 파일 전부 바이트 보존
+  ---
+  duration_ms: 3.762754
+  type: 'test'
+  ...
+# Subtest: 서버·포털·코어·링크·테마 보호 (보고서 표시 확장 별도 검사)
+ok 81 - 서버·포털·코어·링크·테마 보호 (보고서 표시 확장 별도 검사)
+  ---
+  duration_ms: 3.36073
+  type: 'test'
+  ...
+# Subtest: 새 시험 원본 문제·해설 PDF는 첨부 원본 해시 그대로
+ok 82 - 새 시험 원본 문제·해설 PDF는 첨부 원본 해시 그대로
+  ---
+  duration_ms: 0.982216
+  type: 'test'
+  ...
+# Subtest: 변경하지 않은 1·2·3·6·7번은 이미지 crop 외 모든 내용 동일
+ok 83 - 변경하지 않은 1·2·3·6·7번은 이미지 crop 외 모든 내용 동일
+  ---
+  duration_ms: 0.760182
+  type: 'test'
+  ...
+# Subtest: 원문 4번 정답 d5m/t1s, 수평 기준 60도와 소문항 10+10 명시
+ok 84 - 원문 4번 정답 d5m/t1s, 수평 기준 60도와 소문항 10+10 명시
+  ---
+  duration_ms: 0.592571
+  type: 'test'
+  ...
+# Subtest: 4번 새 동형은 속력을 2배로 변경해 t2s/d20m
+ok 85 - 4번 새 동형은 속력을 2배로 변경해 t2s/d20m
+  ---
+  duration_ms: 0.11999
+  type: 'test'
+  ...
+# Subtest: 원문 5번 t2s/s10m, 궤적의 +10 누락을 별도 보충으로 구분
+ok 86 - 원문 5번 t2s/s10m, 궤적의 +10 누락을 별도 보충으로 구분
+  ---
+  duration_ms: 0.298228
+  type: 'test'
+  ...
+# Subtest: 5번 새 동형 높이30m 양의 해3s와 빗면거리15m
+ok 87 - 5번 새 동형 높이30m 양의 해3s와 빗면거리15m
+  ---
+  duration_ms: 0.31927
+  type: 'test'
+  ...
+# Subtest: 신구 원문·동형 각각 7개가 분리되고 선택 정답이 유일
+ok 88 - 신구 원문·동형 각각 7개가 분리되고 선택 정답이 유일
+  ---
+  duration_ms: 1.674536
+  type: 'test'
+  ...
+# Subtest: 양 버전의 점수·P1·부분점수·공란 입력 규칙과 루브릭 합 유지
+ok 89 - 양 버전의 점수·P1·부분점수·공란 입력 규칙과 루브릭 합 유지
+  ---
+  duration_ms: 0.947824
+  type: 'test'
+  ...
+# Subtest: 학생 ID·시험 ID·개별 토큰·지문은 정규화와 재채점에서 불변
+ok 90 - 학생 ID·시험 ID·개별 토큰·지문은 정규화와 재채점에서 불변
+  ---
+  duration_ms: 0.39291
+  type: 'test'
+  ...
+# Subtest: 기존 기록은 기존4·5번 분석 유지, 신판은 수치형 분석 사용
+ok 91 - 기존 기록은 기존4·5번 분석 유지, 신판은 수치형 분석 사용
+  ---
+  duration_ms: 7.377706
+  type: 'test'
+  ...
+# Subtest: 시험별 평균은 같은 회차라도 버전별로 분리
+ok 92 - 시험별 평균은 같은 회차라도 버전별로 분리
+  ---
+  duration_ms: 0.764689
+  type: 'test'
+  ...
+# Subtest: 총괄 연결에서 양 버전4회는 한 회차로 집계, 구형만 있으면 구형 유지
+ok 93 - 총괄 연결에서 양 버전4회는 한 회차로 집계, 구형만 있으면 구형 유지
+  ---
+  duration_ms: 0.886943
+  type: 'test'
+  ...
+# Subtest: 교사 시험 선택에는 구형4회가 숨겨지고 개정판 노출
+ok 94 - 교사 시험 선택에는 구형4회가 숨겨지고 개정판 노출
+  ---
+  duration_ms: 9.635919
+  type: 'test'
+  ...
+# Subtest: 구형 기록 수정은 구형시험을 명시적으로 선택 가능
+ok 95 - 구형 기록 수정은 구형시험을 명시적으로 선택 가능
+  ---
+  duration_ms: 6.419265
+  type: 'test'
+  ...
+# Subtest: 수정 중에는 구형 유지, 취소 또는 신규 모드는 개정판으로 전환
+ok 96 - 수정 중에는 구형 유지, 취소 또는 신규 모드는 개정판으로 전환
+  ---
+  duration_ms: 6.459966
+  type: 'test'
+  ...
+# Subtest: 구형으로 신규 단건 저장을 시도하면 서버 호출 없이 전환
+ok 97 - 구형으로 신규 단건 저장을 시도하면 서버 호출 없이 전환
+  ---
+  duration_ms: 8.803468
+  type: 'test'
+  ...
+# Subtest: 일괄 저장은 구형 편집 토큰 존재 여부와 무관하게 차단
+ok 98 - 일괄 저장은 구형 편집 토큰 존재 여부와 무관하게 차단
+  ---
+  duration_ms: 17.726006
+  type: 'test'
+  ...
+# Subtest: 구형 편집 중 파일을 가져오면 파싱 전 개정판 전환·재선택 요구
+ok 99 - 구형 편집 중 파일을 가져오면 파싱 전 개정판 전환·재선택 요구
+  ---
+  duration_ms: 6.838706
+  type: 'test'
+  ...
+# Subtest: CSV 일괄 신규 레코드는 현재 개정 ID 사용, 구형기록 upsert 대상으로 잡지 않음
+ok 100 - CSV 일괄 신규 레코드는 현재 개정 ID 사용, 구형기록 upsert 대상으로 잡지 않음
+  ---
+  duration_ms: 8.699481
+  type: 'test'
+  ...
+# Subtest: 구형 수정 저장용 makeRecord는 editToken·구형 ID를 유지
+ok 101 - 구형 수정 저장용 makeRecord는 editToken·구형 ID를 유지
+  ---
+  duration_ms: 7.708863
+  type: 'test'
+  ...
+# Subtest: 학생 변경·새학생·취소 전환 기존 보호 경로가 유지
+ok 102 - 학생 변경·새학생·취소 전환 기존 보호 경로가 유지
+  ---
+  duration_ms: 0.600302
+  type: 'test'
+  ...
+# Subtest: 코어/학생 포털 코드 동일, 성적표 표시 확장 별도 검증, 총괄 CTA 유지
+ok 103 - 코어/학생 포털 코드 동일, 성적표 표시 확장 별도 검증, 총괄 CTA 유지
+  ---
+  duration_ms: 0.334993
+  type: 'test'
+  ...
+# Subtest: 새 자료 경로는 구형과 분리, 내용 있는4쪽의 문항 crop가 유효
+ok 104 - 새 자료 경로는 구형과 분리, 내용 있는4쪽의 문항 crop가 유효
+  ---
+  duration_ms: 0.803417
+  type: 'test'
+  ...
+# Subtest: 카탈로그 JS·JSON·독립 개정문항 JSON이 완전 동일
+ok 105 - 카탈로그 JS·JSON·독립 개정문항 JSON이 완전 동일
+  ---
+  duration_ms: 25.617804
+  type: 'test'
+  ...
+# Subtest: v3.7.12 카탈로그 46시험/29ready/301문항, 물리215회 및 물리116회 보존
+ok 106 - v3.7.12 카탈로그 46시험/29ready/301문항, 물리215회 및 물리116회 보존
+  ---
+  duration_ms: 0.554804
+  type: 'test'
+  ...
+# Subtest: 물리2심화 4회차는 신규 고유 ID, 7문항 100점으로 등록
+ok 107 - 물리2심화 4회차는 신규 고유 ID, 7문항 100점으로 등록
+  ---
+  duration_ms: 1.382338
+  type: 'test'
+  ...
+# Subtest: 심화 총괄 누적 연결 [2,3,4], 다른 회차와 물리1 16회 신구분리 유지
+ok 108 - 심화 총괄 누적 연결 [2,3,4], 다른 회차와 물리1 16회 신구분리 유지
+  ---
+  duration_ms: 0.335674
+  type: 'test'
+  ...
+# Subtest: 7문항의 루브릭 합, 전체 O/X, P1, 부분점수와 공란 입력
+ok 109 - 7문항의 루브릭 합, 전체 O/X, P1, 부분점수와 공란 입력
+  ---
+  duration_ms: 1.013022
+  type: 'test'
+  ...
+# Subtest: 원문·동형 선택 재도전 7개씩 모두 4지, 정답과 오답 선택 구분
+ok 110 - 원문·동형 선택 재도전 7개씩 모두 4지, 정답과 오답 선택 구분
+  ---
+  duration_ms: 0.929237
+  type: 'test'
+  ...
+# Subtest: 1번 대차 상대운동 최적각 22.5° 및 θ=45°, a=g/2 동형
+ok 111 - 1번 대차 상대운동 최적각 22.5° 및 θ=45°, a=g/2 동형
+  ---
+  duration_ms: 0.328594
+  type: 'test'
+  ...
+# Subtest: 2번 절벽 상하 30° 발사 착지점 간격 6h이면 v0²=4√3 gh
+ok 112 - 2번 절벽 상하 30° 발사 착지점 간격 6h이면 v0²=4√3 gh
+  ---
+  duration_ms: 0.117276
+  type: 'test'
+  ...
+# Subtest: 3번 평균힘 모델은 μ<√3 조건과 정수 n 처리에 한정
+ok 113 - 3번 평균힘 모델은 μ<√3 조건과 정수 n 처리에 한정
+  ---
+  duration_ms: 0.113391
+  type: 'test'
+  ...
+# Subtest: 4번 θ는 빗면 기준 발사각이며 기하식과 동형 수평면 맞음
+ok 114 - 4번 θ는 빗면 기준 발사각이며 기하식과 동형 수평면 맞음
+  ---
+  duration_ms: 0.155724
+  type: 'test'
+  ...
+# Subtest: 5번 빗면 첫 교점의 양의 시간해, α=θ=0 동형 t=√2h/g
+ok 115 - 5번 빗면 첫 교점의 양의 시간해, α=θ=0 동형 t=√2h/g
+  ---
+  duration_ms: 0.259991
+  type: 'test'
+  ...
+# Subtest: 6번 사람-대차 운동량 보존 V=-mv/(M+m), Δx=-mL/(M+m)
+ok 116 - 6번 사람-대차 운동량 보존 V=-mv/(M+m), Δx=-mL/(M+m)
+  ---
+  duration_ms: 0.344698
+  type: 'test'
+  ...
+# Subtest: 7번 연속 탄성충돌 속도: A -5, B -2, C +8
+ok 117 - 7번 연속 탄성충돌 속도: A -5, B -2, C +8
+  ---
+  duration_ms: 0.298568
+  type: 'test'
+  ...
+# Subtest: 원본 문제 PDF 4p·원본 해설 5p·검수 해설 PDF 보존 및 페이지 PNG 이미지
+ok 118 - 원본 문제 PDF 4p·원본 해설 5p·검수 해설 PDF 보존 및 페이지 PNG 이미지
+  ---
+  duration_ms: 4.704459
+  type: 'test'
+  ...
+# Subtest: 내장 카탈로그 JS·JSON과 독립 문제은행 일치, 학부모 UI 외 보호 파일 SHA 불변
+ok 119 - 내장 카탈로그 JS·JSON과 독립 문제은행 일치, 학부모 UI 외 보호 파일 SHA 불변
+  ---
+  duration_ms: 24.475432
+  type: 'test'
+  ...
+# Subtest: v3.7.7 캐시·package 정합성 및 Apps Script·Worker 미변경
+ok 120 - v3.7.7 캐시·package 정합성 및 Apps Script·Worker 미변경
+  ---
+  duration_ms: 0.340071
+  type: 'test'
+  ...
+# Subtest: 심화5회 신규 ID 하나, 7문항·100점·문제지 배점 등록
+ok 121 - 심화5회 신규 ID 하나, 7문항·100점·문제지 배점 등록
+  ---
+  duration_ms: 1.351301
+  type: 'test'
+  ...
+# Subtest: 기존45시험 전체 정의 유지: 심화 총괄 연결목록에 r05만 추가
+ok 122 - 기존45시험 전체 정의 유지: 심화 총괄 연결목록에 r05만 추가
+  ---
+  duration_ms: 8.912092
+  type: 'test'
+  ...
+# Subtest: 기존 독립 문제 JSON 전부 바이트 보존
+ok 123 - 기존 독립 문제 JSON 전부 바이트 보존
+  ---
+  duration_ms: 2.591434
+  type: 'test'
+  ...
+# Subtest: 보고서 원문해설 표시 확장 외 20개 보호파일 SHA256 동일
+ok 124 - 보고서 원문해설 표시 확장 외 20개 보호파일 SHA256 동일
+  ---
+  duration_ms: 2.643352
+  type: 'test'
+  ...
+# Subtest: 총괄 연결2·3·4·5, 4회 구형·개정 ID와 현재입력 분리 유지
+ok 125 - 총괄 연결2·3·4·5, 4회 구형·개정 ID와 현재입력 분리 유지
+  ---
+  duration_ms: 0.262405
+  type: 'test'
+  ...
+# Subtest: 6번 원문 문제지15점(10+5) 우선, 해답지20점 불일치 표시
+ok 126 - 6번 원문 문제지15점(10+5) 우선, 해답지20점 불일치 표시
+  ---
+  duration_ms: 0.207712
+  type: 'test'
+  ...
+# Subtest: 7문항 루브릭·개념·풀이·원문 및 새 동형 각각7개
+ok 127 - 7문항 루브릭·개념·풀이·원문 및 새 동형 각각7개
+  ---
+  duration_ms: 1.420965
+  type: 'test'
+  ...
+# Subtest: 정오답·실제1점·부분점수·미채점·범위초과 기존 규칙
+ok 128 - 정오답·실제1점·부분점수·미채점·범위초과 기존 규칙
+  ---
+  duration_ms: 0.718249
+  type: 'test'
+  ...
+# Subtest: 기존학생 새5회 입력 정규화에서 StudentId·token·fingerprint 유지
+ok 129 - 기존학생 새5회 입력 정규화에서 StudentId·token·fingerprint 유지
+  ---
+  duration_ms: 0.489265
+  type: 'test'
+  ...
+# Subtest: 1번 운동량·에너지·상대속도 및 최고높이4h 검산
+ok 130 - 1번 운동량·에너지·상대속도 및 최고높이4h 검산
+  ---
+  duration_ms: 0.377868
+  type: 'test'
+  ...
+# Subtest: 2번 비탄성충돌 v/4와 진자cos식·동형 질량비 검산
+ok 131 - 2번 비탄성충돌 v/4와 진자cos식·동형 질량비 검산
+  ---
+  duration_ms: 0.154853
+  type: 'test'
+  ...
+# Subtest: 3번 구심력·탄성력 두 상태와 동형 반지름6r/5
+ok 132 - 3번 구심력·탄성력 두 상태와 동형 반지름6r/5
+  ---
+  duration_ms: 0.102404
+  type: 'test'
+  ...
+# Subtest: 4번 접촉 한계 및 마찰 구간L2R, 동형4R
+ok 133 - 4번 접촉 한계 및 마찰 구간L2R, 동형4R
+  ---
+  duration_ms: 0.147462
+  type: 'test'
+  ...
+# Subtest: 5번 수직항력2mg와 중력을 분리해 H=R/2
+ok 134 - 5번 수직항력2mg와 중력을 분리해 H=R/2
+  ---
+  duration_ms: 0.066259
+  type: 'test'
+  ...
+# Subtest: 6번 공은 오른쪽v/4이나 상자상대 왼쪽v/2; 탈출3L/2
+ok 135 - 6번 공은 오른쪽v/4이나 상자상대 왼쪽v/2; 탈출3L/2
+  ---
+  duration_ms: 0.085288
+  type: 'test'
+  ...
+# Subtest: 7번 움직이는 빗면 운동량·에너지와 M3m 동형
+ok 136 - 7번 움직이는 빗면 운동량·에너지와 M3m 동형
+  ---
+  duration_ms: 0.07359
+  type: 'test'
+  ...
+# Subtest: 업로드 원본 문제·해답 PDF 바이트 보존 및 4쪽 이미지 원문추출
+ok 137 - 업로드 원본 문제·해답 PDF 바이트 보존 및 4쪽 이미지 원문추출
+  ---
+  duration_ms: 3.125186
+  type: 'test'
+  ...
+# Subtest: catalogJS·JSON·독립 문제은행 동기화 및 버전·총수 일치
+ok 138 - catalogJS·JSON·독립 문제은행 동기화 및 버전·총수 일치
+  ---
+  duration_ms: 19.571497
+  type: 'test'
+  ...
+# Subtest: 포털·코어 코드 동일; 교사 UI는 v3.7.13 전용 검사에서 검증
+ok 139 - 포털·코어 코드 동일; 교사 UI는 v3.7.13 전용 검사에서 검증
+  ---
+  duration_ms: 0.411268
+  type: 'test'
+  ...
+# Subtest: 문제·해답 분리 경로, 재구성본 연결 없음, 문제지에는 해답지 이미지가 없음
+ok 140 - 문제·해답 분리 경로, 재구성본 연결 없음, 문제지에는 해답지 이미지가 없음
+  ---
+  duration_ms: 0.341603
+  type: 'test'
+  ...
+# Subtest: 원문7번 총10점 유지: 미제공 소문항배점을 임의로 쪼개지 않음
+ok 141 - 원문7번 총10점 유지: 미제공 소문항배점을 임의로 쪼개지 않음
+  ---
+  duration_ms: 0.091147
+  type: 'test'
+  ...
+# Subtest: 제출 전 노출되는 새 검수 메모에 1·2번 정답을 넣지 않음
+ok 142 - 제출 전 노출되는 새 검수 메모에 1·2번 정답을 넣지 않음
+  ---
+  duration_ms: 0.094712
+  type: 'test'
+  ...
+# Subtest: EMW 기존 시험ID 활성화, 20객관+5서술 각4점100점
+ok 143 - EMW 기존 시험ID 활성화, 20객관+5서술 각4점100점
+  ---
+  duration_ms: 1.476409
+  type: 'test'
+  ...
+# Subtest: 첨부 공식 정답표 보존, 확인메모와 정답교정 구분
+ok 144 - 첨부 공식 정답표 보존, 확인메모와 정답교정 구분
+  ---
+  duration_ms: 0.440762
+  type: 'test'
+  ...
+# Subtest: 25입력 채점100점, 객관1은선택번호/서술1은1점
+ok 145 - 25입력 채점100점, 객관1은선택번호/서술1은1점
+  ---
+  duration_ms: 1.086793
+  type: 'test'
+  ...
+# Subtest: 오답·부분점수·공란·범위초과·소수점 검증
+ok 146 - 오답·부분점수·공란·범위초과·소수점 검증
+  ---
+  duration_ms: 0.147311
+  type: 'test'
+  ...
+# Subtest: StudentId·token·fingerprint와 기존 객체 불변
+ok 147 - StudentId·token·fingerprint와 기존 객체 불변
+  ---
+  duration_ms: 0.816247
+  type: 'test'
+  ...
+# Subtest: 일반물리2 11~15회 누적 연결과 총괄 분류 유지
+ok 148 - 일반물리2 11~15회 누적 연결과 총괄 분류 유지
+  ---
+  duration_ms: 0.456065
+  type: 'test'
+  ...
+# Subtest: 25원문 재도전 및25동형: 유일한보기와단일선택채점
+ok 149 - 25원문 재도전 및25동형: 유일한보기와단일선택채점
+  ---
+  duration_ms: 3.95315
+  type: 'test'
+  ...
+# Subtest: 25문항 텍스트와 원문해설링크, 원문정답수동채점루브릭
+ok 150 - 25문항 텍스트와 원문해설링크, 원문정답수동채점루브릭
+  ---
+  duration_ms: 2.272925
+  type: 'test'
+  ...
+# Subtest: 원본2PDF와17페이지 및25해설이미지SHA256일치
+ok 151 - 원본2PDF와17페이지 및25해설이미지SHA256일치
+  ---
+  duration_ms: 17.283369
+  type: 'test'
+  ...
+# Subtest: 25문항 crop좌표는 원본추출매니페스트의 [x,y,width,height] 변환과 동일
+ok 152 - 25문항 crop좌표는 원본추출매니페스트의 [x,y,width,height] 변환과 동일
+  ---
+  duration_ms: 0.686662
+  type: 'test'
+  ...
+# Subtest: 카탈로그 JS/JSON과 독립시험JSON이 동일
+ok 153 - 카탈로그 JS/JSON과 독립시험JSON이 동일
+  ---
+  duration_ms: 29.486567
+  type: 'test'
+  ...
+# Subtest: 기존45시험 불변: EMW활성화·심화총괄r05연결만 예외
+ok 154 - 기존45시험 불변: EMW활성화·심화총괄r05연결만 예외
+  ---
+  duration_ms: 7.582623
+  type: 'test'
+  ...
+# Subtest: 기존 문항JSON 보존: 활성화한 EMW 하나만 예외
+ok 155 - 기존 문항JSON 보존: 활성화한 EMW 하나만 예외
+  ---
+  duration_ms: 1.214395
+  type: 'test'
+  ...
+# Subtest: 기존 모든 문제PDF·이미지 바이트보존
+ok 156 - 기존 모든 문제PDF·이미지 바이트보존
+  ---
+  duration_ms: 54.689792
+  type: 'test'
+  ...
+# Subtest: 20보호파일 SHA256 동일: 서버·코어·API·배포·포털·로고·학생관리
+ok 157 - 20보호파일 SHA256 동일: 서버·코어·API·배포·포털·로고·학생관리
+  ---
+  duration_ms: 1.613425
+  type: 'test'
+  ...
+# Subtest: 보고서 확장 3표시치환+안전해설렌더만: 역치환시 이전 코드SHA 동일
+ok 158 - 보고서 확장 3표시치환+안전해설렌더만: 역치환시 이전 코드SHA 동일
+  ---
+  duration_ms: 2.387247
+  type: 'test'
+  ...
+# Subtest: 원문해설은 제출후 공개영역 내부, 외부URL·경로탈출 방지
+ok 159 - 원문해설은 제출후 공개영역 내부, 외부URL·경로탈출 방지
+  ---
+  duration_ms: 0.353281
+  type: 'test'
+  ...
+# Subtest: 서버문항 merge 후 새해설메타·공식키·교사수정 우선순위 유지
+ok 160 - 서버문항 merge 후 새해설메타·공식키·교사수정 우선순위 유지
+  ---
+  duration_ms: 1.962899
+  type: 'test'
+  ...
+# Subtest: R16 구형6/개정7과심화4회신구분리·심화5회원본동시보존
+ok 161 - R16 구형6/개정7과심화4회신구분리·심화5회원본동시보존
+  ---
+  duration_ms: 0.148193
+  type: 'test'
+  ...
+# Subtest: 누적패키지3.7.12:46시험29ready301문항
+ok 162 - 누적패키지3.7.12:46시험29ready301문항
+  ---
+  duration_ms: 0.190677
+  type: 'test'
+  ...
+# Subtest: 새 동형 수치·비례식 독립 계산 (원본 정답 변경 없음)
+ok 163 - 새 동형 수치·비례식 독립 계산 (원본 정답 변경 없음)
+  ---
+  duration_ms: 0.131267
+  type: 'test'
+  ...
+# Subtest: 물리2 11회차 시험 ID는 기존 준비 중 placeholder를 대체하고 100점, 8문항이다
+ok 164 - 물리2 11회차 시험 ID는 기존 준비 중 placeholder를 대체하고 100점, 8문항이다
+  ---
+  duration_ms: 1.720144
+  type: 'test'
+  ...
+# Subtest: 물리2 10회는 계속 제외하고 11회는 전자기 총괄의 누적 범위에 포함된다
+ok 165 - 물리2 10회는 계속 제외하고 11회는 전자기 총괄의 누적 범위에 포함된다
+  ---
+  duration_ms: 0.169996
+  type: 'test'
+  ...
+# Subtest: 검수 해설은 Quiz 원문 PDF와 숙제노트 2~4페이지를 근거로 연결한다
+ok 166 - 검수 해설은 Quiz 원문 PDF와 숙제노트 2~4페이지를 근거로 연결한다
+  ---
+  duration_ms: 2.259274
+  type: 'test'
+  ...
+# Subtest: 각 문항의 원문 그림 crop이 기존 페이지 이미지 1240×1753 이내로 위치한다
+ok 167 - 각 문항의 원문 그림 crop이 기존 페이지 이미지 1240×1753 이내로 위치한다
+  ---
+  duration_ms: 3.544897
+  type: 'test'
+  ...
+# Subtest: 문항 1~8 모두 객관식 원문 재도전과 새 객관식 동형 문제를 가진다
+ok 168 - 문항 1~8 모두 객관식 원문 재도전과 새 객관식 동형 문제를 가진다
+  ---
+  duration_ms: 0.457768
+  type: 'test'
+  ...
+# Subtest: 학생 점수 입력 규칙 1=20점/10점 만점, P1=1점 부분점수를 유지한다
+ok 169 - 학생 점수 입력 규칙 1=20점/10점 만점, P1=1점 부분점수를 유지한다
+  ---
+  duration_ms: 0.709396
+  type: 'test'
+  ...
+# Subtest: 제공 공식 정답 Q1~Q6을 원문 그대로 대조하여 등록한다
+ok 170 - 제공 공식 정답 Q1~Q6을 원문 그대로 대조하여 등록한다
+  ---
+  duration_ms: 0.229806
+  type: 'test'
+  ...
+# Subtest: 7번 잘못된 주기식은 g_eff=2g/√3으로 교정했고 원문 해설 오류를 기록한다
+ok 171 - 7번 잘못된 주기식은 g_eff=2g/√3으로 교정했고 원문 해설 오류를 기록한다
+  ---
+  duration_ms: 0.213331
+  type: 'test'
+  ...
+# Subtest: 8번은 q>0·무마찰 조건을 먼저 명시하고 조건부 정답을 공개한다
+ok 172 - 8번은 q>0·무마찰 조건을 먼저 명시하고 조건부 정답을 공개한다
+  ---
+  duration_ms: 0.694874
+  type: 'test'
+  ...
+# Subtest: 원본 보너스 그림 2점은 공식 100점 범위에 추가하지 않는다
+ok 173 - 원본 보너스 그림 2점은 공식 100점 범위에 추가하지 않는다
+  ---
+  duration_ms: 0.402685
+  type: 'test'
+  ...
+# Subtest: 기존 Apps Script 통신 규격을 교체하지 않고 서버 카탈로그 동기화가 가능하다
+ok 174 - 기존 Apps Script 통신 규격을 교체하지 않고 서버 카탈로그 동기화가 가능하다
+  ---
+  duration_ms: 3.142853
+  type: 'test'
+  ...
+# Subtest: catalog.js와 JSON의 변경된 11회차 데이터를 정확히 같은 내용으로 제공한다
+ok 175 - catalog.js와 JSON의 변경된 11회차 데이터를 정확히 같은 내용으로 제공한다
+  ---
+  duration_ms: 25.910123
+  type: 'test'
+  ...
+# Subtest: 교사·학부모 HTML 모두 catalog.js의 최신 배포 캐시 버전을 참조한다
+ok 176 - 교사·학부모 HTML 모두 catalog.js의 최신 배포 캐시 버전을 참조한다
+  ---
+  duration_ms: 0.438829
+  type: 'test'
+  ...
+# Subtest: 답안 검수 상태 및 문항별 루브릭의 배점 합이 원문 점수와 일치한다
+ok 177 - 답안 검수 상태 및 문항별 루브릭의 배점 합이 원문 점수와 일치한다
+  ---
+  duration_ms: 0.151618
+  type: 'test'
+  ...
+# Subtest: 사이트 코드는 총괄·주간 학생별 영구 포털 통합 구조를 유지한다
+ok 178 - 사이트 코드는 총괄·주간 학생별 영구 포털 통합 구조를 유지한다
+  ---
+  duration_ms: 0.902356
+  type: 'test'
+  ...
+# Subtest: 물리2 12회차 기존 placeholder를 준비 완료로 변경하고 8문항 100점 입력
+ok 179 - 물리2 12회차 기존 placeholder를 준비 완료로 변경하고 8문항 100점 입력
+  ---
+  duration_ms: 1.611472
+  type: 'test'
+  ...
+# Subtest: 11회 전기장과 12회 전위·축전기는 별도 시험으로 보존되며 총괄 평가 역사에 포함
+ok 180 - 11회 전기장과 12회 전위·축전기는 별도 시험으로 보존되며 총괄 평가 역사에 포함
+  ---
+  duration_ms: 0.228113
+  type: 'test'
+  ...
+# Subtest: 8문항 이미지와 PDF는 모두 실제 존재하며 원본은 1240×1753에 맞게 추출
+ok 181 - 8문항 이미지와 PDF는 모두 실제 존재하며 원본은 1240×1753에 맞게 추출
+  ---
+  duration_ms: 1.233714
+  type: 'test'
+  ...
+# Subtest: 1·2번 답은 전지 연결 여부에 따라 달라지고 15점 루브릭을 제공
+ok 182 - 1·2번 답은 전지 연결 여부에 따라 달라지고 15점 루브릭을 제공
+  ---
+  duration_ms: 0.325539
+  type: 'test'
+  ...
+# Subtest: 3번 전위차 60V와 2μC로부터 1.2×10⁻⁴J를 올바르게 계산
+ok 183 - 3번 전위차 60V와 2μC로부터 1.2×10⁻⁴J를 올바르게 계산
+  ---
+  duration_ms: 0.286801
+  type: 'test'
+  ...
+# Subtest: 4번 4V, 4√2m/s 검증 및 20점 루브릭 유지
+ok 184 - 4번 4V, 4√2m/s 검증 및 20점 루브릭 유지
+  ---
+  duration_ms: 0.207542
+  type: 'test'
+  ...
+# Subtest: 5번 원문 조건 부족은 충분한 거리의 금속구 근사로 명시하고 공식 정답 보존
+ok 185 - 5번 원문 조건 부족은 충분한 거리의 금속구 근사로 명시하고 공식 정답 보존
+  ---
+  duration_ms: 0.227532
+  type: 'test'
+  ...
+# Subtest: 6번 공식 해설 전하량의 단위 오류를 V에서 C로 교정
+ok 186 - 6번 공식 해설 전하량의 단위 오류를 V에서 C로 교정
+  ---
+  duration_ms: 0.16625
+  type: 'test'
+  ...
+# Subtest: 7번 면적 분할은 병렬 합성 공식 및 8번 두께 분할은 직렬 합성 공식
+ok 187 - 7번 면적 분할은 병렬 합성 공식 및 8번 두께 분할은 직렬 합성 공식
+  ---
+  duration_ms: 0.278268
+  type: 'test'
+  ...
+# Subtest: 8개 모든 문항은 서술형 교사 채점과 4지 객관식 오답학습·동형문제 제공
+ok 188 - 8개 모든 문항은 서술형 교사 채점과 4지 객관식 오답학습·동형문제 제공
+  ---
+  duration_ms: 0.468514
+  type: 'test'
+  ...
+# Subtest: 1은 문항 만점 P1은 정확히 1점 부분점수, 0은 0점
+ok 189 - 1은 문항 만점 P1은 정확히 1점 부분점수, 0은 0점
+  ---
+  duration_ms: 0.745971
+  type: 'test'
+  ...
+# Subtest: 동형 3·4·6·8번은 별도 계산·공식 값과 일치
+ok 190 - 동형 3·4·6·8번은 별도 계산·공식 값과 일치
+  ---
+  duration_ms: 0.218599
+  type: 'test'
+  ...
+# Subtest: Questions 원본 JSON과 catalog.js의 등록 데이터는 완전히 같다
+ok 191 - Questions 원본 JSON과 catalog.js의 등록 데이터는 완전히 같다
+  ---
+  duration_ms: 22.808031
+  type: 'test'
+  ...
+# Subtest: 교사용·학부모 페이지가 새 카탈로그 캐시버전 3.7.3을 참조
+ok 192 - 교사용·학부모 페이지가 새 카탈로그 캐시버전 3.7.3을 참조
+  ---
+  duration_ms: 0.441263
+  type: 'test'
+  ...
+# Subtest: Server Code.gs 및 인증·기존 학생 링크는 수정 없이 사이트 서버 동기화로 적용 가능
+ok 193 - Server Code.gs 및 인증·기존 학생 링크는 수정 없이 사이트 서버 동기화로 적용 가능
+  ---
+  duration_ms: 0.929647
+  type: 'test'
+  ...
+# Subtest: 물리2 일반 13회 기존 placeholder만 ready 활성화 (7문항, 100점)
+ok 194 - 물리2 일반 13회 기존 placeholder만 ready 활성화 (7문항, 100점)
+  ---
+  duration_ms: 2.227197
+  type: 'test'
+  ...
+# Subtest: 기존 11·12회, 심화2·3회, 물리1 6회 4번과 총괄 연결 보존
+ok 195 - 기존 11·12회, 심화2·3회, 물리1 6회 4번과 총괄 연결 보존
+  ---
+  duration_ms: 0.774884
+  type: 'test'
+  ...
+# Subtest: 전원문항 7개 점수/분할루브릭 100점, 재도전 4지 선택 14문항
+ok 196 - 전원문항 7개 점수/분할루브릭 100점, 재도전 4지 선택 14문항
+  ---
+  duration_ms: 1.938533
+  type: 'test'
+  ...
+# Subtest: 교사 성적 1/0/P1/실수/공란 입력·부분점수 100점 검증
+ok 197 - 교사 성적 1/0/P1/실수/공란 입력·부분점수 100점 검증
+  ---
+  duration_ms: 1.299783
+  type: 'test'
+  ...
+# Subtest: 문항1: 전지9V 저항3Ω, 무충전 축전기 닫은직후 3A 0V, 장시간 0A 9V
+ok 198 - 문항1: 전지9V 저항3Ω, 무충전 축전기 닫은직후 3A 0V, 장시간 0A 9V
+  ---
+  duration_ms: 0.381904
+  type: 'test'
+  ...
+# Subtest: 문항2: 실측 그래프 ε1.8V 내부저항1Ω
+ok 199 - 문항2: 실측 그래프 ε1.8V 내부저항1Ω
+  ---
+  duration_ms: 0.212329
+  type: 'test'
+  ...
+# Subtest: 문항3: 정상상태 Rx=R/2면 Q=CV/6, Rx=3R이면 V/4
+ok 200 - 문항3: 정상상태 Rx=R/2면 Q=CV/6, Rx=3R이면 V/4
+  ---
+  duration_ms: 0.31276
+  type: 'test'
+  ...
+# Subtest: 문항4: 회로 전원극성 고려 R1=3A R3=0 R5=3A, 전위차 크기6V, 0W
+ok 201 - 문항4: 회로 전원극성 고려 R1=3A R3=0 R5=3A, 전위차 크기6V, 0W
+  ---
+  duration_ms: 0.216265
+  type: 'test'
+  ...
+# Subtest: 문항5: 1.5V 두 전지 내부저항 포함하면 0.5A, 전구2.8V
+ok 202 - 문항5: 1.5V 두 전지 내부저항 포함하면 0.5A, 전구2.8V
+  ---
+  duration_ms: 0.298188
+  type: 'test'
+  ...
+# Subtest: 문항6: 4개 동일 전지의 병렬2+직렬2 합성은3E,2.5r, I6A
+ok 203 - 문항6: 4개 동일 전지의 병렬2+직렬2 합성은3E,2.5r, I6A
+  ---
+  duration_ms: 0.344358
+  type: 'test'
+  ...
+# Subtest: 문항7: KVL로 I1=2A, I2=1A, 중간 저항 1A 아래
+ok 204 - 문항7: KVL로 I1=2A, I2=1A, 중간 저항 1A 아래
+  ---
+  duration_ms: 0.204227
+  type: 'test'
+  ...
+# Subtest: 원본3p PDF, 교정3p PDF, 원본 HWP 보존과 3개 페이지 이미지 규격 확인
+ok 205 - 원본3p PDF, 교정3p PDF, 원본 HWP 보존과 3개 페이지 이미지 규격 확인
+  ---
+  duration_ms: 5.065671
+  type: 'test'
+  ...
+# Subtest: 각 7개 원문 이미지 crop은 페이지 내이고 최소 크기 확보
+ok 206 - 각 7개 원문 이미지 crop은 페이지 내이고 최소 크기 확보
+  ---
+  duration_ms: 0.157727
+  type: 'test'
+  ...
+# Subtest: 독립 문항 JSON, catalog.json, catalog.js 객체 일치
+ok 207 - 독립 문항 JSON, catalog.json, catalog.js 객체 일치
+  ---
+  duration_ms: 24.431625
+  type: 'test'
+  ...
+# Subtest: v3.7.4 클라이언트 캐시 무효화, 기존 API 및 보안 설정 존재
+ok 208 - v3.7.4 클라이언트 캐시 무효화, 기존 API 및 보안 설정 존재
+  ---
+  duration_ms: 3.67358
+  type: 'test'
+  ...
+# Subtest: 물리2 14회 기존 비활성 시험 ID 그대로 활성화, 9문항 100점
+ok 209 - 물리2 14회 기존 비활성 시험 ID 그대로 활성화, 9문항 100점
+  ---
+  duration_ms: 1.544561
+  type: 'test'
+  ...
+# Subtest: 기존 13회 및 물리1 16회 신구 분리 등록 유지
+ok 210 - 기존 13회 및 물리1 16회 신구 분리 등록 유지
+  ---
+  duration_ms: 0.225339
+  type: 'test'
+  ...
+# Subtest: 9문항에 대한 개별 점수/루브릭 검증, 재도전 9+9 선택 정답 일치
+ok 211 - 9문항에 대한 개별 점수/루브릭 검증, 재도전 9+9 선택 정답 일치
+  ---
+  duration_ms: 1.087054
+  type: 'test'
+  ...
+# Subtest: 교사 채점: 전체 O·X, P1, 실제 부분점수 및 공란
+ok 212 - 교사 채점: 전체 O·X, P1, 실제 부분점수 및 공란
+  ---
+  duration_ms: 0.693742
+  type: 'test'
+  ...
+# Subtest: 1번 휘트스톤 6Ω·3A, 2번 평행도선 인력 2.4×10⁻⁵N
+ok 213 - 1번 휘트스톤 6Ω·3A, 2번 평행도선 인력 2.4×10⁻⁵N
+  ---
+  duration_ms: 0.23343
+  type: 'test'
+  ...
+# Subtest: 3번 A 아래 I, C의 합력 오른쪽, B/D 인력, 원문 ④
+ok 214 - 3번 A 아래 I, C의 합력 오른쪽, B/D 인력, 원문 ④
+  ---
+  duration_ms: 0.148473
+  type: 'test'
+  ...
+# Subtest: 4번 정사각형 고리 알짜힘 왼쪽, 가까운 쪽 인력이 더 큼
+ok 215 - 4번 정사각형 고리 알짜힘 왼쪽, 가까운 쪽 인력이 더 큼
+  ---
+  duration_ms: 0.158318
+  type: 'test'
+  ...
+# Subtest: 5번 양전하 오른쪽+자기장 안쪽 = 위쪽, F=0.03N
+ok 216 - 5번 양전하 오른쪽+자기장 안쪽 = 위쪽, F=0.03N
+  ---
+  duration_ms: 0.0994
+  type: 'test'
+  ...
+# Subtest: 6번 제공 해답의 누락된 반지름 보충 및 과도한 반원 그림 주의
+ok 217 - 6번 제공 해답의 누락된 반지름 보충 및 과도한 반원 그림 주의
+  ---
+  duration_ms: 0.337517
+  type: 'test'
+  ...
+# Subtest: 7번 r은 2배, 비상대론 주기 그대로
+ok 218 - 7번 r은 2배, 비상대론 주기 그대로
+  ---
+  duration_ms: 0.302935
+  type: 'test'
+  ...
+# Subtest: 8번 α 오른쪽/β 왼쪽/γ 직진, 각 7·7·6점, 곡률 비 조건 미정
+ok 219 - 8번 α 오른쪽/β 왼쪽/γ 직진, 각 7·7·6점, 곡률 비 조건 미정
+  ---
+  duration_ms: 0.175394
+  type: 'test'
+  ...
+# Subtest: 9번 속도 선택기 v=E/B 및 동형 E=60,B=0.2 ⇒ 300m/s
+ok 220 - 9번 속도 선택기 v=E/B 및 동형 E=60,B=0.2 ⇒ 300m/s
+  ---
+  duration_ms: 0.083305
+  type: 'test'
+  ...
+# Subtest: 시험 원본 PDF/원본해설 PDF/검수해설 PDF 3개 분리 및 PNG 크기
+ok 221 - 시험 원본 PDF/원본해설 PDF/검수해설 PDF 3개 분리 및 PNG 크기
+  ---
+  duration_ms: 1.140153
+  type: 'test'
+  ...
+# Subtest: catalog.js, catalog.json, 분리된 question.json 내용 동일
+ok 222 - catalog.js, catalog.json, 분리된 question.json 내용 동일
+  ---
+  duration_ms: 28.023989
+  type: 'test'
+  ...
+# Subtest: Apps Script, Worker, 영구 링크/서버 토큰 파일 무변경 (학부모 UI 제외)
+ok 223 - Apps Script, Worker, 영구 링크/서버 토큰 파일 무변경 (학부모 UI 제외)
+  ---
+  duration_ms: 2.749462
+  type: 'test'
+  ...
+# Subtest: 캐시와 package 버전은 3.7.6, 기존 핵심 JS 로직은 불변
+ok 224 - 캐시와 package 버전은 3.7.6, 기존 핵심 JS 로직은 불변
+  ---
+  duration_ms: 0.448053
+  type: 'test'
+  ...
+# Subtest: 15회차 기존 ID를 중복 없이 ready로 활성화, 9문항·100점
+ok 225 - 15회차 기존 ID를 중복 없이 ready로 활성화, 9문항·100점
+  ---
+  duration_ms: 1.845123
+  type: 'test'
+  ...
+# Subtest: 다른 43개 시험 정의는 v3.7.8 기준 SHA256과 완전 동일
+ok 226 - 다른 43개 시험 정의는 v3.7.8 기준 SHA256과 완전 동일
+  ---
+  duration_ms: 10.56145
+  type: 'test'
+  ...
+# Subtest: Apps Script·Worker·포털 CTA·학생 링크 보호 (표시 확장 별도 검사)
+ok 227 - Apps Script·Worker·포털 CTA·학생 링크 보호 (표시 확장 별도 검사)
+  ---
+  duration_ms: 3.988232
+  type: 'test'
+  ...
+# Subtest: 9+9 원문·동형 객관식의 정답 유일성과 루브릭 합계
+ok 228 - 9+9 원문·동형 객관식의 정답 유일성과 루브릭 합계
+  ---
+  duration_ms: 2.013846
+  type: 'test'
+  ...
+# Subtest: 교사 입력 1=만점, 0=0점, P1=1점, 부분점수·공란 보존
+ok 229 - 교사 입력 1=만점, 0=0점, P1=1점, 부분점수·공란 보존
+  ---
+  duration_ms: 1.103167
+  type: 'test'
+  ...
+# Subtest: 1번 100μH·20000A/s → 2V; 동형 250μH·12000A/s → 3V
+ok 230 - 1번 100μH·20000A/s → 2V; 동형 250μH·12000A/s → 3V
+  ---
+  duration_ms: 0.197798
+  type: 'test'
+  ...
+# Subtest: 2번 변화량 6A/1.5s와 12V → 3H; 동형 1H
+ok 231 - 2번 변화량 6A/1.5s와 12V → 3H; 동형 1H
+  ---
+  duration_ms: 0.214342
+  type: 'test'
+  ...
+# Subtest: 3번 초기 전류 0 전제와 I=0A/VL=12V를 구분
+ok 232 - 3번 초기 전류 0 전제와 I=0A/VL=12V를 구분
+  ---
+  duration_ms: 0.230346
+  type: 'test'
+  ...
+# Subtest: 4번 과도상태 VR=8V/VL=4V, 동형 15V/5V
+ok 233 - 4번 과도상태 VR=8V/VL=4V, 동형 15V/5V
+  ---
+  duration_ms: 0.407082
+  type: 'test'
+  ...
+# Subtest: 5번 정상상태 3A/0V, 실제 코일의 저항 가정과 구분
+ok 234 - 5번 정상상태 3A/0V, 실제 코일의 저항 가정과 구분
+  ---
+  duration_ms: 0.483366
+  type: 'test'
+  ...
+# Subtest: 6번 전체 전류 2A→3A 및 원문 7+8점 배점 보존
+ok 235 - 6번 전체 전류 2A→3A 및 원문 7+8점 배점 보존
+  ---
+  duration_ms: 0.352219
+  type: 'test'
+  ...
+# Subtest: 7번 sin임계각=3/4·60도 전반사·10+5점, 동형 n=2에서 45도 전반사
+ok 236 - 7번 sin임계각=3/4·60도 전반사·10+5점, 동형 n=2에서 45도 전반사
+  ---
+  duration_ms: 0.188994
+  type: 'test'
+  ...
+# Subtest: 8번 B→A와 이유를 함께 요구하고 이유 누락 0점 유지
+ok 237 - 8번 B→A와 이유를 함께 요구하고 이유 누락 0점 유지
+  ---
+  duration_ms: 0.198648
+  type: 'test'
+  ...
+# Subtest: 9번 원문 경계값 2/√3 보존, 실제 전반사 >조건·임계각 등호 구분
+ok 238 - 9번 원문 경계값 2/√3 보존, 실제 전반사 >조건·임계각 등호 구분
+  ---
+  duration_ms: 0.23938
+  type: 'test'
+  ...
+# Subtest: 원본 문제·해설 PDF는 사용자 첨부와 해시 동일, 별도 검수 해설 PDF 제공
+ok 239 - 원본 문제·해설 PDF는 사용자 첨부와 해시 동일, 별도 검수 해설 PDF 제공
+  ---
+  duration_ms: 1.133002
+  type: 'test'
+  ...
+# Subtest: 원문 2쪽 이미지와 4·5번 공통회로 보조이미지, 모든 crop 경계 유효
+ok 240 - 원문 2쪽 이미지와 4·5번 공통회로 보조이미지, 모든 crop 경계 유효
+  ---
+  duration_ms: 0.714434
+  type: 'test'
+  ...
+# Subtest: catalog JSON·JS·개별 문항 JSON 일치
+ok 241 - catalog JSON·JS·개별 문항 JSON 일치
+  ---
+  duration_ms: 34.811277
+  type: 'test'
+  ...
+# Subtest: 15회차 성적 저장·누적 분석의 학생 식별자와 시험 기준 보존
+ok 242 - 15회차 성적 저장·누적 분석의 학생 식별자와 시험 기준 보존
+  ---
+  duration_ms: 1.676148
+  type: 'test'
+  ...
+# Subtest: 총괄 CTA·구형/개정 16회차·14회차·심화4회 보존
+ok 243 - 총괄 CTA·구형/개정 16회차·14회차·심화4회 보존
+  ---
+  duration_ms: 0.364017
+  type: 'test'
+  ...
+# Subtest: v3.7.9 패키지·카탈로그 캐시만 갱신하고 v3.7.8 포털 JS/CSS 유지
+ok 244 - v3.7.9 패키지·카탈로그 캐시만 갱신하고 v3.7.8 포털 JS/CSS 유지
+  ---
+  duration_ms: 0.958601
+  type: 'test'
+  ...
+# Subtest: 총괄평가 카드는 성적표 CTA와 기존 시험 분석 CTA를 모두 제공, 주간 카드에는 기존 분석 CTA만 유지
+ok 245 - 총괄평가 카드는 성적표 CTA와 기존 시험 분석 CTA를 모두 제공, 주간 카드에는 기존 분석 CTA만 유지
+  ---
+  duration_ms: 22.939269
+  type: 'test'
+  ...
+# Subtest: 기본 누적 화면에서 총괄평가를 별도로 먼저 보여주고 최근 주간 복습과 구분
+ok 246 - 기본 누적 화면에서 총괄평가를 별도로 먼저 보여주고 최근 주간 복습과 구분
+  ---
+  duration_ms: 2.410231
+  type: 'test'
+  ...
+# Subtest: 총괄 탭에서도 성적표 CTA를 상단으로 표시
+ok 247 - 총괄 탭에서도 성적표 CTA를 상단으로 표시
+  ---
+  duration_ms: 1.188205
+  type: 'test'
+  ...
+# Subtest: 학생 권한 검증 후에만 개별 성적표를 열고 fingerprint는 API 응답에서 획득
+ok 248 - 학생 권한 검증 후에만 개별 성적표를 열고 fingerprint는 API 응답에서 획득
+  ---
+  duration_ms: 2.773006
+  type: 'test'
+  ...
+# Subtest: 잘못된 학생·시험 매칭 응답은 성적표를 열지 않고 팝업을 닫음
+ok 249 - 잘못된 학생·시험 매칭 응답은 성적표를 열지 않고 팝업을 닫음
+  ---
+  duration_ms: 1.005251
+  type: 'test'
+  ...
+# Subtest: 팝업 차단 시 인증을 거친 뒤 현재 탭으로 성적표 연결
+ok 250 - 팝업 차단 시 인증을 거친 뒤 현재 탭으로 성적표 연결
+  ---
+  duration_ms: 1.046342
+  type: 'test'
+  ...
+# Subtest: 총괄평가가 없는 학생의 누적 요약에는 빈 성적표 전용 영역을 표시하지 않음
+ok 251 - 총괄평가가 없는 학생의 누적 요약에는 빈 성적표 전용 영역을 표시하지 않음
+  ---
+  duration_ms: 0.787173
+  type: 'test'
+  ...
+# Subtest: 버전 갱신과 반응형·인쇄 스타일 확인; Apps Script 변경 없이 기존 보고서 페이지로 연결
+ok 252 - 버전 갱신과 반응형·인쇄 스타일 확인; Apps Script 변경 없이 기존 보고서 페이지로 연결
+  ---
+  duration_ms: 0.191347
+  type: 'test'
+  ...
+# Subtest: v3.7.13: catalog/모든 시험·PDF·PNG 및 서버·API·링크·포털 바이트 불변
+ok 253 - v3.7.13: catalog/모든 시험·PDF·PNG 및 서버·API·링크·포털 바이트 불변
+  ---
+  duration_ms: 62.144319
+  type: 'test'
+  ...
+# Subtest: 검색: 부분 이름, 공백, 학교명, 동명이인 구별; 빈 검색 전체 표시
+ok 254 - 검색: 부분 이름, 공백, 학교명, 동명이인 구별; 빈 검색 전체 표시
+  ---
+  duration_ms: 9.497892
+  type: 'test'
+  ...
+# Subtest: 현재 반 검색과 전체 학생 검색은 각 범위의 StudentId만 표시
+ok 255 - 현재 반 검색과 전체 학생 검색은 각 범위의 StudentId만 표시
+  ---
+  duration_ms: 6.219946
+  type: 'test'
+  ...
+# Subtest: 검색 결과 0명은 빈 명단과 구별하고 학생·성적을 변경하지 않음
+ok 256 - 검색 결과 0명은 빈 명단과 구별하고 학생·성적을 변경하지 않음
+  ---
+  duration_ms: 11.899685
+  type: 'test'
+  ...
+# Subtest: 검색 버튼은 StudentId 사용, 이름/학교/식별 문자열 HTML escape
+ok 257 - 검색 버튼은 StudentId 사용, 이름/학교/식별 문자열 HTML escape
+  ---
+  duration_ms: 10.489146
+  type: 'test'
+  ...
+# Subtest: 전체 검색에서 다른 반 학생 선택은 반 배정/제외를 자동 실행하지 않음
+ok 258 - 전체 검색에서 다른 반 학생 선택은 반 배정/제외를 자동 실행하지 않음
+  ---
+  duration_ms: 18.483654
+  type: 'test'
+  ...
+# Subtest: 학생 전환 취소는 작성 중인 점수와 기존 선택을 보존
+ok 259 - 학생 전환 취소는 작성 중인 점수와 기존 선택을 보존
+  ---
+  duration_ms: 5.774778
+  type: 'test'
+  ...
+# Subtest: 기존 학생 배정은 자동 첫 항목 선택 금지, 이미 등록된 학생은 비활성
+ok 260 - 기존 학생 배정은 자동 첫 항목 선택 금지, 이미 등록된 학생은 비활성
+  ---
+  duration_ms: 7.196724
+  type: 'test'
+  ...
+# Subtest: 명시적으로 선택한 ID만 원래 열었던 반에 배정, 중복 요청 차단
+ok 261 - 명시적으로 선택한 ID만 원래 열었던 반에 배정, 중복 요청 차단
+  ---
+  duration_ms: 8.108193
+  type: 'test'
+  ...
+# Subtest: 등록 후 새로고침 사이 중복 배정도 클라이언트에서 차단
+ok 262 - 등록 후 새로고침 사이 중복 배정도 클라이언트에서 차단
+  ---
+  duration_ms: 6.778816
+  type: 'test'
+  ...
+# Subtest: 배정 실패는 창과 선택 보존, 다시 시도 가능
+ok 263 - 배정 실패는 창과 선택 보존, 다시 시도 가능
+  ---
+  duration_ms: 11.818468
+  type: 'test'
+  ...
+# Subtest: 새 학생 추가 화면에서 기존 동명이인/학교와 등록 상태 표시
+ok 264 - 새 학생 추가 화면에서 기존 동명이인/학교와 등록 상태 표시
+  ---
+  duration_ms: 16.841266
+  type: 'test'
+  ...
+# Subtest: 동일 이름 새 학생 생성은 확인 취소 시 쓰기 없음
+ok 265 - 동일 이름 새 학생 생성은 확인 취소 시 쓰기 없음
+  ---
+  duration_ms: 8.441244
+  type: 'test'
+  ...
+# Subtest: 새 학생 생성은 별도 ID 의도 명시 forceNewStudent=true
+ok 266 - 새 학생 생성은 별도 ID 의도 명시 forceNewStudent=true
+  ---
+  duration_ms: 8.062655
+  type: 'test'
+  ...
+# Subtest: 학교 수정은 명시 ID+school 두 필드만 전송; 토큰·이름·성적·타학생 보존
+ok 267 - 학교 수정은 명시 ID+school 두 필드만 전송; 토큰·이름·성적·타학생 보존
+  ---
+  duration_ms: 13.417571
+  type: 'test'
+  ...
+# Subtest: 학교 수정 대상은 모달을 열 때 고정; 다른 선택 학생 폼 덮어쓰기 없음
+ok 268 - 학교 수정 대상은 모달을 열 때 고정; 다른 선택 학생 폼 덮어쓰기 없음
+  ---
+  duration_ms: 10.040827
+  type: 'test'
+  ...
+# Subtest: 학교 빈칸은 미기입, 동일 값은 서버 쓰기 없음
+ok 269 - 학교 빈칸은 미기입, 동일 값은 서버 쓰기 없음
+  ---
+  duration_ms: 7.362904
+  type: 'test'
+  ...
+# Subtest: 학교 저장 실패 시 기존 목록·폼·점수 보존하고 오류 표시
+ok 270 - 학교 저장 실패 시 기존 목록·폼·점수 보존하고 오류 표시
+  ---
+  duration_ms: 6.396371
+  type: 'test'
+  ...
+# Subtest: 잘못된 서버 학생 ID 또는 포털 지문 응답은 캐시에 반영하지 않음
+ok 271 - 잘못된 서버 학생 ID 또는 포털 지문 응답은 캐시에 반영하지 않음
+  ---
+  duration_ms: 37.954231
+  type: 'test'
+  ...
+# Subtest: 학교 변경은 데모에서 서버 저장을 가장하지 않음
+ok 272 - 학교 변경은 데모에서 서버 저장을 가장하지 않음
+  ---
+  duration_ms: 5.611692
+  type: 'test'
+  ...
+# Subtest: 학교 저장 중 중복 클릭·모달 닫기 방지
+ok 273 - 학교 저장 중 중복 클릭·모달 닫기 방지
+  ---
+  duration_ms: 5.88313
+  type: 'test'
+  ...
+# Subtest: 옛 성적 수정은 확인 없이 최신 학교를 과거 학교로 되돌리지 않음
+ok 274 - 옛 성적 수정은 확인 없이 최신 학교를 과거 학교로 되돌리지 않음
+  ---
+  duration_ms: 6.02313
+  type: 'test'
+  ...
+# Subtest: 학교 편집/검색 UI 레이블·버튼·캐시 참조 및 네이티브 키보드 클릭 제공
+ok 275 - 학교 편집/검색 UI 레이블·버튼·캐시 참조 및 네이티브 키보드 클릭 제공
+  ---
+  duration_ms: 1.577841
+  type: 'test'
+  ...
+# Subtest: 실제 GAS saveStudentProfile_: 학교만 변경, 기존 모든 Report행·멤버십·타학생·ID/seed/token/fp 불변
+ok 276 - 실제 GAS saveStudentProfile_: 학교만 변경, 기존 모든 Report행·멤버십·타학생·ID/seed/token/fp 불변
+  ---
+  duration_ms: 9.051261
+  type: 'test'
+  ...
+# Subtest: 실제 GAS 학교 수정: 미존재/병합 비활성 ID 거절; 타인으로 이름 매칭하지 않음
+ok 277 - 실제 GAS 학교 수정: 미존재/병합 비활성 ID 거절; 타인으로 이름 매칭하지 않음
+  ---
+  duration_ms: 2.624644
+  type: 'test'
+  ...
+# Subtest: 실제 GAS 프로필/반 배정은 교사 인증 없는 요청 거절
+ok 278 - 실제 GAS 프로필/반 배정은 교사 인증 없는 요청 거절
+  ---
+  duration_ms: 2.065293
+  type: 'test'
+  ...
+# Subtest: 실제 GAS 반 배정: 기존 학생 ID만 사용, 여러 반 유지·중복행 방지·성적 불변
+ok 279 - 실제 GAS 반 배정: 기존 학생 ID만 사용, 여러 반 유지·중복행 방지·성적 불변
+  ---
+  duration_ms: 3.856254
+  type: 'test'
+  ...
+# Subtest: 기존 로고·테마 CSS 앞부분 및 신원/영구링크/병합/선택/일괄입력 함수 보존
+ok 280 - 기존 로고·테마 CSS 앞부분 및 신원/영구링크/병합/선택/일괄입력 함수 보존
+  ---
+  duration_ms: 2.710083
+  type: 'test'
+  ...
+# Subtest: 검색어 수정은 기존 학생 선택 해제 후 재선택 요구
+ok 281 - 검색어 수정은 기존 학생 선택 해제 후 재선택 요구
+  ---
+  duration_ms: 15.28016
+  type: 'test'
+  ...
+# Subtest: 학교 저장 취소는 API 호출/로컬 변경 없음
+ok 282 - 학교 저장 취소는 API 호출/로컬 변경 없음
+  ---
+  duration_ms: 6.119085
+  type: 'test'
+  ...
+# Subtest: 실제 GAS 명시적 동명이인 신규 생성은 기존 학생을 갱신하지 않음
+ok 283 - 실제 GAS 명시적 동명이인 신규 생성은 기존 학생을 갱신하지 않음
+  ---
+  duration_ms: 1.995007
+  type: 'test'
+  ...
+# Subtest: 카탈로그 스키마 2.0과 총 46개 시험
+ok 284 - 카탈로그 스키마 2.0과 총 46개 시험
+  ---
+  duration_ms: 4.23264
+  type: 'test'
+  ...
+# Subtest: 주간 40개(16회·심화4회 구형 포함)와 총괄 6개로 분리
+ok 285 - 주간 40개(16회·심화4회 구형 포함)와 총괄 6개로 분리
+  ---
+  duration_ms: 0.14647
+  type: 'test'
+  ...
+# Subtest: 물리1 주간 회차는 2~8, 10~16
+ok 286 - 물리1 주간 회차는 2~8, 10~16
+  ---
+  duration_ms: 0.959291
+  type: 'test'
+  ...
+# Subtest: 물리1심화 주간 회차는 2~7
+ok 287 - 물리1심화 주간 회차는 2~7
+  ---
+  duration_ms: 0.238188
+  type: 'test'
+  ...
+# Subtest: 물리2 주간 회차는 1~9, 11~15
+ok 288 - 물리2 주간 회차는 1~9, 11~15
+  ---
+  duration_ms: 0.188623
+  type: 'test'
+  ...
+# Subtest: 물리2심화 과정과 총괄 준비 항목이 등록됨
+ok 289 - 물리2심화 과정과 총괄 준비 항목이 등록됨
+  ---
+  duration_ms: 0.178809
+  type: 'test'
+  ...
+# Subtest: 의도적 제외 회차는 물리1 1·9회, 물리2 10회
+ok 290 - 의도적 제외 회차는 물리1 1·9회, 물리2 10회
+  ---
+  duration_ms: 0.197547
+  type: 'test'
+  ...
+# Subtest: 총괄평가 연결 범위가 요구사항과 일치
+ok 291 - 총괄평가 연결 범위가 요구사항과 일치
+  ---
+  duration_ms: 0.283476
+  type: 'test'
+  ...
+# Subtest: 현재 자료가 있는 물리1 역학·전자기와 물리2 역학·전자기 총괄이 준비 완료
+ok 292 - 현재 자료가 있는 물리1 역학·전자기와 물리2 역학·전자기 총괄이 준비 완료
+  ---
+  duration_ms: 0.44591
+  type: 'test'
+  ...
+# Subtest: 물리2 일반 총괄 준비 항목은 1~20 선택번호 정책을 예약
+ok 293 - 물리2 일반 총괄 준비 항목은 1~20 선택번호 정책을 예약
+  ---
+  duration_ms: 0.528234
+  type: 'test'
+  ...
+# Subtest: 물리1심화·물리2심화 총괄은 1~25 전체 선택번호 정책
+ok 294 - 물리1심화·물리2심화 총괄은 1~25 전체 선택번호 정책
+  ---
+  duration_ms: 0.220702
+  type: 'test'
+  ...
+# Subtest: 물리1 10~16회가 준비 완료 100점 시험으로 등록
+ok 295 - 물리1 10~16회가 준비 완료 100점 시험으로 등록
+  ---
+  duration_ms: 0.267922
+  type: 'test'
+  ...
+# Subtest: 물리1 10~16회 문항 수는 5·8·7·15·9·8·6
+ok 296 - 물리1 10~16회 문항 수는 5·8·7·15·9·8·6
+  ---
+  duration_ms: 0.190827
+  type: 'test'
+  ...
+# Subtest: 물리1 10~16회 구형 58문항 유지, 개정 7문항 포함 전체 준비 완료 301문항
+ok 297 - 물리1 10~16회 구형 58문항 유지, 개정 7문항 포함 전체 준비 완료 301문항
+  ---
+  duration_ms: 0.302175
+  type: 'test'
+  ...
+# Subtest: 13회 솔레노이드는 A쪽 반시계 전류 조건을 추가해 조건부 해설 공개
+ok 298 - 13회 솔레노이드는 A쪽 반시계 전류 조건을 추가해 조건부 해설 공개
+  ---
+  duration_ms: 0.227122
+  type: 'test'
+  ...
+# Subtest: 새 회차 핵심 정답 검산
+ok 299 - 새 회차 핵심 정답 검산
+  ---
+  duration_ms: 0.144637
+  type: 'test'
+  ...
+# Subtest: 15회 교정 문항과 굴절 핵심 관계가 반영됨
+ok 300 - 15회 교정 문항과 굴절 핵심 관계가 반영됨
+  ---
+  duration_ms: 0.115113
+  type: 'test'
+  ...
+# Subtest: 16회 거울·렌즈 계산 결과와 배점 보완이 반영됨
+ok 301 - 16회 거울·렌즈 계산 결과와 배점 보완이 반영됨
+  ---
+  duration_ms: 0.321974
+  type: 'test'
+  ...
+# Subtest: 각 물리1 총괄은 25문항·100점
+ok 302 - 각 물리1 총괄은 25문항·100점
+  ---
+  duration_ms: 0.203896
+  type: 'test'
+  ...
+# Subtest: 물리1 총괄 객관식 40문항은 학생 선택번호, 서술형 10문항은 points
+ok 303 - 물리1 총괄 객관식 40문항은 학생 선택번호, 서술형 10문항은 points
+  ---
+  duration_ms: 0.157998
+  type: 'test'
+  ...
+# Subtest: 총괄 객관식은 학생 선택번호를 공식 정답과 비교
+ok 304 - 총괄 객관식은 학생 선택번호를 공식 정답과 비교
+  ---
+  duration_ms: 0.423155
+  type: 'test'
+  ...
+# Subtest: 총괄 객관식은 1~5만 허용하고 구형 O/X·0은 호환
+ok 305 - 총괄 객관식은 1~5만 허용하고 구형 O/X·0은 호환
+  ---
+  duration_ms: 0.159209
+  type: 'test'
+  ...
+# Subtest: 총괄 서술형의 1은 만점이 아니라 실제 1점
+ok 306 - 총괄 서술형의 1은 만점이 아니라 실제 1점
+  ---
+  duration_ms: 0.115334
+  type: 'test'
+  ...
+# Subtest: 총괄 서술형 4점은 만점, 4.5점은 차단
+ok 307 - 총괄 서술형 4점은 만점, 4.5점은 차단
+  ---
+  duration_ms: 0.122033
+  type: 'test'
+  ...
+# Subtest: 총괄 학생 선택번호·서술형 점수 계산
+ok 308 - 총괄 학생 선택번호·서술형 점수 계산
+  ---
+  duration_ms: 0.873092
+  type: 'test'
+  ...
+# Subtest: 심화 총괄 모의 25문항은 21~25번도 점수가 아닌 학생 선택번호
+ok 309 - 심화 총괄 모의 25문항은 21~25번도 점수가 아닌 학생 선택번호
+  ---
+  duration_ms: 0.547012
+  type: 'test'
+  ...
+# Subtest: 물리2심화 총괄도 같은 1~25 선택번호 정책을 사용
+ok 310 - 물리2심화 총괄도 같은 1~25 선택번호 정책을 사용
+  ---
+  duration_ms: 0.275404
+  type: 'test'
+  ...
+# Subtest: 기존 주간 입력의 1·P1 규칙은 유지
+ok 311 - 기존 주간 입력의 1·P1 규칙은 유지
+  ---
+  duration_ms: 0.272319
+  type: 'test'
+  ...
+# Subtest: 탭 붙여넣기에서 빈 셀 위치 보존
+ok 312 - 탭 붙여넣기에서 빈 셀 위치 보존
+  ---
+  duration_ms: 0.188333
+  type: 'test'
+  ...
+# Subtest: 총괄 상위 비율은 공동 석차를 응시 인원으로 나누어 계산
+ok 313 - 총괄 상위 비율은 공동 석차를 응시 인원으로 나누어 계산
+  ---
+  duration_ms: 17.213775
+  type: 'test'
+  ...
+# Subtest: 상위 50% 경계는 표시하고 50% 초과는 숨김
+ok 314 - 상위 50% 경계는 표시하고 50% 초과는 숨김
+  ---
+  duration_ms: 0.362505
+  type: 'test'
+  ...
+# Subtest: 응시자 1명 또는 빈 점수 목록은 상위 비율을 표시하지 않음
+ok 315 - 응시자 1명 또는 빈 점수 목록은 상위 비율을 표시하지 않음
+  ---
+  duration_ms: 0.215594
+  type: 'test'
+  ...
+# Subtest: 총괄 첫 화면과 Word는 상위 50% 학생에게만 위치를 표시
+ok 316 - 총괄 첫 화면과 Word는 상위 50% 학생에게만 위치를 표시
+  ---
+  duration_ms: 0.550838
+  type: 'test'
+  ...
+# Subtest: 총괄은 같은 과정·학교·이름의 지정 회차만 연결
+ok 317 - 총괄은 같은 과정·학교·이름의 지정 회차만 연결
+  ---
+  duration_ms: 2.115559
+  type: 'test'
+  ...
+# Subtest: 학교·이름 정규화는 공백·대소문자·기호 차이를 흡수
+ok 318 - 학교·이름 정규화는 공백·대소문자·기호 차이를 흡수
+  ---
+  duration_ms: 0.140051
+  type: 'test'
+  ...
+# Subtest: 복습 누적 성취율은 회차 만점으로 가중 계산
+ok 319 - 복습 누적 성취율은 회차 만점으로 가중 계산
+  ---
+  duration_ms: 0.877388
+  type: 'test'
+  ...
+# Subtest: 통합 코멘트에 복습 연결 회차와 총괄-복습 비교가 포함
+ok 320 - 통합 코멘트에 복습 연결 회차와 총괄-복습 비교가 포함
+  ---
+  duration_ms: 1.828628
+  type: 'test'
+  ...
+# Subtest: 50개 총괄 문항에 답·풀이·공식·실수·루브릭·재도전·동형 문제가 있음
+ok 321 - 50개 총괄 문항에 답·풀이·공식·실수·루브릭·재도전·동형 문제가 있음
+  ---
+  duration_ms: 0.286851
+  type: 'test'
+  ...
+# Subtest: 모든 총괄 문항 루브릭 합은 4점
+ok 322 - 모든 총괄 문항 루브릭 합은 4점
+  ---
+  duration_ms: 0.31964
+  type: 'test'
+  ...
+# Subtest: 객관식 정답키는 1~5 중 하나
+ok 323 - 객관식 정답키는 1~5 중 하나
+  ---
+  duration_ms: 0.154842
+  type: 'test'
+  ...
+# Subtest: 역학 1번은 시간기록계의 실제 이동 방향이 왼쪽이고 정답은 ⑤
+ok 324 - 역학 1번은 시간기록계의 실제 이동 방향이 왼쪽이고 정답은 ⑤
+  ---
+  duration_ms: 0.179569
+  type: 'test'
+  ...
+# Subtest: 역학 19번 단열 팽창의 내부에너지 감소를 교정
+ok 325 - 역학 19번 단열 팽창의 내부에너지 감소를 교정
+  ---
+  duration_ms: 0.147181
+  type: 'test'
+  ...
+# Subtest: 전자기 5번은 금속 격자 이온 열진동으로 교정
+ok 326 - 전자기 5번은 금속 격자 이온 열진동으로 교정
+  ---
+  duration_ms: 0.104377
+  type: 'test'
+  ...
+# Subtest: 전자기 9번 승압 송전은 공식 해설과 일치하여 verified
+ok 327 - 전자기 9번 승압 송전은 공식 해설과 일치하여 verified
+  ---
+  duration_ms: 0.137987
+  type: 'test'
+  ...
+# Subtest: 전자기 15번은 진행파 입자속도와 a=-ω²y를 적용
+ok 328 - 전자기 15번은 진행파 입자속도와 a=-ω²y를 적용
+  ---
+  duration_ms: 0.153671
+  type: 'test'
+  ...
+# Subtest: 전자기 서술 21번은 렌즈2 중간상 방향 표현을 교정
+ok 329 - 전자기 서술 21번은 렌즈2 중간상 방향 표현을 교정
+  ---
+  duration_ms: 0.11969
+  type: 'test'
+  ...
+# Subtest: 총괄 문항 원문 crop은 실제 페이지 이미지 범위 안
+ok 330 - 총괄 문항 원문 crop은 실제 페이지 이미지 범위 안
+  ---
+  duration_ms: 7.139738
+  type: 'test'
+  ...
+# Subtest: 원문 시험지·해설지 PDF 4개가 프로젝트에 포함
+ok 331 - 원문 시험지·해설지 PDF 4개가 프로젝트에 포함
+  ---
+  duration_ms: 0.261072
+  type: 'test'
+  ...
+# Subtest: 물리 재계산: 역학 7번 예시 가속도 2.5, 장력 22.5
+ok 332 - 물리 재계산: 역학 7번 예시 가속도 2.5, 장력 22.5
+  ---
+  duration_ms: 0.12646
+  type: 'test'
+  ...
+# Subtest: 물리 재계산: 역학 23번 v=1, e=5/16, Q=154
+ok 333 - 물리 재계산: 역학 23번 v=1, e=5/16, Q=154
+  ---
+  duration_ms: 0.152429
+  type: 'test'
+  ...
+# Subtest: 물리 재계산: 전자기 21번 최종 위치 20/3 cm, 크기 4 cm
+ok 334 - 물리 재계산: 전자기 21번 최종 위치 20/3 cm, 크기 4 cm
+  ---
+  duration_ms: 0.15342
+  type: 'test'
+  ...
+# Subtest: 물리 재계산: 전자기 24번 R=3Ω, 10Ω 전류 0.6A
+ok 335 - 물리 재계산: 전자기 24번 R=3Ω, 10Ω 전류 0.6A
+  ---
+  duration_ms: 0.110006
+  type: 'test'
+  ...
+# Subtest: 학생 리포트는 원문 답 제출 전 정답·해설을 hidden 처리
+ok 336 - 학생 리포트는 원문 답 제출 전 정답·해설을 hidden 처리
+  ---
+  duration_ms: 0.304317
+  type: 'test'
+  ...
+# Subtest: 학생 리포트 문항표에 총괄 객관식 학생 선택번호를 표시
+ok 337 - 학생 리포트 문항표에 총괄 객관식 학생 선택번호를 표시
+  ---
+  duration_ms: 0.313351
+  type: 'test'
+  ...
+# Subtest: 동형 문제는 원문 제출 전 locked, 동형 제출 후 정답·해설 공개
+ok 338 - 동형 문제는 원문 제출 전 locked, 동형 제출 후 정답·해설 공개
+  ---
+  duration_ms: 0.310096
+  type: 'test'
+  ...
+# Subtest: 확인 필요 문항은 정답 자동 공개를 차단
+ok 339 - 확인 필요 문항은 정답 자동 공개를 차단
+  ---
+  duration_ms: 0.258429
+  type: 'test'
+  ...
+# Subtest: 학교 미기입은 '미기입'으로 저장하고 한 버튼으로 링크 복사
+ok 340 - 학교 미기입은 '미기입'으로 저장하고 한 버튼으로 링크 복사
+  ---
+  duration_ms: 1.028886
+  type: 'test'
+  ...
+# Subtest: 빈 학교와 구버전 '미입력' 기록은 '미기입'으로 정규화
+ok 341 - 빈 학교와 구버전 '미입력' 기록은 '미기입'으로 정규화
+  ---
+  duration_ms: 0.720152
+  type: 'test'
+  ...
+# Subtest: '미입력'과 '미기입'은 같은 학생 학교 식별값으로 처리
+ok 342 - '미입력'과 '미기입'은 같은 학생 학교 식별값으로 처리
+  ---
+  duration_ms: 0.130356
+  type: 'test'
+  ...
+# Subtest: 교사용 화면은 CSV·Excel 자동 가져오기 모듈과 학생 선택번호 UI를 로드
+ok 343 - 교사용 화면은 CSV·Excel 자동 가져오기 모듈과 학생 선택번호 UI를 로드
+  ---
+  duration_ms: 0.906051
+  type: 'test'
+  ...
+# Subtest: CSV는 성명·학생명·학생 이름·학생 성명·Name을 이름 열로 자동 인식
+ok 344 - CSV는 성명·학생명·학생 이름·학생 성명·Name을 이름 열로 자동 인식
+  ---
+  duration_ms: 6.185925
+  type: 'test'
+  ...
+# Subtest: CSV는 헤더 앞 안내행·세미콜론·1번 형식 문항 열을 자동 인식
+ok 345 - CSV는 헤더 앞 안내행·세미콜론·1번 형식 문항 열을 자동 인식
+  ---
+  duration_ms: 2.050761
+  type: 'test'
+  ...
+# Subtest: CP949 CSV의 성명 헤더와 한글 학생명을 자동 복원
+ok 346 - CP949 CSV의 성명 헤더와 한글 학생명을 자동 복원
+  ---
+  duration_ms: 1.506303
+  type: 'test'
+  ...
+# Subtest: CSV에 이름 열이 정말 없을 때는 지원 헤더를 구체적으로 안내
+ok 347 - CSV에 이름 열이 정말 없을 때는 지원 헤더를 구체적으로 안내
+  ---
+  duration_ms: 1.31754
+  type: 'test'
+  ...
+# Subtest: Excel 레거시 결과표는 공식행을 학생으로 중복 수집하지 않음
+ok 348 - Excel 레거시 결과표는 공식행을 학생으로 중복 수집하지 않음
+  ---
+  duration_ms: 0.747839
+  type: 'test'
+  ...
+# Subtest: 심화 총괄 Excel 정답표 검증은 25번까지 확인
+ok 349 - 심화 총괄 Excel 정답표 검증은 25번까지 확인
+  ---
+  duration_ms: 0.334303
+  type: 'test'
+  ...
+# Subtest: 심화 총괄 CSV Q1~Q25는 모두 선택번호로 읽고 100점 채점
+ok 350 - 심화 총괄 CSV Q1~Q25는 모두 선택번호로 읽고 100점 채점
+  ---
+  duration_ms: 0.56553
+  type: 'test'
+  ...
+# Subtest: 첨부 역학 Excel 179명 자동 해석·학교 미기입·총점 0건 불일치
+ok 351 - 첨부 역학 Excel 179명 자동 해석·학교 미기입·총점 0건 불일치 # SKIP
+  ---
+  duration_ms: 0.042353
+  type: 'test'
+  ...
+# Subtest: 실제 학생 Excel 원본은 공개 GitHub 프로젝트에 포함하지 않음
+ok 352 - 실제 학생 Excel 원본은 공개 GitHub 프로젝트에 포함하지 않음
+  ---
+  duration_ms: 3.649263
+  type: 'test'
+  ...
+# Subtest: 데모 데이터는 동일 학생의 7개 복습+역학 총괄을 포함
+ok 353 - 데모 데이터는 동일 학생의 7개 복습+역학 총괄을 포함
+  ---
+  duration_ms: 0.448784
+  type: 'test'
+  ...
+# Subtest: 데모 API도 historyRecords를 반환
+ok 354 - 데모 API도 historyRecords를 반환
+  ---
+  duration_ms: 0.33289
+  type: 'test'
+  ...
+# Subtest: 교사용 API는 form POST 브리지와 공개 GET 진단을 지원
+ok 355 - 교사용 API는 form POST 브리지와 공개 GET 진단을 지원
+  ---
+  duration_ms: 0.201854
+  type: 'test'
+  ...
+# Subtest: Apps Script에 총괄 메타·InputMode·OriginalRetry·StudentKey 열이 있음
+ok 356 - Apps Script에 총괄 메타·InputMode·OriginalRetry·StudentKey 열이 있음
+  ---
+  duration_ms: 0.531809
+  type: 'test'
+  ...
+# Subtest: Apps Script는 기존 헤더 이름으로 행을 재배치해 스키마를 안전 마이그레이션
+ok 357 - Apps Script는 기존 헤더 이름으로 행을 재배치해 스키마를 안전 마이그레이션
+  ---
+  duration_ms: 0.682736
+  type: 'test'
+  ...
+# Subtest: Apps Script 총괄 점수 파서는 InputProfile 범위에 따라 선택번호·binary·points를 구분
+ok 358 - Apps Script 총괄 점수 파서는 InputProfile 범위에 따라 선택번호·binary·points를 구분
+  ---
+  duration_ms: 0.979472
+  type: 'test'
+  ...
+# Subtest: Apps Script는 학생 선택번호 인코딩을 RecordJSON에 보존하고 구형 기록을 재계산
+ok 359 - Apps Script는 학생 선택번호 인코딩을 RecordJSON에 보존하고 구형 기록을 재계산
+  ---
+  duration_ms: 0.611639
+  type: 'test'
+  ...
+# Subtest: Apps Script는 JSON POST·form POST·레거시 HtmlService 브리지에 공통 API 디스패처를 사용
+ok 360 - Apps Script는 JSON POST·form POST·레거시 HtmlService 브리지에 공통 API 디스패처를 사용
+  ---
+  duration_ms: 0.621554
+  type: 'test'
+  ...
+# Subtest: Apps Script 일괄 저장은 단일 시트 쓰기와 동일 학생 upsert를 사용
+ok 361 - Apps Script 일괄 저장은 단일 시트 쓰기와 동일 학생 upsert를 사용
+  ---
+  duration_ms: 0.795134
+  type: 'test'
+  ...
+# Subtest: Apps Script는 학교 빈칸·구버전 표기를 '미기입'으로 정규화
+ok 362 - Apps Script는 학교 빈칸·구버전 표기를 '미기입'으로 정규화
+  ---
+  duration_ms: 0.647193
+  type: 'test'
+  ...
+# Subtest: Apps Script 학생 연결키는 과정·학교·이름 SHA-256
+ok 363 - Apps Script 학생 연결키는 과정·학교·이름 SHA-256
+  ---
+  duration_ms: 0.878139
+  type: 'test'
+  ...
+# Subtest: Apps Script 결과 링크는 토큰·지문·학생 식별 다이제스트를 모두 검증
+ok 364 - Apps Script 결과 링크는 토큰·지문·학생 식별 다이제스트를 모두 검증
+  ---
+  duration_ms: 0.656647
+  type: 'test'
+  ...
+# Subtest: Apps Script 재계산 핵심 열 위치는 StudentId 추가 후에도 유지
+ok 365 - Apps Script 재계산 핵심 열 위치는 StudentId 추가 후에도 유지
+  ---
+  duration_ms: 0.777688
+  type: 'test'
+  ...
+# Subtest: Word 모듈은 통합 분석·내부 media·실제 OOXML DOCX를 생성
+ok 366 - Word 모듈은 통합 분석·내부 media·실제 OOXML DOCX를 생성
+  ---
+  duration_ms: 0.357237
+  type: 'test'
+  ...
+# Subtest: Word 모듈 실제 생성 smoke: ZIP·통합 표·내장 로고
+ok 367 - Word 모듈 실제 생성 smoke: ZIP·통합 표·내장 로고
+  ---
+  duration_ms: 24.555537
+  type: 'test'
+  ...
+# Subtest: GitHub Pages workflow uses current official Pages actions
+ok 368 - GitHub Pages workflow uses current official Pages actions
+  ---
+  duration_ms: 0.258659
+  type: 'test'
+  ...
+# Subtest: GitHub Pages workflow injects YP_API_URL and accepts legacy variable
+ok 369 - GitHub Pages workflow injects YP_API_URL and accepts legacy variable
+  ---
+  duration_ms: 0.157817
+  type: 'test'
+  ...
+# Subtest: GitHub Pages workflow는 학생 통합 portal.html까지 배포 파일로 검증
+ok 370 - GitHub Pages workflow는 학생 통합 portal.html까지 배포 파일로 검증
+  ---
+  duration_ms: 0.1264
+  type: 'test'
+  ...
+# Subtest: GitHub Pages workflow는 외부 Apps Script curl 검사로 정적 배포를 차단하지 않음
+ok 371 - GitHub Pages workflow는 외부 Apps Script curl 검사로 정적 배포를 차단하지 않음
+  ---
+  duration_ms: 0.125609
+  type: 'test'
+  ...
+# Subtest: index와 report가 runtime config를 config보다 먼저 로드
+ok 372 - index와 report가 runtime config를 config보다 먼저 로드
+  ---
+  duration_ms: 0.298519
+  type: 'test'
+  ...
+# Subtest: 공개 runtime config에는 URL 자리만 있고 인증 비밀값은 없음
+ok 373 - 공개 runtime config에는 URL 자리만 있고 인증 비밀값은 없음
+  ---
+  duration_ms: 0.310236
+  type: 'test'
+  ...
+# Subtest: 교사용 프론트엔드는 PIN 로그인·90일 세션·1회용 새 컴퓨터 링크를 사용
+ok 374 - 교사용 프론트엔드는 PIN 로그인·90일 세션·1회용 새 컴퓨터 링크를 사용
+  ---
+  duration_ms: 0.89889
+  type: 'test'
+  ...
+# Subtest: 교사용 API는 CORS fetch 대신 hidden form POST 응답 브리지를 사용
+ok 375 - 교사용 API는 CORS fetch 대신 hidden form POST 응답 브리지를 사용
+  ---
+  duration_ms: 1.07815
+  type: 'test'
+  ...
+# Subtest: hidden form POST 브리지 런타임 smoke: 응답 postMessage를 받아 bootstrap 완료
+ok 376 - hidden form POST 브리지 런타임 smoke: 응답 postMessage를 받아 bootstrap 완료
+  ---
+  duration_ms: 57.390084
+  type: 'test'
+  ...
+# Subtest: form POST 브리지는 origin·채널·요청 ID를 검증하고 허용 origin 오류를 상세 반환
+ok 377 - form POST 브리지는 origin·채널·요청 ID를 검증하고 허용 origin 오류를 상세 반환
+  ---
+  duration_ms: 1.059011
+  type: 'test'
+  ...
+# Subtest: 직접 연 GitHub Pages는 Apps Script 상위 보안 페이지로 자동 전환
+ok 378 - 직접 연 GitHub Pages는 Apps Script 상위 보안 페이지로 자동 전환
+  ---
+  duration_ms: 0.337026
+  type: 'test'
+  ...
+# Subtest: Apps Script 상위 보안 페이지가 GitHub 자식 앱 요청을 google.script.run으로 중계
+ok 379 - Apps Script 상위 보안 페이지가 GitHub 자식 앱 요청을 google.script.run으로 중계
+  ---
+  duration_ms: 0.930018
+  type: 'test'
+  ...
+# Subtest: Apps Script 상위 보안 브리지 런타임 smoke: bootstrap 응답
+ok 380 - Apps Script 상위 보안 브리지 런타임 smoke: bootstrap 응답
+  ---
+  duration_ms: 4.582626
+  type: 'test'
+  ...
+# Subtest: Apps Script는 설치·PIN·서명 세션·1회용 토큰 API를 제공
+ok 381 - Apps Script는 설치·PIN·서명 세션·1회용 토큰 API를 제공
+  ---
+  duration_ms: 0.983799
+  type: 'test'
+  ...
+# Subtest: Apps Script Spreadsheet 메뉴에서 설치·PIN·세션 관리 가능
+ok 382 - Apps Script Spreadsheet 메뉴에서 설치·PIN·세션 관리 가능
+  ---
+  duration_ms: 0.780974
+  type: 'test'
+  ...
+# Subtest: Apps Script manifest는 Sheets와 container UI 최소 권한을 선언
+ok 383 - Apps Script manifest는 Sheets와 container UI 최소 권한을 선언
+  ---
+  duration_ms: 0.175013
+  type: 'test'
+  ...
+# Subtest: 설치 문서는 Pages 404 해결과 YP_API_URL 자동 연결 절차를 포함
+ok 384 - 설치 문서는 Pages 404 해결과 YP_API_URL 자동 연결 절차를 포함
+  ---
+  duration_ms: 0.40585
+  type: 'test'
+  ...
+# Subtest: 교사용 화면은 탭·창 복귀와 네트워크 재연결 시 학생 기록을 자동 갱신
+ok 385 - 교사용 화면은 탭·창 복귀와 네트워크 재연결 시 학생 기록을 자동 갱신
+  ---
+  duration_ms: 0.666291
+  type: 'test'
+  ...
+# Subtest: 성적표 링크는 토큰·지문과 함께 생성 당시 Apps Script /exec 주소·서버 식별자를 고정
+ok 386 - 성적표 링크는 토큰·지문과 함께 생성 당시 Apps Script /exec 주소·서버 식별자를 고정
+  ---
+  duration_ms: 0.571188
+  type: 'test'
+  ...
+# Subtest: 성적표 페이지는 링크의 /exec 주소를 배포 runtime 주소보다 우선 사용
+ok 387 - 성적표 페이지는 링크의 /exec 주소를 배포 runtime 주소보다 우선 사용
+  ---
+  duration_ms: 0.155203
+  type: 'test'
+  ...
+# Subtest: Apps Script는 토큰 열·A열·RecordJSON을 조회하고 저장소 진단·복구 함수를 제공
+ok 388 - Apps Script는 토큰 열·A열·RecordJSON을 조회하고 저장소 진단·복구 함수를 제공
+  ---
+  duration_ms: 0.934634
+  type: 'test'
+  ...
+# Subtest: form POST 응답은 Apps Script의 중첩 IFRAME source와 무관하게 채널·origin으로 안전하게 완료
+ok 389 - form POST 응답은 Apps Script의 중첩 IFRAME source와 무관하게 채널·origin으로 안전하게 완료
+  ---
+  duration_ms: 1.168185
+  type: 'test'
+  ...
+# Subtest: Apps Script form POST handler는 정의되지 않은 origin helper를 참조하지 않음
+ok 390 - Apps Script form POST handler는 정의되지 않은 origin helper를 참조하지 않음
+  ---
+  duration_ms: 0.844629
+  type: 'test'
+  ...
+# Subtest: v3.6.2는 반별 학생 기능과 물리1 15·16회를 유지하며 물리2 역학 총괄을 추가
+ok 391 - v3.6.2는 반별 학생 기능과 물리1 15·16회를 유지하며 물리2 역학 총괄을 추가
+  ---
+  duration_ms: 0.19294
+  type: 'test'
+  ...
+# Subtest: 학생 통합 포털 페이지와 네 개의 학부모 탭이 존재
+ok 392 - 학생 통합 포털 페이지와 네 개의 학부모 탭이 존재
+  ---
+  duration_ms: 0.369355
+  type: 'test'
+  ...
+# Subtest: 학생 통합 포털은 영구 토큰으로 누적 목록을 받고 선택 시험 상세를 같은 페이지에 표시
+ok 393 - 학생 통합 포털은 영구 토큰으로 누적 목록을 받고 선택 시험 상세를 같은 페이지에 표시
+  ---
+  duration_ms: 1.157309
+  type: 'test'
+  ...
+# Subtest: 교사용 홈페이지는 기존 학생 선택과 학생별 영구 링크 복사 UI를 제공
+ok 394 - 교사용 홈페이지는 기존 학생 선택과 학생별 영구 링크 복사 UI를 제공
+  ---
+  duration_ms: 0.730718
+  type: 'test'
+  ...
+# Subtest: Apps Script는 Students 원장과 Reports StudentId를 사용해 한 학생의 모든 시험을 연결
+ok 395 - Apps Script는 Students 원장과 Reports StudentId를 사용해 한 학생의 모든 시험을 연결
+  ---
+  duration_ms: 1.00475
+  type: 'test'
+  ...
+# Subtest: 학생 포털 토큰·지문·학생 식별정보를 서버에서 함께 검증
+ok 396 - 학생 포털 토큰·지문·학생 식별정보를 서버에서 함께 검증
+  ---
+  duration_ms: 0.900964
+  type: 'test'
+  ...
+# Subtest: 기존 시험별 성적표 링크를 유지하면서 저장 응답에 학생 영구 포털을 추가
+ok 397 - 기존 시험별 성적표 링크를 유지하면서 저장 응답에 학생 영구 포털을 추가
+  ---
+  duration_ms: 1.31098
+  type: 'test'
+  ...
+# Subtest: 기존 Reports를 학생 통합 프로필로 분할 마이그레이션하고 진단할 수 있음
+ok 398 - 기존 Reports를 학생 통합 프로필로 분할 마이그레이션하고 진단할 수 있음
+  ---
+  duration_ms: 0.911069
+  type: 'test'
+  ...
+# Subtest: 학생 누적 분석은 주간·총괄을 분리하되 가중 누적 성취율 수치를 공개하지 않음
+ok 399 - 학생 누적 분석은 주간·총괄을 분리하되 가중 누적 성취율 수치를 공개하지 않음
+  ---
+  duration_ms: 2.59595
+  type: 'test'
+  ...
+# Subtest: 설정과 상위 브리지는 report.html과 portal.html을 모두 공개 학생 페이지로 인식
+ok 400 - 설정과 상위 브리지는 report.html과 portal.html을 모두 공개 학생 페이지로 인식
+  ---
+  duration_ms: 0.202304
+  type: 'test'
+  ...
+# Subtest: 준비 완료 301문항의 원문 재도전은 모두 보기 선택 방식
+ok 401 - 준비 완료 301문항의 원문 재도전은 모두 보기 선택 방식
+  ---
+  duration_ms: 1.332963
+  type: 'test'
+  ...
+# Subtest: 준비 완료 301문항의 동형 문제도 모두 보기 선택 방식
+ok 402 - 준비 완료 301문항의 동형 문제도 모두 보기 선택 방식
+  ---
+  duration_ms: 1.333674
+  type: 'test'
+  ...
+# Subtest: 문자열 입력 대상 221문항도 자유 입력 없이 정답 보기 선택
+ok 403 - 문자열 입력 대상 221문항도 자유 입력 없이 정답 보기 선택
+  ---
+  duration_ms: 0.386761
+  type: 'test'
+  ...
+# Subtest: 학생 리포트는 원문·동형을 ①~⑤ 라디오 카드로만 제출
+ok 404 - 학생 리포트는 원문·동형을 ①~⑤ 라디오 카드로만 제출
+  ---
+  duration_ms: 0.388584
+  type: 'test'
+  ...
+# Subtest: 단답형·서술형 219문항의 원문과 동형 문제도 모두 4지·5지 객관식
+ok 405 - 단답형·서술형 219문항의 원문과 동형 문제도 모두 4지·5지 객관식
+  ---
+  duration_ms: 0.696556
+  type: 'test'
+  ...
+# Subtest: 정답 관리 화면은 재도전 보기를 4개 또는 5개로 제한
+ok 406 - 정답 관리 화면은 재도전 보기를 4개 또는 5개로 제한
+  ---
+  duration_ms: 0.680923
+  type: 'test'
+  ...
+# Subtest: 객관식 재도전 CSS는 선택·정답·오답 상태와 모바일 1열을 제공
+ok 407 - 객관식 재도전 CSS는 선택·정답·오답 상태와 모바일 1열을 제공
+  ---
+  duration_ms: 33.511756
+  type: 'test'
+  ...
+# Subtest: 교사용 홈페이지에 시험 정답·보기 관리 UI와 저장 동작이 있음
+ok 408 - 교사용 홈페이지에 시험 정답·보기 관리 UI와 저장 동작이 있음
+  ---
+  duration_ms: 1.260474
+  type: 'test'
+  ...
+# Subtest: Apps Script는 QuestionOverrides 시트에 홈페이지 수정 정답을 보존하고 카탈로그와 병합
+ok 409 - Apps Script는 QuestionOverrides 시트에 홈페이지 수정 정답을 보존하고 카탈로그와 병합
+  ---
+  duration_ms: 1.136337
+  type: 'test'
+  ...
+# Subtest: 정답 수정은 syncCatalog의 Questions 교체와 분리되어 유지
+ok 410 - 정답 수정은 syncCatalog의 Questions 교체와 분리되어 유지
+  ---
+  duration_ms: 0.775966
+  type: 'test'
+  ...
+# Subtest: 자료 대기 중 심화 총괄은 카탈로그 동기화 시 기존 Questions 행을 보존
+ok 411 - 자료 대기 중 심화 총괄은 카탈로그 동기화 시 기존 Questions 행을 보존
+  ---
+  duration_ms: 0.848025
+  type: 'test'
+  ...
+# Subtest: 서버 정답 행을 현재 시험에 병합하면 객관식 answerKey와 재도전 보기가 갱신
+ok 412 - 서버 정답 행을 현재 시험에 병합하면 객관식 answerKey와 재도전 보기가 갱신
+  ---
+  duration_ms: 3.189803
+  type: 'test'
+  ...
+# Subtest: 답안번호가 없는 선택형·복합 문항은 표준 1~5 객관식으로 오인하지 않음
+ok 413 - 답안번호가 없는 선택형·복합 문항은 표준 1~5 객관식으로 오인하지 않음
+  ---
+  duration_ms: 0.837698
+  type: 'test'
+  ...
+# Subtest: 홈페이지에서 정답 보기를 바꾸면 공개되는 정답 문구도 선택 보기와 함께 갱신
+ok 414 - 홈페이지에서 정답 보기를 바꾸면 공개되는 정답 문구도 선택 보기와 함께 갱신
+  ---
+  duration_ms: 1.198611
+  type: 'test'
+  ...
+# Subtest: 모든 선택형 재도전의 공개 정답 문구는 실제 정답 보기와 일치
+ok 415 - 모든 선택형 재도전의 공개 정답 문구는 실제 정답 보기와 일치
+  ---
+  duration_ms: 0.78515
+  type: 'test'
+  ...
+# Subtest: 구버전 자유입력 서버 수정본은 정적 객관식 재도전 보기를 덮어쓰지 않음
+ok 416 - 구버전 자유입력 서버 수정본은 정적 객관식 재도전 보기를 덮어쓰지 않음
+  ---
+  duration_ms: 2.264372
+  type: 'test'
+  ...
+# Subtest: Apps Script도 잘못된 구버전 자유입력 override를 원본 객관식 보기로 자동 복귀
+ok 417 - Apps Script도 잘못된 구버전 자유입력 override를 원본 객관식 보기로 자동 복귀
+  ---
+  duration_ms: 0.791039
+  type: 'test'
+  ...
+# Subtest: 학생 포털은 미연결 구버전 기록을 동명이인 여러 프로필에 중복 노출하지 않음
+ok 418 - 학생 포털은 미연결 구버전 기록을 동명이인 여러 프로필에 중복 노출하지 않음
+  ---
+  duration_ms: 0.799752
+  type: 'test'
+  ...
+# Subtest: 학생 누적 포털은 Questions 시트를 한 번만 읽어 시험별로 묶음
+ok 419 - 학생 누적 포털은 Questions 시트를 한 번만 읽어 시험별로 묶음
+  ---
+  duration_ms: 0.82508
+  type: 'test'
+  ...
+# Subtest: 학생 통합 페이지는 누적 가중 성취율 숫자를 화면과 공개 누적 객체에서 숨김
+ok 420 - 학생 통합 페이지는 누적 가중 성취율 숫자를 화면과 공개 누적 객체에서 숨김
+  ---
+  duration_ms: 1.235686
+  type: 'test'
+  ...
+# Subtest: 교사용 홈페이지는 반 추가·학생 추가·기존 학생 배정·이름 클릭 빠른 입력 UI를 제공
+ok 421 - 교사용 홈페이지는 반 추가·학생 추가·기존 학생 배정·이름 클릭 빠른 입력 UI를 제공
+  ---
+  duration_ms: 0.82558
+  type: 'test'
+  ...
+# Subtest: Apps Script는 Classes·ClassMembers 시트와 반 CRUD·학생 배정 API를 제공
+ok 422 - Apps Script는 Classes·ClassMembers 시트와 반 CRUD·학생 배정 API를 제공
+  ---
+  duration_ms: 1.179953
+  type: 'test'
+  ...
+# Subtest: 반 삭제는 학생·성적을 삭제하지 않고 멤버십만 비활성화
+ok 423 - 반 삭제는 학생·성적을 삭제하지 않고 멤버십만 비활성화
+  ---
+  duration_ms: 0.842156
+  type: 'test'
+  ...
+# Subtest: 선택 학생의 기존 시험 결과는 교사용 화면에서 즉시 수정·삭제 가능
+ok 424 - 선택 학생의 기존 시험 결과는 교사용 화면에서 즉시 수정·삭제 가능
+  ---
+  duration_ms: 0.888185
+  type: 'test'
+  ...
+# Subtest: 학생 전환 시 이전 학생의 문항 입력값이 다른 학생에게 넘어가지 않도록 초기화
+ok 425 - 학생 전환 시 이전 학생의 문항 입력값이 다른 학생에게 넘어가지 않도록 초기화
+  ---
+  duration_ms: 0.50634
+  type: 'test'
+  ...
+# Subtest: 반에서 선택한 학생의 동일 시험 재저장은 신규 중복행 대신 기존 기록을 자동 수정
+ok 426 - 반에서 선택한 학생의 동일 시험 재저장은 신규 중복행 대신 기존 기록을 자동 수정
+  ---
+  duration_ms: 0.81848
+  type: 'test'
+  ...
+# Subtest: v3.6.2 물리2 역학 총괄평가 25문항이 준비 완료
+ok 427 - v3.6.2 물리2 역학 총괄평가 25문항이 준비 완료
+  ---
+  duration_ms: 0.430767
+  type: 'test'
+  ...
+# Subtest: 물리2 역학 총괄 모든 문항은 4점이며 재도전·동형 문제가 객관식
+ok 428 - 물리2 역학 총괄 모든 문항은 4점이며 재도전·동형 문제가 객관식
+  ---
+  duration_ms: 0.35302
+  type: 'test'
+  ...
+# Subtest: 물리2 역학 총괄 교정 사항 Q19·Q20 및 서술형 핵심답
+ok 429 - 물리2 역학 총괄 교정 사항 Q19·Q20 및 서술형 핵심답
+  ---
+  duration_ms: 0.256926
+  type: 'test'
+  ...
+# Subtest: v3.6.3 총괄평가 코멘트는 연결 복습 흐름과 반복 강약점을 함께 반영
+ok 430 - v3.6.3 총괄평가 코멘트는 연결 복습 흐름과 반복 강약점을 함께 반영
+  ---
+  duration_ms: 0.341694
+  type: 'test'
+  ...
+# Subtest: 총괄평가 탭과 상세 화면에 누적 데이터 기반 코멘트가 노출
+ok 431 - 총괄평가 탭과 상세 화면에 누적 데이터 기반 코멘트가 노출
+  ---
+  duration_ms: 0.304458
+  type: 'test'
+  ...
+# Subtest: 개별 총괄 성적표와 Word에도 누적 코멘트가 포함
+ok 432 - 개별 총괄 성적표와 Word에도 누적 코멘트가 포함
+  ---
+  duration_ms: 0.41247
+  type: 'test'
+  ...
+# Subtest: 누적 코멘트 변경은 Apps Script 스키마를 요구하지 않음
+ok 433 - 누적 코멘트 변경은 Apps Script 스키마를 요구하지 않음
+  ---
+  duration_ms: 0.777158
+  type: 'test'
+  ...
+# Subtest: 누적 총괄 코멘트 실제 생성값은 상승/강점/보완/오답 행동을 문장으로 반환
+ok 434 - 누적 총괄 코멘트 실제 생성값은 상승/강점/보완/오답 행동을 문장으로 반환
+  ---
+  duration_ms: 1.784241
+  type: 'test'
+  ...
+# Subtest: 학생 통합 링크 복사는 OG Worker 설정 또는 이름+직접 링크로 분기
+ok 435 - 학생 통합 링크 복사는 OG Worker 설정 또는 이름+직접 링크로 분기
+  ---
+  duration_ms: 0.659371
+  type: 'test'
+  ...
+# Subtest: 학생 통합 페이지 내부 복사도 OG Worker와 직접 링크를 분리
+ok 436 - 학생 통합 페이지 내부 복사도 OG Worker와 직접 링크를 분리
+  ---
+  duration_ms: 0.255845
+  type: 'test'
+  ...
+# Subtest: 정적 portal 페이지는 OG fallback 메타를 포함
+ok 437 - 정적 portal 페이지는 OG fallback 메타를 포함
+  ---
+  duration_ms: 0.190306
+  type: 'test'
+  ...
+# Subtest: Apps Script는 검증된 학생 이름으로 개인화 Open Graph 공유 페이지를 렌더링
+ok 438 - Apps Script는 검증된 학생 이름으로 개인화 Open Graph 공유 페이지를 렌더링
+  ---
+  duration_ms: 0.829186
+  type: 'test'
+  ...
+# Subtest: 학생 두 명 병합 기능 UI와 교사 전용 통신 메서드 등록
+ok 439 - 학생 두 명 병합 기능 UI와 교사 전용 통신 메서드 등록
+  ---
+  duration_ms: 1.626544
+  type: 'test'
+  ...
+# Subtest: 개인화 Open Graph 제목과 이미지 메타 유지
+ok 440 - 개인화 Open Graph 제목과 이미지 메타 유지
+  ---
+  duration_ms: 1.961167
+  type: 'test'
+  ...
+# Subtest: Apps Script 공유 페이지는 자동 iframe 리디렉션을 사용하지 않고 직접 포털 열기 버튼을 제공
+ok 441 - Apps Script 공유 페이지는 자동 iframe 리디렉션을 사용하지 않고 직접 포털 열기 버튼을 제공
+  ---
+  duration_ms: 0.819471
+  type: 'test'
+  ...
+# Subtest: 공유 페이지는 인코딩된 학생 토큰·지문과 서버 식별자를 보존
+ok 442 - 공유 페이지는 인코딩된 학생 토큰·지문과 서버 식별자를 보존
+  ---
+  duration_ms: 0.589365
+  type: 'test'
+  ...
+# Subtest: 학생 이름은 공유 메타 HTML에서 이스케이프 처리
+ok 443 - 학생 이름은 공유 메타 HTML에서 이스케이프 처리
+  ---
+  duration_ms: 0.553351
+  type: 'test'
+  ...
+# Subtest: 교사용 화면에서 안전한 기본 링크를 직접 복사할 수 있으며 열기 버튼은 공유 브리지를 거치지 않음
+ok 444 - 교사용 화면에서 안전한 기본 링크를 직접 복사할 수 있으며 열기 버튼은 공유 브리지를 거치지 않음
+  ---
+  duration_ms: 0.304377
+  type: 'test'
+  ...
+# Subtest: 학생 포털에서도 공유 링크와 직접 링크 복사를 구분
+ok 445 - 학생 포털에서도 공유 링크와 직접 링크 복사를 구분
+  ---
+  duration_ms: 0.256075
+  type: 'test'
+  ...
+# Subtest: 이전 Apps Script 공유 링크는 로컬 복구 도구에서 새 GitHub 직접 링크로 변환되며 구배포 API를 끌고 가지 않음
+ok 446 - 이전 Apps Script 공유 링크는 로컬 복구 도구에서 새 GitHub 직접 링크로 변환되며 구배포 API를 끌고 가지 않음
+  ---
+  duration_ms: 2.128459
+  type: 'test'
+  ...
+# Subtest: 학생명은 쿼리이고 비밀 링크 값은 fragment에만 존재한다
+ok 447 - 학생명은 쿼리이고 비밀 링크 값은 fragment에만 존재한다
+  ---
+  duration_ms: 2.047676
+  type: 'test'
+  ...
+# Subtest: Worker 응답이 JS 실행 없이 학생 이름 OG 태그를 반환한다
+ok 448 - Worker 응답이 JS 실행 없이 학생 이름 OG 태그를 반환한다
+  ---
+  duration_ms: 30.009652
+  type: 'test'
+  ...
+# Subtest: 서로 다른 학생 이름이면 OG 제목도 달라진다
+ok 449 - 서로 다른 학생 이름이면 OG 제목도 달라진다
+  ---
+  duration_ms: 1.092121
+  type: 'test'
+  ...
+# Subtest: HTML 인젝션 학생 이름도 OG 태그에서 안전하게 인코딩된다
+ok 450 - HTML 인젝션 학생 이름도 OG 태그에서 안전하게 인코딩된다
+  ---
+  duration_ms: 0.606671
+  type: 'test'
+  ...
+# Subtest: Worker는 외부 사이트로 임의 리디렉션을 허용하지 않는다
+ok 451 - Worker는 외부 사이트로 임의 리디렉션을 허용하지 않는다
+  ---
+  duration_ms: 0.770668
+  type: 'test'
+  ...
+# Subtest: Worker health, unknown paths and invalid names
+ok 452 - Worker health, unknown paths and invalid names
+  ---
+  duration_ms: 1.066813
+  type: 'test'
+  ...
+# Subtest: 미리보기 서버 미설정 시 학생명과 직접 링크를 문자로 복사한다
+ok 453 - 미리보기 서버 미설정 시 학생명과 직접 링크를 문자로 복사한다
+  ---
+  duration_ms: 1.242727
+  type: 'test'
+  ...
+# Subtest: 잘못된 설정 주소는 사용하지 않는다
+ok 454 - 잘못된 설정 주소는 사용하지 않는다
+  ---
+  duration_ms: 1.629528
+  type: 'test'
+  ...
+# Subtest: 운영 HTML은 공유 전용 스크립트를 앱 로딩 전에 읽는다
+ok 455 - 운영 HTML은 공유 전용 스크립트를 앱 로딩 전에 읽는다
+  ---
+  duration_ms: 0.515084
+  type: 'test'
+  ...
+# Subtest: 브라우저에서만 학생 토큰·지문을 재결합해 원래 학부모 페이지로 이동한다
+ok 456 - 브라우저에서만 학생 토큰·지문을 재결합해 원래 학부모 페이지로 이동한다
+  ---
+  duration_ms: 1.756409
+  type: 'test'
+  ...
+# Subtest: 메신저가 URL fragment를 누락했다면 학생정보를 임의 추정하지 않고 중단한다
+ok 457 - 메신저가 URL fragment를 누락했다면 학생정보를 임의 추정하지 않고 중단한다
+  ---
+  duration_ms: 1.208206
+  type: 'test'
+  ...
+# Subtest: 병합 미리보기: 이관할 시험·중복 시험·반·유지 링크 및 경고
+ok 458 - 병합 미리보기: 이관할 시험·중복 시험·반·유지 링크 및 경고
+  ---
+  duration_ms: 20.033713
+  type: 'test'
+  ...
+# Subtest: 병합 미리보기: 서로 다른 ID 필수, 미존재 학생·동일 인물 검사
+ok 459 - 병합 미리보기: 서로 다른 ID 필수, 미존재 학생·동일 인물 검사
+  ---
+  duration_ms: 3.5269
+  type: 'test'
+  ...
+# Subtest: 병합 미리보기: 학생 ID 없는 과거 시험 기록이 있으면 교사 확인 전 중단
+ok 460 - 병합 미리보기: 학생 ID 없는 과거 시험 기록이 있으면 교사 확인 전 중단
+  ---
+  duration_ms: 1.902239
+  type: 'test'
+  ...
+# Subtest: 보안: 교사 인증 전 병합 미리보기 및 실제 병합 API 요청은 거절
+ok 461 - 보안: 교사 인증 전 병합 미리보기 및 실제 병합 API 요청은 거절
+  ---
+  duration_ms: 1.76398
+  type: 'test'
+  ...
+# Subtest: 병합 실행: 미리보기, 명시적 중복 선택, 서명된 확인이 필수
+ok 462 - 병합 실행: 미리보기, 명시적 중복 선택, 서명된 확인이 필수
+  ---
+  duration_ms: 4.211969
+  type: 'test'
+  ...
+# Subtest: 병합 실행: 이전 미리보기 이후 시험 점수가 바뀌면 다시 확인해야 함
+ok 463 - 병합 실행: 이전 미리보기 이후 시험 점수가 바뀌면 다시 확인해야 함
+  ---
+  duration_ms: 3.022031
+  type: 'test'
+  ...
+# Subtest: 병합 완료: 대상 시험 보존, 출처 고유 시험 이동, 기록 토큰·FP 무결성, 반 배정 합집합
+ok 464 - 병합 완료: 대상 시험 보존, 출처 고유 시험 이동, 기록 토큰·FP 무결성, 반 배정 합집합
+  ---
+  duration_ms: 5.11786
+  type: 'test'
+  ...
+# Subtest: 중복 시험에서 흡수 학생의 성적을 선택하면 대상 학생 기존 기록만 백업 제외
+ok 465 - 중복 시험에서 흡수 학생의 성적을 선택하면 대상 학생 기존 기록만 백업 제외
+  ---
+  duration_ms: 2.913868
+  type: 'test'
+  ...
+# Subtest: 반 배정 쓰기 실패 시 Reports, ClassMembers, Students 원복하고 병합 이력을 남김
+ok 466 - 반 배정 쓰기 실패 시 Reports, ClassMembers, Students 원복하고 병합 이력을 남김
+  ---
+  duration_ms: 37.88018
+  type: 'test'
+  ...
+# Subtest: 유지 학생 포털에 3개의 서로 다른 시험만 나타나고 흡수 학생의 개별 성적 링크는 폐기
+ok 467 - 유지 학생 포털에 3개의 서로 다른 시험만 나타나고 흡수 학생의 개별 성적 링크는 폐기
+  ---
+  duration_ms: 7.626268
+  type: 'test'
+  ...
+# Subtest: 서로 다른 이름·학교 학생도 명시적으로 병합할 수 있으나 사전 경고, 통합 후 모든 시험의 대상 신원 반영
+ok 468 - 서로 다른 이름·학교 학생도 명시적으로 병합할 수 있으나 사전 경고, 통합 후 모든 시험의 대상 신원 반영
+  ---
+  duration_ms: 4.607262
+  type: 'test'
+  ...
+# Subtest: 흡수 학생의 시험이 없더라도 학생 프로필·반 명단만 정상 병합
+ok 469 - 흡수 학생의 시험이 없더라도 학생 프로필·반 명단만 정상 병합
+  ---
+  duration_ms: 2.447849
+  type: 'test'
+  ...
+# Subtest: 같은 서버 토큰이 중복된 기록이 있으면 병합을 거절하고 원본을 보존
+ok 470 - 같은 서버 토큰이 중복된 기록이 있으면 병합을 거절하고 원본을 보존
+  ---
+  duration_ms: 2.255629
+  type: 'test'
+  ...
+1..470
+# tests 470
+# suites 0
+# pass 469
+# fail 0
+# cancelled 0
+# skipped 1
+# todo 0
+# duration_ms 1133.302485

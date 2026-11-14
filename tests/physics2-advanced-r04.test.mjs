@@ -138,7 +138,7 @@ test('내장 카탈로그 JS·JSON과 독립 문제은행 일치, 학부모 UI �
 });
 
 test('v3.7.7 캐시·package 정합성 및 Apps Script·Worker 미변경',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.12');
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.13');
  assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');
  for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.12/);
 });

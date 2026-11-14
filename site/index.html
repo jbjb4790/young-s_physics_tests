@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#075fdb">
 <title>Young's Physics 복습·총괄 통합 성적 분석</title>
 <link rel="icon" href="assets/images/favicon.png">
-<link rel="stylesheet" href="assets/styles.css?v=3.6.5">
+<link rel="stylesheet" href="assets/styles.css?v=3.7.13">
 </head>
 <body class="app-page">
 <div id="demoBanner" class="demo-banner hidden">Apps Script 자동 연결 주소가 배포에 설정되지 않아 현재 데모 모드입니다. GitHub 저장소 변수 <code>YP_API_URL</code>을 확인하세요.</div>
@@ -76,8 +76,14 @@
  <div id="classTabs" class="class-tabs"></div>
  <div class="class-roster-toolbar">
   <div><span class="small muted">현재 반</span><h3 id="selectedClassName">미분류 학생</h3></div>
-  <div class="toolbar"><button class="btn btn-primary" id="addStudentToClassBtn">+ 새 학생 추가</button><button class="btn btn-light" id="assignExistingStudentBtn">기존 학생 배정</button></div>
+  <div class="toolbar"><button class="btn btn-primary" id="addStudentToClassBtn">+ 학생 검색·추가</button><button class="btn btn-light" id="assignExistingStudentBtn">기존 학생 검색·배정</button></div>
  </div>
+ <div class="roster-search-toolbar">
+  <div class="field roster-name-search"><label for="classStudentSearch">학생 이름 검색</label><input type="search" id="classStudentSearch" autocomplete="off" placeholder="이름 일부 또는 학교명" aria-controls="classStudentGrid"></div>
+  <div class="field"><label for="classStudentSearchScope">검색 범위</label><select id="classStudentSearchScope"><option value="class">현재 반</option><option value="all">전체 학생</option></select></div>
+  <button type="button" class="btn btn-light" id="clearClassStudentSearchBtn">검색 지우기</button>
+ </div>
+ <p id="classStudentSearchCount" class="small muted" role="status" aria-live="polite"></p>
  <div id="classStudentGrid" class="class-student-grid"><div class="portal-empty">교사 인증 후 반별 학생 명단을 불러옵니다.</div></div>
 </section>
 
@@ -89,7 +95,7 @@
  </div>
  <div id="selectedStudentQuickPanel" class="selected-student-quick hidden">
   <div><span class="small muted">현재 선택 학생</span><h3 id="selectedStudentQuickName">—</h3><p id="selectedStudentQuickMeta" class="small muted"></p></div>
-  <div class="toolbar"><button class="btn btn-primary" id="selectedStudentPortalCopyBtn">이름 미리보기 링크 복사</button><button class="btn btn-light" id="selectedStudentPortalDirectCopyBtn">직접 링크 복사</button><button class="btn btn-light" id="toggleSelectedStudentReportsBtn">기존 시험 결과</button><button class="btn btn-light" id="removeStudentFromClassBtn">현재 반에서 제외</button></div>
+  <div class="toolbar"><button class="btn btn-primary" id="selectedStudentPortalCopyBtn">이름 미리보기 링크 복사</button><button class="btn btn-light" id="selectedStudentPortalDirectCopyBtn">직접 링크 복사</button><button type="button" class="btn btn-light" id="editStudentSchoolBtn">학교명 수정</button><button class="btn btn-light" id="toggleSelectedStudentReportsBtn">기존 시험 결과</button><button class="btn btn-light" id="removeStudentFromClassBtn">현재 반에서 제외</button></div>
  </div>
  <div id="selectedStudentReportsPanel" class="selected-student-reports hidden"><div class="selected-student-reports-head"><b>이 학생의 기존 시험 결과</b><span class="small muted">수정 또는 삭제 후 누적 분석은 최신 기록으로 자동 갱신됩니다.</span></div><div class="table-wrap"><table><thead><tr><th>시험</th><th>점수</th><th>수정일</th><th>작업</th></tr></thead><tbody id="selectedStudentReportsBody"></tbody></table></div></div>
  <div class="form-grid">
@@ -218,16 +224,32 @@
 
 <div id="studentRosterModal" class="modal-backdrop hidden"><div class="modal roster-modal">
  <div class="modal-title-row"><div class="section-icon">＋</div><div><div class="section-kicker">CLASS ROSTER</div><h2>반에 학생 추가</h2></div></div>
- <div class="form-grid compact-form-grid"><div class="field span-2"><label for="rosterStudentName">학생 이름 *</label><input id="rosterStudentName" placeholder="예: 김물리"></div><div class="field"><label for="rosterStudentSchool">학교</label><input id="rosterStudentSchool" placeholder="미기입 가능"></div><div class="field"><label for="rosterStudentGrade">학년</label><select id="rosterStudentGrade"><option value="">선택</option><option>1</option><option>2</option><option>3</option></select></div><div class="field span-2"><label for="rosterStudentClassNo">학교 반·번호</label><input id="rosterStudentClassNo" placeholder="예: 2반 12번"></div></div>
+ <div class="form-grid compact-form-grid"><div class="field span-2"><label for="rosterStudentName">학생 이름 검색 / 새 학생 이름 *</label><input id="rosterStudentName" autocomplete="off" placeholder="이름을 입력해 기존 학생부터 검색"><div id="rosterStudentMatches" class="student-search-results" aria-label="기존 학생 검색 결과"></div></div><div class="field"><label for="rosterStudentSchool">학교</label><input id="rosterStudentSchool" placeholder="미기입 가능"></div><div class="field"><label for="rosterStudentGrade">학년</label><select id="rosterStudentGrade"><option value="">선택</option><option>1</option><option>2</option><option>3</option></select></div><div class="field span-2"><label for="rosterStudentClassNo">학교 반·번호</label><input id="rosterStudentClassNo" placeholder="예: 2반 12번"></div></div>
+ <div class="notice small">기존 학생은 위 검색 결과에서 선택하세요. ‘새 학생으로 생성’은 별도 학생 ID와 링크를 새로 만듭니다.</div>
  <div id="rosterStudentModalStatus" class="small muted"></div>
- <div class="modal-actions"><button class="btn btn-light" id="closeRosterStudentModalBtn">취소</button><button class="btn btn-primary" id="saveRosterStudentBtn">학생 추가</button></div>
+ <div class="modal-actions"><button class="btn btn-light" id="closeRosterStudentModalBtn">취소</button><button class="btn btn-primary" id="saveRosterStudentBtn">새 학생으로 생성</button></div>
 </div></div>
 
 <div id="assignStudentModal" class="modal-backdrop hidden"><div class="modal roster-modal">
  <div class="modal-title-row"><div class="section-icon">⇢</div><div><div class="section-kicker">ASSIGN EXISTING STUDENT</div><h2>기존 학생을 현재 반에 배정</h2></div></div>
- <div class="field"><label for="assignStudentSelect">학생 선택</label><select id="assignStudentSelect"></select></div>
+ <p id="assignStudentTarget" class="notice small"></p>
+ <div class="field"><label for="assignStudentSearch">기존 학생 이름 검색</label><input type="search" id="assignStudentSearch" autocomplete="off" placeholder="이름 일부 또는 학교명" aria-controls="assignStudentResults"></div>
+ <p id="assignStudentResultCount" class="small muted" role="status" aria-live="polite"></p>
+ <div id="assignStudentResults" class="student-search-results" aria-label="추가할 학생 검색 결과"></div>
+ <p id="assignStudentSelected" class="notice small" role="status"></p>
+ <select id="assignStudentSelect" hidden aria-hidden="true" tabindex="-1"><option value=""></option></select>
+ <p id="assignStudentModalStatus" class="small muted" role="alert"></p>
  <div class="notice small">학생 프로필과 기존 성적은 그대로 유지하고 반 명단만 추가합니다.</div>
  <div class="modal-actions"><button class="btn btn-light" id="closeAssignStudentModalBtn">취소</button><button class="btn btn-primary" id="assignStudentConfirmBtn">현재 반에 배정</button></div>
+</div></div>
+
+<div id="studentSchoolModal" class="modal-backdrop hidden"><div class="modal roster-modal" role="dialog" aria-modal="true" aria-labelledby="studentSchoolHeading">
+ <h2 id="studentSchoolHeading">학생 학교명 수정</h2>
+ <p id="studentSchoolTarget" class="notice small"></p>
+ <div class="field"><label for="studentSchoolValue">변경할 학교명</label><input id="studentSchoolValue" autocomplete="off" placeholder="비우면 미기입" maxlength="120"></div>
+ <p class="small muted">현재 학생 프로필과 앞으로 입력하는 성적에 반영됩니다. 기존 성적표의 학교명은 당시 기록으로 유지되며, 점수·학생 ID·학부모 영구 링크는 바뀌지 않습니다.</p>
+ <p id="studentSchoolStatus" class="small muted" role="alert"></p>
+ <div class="modal-actions"><button type="button" class="btn btn-light" id="closeStudentSchoolBtn">취소</button><button type="button" class="btn btn-primary" id="saveStudentSchoolBtn">학교명 저장</button></div>
 </div></div>
 
 <div id="studentMergeModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="studentMergeTitle">
@@ -261,5 +283,5 @@
 <script src="assets/xlsx-import.js?v=3.6.3"></script>
 <script src="assets/share-config.js?v=3.6.7"></script>
 <script src="assets/share-link.js?v=3.6.7"></script>
-<script src="assets/app.js?v=3.7.12"></script>
+<script src="assets/app.js?v=3.7.13"></script>
 </body></html>

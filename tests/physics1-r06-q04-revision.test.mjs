@@ -126,7 +126,7 @@ test('개별 JSON, 내장 카탈로그, catalog.json의 4번이 완전히 동일
 });
 
 test('카탈로그 버전 3.7.3와 교사·학생 페이지의 캐시 무효화',()=>{
-  assert.equal(JSON.parse(read('package.json')).version,'3.7.12');
+  assert.equal(JSON.parse(read('package.json')).version,'3.7.13');
   assert.equal(data.featureVersion,'3.7.12-physics2-emw-total');
   for(const f of ['index.html','report.html','portal.html']){
     assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.12/);

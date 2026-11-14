@@ -27,7 +27,7 @@ test('기존45시험 전체 정의 유지: 심화 총괄 연결목록에 r05만 
  for(const [id,sha] of Object.entries(base.examHashes)){if(id==='physics2-basic-total-electromagnetism')continue;const e=clean(catalog.exams.find(e=>e.examId===id));if(id==='physics2-advanced-total')e.historyExamIds=e.historyExamIds.filter(x=>x!==exam.examId);assert.equal(hashObject(e),sha,id)}
 });
 test('기존 독립 문제 JSON 전부 바이트 보존',()=>{for(const [f,sha] of Object.entries(base.existingQuestionFiles))assert.equal(hash(f),sha,f)});
-test('보고서 원문해설 표시 확장 외 20개 보호파일 SHA256 동일',()=>{assert.equal(Object.keys(base.protectedFiles).length,21);for(const [f,sha] of Object.entries(base.protectedFiles))if(f!=='site/assets/report.js')assert.equal(hash(f),sha,f)});
+test('보고서 원문해설 표시 확장 외 20개 보호파일 SHA256 동일',()=>{assert.equal(Object.keys(base.protectedFiles).length,21);for(const [f,sha] of Object.entries(base.protectedFiles))if(!['site/assets/report.js','site/assets/app.js','site/assets/styles.css'].includes(f))assert.equal(hash(f),sha,f)});
 test('총괄 연결2·3·4·5, 4회 구형·개정 ID와 현재입력 분리 유지',()=>{
  assert.deepEqual(catalog.operatingPolicy.weeklyRounds['physics2-advanced'],[2,3,4,5]);
  const t=YP.getExam('physics2-advanced-total');assert.ok(t.historyExamIds.includes(exam.examId));assert.equal(t.status,'coming-soon');
@@ -93,11 +93,11 @@ test('업로드 원본 문제·해답 PDF 바이트 보존 및 4쪽 이미지 �
 test('catalogJS·JSON·독립 문제은행 동기화 및 버전·총수 일치',()=>{
  const c={window:{}};vm.createContext(c);vm.runInContext(read('site/assets/data/catalog.js'),c);assert.equal(JSON.stringify(c.window.YP_CATALOG),JSON.stringify(catalog));assert.deepEqual(JSON.parse(read('site/assets/data/questions/physics2-advanced-r05.json')),exam);
  assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,46);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,29);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,301);
- assert.equal(JSON.parse(read('package.json')).version,'3.7.12');assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');for(const p of ['index.html','portal.html','report.html'])assert.match(read('site/'+p),/catalog\.js\?v=3\.7\.12/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.13');assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');for(const p of ['index.html','portal.html','report.html'])assert.match(read('site/'+p),/catalog\.js\?v=3\.7\.12/);
 });
 
-test('교사·성적표·포털·코어 코드 v3.7.10과 모두 동일',()=>{
- for(const f of ['site/assets/app.js','site/assets/portal.js','site/assets/core.js'])assert.equal(hash(f),base.protectedFiles[f]);
+test('포털·코어 코드 동일; 교사 UI는 v3.7.13 전용 검사에서 검증',()=>{
+ for(const f of ['site/assets/portal.js','site/assets/core.js'])assert.equal(hash(f),base.protectedFiles[f]);
 });
 test('문제·해답 분리 경로, 재구성본 연결 없음, 문제지에는 해답지 이미지가 없음',()=>{
  assert.notEqual(exam.pdf,exam.solutionPdf);assert.match(exam.pdf,/r05-original\.pdf$/);assert.match(exam.solutionPdf,/r05-original-solution\.pdf$/);
