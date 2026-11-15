@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-11-10T00:00:00Z",
+  "generatedAt": "2026-11-15T16:00:00Z",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -27022,6 +27022,729 @@
       "sourceSolutionPdf": "assets/documents/physics2-advanced/r05-original-solution.pdf"
     },
     {
+      "examId": "physics2-advanced-r06",
+      "courseId": "physics2-advanced",
+      "round": 6,
+      "title": "물리2심화 6회차 복습 테스트 · 만유인력·케플러 법칙",
+      "shortTitle": "6회차 만유인력·케플러",
+      "status": "ready",
+      "assessmentType": "weekly",
+      "section": "mechanics",
+      "examDate": "",
+      "questionCount": 7,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics2-advanced/r06-original.pdf",
+      "solutionPdf": "assets/documents/physics2-advanced/r06-original-solution.pdf",
+      "pages": [
+        "assets/pages/physics2-advanced/r06-original-p1.png",
+        "assets/pages/physics2-advanced/r06-original-p2.png",
+        "assets/pages/physics2-advanced/r06-original-p3.png",
+        "assets/pages/physics2-advanced/r06-original-p4.png"
+      ],
+      "reviewStatus": "verified-with-source-notes",
+      "configVersion": "2026.11.15-r06-final-uploads-v3.7.14",
+      "sourceTitle": "물리2심화 Quiz 6회 v2(2).pdf / 물리2심화 Quiz 6회 v2 해설(1).pdf",
+      "sourceNote": "2026-11-15 최종 재첨부 문제지(2)와 해답(1) 원본 PDF를 그대로 사용. 문제·수식·그림 모두 문제지 PDF에서 직접 추출, 문항 7개 배점 10·10·20·15·20·15·10점(100점). 4번 (2) 소문항은 문제지5점/해설지10점 상충하므로 문제지5점 적용; 7번 문제지 반지름 r/해설지 R 표기 차이로 사이트 풀이에서는 문제지 r 사용. 원본 PDF의 문구·그림·정답은 임의 변경하지 않음. 초파2점 문구는 기본100점에 가산하지 않음. 7번의 3+4+3 부분점수 배분은 교사 참고용 권장 루브릭이며 원문에 없던 별도 배점이다.",
+      "assetProvenance": {
+        "kind": "original-pdf-render-crop",
+        "originalPdfIncluded": true,
+        "originalAnswerPdfIncluded": true,
+        "answerAuthorship": "user-supplied-answer-pdf; independently-checked",
+        "sourceQuestionFile": "물리2심화 Quiz 6회 v2(2).pdf",
+        "sourceQuestionSha256": "f53a3e6656b2be338ac92468ffba7929fe992e290ed1bd040ed88f298b2e410e",
+        "sourceSolutionFile": "물리2심화 Quiz 6회 v2 해설(1).pdf",
+        "sourceSolutionSha256": "e114a93fa03fbd22fa1380478b331de06c892764697a0563b9dc42fdec477941",
+        "originalQuestionPageCount": 4,
+        "originalSolutionPageCount": 4,
+        "renderDpi": 200,
+        "redrawn": false,
+        "retypedQuestionText": false,
+        "questionPageSource": "final-uploaded-question-PDF-only"
+      },
+      "coreNote": {
+        "summary": "만유인력에 따른 인공위성·쌍성의 원운동, 타원궤도 역학적 에너지, 근일점·원일점 속력, 위성 간 상호작용",
+        "concepts": [
+          "원궤도에서 반지름은 행성 표면으로부터의 고도가 아닌 중심 거리이다.",
+          "케플러 제3법칙 T²∝a³은 중심력 아래 두 물체의 주기 비교에 적용한다.",
+          "타원궤도의 총 에너지는 −GMm/(2a)이며 근일점·원일점의 속력이 다르다.",
+          "중력 위치에너지 U=−GMm/r에서 무한대가 0이다.",
+          "같은 구심운동을 하는 위성끼리의 인력도 각 위성의 구심방향으로 분해한다."
+        ],
+        "formulas": [
+          "v_c=√(GM/r)",
+          "T=2π√(r³/(GM))",
+          "E_ellipse=−GMm/(2a)",
+          "v²=GM(2/r−1/a)",
+          "r_p+r_a=2a",
+          "F_G=Gm₁m₂/r²"
+        ],
+        "mistakes": [
+          "위성 고도를 중심 거리로 착각함",
+          "타원궤도에서 총 에너지와 위치에너지를 혼동함",
+          "최고점과 원일점의 속력을 무조건 0으로 가정함",
+          "위성 간 인력의 중심방향 성분을 무시함"
+        ],
+        "checklist": [
+          "문제지 원본의 7문항과 배점 총100점을 확인했는가?",
+          "공식 해설 4번 (2) 10점과 문제지5점 불일치를 확인했는가?",
+          "7번 문제지 r·해설지 R 기호 차이를 확인했는가?",
+          "문항7의 4개 위성 상호작용을 포함했는가?"
+        ]
+      },
+      "featureVersion": "3.7.14-physics2-advanced-r06",
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "만유인력·원운동",
+          "topic": "인공위성의 고도와 케플러 제3법칙",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              80,
+              253,
+              740,
+              1247
+            ]
+          },
+          "reviewStatus": "verified-with-source-notes",
+          "correctionNote": "[공식 해설 검산] 최종 업로드 문제지와 해답지를 대조했습니다. 문제·수식·그림은 최종 원본 PDF 그대로 사용하고, 원문 문제의 소문항 배점을 적용합니다.",
+          "answer": "(1) v_A=√(gR)/2  (2) T_B=(27/8)T_A",
+          "explanation": [
+            "[원문 해설 검수] 행성 반지름이 R이므로 위성 A의 궤도 반지름은 4R, 위성 B는 9R입니다. 고도와 중심 거리의 차이를 먼저 구분합니다.",
+            "지표면에서 GM/R²=g이므로 GM=gR²입니다. 원궤도 속력 v=√(GM/r)을 사용하면 v_A=√(gR²/(4R))=√(gR)/2입니다.",
+            "케플러 제3법칙 T²∝r³이므로 T_B/T_A=(9R/4R)^(3/2)=27/8입니다."
+          ],
+          "formulas": [
+            "GM=gR²",
+            "v_A=√(GM/(4R))=√(gR)/2",
+            "T_B/T_A=(9/4)^(3/2)=27/8"
+          ],
+          "commonMistakes": [
+            "고도 3R, 8R을 궤도 반지름으로 바로 사용함",
+            "공전주기를 반지름의 3/2제곱이 아니라 반지름에 비례시킴"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 공전 속력",
+              "points": 5
+            },
+            {
+              "criterion": "(2) 주기 비",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "√(gR)/2 및 (27/8)T_A",
+              "√(gR)/2 및 (9/4)T_A",
+              "√(gR)/4 및 (27/8)T_A",
+              "√(gR) 및 (27/8)T_A"
+            ],
+            "correctChoice": 1,
+            "answer": "√(gR)/2 및 (27/8)T_A",
+            "acceptableAnswers": [
+              "1",
+              "√(gR)/2 및 (27/8)T_A"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 1번: 위성 A의 공전 속력과 위성 B의 주기를 고르세요."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "√(gR/2) 및 2√2",
+              "√(gR/2) 및 2",
+              "√(gR)/2 및 2√2",
+              "√(gR/4) 및 4"
+            ],
+            "correctChoice": 1,
+            "answer": "√(gR/2) 및 2√2",
+            "acceptableAnswers": [
+              "1",
+              "√(gR/2) 및 2√2"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 행성 반지름 R, 표면 중력가속도 g. 위성 A의 고도 R, B의 고도 3R이면 A의 속력과 B/A 주기비는?",
+            "explanation": "중심 거리 A=2R, B=4R이므로 v_A=√[gR²/(2R)], T_B/T_A=(4/2)^(3/2)=2√2."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "고도 3R인 위성 A와 고도 8R인 위성 B, 지표면 중력가속도 g에 대하여 공전 속력과 공전주기를 구하는 문제.",
+          "sourceSubquestions": [
+            "(1) 공전 속력",
+            "(2) 주기 비"
+          ],
+          "sourceNote": "최종 문제지 원본(2)에서 이미지 직접 추출"
+        },
+        {
+          "no": 2,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "만유인력·쌍성",
+          "topic": "공통 질량중심을 도는 쌍성",
+          "difficulty": "상",
+          "image": {
+            "page": 1,
+            "crop": [
+              846,
+              253,
+              764,
+              1067
+            ]
+          },
+          "reviewStatus": "verified-with-source-notes",
+          "correctionNote": "[공식 해설 검산] 최종 업로드 문제지와 해답지를 대조했습니다. 문제·수식·그림은 최종 원본 PDF 그대로 사용하고, 원문 문제의 소문항 배점을 적용합니다.",
+          "answer": "(1) m_B=2M  (2) T=6π√[R³/(2GM)]",
+          "explanation": [
+            "[원문 해설 검수] 공통 질량중심 O로부터 거리 OA=R, OB=2R이고 m_A=4M이므로 질량중심 조건 m_A·R=m_B·2R에서 m_B=2M입니다.",
+            "두 별의 거리는 3R, 총질량은 6M입니다. 공통 각속도는 ω²=G(m_A+m_B)/(3R)³=2GM/(9R³)입니다.",
+            "따라서 T=2π/ω=6π√[R³/(2GM)]입니다."
+          ],
+          "formulas": [
+            "4M·R=m_B·2R",
+            "ω²=G·6M/(3R)³=2GM/(9R³)",
+            "T=6π√(R³/(2GM))"
+          ],
+          "commonMistakes": [
+            "두 별의 간격 3R 대신 OA 또는 OB를 별 사이 거리로 잘못 사용함",
+            "질량중심과 회전 중심을 별 A의 중심으로 착각함"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 별 B 질량",
+              "points": 5
+            },
+            {
+              "criterion": "(2) 두 별 공전주기",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "4M, 6π√[R³/(2GM)]",
+              "2M, 6π√[R³/(2GM)]",
+              "2M, 2π√[R³/(GM)]",
+              "M, 6π√[R³/(GM)]"
+            ],
+            "correctChoice": 2,
+            "answer": "2M, 6π√[R³/(2GM)]",
+            "acceptableAnswers": [
+              "2",
+              "2M, 6π√[R³/(2GM)]"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 2번: 별 B의 질량과 두 별의 공전주기를 고르세요."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "2M, 2π√[R³/(GM)]",
+              "4M, 4π√[R³/(GM)]",
+              "4M, 2π√[R³/(GM)]",
+              "4M, π√[R³/(GM)]"
+            ],
+            "correctChoice": 3,
+            "answer": "4M, 2π√[R³/(GM)]",
+            "acceptableAnswers": [
+              "3",
+              "4M, 2π√[R³/(GM)]"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): OA=OB=R이고 별 A가 4M이며 서로 만유인력만 작용합니다. B의 질량과 공전주기는?",
+            "explanation": "동일한 회전 반지름에서는 두 별 질량이 같아야 합니다. 간격 2R, 총질량 8M이므로 T=2π√[(2R)³/(8GM)]=2π√[R³/(GM)]."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "OA=R, OB=2R, A질량 4M인 쌍성에서 B질량과 공전주기를 구하는 문제.",
+          "sourceSubquestions": [
+            "(1) 별 B 질량",
+            "(2) 두 별 공전주기"
+          ],
+          "sourceNote": "최종 문제지 원본(2)에서 이미지 직접 추출"
+        },
+        {
+          "no": 3,
+          "maxPoints": 20,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "케플러법칙·에너지",
+          "topic": "타원궤도의 역학적 에너지",
+          "difficulty": "최상",
+          "image": {
+            "page": 2,
+            "crop": [
+              78,
+              253,
+              739,
+              1357
+            ]
+          },
+          "reviewStatus": "verified-with-source-notes",
+          "correctionNote": "[공식 해설 검산] 최종 업로드 문제지와 해답지를 대조했습니다. 문제·수식·그림은 최종 원본 PDF 그대로 사용하고, 원문 문제의 소문항 배점을 적용합니다.",
+          "answer": "(1) E=−GMm/(4R)  (2) v_A=√[3GM/(2R)], v_B=√[GM/(6R)]  (3) U_B−U_A=2GMm/(3R)",
+          "explanation": [
+            "[원문 해설 검수] 근일점 r_A=R, 원일점 r_B=3R이므로 타원 궤도의 장반지름 a=(R+3R)/2=2R입니다.",
+            "타원 궤도의 총역학적 에너지 E=−GMm/(2a)=−GMm/(4R)입니다.",
+            "활력방정식 v²=GM(2/r−1/a)에서 v_A²=3GM/(2R), v_B²=GM/(6R)입니다. 두 지점에서 r_Av_A=r_Bv_B이므로 속력 비가 3:1임도 검산됩니다.",
+            "중력 위치에너지 U=−GMm/r이므로 U_B−U_A=−GMm/(3R)+GMm/R=2GMm/(3R)입니다."
+          ],
+          "formulas": [
+            "a=(R+3R)/2=2R",
+            "E=−GMm/(2a)=−GMm/(4R)",
+            "v_A=√[GM(2/R−1/(2R))]",
+            "v_B=√[GM(2/(3R)−1/(2R))]",
+            "U_B−U_A=2GMm/(3R)"
+          ],
+          "commonMistakes": [
+            "근일점과 원일점의 평균이 장반지름인 점을 빠뜨림",
+            "타원 궤도 전체에서 속력이 일정하다고 가정함",
+            "위치에너지를 +GMm/r로 쓰고 변화량 부호를 반대로 계산함"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 궤도 역학적 에너지",
+              "points": 5
+            },
+            {
+              "criterion": "(2) 근일점·원일점 속력",
+              "points": 10
+            },
+            {
+              "criterion": "(3) 위치에너지 변화",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "−GMm/(2R), 1:3",
+              "−GMm/(4R), 1:3",
+              "−GMm/(4R), 3:1",
+              "−GMm/(6R), 3:1"
+            ],
+            "correctChoice": 3,
+            "answer": "−GMm/(4R), 3:1",
+            "acceptableAnswers": [
+              "3",
+              "−GMm/(4R), 3:1"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 3번: 근일 R, 원일 3R인 타원궤도의 에너지 E와 속력 비 v_A:v_B는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "−GMm/(3R)",
+              "−GMm/(6R)",
+              "−GMm/(2R)",
+              "−GMm/(10R)"
+            ],
+            "correctChoice": 2,
+            "answer": "−GMm/(6R)",
+            "acceptableAnswers": [
+              "2",
+              "−GMm/(6R)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 근일점 R, 원일점 5R인 타원궤도의 총 역학적 에너지는?",
+            "explanation": "장반지름 a=(R+5R)/2=3R이므로 E=−GMm/(2a)=−GMm/(6R)."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "r_A=R, r_B=3R인 탐사선 타원궤도에서 전체 에너지, 두 지점 속력 및 중력 위치에너지 변화.",
+          "sourceSubquestions": [
+            "(1) 궤도 역학적 에너지",
+            "(2) 근일점·원일점 속력",
+            "(3) 위치에너지 변화"
+          ],
+          "sourceNote": "최종 문제지 원본(2)에서 이미지 직접 추출"
+        },
+        {
+          "no": 4,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "역학적 에너지·수직 발사",
+          "topic": "수직 발사와 중력 위치에너지",
+          "difficulty": "최상",
+          "image": {
+            "page": 2,
+            "crop": [
+              837,
+              253,
+              772,
+              1487
+            ]
+          },
+          "reviewStatus": "verified-with-source-notes",
+          "correctionNote": "[소문항 배점 불일치] 최종 문제지 4번 (2)는 5점, 첨부 해설은 10점으로 다르게 표기되어 있습니다. 성적 입력은 문제지 배점 [5,5,5] 총15점을 적용합니다. 원본 PDF 두 파일은 수정하지 않았습니다.",
+          "answer": "(1) E=−GMm/(2R)  (2) 중심 거리 2R, 지표 높이 R  (3) v_min=√[3GM/(2R)]",
+          "explanation": [
+            "[원문 해설 검수] 행성 표면에서 v₀=√(GM/R)이므로 E=(1/2)m v₀²−GMm/R=−GMm/(2R)입니다. 중력 위치에너지의 기준은 무한히 먼 지점에서 0입니다.",
+            "최고점에서는 속력 0이므로 −GMm/r_max=−GMm/(2R)에서 r_max=2R, 따라서 표면에서의 높이는 R입니다.",
+            "4R에서 속력 0이 되도록 하는 최소 발사 속력 u에 대해 (1/2)mu²−GMm/R=−GMm/(4R)이므로 u=√[3GM/(2R)]입니다."
+          ],
+          "formulas": [
+            "E=(1/2)m(GM/R)−GMm/R=−GMm/(2R)",
+            "r_max=2R, h_max=R",
+            "v_min²=2GM(1/R−1/(4R))=3GM/(2R)"
+          ],
+          "commonMistakes": [
+            "행성 표면에서 지표 높이와 행성 중심 거리의 차이를 무시함",
+            "중력 퍼텐셜을 고도에 선형적으로 비례하는 mgh로 계산함",
+            "도달점에서 속력을 0으로 만드는 최소 조건을 적용하지 않음"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 발사 직후 역학적 에너지",
+              "points": 5
+            },
+            {
+              "criterion": "(2) 최고점 중심 거리 및 표면 높이",
+              "points": 5
+            },
+            {
+              "criterion": "(3) 4R 지점 도달 최소 속력",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "2R, R",
+              "2R, 2R",
+              "R, R",
+              "4R, 3R"
+            ],
+            "correctChoice": 1,
+            "answer": "2R, R",
+            "acceptableAnswers": [
+              "1",
+              "2R, R"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 4번: 초기 속력 √(GM/R)로 수직 발사했을 때 최고점 중심 거리와 표면 높이는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "R/2",
+              "3R/2",
+              "4R/3",
+              "2R"
+            ],
+            "correctChoice": 3,
+            "answer": "4R/3",
+            "acceptableAnswers": [
+              "3",
+              "4R/3"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 행성 표면에서 v₀=√[GM/(2R)]로 수직 발사하면 최고점 중심 거리는?",
+            "explanation": "초기 에너지 E=GMm/(4R)−GMm/R=−3GMm/(4R); 최고점에서 E=−GMm/r_max이므로 r_max=4R/3."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "행성 표면에서 수직 발사한 물체의 에너지, 도달 높이 및 4R 지점 도달 최소 속력.",
+          "sourceSubquestions": [
+            "(1) 발사 직후 역학적 에너지",
+            "(2) 최고점 중심 거리 및 표면 높이",
+            "(3) 4R 지점 도달 최소 속력"
+          ],
+          "sourceNote": "최종 문제지 원본(2)에서 이미지 직접 추출"
+        },
+        {
+          "no": 5,
+          "maxPoints": 20,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "케플러법칙·궤도 변경",
+          "topic": "원궤도에서 타원궤도로 궤도 변경",
+          "difficulty": "최상",
+          "image": {
+            "page": 3,
+            "crop": [
+              79,
+              253,
+              744,
+              1497
+            ]
+          },
+          "reviewStatus": "verified-with-source-notes",
+          "correctionNote": "[공식 해설 검산] 최종 업로드 문제지와 해답지를 대조했습니다. 문제·수식·그림은 최종 원본 PDF 그대로 사용하고, 원문 문제의 소문항 배점을 적용합니다.",
+          "answer": "(1) v₁=√(GM/R)  (2) v₂=√[3GM/(2R)]  (3) v₃=√[GM/(6R)]",
+          "explanation": [
+            "[원문 해설 검수] 원래의 원궤도 반지름이 R이므로 공전 속력은 v₁=√(GM/R)입니다.",
+            "원본 그림에서 타원궤도의 근일점 A는 R, 원일점은 3R로 표시됩니다. 따라서 장반지름 a=2R입니다.",
+            "A에서 순간 가속 뒤 활력방정식 v₂²=GM(2/R−1/(2R))=3GM/(2R)이므로 v₂=√[3GM/(2R)]입니다.",
+            "원일점에서는 r=3R이므로 v₃²=GM(2/(3R)−1/(2R))=GM/(6R)이며, 각운동량 보존으로 v₂R=v₃·3R을 검산할 수 있습니다."
+          ],
+          "formulas": [
+            "v₁=√(GM/R)",
+            "a=(R+3R)/2=2R",
+            "v₂²=GM(2/R−1/a)=3GM/(2R)",
+            "v₃=v₂/3=√[GM/(6R)]"
+          ],
+          "commonMistakes": [
+            "원궤도 속력 v₁과 궤도 변경 직후 v₂를 같은 값으로 취급함",
+            "원일점에서의 반지름을 2R로 오독함",
+            "원일점에서도 근일점과 같은 속력으로 운동한다고 가정함"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 처음 원궤도 속력",
+              "points": 5
+            },
+            {
+              "criterion": "(2) A점에서 타원궤도 진입 속력",
+              "points": 10
+            },
+            {
+              "criterion": "(3) 원일점 속력",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "√[GM/R], √[GM/(9R)]",
+              "√[3GM/(2R)], √[GM/(6R)]",
+              "√[3GM/R], √[GM/(3R)]",
+              "√[GM/(2R)], √[GM/(6R)]"
+            ],
+            "correctChoice": 2,
+            "answer": "√[3GM/(2R)], √[GM/(6R)]",
+            "acceptableAnswers": [
+              "2",
+              "√[3GM/(2R)], √[GM/(6R)]"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 5번: A에서 궤도를 변경한 직후 속력 v₂와 원일점 속력 v₃는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "√[GM/(5R)]",
+              "√[GM/(6R)]",
+              "√[GM/(10R)]",
+              "√[GM/(15R)]"
+            ],
+            "correctChoice": 4,
+            "answer": "√[GM/(15R)]",
+            "acceptableAnswers": [
+              "4",
+              "√[GM/(15R)]"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 근일점 R에서 가속하여 원일점 5R인 타원궤도에 진입했다면 원일점 속력은?",
+            "explanation": "장반지름 a=3R. v_a²=GM[2/(5R)−1/(3R)]=GM/(15R)."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "원래 원궤도 반지름 R인 위성이 A점에서 가속해 원일점 3R인 타원궤도로 변할 때의 세 속력.",
+          "sourceSubquestions": [
+            "(1) 처음 원궤도 속력",
+            "(2) A점에서 타원궤도 진입 속력",
+            "(3) 원일점 속력"
+          ],
+          "sourceNote": "최종 문제지 원본(2)에서 이미지 직접 추출"
+        },
+        {
+          "no": 6,
+          "maxPoints": 15,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "타원궤도·보존법칙",
+          "topic": "표면 접선 발사와 원일점",
+          "difficulty": "최상",
+          "image": {
+            "page": 3,
+            "crop": [
+              848,
+              253,
+              760,
+              1347
+            ]
+          },
+          "reviewStatus": "verified-with-source-notes",
+          "correctionNote": "[공식 해설 검산] 최종 업로드 문제지와 해답지를 대조했습니다. 문제·수식·그림은 최종 원본 PDF 그대로 사용하고, 원문 문제의 소문항 배점을 적용합니다.",
+          "answer": "(1) E=−GMm/(4R)  (2) a=2R  (3) OQ=3R",
+          "explanation": [
+            "[원문 해설 검수] 행성 표면 점 P에서 접선 방향으로 v₀=√[3GM/(2R)]로 발사합니다.",
+            "발사 직후 E=(1/2)m v₀²−GMm/R=3GMm/(4R)−GMm/R=−GMm/(4R)입니다.",
+            "타원 궤도의 역학적 에너지 E=−GMm/(2a)에 의해 a=2R입니다.",
+            "P는 근일점이므로 r_P=R, r_Q=2a−R=3R입니다."
+          ],
+          "formulas": [
+            "v₀²=3GM/(2R)",
+            "E=(1/2)mv₀²−GMm/R=−GMm/(4R)",
+            "a=−GMm/(2E)=2R",
+            "r_P+r_Q=2a ⇒ r_Q=3R"
+          ],
+          "commonMistakes": [
+            "타원 장반지름과 원일점 거리를 동일시함",
+            "발사 속력 제곱을 에너지식에 잘못 대입함",
+            "표면 접선 발사에서 점 P가 근일점이라는 조건을 놓침"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 발사 직후 역학적 에너지",
+              "points": 5
+            },
+            {
+              "criterion": "(2) 타원 장반지름",
+              "points": 5
+            },
+            {
+              "criterion": "(3) 원일점 중심 거리",
+              "points": 5
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "−GMm/(2R), 2R",
+              "−GMm/(4R), 2R",
+              "−GMm/(4R), 3R",
+              "−GMm/(3R), 4R"
+            ],
+            "correctChoice": 3,
+            "answer": "−GMm/(4R), 3R",
+            "acceptableAnswers": [
+              "3",
+              "−GMm/(4R), 3R"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 6번: 타원궤도의 총 에너지 E와 원일점 거리 OQ는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "2R",
+              "3R",
+              "4R",
+              "5R"
+            ],
+            "correctChoice": 1,
+            "answer": "2R",
+            "acceptableAnswers": [
+              "1",
+              "2R"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 행성 표면에서 접선방향 v₀=√[4GM/(3R)]로 발사하면 원일점 중심 거리는?",
+            "explanation": "E=−GMm/(3R), a=3R/2. 근일점은 R이므로 r_Q=2a−R=2R."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "행성 표면의 접선방향 속력 √(3GM/2R)로 발사한 물체의 타원궤도 에너지·장반지름·원일점.",
+          "sourceSubquestions": [
+            "(1) 발사 직후 역학적 에너지",
+            "(2) 타원 장반지름",
+            "(3) 원일점 중심 거리"
+          ],
+          "sourceNote": "최종 문제지 원본(2)에서 이미지 직접 추출"
+        },
+        {
+          "no": 7,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "위성 상호작용·구심력",
+          "topic": "네 인공위성의 상호 만유인력",
+          "difficulty": "최상",
+          "image": {
+            "page": 4,
+            "crop": [
+              70,
+              240,
+              770,
+              890
+            ]
+          },
+          "reviewStatus": "verified-with-source-notes",
+          "correctionNote": "[7번 기호 표기 불일치] 최종 문제지의 궤도 반지름은 r이며, 첨부 해설지는 R로 표기합니다. 동일한 물리량이므로 사이트 검수 풀이·정답에는 최종 문제지의 r을 사용합니다. 원문 PDF는 고치지 않았습니다. 7번의 사이트 세부채점 3+4+3은 원문에 없는 교사용 권장 배점이며, 문항 총10점은 변경하지 않습니다.",
+          "answer": "T=2π√{r³/[G(M+m(1/4+1/√2))]}",
+          "explanation": [
+            "[원문 해설 검수] 정사각형의 각 꼭짓점에 있는 위성 하나를 기준으로 안쪽 방향의 알짜 만유인력을 구합니다. 행성에 의한 힘의 크기는 GMm/r²입니다.",
+            "정반대 꼭짓점의 위성까지 거리는 2r이므로 F_opp=Gm²/(4r²)이고 이 힘은 행성 중심방향입니다.",
+            "인접한 위성 2개는 각각 √2r 떨어져 있고, 각 인력의 중심방향 성분은 Gm²/(2√2 r²)입니다. 따라서 두 힘을 합하면 Gm²/(√2 r²)입니다.",
+            "위성 하나의 구심력 mω²r=[Gm/r²][M+m(1/4+1/√2)]입니다. ω=2π/T를 대입하면 표시한 주기를 얻습니다."
+          ],
+          "formulas": [
+            "r_adjacent=√2r, r_opposite=2r",
+            "F_adj,radial (2개 합)=Gm²/(√2r²)",
+            "F_opposite=Gm²/(4r²)",
+            "mω²r=Gm[r⁻²]{M+m(1/4+1/√2)}",
+            "T=2π√{r³/[G(M+m(1/4+1/√2))]}"
+          ],
+          "commonMistakes": [
+            "위성들 사이의 만유인력을 전부 무시함",
+            "이웃 위성의 힘에서 중심방향 성분 cos45°를 빠뜨림",
+            "정반대 위성 사이 거리를 r로 계산함"
+          ],
+          "rubric": [
+            {
+              "criterion": "행성 및 정반대 위성의 구심방향 힘",
+              "points": 3
+            },
+            {
+              "criterion": "인접 위성 2개의 구심방향 힘",
+              "points": 4
+            },
+            {
+              "criterion": "알짜 구심력과 주기",
+              "points": 3
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "M+m(1/2+1/√2)",
+              "M+m(1/4+1/√2)",
+              "M+m(1/4+1/2√2)",
+              "M+m(1/4+√2)"
+            ],
+            "correctChoice": 2,
+            "answer": "M+m(1/4+1/√2)",
+            "acceptableAnswers": [
+              "2",
+              "M+m(1/4+1/√2)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 7번: 반지름 r인 원궤도에서 네 위성이 서로 끌어당길 때 공전주기를 결정하는 유효 중심 질량은?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "2π√[r³/(GM)]",
+              "π√[r³/(GM)]",
+              "2π√[r/(GM)]",
+              "2π√[GM/r³]"
+            ],
+            "correctChoice": 1,
+            "answer": "2π√[r³/(GM)]",
+            "acceptableAnswers": [
+              "1",
+              "2π√[r³/(GM)]"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 (새 작성): 같은 정사각형 배치에서 위성 간 인력이 무시될 정도로 m이 작다면 공전주기는?",
+            "explanation": "위성 간 인력을 무시하면 구심력이 GMm/r²뿐이므로 ω²=GM/r³, T=2π√[r³/(GM)]."
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "행성 M 주위 반지름 r 위치에서 동일 질량 m 위성 4개가 정사각형을 유지하며 같은 주기로 공전할 때의 주기.",
+          "sourceSubquestions": [
+            "행성 및 정반대 위성의 구심방향 힘",
+            "인접 위성 2개의 구심방향 힘",
+            "알짜 구심력과 주기"
+          ],
+          "sourceNote": "최종 문제지 원본(2)에서 이미지 직접 추출"
+        }
+      ]
+    },
+    {
       "examId": "physics2-advanced-total",
       "courseId": "physics2-advanced",
       "round": 0,
@@ -27038,7 +27761,8 @@
         "physics2-advanced-r03",
         "physics2-advanced-r04",
         "physics2-advanced-r04-v2",
-        "physics2-advanced-r05"
+        "physics2-advanced-r05",
+        "physics2-advanced-r06"
       ],
       "historyLabel": "물리2심화 2회차 복습 테스트",
       "reviewStatus": "not-uploaded",
@@ -27097,7 +27821,8 @@
         2,
         3,
         4,
-        5
+        5,
+        6
       ]
     },
     "excludedRounds": {
@@ -27120,5 +27845,5 @@
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.7.12-physics2-emw-total"
+  "featureVersion": "3.7.14-physics2-advanced-r06"
 }

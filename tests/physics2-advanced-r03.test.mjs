@@ -32,15 +32,15 @@ test('물리2심화 3회차 신규 고유 ID, 8문항 100점, 기존 과정·카
  assert.equal(exam.status,'ready');assert.equal(exam.assessmentType,'weekly');assert.equal(exam.questionCount,8);
  assert.equal(exam.maxScore,100);assert.deepEqual(exam.questions.map(x=>x.no),[1,2,3,4,5,6,7,8]);
  assert.deepEqual(exam.questions.map(x=>x.maxPoints),pts);
- assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,46);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').length,29);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,301);
- assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,46);
+ assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,47);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').length,30);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,308);
+ assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,47);
 });
 
 test('심화 주간 운영 회차 [2,3,4] 및 총괄 누적 연결 [2,3,4] 정확히 반영',()=>{
- assert.deepEqual(catalog.operatingPolicy.weeklyRounds['physics2-advanced'],[2,3,4,5]);
- assert.deepEqual(catalog.exams.find(e=>e.examId==='physics2-advanced-total').historyExamIds,['physics2-advanced-r02','physics2-advanced-r03','physics2-advanced-r04','physics2-advanced-r04-v2','physics2-advanced-r05']);
+ assert.deepEqual(catalog.operatingPolicy.weeklyRounds['physics2-advanced'],[2,3,4,5,6]);
+ assert.deepEqual(catalog.exams.find(e=>e.examId==='physics2-advanced-total').historyExamIds,['physics2-advanced-r02','physics2-advanced-r03','physics2-advanced-r04','physics2-advanced-r04-v2','physics2-advanced-r05','physics2-advanced-r06']);
  assert.equal(YP.getExam('physics2-advanced-total').status,'coming-soon');
  assert.equal(YP.getExam('physics2-advanced-r02').status,'ready');
  assert.equal(YP.getExam('physics1-basic-r06').questions[3].originalRetry.answer,'0.2 m');
@@ -155,9 +155,9 @@ test('별도 문항 JSON과 내장 카탈로그 JS와 JSON은 동일',()=>{
 });
 
 test('v3.7.3 HTML 캐시 버전 / package / 기존 v3.7.2 시험 ID와 정답 보존',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.13');
- assert.equal(catalog.featureVersion,'3.7.12-physics2-emw-total');
- for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.12/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.14');
+ assert.equal(catalog.featureVersion,'3.7.14-physics2-advanced-r06');
+ for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.14/);
  assert.equal(catalog.exams.filter(e=>e.examId==='physics1-basic-r06').length,1);
  assert.equal(catalog.exams.filter(e=>e.examId==='physics2-advanced-r02').length,1);
  assert.equal(catalog.exams.filter(e=>e.examId==='physics2-basic-r12').length,1);

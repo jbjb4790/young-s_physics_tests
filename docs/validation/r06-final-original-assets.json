@@ -1,0 +1,121 @@
+{
+  "questionPdf": {
+    "name": "물리2심화 Quiz 6회 v2(2).pdf",
+    "size": 148463,
+    "sha256": "f53a3e6656b2be338ac92468ffba7929fe992e290ed1bd040ed88f298b2e410e",
+    "pageCount": 4
+  },
+  "solutionPdf": {
+    "name": "물리2심화 Quiz 6회 v2 해설(1).pdf",
+    "size": 156307,
+    "sha256": "e114a93fa03fbd22fa1380478b331de06c892764697a0563b9dc42fdec477941",
+    "pageCount": 4
+  },
+  "pages": {
+    "assets/pages/physics2-advanced/r06-original-p1.png": {
+      "sha256": "23c823448a5e3e16a2893a82eb9ec7e6a661f792b4954e79dec285c9756e8d5a",
+      "pixelSize": [
+        1653,
+        2337
+      ]
+    },
+    "assets/pages/physics2-advanced/r06-original-p2.png": {
+      "sha256": "e80201685f498711dd67d3671e9ba5d5c4e089c85ce288a78bc3b1db7b9fcc36",
+      "pixelSize": [
+        1653,
+        2337
+      ]
+    },
+    "assets/pages/physics2-advanced/r06-original-p3.png": {
+      "sha256": "ea2927f0df263b4f4a102bb145db912c9cc989e93f394f5ad59854cf95618ddc",
+      "pixelSize": [
+        1653,
+        2337
+      ]
+    },
+    "assets/pages/physics2-advanced/r06-original-p4.png": {
+      "sha256": "872d23a1489908269436a8dba60e7ffef3c1066715573c684f5c911acbe756e0",
+      "pixelSize": [
+        1653,
+        2337
+      ]
+    }
+  },
+  "crops": {
+    "1": {
+      "page": 1,
+      "crop": [
+        80,
+        253,
+        740,
+        1247
+      ]
+    },
+    "2": {
+      "page": 1,
+      "crop": [
+        846,
+        253,
+        764,
+        1067
+      ]
+    },
+    "3": {
+      "page": 2,
+      "crop": [
+        78,
+        253,
+        739,
+        1357
+      ]
+    },
+    "4": {
+      "page": 2,
+      "crop": [
+        837,
+        253,
+        772,
+        1487
+      ]
+    },
+    "5": {
+      "page": 3,
+      "crop": [
+        79,
+        253,
+        744,
+        1497
+      ]
+    },
+    "6": {
+      "page": 3,
+      "crop": [
+        848,
+        253,
+        760,
+        1347
+      ]
+    },
+    "7": {
+      "page": 4,
+      "crop": [
+        70,
+        240,
+        770,
+        890
+      ]
+    }
+  },
+  "totalPoints": 100,
+  "scores": [
+    10,
+    10,
+    20,
+    15,
+    20,
+    15,
+    10
+  ],
+  "sourceSolutionProvided": true,
+  "method": "final user-uploaded original PDF 200dpi PNG render; no redrawing or question retyping"
+}
