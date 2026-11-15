@@ -1,0 +1,126 @@
+{
+  "questionPdf": {
+    "size": 151076,
+    "sha256": "8c051ae04cf6e6dbd1f82d2e85dc43929fc73ce2f5308473fa573e9138bf9971",
+    "pages": 2
+  },
+  "solutionPdf": {
+    "size": 160494,
+    "sha256": "bf14feab20152f15e881c7deb636b4933d1c58ba53e05f47caf4a4b10b828155",
+    "pages": 2
+  },
+  "pages": {
+    "assets/pages/physics2/r02-original-p1.png": {
+      "width": 1653,
+      "height": 2337,
+      "sha256": "ab2ea61474ea08482597a5be75d97b7ffc295d3a2b1af791b80531a8c18a979d"
+    },
+    "assets/pages/physics2/r02-original-p2.png": {
+      "width": 1653,
+      "height": 2337,
+      "sha256": "669e37ecd6caee36b8b7084fa5626cd8eb29fa071fd8021b2e9a2360857f3bef"
+    }
+  },
+  "crops": {
+    "1": {
+      "page": 1,
+      "crop": [
+        89,
+        264,
+        722,
+        286
+      ],
+      "pixel_sha256": "b8079e0bba546fc3769f744ae640e8d25d9943acb2fc546113426a5e2bfba41d"
+    },
+    "2": {
+      "page": 1,
+      "crop": [
+        89,
+        584,
+        722,
+        819
+      ],
+      "pixel_sha256": "b94caaa70cc6707bd2174532b2f5c850c6d69f36b15f9d93180cda311c2a5821"
+    },
+    "3": {
+      "page": 1,
+      "crop": [
+        89,
+        1681,
+        722,
+        311
+      ],
+      "pixel_sha256": "7b883b510a49b8ac13f40a78948fde6e1ce4fa2a2f45f5eb3c558b1237e8d871"
+    },
+    "4": {
+      "page": 1,
+      "crop": [
+        822,
+        267,
+        784,
+        314
+      ],
+      "pixel_sha256": "ea2877bee8a6d2fa9b41ed94510d4c05b4fb053e098c820d7aaf7d2ed2202126"
+    },
+    "5": {
+      "page": 1,
+      "crop": [
+        822,
+        653,
+        784,
+        381
+      ],
+      "pixel_sha256": "7c31e513588ddde3823fb48c66e8a2fd6aff0b8137f21d3dbb74587421eaf64c"
+    },
+    "6": {
+      "page": 1,
+      "crop": [
+        822,
+        1156,
+        795,
+        984
+      ],
+      "pixel_sha256": "c14ad0aeebbb312f1445e7fb979cb8544cc67b68e50c4f408bd0fe94f8a3ebe7"
+    },
+    "7": {
+      "page": 2,
+      "crop": [
+        97,
+        245,
+        709,
+        550
+      ],
+      "pixel_sha256": "38d53769ff563fc050965b64fbb666ddd4206f170414eb2902d8bdeb74393079"
+    },
+    "8": {
+      "page": 2,
+      "crop": [
+        97,
+        850,
+        709,
+        462
+      ],
+      "pixel_sha256": "913a1c4c018dc932e5104f6d44b3c4a2c20c13273ddf4a4c9467514caf125abd"
+    },
+    "9": {
+      "page": 2,
+      "crop": [
+        97,
+        1445,
+        709,
+        645
+      ],
+      "pixel_sha256": "81624425ed39bc4bd21a297412b06f288160eeb15f0815987d0d3a426e7acbfb"
+    },
+    "10": {
+      "page": 2,
+      "crop": [
+        820,
+        245,
+        791,
+        339
+      ],
+      "pixel_sha256": "a5b133102b3a69cf966ab055e0d8822e5d359ec0711b9399e2f5811ece54ea45"
+    }
+  }
+}

@@ -1,0 +1,914 @@
+{
+  "examId": "physics2-basic-r02",
+  "courseId": "physics2-basic",
+  "round": 2,
+  "title": "물리2 2회차 복습 테스트 · 벡터·상대운동",
+  "shortTitle": "2회차 벡터·상대운동",
+  "status": "ready",
+  "assessmentType": "weekly",
+  "section": "mechanics",
+  "examDate": "",
+  "questionCount": 10,
+  "maxScore": 100,
+  "pdf": "assets/documents/physics2/r02-original.pdf",
+  "solutionPdf": "assets/documents/physics2/r02-original-solution.pdf",
+  "pages": [
+    "assets/pages/physics2/r02-original-p1.png",
+    "assets/pages/physics2/r02-original-p2.png"
+  ],
+  "reviewStatus": "verified-with-source-notes",
+  "configVersion": "2026.11.15-original-r02-v3.7.15",
+  "sourceTitle": "물리2-Quiz2회차.pdf / 물리2-Quiz2회차_해설.pdf",
+  "sourceNote": "제공 문제지·해답지 원본 PDF 각2쪽을 그대로 보존했습니다. 문제·그림은 원본 문제지에서 200dpi로 직접 잘라 사용했습니다. 10문항 각10점, 총100점. 해답지9번의 강둑/강물 기준 속력·벡터 부호 오류는 원문을 보존하고, 별도 검수 해설 및 사이트 정답에서 교정했습니다. 초파2점은 기본100점에 자동가산하지 않습니다.",
+  "assetProvenance": {
+    "kind": "original-pdf-render-crop",
+    "originalPdfIncluded": true,
+    "originalAnswerPdfIncluded": true,
+    "answerAuthorship": "user-supplied-answer-pdf; independently-verified-with-q9-correction",
+    "sourceQuestionFile": "물리2-Quiz2회차.pdf",
+    "sourceQuestionSha256": "8c051ae04cf6e6dbd1f82d2e85dc43929fc73ce2f5308473fa573e9138bf9971",
+    "sourceSolutionFile": "물리2-Quiz2회차_해설.pdf",
+    "sourceSolutionSha256": "bf14feab20152f15e881c7deb636b4933d1c58ba53e05f47caf4a4b10b828155",
+    "originalQuestionPageCount": 2,
+    "originalSolutionPageCount": 2,
+    "renderDpi": 200,
+    "redrawn": false,
+    "retypedQuestionText": false
+  },
+  "coreNote": {
+    "summary": "극좌표 변환, 벡터 단위화·내적·외적, 1·2차원 상대속도, 상대운동과 최단거리, 가속 운동과 강물·바람의 속도 합성",
+    "concepts": [
+      "직교좌표 (x,y)를 극좌표 (r,θ)로 바꾸려면 r=√(x²+y²), θ=atan2(y,x)로 구합니다.",
+      "단위벡터는 원래 벡터를 그 크기로 나눈 것입니다.",
+      "직교 기저벡터의 내적과 외적은 서로 다른 연산입니다.",
+      "상대속도는 v_{B/A}=v_B−v_A로 정의합니다.",
+      "최단거리 문제는 상대위치 벡터의 길이 제곱을 최소화합니다.",
+      "관찰자가 느끼는 바람은 실제 바람속도에서 관찰자의 속도를 뺀 값입니다."
+    ],
+    "formulas": [
+      "r=√(x²+y²), θ=atan2(y,x)",
+      "û=u/|u|",
+      "A·B=AₓBₓ+AᵧBᵧ",
+      "x̂×ŷ=ẑ, ŷ×ẑ=x̂, ẑ×x̂=ŷ",
+      "v_{B/A}=v_B−v_A",
+      "|r_{B/A}(t)|²를 최소화",
+      "v_배/둑=v_배/물+v_물/둑"
+    ],
+    "mistakes": [
+      "A+B−C와 단위벡터의 합을 혼동함",
+      "외적의 오른손 법칙에서 부호를 바꿈",
+      "상대속도 기준(A에 대한 B, B에 대한 A)을 바꿈",
+      "시간에 따라 변하는 그래프의 상대속도를 지면 기준 속도로 혼동함",
+      "강둑 기준 속력과 강물 기준 속력을 뒤바꿈(원본 9번 해답 오류)"
+    ],
+    "checklist": [
+      "문제별 관측 기준을 먼저 표시했는가?",
+      "2번 단위벡터를 구하고 원래 벡터 합을 따로 계산했는가?",
+      "3·4번 내적과 외적을 구분했는가?",
+      "6번 그래프에 B의 속력을 더했는가?",
+      "9번 정정 안내를 확인했는가?"
+    ]
+  },
+  "featureVersion": "3.7.15-physics2-basic-r02",
+  "questions": [
+    {
+      "no": 1,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "벡터·좌표계",
+      "topic": "직교 좌표와 극좌표 변환",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          89,
+          264,
+          722,
+          286
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "r=13, θ=tan⁻¹(12/5)≈67.38°",
+      "explanation": [
+        "[원문 검산] 직교좌표 (x,y)=(5,12)이므로 원점으로부터 거리는 r=√(5²+12²)=13입니다.",
+        "제1사분면이므로 tanθ=y/x=12/5, 따라서 θ=tan⁻¹(12/5)≈67.38°입니다.",
+        "극좌표의 각도는 +x축에서 반시계 방향으로 재는 통상적인 정의를 사용합니다."
+      ],
+      "formulas": [
+        "r=√(x²+y²)",
+        "θ=atan2(y,x)",
+        "tanθ=y/x (x>0,y>0)"
+      ],
+      "commonMistakes": [
+        "r=5+12=17로 계산",
+        "tanθ의 분자와 분모를 뒤바꿈"
+      ],
+      "rubric": [
+        {
+          "criterion": "거리 r 계산",
+          "points": 5
+        },
+        {
+          "criterion": "극각 θ 계산",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "(13, tan⁻¹(12/5))",
+          "(17, tan⁻¹(12/5))",
+          "(13, tan⁻¹(5/12))",
+          "(13, 12/5 rad)"
+        ],
+        "correctChoice": 1,
+        "answer": "(13, tan⁻¹(12/5))",
+        "acceptableAnswers": [
+          "1",
+          "(13, tan⁻¹(12/5))"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 1번: 직교좌표 (5,12)의 극좌표 (r,θ)는?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "(10, tan⁻¹(4/3))",
+          "(14, tan⁻¹(3/4))",
+          "(10, tan⁻¹(3/4))",
+          "(10, tan⁻¹(6))"
+        ],
+        "correctChoice": 3,
+        "answer": "(10, tan⁻¹(3/4))",
+        "acceptableAnswers": [
+          "3",
+          "(10, tan⁻¹(3/4))"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형 (새 작성): 직교좌표 (8,6)의 극좌표 (r,θ)는?",
+        "explanation": "r=√(8²+6²)=10, tanθ=6/8=3/4입니다.",
+        "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+      },
+      "retryMode": "multiple-choice",
+      "sourceText": "원본 PDF에서 문제·수식·그림·선택지까지 그대로 추출한 1번 문항.",
+      "sourceNote": "원본 물리2-Quiz2회차.pdf 1쪽의 문항 영역을 200dpi 이미지로 직접 추출"
+    },
+    {
+      "no": 2,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "벡터·단위벡터",
+      "topic": "벡터의 단위화와 합",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          89,
+          584,
+          722,
+          819
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "Â=(−1,2)/√5, B̂=(4,2)/(2√5)=(2,1)/√5, Ĉ=(3,4)/5; A+B−C=(0,0)",
+      "explanation": [
+        "[원문 검산] A=(−1,2), B=(4,2), C=(3,4)이고 크기는 각각 √5, √20=2√5, 5입니다.",
+        "각 단위벡터는 원래 벡터를 크기로 나누므로 Â=(−1,2)/√5, B̂=(2,1)/√5, Ĉ=(3,4)/5입니다.",
+        "원래 벡터의 합은 A+B−C=(−1+4−3, 2+2−4)=(0,0)입니다. (2)에서 단위벡터를 더하는 것이 아닙니다."
+      ],
+      "formulas": [
+        "û=u/|u|",
+        "|u|=√(uₓ²+uᵧ²)",
+        "A+B−C=(−1+4−3,2+2−4)=(0,0)"
+      ],
+      "commonMistakes": [
+        "단위벡터 계산에서 벡터 크기로 나누지 않음",
+        "(2)에서 원래 A,B,C 대신 단위벡터를 더함"
+      ],
+      "rubric": [
+        {
+          "criterion": "A·B·C 단위벡터 세 개",
+          "points": 5
+        },
+        {
+          "criterion": "벡터 A+B−C 계산",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "Â=(−1,2)/√5, B̂=(2,1)/√5, Ĉ=(3,4)/5; 합=(0,0)",
+          "Â=(−1,2)/√5, B̂=(4,2)/√5, Ĉ=(3,4)/5; 합=(0,0)",
+          "Â=(−1,2)/5, B̂=(2,1)/5, Ĉ=(3,4)/5; 합=(1,0)",
+          "Â=(−1,2)/√5, B̂=(2,1)/√5, Ĉ=(3,4)/5; 합=(0,4)"
+        ],
+        "correctChoice": 1,
+        "answer": "Â=(−1,2)/√5, B̂=(2,1)/√5, Ĉ=(3,4)/5; 합=(0,0)",
+        "acceptableAnswers": [
+          "1",
+          "Â=(−1,2)/√5, B̂=(2,1)/√5, Ĉ=(3,4)/5; 합=(0,0)"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 2번: A=(−1,2), B=(4,2), C=(3,4)의 단위벡터와 A+B−C를 함께 고르세요."
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "(−2,2)",
+          "(−2,7)",
+          "(0,2)",
+          "(2,2)"
+        ],
+        "correctChoice": 1,
+        "answer": "(−2,2)",
+        "acceptableAnswers": [
+          "1",
+          "(−2,2)"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형 (새 작성): A=(3,4), B=(−4,3), C=(1,5)일 때 A+B−C는?",
+        "explanation": "A+B−C=(3−4−1,4+3−5)=(−2,2)입니다.",
+        "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+      },
+      "retryMode": "multiple-choice",
+      "sourceText": "원본 PDF에서 문제·수식·그림·선택지까지 그대로 추출한 2번 문항.",
+      "sourceNote": "원본 물리2-Quiz2회차.pdf 1쪽의 문항 영역을 200dpi 이미지로 직접 추출"
+    },
+    {
+      "no": 3,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "벡터·내적",
+      "topic": "직교하는 기저벡터의 내적",
+      "difficulty": "하",
+      "image": {
+        "page": 1,
+        "crop": [
+          89,
+          1681,
+          722,
+          311
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "(1) 0  (2) 6",
+      "explanation": [
+        "[원문 검산] 서로 직교하는 단위벡터 x̂·ŷ=0이고 x̂·x̂=ŷ·ŷ=1입니다.",
+        "(3x̂)·(2ŷ)=6(x̂·ŷ)=0입니다.",
+        "(3x̂+2ŷ)·(2x̂)=6(x̂·x̂)+4(ŷ·x̂)=6입니다."
+      ],
+      "formulas": [
+        "x̂·x̂=1, x̂·ŷ=0",
+        "(a,b)·(c,d)=ac+bd"
+      ],
+      "commonMistakes": [
+        "직교한 벡터의 내적을 1로 착각",
+        "분배법칙에서 ŷ·x̂=0 항을 누락"
+      ],
+      "rubric": [
+        {
+          "criterion": "(1) (3x̂)·(2ŷ)",
+          "points": 5
+        },
+        {
+          "criterion": "(2) (3x̂+2ŷ)·(2x̂)",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "(6,0)",
+          "(0,6)",
+          "(0,0)",
+          "(6,6)"
+        ],
+        "correctChoice": 2,
+        "answer": "(0,6)",
+        "acceptableAnswers": [
+          "2",
+          "(0,6)"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 3번: (3x̂)·(2ŷ) 및 (3x̂+2ŷ)·(2x̂)의 값은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "11",
+          "8",
+          "5",
+          "−5"
+        ],
+        "correctChoice": 3,
+        "answer": "5",
+        "acceptableAnswers": [
+          "3",
+          "5"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형 (새 작성): (2x̂+3ŷ)·(4x̂−ŷ)의 값은?",
+        "explanation": "(2)(4)+(3)(−1)=8−3=5입니다.",
+        "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+      },
+      "retryMode": "multiple-choice",
+      "sourceText": "원본 PDF에서 문제·수식·그림·선택지까지 그대로 추출한 3번 문항.",
+      "sourceNote": "원본 물리2-Quiz2회차.pdf 1쪽의 문항 영역을 200dpi 이미지로 직접 추출"
+    },
+    {
+      "no": 4,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "벡터·외적",
+      "topic": "외적의 오른손 법칙과 분배법칙",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          822,
+          267,
+          784,
+          314
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "(1) −6ŷ  (2) −4ẑ",
+      "explanation": [
+        "[원문 검산] x̂×ŷ=ẑ, ŷ×ẑ=x̂, ẑ×x̂=ŷ이며 외적 순서를 뒤집으면 부호가 바뀝니다.",
+        "(3x̂)×(2ẑ)=6(x̂×ẑ)=−6ŷ입니다.",
+        "(3x̂+2ŷ)×(2x̂)=0+4(ŷ×x̂)=−4ẑ입니다."
+      ],
+      "formulas": [
+        "x̂×ẑ=−ŷ, ŷ×x̂=−ẑ",
+        "(A+B)×C=A×C+B×C"
+      ],
+      "commonMistakes": [
+        "외적에서 앞뒤 순서를 바꿔도 부호가 같다고 생각",
+        "x̂×x̂를 x̂로 놓음(정답은0)"
+      ],
+      "rubric": [
+        {
+          "criterion": "(1) (3x̂)×(2ẑ)",
+          "points": 5
+        },
+        {
+          "criterion": "(2) (3x̂+2ŷ)×(2x̂)",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "(+6ŷ, +4ẑ)",
+          "(−6ẑ, −4ŷ)",
+          "(−6ŷ, −4ẑ)",
+          "(−6ŷ, +4ẑ)"
+        ],
+        "correctChoice": 3,
+        "answer": "(−6ŷ, −4ẑ)",
+        "acceptableAnswers": [
+          "3",
+          "(−6ŷ, −4ẑ)"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 4번: 두 외적의 결과를 모두 고르세요."
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "(+6x̂, +2ẑ+2x̂)",
+          "(+6x̂, +2ẑ−2x̂)",
+          "(−6x̂, +2ẑ−2x̂)",
+          "(+6ŷ, +2ẑ−2x̂)"
+        ],
+        "correctChoice": 2,
+        "answer": "(+6x̂, +2ẑ−2x̂)",
+        "acceptableAnswers": [
+          "2",
+          "(+6x̂, +2ẑ−2x̂)"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형 (새 작성): (2ŷ)×(3ẑ), (x̂+ẑ)×(2ŷ)의 결과는?",
+        "explanation": "2ŷ×3ẑ=6x̂, (x̂+ẑ)×2ŷ=2ẑ−2x̂입니다.",
+        "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+      },
+      "retryMode": "multiple-choice",
+      "sourceText": "원본 PDF에서 문제·수식·그림·선택지까지 그대로 추출한 4번 문항.",
+      "sourceNote": "원본 물리2-Quiz2회차.pdf 1쪽의 문항 영역을 200dpi 이미지로 직접 추출"
+    },
+    {
+      "no": 5,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "상대속도",
+      "topic": "수직 방향 운동의 상대속도",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          822,
+          653,
+          784,
+          381
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "v_{B/A}=v_B−v_A=(−10,−6) m/s (동쪽·북쪽을 양의 방향), 크기=2√34 m/s",
+      "explanation": [
+        "[원문 검산] 동쪽 +x, 북쪽 +y로 정하면 자동차 A는 v_A=(10,0) m/s입니다.",
+        "B는 정지 상태에서 남쪽으로 a=(0,−1) m/s²이므로 6초 후 v_B=(0,−6) m/s입니다.",
+        "A에 대한 B의 상대속도는 v_{B/A}=v_B−v_A=(−10,−6) m/s입니다. 크기를 요구한다면 √(10²+6²)=2√34 m/s입니다."
+      ],
+      "formulas": [
+        "v_{B/A}=v_B−v_A",
+        "v_B(t)=a_B t (초기 정지)",
+        "|v|=√(vₓ²+vᵧ²)"
+      ],
+      "commonMistakes": [
+        "A에 대한 B를 v_A−v_B로 잘못 계산",
+        "남쪽 가속도 성분의 부호를 양수로 놓음"
+      ],
+      "rubric": [
+        {
+          "criterion": "A와 B의 속도 벡터 세우기",
+          "points": 5
+        },
+        {
+          "criterion": "B의 A에 대한 상대속도 계산",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "(10,6) m/s",
+          "(−10,−6) m/s",
+          "(−10,+6) m/s",
+          "(0,−6) m/s"
+        ],
+        "correctChoice": 2,
+        "answer": "(−10,−6) m/s",
+        "acceptableAnswers": [
+          "2",
+          "(−10,−6) m/s"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 5번: A는 동쪽 10m/s, B는 남쪽 가속도 1m/s²로 정지 출발. 6초 후 A에 대한 B의 속도는?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "(+8,−6) m/s, 10m/s",
+          "(−8,+6) m/s, 10m/s",
+          "(+8,+6) m/s, 10m/s",
+          "(+2,0) m/s, 2m/s"
+        ],
+        "correctChoice": 1,
+        "answer": "(+8,−6) m/s, 10m/s",
+        "acceptableAnswers": [
+          "1",
+          "(+8,−6) m/s, 10m/s"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형 (새 작성): 자동차 A가 북쪽 6m/s, B가 동쪽 8m/s로 달릴 때 A에 대한 B의 상대속도와 크기는?",
+        "explanation": "동쪽을 +x, 북쪽을 +y로 잡으면 v_B−v_A=(8,0)−(0,6)=(8,−6), 크기10m/s입니다.",
+        "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+      },
+      "retryMode": "multiple-choice",
+      "sourceText": "원본 PDF에서 문제·수식·그림·선택지까지 그대로 추출한 5번 문항.",
+      "sourceNote": "원본 물리2-Quiz2회차.pdf 1쪽의 문항 영역을 200dpi 이미지로 직접 추출"
+    },
+    {
+      "no": 6,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "상대속도·그래프",
+      "topic": "상대속도 시간 그래프",
+      "difficulty": "중",
+      "image": {
+        "page": 1,
+        "crop": [
+          822,
+          1156,
+          795,
+          984
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "④ (ㄱ, ㄷ)",
+      "explanation": [
+        "[원문 검산] 그래프의 B에 대한 A의 속도는 v_{A/B}=v_A−v_B이고, B는 20m/s 일정하므로 v_A(t)=20+v_{A/B}(t)입니다.",
+        "0~20초 상대속도는 −8에서 +2m/s로 증가하므로 가속도 a=(2−(−8))/20=0.5m/s²: ㄱ은 옳습니다.",
+        "25초 상대속도 +2m/s ⇒ A 속력 22m/s이므로 ㄴ은 틀립니다. 20~30초 A 속력 22m/s 일정 ⇒ 이동거리 22×10=220m이므로 ㄷ은 옳습니다. 따라서 ④입니다."
+      ],
+      "formulas": [
+        "v_{A/B}=v_A−v_B",
+        "a=Δv/Δt=(2+8)/20=0.5m/s²",
+        "s_{20→30}=22×10=220m"
+      ],
+      "commonMistakes": [
+        "A의 B에 대한 상대속도 +2를 A의 지면 속도 +2로 착각",
+        "20~30초 이동거리에서 B의 속력 20을 빼고 계산"
+      ],
+      "rubric": [
+        {
+          "criterion": "상대속도 그래프의 기울기와 가속도",
+          "points": 5
+        },
+        {
+          "criterion": "절대속도·이동거리 판정",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "① ㄱ",
+          "② ㄴ",
+          "③ ㄱ, ㄴ",
+          "④ ㄱ, ㄷ"
+        ],
+        "correctChoice": 4,
+        "answer": "④ ㄱ, ㄷ",
+        "acceptableAnswers": [
+          "4",
+          "④ ㄱ, ㄷ"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 6번: B 20m/s, 상대속도 그래프가 −8에서 +2(20초), 20~30초 +2일 때 옳은 보기 조합은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "10m/s",
+          "13m/s",
+          "14m/s",
+          "18m/s"
+        ],
+        "correctChoice": 3,
+        "answer": "14m/s",
+        "acceptableAnswers": [
+          "3",
+          "14m/s"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형 (새 작성): B는 15m/s 일정, v_{A/B}=−4+0.5t (0≤t≤8s)일 때 t=6s의 A 속력은?",
+        "explanation": "v_{A/B}(6)=−4+0.5×6=−1m/s, v_A=15−1=14m/s입니다.",
+        "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+      },
+      "retryMode": "multiple-choice",
+      "sourceText": "원본 PDF에서 문제·수식·그림·선택지까지 그대로 추출한 6번 문항.",
+      "sourceNote": "원본 물리2-Quiz2회차.pdf 1쪽의 문항 영역을 200dpi 이미지로 직접 추출"
+    },
+    {
+      "no": 7,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "상대운동·최단거리",
+      "topic": "서로 수직인 두 사람의 최단 거리",
+      "difficulty": "상",
+      "image": {
+        "page": 2,
+        "crop": [
+          97,
+          245,
+          709,
+          550
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "최단거리 6 m, 걸린 시간 t=8/5 s=1.6 s",
+      "explanation": [
+        "[원문 검산] A를 원점, B를 동쪽 10m에 두면 t초 후 상대위치 B−A=(10−4t,−3t) m입니다.",
+        "거리 제곱 D²=(10−4t)²+(3t)²=25t²−80t+100=25(t−8/5)²+36입니다.",
+        "D²의 최소값은 36이므로 최단거리 6m, 그때 시간 t=8/5s입니다."
+      ],
+      "formulas": [
+        "r_{B/A}(t)=(10−4t,−3t)",
+        "D²=25(t−8/5)²+36",
+        "t_min=8/5s, D_min=6m"
+      ],
+      "commonMistakes": [
+        "수평거리만 0인 t=2.5s를 최단시각으로 판단",
+        "두 물체의 속력이 4와 3이므로 그냥 5s라고 판단"
+      ],
+      "rubric": [
+        {
+          "criterion": "최단거리 계산",
+          "points": 5
+        },
+        {
+          "criterion": "최단거리 도달 시간",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "6m, 8/5s",
+          "0m, 5/2s",
+          "8m, 2s",
+          "6m, 5/2s"
+        ],
+        "correctChoice": 1,
+        "answer": "6m, 8/5s",
+        "acceptableAnswers": [
+          "1",
+          "6m, 8/5s"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 7번: A가 동쪽 4m/s, 동쪽 10m의 B가 남쪽 3m/s로 출발할 때 최단거리와 시각은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "15m, 4s",
+          "20m, 5s",
+          "20m, 3s",
+          "25m, 3s"
+        ],
+        "correctChoice": 3,
+        "answer": "20m, 3s",
+        "acceptableAnswers": [
+          "3",
+          "20m, 3s"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형 (새 작성): A와 B가 동서 방향으로 25m 떨어져 있다. A는 동쪽 3m/s, B는 남쪽 4m/s로 동시에 움직인다. 최단거리·시간은?",
+        "explanation": "D²=(25−3t)²+(4t)²=25(t−3)²+400이므로 t=3s, D_min=20m입니다.",
+        "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+      },
+      "retryMode": "multiple-choice",
+      "sourceText": "원본 PDF에서 문제·수식·그림·선택지까지 그대로 추출한 7번 문항.",
+      "sourceNote": "원본 물리2-Quiz2회차.pdf 2쪽의 문항 영역을 200dpi 이미지로 직접 추출"
+    },
+    {
+      "no": 8,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "상대운동·추월",
+      "topic": "등속 사람과 가속 출발하는 기차",
+      "difficulty": "중",
+      "image": {
+        "page": 2,
+        "crop": [
+          97,
+          850,
+          709,
+          462
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "2초부터 5초 사이(경계 t=2,5초 포함)",
+      "explanation": [
+        "[원문 검산] 영쌤 위치를 x_p(t)=7t, 기차 후미의 위치를 x_t(t)=10+(1/2)(2)t²=10+t²로 둡니다.",
+        "기차에 닿을 수 있는 조건 7t≥10+t² ⇒ t²−7t+10≤0 ⇒ (t−2)(t−5)≤0입니다.",
+        "따라서 2초부터 5초까지가 가능 구간이며, 경계시각에는 위치가 같습니다. 실제 매달려 탑승하는 안전성 판단과는 별개의 수학적 이상화입니다."
+      ],
+      "formulas": [
+        "x_p=7t",
+        "x_t=10+t²",
+        "(t−2)(t−5)≤0"
+      ],
+      "commonMistakes": [
+        "기차의 초기 10m 앞선 위치를 누락",
+        "가속도 2에서 변위를 2t²로 계산(1/2 누락)"
+      ],
+      "rubric": [
+        {
+          "criterion": "사람·기차 위치식과 교점 계산",
+          "points": 5
+        },
+        {
+          "criterion": "탑승 가능 시간 구간 판정",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "1~4초",
+          "2~5초",
+          "3~6초",
+          "2초만"
+        ],
+        "correctChoice": 2,
+        "answer": "2~5초",
+        "acceptableAnswers": [
+          "2",
+          "2~5초"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 8번: 사람 7m/s, 10m 앞 기차가 a=2m/s²로 출발. 기차와 같은 위치에 도달할 수 있는 시간 구간은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "1~5초",
+          "3~7초",
+          "2~6초",
+          "2~4초"
+        ],
+        "correctChoice": 3,
+        "answer": "2~6초",
+        "acceptableAnswers": [
+          "3",
+          "2~6초"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형 (새 작성): 사람 8m/s, 12m 앞 기차가 a=2m/s²로 출발. x_사람≥x_기차인 시간 구간은?",
+        "explanation": "8t≥12+t² ⇒ (t−2)(t−6)≤0이므로 2~6초입니다.",
+        "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+      },
+      "retryMode": "multiple-choice",
+      "sourceText": "원본 PDF에서 문제·수식·그림·선택지까지 그대로 추출한 8번 문항.",
+      "sourceNote": "원본 물리2-Quiz2회차.pdf 2쪽의 문항 영역을 200dpi 이미지로 직접 추출"
+    },
+    {
+      "no": 9,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "상대속도·강물",
+      "topic": "강을 직각으로 건너는 배의 속도 합성",
+      "difficulty": "상",
+      "image": {
+        "page": 2,
+        "crop": [
+          97,
+          1445,
+          709,
+          645
+        ]
+      },
+      "reviewStatus": "corrected",
+      "correctionNote": "제공 해설지 9번에서 강둑·강물 기준 속력과 벡터 뺄셈 부호가 혼동되어 있습니다. 원본 PDF는 보존하며 교정된 수치·계산은 답안 제출 후 열리는 검수 해설에서 확인하세요.",
+      "answer": "(1) 강둑 기준 배의 속력 2 m/s  (2) 강물 기준 배의 속력 2√2 m/s",
+      "explanation": [
+        "[원문과 해답지 대조: 해답지 계산·기준 혼동 교정] 강의 흐름은 하류 방향 2m/s, 배가 물에 대해 상류 쪽 45°로 향하고 실제 경로는 강둑에 직각입니다.",
+        "상류를 +x, 건너는 방향을 +y로 잡으면 v_물/둑=(−2,0), 배의 물에 대한 속도를 (u,u)로 놓아 x성분 상쇄 u−2=0 ⇒ u=2입니다.",
+        "따라서 v_배/둑=(0,2)m/s라서 (1)의 정답은 2m/s, v_배/물=(2,2)m/s라서 (2)의 정답은 2√2m/s입니다. 제공 해설지에서 두 기준을 바꿔 적고 벡터 뺄셈 부호도 잘못 표기했으므로 원본은 유지하고 사이트 정답만 교정했습니다."
+      ],
+      "formulas": [
+        "v_배/둑=v_배/물+v_물/둑",
+        "v_물/둑=(−2,0), v_배/물=(2,2)",
+        "|v_배/둑|=2m/s, |v_배/물|=2√2m/s"
+      ],
+      "commonMistakes": [
+        "강둑 기준 속력 2와 강물 기준 속력 2√2를 바꿔씀",
+        "배−강물의 상대속도 벡터 뺄셈을 역으로 수행"
+      ],
+      "rubric": [
+        {
+          "criterion": "(1) 강둑 기준 배의 속력",
+          "points": 5
+        },
+        {
+          "criterion": "(2) 강물 기준 배의 속력",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "(2√2, 2) m/s",
+          "(2, 2) m/s",
+          "(2√2, 2√2) m/s",
+          "(2, 2√2) m/s"
+        ],
+        "correctChoice": 4,
+        "answer": "(2, 2√2) m/s",
+        "acceptableAnswers": [
+          "4",
+          "(2, 2√2) m/s"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 9번: 흐름 2m/s, 상류 쪽 45°로 뱃머리를 향해 강둑에 직각으로 건널 때 (강둑 기준, 강물 기준) 속력은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "(3√3, 6)m/s",
+          "(6, 3√3)m/s",
+          "(3, 6)m/s",
+          "(3√3, 3)m/s"
+        ],
+        "correctChoice": 1,
+        "answer": "(3√3, 6)m/s",
+        "acceptableAnswers": [
+          "1",
+          "(3√3, 6)m/s"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형 (새 작성): 하류 흐름 3m/s, 뱃머리 상류 쪽 강둑과 60°, 실제 경로는 강둑에 직각. (강둑 기준, 물 기준) 속력은?",
+        "explanation": "강물 반대 성분 3m/s와 배의 상류성분 ucos60°가 같으므로 u=6m/s. 강둑 기준 건너는 성분=6sin60°=3√3m/s입니다.",
+        "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+      },
+      "retryMode": "multiple-choice",
+      "sourceText": "원본 PDF에서 문제·수식·그림·선택지까지 그대로 추출한 9번 문항.",
+      "sourceNote": "원본 물리2-Quiz2회차.pdf 2쪽의 문항 영역을 200dpi 이미지로 직접 추출"
+    },
+    {
+      "no": 10,
+      "maxPoints": 10,
+      "type": "subjective",
+      "inputMode": "achievement",
+      "unit": "상대속도·바람",
+      "topic": "운동하는 관찰자가 느끼는 풍향",
+      "difficulty": "상",
+      "image": {
+        "page": 2,
+        "crop": [
+          820,
+          245,
+          791,
+          339
+        ]
+      },
+      "reviewStatus": "verified",
+      "correctionNote": "",
+      "answer": "실제 바람은 북풍, 속력 v (남쪽 방향의 속도벡터 (0,−v))",
+      "explanation": [
+        "[원문 검산] 동쪽을 +x, 북쪽을 +y로 둡니다. 사람의 속도는 v_사람=(v,0)입니다.",
+        "북동풍은 북동쪽에서 남서쪽으로 불어오는 바람이므로, 관찰자가 느끼는 속도벡터는 v_바람/사람=(−v,−v)이고 크기는 √2v입니다.",
+        "v_바람/둑=v_바람/사람+v_사람/둑=(−v,−v)+(v,0)=(0,−v)입니다. 실제로는 북쪽에서 남쪽으로 부는 북풍이고 속력은 v입니다."
+      ],
+      "formulas": [
+        "v_바람/사람=v_바람/둑−v_사람/둑",
+        "v_바람/사람=(−v,−v)",
+        "v_바람/둑=(0,−v)"
+      ],
+      "commonMistakes": [
+        "풍향이 바람이 향하는 방향이라고 오해(북동풍은 북동에서 붐)",
+        "상대속도에 사람의 속력을 빼는 대신 다시 더해야 하는 단계에서 부호를 뒤집음"
+      ],
+      "rubric": [
+        {
+          "criterion": "상대풍 벡터 설정·합성",
+          "points": 5
+        },
+        {
+          "criterion": "실제 풍향 및 속력",
+          "points": 5
+        }
+      ],
+      "originalRetry": {
+        "inputMode": "choice",
+        "choices": [
+          "서풍, v",
+          "북풍, v",
+          "남풍, v",
+          "북동풍, √2v"
+        ],
+        "correctChoice": 2,
+        "answer": "북풍, v",
+        "acceptableAnswers": [
+          "2",
+          "북풍, v"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "원문 10번: 동쪽 속력 v로 움직이는 사람이 √2v의 북동풍을 느낄 때 실제 바람의 풍향과 속력은?"
+      },
+      "similarProblem": {
+        "inputMode": "choice",
+        "choices": [
+          "남풍, v",
+          "북풍, v",
+          "북서풍, √2v",
+          "북동풍, 2v"
+        ],
+        "correctChoice": 3,
+        "answer": "북서풍, √2v",
+        "acceptableAnswers": [
+          "3",
+          "북서풍, √2v"
+        ],
+        "displayMode": "choice-card",
+        "prompt": "동형 (새 작성): 동쪽 속력 2v로 달리는 사람이 √2v의 북동풍을 느낄 때 실제 바람은?",
+        "explanation": "관찰자 기준 바람이 (−v,−v)이므로 지면 기준 (−v,−v)+(2v,0)=(v,−v), 즉 북서쪽에서 남동쪽으로 부는 북서풍, 속력 √2v입니다.",
+        "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+      },
+      "retryMode": "multiple-choice",
+      "sourceText": "원본 PDF에서 문제·수식·그림·선택지까지 그대로 추출한 10번 문항.",
+      "sourceNote": "원본 물리2-Quiz2회차.pdf 2쪽의 문항 영역을 200dpi 이미지로 직접 추출"
+    }
+  ],
+  "reviewedSolutionPdf": "assets/documents/physics2/r02-reviewed-solution.pdf"
+}
