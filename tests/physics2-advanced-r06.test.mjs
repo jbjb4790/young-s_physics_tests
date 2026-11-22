@@ -28,7 +28,7 @@ test('6회 신규 고유 ID·만점100 및 원문 소문항 배점 10/10/20/15/2
 test('기존 46개 시험 내용 불변: 물리2심화 총괄에 6회 링크만 추가',()=>{
  assert.equal(Object.keys(base.catalogExamHashes).length,46);
  for(const [id,expected] of Object.entries(base.catalogExamHashes)){
-  if(id==='physics2-basic-r02')continue; // intentionally activated in v3.7.15
+  if(id==='physics2-basic-r02'||id==='physics2-basic-r03')continue; // R02 activated in v3.7.15, R03 in v3.7.16; each has dedicated preservation tests.
   const e=clone(catalog.exams.find(e=>e.examId===id));assert.ok(e,id);
   if(id==='physics2-advanced-total')e.historyExamIds=e.historyExamIds.filter(x=>x!=='physics2-advanced-r06');
   assert.equal(objectSha(e),expected,id);
@@ -43,7 +43,7 @@ test('기존 29개 독립 문항은행 JSON과 서버·로고·학생링크 등 
 
 test('기존 3개 HTML은 카탈로그 캐시쿼리만 갱신, 기능 UI·인증코드 그대로',()=>{
  for(const [f,expected] of Object.entries(base.htmlBaseline)){
-  const modified=read(f).replace(/catalog\.js\?v=3\.7\.15/g,'catalog.js?v=3.7.12');
+  const modified=read(f).replace(/catalog\.js\?v=3\.7\.16/g,'catalog.js?v=3.7.12');
   assert.equal(crypto.createHash('sha256').update(modified).digest('hex'),expected,f);
  }
 });
@@ -97,11 +97,11 @@ test('Q6 접선속력 √(3GM/2R), E−GMm/4R, 장반지름2R, 원일3R',()=>{co
 test('Q7 네 위성 인접 두 개+정반대 한 개의 구심 방향 성분 모두 합산',()=>{const G=3,M=11,m=5,r=7,center=G*M*m/r**2,opp=G*m*m/(4*r**2),neighbors=G*m*m/(Math.SQRT2*r**2);const omega2=(center+opp+neighbors)/(m*r),fromEffective=G*(M+m*(1/4+1/Math.SQRT2))/r**3;approx(omega2,fromEffective);approx(2*Math.PI/Math.sqrt(omega2),2*Math.PI*Math.sqrt(r**3/(G*(M+m*(1/4+1/Math.SQRT2)))));assert.match(exam.questions[6].answer,/1\/√2/);assert.match(exam.questions[6].answer,/r³/);assert.doesNotMatch(exam.questions[6].answer,/R³/)});
 
 test('47시험·30준비완료·308문항, 독립 문제은행과 catalog.js 일치',()=>{
- assert.equal(catalog.exams.length,47);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,31);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,318);
+ assert.equal(catalog.exams.length,47);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,32);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,334);
  const js={window:{}};vm.createContext(js);vm.runInContext(read('site/assets/data/catalog.js'),js);
  assert.deepEqual(clone(js.window.YP_CATALOG),catalog);assert.deepEqual(JSON.parse(read('site/assets/data/questions/physics2-advanced-r06.json')),exam);
- assert.equal(JSON.parse(read('package.json')).version,'3.7.15');assert.equal(catalog.featureVersion,'3.7.15-physics2-basic-r02');
- for(const p of ['index.html','report.html','portal.html'])assert.match(read('site/'+p),/catalog\.js\?v=3\.7\.15/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.16');assert.equal(catalog.featureVersion,'3.7.16-physics2-basic-r03');
+ for(const p of ['index.html','report.html','portal.html'])assert.match(read('site/'+p),/catalog\.js\?v=3\.7\.16/);
 });
 
 

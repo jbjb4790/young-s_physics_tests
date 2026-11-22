@@ -1,0 +1,414 @@
+{
+  "examId": "physics2-basic-r03",
+  "renderDpi": 200,
+  "questionPdf": {
+    "path": "assets/documents/physics2/r03-original.pdf",
+    "sha256": "3104076262c424ffeb361e9dd33f7ed153437c1497207bcbc628557de88879b5",
+    "sizeBytes": 71756,
+    "pageCount": 1
+  },
+  "solutionPdf": {
+    "path": "assets/documents/physics2/r03-original-solution.pdf",
+    "sha256": "4ec0fa52cf087929b9297cc67544cc4df097c4d440d70c81b839863dd79b9cb9",
+    "sizeBytes": 72922,
+    "pageCount": 1
+  },
+  "pages": [
+    {
+      "path": "assets/pages/physics2/r03-original-p1.png",
+      "width": 1653,
+      "height": 2337,
+      "sha256": "3709a6fa4b130ead7db4565b8569ca8501b2c8644a12f07ce14088c0aed13c3a"
+    }
+  ],
+  "sourceNumbering": "빈칸 1~4 / OX 1~6 / 암기 1~6",
+  "scoring": "원본 무배점. 답란당5점의 사이트100점 환산.",
+  "points": [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    5,
+    10,
+    10,
+    10,
+    5
+  ],
+  "questions": [
+    {
+      "no": 1,
+      "sourceLabel": "빈칸 1",
+      "crop": [
+        272,
+        491,
+        1037,
+        49
+      ],
+      "pdfRectPoints": [
+        98,
+        177,
+        471,
+        194.3
+      ],
+      "cropSha256": "3030395e8db617a457876666b68b401e7406929dd63322475875ec2687691171",
+      "solutionCropForReview": [
+        272,
+        491,
+        887,
+        49
+      ]
+    },
+    {
+      "no": 2,
+      "sourceLabel": "빈칸 2",
+      "crop": [
+        272,
+        539,
+        1117,
+        47
+      ],
+      "pdfRectPoints": [
+        98,
+        194.3,
+        500,
+        210.9
+      ],
+      "cropSha256": "b075eeb8348b5f45ac4558fc42910c268c2fe63530449918b244ed27bfc4cfc9",
+      "solutionCropForReview": [
+        272,
+        539,
+        1003,
+        47
+      ]
+    },
+    {
+      "no": 3,
+      "sourceLabel": "빈칸 3",
+      "crop": [
+        272,
+        585,
+        1006,
+        47
+      ],
+      "pdfRectPoints": [
+        98,
+        210.9,
+        460,
+        227.5
+      ],
+      "cropSha256": "b1f7f1047ad3603d523234ffc9a34e6fefcc0f78498b46187c3ecfe19a5095c2",
+      "solutionCropForReview": [
+        272,
+        585,
+        867,
+        47
+      ]
+    },
+    {
+      "no": 4,
+      "sourceLabel": "빈칸 4",
+      "crop": [
+        272,
+        631,
+        1006,
+        50
+      ],
+      "pdfRectPoints": [
+        98,
+        227.5,
+        460,
+        244.9
+      ],
+      "cropSha256": "fa5c4acd0c2e18f71f65c7969356f22256c40a30961e0e798f0f21147e5283af",
+      "solutionCropForReview": [
+        272,
+        631,
+        867,
+        50
+      ]
+    },
+    {
+      "no": 5,
+      "sourceLabel": "O/X 1",
+      "crop": [
+        272,
+        850,
+        1140,
+        50
+      ],
+      "pdfRectPoints": [
+        98,
+        306,
+        508,
+        324
+      ],
+      "cropSha256": "b39db26458ecee2023748a00f7d545c5c6de4c5119bbef0a6d057bb485515596",
+      "solutionCropForReview": [
+        272,
+        850,
+        1103,
+        50
+      ]
+    },
+    {
+      "no": 6,
+      "sourceLabel": "O/X 2",
+      "crop": [
+        272,
+        900,
+        1140,
+        98
+      ],
+      "pdfRectPoints": [
+        98,
+        324,
+        508,
+        359
+      ],
+      "cropSha256": "cb5f9c44481ab003a9e5805451f9cf040137a9bb6d1a34fc9d9773264d17134c",
+      "solutionCropForReview": [
+        272,
+        900,
+        1103,
+        98
+      ]
+    },
+    {
+      "no": 7,
+      "sourceLabel": "O/X 3",
+      "crop": [
+        272,
+        997,
+        1140,
+        48
+      ],
+      "pdfRectPoints": [
+        98,
+        359,
+        508,
+        376
+      ],
+      "cropSha256": "321949457e7e180885210b212c114ef9b48b6a4c6e95298c6e813278c9f2f0cd",
+      "solutionCropForReview": [
+        272,
+        997,
+        1090,
+        48
+      ]
+    },
+    {
+      "no": 8,
+      "sourceLabel": "O/X 4",
+      "crop": [
+        272,
+        1044,
+        1140,
+        46
+      ],
+      "pdfRectPoints": [
+        98,
+        376,
+        508,
+        392.4
+      ],
+      "cropSha256": "135d428a78a507b96672e7312c9c14ee49b16aed3e28aa8db3ec43e851dd8917",
+      "solutionCropForReview": [
+        272,
+        1044,
+        1090,
+        46
+      ]
+    },
+    {
+      "no": 9,
+      "sourceLabel": "O/X 5",
+      "crop": [
+        272,
+        1090,
+        1140,
+        48
+      ],
+      "pdfRectPoints": [
+        98,
+        392.4,
+        508,
+        409.4
+      ],
+      "cropSha256": "0ab9f766d252eecd74ccf37d157edab174fe9e86de8812c345d785489d885081",
+      "solutionCropForReview": [
+        272,
+        1090,
+        1090,
+        48
+      ]
+    },
+    {
+      "no": 10,
+      "sourceLabel": "O/X 6",
+      "crop": [
+        272,
+        1137,
+        1140,
+        49
+      ],
+      "pdfRectPoints": [
+        98,
+        409.4,
+        508,
+        426.8
+      ],
+      "cropSha256": "b1909ae671a02f6ee54a7f78252b15029e7c23b2013972e8d4795a85e8d627fa",
+      "solutionCropForReview": [
+        272,
+        1137,
+        1090,
+        49
+      ]
+    },
+    {
+      "no": 11,
+      "sourceLabel": "암기 1",
+      "crop": [
+        272,
+        1355,
+        926,
+        98
+      ],
+      "pdfRectPoints": [
+        98,
+        488,
+        431,
+        523
+      ],
+      "cropSha256": "cda94bdd71f5bc027ee51cbba2158f41cbb03222ba746b8aeb8033aa0f26290a",
+      "solutionCropForReview": [
+        272,
+        1355,
+        873,
+        137
+      ]
+    },
+    {
+      "no": 12,
+      "sourceLabel": "암기 2",
+      "crop": [
+        272,
+        1452,
+        1262,
+        49
+      ],
+      "pdfRectPoints": [
+        98,
+        523,
+        552,
+        540.3
+      ],
+      "cropSha256": "d877adb3837aff7c87b8f1e1e4564cf96e76d90cd5d0225dd9b698f4b49ea36c",
+      "solutionCropForReview": [
+        272,
+        1491,
+        1123,
+        103
+      ]
+    },
+    {
+      "no": 13,
+      "sourceLabel": "암기 3",
+      "crop": [
+        272,
+        1500,
+        1028,
+        112
+      ],
+      "pdfRectPoints": [
+        98,
+        540.3,
+        468,
+        580.3
+      ],
+      "cropSha256": "4721db77a157665c79a955f32b780a1dca5d69ce233a72b380526785dbba78ff",
+      "solutionCropForReview": [
+        272,
+        1593,
+        1031,
+        156
+      ]
+    },
+    {
+      "no": 14,
+      "sourceLabel": "암기 4",
+      "crop": [
+        272,
+        1611,
+        1209,
+        97
+      ],
+      "pdfRectPoints": [
+        98,
+        580.3,
+        533,
+        614.6
+      ],
+      "cropSha256": "34b731adc54018a3aa0815274013ce9b8a5a2885b2fc39b4af10492790deb86a",
+      "solutionCropForReview": [
+        272,
+        1748,
+        1209,
+        138
+      ]
+    },
+    {
+      "no": 15,
+      "sourceLabel": "암기 5",
+      "crop": [
+        272,
+        1707,
+        1020,
+        110
+      ],
+      "pdfRectPoints": [
+        98,
+        614.6,
+        465,
+        654
+      ],
+      "cropSha256": "df01dd3b21498f1ff56af92c4d1547ea8a844b9816aa8955d2e4e1e0919a6434",
+      "solutionCropForReview": [
+        272,
+        1885,
+        1020,
+        154
+      ]
+    },
+    {
+      "no": 16,
+      "sourceLabel": "암기 6",
+      "crop": [
+        272,
+        1816,
+        1031,
+        54
+      ],
+      "pdfRectPoints": [
+        98,
+        654,
+        469,
+        673
+      ],
+      "cropSha256": "c49c84b71bf85c4bea71c76a0524bcea1fcf7d928f385cce217bc98a924e5dbe",
+      "solutionCropForReview": [
+        272,
+        2038,
+        826,
+        51
+      ]
+    }
+  ]
+}

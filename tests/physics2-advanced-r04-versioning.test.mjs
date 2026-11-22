@@ -38,7 +38,7 @@ test('4회 개정판은 별도 ID와 replacesExamId, 7문항 100점 유지',()=>
  assert.equal(catalog.exams.filter(e=>e.examId===NEW).length,1);
 });
 test('기존 모든 44시험 정의 보존: 심화 총괄 history에 개정 ID만 추가',()=>{
- for(const [id,sha] of Object.entries(snap.examHashes)){if(id==='physics2-basic-total-electromagnetism'||id==='physics2-basic-r02')continue;
+ for(const [id,sha] of Object.entries(snap.examHashes)){if(id==='physics2-basic-total-electromagnetism'||id==='physics2-basic-r02'||id==='physics2-basic-r03')continue;
   const e=clean(catalog.exams.find(e=>e.examId===id));if(id===TOTAL)e.historyExamIds=e.historyExamIds.filter(x=>x!==NEW&&x!=='physics2-advanced-r05'&&x!=='physics2-advanced-r06');
   assert.equal(hashObject(e),sha,id);
  }
@@ -150,9 +150,9 @@ test('카탈로그 JS·JSON·독립 개정문항 JSON이 완전 동일',()=>{
  const ctx={window:{}};vm.createContext(ctx);vm.runInContext(read('site/assets/data/catalog.js'),ctx);assert.equal(JSON.stringify(ctx.window.YP_CATALOG),JSON.stringify(catalog));assert.deepEqual(JSON.parse(read('site/assets/data/questions/'+NEW+'.json')),revised);
 });
 test('v3.7.12 카탈로그 46시험/29ready/301문항, 물리215회 및 물리116회 보존',()=>{
- assert.equal(catalog.exams.length,47);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,31);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,318);
+ assert.equal(catalog.exams.length,47);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,32);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,334);
  assert.equal(YP.getExam('physics2-basic-r15').questionCount,9);assert.equal(YP.getExam('physics1-basic-r16').questionCount,6);assert.equal(YP.getExam('physics1-basic-r16-v2').questions[3].answer,'2 m');
- assert.equal(JSON.parse(read('package.json')).version,'3.7.15');assert.equal(catalog.featureVersion,'3.7.15-physics2-basic-r02');
- for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.15/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.16');assert.equal(catalog.featureVersion,'3.7.16-physics2-basic-r03');
+ for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.16/);
  assert.match(read('site/index.html'),/app\.js\?v=3\.7\.13/);
 });

@@ -24,7 +24,7 @@ test('심화5회 신규 ID 하나, 7문항·100점·문제지 배점 등록',()=
 });
 test('기존45시험 전체 정의 유지: 심화 총괄 연결목록에 r05만 추가',()=>{
  assert.equal(Object.keys(base.examHashes).length,45);
- for(const [id,sha] of Object.entries(base.examHashes)){if(id==='physics2-basic-total-electromagnetism'||id==='physics2-basic-r02')continue;const e=clean(catalog.exams.find(e=>e.examId===id));if(id==='physics2-advanced-total')e.historyExamIds=e.historyExamIds.filter(x=>x!==exam.examId&&x!=='physics2-advanced-r06');assert.equal(hashObject(e),sha,id)}
+ for(const [id,sha] of Object.entries(base.examHashes)){if(id==='physics2-basic-total-electromagnetism'||id==='physics2-basic-r02'||id==='physics2-basic-r03')continue;const e=clean(catalog.exams.find(e=>e.examId===id));if(id==='physics2-advanced-total')e.historyExamIds=e.historyExamIds.filter(x=>x!==exam.examId&&x!=='physics2-advanced-r06');assert.equal(hashObject(e),sha,id)}
 });
 test('기존 독립 문제 JSON 전부 바이트 보존',()=>{for(const [f,sha] of Object.entries(base.existingQuestionFiles))assert.equal(hash(f),sha,f)});
 test('보고서 원문해설 표시 확장 외 20개 보호파일 SHA256 동일',()=>{assert.equal(Object.keys(base.protectedFiles).length,21);for(const [f,sha] of Object.entries(base.protectedFiles))if(!['site/assets/report.js','site/assets/app.js','site/assets/styles.css'].includes(f))assert.equal(hash(f),sha,f)});
@@ -92,8 +92,8 @@ test('업로드 원본 문제·해답 PDF 바이트 보존 및 4쪽 이미지 �
 });
 test('catalogJS·JSON·독립 문제은행 동기화 및 버전·총수 일치',()=>{
  const c={window:{}};vm.createContext(c);vm.runInContext(read('site/assets/data/catalog.js'),c);assert.equal(JSON.stringify(c.window.YP_CATALOG),JSON.stringify(catalog));assert.deepEqual(JSON.parse(read('site/assets/data/questions/physics2-advanced-r05.json')),exam);
- assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,47);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,31);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,318);
- assert.equal(JSON.parse(read('package.json')).version,'3.7.15');assert.equal(catalog.featureVersion,'3.7.15-physics2-basic-r02');for(const p of ['index.html','portal.html','report.html'])assert.match(read('site/'+p),/catalog\.js\?v=3\.7\.15/);
+ assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,47);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,32);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,334);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.16');assert.equal(catalog.featureVersion,'3.7.16-physics2-basic-r03');for(const p of ['index.html','portal.html','report.html'])assert.match(read('site/'+p),/catalog\.js\?v=3\.7\.16/);
 });
 
 test('포털·코어 코드 동일; 교사 UI는 v3.7.13 전용 검사에서 검증',()=>{
