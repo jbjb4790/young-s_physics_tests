@@ -1,414 +1,298 @@
 {
-  "examId": "physics2-basic-r03",
-  "renderDpi": 200,
   "questionPdf": {
-    "path": "assets/documents/physics2/r03-original.pdf",
-    "sha256": "3104076262c424ffeb361e9dd33f7ed153437c1497207bcbc628557de88879b5",
-    "sizeBytes": 71756,
-    "pageCount": 1
+    "size": 95064,
+    "sha256": "c6d3df18eb7412d9d33e5ccb73a6c41bc8097700d0bb58158c4a6426fdf4b125",
+    "pages": 2
   },
   "solutionPdf": {
-    "path": "assets/documents/physics2/r03-original-solution.pdf",
-    "sha256": "4ec0fa52cf087929b9297cc67544cc4df097c4d440d70c81b839863dd79b9cb9",
-    "sizeBytes": 72922,
-    "pageCount": 1
+    "size": 105262,
+    "sha256": "1a050d95ad0ebc871ae7656ba81592867548a8c7113baae7955d27354b1b198a",
+    "pages": 2
   },
-  "pages": [
-    {
-      "path": "assets/pages/physics2/r03-original-p1.png",
+  "renderDpi": 200,
+  "coordinateSystem": "PNG pixels, top-left origin; crop=[x,y,width,height]",
+  "pages": {
+    "assets/pages/physics2/r03-weekly-v3717-p1.png": {
       "width": 1653,
       "height": 2337,
-      "sha256": "3709a6fa4b130ead7db4565b8569ca8501b2c8644a12f07ce14088c0aed13c3a"
+      "sha256": "7d46d7db8197cd5a4221de974bdb61319c6e6f88acc50de8a9993942c133188a",
+      "kind": "original-page-render",
+      "sourcePage": 1
+    },
+    "assets/pages/physics2/r03-weekly-v3717-p2.png": {
+      "width": 1653,
+      "height": 2337,
+      "sha256": "0b83c35b6f8c7bbd88b458b7726ff8e4c319032726e4082e134d4bd1bb53e510",
+      "kind": "original-page-render",
+      "sourcePage": 2
+    },
+    "assets/pages/physics2/r03-weekly-v3717-q05.png": {
+      "width": 747,
+      "height": 651,
+      "sha256": "7600e167a30f9785b6148a7c1ed80025b412e83fb84c3af27d6ec254b42a25c3",
+      "kind": "original-crop-composite"
+    },
+    "assets/pages/physics2/r03-weekly-v3717-q07.png": {
+      "width": 740,
+      "height": 716,
+      "sha256": "604588984517d698d7472f4e83d90e055d732fd9748f76a6cfc6c43b6005aa12",
+      "kind": "original-crop-composite"
     }
-  ],
-  "sourceNumbering": "빈칸 1~4 / OX 1~6 / 암기 1~6",
-  "scoring": "원본 무배점. 답란당5점의 사이트100점 환산.",
-  "points": [
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    5,
-    10,
-    5,
-    10,
-    10,
-    10,
-    5
-  ],
-  "questions": [
-    {
-      "no": 1,
-      "sourceLabel": "빈칸 1",
+  },
+  "crops": {
+    "1": {
+      "page": 1,
       "crop": [
-        272,
-        491,
-        1037,
-        49
+        83,
+        263,
+        740,
+        1393
       ],
-      "pdfRectPoints": [
-        98,
-        177,
-        471,
-        194.3
-      ],
-      "cropSha256": "3030395e8db617a457876666b68b401e7406929dd63322475875ec2687691171",
-      "solutionCropForReview": [
-        272,
-        491,
-        887,
-        49
+      "pixel_sha256": "17161bd26c0c0fd20c5f5ca4402078653bb0d639b790da03f02afc91c1d35aa8",
+      "sourcePdfPage": 1,
+      "sourceRectPt": [
+        30,
+        95,
+        296,
+        596
       ]
     },
-    {
-      "no": 2,
-      "sourceLabel": "빈칸 2",
+    "2": {
+      "page": 1,
       "crop": [
-        272,
-        539,
-        1117,
-        47
+        831,
+        263,
+        747,
+        301
       ],
-      "pdfRectPoints": [
-        98,
-        194.3,
-        500,
-        210.9
-      ],
-      "cropSha256": "b075eeb8348b5f45ac4558fc42910c268c2fe63530449918b244ed27bfc4cfc9",
-      "solutionCropForReview": [
-        272,
-        539,
-        1003,
-        47
+      "pixel_sha256": "765efe6c4df0aed60c85e092ae4fe013de87fa4d746acc15a6d594680ddfab9e",
+      "sourcePdfPage": 1,
+      "sourceRectPt": [
+        299.5,
+        95,
+        568,
+        203
       ]
     },
-    {
-      "no": 3,
-      "sourceLabel": "빈칸 3",
+    "3": {
+      "page": 1,
       "crop": [
-        272,
-        585,
-        1006,
-        47
+        831,
+        775,
+        747,
+        225
       ],
-      "pdfRectPoints": [
-        98,
-        210.9,
-        460,
-        227.5
-      ],
-      "cropSha256": "b1f7f1047ad3603d523234ffc9a34e6fefcc0f78498b46187c3ecfe19a5095c2",
-      "solutionCropForReview": [
-        272,
-        585,
-        867,
-        47
+      "pixel_sha256": "0eb66fbf1065248f833d3ca2e0468de3fc19c98e7db8142771fb39f6c96f34f2",
+      "sourcePdfPage": 1,
+      "sourceRectPt": [
+        299.5,
+        279,
+        568,
+        360
       ]
     },
-    {
-      "no": 4,
-      "sourceLabel": "빈칸 4",
+    "4": {
+      "page": 1,
       "crop": [
-        272,
-        631,
-        1006,
-        50
+        831,
+        1166,
+        747,
+        587
       ],
-      "pdfRectPoints": [
-        98,
-        227.5,
-        460,
-        244.9
-      ],
-      "cropSha256": "fa5c4acd0c2e18f71f65c7969356f22256c40a30961e0e798f0f21147e5283af",
-      "solutionCropForReview": [
-        272,
-        631,
-        867,
-        50
+      "pixel_sha256": "777f7ea0e339d54105ed66f5b7982a469bcf15f8505ebd7e9efadc04f334576f",
+      "sourcePdfPage": 1,
+      "sourceRectPt": [
+        299.5,
+        420,
+        568,
+        631
       ]
     },
-    {
-      "no": 5,
-      "sourceLabel": "O/X 1",
+    "6": {
+      "page": 2,
       "crop": [
-        272,
-        850,
-        1140,
-        50
+        83,
+        263,
+        740,
+        712
       ],
-      "pdfRectPoints": [
-        98,
-        306,
-        508,
-        324
-      ],
-      "cropSha256": "b39db26458ecee2023748a00f7d545c5c6de4c5119bbef0a6d057bb485515596",
-      "solutionCropForReview": [
-        272,
-        850,
-        1103,
-        50
+      "pixel_sha256": "3d2f3679817849c17861f357e1e0e51fa89c47ac5e9582c4d77b9698de5031a4",
+      "sourcePdfPage": 2,
+      "sourceRectPt": [
+        30,
+        95,
+        296,
+        351
       ]
     },
-    {
-      "no": 6,
-      "sourceLabel": "O/X 2",
+    "8": {
+      "page": 2,
       "crop": [
-        272,
-        900,
-        1140,
-        98
+        831,
+        263,
+        747,
+        937
       ],
-      "pdfRectPoints": [
-        98,
-        324,
-        508,
-        359
-      ],
-      "cropSha256": "cb5f9c44481ab003a9e5805451f9cf040137a9bb6d1a34fc9d9773264d17134c",
-      "solutionCropForReview": [
-        272,
-        900,
-        1103,
-        98
+      "pixel_sha256": "3fbc021d59fdb5d5714557e8e87700fb06913f47df1a6ecaca60b070fc9eb6a7",
+      "sourcePdfPage": 2,
+      "sourceRectPt": [
+        299.5,
+        95,
+        568,
+        432
       ]
     },
-    {
-      "no": 7,
-      "sourceLabel": "O/X 3",
+    "5": {
+      "page": 3,
       "crop": [
-        272,
-        997,
-        1140,
-        48
+        0,
+        0,
+        747,
+        651
       ],
-      "pdfRectPoints": [
-        98,
-        359,
-        508,
-        376
-      ],
-      "cropSha256": "321949457e7e180885210b212c114ef9b48b6a4c6e95298c6e813278c9f2f0cd",
-      "solutionCropForReview": [
-        272,
-        997,
-        1090,
-        48
+      "pixel_sha256": "65b1a2c1d252ec4339dd7d9d571cd3ff3c4efa7f7aa00195817e8ab62a4a99e3",
+      "sourcePdfPage": 1,
+      "sourceRectsPt": [
+        [
+          299.5,
+          420,
+          568,
+          593
+        ],
+        [
+          299.5,
+          675,
+          568,
+          730
+        ]
       ]
     },
-    {
-      "no": 8,
-      "sourceLabel": "O/X 4",
+    "7": {
+      "page": 4,
       "crop": [
-        272,
-        1044,
-        1140,
-        46
+        0,
+        0,
+        740,
+        716
       ],
-      "pdfRectPoints": [
-        98,
-        376,
-        508,
-        392.4
-      ],
-      "cropSha256": "135d428a78a507b96672e7312c9c14ee49b16aed3e28aa8db3ec43e851dd8917",
-      "solutionCropForReview": [
-        272,
-        1044,
-        1090,
-        46
-      ]
-    },
-    {
-      "no": 9,
-      "sourceLabel": "O/X 5",
-      "crop": [
-        272,
-        1090,
-        1140,
-        48
-      ],
-      "pdfRectPoints": [
-        98,
-        392.4,
-        508,
-        409.4
-      ],
-      "cropSha256": "0ab9f766d252eecd74ccf37d157edab174fe9e86de8812c345d785489d885081",
-      "solutionCropForReview": [
-        272,
-        1090,
-        1090,
-        48
-      ]
-    },
-    {
-      "no": 10,
-      "sourceLabel": "O/X 6",
-      "crop": [
-        272,
-        1137,
-        1140,
-        49
-      ],
-      "pdfRectPoints": [
-        98,
-        409.4,
-        508,
-        426.8
-      ],
-      "cropSha256": "b1909ae671a02f6ee54a7f78252b15029e7c23b2013972e8d4795a85e8d627fa",
-      "solutionCropForReview": [
-        272,
-        1137,
-        1090,
-        49
-      ]
-    },
-    {
-      "no": 11,
-      "sourceLabel": "암기 1",
-      "crop": [
-        272,
-        1355,
-        926,
-        98
-      ],
-      "pdfRectPoints": [
-        98,
-        488,
-        431,
-        523
-      ],
-      "cropSha256": "cda94bdd71f5bc027ee51cbba2158f41cbb03222ba746b8aeb8033aa0f26290a",
-      "solutionCropForReview": [
-        272,
-        1355,
-        873,
-        137
-      ]
-    },
-    {
-      "no": 12,
-      "sourceLabel": "암기 2",
-      "crop": [
-        272,
-        1452,
-        1262,
-        49
-      ],
-      "pdfRectPoints": [
-        98,
-        523,
-        552,
-        540.3
-      ],
-      "cropSha256": "d877adb3837aff7c87b8f1e1e4564cf96e76d90cd5d0225dd9b698f4b49ea36c",
-      "solutionCropForReview": [
-        272,
-        1491,
-        1123,
-        103
-      ]
-    },
-    {
-      "no": 13,
-      "sourceLabel": "암기 3",
-      "crop": [
-        272,
-        1500,
-        1028,
-        112
-      ],
-      "pdfRectPoints": [
-        98,
-        540.3,
-        468,
-        580.3
-      ],
-      "cropSha256": "4721db77a157665c79a955f32b780a1dca5d69ce233a72b380526785dbba78ff",
-      "solutionCropForReview": [
-        272,
-        1593,
-        1031,
-        156
-      ]
-    },
-    {
-      "no": 14,
-      "sourceLabel": "암기 4",
-      "crop": [
-        272,
-        1611,
-        1209,
-        97
-      ],
-      "pdfRectPoints": [
-        98,
-        580.3,
-        533,
-        614.6
-      ],
-      "cropSha256": "34b731adc54018a3aa0815274013ce9b8a5a2885b2fc39b4af10492790deb86a",
-      "solutionCropForReview": [
-        272,
-        1748,
-        1209,
-        138
-      ]
-    },
-    {
-      "no": 15,
-      "sourceLabel": "암기 5",
-      "crop": [
-        272,
-        1707,
-        1020,
-        110
-      ],
-      "pdfRectPoints": [
-        98,
-        614.6,
-        465,
-        654
-      ],
-      "cropSha256": "df01dd3b21498f1ff56af92c4d1547ea8a844b9816aa8955d2e4e1e0919a6434",
-      "solutionCropForReview": [
-        272,
-        1885,
-        1020,
-        154
-      ]
-    },
-    {
-      "no": 16,
-      "sourceLabel": "암기 6",
-      "crop": [
-        272,
-        1816,
-        1031,
-        54
-      ],
-      "pdfRectPoints": [
-        98,
-        654,
-        469,
-        673
-      ],
-      "cropSha256": "c49c84b71bf85c4bea71c76a0524bcea1fcf7d928f385cce217bc98a924e5dbe",
-      "solutionCropForReview": [
-        272,
-        2038,
-        826,
-        51
+      "pixel_sha256": "07d0df4edffda1aa59d44170e17826c99b1b74031e29cce77ba723e19fe2a1fa",
+      "sourcePdfPage": 2,
+      "sourceRectsPt": [
+        [
+          30,
+          95,
+          296,
+          323
+        ],
+        [
+          30,
+          527,
+          296,
+          550
+        ]
       ]
     }
-  ]
+  },
+  "composites": {
+    "assets/pages/physics2/r03-weekly-v3717-q05.png": {
+      "parts": [
+        {
+          "sourcePage": 1,
+          "sourceCrop": [
+            831,
+            1166,
+            747,
+            482
+          ],
+          "destination": [
+            0,
+            0,
+            747,
+            482
+          ]
+        },
+        {
+          "sourcePage": 1,
+          "sourceCrop": [
+            831,
+            1875,
+            747,
+            153
+          ],
+          "destination": [
+            0,
+            498,
+            747,
+            153
+          ]
+        }
+      ],
+      "gap": 16,
+      "sourceRectsPt": [
+        [
+          299.5,
+          420,
+          568,
+          593
+        ],
+        [
+          299.5,
+          675,
+          568,
+          730
+        ]
+      ],
+      "sourcePdfPage": 1
+    },
+    "assets/pages/physics2/r03-weekly-v3717-q07.png": {
+      "parts": [
+        {
+          "sourcePage": 2,
+          "sourceCrop": [
+            83,
+            263,
+            740,
+            635
+          ],
+          "destination": [
+            0,
+            0,
+            740,
+            635
+          ]
+        },
+        {
+          "sourcePage": 2,
+          "sourceCrop": [
+            83,
+            1463,
+            740,
+            65
+          ],
+          "destination": [
+            0,
+            651,
+            740,
+            65
+          ]
+        }
+      ],
+      "gap": 16,
+      "sourceRectsPt": [
+        [
+          30,
+          95,
+          296,
+          323
+        ],
+        [
+          30,
+          527,
+          296,
+          550
+        ]
+      ],
+      "sourcePdfPage": 2
+    }
+  }
 }

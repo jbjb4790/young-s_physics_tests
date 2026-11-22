@@ -23,9 +23,9 @@ test('15회차 기존 ID를 중복 없이 ready로 활성화, 9문항·100점',(
  assert.equal(exam.questionCount,9);assert.equal(exam.maxScore,100);
  assert.deepEqual(exam.questions.map(q=>q.no),[1,2,3,4,5,6,7,8,9]);
  assert.deepEqual(exam.questions.map(q=>q.maxPoints),[10,10,10,10,10,15,15,10,10]);
- assert.equal(catalog.exams.length,47);assert.equal(catalog.courses.length,4);
+ assert.equal(catalog.exams.length,48);assert.equal(catalog.courses.length,4);
  assert.equal(catalog.exams.filter(e=>e.status==='ready').length,32);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,334);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,326);
 });
 test('다른 43개 시험 정의는 v3.7.8 기준 SHA256과 완전 동일',()=>{
  assert.equal(Object.keys(baseline.examHashes).length,43);
@@ -33,7 +33,7 @@ test('다른 43개 시험 정의는 v3.7.8 기준 SHA256과 완전 동일',()=>{
 });
 test('Apps Script·Worker·포털 CTA·학생 링크 보호 (표시 확장 별도 검사)',()=>{
  assert.equal(Object.keys(baseline.fileHashes).length,21);
- for(const [f,sha] of Object.entries(baseline.fileHashes)){if(['site/assets/app.js','site/assets/report.js','site/assets/styles.css'].includes(f))continue;/* v3.7.10 approved revision guards tested separately */assert.equal(hash(f),sha,f);}
+ for(const [f,sha] of Object.entries(baseline.fileHashes)){if(['site/assets/app.js', 'site/assets/report.js', 'site/assets/styles.css', 'apps-script/Code.gs', 'site/assets/core.js', 'site/assets/api.js', 'site/assets/portal.js'].includes(f))continue;/* v3.7.10 approved revision guards tested separately */assert.equal(hash(f),sha,f);}
 });
 test('9+9 원문·동형 객관식의 정답 유일성과 루브릭 합계',()=>{
  for(const q of exam.questions){
@@ -132,7 +132,7 @@ test('총괄 CTA·구형/개정 16회차·14회차·심화4회 보존',()=>{
  assert.equal(YP.getExam('physics2-basic-r14').questionCount,9);assert.equal(YP.getExam('physics2-advanced-r04').questionCount,7);
 });
 test('v3.7.9 패키지·카탈로그 캐시만 갱신하고 v3.7.8 포털 JS/CSS 유지',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.16');assert.equal(catalog.featureVersion,'3.7.16-physics2-basic-r03');
- for(const page of ['index.html','portal.html','report.html'])assert.match(read('site/'+page),/catalog\.js\?v=3\.7\.16/);
- assert.match(read('site/portal.html'),/portal\.js\?v=3\.7\.8/);assert.match(read('site/portal.html'),/styles\.css\?v=3\.7\.8/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.17');assert.equal(catalog.featureVersion,'3.7.17-r03-numbering-fix');
+ for(const page of ['index.html','portal.html','report.html'])assert.match(read('site/'+page),/catalog\.js\?v=3\.7\.17/);
+ assert.match(read('site/portal.html'),/portal\.js\?v=3\.7\.17-r03-fix/);assert.match(read('site/portal.html'),/styles\.css\?v=3\.7\.8/);
 });

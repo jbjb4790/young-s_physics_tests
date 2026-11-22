@@ -1,0 +1,32 @@
+{
+  "checks": [
+    {
+      "check": "report HTML includes all 8 R03 questions, 100 total, original canvases and expected maxPoints",
+      "passed": true
+    },
+    {
+      "check": "report answer/retry/similar/reset flow",
+      "passed": true,
+      "questions": 8
+    },
+    {
+      "check": "portal detail includes R03, 8 original question canvases, all per-question scores",
+      "passed": true
+    },
+    {
+      "check": "portal answer/retry/similar/reset flow",
+      "passed": true,
+      "questions": 8
+    },
+    {
+      "check": "teacher R03 enabled; 8 inputs; maxPoints 20/10/10/10/10/10/10/20; full/partial/P1/blank/out-of-range UI calculations",
+      "passed": true
+    }
+  ],
+  "passed": 5,
+  "limitations": [
+    "Chromium startup was blocked by environment socket() Operation not permitted. No browser screenshot or 390px layout measurement was performed.",
+    "These checks execute the actual core/report/portal/app JavaScript with a narrowly scoped in-memory DOM test double and synthetic student data. They do not validate browser CSS layout or production API integration.",
+    "Network/API calls, launch/runtime config and production data were not used. Canvas pixel fidelity was checked separately by the parent/regression suite."
+  ]
+}

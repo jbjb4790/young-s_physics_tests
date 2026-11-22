@@ -1,0 +1,40 @@
+{
+  "version": "3.7.17",
+  "sourceEightQuestionZipSha256": "ba85a0499135fa9629197f0fb714f9829c513c6cb1a052927a19da1535848921",
+  "restoredExamId": "physics2-basic-r03",
+  "restoredQuestionNumbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "restoredPoints": [
+    20,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    20
+  ],
+  "archiveExamId": "physics2-basic-r03-concept16-archive",
+  "originalQuestionSha256": "c6d3df18eb7412d9d33e5ccb73a6c41bc8097700d0bb58158c4a6426fdf4b125",
+  "originalSolutionSha256": "1a050d95ad0ebc871ae7656ba81592867548a8c7113baae7955d27354b1b198a",
+  "archiveQuestionSha256": "3104076262c424ffeb361e9dd33f7ed153437c1497207bcbc628557de88879b5",
+  "archiveSolutionSha256": "4ec0fa52cf087929b9297cc67544cc4df097c4d440d70c81b839863dd79b9cb9",
+  "recordPolicy": "Keep existing ExamId, token, fingerprint, studentId and stored inputs. Resolve 8/16 question variants from existing record lengths. New R03 entry uses 8 questions only.",
+  "cacheIsolatedRestoredAssets": {
+    "assets/documents/physics2/r03-original.pdf": "assets/documents/physics2/r03-weekly-v3717-original.pdf",
+    "assets/documents/physics2/r03-original-solution.pdf": "assets/documents/physics2/r03-weekly-v3717-original-solution.pdf",
+    "assets/documents/physics2/r03-reviewed-solution.pdf": "assets/documents/physics2/r03-weekly-v3717-reviewed-solution.pdf",
+    "assets/pages/physics2/r03-original-p1.png": "assets/pages/physics2/r03-weekly-v3717-p1.png",
+    "assets/pages/physics2/r03-original-p2.png": "assets/pages/physics2/r03-weekly-v3717-p2.png",
+    "assets/pages/physics2/r03-q05-original-composite.png": "assets/pages/physics2/r03-weekly-v3717-q05.png",
+    "assets/pages/physics2/r03-q07-original-composite.png": "assets/pages/physics2/r03-weekly-v3717-q07.png"
+  }
+}

@@ -5,7 +5,39 @@
  YP.getCourse=id=>YP.catalog.courses.find(c=>c.courseId===id);
  YP.getExam=id=>YP.catalog.exams.find(e=>e.examId===id);
  YP.examVersionGroupId=id=>YP.getExam(id)?.replacesExamId||id;
- YP.readyExams=()=>YP.catalog.exams.filter(e=>e.status==="ready");
+ YP.readyExams=()=>YP.catalog.exams.filter(e=>e.status==="ready"&&!e.recordOnly);
+ /** Resolve legacy records by their stored shape without changing their permanent ExamId. */
+ YP.getRecordVariantInfo=function(record){
+   const stored=YP.getExam(record?.examId);if(!stored)return null;
+   const base=stored.sourceExamId?YP.getExam(stored.sourceExamId)||stored:stored,variants=base.inputProfile?.recordVariants||[];
+   if(!variants.length)return {exam:stored,base,variant:"",resolvedExamId:stored.examId,conflict:false};
+   const scoringCount=Array.isArray(record.scoring)?record.scoring.length:0,inputCount=Array.isArray(record.resultInputs)?record.resultInputs.length:0,count=scoringCount||inputCount;
+   const declared=String(record.recordVariant||stored.recordVariant||""),match=count?variants.find(v=>Number(v.questionCount)===count):variants.find(v=>v.key===declared||v.archiveExamId===record.resolvedExamId);
+   const variant=match?String(match.key):"",exam=match?YP.getExam(match.archiveExamId):base;
+   const conflict=!!record.recordVariantConflict||!!(scoringCount&&inputCount&&scoringCount!==inputCount)||!!(count&&count!==Number(base.questionCount)&&!match)||!exam||!!(declared&&declared!==variant);
+   return {exam:exam||base,base,variant,resolvedExamId:(exam||base).examId,conflict,scoringCount,inputCount,questionCount:count,error:conflict?"저장된 문항 수와 입력값이 일치하지 않습니다. 기존 점수와 링크를 보존했으며 자동 재채점·수정 저장을 중단했습니다.":""};
+ };
+ YP.getExamForRecord=function(record){
+   const info=YP.getRecordVariantInfo(record);if(!info)return null;
+   if(!info.base.inputProfile?.recordVariants?.length)return info.exam;
+   return {...info.exam,examId:record.examId,sourceExamId:info.base.examId,resolvedExamId:info.resolvedExamId,recordVariant:info.variant,recordVariantConflict:info.conflict,recordVariantError:info.error};
+ };
+ YP.recordVariantKey=function(value){const ex=Array.isArray(value?.questions)?value:YP.getExamForRecord(value);return ex?[ex.sourceExamId||ex.examId,ex.recordVariant||""].join("|"):String(value?.examId||"")};
+ YP.hasRecordVariants=function(exam){return !!(exam?.recordOnly||exam?.recordVariant||exam?.inputProfile?.recordVariants?.length)};
+ YP.requirePortalVariantSupport=function(data){
+   if(data?.recordVariantsSupported!==true&&(data?.reports||[]).some(r=>YP.hasRecordVariants(YP.getExam(r.examId)))){
+     const error=new Error("물리2 3회차의 기존 기록과 현재 시험을 정확히 구분하려면 교사가 Apps Script를 v3.7.17로 업데이트해야 합니다. 저장된 성적과 학생 링크는 유지됩니다.");error.code="RECORD_VARIANTS_SERVER_UPDATE_REQUIRED";throw error;
+   }
+ };
+ YP.resolveRecordDetail=function(data){
+   const base=YP.getExamForRecord(data?.record);if(!base)throw new Error("연결된 시험 설정을 찾을 수 없습니다.");
+   if(base.recordVariantConflict)throw new Error(`${base.recordVariantError} 저장된 총점: ${data.record.score??"확인 필요"} / ${data.record.maxScore??"확인 필요"}점.`);
+   if(YP.hasRecordVariants(base)){
+     if(data.recordVariantsSupported!==true)throw new Error("기존 물리2 3회차 성적을 정확한 문항과 함께 표시하려면 Apps Script v3.7.17 업데이트가 필요합니다. 저장된 성적과 학생 링크는 그대로 유지됩니다.");
+     if(data.questionSourceExamId!==(base.resolvedExamId||base.examId)||!Array.isArray(data.questions)||data.questions.length!==base.questions.length||data.stats?.perQuestion?.length!==base.questions.length)throw new Error("서버와 성적표의 문항 구성이 일치하지 않습니다. 시험 설정을 동기화한 뒤 다시 열어 주세요. 기존 성적은 변경하지 않았습니다.");
+   }
+   return {exam:YP.mergeExamQuestions(base,data.questions||[]),record:YP.hasRecordVariants(base)?YP.normalizeRecord(data.record):data.record};
+ };
  YP.isComprehensive=ex=>ex?.assessmentType==="comprehensive";
  YP.parseQuestionRange=value=>{
    const m=String(value||"").trim().match(/^(\d+)\s*(?:-|~|–|—)\s*(\d+)$/);
@@ -33,7 +65,7 @@
    }
    return exam;
  };
- YP.roundLabel=ex=>YP.isComprehensive(ex)?`${YP.getCourse(ex.courseId)?.courseName||ex.courseId} · ${ex.shortTitle||ex.title}`:`${YP.getCourse(ex.courseId)?.courseName||ex.courseId} ${ex.round}회${ex.replacesExamId?" (개정)":""}`;
+ YP.roundLabel=ex=>YP.isComprehensive(ex)||ex?.recordOnly?`${YP.getCourse(ex.courseId)?.courseName||ex.courseId} · ${ex.shortTitle||ex.title}`:`${YP.getCourse(ex.courseId)?.courseName||ex.courseId} ${ex.round}회${ex.replacesExamId?" (개정)":""}`;
  YP.escapeHTML=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
  YP.formatNumber=(n,d=1)=>Number(n||0).toLocaleString("ko-KR",{maximumFractionDigits:d,minimumFractionDigits:Number.isInteger(Number(n))?0:Math.min(d,1)});
  YP.statusLabel=s=>({full:"만점",partial:"부분점수",wrong:"0점",ungraded:"미입력",invalid:"오류"}[s]||s);
@@ -66,6 +98,12 @@
  YP.mergeExamQuestions=function(exam,rows){
    const out=YP.clone(exam);if(!out||!Array.isArray(out.questions))return out;
    if(Array.isArray(rows)&&rows.length){
+     if(YP.hasRecordVariants(out)){
+       const expected=out.resolvedExamId||out.examId,numbers=rows.map(r=>Number(r.QuestionNo??r.no));
+       if(rows.length!==out.questions.length||new Set(numbers).size!==out.questions.length||out.questions.some(q=>!numbers.includes(Number(q.no)))||rows.some(r=>r.ExamId&&r.ExamId!==expected)){
+         const error=new Error("서버와 이 기록의 문항 구성이 다릅니다. Apps Script를 업데이트하고 시험 설정을 동기화한 뒤 다시 시도하세요.");error.code="RECORD_VARIANT_QUESTIONS_MISMATCH";throw error;
+       }
+     }
      const byNo=new Map(rows.map(r=>[Number(r.QuestionNo??r.no),r]));
      out.questions=out.questions.map(q=>YP.questionRowToClient(byNo.get(Number(q.no)),q));
    }
@@ -142,15 +180,22 @@
  YP.toast=function(message,ms=3000){const el=document.getElementById("toast");if(!el)return;el.textContent=message;el.classList.remove("hidden");clearTimeout(YP._toastTimer);YP._toastTimer=setTimeout(()=>el.classList.add("hidden"),ms)};
 
  YP.normalizeRecord=function(record){
-   const exam=YP.applyExamInputPolicy(YP.getExam(record.examId)),school=YP.normalizeSchool(record.school);if(!exam)return {...record,school};
+   const exam=YP.applyExamInputPolicy(YP.getExamForRecord(record)),school=YP.normalizeSchool(record.school);if(!exam)return {...record,school};
+   const variantFields=YP.hasRecordVariants(exam)?{recordVariant:exam.recordVariant||"",resolvedExamId:exam.resolvedExamId||exam.examId,recordVariantConflict:!!exam.recordVariantConflict}:{};
+   if(exam.recordVariantConflict)return {...record,school,...variantFields,recordVariantError:exam.recordVariantError};
+   if(YP.hasRecordVariants(exam)&&!record.resultInputs?.length&&record.scoring?.length){
+     const score=Number.isFinite(Number(record.score))?Number(record.score):record.scoring.reduce((sum,s)=>sum+Number(s.score||0),0),maxScore=Number(record.maxScore)||exam.maxScore,counts=record.counts||{full:0,partial:0,wrong:0,ungraded:0,invalid:0};
+     if(!record.counts)record.scoring.forEach(s=>counts[s.status]=(counts[s.status]||0)+1);
+     return {...record,school,...variantFields,courseId:exam.courseId,score,maxScore,percent:maxScore?score/maxScore*100:0,counts,studentKey:YP.studentKey(exam.courseId,school,record.name)};
+   }
    const inputs=[...(record.resultInputs||[])];
    if(YP.usesObjectiveChoiceNumbers(exam)&&(record.inputEncoding==="legacy-binary"||(!record.inputEncoding&&Array.isArray(record.scoring)&&record.scoring.length))){
      exam.questions.forEach((q,i)=>{if(q.inputMode!=="objective-choice")return;const score=record.scoring?.[i];if(score&&["full","wrong"].includes(score.status)&&["0","1"].includes(String(inputs[i]??"").trim()))inputs[i]=score.status==="full"?"O":"X"});
    }
-   const result=YP.calculateResult(exam,inputs,record.partialModes||[]);return {...record,school,courseId:exam.courseId,score:result.score,maxScore:exam.maxScore,percent:result.percent,scoring:result.scoring,counts:result.counts,studentKey:YP.studentKey(exam.courseId,school,record.name)}
+   const result=YP.calculateResult(exam,inputs,record.partialModes||[]);return {...record,school,...variantFields,courseId:exam.courseId,score:result.score,maxScore:exam.maxScore,percent:result.percent,scoring:result.scoring,counts:result.counts,studentKey:YP.studentKey(exam.courseId,school,record.name)}
  };
  YP.computeStats=function(exam,records){
-   const valid=(records||[]).map(YP.normalizeRecord).filter(r=>r.examId===exam.examId&&r.scoring&&Number.isFinite(Number(r.score))),n=valid.length;
+   const valid=(records||[]).map(YP.normalizeRecord).filter(r=>!r.recordVariantConflict&&YP.recordVariantKey(r)===YP.recordVariantKey(exam)&&r.scoring&&Number.isFinite(Number(r.score))),n=valid.length;
    const scores=valid.map(r=>Number(r.score)).sort((a,b)=>a-b),average=n?scores.reduce((a,b)=>a+b,0)/n:0,median=n?(n%2?scores[(n-1)/2]:(scores[n/2-1]+scores[n/2])/2):0;
    const perQuestion=exam.questions.map((q,i)=>{const vals=valid.map(r=>Number(r.scoring[i]?.score??0)),states=valid.map(r=>r.scoring[i]?.status);return {questionNo:q.no,average:n?vals.reduce((a,b)=>a+b,0)/n:0,maxPoints:q.maxPoints,fullRate:n?states.filter(s=>s==="full").length/n*100:0,wrongRate:n?states.filter(s=>s==="wrong").length/n*100:0,partialRate:n?states.filter(s=>s==="partial").length/n*100:0}});
    const units=[...new Set(exam.questions.map(q=>q.unit))].map(unit=>{const idx=exam.questions.map((q,i)=>q.unit===unit?i:-1).filter(i=>i>=0),max=idx.reduce((a,i)=>a+exam.questions[i].maxPoints,0),avg=n?valid.reduce((sum,r)=>sum+idx.reduce((a,i)=>a+Number(r.scoring[i]?.score??0),0),0)/n:0;return {unit,maxPoints:max,averageScore:avg,averagePercent:max?avg/max*100:0}});
@@ -175,7 +220,7 @@
  YP.getLinkedHistory=function(exam,record,records){
    if(!YP.isComprehensive(exam)||!exam.historyExamIds?.length)return [];
    const key=YP.studentKey(exam.courseId,record.school,record.name),byGroup=new Map();
-   const linked=(records||[]).map(YP.normalizeRecord).filter(r=>exam.historyExamIds.includes(r.examId)&&YP.studentKey(r.courseId,r.school,r.name)===key);
+   const linked=(records||[]).map(YP.normalizeRecord).filter(r=>!r.recordVariantConflict&&exam.historyExamIds.includes(r.resolvedExamId||r.examId)&&YP.studentKey(r.courseId,r.school,r.name)===key);
    linked.forEach(r=>{
      const group=YP.examVersionGroupId(r.examId),old=byGroup.get(group);
      // 같은 학생이 구형/개정 16회차를 모두 응시한 경우, 총괄 누적 계산은 개정 기록을 우선한다.
@@ -187,7 +232,7 @@
  };
  YP.computeHistorySummary=function(exam,record,records){
    const linked=YP.getLinkedHistory(exam,record,records);let earned=0,max=0;const unitMap=new Map();
-   linked.forEach(r=>{earned+=Number(r.score||0);max+=Number(r.maxScore||0);const ex=YP.getExam(r.examId);(ex?.questions||[]).forEach((q,i)=>{const u=unitMap.get(q.unit)||{unit:q.unit,score:0,maxPoints:0,questionCount:0};u.score+=Number(r.scoring?.[i]?.score??0);u.maxPoints+=q.maxPoints;u.questionCount++;unitMap.set(q.unit,u)})});
+   linked.forEach(r=>{earned+=Number(r.score||0);max+=Number(r.maxScore||0);const ex=YP.getExamForRecord(r);(ex?.questions||[]).forEach((q,i)=>{const u=unitMap.get(q.unit)||{unit:q.unit,score:0,maxPoints:0,questionCount:0};u.score+=Number(r.scoring?.[i]?.score??0);u.maxPoints+=q.maxPoints;u.questionCount++;unitMap.set(q.unit,u)})});
    const units=[...unitMap.values()].map(u=>({...u,percent:u.maxPoints?u.score/u.maxPoints*100:0,level:(u.maxPoints?u.score/u.maxPoints*100:0)>=85?"강점":(u.maxPoints?u.score/u.maxPoints*100:0)>=65?"안정":(u.maxPoints?u.score/u.maxPoints*100:0)>=45?"보완":"우선 보완"})).sort((a,b)=>b.percent-a.percent);
    const trend=linked.map(r=>({examId:r.examId,label:`${YP.getExam(r.examId)?.round||""}회`,percent:r.percent,score:r.score,maxScore:r.maxScore}));
    const expectedCount=new Set((exam.historyExamIds||[]).map(YP.examVersionGroupId)).size;
@@ -195,10 +240,11 @@
  };
  /** 한 학생의 여러 시험 기록을 누적 분석한다. 서버 포털과 데모 모드가 같은 계산 규칙을 사용한다. */
  YP.computeStudentPortalCumulative=function(records){
-   const normalized=(records||[]).map(YP.normalizeRecord).filter(r=>YP.getExam(r.examId)&&Number.isFinite(Number(r.percent))),unitMap=new Map(),courseMap=new Map(),weakItems=[];let totalScore=0,totalMax=0,percentSum=0,full=0,partial=0,wrong=0,ungraded=0;
-   const reports=normalized.map(r=>{const ex=YP.getExam(r.examId),counts=r.counts||{full:0,partial:0,wrong:0,ungraded:0},snapshot=new Map();totalScore+=Number(r.score||0);totalMax+=Number(r.maxScore||0);percentSum+=Number(r.percent||0);full+=Number(counts.full||0);partial+=Number(counts.partial||0);wrong+=Number(counts.wrong||0);ungraded+=Number(counts.ungraded||0);(ex.questions||[]).forEach((q,i)=>{const s=r.scoring?.[i]||{},key=[r.courseId,q.unit].join("|"),u=unitMap.get(key)||{courseId:r.courseId,unit:q.unit,score:0,maxPoints:0,questionCount:0,wrongCount:0,partialCount:0};u.score+=Number(s.score||0);u.maxPoints+=Number(q.maxPoints||0);u.questionCount++;if(s.status==="wrong")u.wrongCount++;if(s.status==="partial")u.partialCount++;unitMap.set(key,u);const su=snapshot.get(q.unit)||{unit:q.unit,score:0,maxPoints:0};su.score+=Number(s.score||0);su.maxPoints+=Number(q.maxPoints||0);snapshot.set(q.unit,su);if(["wrong","partial"].includes(s.status))weakItems.push({reportToken:r.token,examId:r.examId,courseId:r.courseId,questionNo:q.no,unit:q.unit,topic:q.topic,status:s.status,score:s.score,maxPoints:q.maxPoints})});const c=courseMap.get(r.courseId)||{courseId:r.courseId,score:0,maxPoints:0,count:0};c.score+=Number(r.score||0);c.maxPoints+=Number(r.maxScore||0);c.count++;courseMap.set(r.courseId,c);return {reportToken:r.token,examId:r.examId,courseId:r.courseId,title:ex.title,shortTitle:ex.shortTitle||ex.title,assessmentType:ex.assessmentType||"weekly",section:ex.section||"",round:Number(ex.round||0),score:r.score,maxScore:r.maxScore,percent:r.percent,counts,unitSnapshot:[...snapshot.values()].map(u=>({...u,percent:u.maxPoints?u.score/u.maxPoints*100:0})),createdAt:r.createdAt,updatedAt:r.updatedAt}});
+   const normalized=(records||[]).map(YP.normalizeRecord).filter(r=>!r.recordVariantConflict&&YP.getExamForRecord(r)&&Number.isFinite(Number(r.percent))),unitMap=new Map(),courseMap=new Map(),weakItems=[];let totalScore=0,totalMax=0,percentSum=0,full=0,partial=0,wrong=0,ungraded=0;
+   const reports=normalized.map(r=>{const ex=YP.getExamForRecord(r),counts=r.counts||{full:0,partial:0,wrong:0,ungraded:0},snapshot=new Map();totalScore+=Number(r.score||0);totalMax+=Number(r.maxScore||0);percentSum+=Number(r.percent||0);full+=Number(counts.full||0);partial+=Number(counts.partial||0);wrong+=Number(counts.wrong||0);ungraded+=Number(counts.ungraded||0);(ex.questions||[]).forEach((q,i)=>{const s=r.scoring?.[i]||{},key=[r.courseId,q.unit].join("|"),u=unitMap.get(key)||{courseId:r.courseId,unit:q.unit,score:0,maxPoints:0,questionCount:0,wrongCount:0,partialCount:0};u.score+=Number(s.score||0);u.maxPoints+=Number(q.maxPoints||0);u.questionCount++;if(s.status==="wrong")u.wrongCount++;if(s.status==="partial")u.partialCount++;unitMap.set(key,u);const su=snapshot.get(q.unit)||{unit:q.unit,score:0,maxPoints:0};su.score+=Number(s.score||0);su.maxPoints+=Number(q.maxPoints||0);snapshot.set(q.unit,su);if(["wrong","partial"].includes(s.status))weakItems.push({reportToken:r.token,examId:r.examId,recordVariant:r.recordVariant||"",resolvedExamId:ex.resolvedExamId||ex.examId,courseId:r.courseId,questionNo:q.no,unit:q.unit,topic:q.topic,status:s.status,score:s.score,maxPoints:q.maxPoints})});const c=courseMap.get(r.courseId)||{courseId:r.courseId,score:0,maxPoints:0,count:0};c.score+=Number(r.score||0);c.maxPoints+=Number(r.maxScore||0);c.count++;courseMap.set(r.courseId,c);return {reportToken:r.token,examId:r.examId,recordVariant:r.recordVariant||"",resolvedExamId:ex.resolvedExamId||ex.examId,recordVariantConflict:false,courseId:r.courseId,title:ex.title,shortTitle:ex.shortTitle||ex.title,assessmentType:ex.assessmentType||"weekly",section:ex.section||"",round:Number(ex.round||0),score:r.score,maxScore:r.maxScore,percent:r.percent,counts,unitSnapshot:[...snapshot.values()].map(u=>({...u,percent:u.maxPoints?u.score/u.maxPoints*100:0})),createdAt:r.createdAt,updatedAt:r.updatedAt}});
    const units=[...unitMap.values()].map(u=>({...u,percent:u.maxPoints?u.score/u.maxPoints*100:0})).sort((a,b)=>b.percent-a.percent),courses=[...courseMap.values()].map(c=>({...c,percent:c.maxPoints?c.score/c.maxPoints*100:0})).sort((a,b)=>b.percent-a.percent),chronological=[...reports].sort((a,b)=>String(a.updatedAt||a.createdAt).localeCompare(String(b.updatedAt||b.createdAt)));
-   return {reports:[...reports].sort((a,b)=>String(b.updatedAt||b.createdAt).localeCompare(String(a.updatedAt||a.createdAt))),cumulative:{testCount:reports.length,weeklyCount:reports.filter(x=>x.assessmentType!=="comprehensive").length,comprehensiveCount:reports.filter(x=>x.assessmentType==="comprehensive").length,averagePercent:reports.length?percentSum/reports.length:0,latestPercent:chronological.length?chronological.at(-1).percent:0,counts:{full,partial,wrong,ungraded},units,courses,trend:chronological.map(x=>({reportToken:x.reportToken,examId:x.examId,courseId:x.courseId,label:x.shortTitle,percent:x.percent,assessmentType:x.assessmentType,updatedAt:x.updatedAt})),strongUnits:units.slice(0,3),weakUnits:[...units].sort((a,b)=>a.percent-b.percent).slice(0,3),weakItems}};
+   const conflicts=(records||[]).map(YP.normalizeRecord).filter(r=>r.recordVariantConflict).map(r=>{const ex=YP.getExamForRecord(r);return {reportToken:r.token,examId:r.examId,recordVariant:r.recordVariant||"",resolvedExamId:r.resolvedExamId,recordVariantConflict:true,courseId:r.courseId,title:(ex?.title||r.examId)+" · 기록 확인 필요",shortTitle:(ex?.shortTitle||r.examId)+" · 확인 필요",assessmentType:ex?.assessmentType||"weekly",score:r.score,maxScore:r.maxScore,percent:r.percent,counts:r.counts||{},unitSnapshot:[],createdAt:r.createdAt,updatedAt:r.updatedAt}});
+   return {reports:[...reports,...conflicts].sort((a,b)=>String(b.updatedAt||b.createdAt).localeCompare(String(a.updatedAt||a.createdAt))),cumulative:{testCount:reports.length,weeklyCount:reports.filter(x=>x.assessmentType!=="comprehensive").length,comprehensiveCount:reports.filter(x=>x.assessmentType==="comprehensive").length,averagePercent:reports.length?percentSum/reports.length:0,latestPercent:chronological.length?chronological.at(-1).percent:0,counts:{full,partial,wrong,ungraded},units,courses,trend:chronological.map(x=>({reportToken:x.reportToken,examId:x.examId,courseId:x.courseId,label:x.shortTitle,percent:x.percent,assessmentType:x.assessmentType,updatedAt:x.updatedAt})),strongUnits:units.slice(0,3),weakUnits:[...units].sort((a,b)=>a.percent-b.percent).slice(0,3),weakItems}};
  };
  YP._trendSentence=function(points){
    const values=(points||[]).map(x=>Number(typeof x==="object"?x.percent:x)).filter(Number.isFinite);

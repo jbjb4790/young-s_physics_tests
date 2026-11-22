@@ -1,6 +1,6 @@
 window.YP_CATALOG = {
   "schemaVersion": "2.0.0",
-  "generatedAt": "2026-11-22T03:00:00Z",
+  "generatedAt": "2026-11-22T08:34:06.388310+00:00",
   "courses": [
     {
       "courseId": "physics1-basic",
@@ -11713,1393 +11713,766 @@ window.YP_CATALOG = {
       "examId": "physics2-basic-r03",
       "courseId": "physics2-basic",
       "round": 3,
-      "title": "물리2 3회차 복습 테스트 · 낙하·포물선 운동 개념정리",
-      "shortTitle": "3회차 낙하·포물선 운동",
+      "title": "물리2 3회차 복습 테스트 · 중력장 내 운동",
+      "shortTitle": "3회차 중력장 내 운동",
       "status": "ready",
       "assessmentType": "weekly",
       "section": "mechanics",
       "examDate": "",
-      "questionCount": 16,
+      "questionCount": 8,
       "maxScore": 100,
-      "pdf": "assets/documents/physics2/r03-original.pdf",
-      "solutionPdf": "assets/documents/physics2/r03-original-solution.pdf",
+      "pdf": "assets/documents/physics2/r03-weekly-v3717-original.pdf",
+      "solutionPdf": "assets/documents/physics2/r03-weekly-v3717-original-solution.pdf",
+      "reviewedSolutionPdf": "assets/documents/physics2/r03-weekly-v3717-reviewed-solution.pdf",
       "pages": [
-        "assets/pages/physics2/r03-original-p1.png"
+        "assets/pages/physics2/r03-weekly-v3717-p1.png",
+        "assets/pages/physics2/r03-weekly-v3717-p2.png",
+        "assets/pages/physics2/r03-weekly-v3717-q05.png",
+        "assets/pages/physics2/r03-weekly-v3717-q07.png"
       ],
-      "reviewStatus": "verified",
-      "configVersion": "2026.11.22-original-r03-v3.7.16",
-      "sourceTitle": "물리2-개념정리Quiz 3회차.pdf / 물리2-개념정리Quiz 3회차 해설.pdf",
-      "sourceNote": "이번에 제공된 문제지와 해설지 각 1쪽을 원형 그대로 보존했습니다. 빈칸 4문항, O/X 6문항, 암기 6문항을 웹 1~16번으로 연결합니다. 원본에는 배점이 없어 20개 답란에 각각 5점을 부여하여 총 100점으로 환산했습니다. 웹 1~10번은 각 5점, 11~16번은 10·5·10·10·10·5점입니다.",
-      "reviewSummary": "제공된 해설의 전체 정답을 대조·검산했습니다. 원본 PDF와 문제 이미지는 그대로 보존하고 공기 저항, 좌표축, 발사·착지 높이에 관한 적용 조건을 웹 풀이에 보완했습니다. 원본에 없는 배점은 답란당 5점의 사이트 환산 기준입니다.",
+      "reviewStatus": "corrected",
+      "reviewSummary": "제공 문제지의 8문항·100점과 원본 그림을 보존했습니다. 2·8번 해설의 오류와 조건 누락, 5번 질문 표현 차이를 별도 검수 해설에 반영했습니다. 서술형 점수는 교사가 입력하며 학생 재도전에는 검산한 객관식 선택지를 사용합니다.",
+      "configVersion": "2026.11.22-eight-question-restore-v3.7.17",
+      "sourceTitle": "물리2-Quiz3회차.pdf / 물리2-Quiz3회차_해설.pdf",
+      "sourceNote": "제공 문제지·해설지 각 2쪽을 바이트 변경 없이 보존했습니다. 문항·그림은 문제지에서 200dpi로 직접 추출했습니다. 배점 [20,10,10,10,10,10,10,20], 총100점이며 8번은 문제지의 7·7·6점입니다. 원본 해설 2번은 속력비 4:1을 2:1로 잘못 대입하여 웹 답을 3h/5로 정정했고, 8-(1)은 A>B로 정정했습니다. 8-(2) 여각은 동일 초기속력 조건이 필요하고 8-(3) 공기저항 사거리 비교는 조건 부족으로 확정하지 않습니다. 원본PDF는 수정하지 않았습니다. 초파2점은 기본100점에 자동가산하지 않습니다.",
       "assetProvenance": {
         "kind": "original-pdf-render-crop",
         "originalPdfIncluded": true,
         "originalAnswerPdfIncluded": true,
-        "answerAuthorship": "user-supplied-answer-pdf; independently-verified; explanatory-text-and-practice-newly-authored",
-        "sourceQuestionFile": "물리2-개념정리Quiz 3회차.pdf",
-        "sourceQuestionSha256": "3104076262c424ffeb361e9dd33f7ed153437c1497207bcbc628557de88879b5",
-        "sourceSolutionFile": "물리2-개념정리Quiz 3회차 해설.pdf",
-        "sourceSolutionSha256": "4ec0fa52cf087929b9297cc67544cc4df097c4d440d70c81b839863dd79b9cb9",
-        "originalQuestionPageCount": 1,
-        "originalSolutionPageCount": 1,
+        "answerAuthorship": "user-supplied-answer-pdf; independently-reviewed-with-q2-q8-corrections-and-condition-notes",
+        "sourceQuestionFile": "물리2-Quiz3회차.pdf",
+        "sourceQuestionSha256": "c6d3df18eb7412d9d33e5ccb73a6c41bc8097700d0bb58158c4a6426fdf4b125",
+        "sourceSolutionFile": "물리2-Quiz3회차_해설.pdf",
+        "sourceSolutionSha256": "1a050d95ad0ebc871ae7656ba81592867548a8c7113baae7955d27354b1b198a",
+        "originalQuestionPageCount": 2,
+        "originalSolutionPageCount": 2,
         "renderDpi": 200,
         "redrawn": false,
         "retypedQuestionText": false,
-        "sourcePointsProvided": false,
-        "siteScoringBasis": "20 answer fields × 5 points, preserving 16 numbered questions"
+        "compositeQuestionNumbers": [
+          5,
+          7
+        ],
+        "compositeMethod": "original RGB crops concatenated vertically with 16px blank gap; no resizing, retyping or redrawing"
       },
       "coreNote": {
-        "summary": "자유낙하·연직 상방 운동·수평 투사·포물선 운동의 개념과 공식, 최고점과 체공 시간, 최대 사거리",
+        "summary": "자유낙하·연직투상·수평투사·포물선 운동을 수평과 연직 성분으로 나누어 해석하고, 공식의 적용 조건을 구분합니다.",
         "concepts": [
-          "공기 저항을 무시하면 수평 운동과 연직 운동을 독립적으로 다룰 수 있습니다.",
-          "연직 위로 던진 물체는 최고점에서 속도가 0이어도 중력가속도를 받습니다.",
-          "비스듬히 던진 물체는 최고점에서도 수평 속도가 남습니다.",
-          "같은 높이로 돌아오는 운동에서 상승 시간과 하강 시간은 같습니다.",
-          "초기 속력이 같을 때 최고점 높이의 증가가 수평 도달 거리의 증가를 뜻하지는 않습니다."
+          "공기저항을 무시하면 수평속도는 일정하고 연직속도는 일정한 중력가속도로 변합니다.",
+          "같은 높이로 착지하는 포물선 운동에서 최고점 도달시간은 전체 체공시간의 절반입니다.",
+          "자유낙하의 이동거리는 출발 후 시간의 제곱에 비례합니다.",
+          "구간별 걸린 시간과 출발 후 누적 시간을 구분합니다.",
+          "같은 사거리에서 두 발사각이 여각이 되려면 같은 초기속력이라는 조건도 필요합니다.",
+          "공기저항이 있으면 무저항 공식을 그대로 적용하지 말고 물체와 저항 조건을 확인합니다."
         ],
         "formulas": [
-          "자유낙하: s=gt²/2, v=gt (아래쪽 +)",
-          "자유낙하 시간: t=√(2h/g)",
-          "연직 상방: tₘ=v₀/g, T=2v₀/g (같은 높이)",
-          "수평 투사: x=v₀t, y=gt²/2 (아래쪽 +)",
-          "포물선: T₁=v₀sinθ/g, T₂=2v₀sinθ/g (같은 높이)",
-          "H=v₀²sin²θ/(2g), R=v₀²sin(2θ)/g"
+          "x=v₀cosθ·t, y=v₀sinθ·t−gt²/2",
+          "vₓ=v₀cosθ, vᵧ=v₀sinθ−gt",
+          "H=(v₀sinθ)²/(2g)",
+          "T=2v₀sinθ/g, R=v₀²sin(2θ)/g (출발·도착 높이 같음)",
+          "자유낙하: s=gt²/2"
         ],
         "mistakes": [
-          "최고점에서 속도와 가속도를 모두 0으로 생각함",
-          "연직 속도만 0인데 전체 속력이 0이라고 판단함",
-          "수평 속력이 낙하 시간을 바꾼다고 생각함",
-          "발사 높이와 착지 높이가 다른데 대칭 운동 공식을 사용함",
-          "최고점 도달 시간과 전체 체공 시간을 혼동함"
+          "최고점에서 전체 속도가 0이라고 생각함",
+          "최고점 도달시간과 체공시간을 혼동함",
+          "낙하거리와 지면에서의 높이를 혼동함",
+          "성분의 크기와 부호를 갖는 속도 성분을 혼동함",
+          "초기속력·저항조건을 확인하지 않고 사거리 순서를 단정함"
         ],
         "checklist": [
-          "좌표축의 양의 방향과 초기 속도 성분을 정했는가?",
-          "발사점과 착지점의 높이를 확인했는가?",
-          "수평 성분과 연직 성분을 따로 계산했는가?",
-          "최대 사거리 비교에서 초기 속력을 고정했는가?"
+          "각 문제에 주어진 g=10 또는 9.8 m/s²를 구분했는가?",
+          "소문항이 묻는 시간·높이·거리의 기준을 확인했는가?",
+          "공통 지문의 조건과 그림을 함께 읽었는가?",
+          "발사점과 착지점 높이가 같은지 확인했는가?",
+          "8번에서 원문 조건과 추가 가정을 구분했는가?"
         ]
       },
+      "featureVersion": "3.7.17-r03-numbering-fix",
       "questions": [
         {
           "no": 1,
-          "maxPoints": 5,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "낙하 운동",
-          "topic": "빈칸 1 · 정지 상태에서 시작하는 낙하",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              491,
-              1037,
-              49
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다.",
-          "answer": "자유낙하",
-          "answerHeading": "제공 해설 대조·검수 정답",
+          "maxPoints": 20,
+          "unit": "포물선 운동",
+          "topic": "속도 성분과 최고점·체공시간·사거리",
+          "difficulty": "중",
+          "answer": "(1) T₁=1 s\n(2) H=5 m\n(3) T₂=2 s\n(4) R=20√3 m",
           "explanation": [
-            "이 문제는 초기 속도가 0인 낙하와 아래쪽으로 던진 운동을 구분하는 교과서 분류를 사용합니다.",
-            "정지 상태에서 놓은 물체가 중력만 받아 떨어지는 운동을 자유낙하 운동이라고 합니다."
+            "초기 속도를 수평·연직 방향으로 나누면 v₀ₓ=20cos30°=10√3 m/s, v₀ᵧ=20sin30°=10 m/s입니다. 공기저항을 무시하므로 수평속도는 일정합니다.",
+            "최고점에서는 연직속도가 0입니다. vᵧ=10−10t=0에서 T₁=1 s입니다.",
+            "최고점 높이는 H=v₀ᵧ²/(2g)=10²/20=5 m입니다.",
+            "출발 지면으로 되돌아오므로 체공시간은 T₂=2T₁=2 s입니다. 수평 도달 거리는 R=v₀ₓT₂=(10√3)×2=20√3 m입니다."
           ],
           "formulas": [
-            "v₀=0, a=g (아래쪽을 +로 설정)"
+            "v₀ₓ=v₀cosθ, v₀ᵧ=v₀sinθ",
+            "T₁=v₀sinθ/g",
+            "H=(v₀sinθ)²/(2g)",
+            "T₂=2v₀sinθ/g, R=v₀²sin(2θ)/g"
           ],
           "commonMistakes": [
-            "처음부터 아래쪽 속도를 갖는 연직 하방 운동과 혼동함"
+            "최고점에서 수평속도까지 0이라고 생각함",
+            "최고점 도달시간과 전체 체공시간을 같게 놓음",
+            "높이 계산에 초기속도의 크기 20 m/s를 그대로 넣음"
           ],
           "rubric": [
             {
-              "criterion": "사이트 환산 · 운동 명칭",
+              "criterion": "(1) 최고점 도달시간",
+              "points": 5
+            },
+            {
+              "criterion": "(2) 최고점 높이",
+              "points": 5
+            },
+            {
+              "criterion": "(3) 체공시간",
+              "points": 5
+            },
+            {
+              "criterion": "(4) 수평 도달거리",
               "points": 5
             }
           ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 빈칸 1 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 빈칸 1 → 웹 1번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "빈칸 1",
           "originalRetry": {
             "inputMode": "choice",
             "choices": [
-              "등속도 운동",
-              "자유 낙하 운동",
-              "연직 상방 운동",
-              "등속 원운동"
+              "(1 s, 5 m, 1 s, 10√3 m)",
+              "(1 s, 5 m, 2 s, 20√3 m)",
+              "(2 s, 20 m, 4 s, 40√3 m)",
+              "(1 s, 10 m, 2 s, 20 m)"
             ],
             "correctChoice": 2,
-            "answer": "자유 낙하 운동",
+            "answer": "(1 s, 5 m, 2 s, 20√3 m)",
             "acceptableAnswers": [
               "2",
-              "자유 낙하 운동"
+              "(1 s, 5 m, 2 s, 20√3 m)"
             ],
             "displayMode": "choice-card",
-            "prompt": "원문 빈칸 1번 복습: 공기 저항을 무시하고 중력만 작용할 때, 정지 상태에서 놓은 물체의 낙하 운동을 이 단원에서는 무엇이라고 부르나요?",
-            "explanation": "처음 속력이 0이고 중력만 작용하므로, 이 단원에서 다루는 자유 낙하 운동입니다. 중력 가속도는 연직 아래 방향입니다."
+            "prompt": "원문 1번의 (T₁, H, T₂, R)을 모두 옳게 고르세요."
           },
           "similarProblem": {
             "inputMode": "choice",
             "choices": [
-              "속력은 일정하고 가속도는 0이다.",
-              "속력은 감소하고 가속도는 위쪽이다.",
-              "속력은 증가하고 가속도는 아래쪽으로 일정하다.",
-              "속력과 가속도가 모두 0이다."
+              "15 m/s, 3 s",
+              "15√3 m/s, 1.5 s",
+              "15√3 m/s, 3 s",
+              "30 m/s, 6 s"
             ],
             "correctChoice": 3,
-            "answer": "속력은 증가하고 가속도는 아래쪽으로 일정하다.",
+            "answer": "15√3 m/s, 3 s",
             "acceptableAnswers": [
               "3",
-              "속력은 증가하고 가속도는 아래쪽으로 일정하다."
+              "15√3 m/s, 3 s"
             ],
             "displayMode": "choice-card",
-            "prompt": "동형 연습: 물체를 정지 상태에서 가만히 놓았습니다. 공기 저항은 무시하고 중력 가속도 크기는 g로 일정합니다. 낙하 중 물체의 속력과 가속도에 대한 설명으로 옳은 것은?",
-            "explanation": "아래쪽을 양의 방향으로 정하면 v=gt, a=g입니다. 따라서 속력은 시간에 따라 증가하고 가속도는 아래쪽으로 일정합니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
+            "prompt": "지면에서 공을 속력 30 m/s, 발사각 30°로 던져 출발점과 같은 높이의 지면에 착지시킵니다. 공기저항을 무시하고 g=10 m/s²일 때, 최고점에서의 속력과 전체 체공시간은 각각 얼마인가요?",
+            "explanation": "최고점에서는 연직속도만 0이므로 속력은 30cos30°=15√3 m/s입니다. 체공시간은 2×30sin30°/10=3 s입니다.",
+            "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+          },
+          "type": "subjective",
+          "inputMode": "achievement",
+          "image": {
+            "page": 1,
+            "crop": [
+              83,
+              263,
+              740,
+              1393
+            ]
+          },
+          "retryMode": "multiple-choice",
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "sourceText": "원본 문제지 PDF의 1번 문제·수식·그림을 그대로 추출했습니다.",
+          "sourceNote": "원본 물리2-Quiz3회차.pdf 1쪽, 200dpi 직접 렌더링."
         },
         {
           "no": 2,
-          "maxPoints": 5,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "연직 상방 운동",
-          "topic": "빈칸 2 · 상승 시간과 하강 시간",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              539,
-              1117,
-              47
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 상승을 시작한 높이와 내려와 도착하는 높이가 같습니다.",
-          "answer": "같다",
-          "answerHeading": "제공 해설 대조·검수 정답",
+          "maxPoints": 10,
+          "unit": "연직 운동",
+          "topic": "자유낙하와 연직상방 투사의 충돌",
+          "difficulty": "중",
+          "reviewStatus": "corrected",
+          "correctionNote": "원본 해설은 문제에 주어진 충돌 직전 속력비와 다른 비를 대입했습니다. 문제지의 조건으로 다시 검산한 풀이를 답 제출 후 확인해 주세요. 원본 PDF는 그대로 보존했습니다.",
+          "answer": "지면에서의 충돌 높이 = 3h/5",
           "explanation": [
-            "위쪽을 +로 정하면 v=v₀−gt입니다. 최고점에서 v=0이므로 상승 시간은 v₀/g입니다.",
-            "원래 높이로 돌아오는 전체 시간은 2v₀/g이므로 최고점 이후 하강 시간도 v₀/g입니다.",
-            "출발점과 도착점 높이가 다르면 두 시간이 같다는 결론을 그대로 적용할 수 없습니다."
+            "공 B의 초기속력을 v₀, 충돌까지 시간을 t라고 하겠습니다. 위쪽을 양의 방향으로 잡으면 A의 높이는 h−gt²/2, B의 높이는 v₀t−gt²/2입니다. 두 높이가 같으므로 h=v₀t입니다.",
+            "충돌할 때 A는 아래로, B는 위로 움직입니다. 따라서 속력은 각각 gt와 v₀−gt이며, 문제의 4배 조건은 gt=4(v₀−gt)입니다. 이를 풀면 gt=4v₀/5입니다.",
+            "A가 내려온 거리는 gt²/2=(2/5)v₀t=2h/5입니다. 따라서 지면에서 충돌점까지의 높이는 h−2h/5=3h/5입니다.",
+            "원본 해설은 속력비를 2:1로 대입하여 2h/3을 얻었습니다. 문제지에 적힌 4:1을 적용하면 3h/5이며, 원본 파일은 수정하지 않고 웹 해설에서 이 차이를 표시했습니다."
           ],
           "formulas": [
-            "t상승=v₀/g",
-            "T=2v₀/g",
-            "t하강=T−t상승=v₀/g"
+            "y_A=h−gt²/2, y_B=v₀t−gt²/2",
+            "h=v₀t",
+            "gt=4(v₀−gt)",
+            "y=h−gt²/2=3h/5"
           ],
           "commonMistakes": [
-            "높이가 다른 지점까지 내려오는 시간도 상승 시간과 같다고 생각함"
+            "문제의 속력비 4:1 대신 원본 해설의 2:1을 사용함",
+            "A의 낙하거리 2h/5를 지면에서의 높이로 답함",
+            "충돌 직전 B가 위로 움직인다는 조건을 놓침"
           ],
           "rubric": [
             {
-              "criterion": "사이트 환산 · 상승·하강 시간 비교",
-              "points": 5
+              "criterion": "충돌 위치와 속력비 조건을 적용하여 지면 기준 높이 계산",
+              "points": 10
             }
           ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 빈칸 2 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 빈칸 2 → 웹 2번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "빈칸 2",
           "originalRetry": {
             "inputMode": "choice",
             "choices": [
-              "올라가는 시간이 더 길다.",
-              "내려가는 시간이 더 길다.",
-              "처음 속력과 관계없이 항상 내려가는 시간이 두 배이다.",
-              "두 시간이 같다."
+              "h/3",
+              "2h/3",
+              "3h/5",
+              "4h/5"
             ],
-            "correctChoice": 4,
-            "answer": "두 시간이 같다.",
+            "correctChoice": 3,
+            "answer": "3h/5",
             "acceptableAnswers": [
-              "4",
-              "두 시간이 같다."
+              "3",
+              "3h/5"
             ],
             "displayMode": "choice-card",
-            "prompt": "원문 빈칸 2번 복습: 공기 저항을 무시하고 g가 일정할 때, 연직 위로 던진 물체가 출발점에서 최고점까지 올라가는 시간과 최고점에서 출발 높이로 돌아오는 시간의 관계는?",
-            "explanation": "출발점과 도착점의 높이가 같으면 중력만 받는 운동은 최고점을 기준으로 시간 대칭입니다. 두 시간은 모두 v₀/g입니다."
+            "prompt": "원문 2번: 충돌 직전 A:B의 속력비가 4:1일 때 지면 기준 충돌 높이는?"
           },
           "similarProblem": {
             "inputMode": "choice",
             "choices": [
-              "2.5초",
-              "5초",
-              "7.5초",
-              "10초"
+              "3h/8",
+              "5h/8",
+              "2h/3",
+              "3h/4"
             ],
             "correctChoice": 2,
-            "answer": "5초",
+            "answer": "5h/8",
             "acceptableAnswers": [
               "2",
-              "5초"
+              "5h/8"
             ],
             "displayMode": "choice-card",
-            "prompt": "동형 연습: 공기 저항을 무시하고 g가 일정합니다. 연직 위로 던진 공이 2.5초 후 최고점에 도달했습니다. 공이 처음 던진 높이로 돌아올 때까지의 전체 시간은?",
-            "explanation": "같은 높이로 되돌아오므로 하강 시간도 2.5초입니다. 전체 시간은 2.5+2.5=5초입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
+            "prompt": "높이 h에서 공 A를 가만히 놓는 순간 지면에서 공 B를 위로 던집니다. 충돌 직전 두 공의 운동 방향은 반대이고 A의 속력은 B의 3배입니다. 공기저항을 무시할 때 지면 기준 충돌 높이는?",
+            "explanation": "h=v₀t, gt=3(v₀−gt)에서 gt=3v₀/4입니다. A의 낙하거리는 gt²/2=3v₀t/8=3h/8이므로 충돌 높이는 5h/8입니다.",
+            "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+          },
+          "type": "subjective",
+          "inputMode": "achievement",
+          "image": {
+            "page": 1,
+            "crop": [
+              831,
+              263,
+              747,
+              301
+            ]
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 PDF의 2번 문제·수식·그림을 그대로 추출했습니다.",
+          "sourceNote": "원본 물리2-Quiz3회차.pdf 1쪽, 200dpi 직접 렌더링."
         },
         {
           "no": 3,
-          "maxPoints": 5,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "수평 투사",
-          "topic": "빈칸 3 · 수평 방향의 운동",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              585,
-              1006,
-              47
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다.",
-          "answer": "등속도",
-          "answerHeading": "제공 해설 대조·검수 정답",
-          "explanation": [
-            "공기 저항을 무시하면 수평 방향으로 힘이 작용하지 않습니다.",
-            "수평 가속도는 0이고 수평 속도가 일정하므로 수평 방향은 등속도 운동입니다.",
-            "가속도 0도 수학적으로 일정한 가속도의 특수한 경우지만, 원문의 운동 유형 분류에서 의도한 답은 등속도입니다."
-          ],
-          "formulas": [
-            "aₓ=0",
-            "vₓ=v₀",
-            "x=v₀t"
-          ],
-          "commonMistakes": [
-            "연직 방향의 중력가속도를 수평 방향에도 적용함"
-          ],
-          "rubric": [
-            {
-              "criterion": "사이트 환산 · 수평 운동의 분류",
-              "points": 5
-            }
-          ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 빈칸 3 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 빈칸 3 → 웹 3번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "빈칸 3",
-          "originalRetry": {
-            "inputMode": "choice",
-            "choices": [
-              "속도의 크기와 방향이 일정한 등속도 운동",
-              "속력이 일정한 비율로 증가하는 운동",
-              "속력이 일정한 비율로 감소하는 운동",
-              "속력은 일정하지만 방향이 계속 바뀌는 운동"
-            ],
-            "correctChoice": 1,
-            "answer": "속도의 크기와 방향이 일정한 등속도 운동",
-            "acceptableAnswers": [
-              "1",
-              "속도의 크기와 방향이 일정한 등속도 운동"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "원문 빈칸 3번 복습: 공기 저항을 무시하고 중력만 작용할 때, 수평 방향으로 던진 물체의 수평 성분 운동은?",
-            "explanation": "중력은 연직 방향으로만 작용하므로 수평 가속도는 0입니다. 따라서 수평 속도는 처음 값으로 일정합니다."
-          },
-          "similarProblem": {
-            "inputMode": "choice",
-            "choices": [
-              "0 m/s",
-              "21 m/s",
-              "3.5 m/s",
-              "7 m/s"
-            ],
-            "correctChoice": 4,
-            "answer": "7 m/s",
-            "acceptableAnswers": [
-              "4",
-              "7 m/s"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "동형 연습: 충분히 높은 곳에서 물체를 수평 속력 7 m/s로 던졌습니다. 공기 저항을 무시하면, 아직 공중에 있는 3초 후 물체의 수평 속력은?",
-            "explanation": "수평 가속도가 0이므로 수평 속도는 시간에 관계없이 7 m/s로 일정합니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 4,
-          "maxPoints": 5,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "포물선 운동",
-          "topic": "빈칸 4 · 연직 방향의 운동",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              631,
-              1006,
-              50
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 처음 속력이 v₀이고 수평과 0°<θ<90°를 이루며 비스듬히 위로 던진 경우입니다.",
-          "answer": "연직 상방",
-          "answerHeading": "제공 해설 대조·검수 정답",
-          "explanation": [
-            "초기 속도의 연직 성분은 v₀sinθ이고 처음에는 위쪽을 향합니다.",
-            "연직 방향에는 아래쪽 중력가속도만 작용하므로 연직 상방 운동과 같은 운동을 합니다.",
-            "수평으로 던진 운동의 초기 연직 속도는 0이므로 원문의 비스듬한 상방 투사와 구분합니다."
-          ],
-          "formulas": [
-            "vᵧ=v₀sinθ−gt",
-            "y=v₀sinθ·t−gt²/2 (위쪽 +)"
-          ],
-          "commonMistakes": [
-            "중력이 작용한다는 이유만으로 초기 연직 속도를 무시함"
-          ],
-          "rubric": [
-            {
-              "criterion": "사이트 환산 · 연직 운동의 분류",
-              "points": 5
-            }
-          ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 빈칸 4 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 빈칸 4 → 웹 4번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "빈칸 4",
-          "originalRetry": {
-            "inputMode": "choice",
-            "choices": [
-              "처음 연직 속도가 0인 자유 낙하 운동",
-              "연직 방향 등속도 운동",
-              "처음 위로 움직였다가 아래로 움직이는 연직 상방 운동",
-              "연직 방향 등속 원운동"
-            ],
-            "correctChoice": 3,
-            "answer": "처음 위로 움직였다가 아래로 움직이는 연직 상방 운동",
-            "acceptableAnswers": [
-              "3",
-              "처음 위로 움직였다가 아래로 움직이는 연직 상방 운동"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "원문 빈칸 4번 복습: 공기 저항을 무시하고 g가 일정할 때, 수평면과 0°보다 크고 90°보다 작은 각도로 위쪽으로 던진 물체의 연직 성분 운동에 해당하는 것은?",
-            "explanation": "처음 연직 속도는 v₀sinθ>0이고 연직 가속도는 아래쪽으로 g입니다. 따라서 연직 성분은 위로 출발하는 연직 상방 운동과 같습니다."
-          },
-          "similarProblem": {
-            "inputMode": "choice",
-            "choices": [
-              "10 m/s, 위쪽",
-              "10 m/s, 아래쪽",
-              "20 m/s, 위쪽",
-              "0 m/s"
-            ],
-            "correctChoice": 1,
-            "answer": "10 m/s, 위쪽",
-            "acceptableAnswers": [
-              "1",
-              "10 m/s, 위쪽"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "동형 연습: 공을 수평면과 30°의 각도로 위쪽으로 20 m/s의 속력으로 던졌습니다. 공기 저항을 무시할 때, 던진 직후 연직 속도의 크기와 방향은?",
-            "explanation": "처음 연직 속도는 v₀sin30°=20×1/2=10 m/s이며 위쪽입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 5,
-          "maxPoints": 5,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "연직 상방 운동",
-          "topic": "O/X 1 · 최고점의 속력",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              850,
-              1140,
-              50
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다.",
-          "answer": "O",
-          "answerHeading": "제공 해설 대조·검수 정답",
-          "explanation": [
-            "정확히 연직 위로 던진 물체는 최고점에서 상승에서 하강으로 전환됩니다.",
-            "그 순간 연직 속도가 0이고 수평 속도 성분도 없으므로 속력은 0 m/s입니다.",
-            "속력이 0이어도 중력가속도는 아래로 g이며 힘이 사라지는 것은 아닙니다."
-          ],
-          "formulas": [
-            "v=v₀−gt",
-            "최고점에서 v=0, a=−g (위쪽 +)"
-          ],
-          "commonMistakes": [
-            "최고점에서 속도와 가속도가 모두 0이라고 생각함"
-          ],
-          "rubric": [
-            {
-              "criterion": "사이트 환산 · O/X 판단",
-              "points": 5
-            }
-          ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 O/X 1 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 O/X 1 → 웹 5번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "O/X 1",
-          "originalRetry": {
-            "inputMode": "choice",
-            "choices": [
-              "X, 속력은 처음 속력과 같다.",
-              "O, 가속도도 0이다.",
-              "X, 속력은 g이다.",
-              "O, 가속도는 아래쪽으로 g이다."
-            ],
-            "correctChoice": 4,
-            "answer": "O, 가속도는 아래쪽으로 g이다.",
-            "acceptableAnswers": [
-              "4",
-              "O, 가속도는 아래쪽으로 g이다."
-            ],
-            "displayMode": "choice-card",
-            "prompt": "원문 O/X 1번 복습: 공기 저항을 무시하고 중력 가속도 크기가 g로 일정합니다. “연직 위로 던진 물체는 최고점에서 속력이 0 m/s이다.”의 판단과 그때의 가속도로 옳은 것은?",
-            "explanation": "최고점에서는 속도가 순간적으로 0이지만 중력은 계속 작용합니다. 가속도는 연직 아래 방향으로 g입니다."
-          },
-          "similarProblem": {
-            "inputMode": "choice",
-            "choices": [
-              "0 m/s, 0 m/s²",
-              "0 m/s, 10 m/s²",
-              "10 m/s, 0 m/s²",
-              "10 m/s, 10 m/s²"
-            ],
-            "correctChoice": 2,
-            "answer": "0 m/s, 10 m/s²",
-            "acceptableAnswers": [
-              "2",
-              "0 m/s, 10 m/s²"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "동형 연습: 공을 연직 위로 던졌습니다. 공기 저항은 무시하고 g=10 m/s²입니다. 최고점에서 공의 속력과 가속도 크기를 순서대로 고르면?",
-            "explanation": "최고점에서 속력은 0입니다. 중력에 의한 가속도는 계속 아래쪽으로 작용하므로 크기는 10 m/s²입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 6,
-          "maxPoints": 5,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "연직 상방 운동",
-          "topic": "O/X 2 · 최고점 도달 시간의 구별",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              900,
-              1140,
-              98
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다.",
-          "answer": "X — 최고점 도달 시간은 tₘ=v₀/g입니다.",
-          "answerHeading": "제공 해설 대조·검수 정답",
-          "explanation": [
-            "최고점 조건 v=0을 v=v₀−gt에 대입하면 tₘ=v₀/g입니다.",
-            "원문에 제시된 2v₀/g는 같은 높이로 돌아오는 전체 왕복 시간입니다."
-          ],
-          "formulas": [
-            "tₘ=v₀/g",
-            "T=2v₀/g (같은 높이로 돌아올 때)"
-          ],
-          "commonMistakes": [
-            "최고점까지의 시간과 전체 체공 시간을 뒤바꿈"
-          ],
-          "rubric": [
-            {
-              "criterion": "사이트 환산 · O/X 판단",
-              "points": 5
-            }
-          ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 O/X 2 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 O/X 2 → 웹 6번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "O/X 2",
-          "originalRetry": {
-            "inputMode": "choice",
-            "choices": [
-              "O, tₘ=2v₀/g",
-              "X, tₘ=v₀/(2g)",
-              "X, tₘ=v₀/g",
-              "O, tₘ=v₀/g"
-            ],
-            "correctChoice": 3,
-            "answer": "X, tₘ=v₀/g",
-            "acceptableAnswers": [
-              "3",
-              "X, tₘ=v₀/g"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "원문 O/X 2번 복습: 공기 저항을 무시하고 g가 일정합니다. 처음 속력 v₀>0으로 연직 위로 던진 물체의 최고점 도달 시간에 관한 “tₘ=2v₀/g”의 판단과 올바른 식은?",
-            "explanation": "위쪽을 양의 방향으로 정하면 v=v₀−gt입니다. 최고점에서 v=0이므로 tₘ=v₀/g입니다. 2v₀/g는 출발 높이로 돌아오는 전체 시간입니다."
-          },
-          "similarProblem": {
-            "inputMode": "choice",
-            "choices": [
-              "2.4초",
-              "4.8초",
-              "1.2초",
-              "24초"
-            ],
-            "correctChoice": 1,
-            "answer": "2.4초",
-            "acceptableAnswers": [
-              "1",
-              "2.4초"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "동형 연습: 공기 저항을 무시하고 g=10 m/s²입니다. 공을 연직 위로 24 m/s의 속력으로 던졌을 때 최고점 도달 시간은?",
-            "explanation": "tₘ=v₀/g=24/10=2.4초입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 7,
-          "maxPoints": 5,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "수평 투사",
-          "topic": "O/X 3 · 수평 투사와 자유낙하의 도달 시간",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              997,
-              1140,
-              48
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 같은 높이에서 초기 연직 속도가 0인 두 물체를 비교합니다.",
-          "answer": "O",
-          "answerHeading": "제공 해설 대조·검수 정답",
-          "explanation": [
-            "수평으로 던진 물체와 정지 상태에서 놓은 물체는 초기 연직 속도가 모두 0입니다.",
-            "같은 높이 h에서 출발하면 두 물체의 연직 운동은 h=gt²/2로 동일합니다.",
-            "따라서 지면 도달 시간은 모두 √(2h/g)이며 수평 속력에는 영향을 받지 않습니다."
-          ],
-          "formulas": [
-            "h=gt²/2",
-            "t=√(2h/g)"
-          ],
-          "commonMistakes": [
-            "수평으로 더 빠르게 던지면 더 오래 떠 있다고 생각함"
-          ],
-          "rubric": [
-            {
-              "criterion": "사이트 환산 · O/X 판단",
-              "points": 5
-            }
-          ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 O/X 3 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 O/X 3 → 웹 7번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "O/X 3",
-          "originalRetry": {
-            "inputMode": "choice",
-            "choices": [
-              "O, 처음 연직 속도와 연직 가속도 및 낙하 높이가 같기 때문이다.",
-              "X, 수평으로 던진 물체가 반드시 먼저 닿는다.",
-              "X, 정지 상태에서 놓은 물체가 반드시 먼저 닿는다.",
-              "O, 두 물체의 이동 경로 길이가 같기 때문이다."
-            ],
-            "correctChoice": 1,
-            "answer": "O, 처음 연직 속도와 연직 가속도 및 낙하 높이가 같기 때문이다.",
-            "acceptableAnswers": [
-              "1",
-              "O, 처음 연직 속도와 연직 가속도 및 낙하 높이가 같기 때문이다."
-            ],
-            "displayMode": "choice-card",
-            "prompt": "원문 O/X 3번 복습: 같은 높이에서 한 물체는 수평으로 던지고 다른 물체는 정지 상태에서 동시에 놓습니다. 공기 저항을 무시하고 g가 일정할 때, 두 물체가 같은 수평 지면에 닿는 시간이 같다는 판단으로 옳은 것은?",
-            "explanation": "두 물체의 처음 연직 속도는 모두 0이고, 연직 가속도와 낙하 높이도 같습니다. 연직 운동이 같으므로 지면 도달 시간이 같습니다."
-          },
-          "similarProblem": {
-            "inputMode": "choice",
-            "choices": [
-              "A: 4초, B: 8초",
-              "A: 8초, B: 4초",
-              "A: 2초, B: 4초",
-              "A: 4초, B: 4초"
-            ],
-            "correctChoice": 4,
-            "answer": "A: 4초, B: 4초",
-            "acceptableAnswers": [
-              "4",
-              "A: 4초, B: 4초"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "동형 연습: 지면에서 80 m 높이의 같은 지점에서 A는 수평으로 12 m/s로 던지고 B는 가만히 놓았습니다. 공기 저항을 무시하고 g=10 m/s²일 때, A와 B가 지면에 닿는 시간은 각각 얼마인가요?",
-            "explanation": "두 물체 모두 처음 연직 속도가 0이므로 t=√(2h/g)=√(160/10)=4초입니다. 수평 속력은 낙하 시간에 영향을 주지 않습니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 8,
-          "maxPoints": 5,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "포물선 운동",
-          "topic": "O/X 4 · 최고점에서 남는 속도 성분",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              1044,
-              1140,
-              46
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 처음 속력이 v₀이고 수평과 0°<θ<90°를 이루며 비스듬히 위로 던진 경우입니다.",
-          "answer": "X — 최고점에서도 수평 속도 v₀cosθ가 남습니다.",
-          "answerHeading": "제공 해설 대조·검수 정답",
-          "explanation": [
-            "포물선 운동의 최고점에서는 연직 속도 성분만 0이 됩니다.",
-            "수평 방향의 등속도 운동은 계속되므로 최고점 속력은 v₀cosθ입니다.",
-            "정확히 연직으로 던지는 θ=90°의 경우와 구분합니다."
-          ],
-          "formulas": [
-            "vₓ=v₀cosθ",
-            "최고점에서 vᵧ=0, |v|=v₀cosθ"
-          ],
-          "commonMistakes": [
-            "연직 성분이 0이라는 조건을 전체 속력이 0이라는 뜻으로 해석함"
-          ],
-          "rubric": [
-            {
-              "criterion": "사이트 환산 · O/X 판단",
-              "points": 5
-            }
-          ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 O/X 4 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 O/X 4 → 웹 8번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "O/X 4",
-          "originalRetry": {
-            "inputMode": "choice",
-            "choices": [
-              "O, 최고점에서는 모든 속도 성분이 0이다.",
-              "X, 최고점에서는 수평 속도만 남아 속력은 v₀cosθ이다.",
-              "X, 최고점에서는 연직 속도만 남아 속력은 v₀sinθ이다.",
-              "X, 최고점 속력은 처음 속력 v₀와 항상 같다."
-            ],
-            "correctChoice": 2,
-            "answer": "X, 최고점에서는 수평 속도만 남아 속력은 v₀cosθ이다.",
-            "acceptableAnswers": [
-              "2",
-              "X, 최고점에서는 수평 속도만 남아 속력은 v₀cosθ이다."
-            ],
-            "displayMode": "choice-card",
-            "prompt": "원문 O/X 4번 복습: 공기 저항을 무시하고 g가 일정합니다. 처음 속력 v₀>0, 발사각 0°<θ<90°인 포물선 운동에서 “최고점의 속력은 0이다.”의 판단과 실제 최고점 속력은?",
-            "explanation": "최고점에서 연직 속도만 0이고 수평 속도 v₀cosθ는 남습니다. θ가 90°보다 작으므로 최고점 속력은 0보다 큽니다."
-          },
-          "similarProblem": {
-            "inputMode": "choice",
-            "choices": [
-              "0 m/s",
-              "20 m/s",
-              "10 m/s",
-              "10√3 m/s"
-            ],
-            "correctChoice": 3,
-            "answer": "10 m/s",
-            "acceptableAnswers": [
-              "3",
-              "10 m/s"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "동형 연습: 공을 수평면과 60°의 각도로 위쪽으로 20 m/s의 속력으로 던졌습니다. 공기 저항을 무시할 때 최고점에서의 속력은?",
-            "explanation": "최고점에서는 연직 속도가 0입니다. 수평 속도는 20cos60°=10 m/s이므로 최고점 속력은 10 m/s입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 9,
-          "maxPoints": 5,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "포물선 운동",
-          "topic": "O/X 5 · 최고점 높이와 체공 시간",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              1090,
-              1140,
-              48
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 발사점과 착지점은 같은 높이이고, 최고점 높이는 공통 발사 높이로부터 잽니다.",
-          "answer": "O",
-          "answerHeading": "제공 해설 대조·검수 정답",
-          "explanation": [
-            "초기 연직 속력을 u라고 두면 최고점 높이는 H=u²/(2g)입니다.",
-            "같은 높이로 돌아오는 체공 시간은 T=2u/g입니다.",
-            "u를 소거하면 T=2√(2H/g)이므로 최고점 높이가 클수록 체공 시간이 깁니다."
-          ],
-          "formulas": [
-            "H=(v₀sinθ)²/(2g)",
-            "T=2v₀sinθ/g=2√(2H/g)"
-          ],
-          "commonMistakes": [
-            "서로 다른 발사 높이나 착지 높이의 운동까지 같은 식으로 비교함"
-          ],
-          "rubric": [
-            {
-              "criterion": "사이트 환산 · O/X 판단",
-              "points": 5
-            }
-          ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 O/X 5 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 O/X 5 → 웹 9번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "O/X 5",
-          "originalRetry": {
-            "inputMode": "choice",
-            "choices": [
-              "X, 최고점 높이가 달라도 전체 체공 시간은 항상 같다.",
-              "O, 전체 체공 시간은 최고점에서 내려오는 시간과 같다.",
-              "X, 최고점이 높아질수록 전체 체공 시간은 짧아진다.",
-              "O, 같은 높이로 돌아올 때 전체 체공 시간은 최고점 높이의 제곱근에 비례한다."
-            ],
-            "correctChoice": 4,
-            "answer": "O, 같은 높이로 돌아올 때 전체 체공 시간은 최고점 높이의 제곱근에 비례한다.",
-            "acceptableAnswers": [
-              "4",
-              "O, 같은 높이로 돌아올 때 전체 체공 시간은 최고점 높이의 제곱근에 비례한다."
-            ],
-            "displayMode": "choice-card",
-            "prompt": "원문 O/X 5번 복습: 공기 저항을 무시하고 g가 일정하며, 공은 수평 지면에서 위로 발사되어 같은 높이의 지면에 착지합니다. 지면으로부터 최고점 높이를 H라고 할 때, “H가 클수록 전체 체공 시간 T가 크다.”의 판단과 관계식은?",
-            "explanation": "최고점에서 지면까지 내려오는 데 √(2H/g)가 걸립니다. 상승 시간과 하강 시간이 같으므로 전체 시간은 T=2√(2H/g)입니다."
-          },
-          "similarProblem": {
-            "inputMode": "choice",
-            "choices": [
-              "3/2",
-              "9/4",
-              "2/3",
-              "4/9"
-            ],
-            "correctChoice": 1,
-            "answer": "3/2",
-            "acceptableAnswers": [
-              "1",
-              "3/2"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "동형 연습: 같은 수평 지면에서 두 공 A, B를 위로 발사하여 같은 지면에 착지시킵니다. 공기 저항은 무시하고 g는 같습니다. 최고점 높이가 H_A=20 m, H_B=45 m일 때 전체 체공 시간의 비 T_B/T_A는?",
-            "explanation": "같은 발사·착지 높이에서는 T=2√(2H/g)이므로 T_B/T_A=√(45/20)=3/2입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 10,
-          "maxPoints": 5,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "포물선 운동",
-          "topic": "O/X 6 · 최고점 높이와 수평 도달 거리",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              1137,
-              1140,
-              49
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 같은 초기 속력으로 발사각을 바꾸며, 발사점과 착지점의 높이는 같습니다.",
-          "answer": "X",
-          "answerHeading": "제공 해설 대조·검수 정답",
-          "explanation": [
-            "수평 도달 거리는 수평 속력과 체공 시간의 곱입니다.",
-            "같은 초기 속력에서 발사각을 45°보다 크게 하면 최고점은 높아지지만 수평 속력은 감소하고 사거리는 짧아집니다.",
-            "예를 들어 30°와 60°는 사거리가 같지만 60°에서의 최고점 높이는 더 큽니다. 따라서 높이만으로 사거리 증가를 판단할 수 없습니다."
-          ],
-          "formulas": [
-            "R=v₀²sin(2θ)/g",
-            "H=v₀²sin²θ/(2g)",
-            "R=vₓT"
-          ],
-          "commonMistakes": [
-            "체공 시간이 길어지면 수평 속력과 무관하게 사거리도 늘어난다고 생각함"
-          ],
-          "rubric": [
-            {
-              "criterion": "사이트 환산 · O/X 판단",
-              "points": 5
-            }
-          ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 O/X 6 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 O/X 6 → 웹 10번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "O/X 6",
-          "originalRetry": {
-            "inputMode": "choice",
-            "choices": [
-              "O, 체공 시간이 길어지면 수평 속도도 항상 커진다.",
-              "O, 최고점이 높을수록 수평 도달 거리는 무조건 커진다.",
-              "X, 높이가 커져도 수평 속도가 작아져 도달 거리가 줄 수 있다.",
-              "X, 최고점 높이와 수평 도달 거리는 모두 발사각과 무관하다."
-            ],
-            "correctChoice": 3,
-            "answer": "X, 높이가 커져도 수평 속도가 작아져 도달 거리가 줄 수 있다.",
-            "acceptableAnswers": [
-              "3",
-              "X, 높이가 커져도 수평 속도가 작아져 도달 거리가 줄 수 있다."
-            ],
-            "displayMode": "choice-card",
-            "prompt": "원문 O/X 6번 복습: 공기 저항을 무시하고 g가 일정합니다. 같은 처음 속력으로 수평 지면에서 발사하여 같은 높이에 착지시키되 발사각은 0°<θ<90°에서 바꿉니다. “최고점이 높을수록 수평 도달 거리도 항상 크다.”의 판단으로 옳은 것은?",
-            "explanation": "최고점 높이는 H=v₀²sin²θ/(2g), 도달 거리는 R=v₀²sin2θ/g입니다. θ가 45°에서 더 커지면 H는 커지지만 R은 작아집니다."
-          },
-          "similarProblem": {
-            "inputMode": "choice",
-            "choices": [
-              "(1, 3)",
-              "(3, 1)",
-              "(3, 3)",
-              "(1, 1)"
-            ],
-            "correctChoice": 2,
-            "answer": "(3, 1)",
-            "acceptableAnswers": [
-              "2",
-              "(3, 1)"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "동형 연습: 공기 저항을 무시하고 g가 일정합니다. 같은 처음 속력으로 같은 수평 지면에서 각각 30°와 60°로 발사한 공이 같은 높이에 착지합니다. 최고점 높이와 수평 도달 거리의 비 (H₆₀/H₃₀, R₆₀/R₃₀)는?",
-            "explanation": "H는 sin²θ에 비례하므로 H₆₀/H₃₀=(3/4)/(1/4)=3입니다. R은 sin2θ에 비례하며 sin120°=sin60°이므로 도달 거리는 같습니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 11,
           "maxPoints": 10,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "낙하 운동",
-          "topic": "암기 1 · 자유낙하의 거리와 속도",
+          "unit": "자유낙하",
+          "topic": "낙하거리와 시간의 제곱 관계",
           "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              1355,
-              926,
-              98
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 처음에 정지해 있으며, 속도의 양의 방향은 연직 아래로 정합니다.",
-          "answer": "s=gt²/2, v=gt",
-          "answerHeading": "제공 해설 대조·검수 정답",
+          "answer": "나머지 높이를 낙하하는 데 걸리는 시간 = T",
           "explanation": [
-            "등가속도 운동식 s=v₀t+gt²/2, v=v₀+gt에 v₀=0을 대입합니다.",
-            "따라서 낙하 거리는 s=gt²/2이고 아래쪽을 +로 정한 속도는 v=gt입니다.",
-            "속도를 위쪽 +라고 명시하고 −gt로 쓴 답은 물리적으로 동등하므로 수동 채점에서 인정할 수 있습니다. 낙하 거리 s는 음수가 아닙니다."
+            "정지 상태에서 자유낙하하므로 처음 T 동안 내려온 거리는 gT²/2=H/4입니다.",
+            "전체 높이 H를 낙하하는 시간을 t라고 하면 gt²/2=H입니다. 두 식의 비를 취하면 t²/T²=4이므로 t=2T입니다.",
+            "질문은 전체 낙하시간이 아니라 처음 H/4를 지난 뒤의 추가 시간입니다. 따라서 2T−T=T입니다."
           ],
           "formulas": [
             "s=gt²/2",
-            "v=gt (아래쪽 +)"
+            "t∝√s (정지 출발, 일정한 g)",
+            "추가 시간=전체 시간−이미 지난 시간"
           ],
           "commonMistakes": [
-            "낙하 거리 식에서 1/2를 누락함",
-            "좌표축의 방향을 정하지 않고 속도의 부호를 사용함"
+            "거리의 비 1:3을 시간의 비로 그대로 사용함",
+            "전체 낙하시간 2T를 추가 시간으로 답함"
           ],
           "rubric": [
             {
-              "criterion": "사이트 환산 · 낙하 거리 식",
-              "points": 5
-            },
-            {
-              "criterion": "사이트 환산 · 속도 식",
-              "points": 5
+              "criterion": "전체 낙하시간을 구하고 이미 지난 시간을 빼기",
+              "points": 10
             }
           ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 암기 1 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 암기 1 → 웹 11번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "암기 1",
           "originalRetry": {
             "inputMode": "choice",
             "choices": [
-              "s=gt², v=gt",
-              "s=gt²/2, v=2gt",
-              "s=gt, v=gt²/2",
-              "s=gt²/2, v=gt"
+              "T",
+              "T/2",
+              "2T",
+              "3T"
             ],
-            "correctChoice": 4,
-            "answer": "s=gt²/2, v=gt",
+            "correctChoice": 1,
+            "answer": "T",
             "acceptableAnswers": [
-              "4",
-              "s=gt²/2, v=gt"
+              "1",
+              "T"
             ],
             "displayMode": "choice-card",
-            "prompt": "원문 암기 1번 복습: 정지 상태에서 놓은 물체가 중력만 받아 낙하합니다. g는 일정하고 아래쪽을 양의 방향으로 정합니다. 놓은 뒤 시간 t 동안 낙하한 거리 s와 속도 v의 식은?",
-            "explanation": "처음 속도가 0인 등가속도 운동이므로 s=v₀t+gt²/2=gt²/2, v=v₀+gt=gt입니다."
+            "prompt": "원문 3번: 처음 H/4 낙하에 T가 걸렸을 때 나머지 낙하시간은?"
           },
           "similarProblem": {
             "inputMode": "choice",
             "choices": [
-              "45 m, 30 m/s",
-              "30 m, 45 m/s",
-              "90 m, 30 m/s",
-              "45 m, 60 m/s"
+              "T",
+              "3T",
+              "8T",
+              "2T"
             ],
-            "correctChoice": 1,
-            "answer": "45 m, 30 m/s",
+            "correctChoice": 4,
+            "answer": "2T",
             "acceptableAnswers": [
-              "1",
-              "45 m, 30 m/s"
+              "4",
+              "2T"
             ],
             "displayMode": "choice-card",
-            "prompt": "동형 연습: 충분히 높은 곳에서 공을 가만히 놓았습니다. 공기 저항을 무시하고 g=10 m/s²일 때, 3초 동안 낙하한 거리와 3초 후 속력은?",
-            "explanation": "s=gt²/2=10×3²/2=45 m이고, v=gt=10×3=30 m/s입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 12,
-          "maxPoints": 5,
+            "prompt": "높이 H에서 물체를 가만히 놓았습니다. 공기저항을 무시할 때 처음 H/9만큼 낙하하는 데 T가 걸렸다면, 나머지 8H/9를 낙하하는 데 걸리는 시간은?",
+            "explanation": "낙하거리는 시간의 제곱에 비례하므로 전체 H를 낙하하는 데 3T가 걸립니다. 추가 시간은 3T−T=2T입니다.",
+            "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+          },
           "type": "subjective",
           "inputMode": "achievement",
-          "unit": "낙하 운동",
-          "topic": "암기 2 · 낙하 높이와 소요 시간",
-          "difficulty": "하",
           "image": {
             "page": 1,
             "crop": [
-              272,
-              1452,
-              1262,
-              49
+              831,
+              775,
+              747,
+              225
             ]
           },
+          "retryMode": "multiple-choice",
           "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 높이 h>0에서 정지 상태로 놓은 물체입니다.",
-          "answer": "t=√(2h/g)",
-          "answerHeading": "제공 해설 대조·검수 정답",
+          "correctionNote": "",
+          "sourceText": "원본 문제지 PDF의 3번 문제·수식·그림을 그대로 추출했습니다.",
+          "sourceNote": "원본 물리2-Quiz3회차.pdf 1쪽, 200dpi 직접 렌더링."
+        },
+        {
+          "no": 4,
+          "maxPoints": 10,
+          "unit": "수평 투사",
+          "topic": "낙하시간으로 초기 수평속력 구하기",
+          "difficulty": "하",
+          "answer": "초기속력 v₀=10 m/s (수평 방향)",
           "explanation": [
-            "낙하 거리 식 s=gt²/2에 s=h를 대입합니다.",
-            "t²=2h/g에서 물리적으로 가능한 양의 시간만 택하면 t=√(2h/g)입니다."
+            "이 문항은 4·5번의 공통 지문을 사용합니다. 높이 19.6 m, 수평거리 20 m, 중력가속도 9.8 m/s²입니다.",
+            "수평으로 던졌으므로 초기 연직속도는 0입니다. 19.6=(1/2)×9.8×t²에서 낙하시간 t=2 s입니다.",
+            "수평속도는 일정하므로 20=v₀×2입니다. 따라서 v₀=10 m/s입니다."
           ],
           "formulas": [
             "h=gt²/2",
-            "t=√(2h/g)"
+            "t=√(2h/g)",
+            "R=v₀t"
           ],
           "commonMistakes": [
-            "제곱근을 빠뜨림",
-            "시간을 높이에 단순 비례한다고 생각함"
+            "문제의 g=9.8 m/s²를 다른 문항의 10 m/s²로 바꿈",
+            "수평속력으로 낙하시간을 구하려 함"
           ],
           "rubric": [
             {
-              "criterion": "사이트 환산 · 낙하 시간 식",
-              "points": 5
+              "criterion": "연직 낙하시간을 구하고 수평거리로 초기속력 계산",
+              "points": 10
             }
           ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 암기 2 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 암기 2 → 웹 12번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "암기 2",
           "originalRetry": {
             "inputMode": "choice",
             "choices": [
-              "h/g",
-              "√(2h/g)",
-              "√(h/(2g))",
-              "2h/g"
+              "5 m/s",
+              "10√2 m/s",
+              "20 m/s",
+              "10 m/s"
             ],
-            "correctChoice": 2,
-            "answer": "√(2h/g)",
+            "correctChoice": 4,
+            "answer": "10 m/s",
             "acceptableAnswers": [
-              "2",
-              "√(2h/g)"
+              "4",
+              "10 m/s"
             ],
             "displayMode": "choice-card",
-            "prompt": "원문 암기 2번 복습: 공기 저항을 무시하고 g가 일정할 때, 정지 상태에서 놓은 물체가 높이 h>0만큼 낙하하는 데 걸리는 시간은?",
-            "explanation": "h=gt²/2를 t에 대해 풀고 양의 시간을 택하면 t=√(2h/g)입니다."
+            "prompt": "원문 4번: 높이 19.6 m에서 수평으로 던져 20 m 전방에 떨어진 공의 초기속력은?"
           },
           "similarProblem": {
             "inputMode": "choice",
             "choices": [
-              "2.5초",
-              "10초",
-              "5초",
-              "12.5초"
+              "8 m/s",
+              "12 m/s",
+              "16 m/s",
+              "24 m/s"
             ],
-            "correctChoice": 3,
-            "answer": "5초",
+            "correctChoice": 1,
+            "answer": "8 m/s",
             "acceptableAnswers": [
-              "3",
-              "5초"
+              "1",
+              "8 m/s"
             ],
             "displayMode": "choice-card",
-            "prompt": "동형 연습: 지면에서 125 m 높이에서 공을 가만히 놓았습니다. 공기 저항을 무시하고 g=10 m/s²일 때 지면에 닿는 시간은?",
-            "explanation": "t=√(2h/g)=√(250/10)=√25=5초입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 13,
-          "maxPoints": 10,
+            "prompt": "높이 45 m에서 수평으로 던진 공이 24 m 전방 지면에 떨어집니다. 공기저항을 무시하고 g=10 m/s²일 때 초기속력은?",
+            "explanation": "45=5t²에서 t=3 s입니다. 수평속력은 24/3=8 m/s입니다.",
+            "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+          },
           "type": "subjective",
           "inputMode": "achievement",
-          "unit": "연직 상방 운동",
-          "topic": "암기 3 · 최고점과 지면 도달 시간",
-          "difficulty": "하",
           "image": {
             "page": 1,
             "crop": [
-              272,
-              1500,
-              1028,
-              112
+              831,
+              1166,
+              747,
+              587
             ]
           },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 지면에서 연직 위로 던져 출발점과 같은 높이의 지면으로 돌아옵니다.",
-          "answer": "tₘ=v₀/g, T=2v₀/g",
-          "answerHeading": "제공 해설 대조·검수 정답",
-          "explanation": [
-            "최고점에서 v=v₀−gt=0이므로 tₘ=v₀/g입니다.",
-            "출발 높이로 돌아오는 조건 y=v₀t−gt²/2=0의 t>0인 해는 T=2v₀/g입니다.",
-            "원본의 지면 도달 시간 식은 출발점과 착지점 높이가 같은 경우에 적용합니다."
-          ],
-          "formulas": [
-            "tₘ=v₀/g",
-            "T=2v₀/g"
-          ],
-          "commonMistakes": [
-            "두 시간에 같은 식을 씀",
-            "높은 건물 위에서 던진 경우에도 T=2v₀/g를 적용함"
-          ],
-          "rubric": [
-            {
-              "criterion": "사이트 환산 · 최고점 도달 시간 식",
-              "points": 5
-            },
-            {
-              "criterion": "사이트 환산 · 지면 도달 시간 식",
-              "points": 5
-            }
-          ],
           "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 암기 3 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 암기 3 → 웹 13번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "암기 3",
-          "originalRetry": {
-            "inputMode": "choice",
-            "choices": [
-              "tₘ=v₀/g, T=2v₀/g",
-              "tₘ=2v₀/g, T=v₀/g",
-              "tₘ=v₀/g, T=v₀/g",
-              "tₘ=v₀/(2g), T=v₀/g"
-            ],
-            "correctChoice": 1,
-            "answer": "tₘ=v₀/g, T=2v₀/g",
-            "acceptableAnswers": [
-              "1",
-              "tₘ=v₀/g, T=2v₀/g"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "원문 암기 3번 복습: 공기 저항을 무시하고 g가 일정합니다. 지면에서 공을 연직 위로 처음 속력 v₀>0으로 던진 뒤 같은 지면에 돌아옵니다. 최고점 도달 시간 tₘ과 지면 도달 시간 T의 식은?",
-            "explanation": "최고점에서는 v₀−gtₘ=0이므로 tₘ=v₀/g입니다. 같은 높이로 돌아오는 시간은 상승 시간의 두 배이므로 T=2v₀/g입니다."
-          },
-          "similarProblem": {
-            "inputMode": "choice",
-            "choices": [
-              "6초, 12초",
-              "1.5초, 3초",
-              "6초, 3초",
-              "3초, 6초"
-            ],
-            "correctChoice": 4,
-            "answer": "3초, 6초",
-            "acceptableAnswers": [
-              "4",
-              "3초, 6초"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "동형 연습: 지면에서 공을 연직 위로 30 m/s의 속력으로 던졌습니다. 공기 저항을 무시하고 g=10 m/s²일 때, 최고점에 도달하는 시간과 같은 지면으로 돌아오는 시간은?",
-            "explanation": "tₘ=v₀/g=30/10=3초, T=2v₀/g=60/10=6초입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "sourceText": "원본 문제지 PDF의 4번 문제·수식·그림을 그대로 추출했습니다.",
+          "sourceNote": "원본 물리2-Quiz3회차.pdf 1쪽, 200dpi 직접 렌더링."
         },
         {
-          "no": 14,
+          "no": 5,
           "maxPoints": 10,
-          "type": "subjective",
-          "inputMode": "achievement",
           "unit": "수평 투사",
-          "topic": "암기 4 · 수평·연직 변위",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              1611,
-              1209,
-              97
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 출발점을 원점으로 하고, x축은 던진 수평 방향, y축은 원문처럼 연직 아래 방향을 +로 정합니다.",
-          "answer": "x=v₀t, y=gt²/2",
-          "answerHeading": "제공 해설 대조·검수 정답",
+          "topic": "도착 순간의 수평·연직 속도 성분",
+          "difficulty": "중",
+          "reviewStatus": "corrected",
+          "correctionNote": "해설지에 재수록된 질문 문장이 문제지와 다릅니다. 이 문항은 문제지에 따라 x·y 방향 속도 성분의 크기를 각각 답합니다. 원본 PDF는 그대로 보존했습니다.",
+          "answer": "x축 방향 속도 크기 = 10 m/s\ny축 방향 속도 크기 = 19.6 m/s (아래쪽)",
           "explanation": [
-            "수평 방향의 가속도는 0이므로 x=v₀t입니다.",
-            "초기 연직 속도는 0이고 아래쪽 가속도는 g이므로 y=gt²/2입니다.",
-            "두 성분의 시간 t는 같은 시각을 뜻합니다."
+            "4·5번의 공통 지문에서 낙하시간은 2 s이고 초기 수평속력은 10 m/s입니다.",
+            "수평방향 가속도는 0이므로 도착할 때에도 x축 방향 속도 크기는 10 m/s입니다.",
+            "초기 연직속도는 0이므로 도착할 때 y축 방향 속도 크기는 gt=9.8×2=19.6 m/s입니다. 위쪽을 +y로 정하면 속도 성분 자체는 vᵧ=−19.6 m/s입니다.",
+            "문제지는 전체 속력 한 개가 아니라 두 성분의 크기를 각각 묻습니다. 원본 해설의 질문 문장은 전체 속력 v를 묻는 형태로 남아 있지만, 제시된 두 성분 값은 문제지에 대한 답과 일치합니다."
           ],
           "formulas": [
-            "x=v₀t",
-            "y=gt²/2 (아래쪽 +)"
+            "vₓ=v₀ₓ=10 m/s",
+            "|vᵧ|=gt=19.6 m/s",
+            "vᵧ=−gt (위쪽을 양의 방향으로 정한 경우)"
           ],
           "commonMistakes": [
-            "수평 변위에 중력가속도 항을 더함",
-            "원문에 명시된 아래쪽 양의 y축을 놓침"
+            "속도 성분의 크기를 물었는데 음수만 적음",
+            "수평속력이 낙하하며 커진다고 생각함",
+            "두 성분 대신 합성 속력 한 개만 답함"
           ],
           "rubric": [
             {
-              "criterion": "사이트 환산 · 수평 변위 식",
-              "points": 5
-            },
-            {
-              "criterion": "사이트 환산 · 연직 변위 식",
-              "points": 5
+              "criterion": "도착 순간 x·y 방향 속도 성분의 크기를 모두 계산",
+              "points": 10
             }
           ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 암기 4 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 암기 4 → 웹 14번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "암기 4",
           "originalRetry": {
             "inputMode": "choice",
             "choices": [
-              "x=gt²/2, y=v₀t",
-              "x=v₀t, y=−gt²/2",
-              "x=v₀t, y=gt²/2",
-              "x=v₀t, y=gt²"
+              "(10 m/s, 9.8 m/s)",
+              "(10 m/s, 19.6 m/s)",
+              "(20 m/s, 19.6 m/s)",
+              "(19.6 m/s, 10 m/s)"
             ],
-            "correctChoice": 3,
-            "answer": "x=v₀t, y=gt²/2",
+            "correctChoice": 2,
+            "answer": "(10 m/s, 19.6 m/s)",
             "acceptableAnswers": [
-              "3",
-              "x=v₀t, y=gt²/2"
+              "2",
+              "(10 m/s, 19.6 m/s)"
             ],
             "displayMode": "choice-card",
-            "prompt": "원문 암기 4번 복습: 공기 저항을 무시하고 g가 일정합니다. 원점에서 물체를 +x방향으로 수평 속력 v₀로 던집니다. y축은 연직 아래쪽이 양의 방향입니다. 시간 t 후 좌표 (x,y)는?",
-            "explanation": "수평 방향은 등속도 운동이므로 x=v₀t입니다. 연직 방향의 처음 속도는 0이고 아래쪽이 양의 방향이므로 y=gt²/2입니다."
+            "prompt": "원문 5번: 지면 도착 때 (x축 속도 크기, y축 속도 크기)는?"
           },
           "similarProblem": {
             "inputMode": "choice",
             "choices": [
-              "(12 m, −20 m)",
-              "(12 m, 20 m)",
-              "(20 m, 12 m)",
-              "(12 m, 40 m)"
-            ],
-            "correctChoice": 2,
-            "answer": "(12 m, 20 m)",
-            "acceptableAnswers": [
-              "2",
-              "(12 m, 20 m)"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "동형 연습: 충분히 높은 곳의 원점에서 공을 +x방향으로 6 m/s로 수평으로 던졌습니다. 공기 저항을 무시하고 g=10 m/s²이며 y축은 아래쪽이 양의 방향입니다. 2초 후 좌표 (x,y)는?",
-            "explanation": "x=v₀t=6×2=12 m, y=gt²/2=10×2²/2=20 m입니다. 아래쪽을 양의 방향으로 정했으므로 y는 양수입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 15,
-          "maxPoints": 10,
-          "type": "subjective",
-          "inputMode": "achievement",
-          "unit": "포물선 운동",
-          "topic": "암기 5 · 최고점과 지면 도달 시간",
-          "difficulty": "하",
-          "image": {
-            "page": 1,
-            "crop": [
-              272,
-              1707,
-              1020,
-              110
-            ]
-          },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. θ는 수평과 이루는 발사각(0°<θ<90°)이며 발사점과 착지점 높이가 같습니다.",
-          "answer": "T₁=v₀sinθ/g, T₂=2v₀sinθ/g",
-          "answerHeading": "제공 해설 대조·검수 정답",
-          "explanation": [
-            "초기 연직 속도는 v₀sinθ입니다.",
-            "vᵧ=v₀sinθ−gt=0에서 최고점 도달 시간 T₁=v₀sinθ/g를 구합니다.",
-            "출발 높이로 돌아올 때는 상승·하강 시간이 같으므로 T₂=2T₁=2v₀sinθ/g입니다."
-          ],
-          "formulas": [
-            "vᵧ=v₀sinθ−gt",
-            "T₁=v₀sinθ/g",
-            "T₂=2v₀sinθ/g"
-          ],
-          "commonMistakes": [
-            "연직 성분에 cosθ를 사용함",
-            "최고점 도달 시간과 체공 시간을 뒤바꿈"
-          ],
-          "rubric": [
-            {
-              "criterion": "사이트 환산 · 최고점 도달 시간 식",
-              "points": 5
-            },
-            {
-              "criterion": "사이트 환산 · 지면 도달 시간 식",
-              "points": 5
-            }
-          ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 암기 5 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 암기 5 → 웹 15번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "암기 5",
-          "originalRetry": {
-            "inputMode": "choice",
-            "choices": [
-              "T₁=v₀cosθ/g, T₂=2v₀cosθ/g",
-              "T₁=2v₀sinθ/g, T₂=v₀sinθ/g",
-              "T₁=v₀sinθ/g, T₂=v₀sinθ/g",
-              "T₁=v₀sinθ/g, T₂=2v₀sinθ/g"
+              "20 m/s",
+              "30 m/s",
+              "35 m/s",
+              "25 m/s"
             ],
             "correctChoice": 4,
-            "answer": "T₁=v₀sinθ/g, T₂=2v₀sinθ/g",
+            "answer": "25 m/s",
             "acceptableAnswers": [
               "4",
-              "T₁=v₀sinθ/g, T₂=2v₀sinθ/g"
+              "25 m/s"
             ],
             "displayMode": "choice-card",
-            "prompt": "원문 암기 5번 복습: 공기 저항을 무시하고 g가 일정합니다. 지면에서 처음 속력 v₀>0, 수평면과의 각 0°<θ<90°로 위쪽으로 발사한 물체가 같은 높이의 지면에 착지합니다. 최고점 도달 시간 T₁과 지면 도달 시간 T₂는?",
-            "explanation": "처음 연직 속도는 v₀sinθ이므로 최고점까지 T₁=v₀sinθ/g가 걸립니다. 같은 높이로 착지하므로 T₂=2T₁입니다."
+            "prompt": "높이 20 m에서 공을 수평속력 15 m/s로 던집니다. 공기저항을 무시하고 g=10 m/s²일 때, 지면 도착 순간의 전체 속력은?",
+            "explanation": "낙하시간은 √(2×20/10)=2 s이고 수평·연직 속도 크기는 15 m/s, 20 m/s입니다. 전체 속력은 √(15²+20²)=25 m/s입니다.",
+            "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
           },
-          "similarProblem": {
-            "inputMode": "choice",
-            "choices": [
-              "1초, 2초",
-              "2초, 4초",
-              "√3초, 2√3초",
-              "2초, 1초"
-            ],
-            "correctChoice": 1,
-            "answer": "1초, 2초",
-            "acceptableAnswers": [
-              "1",
-              "1초, 2초"
-            ],
-            "displayMode": "choice-card",
-            "prompt": "동형 연습: 지면에서 공을 수평면과 30°의 각도로 위쪽으로 20 m/s의 속력으로 던졌습니다. 공기 저항을 무시하고 g=10 m/s²입니다. 최고점 도달 시간과 같은 높이의 지면 도달 시간은?",
-            "explanation": "처음 연직 속도는 20sin30°=10 m/s입니다. T₁=10/10=1초, T₂=2T₁=2초입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
-        },
-        {
-          "no": 16,
-          "maxPoints": 5,
           "type": "subjective",
           "inputMode": "achievement",
-          "unit": "포물선 운동",
-          "topic": "암기 6 · 최대 사거리의 발사각",
-          "difficulty": "하",
           "image": {
-            "page": 1,
+            "page": 3,
             "crop": [
-              272,
-              1816,
-              1031,
-              54
+              0,
+              0,
+              747,
+              651
             ]
           },
-          "reviewStatus": "verified",
-          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 초기 속력을 일정하게 두고 발사각만 바꾸며, 발사점과 착지점 높이는 같습니다.",
-          "answer": "θ=45° (=π/4 rad)",
-          "answerHeading": "제공 해설 대조·검수 정답",
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 PDF의 5번 문제·수식·그림을 그대로 추출했습니다.",
+          "sourceNote": "원본 물리2-Quiz3회차.pdf 1쪽, 200dpi 직접 렌더링. 공통 지문·그림과 해당 문항을 원본 픽셀 그대로 위아래로 연결했습니다."
+        },
+        {
+          "no": 6,
+          "maxPoints": 10,
+          "unit": "포물선 운동",
+          "topic": "구간 시간을 합하여 수평 사거리 구하기",
+          "difficulty": "하",
+          "answer": "수평 도달거리 = 30 m",
           "explanation": [
-            "수평 도달 거리는 R=v₀²sin(2θ)/g입니다.",
-            "v₀와 g가 일정할 때 sin(2θ)=1에서 사거리가 최대이므로 2θ=90°, θ=45°입니다.",
-            "원본 해설의 숫자 45를 각도 단위까지 표시했습니다. π/4 rad도 같은 답입니다."
+            "6·7번 공통 지문에서 출발 후 2 s 동안 수평으로 10 m 이동하므로 수평속력은 vₓ=10/2=5 m/s입니다.",
+            "깃대를 스친 뒤 다시 4 s가 지나 지면에 떨어집니다. 전체 체공시간은 2+4=6 s입니다.",
+            "수평속력은 일정하므로 전체 수평 도달거리는 R=5×6=30 m입니다. 이는 궤도를 따라 이동한 곡선 길이가 아니라 수평거리입니다."
           ],
           "formulas": [
-            "R=v₀²sin(2θ)/g",
-            "sin(2θ)≤1"
+            "vₓ=수평거리/시간",
+            "T=2+4=6 s",
+            "R=vₓT"
           ],
           "commonMistakes": [
-            "최고점이 가장 높은 90°가 가장 멀리 간다고 생각함",
-            "발사 높이와 착지 높이가 다를 때도 45°를 그대로 적용함"
+            "깃대를 지난 뒤의 4 s를 전체 체공시간으로 사용함",
+            "수평 도달거리를 포물선 궤도의 길이로 해석함"
           ],
           "rubric": [
             {
-              "criterion": "사이트 환산 · 최대 사거리 발사각",
-              "points": 5
+              "criterion": "수평속력과 전체 체공시간으로 수평 도달거리 계산",
+              "points": 10
             }
           ],
-          "retryMode": "multiple-choice",
-          "sourceText": "원본 문제지 1쪽의 암기 6 문항을 수정 없이 직접 추출했습니다.",
-          "sourceNote": "원문 암기 6 → 웹 16번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
-          "sourceQuestionLabel": "암기 6",
           "originalRetry": {
             "inputMode": "choice",
             "choices": [
-              "30°",
-              "45°",
-              "60°",
-              "90°"
+              "10 m",
+              "20 m",
+              "30 m",
+              "40 m"
             ],
-            "correctChoice": 2,
-            "answer": "45°",
+            "correctChoice": 3,
+            "answer": "30 m",
             "acceptableAnswers": [
-              "2",
-              "45°"
+              "3",
+              "30 m"
             ],
             "displayMode": "choice-card",
-            "prompt": "원문 암기 6번 복습: 공기 저항을 무시하고 g가 일정합니다. 같은 처음 속력으로 수평 지면에서 물체를 발사하여 같은 높이에 착지시킬 때, 수평 도달 거리가 최대가 되는 발사각은?",
-            "explanation": "수평 도달 거리는 R=v₀²sin2θ/g입니다. sin2θ가 1일 때 최대이므로 2θ=90°, θ=45°입니다."
+            "prompt": "원문 6번: 2 s 뒤 10 m의 깃대를 지나고 그 후 4 s 뒤 착지할 때 전체 수평 도달거리는?"
           },
           "similarProblem": {
             "inputMode": "choice",
             "choices": [
-              "30°, 90 m",
-              "60°, 45 m",
-              "45°, 90 m",
-              "45°, 45 m"
+              "28 m",
+              "40 m",
+              "48 m",
+              "60 m"
             ],
-            "correctChoice": 3,
-            "answer": "45°, 90 m",
+            "correctChoice": 2,
+            "answer": "40 m",
             "acceptableAnswers": [
-              "3",
-              "45°, 90 m"
+              "2",
+              "40 m"
             ],
             "displayMode": "choice-card",
-            "prompt": "동형 연습: 공기 저항을 무시하고 g=10 m/s²입니다. 수평 지면에서 처음 속력 30 m/s로 공을 발사하여 같은 높이에 착지시킵니다. 수평 도달 거리가 최대가 되는 발사각과 그 최대 거리는?",
-            "explanation": "같은 발사·착지 높이에서 최적 각도는 45°입니다. R_max=v₀²/g=30²/10=90 m입니다.",
-            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
-          }
+            "prompt": "같은 높이의 지면에서 비스듬히 던진 돌이 1.5 s 뒤 수평으로 12 m 떨어진 깃대 끝을 지나고, 그로부터 3.5 s 뒤 착지합니다. 공기저항을 무시할 때 전체 수평 도달거리는?",
+            "explanation": "수평속력은 12/1.5=8 m/s입니다. 전체 체공시간은 1.5+3.5=5 s이므로 수평 도달거리는 8×5=40 m입니다.",
+            "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+          },
+          "type": "subjective",
+          "inputMode": "achievement",
+          "image": {
+            "page": 2,
+            "crop": [
+              83,
+              263,
+              740,
+              712
+            ]
+          },
+          "retryMode": "multiple-choice",
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "sourceText": "원본 문제지 PDF의 6번 문제·수식·그림을 그대로 추출했습니다.",
+          "sourceNote": "원본 물리2-Quiz3회차.pdf 2쪽, 200dpi 직접 렌더링."
+        },
+        {
+          "no": 7,
+          "maxPoints": 10,
+          "unit": "포물선 운동",
+          "topic": "체공시간과 중간 시각의 높이",
+          "difficulty": "중",
+          "answer": "깃대 높이 = 40 m",
+          "explanation": [
+            "6·7번 공통 지문에서 전체 체공시간은 2+4=6 s입니다. 출발점과 착지점이 같은 높이이므로 초기 연직속력은 v₀ᵧ=gT/2=10×6/2=30 m/s입니다.",
+            "출발 후 t초의 높이는 y=v₀ᵧt−gt²/2=30t−5t²입니다.",
+            "깃대 끝을 지나는 시각 t=2 s를 대입하면 높이는 30×2−5×2²=60−20=40 m입니다. 이때는 최고점 도달시각 3 s보다 전이므로 상승 중입니다."
+          ],
+          "formulas": [
+            "T=2v₀ᵧ/g",
+            "v₀ᵧ=gT/2=30 m/s",
+            "y(t)=v₀ᵧt−gt²/2"
+          ],
+          "commonMistakes": [
+            "깃대 끝을 최고점이라고 단정함",
+            "초기 연직속력이 있는데 정지 출발의 자유낙하식 gt²/2만으로 높이를 계산함",
+            "초기 연직속력과 초기속도의 크기를 혼동함"
+          ],
+          "rubric": [
+            {
+              "criterion": "전체 체공시간으로 초기 연직속력을 구하고 깃대 높이 계산",
+              "points": 10
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "40 m",
+              "20 m",
+              "60 m",
+              "80 m"
+            ],
+            "correctChoice": 1,
+            "answer": "40 m",
+            "acceptableAnswers": [
+              "1",
+              "40 m"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 7번: 전체 체공시간 6 s, 깃대 통과시각 2 s일 때 깃대 높이는?"
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "15 m",
+              "20 m",
+              "25 m",
+              "30 m"
+            ],
+            "correctChoice": 3,
+            "answer": "25 m",
+            "acceptableAnswers": [
+              "3",
+              "25 m"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "지면에서 비스듬히 던진 공이 1 s 뒤 수평으로 6 m 떨어진 깃대 끝을 지나고, 그로부터 5 s 뒤 같은 높이의 지면에 도착합니다. 공기저항을 무시하고 g=10 m/s²일 때 깃대 높이는?",
+            "explanation": "전체 체공시간은 6 s이므로 초기 연직속력은 30 m/s입니다. t=1 s에서 높이는 30×1−5×1²=25 m입니다.",
+            "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+          },
+          "type": "subjective",
+          "inputMode": "achievement",
+          "image": {
+            "page": 4,
+            "crop": [
+              0,
+              0,
+              740,
+              716
+            ]
+          },
+          "retryMode": "multiple-choice",
+          "reviewStatus": "verified",
+          "correctionNote": "",
+          "sourceText": "원본 문제지 PDF의 7번 문제·수식·그림을 그대로 추출했습니다.",
+          "sourceNote": "원본 물리2-Quiz3회차.pdf 2쪽, 200dpi 직접 렌더링. 공통 지문·그림과 해당 문항을 원본 픽셀 그대로 위아래로 연결했습니다."
+        },
+        {
+          "no": 8,
+          "maxPoints": 20,
+          "unit": "포물선 운동",
+          "topic": "궤도 비교와 발사각·저항 조건의 구분",
+          "difficulty": "상",
+          "reviewStatus": "corrected",
+          "answerHeading": "검수된 정답·조건 확인",
+          "correctionNote": "원본 해설의 체공시간 비교에 오기가 있으며, 발사각·공기저항 비교에는 명시되지 않은 조건이 있습니다. 원문 그림은 그대로 보존하고, 원문에서 판단 가능한 결론과 추가 조건이 필요한 결론을 제출 후 구분해 설명합니다. 배점은 문제지의 7·7·6점을 따릅니다.",
+          "answer": "(1) 체공시간: T_A > T_B\n(2) 그림의 발사각: θ_A > θ_B. 초기속력이 같다는 추가 조건이 있으면 θ_A+θ_B=90°.\n(3) 공기저항이 있을 때의 사거리 대소는 제시 조건만으로 확정할 수 없습니다.",
+          "explanation": [
+            "(1) 그림은 같은 출발·도착 높이의 포물선 궤도로 해석합니다. A의 최고점이 더 높으므로 초기 연직속력이 더 큽니다. 공기저항을 무시한 체공시간 T=2√(2H/g)에서 T_A>T_B입니다. 원본 해설의 B>A는 그림과 반대인 오기입니다.",
+            "(2) 출발점에서 A의 궤도 기울기가 더 크므로 θ_A>θ_B입니다. 같은 높이에서 발사·착지하는 포물선은 H=Rtanθ/4도 만족하므로, 사거리 R가 같고 H_A>H_B이면 θ_A>θ_B입니다.",
+            "두 각이 여각이라는 결론에는 초기속력도 같다는 추가 조건이 필요합니다. 같은 초기속력에서 R=v₀²sin(2θ)/g가 같고 서로 다른 두 발사각이 0°와 90° 사이에 있으면 θ_A+θ_B=90°입니다. 원문에는 초기속력이 같다는 조건이 없으므로 이를 무조건 적용하지 않습니다.",
+            "(3) 저항을 받는 두 물체의 사거리를 비교하려면 초기속력, 질량·모양·크기 등 물체 특성 및 공기저항의 법칙과 계수 같은 조건이 필요합니다. 그림과 현재 문장만으로 저항이 있을 때의 두 사거리 대소를 확정할 수 없습니다.",
+            "높게 날아 체공시간이 길다는 사실만으로 항상 사거리가 더 짧다고 단정할 수는 없습니다. 원본 해설의 표현은 필요한 조건이 빠져 있어 그대로 확정 정답으로 사용하지 않았습니다. (3)의 배점은 해설지의 7점이 아닌 문제지의 6점을 사용하여 총 100점을 유지했습니다."
+          ],
+          "formulas": [
+            "H=v₀ᵧ²/(2g), T=2v₀ᵧ/g=2√(2H/g)",
+            "R=v₀²sin(2θ)/g, H=Rtanθ/4 (무저항·출발과 도착 높이 같음)",
+            "같은 초기속력·같은 사거리·서로 다른 발사각 ⇒ θ_A+θ_B=90°"
+          ],
+          "commonMistakes": [
+            "그림에서 높은 A와 낮은 B의 이름을 바꿈",
+            "같은 사거리만 보고 초기속력도 같다고 가정함",
+            "공기저항을 받는 시간만으로 사거리 순서를 단정함",
+            "해설지의 (3) 배점 7점을 사용해 총점을 101점으로 만듦"
+          ],
+          "rubric": [
+            {
+              "criterion": "(1) 체공시간 대소관계와 최고점 높이의 연관 설명",
+              "points": 7
+            },
+            {
+              "criterion": "(2) 발사각 대소관계와 여각 결론에 필요한 추가 조건 설명",
+              "points": 7
+            },
+            {
+              "criterion": "(3) 공기저항 시 사거리 비교의 조건 부족을 지적하고 단정하지 않음",
+              "points": 6
+            }
+          ],
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "체공시간 B>A / 발사각 A>B / 저항이 있으면 A의 사거리가 반드시 짧음",
+              "체공시간 A>B / 사거리가 같으면 항상 두 각의 합은 90° / 저항이 있어도 사거리 같음",
+              "체공시간 A=B / 발사각 A=B / 저항 시 사거리는 조건 부족으로 확정 불가",
+              "체공시간 A>B / 발사각 A>B이며 같은 초기속력일 때 여각 / 저항 시 사거리는 조건 부족으로 확정 불가"
+            ],
+            "correctChoice": 4,
+            "answer": "체공시간 A>B / 발사각 A>B이며 같은 초기속력일 때 여각 / 저항 시 사거리는 조건 부족으로 확정 불가",
+            "acceptableAnswers": [
+              "4",
+              "체공시간 A>B / 발사각 A>B이며 같은 초기속력일 때 여각 / 저항 시 사거리는 조건 부족으로 확정 불가"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 8번의 체공시간 / 발사각 / 저항 시 사거리 설명을 모두 옳게 고르세요."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "(1:√3, 1:1)",
+              "(√3:1, 1:1)",
+              "(√3:1, √3:1)",
+              "(1:1, 1:1)"
+            ],
+            "correctChoice": 2,
+            "answer": "(√3:1, 1:1)",
+            "acceptableAnswers": [
+              "2",
+              "(√3:1, 1:1)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동일한 초기속력 20 m/s로 A는 60°, B는 30° 방향으로 같은 높이의 지면에서 발사되어 같은 높이에 착지합니다. 공기저항을 무시할 때 (체공시간 T_A:T_B, 수평 도달거리 R_A:R_B)는?",
+            "explanation": "체공시간은 sinθ에 비례하므로 sin60°:sin30°=√3:1입니다. 사거리는 sin(2θ)에 비례하고 sin120°=sin60°이므로 1:1입니다. 이 동형 문제에는 원문과 달리 동일 초기속력을 명시했습니다.",
+            "provenance": "첨부 원문과 별개로 새로 작성한 4지 객관식 동형 문제"
+          },
+          "type": "subjective",
+          "inputMode": "achievement",
+          "image": {
+            "page": 2,
+            "crop": [
+              831,
+              263,
+              747,
+              937
+            ]
+          },
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 PDF의 8번 문제·수식·그림을 그대로 추출했습니다.",
+          "sourceNote": "원본 물리2-Quiz3회차.pdf 2쪽, 200dpi 직접 렌더링."
         }
       ],
-      "featureVersion": "3.7.16-physics2-basic-r03"
+      "inputProfile": {
+        "recordVariants": [
+          {
+            "key": "concept16",
+            "questionCount": 16,
+            "archiveExamId": "physics2-basic-r03-concept16-archive"
+          }
+        ]
+      }
     },
     {
       "examId": "physics2-basic-r04",
@@ -30057,6 +29430,1401 @@ window.YP_CATALOG = {
         "objectiveMode": "choice-number",
         "subjectiveMode": "none"
       }
+    },
+    {
+      "examId": "physics2-basic-r03-concept16-archive",
+      "courseId": "physics2-basic",
+      "round": 3,
+      "title": "물리2 3회차 개념정리 · 기존 기록",
+      "shortTitle": "3회차 개념정리 (기존 기록)",
+      "status": "archived",
+      "assessmentType": "weekly",
+      "section": "mechanics",
+      "examDate": "",
+      "questionCount": 16,
+      "maxScore": 100,
+      "pdf": "assets/documents/physics2/r03-concept16-original.pdf",
+      "solutionPdf": "assets/documents/physics2/r03-concept16-original-solution.pdf",
+      "pages": [
+        "assets/pages/physics2/r03-concept16-original-p1.png"
+      ],
+      "reviewStatus": "verified",
+      "configVersion": "2026.11.22-concept16-archive-v3.7.17",
+      "sourceTitle": "물리2-개념정리Quiz 3회차.pdf / 물리2-개념정리Quiz 3회차 해설.pdf",
+      "sourceNote": "이번에 제공된 문제지와 해설지 각 1쪽을 원형 그대로 보존했습니다. 빈칸 4문항, O/X 6문항, 암기 6문항을 웹 1~16번으로 연결합니다. 원본에는 배점이 없어 20개 답란에 각각 5점을 부여하여 총 100점으로 환산했습니다. 웹 1~10번은 각 5점, 11~16번은 10·5·10·10·10·5점입니다.",
+      "reviewSummary": "이전에 복습테스트로 잘못 등록된 개념정리 16문항의 기존 성적을 보존하기 위한 자료입니다. 신규 복습테스트는 원본 1~8번으로 입력합니다. 제공된 해설의 전체 정답을 대조·검산했습니다. 원본 PDF와 문제 이미지는 그대로 보존하고 공기 저항, 좌표축, 발사·착지 높이에 관한 적용 조건을 웹 풀이에 보완했습니다. 원본에 없는 배점은 답란당 5점의 사이트 환산 기준입니다.",
+      "assetProvenance": {
+        "kind": "original-pdf-render-crop",
+        "originalPdfIncluded": true,
+        "originalAnswerPdfIncluded": true,
+        "answerAuthorship": "user-supplied-answer-pdf; independently-verified; explanatory-text-and-practice-newly-authored",
+        "sourceQuestionFile": "물리2-개념정리Quiz 3회차.pdf",
+        "sourceQuestionSha256": "3104076262c424ffeb361e9dd33f7ed153437c1497207bcbc628557de88879b5",
+        "sourceSolutionFile": "물리2-개념정리Quiz 3회차 해설.pdf",
+        "sourceSolutionSha256": "4ec0fa52cf087929b9297cc67544cc4df097c4d440d70c81b839863dd79b9cb9",
+        "originalQuestionPageCount": 1,
+        "originalSolutionPageCount": 1,
+        "renderDpi": 200,
+        "redrawn": false,
+        "retypedQuestionText": false,
+        "sourcePointsProvided": false,
+        "siteScoringBasis": "20 answer fields × 5 points, preserving 16 numbered questions"
+      },
+      "coreNote": {
+        "summary": "자유낙하·연직 상방 운동·수평 투사·포물선 운동의 개념과 공식, 최고점과 체공 시간, 최대 사거리",
+        "concepts": [
+          "공기 저항을 무시하면 수평 운동과 연직 운동을 독립적으로 다룰 수 있습니다.",
+          "연직 위로 던진 물체는 최고점에서 속도가 0이어도 중력가속도를 받습니다.",
+          "비스듬히 던진 물체는 최고점에서도 수평 속도가 남습니다.",
+          "같은 높이로 돌아오는 운동에서 상승 시간과 하강 시간은 같습니다.",
+          "초기 속력이 같을 때 최고점 높이의 증가가 수평 도달 거리의 증가를 뜻하지는 않습니다."
+        ],
+        "formulas": [
+          "자유낙하: s=gt²/2, v=gt (아래쪽 +)",
+          "자유낙하 시간: t=√(2h/g)",
+          "연직 상방: tₘ=v₀/g, T=2v₀/g (같은 높이)",
+          "수평 투사: x=v₀t, y=gt²/2 (아래쪽 +)",
+          "포물선: T₁=v₀sinθ/g, T₂=2v₀sinθ/g (같은 높이)",
+          "H=v₀²sin²θ/(2g), R=v₀²sin(2θ)/g"
+        ],
+        "mistakes": [
+          "최고점에서 속도와 가속도를 모두 0으로 생각함",
+          "연직 속도만 0인데 전체 속력이 0이라고 판단함",
+          "수평 속력이 낙하 시간을 바꾼다고 생각함",
+          "발사 높이와 착지 높이가 다른데 대칭 운동 공식을 사용함",
+          "최고점 도달 시간과 전체 체공 시간을 혼동함"
+        ],
+        "checklist": [
+          "좌표축의 양의 방향과 초기 속도 성분을 정했는가?",
+          "발사점과 착지점의 높이를 확인했는가?",
+          "수평 성분과 연직 성분을 따로 계산했는가?",
+          "최대 사거리 비교에서 초기 속력을 고정했는가?"
+        ]
+      },
+      "questions": [
+        {
+          "no": 1,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "낙하 운동",
+          "topic": "빈칸 1 · 정지 상태에서 시작하는 낙하",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              491,
+              1037,
+              49
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다.",
+          "answer": "자유낙하",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "이 문제는 초기 속도가 0인 낙하와 아래쪽으로 던진 운동을 구분하는 교과서 분류를 사용합니다.",
+            "정지 상태에서 놓은 물체가 중력만 받아 떨어지는 운동을 자유낙하 운동이라고 합니다."
+          ],
+          "formulas": [
+            "v₀=0, a=g (아래쪽을 +로 설정)"
+          ],
+          "commonMistakes": [
+            "처음부터 아래쪽 속도를 갖는 연직 하방 운동과 혼동함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · 운동 명칭",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 빈칸 1 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 빈칸 1 → 웹 1번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "빈칸 1",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "등속도 운동",
+              "자유 낙하 운동",
+              "연직 상방 운동",
+              "등속 원운동"
+            ],
+            "correctChoice": 2,
+            "answer": "자유 낙하 운동",
+            "acceptableAnswers": [
+              "2",
+              "자유 낙하 운동"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 빈칸 1번 복습: 공기 저항을 무시하고 중력만 작용할 때, 정지 상태에서 놓은 물체의 낙하 운동을 이 단원에서는 무엇이라고 부르나요?",
+            "explanation": "처음 속력이 0이고 중력만 작용하므로, 이 단원에서 다루는 자유 낙하 운동입니다. 중력 가속도는 연직 아래 방향입니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "속력은 일정하고 가속도는 0이다.",
+              "속력은 감소하고 가속도는 위쪽이다.",
+              "속력은 증가하고 가속도는 아래쪽으로 일정하다.",
+              "속력과 가속도가 모두 0이다."
+            ],
+            "correctChoice": 3,
+            "answer": "속력은 증가하고 가속도는 아래쪽으로 일정하다.",
+            "acceptableAnswers": [
+              "3",
+              "속력은 증가하고 가속도는 아래쪽으로 일정하다."
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 물체를 정지 상태에서 가만히 놓았습니다. 공기 저항은 무시하고 중력 가속도 크기는 g로 일정합니다. 낙하 중 물체의 속력과 가속도에 대한 설명으로 옳은 것은?",
+            "explanation": "아래쪽을 양의 방향으로 정하면 v=gt, a=g입니다. 따라서 속력은 시간에 따라 증가하고 가속도는 아래쪽으로 일정합니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 2,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "연직 상방 운동",
+          "topic": "빈칸 2 · 상승 시간과 하강 시간",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              539,
+              1117,
+              47
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 상승을 시작한 높이와 내려와 도착하는 높이가 같습니다.",
+          "answer": "같다",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "위쪽을 +로 정하면 v=v₀−gt입니다. 최고점에서 v=0이므로 상승 시간은 v₀/g입니다.",
+            "원래 높이로 돌아오는 전체 시간은 2v₀/g이므로 최고점 이후 하강 시간도 v₀/g입니다.",
+            "출발점과 도착점 높이가 다르면 두 시간이 같다는 결론을 그대로 적용할 수 없습니다."
+          ],
+          "formulas": [
+            "t상승=v₀/g",
+            "T=2v₀/g",
+            "t하강=T−t상승=v₀/g"
+          ],
+          "commonMistakes": [
+            "높이가 다른 지점까지 내려오는 시간도 상승 시간과 같다고 생각함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · 상승·하강 시간 비교",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 빈칸 2 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 빈칸 2 → 웹 2번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "빈칸 2",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "올라가는 시간이 더 길다.",
+              "내려가는 시간이 더 길다.",
+              "처음 속력과 관계없이 항상 내려가는 시간이 두 배이다.",
+              "두 시간이 같다."
+            ],
+            "correctChoice": 4,
+            "answer": "두 시간이 같다.",
+            "acceptableAnswers": [
+              "4",
+              "두 시간이 같다."
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 빈칸 2번 복습: 공기 저항을 무시하고 g가 일정할 때, 연직 위로 던진 물체가 출발점에서 최고점까지 올라가는 시간과 최고점에서 출발 높이로 돌아오는 시간의 관계는?",
+            "explanation": "출발점과 도착점의 높이가 같으면 중력만 받는 운동은 최고점을 기준으로 시간 대칭입니다. 두 시간은 모두 v₀/g입니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "2.5초",
+              "5초",
+              "7.5초",
+              "10초"
+            ],
+            "correctChoice": 2,
+            "answer": "5초",
+            "acceptableAnswers": [
+              "2",
+              "5초"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 공기 저항을 무시하고 g가 일정합니다. 연직 위로 던진 공이 2.5초 후 최고점에 도달했습니다. 공이 처음 던진 높이로 돌아올 때까지의 전체 시간은?",
+            "explanation": "같은 높이로 되돌아오므로 하강 시간도 2.5초입니다. 전체 시간은 2.5+2.5=5초입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 3,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "수평 투사",
+          "topic": "빈칸 3 · 수평 방향의 운동",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              585,
+              1006,
+              47
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다.",
+          "answer": "등속도",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "공기 저항을 무시하면 수평 방향으로 힘이 작용하지 않습니다.",
+            "수평 가속도는 0이고 수평 속도가 일정하므로 수평 방향은 등속도 운동입니다.",
+            "가속도 0도 수학적으로 일정한 가속도의 특수한 경우지만, 원문의 운동 유형 분류에서 의도한 답은 등속도입니다."
+          ],
+          "formulas": [
+            "aₓ=0",
+            "vₓ=v₀",
+            "x=v₀t"
+          ],
+          "commonMistakes": [
+            "연직 방향의 중력가속도를 수평 방향에도 적용함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · 수평 운동의 분류",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 빈칸 3 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 빈칸 3 → 웹 3번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "빈칸 3",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "속도의 크기와 방향이 일정한 등속도 운동",
+              "속력이 일정한 비율로 증가하는 운동",
+              "속력이 일정한 비율로 감소하는 운동",
+              "속력은 일정하지만 방향이 계속 바뀌는 운동"
+            ],
+            "correctChoice": 1,
+            "answer": "속도의 크기와 방향이 일정한 등속도 운동",
+            "acceptableAnswers": [
+              "1",
+              "속도의 크기와 방향이 일정한 등속도 운동"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 빈칸 3번 복습: 공기 저항을 무시하고 중력만 작용할 때, 수평 방향으로 던진 물체의 수평 성분 운동은?",
+            "explanation": "중력은 연직 방향으로만 작용하므로 수평 가속도는 0입니다. 따라서 수평 속도는 처음 값으로 일정합니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "0 m/s",
+              "21 m/s",
+              "3.5 m/s",
+              "7 m/s"
+            ],
+            "correctChoice": 4,
+            "answer": "7 m/s",
+            "acceptableAnswers": [
+              "4",
+              "7 m/s"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 충분히 높은 곳에서 물체를 수평 속력 7 m/s로 던졌습니다. 공기 저항을 무시하면, 아직 공중에 있는 3초 후 물체의 수평 속력은?",
+            "explanation": "수평 가속도가 0이므로 수평 속도는 시간에 관계없이 7 m/s로 일정합니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 4,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "포물선 운동",
+          "topic": "빈칸 4 · 연직 방향의 운동",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              631,
+              1006,
+              50
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 처음 속력이 v₀이고 수평과 0°<θ<90°를 이루며 비스듬히 위로 던진 경우입니다.",
+          "answer": "연직 상방",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "초기 속도의 연직 성분은 v₀sinθ이고 처음에는 위쪽을 향합니다.",
+            "연직 방향에는 아래쪽 중력가속도만 작용하므로 연직 상방 운동과 같은 운동을 합니다.",
+            "수평으로 던진 운동의 초기 연직 속도는 0이므로 원문의 비스듬한 상방 투사와 구분합니다."
+          ],
+          "formulas": [
+            "vᵧ=v₀sinθ−gt",
+            "y=v₀sinθ·t−gt²/2 (위쪽 +)"
+          ],
+          "commonMistakes": [
+            "중력이 작용한다는 이유만으로 초기 연직 속도를 무시함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · 연직 운동의 분류",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 빈칸 4 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 빈칸 4 → 웹 4번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "빈칸 4",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "처음 연직 속도가 0인 자유 낙하 운동",
+              "연직 방향 등속도 운동",
+              "처음 위로 움직였다가 아래로 움직이는 연직 상방 운동",
+              "연직 방향 등속 원운동"
+            ],
+            "correctChoice": 3,
+            "answer": "처음 위로 움직였다가 아래로 움직이는 연직 상방 운동",
+            "acceptableAnswers": [
+              "3",
+              "처음 위로 움직였다가 아래로 움직이는 연직 상방 운동"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 빈칸 4번 복습: 공기 저항을 무시하고 g가 일정할 때, 수평면과 0°보다 크고 90°보다 작은 각도로 위쪽으로 던진 물체의 연직 성분 운동에 해당하는 것은?",
+            "explanation": "처음 연직 속도는 v₀sinθ>0이고 연직 가속도는 아래쪽으로 g입니다. 따라서 연직 성분은 위로 출발하는 연직 상방 운동과 같습니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "10 m/s, 위쪽",
+              "10 m/s, 아래쪽",
+              "20 m/s, 위쪽",
+              "0 m/s"
+            ],
+            "correctChoice": 1,
+            "answer": "10 m/s, 위쪽",
+            "acceptableAnswers": [
+              "1",
+              "10 m/s, 위쪽"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 공을 수평면과 30°의 각도로 위쪽으로 20 m/s의 속력으로 던졌습니다. 공기 저항을 무시할 때, 던진 직후 연직 속도의 크기와 방향은?",
+            "explanation": "처음 연직 속도는 v₀sin30°=20×1/2=10 m/s이며 위쪽입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 5,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "연직 상방 운동",
+          "topic": "O/X 1 · 최고점의 속력",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              850,
+              1140,
+              50
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다.",
+          "answer": "O",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "정확히 연직 위로 던진 물체는 최고점에서 상승에서 하강으로 전환됩니다.",
+            "그 순간 연직 속도가 0이고 수평 속도 성분도 없으므로 속력은 0 m/s입니다.",
+            "속력이 0이어도 중력가속도는 아래로 g이며 힘이 사라지는 것은 아닙니다."
+          ],
+          "formulas": [
+            "v=v₀−gt",
+            "최고점에서 v=0, a=−g (위쪽 +)"
+          ],
+          "commonMistakes": [
+            "최고점에서 속도와 가속도가 모두 0이라고 생각함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · O/X 판단",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 O/X 1 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 O/X 1 → 웹 5번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "O/X 1",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "X, 속력은 처음 속력과 같다.",
+              "O, 가속도도 0이다.",
+              "X, 속력은 g이다.",
+              "O, 가속도는 아래쪽으로 g이다."
+            ],
+            "correctChoice": 4,
+            "answer": "O, 가속도는 아래쪽으로 g이다.",
+            "acceptableAnswers": [
+              "4",
+              "O, 가속도는 아래쪽으로 g이다."
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 O/X 1번 복습: 공기 저항을 무시하고 중력 가속도 크기가 g로 일정합니다. “연직 위로 던진 물체는 최고점에서 속력이 0 m/s이다.”의 판단과 그때의 가속도로 옳은 것은?",
+            "explanation": "최고점에서는 속도가 순간적으로 0이지만 중력은 계속 작용합니다. 가속도는 연직 아래 방향으로 g입니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "0 m/s, 0 m/s²",
+              "0 m/s, 10 m/s²",
+              "10 m/s, 0 m/s²",
+              "10 m/s, 10 m/s²"
+            ],
+            "correctChoice": 2,
+            "answer": "0 m/s, 10 m/s²",
+            "acceptableAnswers": [
+              "2",
+              "0 m/s, 10 m/s²"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 공을 연직 위로 던졌습니다. 공기 저항은 무시하고 g=10 m/s²입니다. 최고점에서 공의 속력과 가속도 크기를 순서대로 고르면?",
+            "explanation": "최고점에서 속력은 0입니다. 중력에 의한 가속도는 계속 아래쪽으로 작용하므로 크기는 10 m/s²입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 6,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "연직 상방 운동",
+          "topic": "O/X 2 · 최고점 도달 시간의 구별",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              900,
+              1140,
+              98
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다.",
+          "answer": "X — 최고점 도달 시간은 tₘ=v₀/g입니다.",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "최고점 조건 v=0을 v=v₀−gt에 대입하면 tₘ=v₀/g입니다.",
+            "원문에 제시된 2v₀/g는 같은 높이로 돌아오는 전체 왕복 시간입니다."
+          ],
+          "formulas": [
+            "tₘ=v₀/g",
+            "T=2v₀/g (같은 높이로 돌아올 때)"
+          ],
+          "commonMistakes": [
+            "최고점까지의 시간과 전체 체공 시간을 뒤바꿈"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · O/X 판단",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 O/X 2 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 O/X 2 → 웹 6번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "O/X 2",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "O, tₘ=2v₀/g",
+              "X, tₘ=v₀/(2g)",
+              "X, tₘ=v₀/g",
+              "O, tₘ=v₀/g"
+            ],
+            "correctChoice": 3,
+            "answer": "X, tₘ=v₀/g",
+            "acceptableAnswers": [
+              "3",
+              "X, tₘ=v₀/g"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 O/X 2번 복습: 공기 저항을 무시하고 g가 일정합니다. 처음 속력 v₀>0으로 연직 위로 던진 물체의 최고점 도달 시간에 관한 “tₘ=2v₀/g”의 판단과 올바른 식은?",
+            "explanation": "위쪽을 양의 방향으로 정하면 v=v₀−gt입니다. 최고점에서 v=0이므로 tₘ=v₀/g입니다. 2v₀/g는 출발 높이로 돌아오는 전체 시간입니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "2.4초",
+              "4.8초",
+              "1.2초",
+              "24초"
+            ],
+            "correctChoice": 1,
+            "answer": "2.4초",
+            "acceptableAnswers": [
+              "1",
+              "2.4초"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 공기 저항을 무시하고 g=10 m/s²입니다. 공을 연직 위로 24 m/s의 속력으로 던졌을 때 최고점 도달 시간은?",
+            "explanation": "tₘ=v₀/g=24/10=2.4초입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 7,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "수평 투사",
+          "topic": "O/X 3 · 수평 투사와 자유낙하의 도달 시간",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              997,
+              1140,
+              48
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 같은 높이에서 초기 연직 속도가 0인 두 물체를 비교합니다.",
+          "answer": "O",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "수평으로 던진 물체와 정지 상태에서 놓은 물체는 초기 연직 속도가 모두 0입니다.",
+            "같은 높이 h에서 출발하면 두 물체의 연직 운동은 h=gt²/2로 동일합니다.",
+            "따라서 지면 도달 시간은 모두 √(2h/g)이며 수평 속력에는 영향을 받지 않습니다."
+          ],
+          "formulas": [
+            "h=gt²/2",
+            "t=√(2h/g)"
+          ],
+          "commonMistakes": [
+            "수평으로 더 빠르게 던지면 더 오래 떠 있다고 생각함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · O/X 판단",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 O/X 3 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 O/X 3 → 웹 7번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "O/X 3",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "O, 처음 연직 속도와 연직 가속도 및 낙하 높이가 같기 때문이다.",
+              "X, 수평으로 던진 물체가 반드시 먼저 닿는다.",
+              "X, 정지 상태에서 놓은 물체가 반드시 먼저 닿는다.",
+              "O, 두 물체의 이동 경로 길이가 같기 때문이다."
+            ],
+            "correctChoice": 1,
+            "answer": "O, 처음 연직 속도와 연직 가속도 및 낙하 높이가 같기 때문이다.",
+            "acceptableAnswers": [
+              "1",
+              "O, 처음 연직 속도와 연직 가속도 및 낙하 높이가 같기 때문이다."
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 O/X 3번 복습: 같은 높이에서 한 물체는 수평으로 던지고 다른 물체는 정지 상태에서 동시에 놓습니다. 공기 저항을 무시하고 g가 일정할 때, 두 물체가 같은 수평 지면에 닿는 시간이 같다는 판단으로 옳은 것은?",
+            "explanation": "두 물체의 처음 연직 속도는 모두 0이고, 연직 가속도와 낙하 높이도 같습니다. 연직 운동이 같으므로 지면 도달 시간이 같습니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "A: 4초, B: 8초",
+              "A: 8초, B: 4초",
+              "A: 2초, B: 4초",
+              "A: 4초, B: 4초"
+            ],
+            "correctChoice": 4,
+            "answer": "A: 4초, B: 4초",
+            "acceptableAnswers": [
+              "4",
+              "A: 4초, B: 4초"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 지면에서 80 m 높이의 같은 지점에서 A는 수평으로 12 m/s로 던지고 B는 가만히 놓았습니다. 공기 저항을 무시하고 g=10 m/s²일 때, A와 B가 지면에 닿는 시간은 각각 얼마인가요?",
+            "explanation": "두 물체 모두 처음 연직 속도가 0이므로 t=√(2h/g)=√(160/10)=4초입니다. 수평 속력은 낙하 시간에 영향을 주지 않습니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 8,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "포물선 운동",
+          "topic": "O/X 4 · 최고점에서 남는 속도 성분",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              1044,
+              1140,
+              46
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 처음 속력이 v₀이고 수평과 0°<θ<90°를 이루며 비스듬히 위로 던진 경우입니다.",
+          "answer": "X — 최고점에서도 수평 속도 v₀cosθ가 남습니다.",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "포물선 운동의 최고점에서는 연직 속도 성분만 0이 됩니다.",
+            "수평 방향의 등속도 운동은 계속되므로 최고점 속력은 v₀cosθ입니다.",
+            "정확히 연직으로 던지는 θ=90°의 경우와 구분합니다."
+          ],
+          "formulas": [
+            "vₓ=v₀cosθ",
+            "최고점에서 vᵧ=0, |v|=v₀cosθ"
+          ],
+          "commonMistakes": [
+            "연직 성분이 0이라는 조건을 전체 속력이 0이라는 뜻으로 해석함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · O/X 판단",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 O/X 4 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 O/X 4 → 웹 8번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "O/X 4",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "O, 최고점에서는 모든 속도 성분이 0이다.",
+              "X, 최고점에서는 수평 속도만 남아 속력은 v₀cosθ이다.",
+              "X, 최고점에서는 연직 속도만 남아 속력은 v₀sinθ이다.",
+              "X, 최고점 속력은 처음 속력 v₀와 항상 같다."
+            ],
+            "correctChoice": 2,
+            "answer": "X, 최고점에서는 수평 속도만 남아 속력은 v₀cosθ이다.",
+            "acceptableAnswers": [
+              "2",
+              "X, 최고점에서는 수평 속도만 남아 속력은 v₀cosθ이다."
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 O/X 4번 복습: 공기 저항을 무시하고 g가 일정합니다. 처음 속력 v₀>0, 발사각 0°<θ<90°인 포물선 운동에서 “최고점의 속력은 0이다.”의 판단과 실제 최고점 속력은?",
+            "explanation": "최고점에서 연직 속도만 0이고 수평 속도 v₀cosθ는 남습니다. θ가 90°보다 작으므로 최고점 속력은 0보다 큽니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "0 m/s",
+              "20 m/s",
+              "10 m/s",
+              "10√3 m/s"
+            ],
+            "correctChoice": 3,
+            "answer": "10 m/s",
+            "acceptableAnswers": [
+              "3",
+              "10 m/s"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 공을 수평면과 60°의 각도로 위쪽으로 20 m/s의 속력으로 던졌습니다. 공기 저항을 무시할 때 최고점에서의 속력은?",
+            "explanation": "최고점에서는 연직 속도가 0입니다. 수평 속도는 20cos60°=10 m/s이므로 최고점 속력은 10 m/s입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 9,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "포물선 운동",
+          "topic": "O/X 5 · 최고점 높이와 체공 시간",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              1090,
+              1140,
+              48
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 발사점과 착지점은 같은 높이이고, 최고점 높이는 공통 발사 높이로부터 잽니다.",
+          "answer": "O",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "초기 연직 속력을 u라고 두면 최고점 높이는 H=u²/(2g)입니다.",
+            "같은 높이로 돌아오는 체공 시간은 T=2u/g입니다.",
+            "u를 소거하면 T=2√(2H/g)이므로 최고점 높이가 클수록 체공 시간이 깁니다."
+          ],
+          "formulas": [
+            "H=(v₀sinθ)²/(2g)",
+            "T=2v₀sinθ/g=2√(2H/g)"
+          ],
+          "commonMistakes": [
+            "서로 다른 발사 높이나 착지 높이의 운동까지 같은 식으로 비교함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · O/X 판단",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 O/X 5 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 O/X 5 → 웹 9번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "O/X 5",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "X, 최고점 높이가 달라도 전체 체공 시간은 항상 같다.",
+              "O, 전체 체공 시간은 최고점에서 내려오는 시간과 같다.",
+              "X, 최고점이 높아질수록 전체 체공 시간은 짧아진다.",
+              "O, 같은 높이로 돌아올 때 전체 체공 시간은 최고점 높이의 제곱근에 비례한다."
+            ],
+            "correctChoice": 4,
+            "answer": "O, 같은 높이로 돌아올 때 전체 체공 시간은 최고점 높이의 제곱근에 비례한다.",
+            "acceptableAnswers": [
+              "4",
+              "O, 같은 높이로 돌아올 때 전체 체공 시간은 최고점 높이의 제곱근에 비례한다."
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 O/X 5번 복습: 공기 저항을 무시하고 g가 일정하며, 공은 수평 지면에서 위로 발사되어 같은 높이의 지면에 착지합니다. 지면으로부터 최고점 높이를 H라고 할 때, “H가 클수록 전체 체공 시간 T가 크다.”의 판단과 관계식은?",
+            "explanation": "최고점에서 지면까지 내려오는 데 √(2H/g)가 걸립니다. 상승 시간과 하강 시간이 같으므로 전체 시간은 T=2√(2H/g)입니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "3/2",
+              "9/4",
+              "2/3",
+              "4/9"
+            ],
+            "correctChoice": 1,
+            "answer": "3/2",
+            "acceptableAnswers": [
+              "1",
+              "3/2"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 같은 수평 지면에서 두 공 A, B를 위로 발사하여 같은 지면에 착지시킵니다. 공기 저항은 무시하고 g는 같습니다. 최고점 높이가 H_A=20 m, H_B=45 m일 때 전체 체공 시간의 비 T_B/T_A는?",
+            "explanation": "같은 발사·착지 높이에서는 T=2√(2H/g)이므로 T_B/T_A=√(45/20)=3/2입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 10,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "포물선 운동",
+          "topic": "O/X 6 · 최고점 높이와 수평 도달 거리",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              1137,
+              1140,
+              49
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 같은 초기 속력으로 발사각을 바꾸며, 발사점과 착지점의 높이는 같습니다.",
+          "answer": "X",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "수평 도달 거리는 수평 속력과 체공 시간의 곱입니다.",
+            "같은 초기 속력에서 발사각을 45°보다 크게 하면 최고점은 높아지지만 수평 속력은 감소하고 사거리는 짧아집니다.",
+            "예를 들어 30°와 60°는 사거리가 같지만 60°에서의 최고점 높이는 더 큽니다. 따라서 높이만으로 사거리 증가를 판단할 수 없습니다."
+          ],
+          "formulas": [
+            "R=v₀²sin(2θ)/g",
+            "H=v₀²sin²θ/(2g)",
+            "R=vₓT"
+          ],
+          "commonMistakes": [
+            "체공 시간이 길어지면 수평 속력과 무관하게 사거리도 늘어난다고 생각함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · O/X 판단",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 O/X 6 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 O/X 6 → 웹 10번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "O/X 6",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "O, 체공 시간이 길어지면 수평 속도도 항상 커진다.",
+              "O, 최고점이 높을수록 수평 도달 거리는 무조건 커진다.",
+              "X, 높이가 커져도 수평 속도가 작아져 도달 거리가 줄 수 있다.",
+              "X, 최고점 높이와 수평 도달 거리는 모두 발사각과 무관하다."
+            ],
+            "correctChoice": 3,
+            "answer": "X, 높이가 커져도 수평 속도가 작아져 도달 거리가 줄 수 있다.",
+            "acceptableAnswers": [
+              "3",
+              "X, 높이가 커져도 수평 속도가 작아져 도달 거리가 줄 수 있다."
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 O/X 6번 복습: 공기 저항을 무시하고 g가 일정합니다. 같은 처음 속력으로 수평 지면에서 발사하여 같은 높이에 착지시키되 발사각은 0°<θ<90°에서 바꿉니다. “최고점이 높을수록 수평 도달 거리도 항상 크다.”의 판단으로 옳은 것은?",
+            "explanation": "최고점 높이는 H=v₀²sin²θ/(2g), 도달 거리는 R=v₀²sin2θ/g입니다. θ가 45°에서 더 커지면 H는 커지지만 R은 작아집니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "(1, 3)",
+              "(3, 1)",
+              "(3, 3)",
+              "(1, 1)"
+            ],
+            "correctChoice": 2,
+            "answer": "(3, 1)",
+            "acceptableAnswers": [
+              "2",
+              "(3, 1)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 공기 저항을 무시하고 g가 일정합니다. 같은 처음 속력으로 같은 수평 지면에서 각각 30°와 60°로 발사한 공이 같은 높이에 착지합니다. 최고점 높이와 수평 도달 거리의 비 (H₆₀/H₃₀, R₆₀/R₃₀)는?",
+            "explanation": "H는 sin²θ에 비례하므로 H₆₀/H₃₀=(3/4)/(1/4)=3입니다. R은 sin2θ에 비례하며 sin120°=sin60°이므로 도달 거리는 같습니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 11,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "낙하 운동",
+          "topic": "암기 1 · 자유낙하의 거리와 속도",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              1355,
+              926,
+              98
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 처음에 정지해 있으며, 속도의 양의 방향은 연직 아래로 정합니다.",
+          "answer": "s=gt²/2, v=gt",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "등가속도 운동식 s=v₀t+gt²/2, v=v₀+gt에 v₀=0을 대입합니다.",
+            "따라서 낙하 거리는 s=gt²/2이고 아래쪽을 +로 정한 속도는 v=gt입니다.",
+            "속도를 위쪽 +라고 명시하고 −gt로 쓴 답은 물리적으로 동등하므로 수동 채점에서 인정할 수 있습니다. 낙하 거리 s는 음수가 아닙니다."
+          ],
+          "formulas": [
+            "s=gt²/2",
+            "v=gt (아래쪽 +)"
+          ],
+          "commonMistakes": [
+            "낙하 거리 식에서 1/2를 누락함",
+            "좌표축의 방향을 정하지 않고 속도의 부호를 사용함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · 낙하 거리 식",
+              "points": 5
+            },
+            {
+              "criterion": "사이트 환산 · 속도 식",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 암기 1 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 암기 1 → 웹 11번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "암기 1",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "s=gt², v=gt",
+              "s=gt²/2, v=2gt",
+              "s=gt, v=gt²/2",
+              "s=gt²/2, v=gt"
+            ],
+            "correctChoice": 4,
+            "answer": "s=gt²/2, v=gt",
+            "acceptableAnswers": [
+              "4",
+              "s=gt²/2, v=gt"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 암기 1번 복습: 정지 상태에서 놓은 물체가 중력만 받아 낙하합니다. g는 일정하고 아래쪽을 양의 방향으로 정합니다. 놓은 뒤 시간 t 동안 낙하한 거리 s와 속도 v의 식은?",
+            "explanation": "처음 속도가 0인 등가속도 운동이므로 s=v₀t+gt²/2=gt²/2, v=v₀+gt=gt입니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "45 m, 30 m/s",
+              "30 m, 45 m/s",
+              "90 m, 30 m/s",
+              "45 m, 60 m/s"
+            ],
+            "correctChoice": 1,
+            "answer": "45 m, 30 m/s",
+            "acceptableAnswers": [
+              "1",
+              "45 m, 30 m/s"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 충분히 높은 곳에서 공을 가만히 놓았습니다. 공기 저항을 무시하고 g=10 m/s²일 때, 3초 동안 낙하한 거리와 3초 후 속력은?",
+            "explanation": "s=gt²/2=10×3²/2=45 m이고, v=gt=10×3=30 m/s입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 12,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "낙하 운동",
+          "topic": "암기 2 · 낙하 높이와 소요 시간",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              1452,
+              1262,
+              49
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 높이 h>0에서 정지 상태로 놓은 물체입니다.",
+          "answer": "t=√(2h/g)",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "낙하 거리 식 s=gt²/2에 s=h를 대입합니다.",
+            "t²=2h/g에서 물리적으로 가능한 양의 시간만 택하면 t=√(2h/g)입니다."
+          ],
+          "formulas": [
+            "h=gt²/2",
+            "t=√(2h/g)"
+          ],
+          "commonMistakes": [
+            "제곱근을 빠뜨림",
+            "시간을 높이에 단순 비례한다고 생각함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · 낙하 시간 식",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 암기 2 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 암기 2 → 웹 12번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "암기 2",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "h/g",
+              "√(2h/g)",
+              "√(h/(2g))",
+              "2h/g"
+            ],
+            "correctChoice": 2,
+            "answer": "√(2h/g)",
+            "acceptableAnswers": [
+              "2",
+              "√(2h/g)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 암기 2번 복습: 공기 저항을 무시하고 g가 일정할 때, 정지 상태에서 놓은 물체가 높이 h>0만큼 낙하하는 데 걸리는 시간은?",
+            "explanation": "h=gt²/2를 t에 대해 풀고 양의 시간을 택하면 t=√(2h/g)입니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "2.5초",
+              "10초",
+              "5초",
+              "12.5초"
+            ],
+            "correctChoice": 3,
+            "answer": "5초",
+            "acceptableAnswers": [
+              "3",
+              "5초"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 지면에서 125 m 높이에서 공을 가만히 놓았습니다. 공기 저항을 무시하고 g=10 m/s²일 때 지면에 닿는 시간은?",
+            "explanation": "t=√(2h/g)=√(250/10)=√25=5초입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 13,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "연직 상방 운동",
+          "topic": "암기 3 · 최고점과 지면 도달 시간",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              1500,
+              1028,
+              112
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 지면에서 연직 위로 던져 출발점과 같은 높이의 지면으로 돌아옵니다.",
+          "answer": "tₘ=v₀/g, T=2v₀/g",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "최고점에서 v=v₀−gt=0이므로 tₘ=v₀/g입니다.",
+            "출발 높이로 돌아오는 조건 y=v₀t−gt²/2=0의 t>0인 해는 T=2v₀/g입니다.",
+            "원본의 지면 도달 시간 식은 출발점과 착지점 높이가 같은 경우에 적용합니다."
+          ],
+          "formulas": [
+            "tₘ=v₀/g",
+            "T=2v₀/g"
+          ],
+          "commonMistakes": [
+            "두 시간에 같은 식을 씀",
+            "높은 건물 위에서 던진 경우에도 T=2v₀/g를 적용함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · 최고점 도달 시간 식",
+              "points": 5
+            },
+            {
+              "criterion": "사이트 환산 · 지면 도달 시간 식",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 암기 3 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 암기 3 → 웹 13번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "암기 3",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "tₘ=v₀/g, T=2v₀/g",
+              "tₘ=2v₀/g, T=v₀/g",
+              "tₘ=v₀/g, T=v₀/g",
+              "tₘ=v₀/(2g), T=v₀/g"
+            ],
+            "correctChoice": 1,
+            "answer": "tₘ=v₀/g, T=2v₀/g",
+            "acceptableAnswers": [
+              "1",
+              "tₘ=v₀/g, T=2v₀/g"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 암기 3번 복습: 공기 저항을 무시하고 g가 일정합니다. 지면에서 공을 연직 위로 처음 속력 v₀>0으로 던진 뒤 같은 지면에 돌아옵니다. 최고점 도달 시간 tₘ과 지면 도달 시간 T의 식은?",
+            "explanation": "최고점에서는 v₀−gtₘ=0이므로 tₘ=v₀/g입니다. 같은 높이로 돌아오는 시간은 상승 시간의 두 배이므로 T=2v₀/g입니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "6초, 12초",
+              "1.5초, 3초",
+              "6초, 3초",
+              "3초, 6초"
+            ],
+            "correctChoice": 4,
+            "answer": "3초, 6초",
+            "acceptableAnswers": [
+              "4",
+              "3초, 6초"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 지면에서 공을 연직 위로 30 m/s의 속력으로 던졌습니다. 공기 저항을 무시하고 g=10 m/s²일 때, 최고점에 도달하는 시간과 같은 지면으로 돌아오는 시간은?",
+            "explanation": "tₘ=v₀/g=30/10=3초, T=2v₀/g=60/10=6초입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 14,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "수평 투사",
+          "topic": "암기 4 · 수평·연직 변위",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              1611,
+              1209,
+              97
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 출발점을 원점으로 하고, x축은 던진 수평 방향, y축은 원문처럼 연직 아래 방향을 +로 정합니다.",
+          "answer": "x=v₀t, y=gt²/2",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "수평 방향의 가속도는 0이므로 x=v₀t입니다.",
+            "초기 연직 속도는 0이고 아래쪽 가속도는 g이므로 y=gt²/2입니다.",
+            "두 성분의 시간 t는 같은 시각을 뜻합니다."
+          ],
+          "formulas": [
+            "x=v₀t",
+            "y=gt²/2 (아래쪽 +)"
+          ],
+          "commonMistakes": [
+            "수평 변위에 중력가속도 항을 더함",
+            "원문에 명시된 아래쪽 양의 y축을 놓침"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · 수평 변위 식",
+              "points": 5
+            },
+            {
+              "criterion": "사이트 환산 · 연직 변위 식",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 암기 4 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 암기 4 → 웹 14번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "암기 4",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "x=gt²/2, y=v₀t",
+              "x=v₀t, y=−gt²/2",
+              "x=v₀t, y=gt²/2",
+              "x=v₀t, y=gt²"
+            ],
+            "correctChoice": 3,
+            "answer": "x=v₀t, y=gt²/2",
+            "acceptableAnswers": [
+              "3",
+              "x=v₀t, y=gt²/2"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 암기 4번 복습: 공기 저항을 무시하고 g가 일정합니다. 원점에서 물체를 +x방향으로 수평 속력 v₀로 던집니다. y축은 연직 아래쪽이 양의 방향입니다. 시간 t 후 좌표 (x,y)는?",
+            "explanation": "수평 방향은 등속도 운동이므로 x=v₀t입니다. 연직 방향의 처음 속도는 0이고 아래쪽이 양의 방향이므로 y=gt²/2입니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "(12 m, −20 m)",
+              "(12 m, 20 m)",
+              "(20 m, 12 m)",
+              "(12 m, 40 m)"
+            ],
+            "correctChoice": 2,
+            "answer": "(12 m, 20 m)",
+            "acceptableAnswers": [
+              "2",
+              "(12 m, 20 m)"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 충분히 높은 곳의 원점에서 공을 +x방향으로 6 m/s로 수평으로 던졌습니다. 공기 저항을 무시하고 g=10 m/s²이며 y축은 아래쪽이 양의 방향입니다. 2초 후 좌표 (x,y)는?",
+            "explanation": "x=v₀t=6×2=12 m, y=gt²/2=10×2²/2=20 m입니다. 아래쪽을 양의 방향으로 정했으므로 y는 양수입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 15,
+          "maxPoints": 10,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "포물선 운동",
+          "topic": "암기 5 · 최고점과 지면 도달 시간",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              1707,
+              1020,
+              110
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. θ는 수평과 이루는 발사각(0°<θ<90°)이며 발사점과 착지점 높이가 같습니다.",
+          "answer": "T₁=v₀sinθ/g, T₂=2v₀sinθ/g",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "초기 연직 속도는 v₀sinθ입니다.",
+            "vᵧ=v₀sinθ−gt=0에서 최고점 도달 시간 T₁=v₀sinθ/g를 구합니다.",
+            "출발 높이로 돌아올 때는 상승·하강 시간이 같으므로 T₂=2T₁=2v₀sinθ/g입니다."
+          ],
+          "formulas": [
+            "vᵧ=v₀sinθ−gt",
+            "T₁=v₀sinθ/g",
+            "T₂=2v₀sinθ/g"
+          ],
+          "commonMistakes": [
+            "연직 성분에 cosθ를 사용함",
+            "최고점 도달 시간과 체공 시간을 뒤바꿈"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · 최고점 도달 시간 식",
+              "points": 5
+            },
+            {
+              "criterion": "사이트 환산 · 지면 도달 시간 식",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 암기 5 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 암기 5 → 웹 15번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "암기 5",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "T₁=v₀cosθ/g, T₂=2v₀cosθ/g",
+              "T₁=2v₀sinθ/g, T₂=v₀sinθ/g",
+              "T₁=v₀sinθ/g, T₂=v₀sinθ/g",
+              "T₁=v₀sinθ/g, T₂=2v₀sinθ/g"
+            ],
+            "correctChoice": 4,
+            "answer": "T₁=v₀sinθ/g, T₂=2v₀sinθ/g",
+            "acceptableAnswers": [
+              "4",
+              "T₁=v₀sinθ/g, T₂=2v₀sinθ/g"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 암기 5번 복습: 공기 저항을 무시하고 g가 일정합니다. 지면에서 처음 속력 v₀>0, 수평면과의 각 0°<θ<90°로 위쪽으로 발사한 물체가 같은 높이의 지면에 착지합니다. 최고점 도달 시간 T₁과 지면 도달 시간 T₂는?",
+            "explanation": "처음 연직 속도는 v₀sinθ이므로 최고점까지 T₁=v₀sinθ/g가 걸립니다. 같은 높이로 착지하므로 T₂=2T₁입니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "1초, 2초",
+              "2초, 4초",
+              "√3초, 2√3초",
+              "2초, 1초"
+            ],
+            "correctChoice": 1,
+            "answer": "1초, 2초",
+            "acceptableAnswers": [
+              "1",
+              "1초, 2초"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 지면에서 공을 수평면과 30°의 각도로 위쪽으로 20 m/s의 속력으로 던졌습니다. 공기 저항을 무시하고 g=10 m/s²입니다. 최고점 도달 시간과 같은 높이의 지면 도달 시간은?",
+            "explanation": "처음 연직 속도는 20sin30°=10 m/s입니다. T₁=10/10=1초, T₂=2T₁=2초입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        },
+        {
+          "no": 16,
+          "maxPoints": 5,
+          "type": "subjective",
+          "inputMode": "achievement",
+          "unit": "포물선 운동",
+          "topic": "암기 6 · 최대 사거리의 발사각",
+          "difficulty": "하",
+          "image": {
+            "page": 1,
+            "crop": [
+              272,
+              1816,
+              1031,
+              54
+            ]
+          },
+          "reviewStatus": "verified",
+          "correctionNote": "추가 풀이 조건: 공기 저항을 무시하고 중력가속도 g는 일정합니다. 초기 속력을 일정하게 두고 발사각만 바꾸며, 발사점과 착지점 높이는 같습니다.",
+          "answer": "θ=45° (=π/4 rad)",
+          "answerHeading": "제공 해설 대조·검수 정답",
+          "explanation": [
+            "수평 도달 거리는 R=v₀²sin(2θ)/g입니다.",
+            "v₀와 g가 일정할 때 sin(2θ)=1에서 사거리가 최대이므로 2θ=90°, θ=45°입니다.",
+            "원본 해설의 숫자 45를 각도 단위까지 표시했습니다. π/4 rad도 같은 답입니다."
+          ],
+          "formulas": [
+            "R=v₀²sin(2θ)/g",
+            "sin(2θ)≤1"
+          ],
+          "commonMistakes": [
+            "최고점이 가장 높은 90°가 가장 멀리 간다고 생각함",
+            "발사 높이와 착지 높이가 다를 때도 45°를 그대로 적용함"
+          ],
+          "rubric": [
+            {
+              "criterion": "사이트 환산 · 최대 사거리 발사각",
+              "points": 5
+            }
+          ],
+          "retryMode": "multiple-choice",
+          "sourceText": "원본 문제지 1쪽의 암기 6 문항을 수정 없이 직접 추출했습니다.",
+          "sourceNote": "원문 암기 6 → 웹 16번. 원본 배점은 없으며 답란당 5점으로 사이트에서 환산했습니다.",
+          "sourceQuestionLabel": "암기 6",
+          "originalRetry": {
+            "inputMode": "choice",
+            "choices": [
+              "30°",
+              "45°",
+              "60°",
+              "90°"
+            ],
+            "correctChoice": 2,
+            "answer": "45°",
+            "acceptableAnswers": [
+              "2",
+              "45°"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "원문 암기 6번 복습: 공기 저항을 무시하고 g가 일정합니다. 같은 처음 속력으로 수평 지면에서 물체를 발사하여 같은 높이에 착지시킬 때, 수평 도달 거리가 최대가 되는 발사각은?",
+            "explanation": "수평 도달 거리는 R=v₀²sin2θ/g입니다. sin2θ가 1일 때 최대이므로 2θ=90°, θ=45°입니다."
+          },
+          "similarProblem": {
+            "inputMode": "choice",
+            "choices": [
+              "30°, 90 m",
+              "60°, 45 m",
+              "45°, 90 m",
+              "45°, 45 m"
+            ],
+            "correctChoice": 3,
+            "answer": "45°, 90 m",
+            "acceptableAnswers": [
+              "3",
+              "45°, 90 m"
+            ],
+            "displayMode": "choice-card",
+            "prompt": "동형 연습: 공기 저항을 무시하고 g=10 m/s²입니다. 수평 지면에서 처음 속력 30 m/s로 공을 발사하여 같은 높이에 착지시킵니다. 수평 도달 거리가 최대가 되는 발사각과 그 최대 거리는?",
+            "explanation": "같은 발사·착지 높이에서 최적 각도는 45°입니다. R_max=v₀²/g=30²/10=90 m입니다.",
+            "provenance": "원문 개념을 바탕으로 새로 작성한 4지 객관식 동형 연습문항"
+          }
+        }
+      ],
+      "featureVersion": "3.7.17-r03-numbering-fix",
+      "recordOnly": true,
+      "recordVariant": "concept16",
+      "sourceExamId": "physics2-basic-r03"
     }
   ],
   "operatingPolicy": {
@@ -30129,5 +30897,5 @@ window.YP_CATALOG = {
       "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
     }
   },
-  "featureVersion": "3.7.16-physics2-basic-r03"
+  "featureVersion": "3.7.17-r03-numbering-fix"
 };

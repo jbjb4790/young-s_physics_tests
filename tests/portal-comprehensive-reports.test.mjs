@@ -128,7 +128,7 @@ test('총괄평가가 없는 학생의 누적 요약에는 빈 성적표 전용 
 });
 
 test('버전 갱신과 반응형·인쇄 스타일 확인; Apps Script 변경 없이 기존 보고서 페이지로 연결',()=>{
-  assert.match(html,/assets\/portal\.js\?v=3\.7\.8/);
+  assert.match(html,/assets\/portal\.js\?v=3\.7\.17-r03-fix/);
   assert.match(html,/assets\/styles\.css\?v=3\.7\.8/);
   assert.match(css,/portal-comprehensive-spotlight/);
   assert.match(css,/@media print\{\.portal-comprehensive-spotlight/);

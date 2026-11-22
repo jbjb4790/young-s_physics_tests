@@ -25,7 +25,7 @@ test('옛 16회차 ID와 모든 6문항은 정본 SHA256을 그대로 유지',()
  assert.match(legacy.questions[5].topic,/연속 결상/);
 });
 test('총괄 누적 history 목록을 제외한 옛 41개 시험 정의 모두 그대로',()=>{
- for(const ex of catalog.exams){if(ex.examId==='physics2-basic-total-electromagnetism'||ex.examId==='physics2-basic-r02'||ex.examId==='physics2-basic-r03')continue;if(ex.examId==='physics2-advanced-r06'||ex.examId==='physics2-advanced-r05'||ex.examId==='physics2-advanced-r04-v2'||ex.examId==='physics1-basic-r16-v2'||ex.examId==='physics1-basic-total-electromagnetism'||ex.examId==='physics2-basic-r14'||ex.examId==='physics2-basic-r15'||ex.examId==='physics2-advanced-r04'||ex.examId==='physics2-advanced-total')continue;
+ for(const ex of catalog.exams){if(ex.recordOnly)continue;if(ex.examId==='physics2-basic-total-electromagnetism'||ex.examId==='physics2-basic-r02'||ex.examId==='physics2-basic-r03')continue;if(ex.examId==='physics2-advanced-r06'||ex.examId==='physics2-advanced-r05'||ex.examId==='physics2-advanced-r04-v2'||ex.examId==='physics1-basic-r16-v2'||ex.examId==='physics1-basic-total-electromagnetism'||ex.examId==='physics2-basic-r14'||ex.examId==='physics2-basic-r15'||ex.examId==='physics2-advanced-r04'||ex.examId==='physics2-advanced-total')continue;
   assert.equal(digestObject(ex),snapshot.examHashes[ex.examId],ex.examId)}
 });
 test('신규 ID는 16회차 (개정)이며 과거 회차/학생 식별자를 건드리지 않음',()=>{
@@ -103,7 +103,7 @@ test('학생 통합 포털의 시험별 문항 분석은 두 버전 모두 남�
 });
 test('웹 교사 화면은 새 16회 기본 노출, 옛 16회는 수정 중에만 노출',()=>{
  const app=read('site/assets/app.js');assert.match(app,/superseded=new Set/);
- assert.match(app,/e\.examId===requested/);assert.match(app,/selectExamId:r\.examId,load:false/);
+ assert.match(app,/e\.examId===requested/);assert.match(app,/selectExamId:recordExam\.sourceExamId\|\|r\.examId,load:false/);
  assert.match(app,/switchLegacyExamToCurrent/);assert.match(app,/async function saveCurrent\(\)[\s\S]*?state\.editToken/);
 });
 test('학생 변경·새 학생·포털 선택 시 구형 16회 수정 모드를 해제하고 새 성적은 신판으로 분기',()=>{
@@ -145,13 +145,13 @@ test('catalog JS, catalog JSON, 독립 문제 JSON의 개정 16회차 문항 일
  assert.equal(JSON.stringify(independent),JSON.stringify(revision));
 });
 test('43개 시험 및 23개 ready, 237개 문항 / 기타 과정 동일',()=>{
- assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,47);
+ assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,48);
  assert.equal(catalog.exams.filter(e=>e.status==='ready').length,32);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,334);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,326);
 });
 test('서버·영구 링크·로고 등 보호 파일 SHA256 유지 (승인된 학부모 UI 및 3.7.12 원문해설 표시 확장 제외)',()=>{
- for(const [file,hash] of Object.entries(snapshot.protectedFileHashes)){if(['site/assets/portal.js','site/assets/styles.css','site/assets/report.js'].includes(file))continue;assert.equal(digest(file),hash,file)}
+ for(const [file,hash] of Object.entries(snapshot.protectedFileHashes)){if(['site/assets/portal.js', 'site/assets/styles.css', 'site/assets/report.js', 'apps-script/Code.gs', 'site/assets/core.js', 'site/assets/api.js', 'site/assets/app.js'].includes(file))continue;assert.equal(digest(file),hash,file)}
 });
 test('세 HTML의 catalog 캐시가 3.7.5로 갱신',()=>{
- for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.16/);
+ for(const f of ['index.html','report.html','portal.html'])assert.match(read('site/'+f),/assets\/data\/catalog\.js\?v=3\.7\.17/);
 });

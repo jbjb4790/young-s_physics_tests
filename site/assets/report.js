@@ -112,7 +112,7 @@
      if(expectedServer&&data.serverInstanceId&&expectedServer!==String(data.serverInstanceId)){
        const err=new Error("이 성적표 링크를 만든 서버와 현재 연결된 Apps Script 서버가 다릅니다. 교사용 화면에서 링크를 다시 복사해 주세요.");err.code="SERVER_INSTANCE_MISMATCH";throw err;
      }
-     const record=data.record,baseExam=YP.getExam(record.examId),exam=YP.mergeExamQuestions(baseExam,data.questions||[]);
+     const {record,exam}=YP.resolveRecordDetail(data);
      if(!exam)throw new Error("연결된 시험 설정을 찾을 수 없습니다.");
      if(record.examId!==exam.examId||record.courseId!==exam.courseId)throw new Error("학생 기록과 시험 설정의 식별자가 일치하지 않습니다.");
      current={exam,record,stats:data.stats,integrity:data.integrity,historyRecords:data.historyRecords||[]};

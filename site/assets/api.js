@@ -270,12 +270,40 @@
   reissueStudentPortal(studentId){return this.request("reissueStudentPortal",{studentId},{auth:true})}
   migrateStudentPortals(batchSize=300){return this.request("migrateStudentPortals",{batchSize},{auth:true})}
   getQuestions(examId){return this.request("getQuestions",{examId:String(examId||"")},{auth:true})}
-  saveQuestionAnswers(examId,questions,revisionNote=""){return this.request("saveQuestionAnswers",{examId:String(examId||""),questions:Array.isArray(questions)?questions:[],revisionNote:String(revisionNote||"")},{auth:true})}
-  clearQuestionAnswerOverrides(examId,questionNos=[]){return this.request("clearQuestionAnswerOverrides",{examId:String(examId||""),questionNos:Array.isArray(questionNos)?questionNos:[]},{auth:true})}
-  saveReport(record){return this.request("saveReport",{record},{auth:true})}
-  saveBatch(records){return this.request("saveBatch",{records},{auth:true})}
+  async _ensureRecordVariantServer(examId){
+    const ex=YP.getExam(examId),base=ex?.sourceExamId?YP.getExam(ex.sourceExamId):ex;if(!YP.hasRecordVariants(base))return;
+    if(this.demo)return;
+    const data=await this.request("getQuestions",{examId:base.examId},{auth:true});
+    if(data.recordVariantsSupported!==true)throw new YPAPIError("물리2 3회차의 기존 기록을 보호하기 위해 저장을 중단했습니다. Apps Script를 v3.7.17로 업데이트하고 시험 설정을 동기화해 주세요.","RECORD_VARIANTS_SERVER_UPDATE_REQUIRED");
+    if(!Array.isArray(data.questions)||data.questions.length!==base.questions.length)throw new YPAPIError("서버의 물리2 3회차 문항 수가 다릅니다. 시험 설정을 동기화한 뒤 다시 저장하세요.","RECORD_VARIANT_QUESTIONS_MISMATCH");
+    YP.mergeExamQuestions(base,data.questions);
+  }
+  _validateVariantRecordWrite(record){
+    const info=YP.getRecordVariantInfo(record);if(!info||!YP.hasRecordVariants(info.base))return;
+    if(info.conflict||record.resultInputs?.length!==info.exam.questions.length)throw new YPAPIError(info.error||"이 기록의 문항 수와 입력값이 일치하지 않습니다. 기존 기록은 변경하지 않았습니다.","RECORD_VARIANT_CONFLICT");
+    if((info.variant||info.exam.recordOnly)&&!record.token)throw new YPAPIError("보관된 개념정리는 기존 기록만 수정할 수 있습니다. 새 성적은 현재 8문항 시험에서 입력하세요.","RECORD_VARIANT_NEW_RECORD_FORBIDDEN");
+  }
+  async saveQuestionAnswers(examId,questions,revisionNote=""){
+    if(YP.getExam(examId)?.recordOnly)throw new YPAPIError("보관된 기존 기록에서는 정답을 수정할 수 없습니다.","ARCHIVED_QUESTION_EDIT_FORBIDDEN");
+    await this._ensureRecordVariantServer(examId);return this.request("saveQuestionAnswers",{examId:String(examId||""),questions:Array.isArray(questions)?questions:[],revisionNote:String(revisionNote||""),...(YP.hasRecordVariants(YP.getExam(examId))?{expectedQuestionCount:YP.getExam(examId).questions.length}:{})},{auth:true});
+  }
+  async clearQuestionAnswerOverrides(examId,questionNos=[]){
+    if(YP.getExam(examId)?.recordOnly)throw new YPAPIError("보관된 기존 기록에서는 정답을 초기화할 수 없습니다.","ARCHIVED_QUESTION_EDIT_FORBIDDEN");
+    await this._ensureRecordVariantServer(examId);return this.request("clearQuestionAnswerOverrides",{examId:String(examId||""),questionNos:Array.isArray(questionNos)?questionNos:[],...(YP.hasRecordVariants(YP.getExam(examId))?{expectedQuestionCount:YP.getExam(examId).questions.length}:{})},{auth:true});
+  }
+  async saveReport(record){this._validateVariantRecordWrite(record);await this._ensureRecordVariantServer(record.examId);return this.request("saveReport",{record},{auth:true})}
+  async saveBatch(records){
+    for(const record of records||[])this._validateVariantRecordWrite(record);
+    for(const examId of new Set((records||[]).map(r=>r.examId)))await this._ensureRecordVariantServer(examId);
+    return this.request("saveBatch",{records},{auth:true});
+  }
   deleteReport(token){return this.request("deleteReport",{token},{auth:true})}
-  syncCatalog(){return this.request("syncCatalog",{catalog:YP.catalog},{auth:true})}
+  async syncCatalog(){
+    if(!this.demo&&YP.catalog.exams.some(e=>e.inputProfile?.recordVariants?.length)){
+      const boot=await this.bootstrap();if(boot.recordVariantsSupported!==true)throw new YPAPIError("기존 16문항 기록과 정답 수정본을 보존하려면 Apps Script v3.7.17 업데이트가 먼저 필요합니다. 시험 설정 동기화는 실행하지 않았습니다.","RECORD_VARIANTS_SERVER_UPDATE_REQUIRED");
+    }
+    return this.request("syncCatalog",{catalog:YP.catalog},{auth:true});
+  }
   getExamStats(examId){return this.request("getExamStats",{examId})}
   checkIntegrity(){return this.request("checkIntegrity",{},{auth:true})}
   _demoKey(){return YP.config.cachePrefix+"demo_reports_v2"}
@@ -285,10 +313,20 @@
   _questionToRow(examId,q,overrideUpdatedAt=""){
     return {ExamId:examId,QuestionNo:q.no,Type:q.type,InputMode:q.inputMode||"achievement",MaxPoints:q.maxPoints,Unit:q.unit||"",Topic:q.topic||"",Difficulty:q.difficulty||"",AnswerJSON:JSON.stringify({display:q.answer,answerKey:q.answerKey,acceptableAnswers:q.acceptableAnswers||[]}),RubricJSON:JSON.stringify(q.rubric||[]),ExplanationJSON:JSON.stringify({steps:q.explanation||[],formulas:q.formulas||[],commonMistakes:q.commonMistakes||[]}),OriginalRetryJSON:JSON.stringify(q.originalRetry||{}),SimilarProblemJSON:JSON.stringify(q.similarProblem||{}),ReviewStatus:q.reviewStatus||"",CorrectionNote:q.correctionNote||"",ImageJSON:JSON.stringify(q.image||{}),OverrideUpdatedAt:overrideUpdatedAt||""}
   }
-  _demoQuestionRows(examId){
-    const exam=YP.getExam(examId);if(!exam)return [];
-    const overrides=this._loadQuestionOverrides()[examId]||{};
-    return (exam.questions||[]).map(q=>{const o=overrides[String(q.no)]||null,merged=o?{...YP.clone(q),...o,originalRetry:o.originalRetry||q.originalRetry,similarProblem:o.similarProblem||q.similarProblem}:YP.clone(q);return this._questionToRow(examId,merged,o?.updatedAt||"")})
+  _variantDemoOverrides(){
+    const all=this._loadQuestionOverrides();let changed=false;
+    for(const base of YP.catalog.exams){
+      const archiveId=base.inputProfile?.recordVariants?.[0]?.archiveExamId;if(!archiveId||!all[base.examId])continue;
+      const source=all[base.examId],archive=all[archiveId]||{};
+      for(const no of Object.keys(source)){if(source[no]?.recordVariant!==undefined)continue;if(!archive[no])archive[no]=source[no];delete source[no];changed=true}
+      if(Object.keys(archive).length)all[archiveId]=archive;
+    }
+    if(changed)this._saveQuestionOverrides(all);return all;
+  }
+  _demoQuestionRows(examId,record=null){
+    const exam=record?YP.getExamForRecord(record):YP.getExam(examId);if(!exam)return [];
+    const sourceId=exam.resolvedExamId||exam.examId,overrides=this._variantDemoOverrides()[sourceId]||{};
+    return (exam.questions||[]).map(q=>{const o=overrides[String(q.no)]||null,merged=o?{...YP.clone(q),...o,originalRetry:o.originalRetry||q.originalRetry,similarProblem:o.similarProblem||q.similarProblem}:YP.clone(q);return this._questionToRow(sourceId,merged,o?.updatedAt||"")})
   }
   _loadDemo(){let rows;try{rows=JSON.parse(localStorage.getItem(this._demoKey())||"null")}catch(e){}if(!Array.isArray(rows)){rows=JSON.parse(JSON.stringify(window.YP_DEMO_DATA?.reports||[]));localStorage.setItem(this._demoKey(),JSON.stringify(rows))}return rows}
   _saveDemo(rows){localStorage.setItem(this._demoKey(),JSON.stringify(rows))}
@@ -306,21 +344,23 @@
   _demoProfiles(rows){const map=new Map();(rows||[]).forEach(raw=>{const r=this._normalize(raw),p=this._demoStudentProfile(r),entry=map.get(p.studentId)||{...p,records:[]};entry.records.push({...r,studentId:p.studentId});if(String(r.updatedAt||"")>String(entry.updatedAt||""))entry.updatedAt=r.updatedAt;map.set(p.studentId,entry)});return [...map.values()]}
   async demoRequest(action,payload={}){
     let rows=this._loadDemo();
-    if(action==="bootstrap")return {ok:true,demo:true,apiVersion:"demo",featureVersion:"3.6.0-class-roster-record-manager",serverInstanceId:"demo-local",authMode:"demo",teacherPinConfigured:true,sessionTtlDays:999};
+    if(action==="bootstrap")return {ok:true,demo:true,recordVariantsSupported:true,apiVersion:"demo",featureVersion:"3.6.0-class-roster-record-manager",serverInstanceId:"demo-local",authMode:"demo",teacherPinConfigured:true,sessionTtlDays:999};
     if(action==="teacherLogin"||action==="claimDevice")return {ok:true,demo:true,authenticated:true,sessionToken:"demo-session",expiresAt:"2999-12-31T00:00:00.000Z",role:"teacher"};
     if(action==="sessionStatus")return {ok:true,demo:true,authenticated:true,expiresAt:"2999-12-31T00:00:00.000Z",role:"teacher"};
     if(action==="createDeviceSetupToken")return {ok:true,demo:true,setupToken:"demo-setup-token",expiresAt:new Date(Date.now()+600000).toISOString(),oneTime:true};
     if(action==="ping")return {ok:true,demo:true,message:"데모 저장소 연결 정상",serverInstanceId:"demo-local"};
     if(action==="syncCatalog")return {ok:true,demo:true,courses:YP.catalog.courses.length,exams:YP.catalog.exams.length,questions:YP.readyExams().reduce((a,e)=>a+(e.questions?.length||0),0)};
-    if(action==="getQuestions")return {ok:true,demo:true,questions:this._demoQuestionRows(String(payload.examId||""))};
+    if(action==="getQuestions")return {ok:true,demo:true,recordVariantsSupported:true,questionSourceExamId:String(payload.examId||""),questions:this._demoQuestionRows(String(payload.examId||""))};
     if(action==="saveQuestionAnswers"){
       const examId=String(payload.examId||""),exam=YP.getExam(examId);if(!exam)throw new YPAPIError("시험 문항을 찾을 수 없습니다.","QUESTIONS_NOT_FOUND");
-      const all=this._loadQuestionOverrides(),bucket=all[examId]||{},now=new Date().toISOString();
-      for(const item of payload.questions||[]){const no=Number(item.no),base=exam.questions.find(q=>Number(q.no)===no);if(!base)throw new YPAPIError(`${no}번 문항을 찾을 수 없습니다.`,"QUESTION_NO_INVALID");bucket[String(no)]={answer:String(item.answer??base.answer),answerKey:item.answerKey??base.answerKey,acceptableAnswers:item.acceptableAnswers||base.acceptableAnswers||[],originalRetry:YP.clone(item.originalRetry||base.originalRetry),similarProblem:YP.clone(item.similarProblem||base.similarProblem),revisionNote:String(item.revisionNote||payload.revisionNote||""),updatedAt:now}}
+      if(exam.recordOnly)throw new YPAPIError("보관된 기존 기록에서는 정답을 수정할 수 없습니다.","ARCHIVED_QUESTION_EDIT_FORBIDDEN");
+      const all=this._variantDemoOverrides(),bucket=all[examId]||{},now=new Date().toISOString();
+      for(const item of payload.questions||[]){const no=Number(item.no),base=exam.questions.find(q=>Number(q.no)===no);if(!base)throw new YPAPIError(`${no}번 문항을 찾을 수 없습니다.`,"QUESTION_NO_INVALID");bucket[String(no)]={answer:String(item.answer??base.answer),answerKey:item.answerKey??base.answerKey,acceptableAnswers:item.acceptableAnswers||base.acceptableAnswers||[],originalRetry:YP.clone(item.originalRetry||base.originalRetry),similarProblem:YP.clone(item.similarProblem||base.similarProblem),revisionNote:String(item.revisionNote||payload.revisionNote||""),updatedAt:now,...(YP.hasRecordVariants(exam)?{recordVariant:""}:{})}}
       all[examId]=bucket;this._saveQuestionOverrides(all);return {ok:true,demo:true,examId,count:(payload.questions||[]).length,questions:this._demoQuestionRows(examId),updatedAt:now};
     }
     if(action==="clearQuestionAnswerOverrides"){
-      const examId=String(payload.examId||""),all=this._loadQuestionOverrides(),bucket=all[examId]||{},selected=new Set((payload.questionNos||[]).map(Number));let deleted=0;
+      if(YP.getExam(String(payload.examId||""))?.recordOnly)throw new YPAPIError("보관된 기존 기록에서는 정답을 초기화할 수 없습니다.","ARCHIVED_QUESTION_EDIT_FORBIDDEN");
+      const examId=String(payload.examId||""),all=this._variantDemoOverrides(),bucket=all[examId]||{},selected=new Set((payload.questionNos||[]).map(Number));let deleted=0;
       Object.keys(bucket).forEach(k=>{if(!selected.size||selected.has(Number(k))){delete bucket[k];deleted++}});if(Object.keys(bucket).length)all[examId]=bucket;else delete all[examId];this._saveQuestionOverrides(all);return {ok:true,demo:true,examId,deleted,questions:this._demoQuestionRows(examId)};
     }
     if(action==="previewStudentMerge"||action==="mergeStudentProfiles")throw new YPAPIError("학생 병합은 실제 Apps Script 교사 연결에서만 가능합니다.","MERGE_REQUIRES_SERVER");
@@ -332,18 +372,22 @@
     if(action==="removeStudentFromClass"){let members=this._loadDemoClassMembers(),removed=0;members.forEach(m=>{if(m.classId===payload.classId&&m.studentId===payload.studentId&&m.active!==false){m.active=false;removed=1}});this._saveDemoClassMembers(members);return {ok:true,removed}}
     if(action==="listReports"){const list=rows.map(r=>{const n=this._normalize(r),p=this._demoStudentProfile(n);return {...n,studentId:n.studentId||p.studentId}}).filter(r=>(!payload.examId||r.examId===payload.examId)&&(!payload.courseId||r.courseId===payload.courseId));return {ok:true,reports:list.sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt))),serverInstanceId:"demo-local"}}
     if(action==="listStudents"){const students=this._demoProfiles(rows).map(p=>{const summary=YP.computeStudentPortalCumulative(p.records);const latest=summary.reports[0]||null;return {...p,reportCount:p.records.length,averagePercent:summary.cumulative.averagePercent,latestReport:latest?{reportToken:latest.reportToken,examId:latest.examId,title:latest.title,score:latest.score,maxScore:latest.maxScore,percent:latest.percent,updatedAt:latest.updatedAt}:null,records:undefined}});return {ok:true,students,serverInstanceId:"demo-local",featureVersion:"3.6.0-class-roster-record-manager"}}
-    if(action==="getStudentPortal"){const profiles=this._demoProfiles(rows),p=profiles.find(x=>x.portalToken===payload.token);if(!p)throw new YPAPIError("학생 통합 페이지 토큰을 찾을 수 없습니다.","STUDENT_PORTAL_NOT_FOUND");if(p.portalFingerprint!==payload.fp)throw new YPAPIError("학생 통합 링크의 지문이 일치하지 않습니다.","PORTAL_FINGERPRINT_MISMATCH");const summary=YP.computeStudentPortalCumulative(p.records);return {ok:true,student:{studentId:p.studentId,portalToken:p.portalToken,portalFingerprint:p.portalFingerprint,school:p.school,name:p.name,grade:p.grade,classNo:p.classNo,createdAt:p.createdAt,updatedAt:p.updatedAt},...summary,serverInstanceId:"demo-local",featureVersion:"3.6.0-class-roster-record-manager",integrity:{portalTokenMatch:true,portalFingerprintMatch:true,identityMatch:true},demo:true}}
+    if(action==="getStudentPortal"){const profiles=this._demoProfiles(rows),p=profiles.find(x=>x.portalToken===payload.token);if(!p)throw new YPAPIError("학생 통합 페이지 토큰을 찾을 수 없습니다.","STUDENT_PORTAL_NOT_FOUND");if(p.portalFingerprint!==payload.fp)throw new YPAPIError("학생 통합 링크의 지문이 일치하지 않습니다.","PORTAL_FINGERPRINT_MISMATCH");const summary=YP.computeStudentPortalCumulative(p.records);return {ok:true,student:{studentId:p.studentId,portalToken:p.portalToken,portalFingerprint:p.portalFingerprint,school:p.school,name:p.name,grade:p.grade,classNo:p.classNo,createdAt:p.createdAt,updatedAt:p.updatedAt},...summary,recordVariantsSupported:true,serverInstanceId:"demo-local",featureVersion:"3.6.0-class-roster-record-manager",integrity:{portalTokenMatch:true,portalFingerprintMatch:true,identityMatch:true},demo:true}}
     if(action==="getStudentExamDetail"){const profiles=this._demoProfiles(rows),p=profiles.find(x=>x.portalToken===payload.token);if(!p||p.portalFingerprint!==payload.fp)throw new YPAPIError("학생 통합 링크를 확인할 수 없습니다.","PORTAL_FINGERPRINT_MISMATCH");const report=p.records.find(r=>r.token===payload.reportToken);if(!report)throw new YPAPIError("선택한 시험 결과가 이 학생 통합 페이지에 없습니다.","PORTAL_REPORT_MISMATCH");const detail=await this.demoRequest("getReport",{token:report.token,fp:report.fingerprint});return {...detail,student:{studentId:p.studentId,portalToken:p.portalToken,portalFingerprint:p.portalFingerprint,school:p.school,name:p.name,grade:p.grade,classNo:p.classNo},featureVersion:"3.6.0-class-roster-record-manager"}}
     if(action==="reissueStudentPortal"){const p=this._demoProfiles(rows).find(x=>x.studentId===payload.studentId);if(!p)throw new YPAPIError("학생 통합 프로필을 찾을 수 없습니다.","STUDENT_NOT_FOUND");return {ok:true,student:{...p,records:undefined},serverInstanceId:"demo-local"}}
     if(action==="migrateStudentPortals")return {ok:true,done:true,processed:rows.length,linked:rows.length,students:this._demoProfiles(rows).length,remainingRows:0};
     if(action==="saveReport"){
-      const input=payload.record||{},exam=YP.getExam(input.examId);if(!exam||exam.status!=="ready")throw new YPAPIError("등록되지 않았거나 준비 중인 시험입니다.","EXAM_NOT_READY");const calc=YP.calculateResult(exam,input.resultInputs||[],input.partialModes||[]);if(!calc.valid)throw new YPAPIError("점수 입력 오류가 있습니다.","INVALID_SCORE");
-      let existing=input.token?rows.find(r=>r.token===input.token):null,name=String(input.name||"").trim(),school=YP.normalizeSchool(input.school);if(!name)throw new YPAPIError("학생 이름을 입력하세요.","NAME_REQUIRED");
-      if(!existing&&input.importMode==="upsert"){const key=[input.examId,YP.normalizeIdentity(school),YP.normalizeIdentity(name)].join("|");existing=rows.find(r=>[r.examId,YP.normalizeIdentity(YP.normalizeSchool(r.school)),YP.normalizeIdentity(r.name)].join("|")===key)||null}
+      const input=payload.record||{};this._validateVariantRecordWrite(input);
+      const exam=YP.getExamForRecord(input);let existing=input.token?rows.find(r=>r.token===input.token):null;
+      if(!exam||(exam.status!=="ready"&&!(exam.recordOnly&&existing)))throw new YPAPIError("등록되지 않았거나 새 입력이 허용되지 않은 시험입니다.","EXAM_NOT_READY");
+      if(existing&&YP.hasRecordVariants(exam)&&(existing.examId!==input.examId||YP.getRecordVariantInfo(existing)?.conflict||YP.recordVariantKey(existing)!==YP.recordVariantKey(input)))throw new YPAPIError("기존 기록과 문항 구성이 다릅니다. 기존 점수와 링크를 유지하기 위해 저장을 중단했습니다.","RECORD_VARIANT_CONFLICT");
+      const calc=YP.calculateResult(exam,input.resultInputs||[],input.partialModes||[]);if(!calc.valid)throw new YPAPIError("점수 입력 오류가 있습니다.","INVALID_SCORE");
+      let name=String(input.name||"").trim(),school=YP.normalizeSchool(input.school);if(!name)throw new YPAPIError("학생 이름을 입력하세요.","NAME_REQUIRED");
+      if(!existing&&input.importMode==="upsert"){const key=[YP.recordVariantKey(input),YP.normalizeIdentity(school),YP.normalizeIdentity(name)].join("|");existing=rows.find(r=>!YP.getRecordVariantInfo(r)?.conflict&&[YP.recordVariantKey(r),YP.normalizeIdentity(YP.normalizeSchool(r.school)),YP.normalizeIdentity(r.name)].join("|")===key)||null}
       const wasExisting=!!existing;
-      if(!existing){const base=name;let n=1,names=new Set(rows.filter(r=>r.examId===input.examId&&YP.normalizeIdentity(YP.normalizeSchool(r.school))===YP.normalizeIdentity(school)).map(r=>r.name));while(names.has(name)){n++;name=base+n}}
-      const token=existing?.token||this._newToken(),fp=existing?.fingerprint||await this._fp(token,input.examId,school,name),now=new Date().toISOString(),studentKey=YP.studentKey(exam.courseId,school,name),base={...existing,...input,token,fingerprint:fp,name,school,studentKey,courseId:exam.courseId,createdAt:existing?.createdAt||now,updatedAt:now},portal=this._demoStudentProfile(base),row={...base,studentId:existing?.studentId||portal.studentId};
-      if(existing)rows=rows.map(r=>r.token===token?row:r);else rows.push(row);this._saveDemo(rows);const record=this._normalize(row),same=rows.map(r=>this._normalize(r)).filter(r=>r.examId===exam.examId),stats=YP.computeStats(exam,same),historyRecords=YP.getLinkedHistory(exam,record,rows);return {ok:true,record,stats,historyRecords,studentPortal:portal,token,fp,displayName:name,created:!wasExisting,updated:wasExisting,serverInstanceId:"demo-local",featureVersion:"3.6.0-class-roster-record-manager"};
+      if(!existing){const base=name;let n=1,names=new Set(rows.filter(r=>YP.recordVariantKey(r)===YP.recordVariantKey(input)&&YP.normalizeIdentity(YP.normalizeSchool(r.school))===YP.normalizeIdentity(school)).map(r=>r.name));while(names.has(name)){n++;name=base+n}}
+      const token=existing?.token||this._newToken(),fp=existing?.fingerprint||await this._fp(token,input.examId,school,name),now=new Date().toISOString(),studentKey=YP.studentKey(exam.courseId,school,name),base={...existing,...input,token,fingerprint:fp,name,school,studentKey,courseId:exam.courseId,createdAt:existing?.createdAt||now,updatedAt:now,scoring:calc.scoring,score:calc.score,maxScore:calc.maxScore,percent:calc.percent,counts:calc.counts,...(YP.hasRecordVariants(exam)?{recordVariant:exam.recordVariant||"",resolvedExamId:exam.resolvedExamId||exam.examId,recordVariantConflict:false}:{})},portal=this._demoStudentProfile(base),row={...base,studentId:existing?.studentId||input.studentId||portal.studentId};
+      if(existing)rows=rows.map(r=>r.token===token?row:r);else rows.push(row);this._saveDemo(rows);const record=this._normalize(row),same=rows.map(r=>this._normalize(r)),stats=YP.computeStats(exam,same),historyRecords=YP.getLinkedHistory(exam,record,rows);return {ok:true,record,stats,historyRecords,studentPortal:portal,token,fp,displayName:name,created:!wasExisting,updated:wasExisting,serverInstanceId:"demo-local",featureVersion:"3.6.0-class-roster-record-manager"};
     }
     if(action==="saveBatch"){
       const saved=[],failed=[];let createdCount=0,updatedCount=0;
@@ -352,9 +396,9 @@
     }
     if(action==="deleteReport"){const before=rows.length;rows=rows.filter(r=>r.token!==payload.token);this._saveDemo(rows);return {ok:true,deleted:before-rows.length}}
     if(action==="getReport"){
-      const row=rows.find(r=>r.token===payload.token);if(!row)throw new YPAPIError("성적표 토큰을 찾을 수 없습니다.","REPORT_NOT_FOUND");if(row.fingerprint!==payload.fp)throw new YPAPIError("요청한 학생과 서버에서 불러온 학생 정보가 일치하지 않습니다. 교사에게 새 결과 링크를 요청해 주세요.","FINGERPRINT_MISMATCH");const record=this._normalize(row),exam=YP.getExam(record.examId),seeded=row.token.startsWith("demo-");if(!seeded){const recomputed=await this._fp(row.token,row.examId,row.school||"미기입",row.name);if(recomputed!==row.fingerprint)throw new YPAPIError("학생 지문 재검증에 실패했습니다.","FINGERPRINT_MISMATCH")}const same=rows.map(r=>this._normalize(r)).filter(r=>r.examId===record.examId),stats=YP.computeStats(exam,same),historyRecords=YP.getLinkedHistory(exam,record,rows);return {ok:true,record,stats,historyRecords,questions:this._demoQuestionRows(record.examId),serverInstanceId:"demo-local",integrity:{tokenMatch:true,fingerprintMatch:true,identityMatch:true},demo:true};
+      const row=rows.find(r=>r.token===payload.token);if(!row)throw new YPAPIError("성적표 토큰을 찾을 수 없습니다.","REPORT_NOT_FOUND");if(row.fingerprint!==payload.fp)throw new YPAPIError("요청한 학생과 서버에서 불러온 학생 정보가 일치하지 않습니다. 교사에게 새 결과 링크를 요청해 주세요.","FINGERPRINT_MISMATCH");const record=this._normalize(row),exam=YP.getExamForRecord(record),seeded=row.token.startsWith("demo-");if(!seeded){const recomputed=await this._fp(row.token,row.examId,row.school||"미기입",row.name);if(recomputed!==row.fingerprint)throw new YPAPIError("학생 지문 재검증에 실패했습니다.","FINGERPRINT_MISMATCH")}const same=rows.map(r=>this._normalize(r)).filter(r=>r.examId===record.examId),stats=YP.computeStats(exam,same),historyRecords=YP.getLinkedHistory(exam,record,rows);return {ok:true,record,stats,historyRecords,questions:this._demoQuestionRows(record.examId,record),recordVariantsSupported:true,recordVariant:record.recordVariant||"",questionSourceExamId:exam.resolvedExamId||exam.examId,serverInstanceId:"demo-local",integrity:{tokenMatch:true,fingerprintMatch:true,identityMatch:true},demo:true};
     }
-    if(action==="getExamStats"){const exam=YP.getExam(payload.examId),same=rows.map(r=>this._normalize(r)).filter(r=>r.examId===payload.examId);return {ok:true,stats:YP.computeStats(exam,same)}}
+    if(action==="getExamStats"){const exam=YP.getExamForRecord({examId:payload.examId,recordVariant:payload.recordVariant||""}),same=rows.map(r=>this._normalize(r));return {ok:true,stats:YP.computeStats(exam,same)}}
     if(action==="checkIntegrity")return {ok:true,checked:rows.length,issues:[]};
     throw new YPAPIError("지원하지 않는 데모 작업: "+action,"UNSUPPORTED_ACTION");
   }

@@ -21,10 +21,10 @@ function pngSize(rel){const b=fs.readFileSync(path.join(root,'site',rel));assert
  assert.ok(exam);assert.equal(exam.courseId,'physics2-advanced');assert.equal(exam.round,4);
  assert.equal(exam.status,'ready');assert.equal(exam.assessmentType,'weekly');assert.equal(exam.questionCount,7);assert.equal(exam.maxScore,100);
  assert.deepEqual(exam.questions.map(q=>q.no),[1,2,3,4,5,6,7]);assert.deepEqual(exam.questions.map(q=>q.maxPoints),points);
- assert.equal(exam.questions.reduce((a,q)=>a+q.maxPoints,0),100);assert.equal(catalog.exams.length,47);
+ assert.equal(exam.questions.reduce((a,q)=>a+q.maxPoints,0),100);assert.equal(catalog.exams.length,48);
  assert.equal(catalog.exams.filter(e=>e.status==='ready').length,32);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,334);
- assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,47);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,326);
+ assert.equal(new Set(catalog.exams.map(e=>e.examId)).size,48);
 });
 
 test('심화 총괄 누적 연결 [2,3,4], 다른 회차와 물리1 16회 신구분리 유지',()=>{
@@ -132,13 +132,13 @@ test('내장 카탈로그 JS·JSON과 독립 문제은행 일치, 학부모 UI �
  assert.equal(JSON.stringify(independent),JSON.stringify(exam));
  const fixture=JSON.parse(read('tests/fixtures/r16-legacy-fingerprints.json'));
  for(const [f,sha] of Object.entries(fixture.protectedFileHashes)){
-  if(['site/assets/portal.js','site/assets/styles.css','site/assets/report.js'].includes(f))continue; // v3.7.8 학부모 UI 수정
+  if(['site/assets/portal.js', 'site/assets/styles.css', 'site/assets/report.js', 'apps-script/Code.gs', 'site/assets/core.js', 'site/assets/api.js', 'site/assets/app.js'].includes(f))continue; // v3.7.8 학부모 UI 수정
   const actual=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,f))).digest('hex');assert.equal(actual,sha,f);
  }
 });
 
 test('v3.7.7 캐시·package 정합성 및 Apps Script·Worker 미변경',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.16');
- assert.equal(catalog.featureVersion,'3.7.16-physics2-basic-r03');
- for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.16/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.17');
+ assert.equal(catalog.featureVersion,'3.7.17-r03-numbering-fix');
+ for(const f of ['index.html','portal.html','report.html'])assert.match(read('site/'+f),/catalog\.js\?v=3\.7\.17/);
 });

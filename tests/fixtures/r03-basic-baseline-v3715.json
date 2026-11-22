@@ -105,9 +105,108 @@
     "site/assets/images/logo-mark.png": "df3fb1026b3c3703183588487de1621ebb0a02339504588f6a365e45c61e634c",
     "site/assets/images/logo-source.png": "87569238980437609528d25638acdb7615777b023c779eefd2224f0047524268"
   },
-  "htmlBaseline": {
-    "site/index.html": "3a330844f6fffc4baf6e12cb37fd987a15ea643ee90a4f40266e23e5d13e75c6",
-    "site/portal.html": "099d017cca8c66516bf1b2851388d1edec3c9cc509da018b746631dd1efe2b54",
-    "site/report.html": "40cc3ca0f4e769231eb92bb3b8e7c8afda57618707a6b05f1aed844db34ee940"
+  "courses": [
+    {
+      "courseId": "physics1-basic",
+      "courseName": "물리1",
+      "active": true
+    },
+    {
+      "courseId": "physics1-advanced",
+      "courseName": "물리1심화",
+      "active": true
+    },
+    {
+      "courseId": "physics2-basic",
+      "courseName": "물리2",
+      "active": true
+    },
+    {
+      "courseId": "physics2-advanced",
+      "courseName": "물리2심화",
+      "active": true
+    }
+  ],
+  "operatingPolicy": {
+    "weeklyRounds": {
+      "physics1-basic": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "physics1-advanced": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "physics2-basic": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "physics2-advanced": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "excludedRounds": {
+      "physics1-basic": [
+        1,
+        9
+      ],
+      "physics2-basic": [
+        10
+      ]
+    },
+    "historyMatchFields": [
+      "courseId",
+      "normalizedSchool",
+      "normalizedName"
+    ],
+    "comprehensiveInput": {
+      "basicObjectiveQuestions": "물리1·물리2 일반 총괄 1~20: 학생 선택번호 1~5",
+      "basicSubjectiveQuestions": "물리1·물리2 일반 총괄 21~25: 실제 획득 점수",
+      "advancedObjectiveQuestions": "물리1심화·물리2심화 총괄 1~25: 학생 선택번호 1~5"
+    }
+  },
+  "originalSources": {
+    "questionPdf": {
+      "file": "site/assets/documents/physics2/r03-original.pdf",
+      "size": 95064,
+      "sha256": "c6d3df18eb7412d9d33e5ccb73a6c41bc8097700d0bb58158c4a6426fdf4b125"
+    },
+    "solutionPdf": {
+      "file": "site/assets/documents/physics2/r03-original-solution.pdf",
+      "size": 105262,
+      "sha256": "1a050d95ad0ebc871ae7656ba81592867548a8c7113baae7955d27354b1b198a"
+    }
   }
 }
