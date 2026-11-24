@@ -92,7 +92,7 @@ test('카탈로그 JS/JSON과 독립시험JSON이 동일',()=>{
 });
 test('기존45시험 불변: EMW활성화·심화총괄r05연결만 예외',()=>{
  for(const [id,h] of Object.entries(snap.examHashes)){if(id===ID||id==='physics2-basic-r02'||id==='physics2-basic-r03')continue;const e=clean(catalog.exams.find(e=>e.examId===id));
- if(id==='physics2-advanced-total')e.historyExamIds=e.historyExamIds.filter(x=>x!=='physics2-advanced-r05'&&x!=='physics2-advanced-r06');
+ if(id==='physics2-advanced-total')e.historyExamIds=e.historyExamIds.filter(x=>x!=='physics2-advanced-r05'&&x!=='physics2-advanced-r06'&&x!=='physics2-advanced-r07');
  assert.equal(hashObject(e),h,id);}
 });
 test('기존 문항JSON 보존: 활성화한 EMW 하나만 예외',()=>{for(const [f,h] of Object.entries(snap.existingQuestionFiles)){if(f.endsWith('/'+ID+'.json')||f.endsWith('/physics2-advanced-total.json'))continue;assert.equal(hash(f),h,f)}});
@@ -122,9 +122,9 @@ test('R16 구형6/개정7과심화4회신구분리·심화5회원본동시보존
  const r=YP.getExam('physics2-advanced-r05');assert.equal(r.questionCount,7);assert.match(r.pdf,/r05-original.pdf$/);
 });
 test('누적패키지3.7.12:46시험29ready301문항',()=>{
- assert.equal(JSON.parse(read('package.json')).version,'3.7.17');
- assert.equal(catalog.exams.length,48);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,32);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,326);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.18');
+ assert.equal(catalog.exams.length,49);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,33);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,333);
 });
 
 test('새 동형 수치·비례식 독립 계산 (원본 정답 변경 없음)',()=>{

@@ -1,0 +1,176 @@
+{
+  "version": "3.7.18",
+  "examId": "physics2-advanced-r07",
+  "renderDpi": 200,
+  "questionPdf": {
+    "path": "assets/documents/physics2-advanced/r07-original.pdf",
+    "sha256": "3da6917352cb398768fa34c1d3b5f38f110ee5b09c4cc0a6da51332c4cd0fa1f",
+    "sizeBytes": 128302,
+    "pageCount": 4
+  },
+  "solutionPdf": {
+    "path": "assets/documents/physics2-advanced/r07-original-solution.pdf",
+    "sha256": "02c6250f5e57c03ad14a1b537e10d38ec9033d1a7a0f576b95596e26a26c7df2",
+    "sizeBytes": 143979,
+    "pageCount": 4
+  },
+  "pages": [
+    {
+      "path": "assets/pages/physics2-advanced/r07-original-p1.png",
+      "sha256": "27082195e94ad8239fdb57372071670d76463d30168bcb67c2f5d2e1b4b77859",
+      "width": 1653,
+      "height": 2337
+    },
+    {
+      "path": "assets/pages/physics2-advanced/r07-original-p2.png",
+      "sha256": "8d0cef58066bf8c4d948440970fd4558edf2a0cc86c204070807a15d818a7779",
+      "width": 1653,
+      "height": 2337
+    },
+    {
+      "path": "assets/pages/physics2-advanced/r07-original-p3.png",
+      "sha256": "f8b748523207f861e4fa4a963ff2004710777e02e3a1143606de2ae5e3099ce1",
+      "width": 1653,
+      "height": 2337
+    },
+    {
+      "path": "assets/pages/physics2-advanced/r07-original-p4.png",
+      "sha256": "afa64666fd869de8df5a8a863008ad7061b99e83cafe0690e1cc0c364884ead6",
+      "width": 1653,
+      "height": 2337
+    }
+  ],
+  "questions": [
+    {
+      "no": 1,
+      "page": 1,
+      "crop": [
+        80,
+        260,
+        745,
+        1015
+      ],
+      "pageSize": [
+        1653,
+        2337
+      ],
+      "pixelSha256": "895ba1f7e4ea6fdbd9ca0513bb9197a73cab56eca87f59e267eec0a9d7210dba",
+      "croppedImageSha256": "0ae8b5815fdea4044c97c97adbee551c1236bdb715d3615a43b2b55c5db54bbd"
+    },
+    {
+      "no": 2,
+      "page": 1,
+      "crop": [
+        834,
+        260,
+        748,
+        1425
+      ],
+      "pageSize": [
+        1653,
+        2337
+      ],
+      "pixelSha256": "2392714e439cfc56b8f495321da9ee54f77e8f7206dfe182557393bded41d5a2",
+      "croppedImageSha256": "b57feb61db170e94520a2191dc2c0795c800cfae8ec755bffa63cf5a1f2560c7"
+    },
+    {
+      "no": 3,
+      "page": 2,
+      "crop": [
+        80,
+        260,
+        745,
+        1151
+      ],
+      "pageSize": [
+        1653,
+        2337
+      ],
+      "pixelSha256": "65facb0f742a7def0c1fa418952764caac11e726c5045b4a03021c7fecc228cc",
+      "croppedImageSha256": "ed176bd6e9bcb848a4d96afb4bbc91ac58fdf0c89397f2184b6b91bf37da280c"
+    },
+    {
+      "no": 4,
+      "page": 2,
+      "crop": [
+        834,
+        260,
+        748,
+        600
+      ],
+      "pageSize": [
+        1653,
+        2337
+      ],
+      "pixelSha256": "a8fcab43fa490a8d66824411621a6a91e0f51298b51b79262965328c01c12398",
+      "croppedImageSha256": "c94db9b6c2ac04eec245ed10227ccadcb436949402655e75d1ace0fdd7e327f3"
+    },
+    {
+      "no": 5,
+      "page": 3,
+      "crop": [
+        80,
+        260,
+        745,
+        1342
+      ],
+      "pageSize": [
+        1653,
+        2337
+      ],
+      "pixelSha256": "de154932f8674c1bdd3b6862ad32492a01fb019181783bee5db40f3c1659b124",
+      "croppedImageSha256": "2f46451f845e544995a2bc67541f2c000ceb9c947c842ad19f4989890f160fd9"
+    },
+    {
+      "no": 6,
+      "page": 3,
+      "crop": [
+        834,
+        260,
+        748,
+        1445
+      ],
+      "pageSize": [
+        1653,
+        2337
+      ],
+      "pixelSha256": "610a460c472fc686c9a37a497562fd0177fd9b52b836866590408b5f2939fe0d",
+      "croppedImageSha256": "db75029be7447fef5962530d1fb2225dca634c40c181016124119333912f73b7"
+    },
+    {
+      "no": 7,
+      "page": 4,
+      "crop": [
+        80,
+        260,
+        745,
+        1265
+      ],
+      "pageSize": [
+        1653,
+        2337
+      ],
+      "pixelSha256": "69fc71354f7950e8f93022b79c9a8c87846335e5d0e302530d7f2f310dbc44ed",
+      "croppedImageSha256": "b5647ab9abe68842cbd1423acc52adca31b8f2a33e03d2763cd08d438923ecbc"
+    }
+  ],
+  "questionCount": 7,
+  "subquestionCount": 16,
+  "points": [
+    10,
+    15,
+    15,
+    10,
+    15,
+    15,
+    20
+  ],
+  "originalRetryCount": 7,
+  "similarProblemCount": 7,
+  "originalPixelsPreserved": true,
+  "notes": [
+    "Q6: low-resolution acceleration direction mark; use text constraints, without redrawing.",
+    "Q7(2): independent vertical-circle interpretation; do not combine with Q7(1) small-angle period constraints.",
+    "Original retry Q7 tests subquestion (1) only."
+  ]
+}

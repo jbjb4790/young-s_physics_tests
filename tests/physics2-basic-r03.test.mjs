@@ -61,14 +61,14 @@ test('기존 물리2 3회 ID를 활성화: 원문8문항·20/10/10/10/10/10/10/2
 });
 test('v3.7.15의 나머지46시험·기존 문항JSON31개·학생링크/서버/운영설정20개 보존',()=>{
  assert.equal(Object.keys(baseline.examHashes).length,47);let unchanged=0;
- for(const [id,expected] of Object.entries(baseline.examHashes)){if(id===ID)continue;const old=catalog.exams.find(e=>e.examId===id);assert.ok(old,id);assert.equal(objectHash(old),expected,id);unchanged++;}assert.equal(unchanged,46);
+ for(const [id,expected] of Object.entries(baseline.examHashes)){if(id===ID)continue;const old=deep(catalog.exams.find(e=>e.examId===id));assert.ok(old,id);if(id==='physics2-advanced-total')old.historyExamIds=old.historyExamIds.filter(x=>x!=='physics2-advanced-r07');assert.equal(objectHash(old),expected,id);unchanged++;}assert.equal(unchanged,46);
  assert.equal(Object.keys(baseline.existingBankHashes).length,31);
  for(const [f,expected] of Object.entries(baseline.existingBankHashes))assert.equal(hash(f),expected,f);
  for(const [f,expected] of Object.entries(baseline.protectedSha))if(!['apps-script/Code.gs', 'site/assets/core.js', 'site/assets/api.js', 'site/assets/app.js', 'site/assets/report.js', 'site/assets/portal.js'].includes(f))assert.equal(hash(f),expected,f);
- assert.deepEqual(catalog.courses,baseline.courses);assert.deepEqual(catalog.operatingPolicy,baseline.operatingPolicy);
+ assert.deepEqual(catalog.courses,baseline.courses);const previousPolicy=deep(catalog.operatingPolicy);previousPolicy.weeklyRounds['physics2-advanced']=previousPolicy.weeklyRounds['physics2-advanced'].filter(r=>r!==7);assert.deepEqual(previousPolicy,baseline.operatingPolicy);
 });
-test('48시험(보관1)·준비32시험·326문항 및 물리2 역학 총괄의 기존 r03 연결 유지',()=>{
- assert.equal(catalog.exams.length,48);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,32);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,326);
+test('49시험(보관1)·준비33시험·333문항 및 물리2 역학 총괄의 기존 r03 연결 유지',()=>{
+ assert.equal(catalog.exams.length,49);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,33);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,333);
  const total=YP.getExam('physics2-basic-total-mechanics');assert.ok(total.historyExamIds.includes(ID));assert.equal(total.historyExamIds.length,8);
 });
 test('문제·해설 PDF는 첨부본과 SHA256 및 바이트수가 완전히 동일',()=>{
@@ -96,10 +96,10 @@ test('5·7번 공통지문과 개별문항의 모든 픽셀은 원본에서 무�
   assert.ok(Math.abs(question[1]-([0,675,527][sourcePage]*200/72))<12);
  }
 });
-test('독립 문항 JSON·catalog.js/json 일치 및 v3.7.17 캐시 갱신',()=>{
+test('독립 문항 JSON·catalog.js/json 일치 및 v3.7.18 카탈로그 캐시 갱신',()=>{
  assert.deepEqual(JSON.parse(read('site/assets/data/questions/physics2-basic-r03.json')),exam);
  const ctx={window:{}};vm.createContext(ctx);vm.runInContext(read('site/assets/data/catalog.js'),ctx);assert.deepEqual(deep(ctx.window.YP_CATALOG),catalog);
- assert.equal(JSON.parse(read('package.json')).version,'3.7.17');assert.equal(catalog.featureVersion,'3.7.17-r03-numbering-fix');for(const p of ['index.html','report.html','portal.html'])assert.match(read('site/'+p),/catalog\.js\?v=3\.7\.17/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.18');assert.equal(catalog.featureVersion,'3.7.18-physics2-advanced-r07');for(const p of ['index.html','report.html','portal.html'])assert.match(read('site/'+p),/catalog\.js\?v=3\.7\.18-r07/);
 });
 test('교사 만점/0점/P1/소수부분점수/공란과 초과점수 거절; 보너스 자동가산 없음',()=>{
  assert.equal(YP.calculateResult(exam,Array(8).fill('1')).score,100);assert.equal(YP.calculateResult(exam,Array(8).fill('0')).score,0);

@@ -29,14 +29,14 @@ test('신규 활성화 r02·r03 외 기존 시험 정의·독립 질문 JSON·�
  assert.equal(Object.keys(original.examHashes).length,47);
  for(const [id,expected] of Object.entries(original.examHashes)){
   if(id==='physics2-basic-r02'||id==='physics2-basic-r03')continue;
-  const e=catalog.exams.find(x=>x.examId===id);assert.ok(e,id);assert.equal(objectHash(e),expected,id);
+  const e=deep(catalog.exams.find(x=>x.examId===id));assert.ok(e,id);if(id==='physics2-advanced-total')e.historyExamIds=e.historyExamIds.filter(x=>x!=='physics2-advanced-r07');assert.equal(objectHash(e),expected,id);
  }
  for(const [f,expected] of Object.entries(original.existingBankHashes)) assert.equal(hash(f),expected,f);
  for(const [f,expected] of Object.entries(original.protectedSha))if(!['apps-script/Code.gs', 'site/assets/core.js', 'site/assets/api.js', 'site/assets/app.js', 'site/assets/report.js', 'site/assets/portal.js'].includes(f))assert.equal(hash(f),expected,f);
 });
-test('전체 48시험(보관1), 준비32시험, 326문항 및 물리2 역학 총괄 history에 r02 연결 유지',()=>{
- assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,48);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,32);
- assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,326);
+test('전체 49시험(보관1), 준비33시험, 333문항 및 물리2 역학 총괄 history에 r02 연결 유지',()=>{
+ assert.equal(catalog.courses.length,4);assert.equal(catalog.exams.length,49);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,33);
+ assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,333);
  const total=catalog.exams.find(e=>e.examId==='physics2-basic-total-mechanics');assert.equal(total.status,'ready');
  assert.ok(total.historyExamIds.includes(exam.examId));assert.deepEqual(catalog.operatingPolicy.weeklyRounds['physics2-basic'],[1,2,3,4,5,6,7,8,9,11,12,13,14,15]);
 });
@@ -59,8 +59,8 @@ test('독립 문항은행 JSON·catalog.js·catalog.json 동일 및 캐시 버�
  assert.deepEqual(JSON.parse(read('site/assets/data/questions/physics2-basic-r02.json')),exam);
  const cc={window:{}};vm.createContext(cc);vm.runInContext(read('site/assets/data/catalog.js'),cc);
  assert.deepEqual(deep(cc.window.YP_CATALOG),catalog);
- assert.equal(JSON.parse(read('package.json')).version,'3.7.17');assert.equal(catalog.featureVersion,'3.7.17-r03-numbering-fix');
- for(const page of ['index.html','report.html','portal.html'])assert.match(read('site/'+page),/catalog\.js\?v=3\.7\.17/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.18');assert.equal(catalog.featureVersion,'3.7.18-physics2-advanced-r07');
+ for(const page of ['index.html','report.html','portal.html'])assert.match(read('site/'+page),/catalog\.js\?v=3\.7\.18-r07/);
 });
 test('교사 채점 규칙과 부분점수·공란, 학생식별자·성적 링크 불변',()=>{
  assert.equal(YP.calculateResult(exam,Array(10).fill('1')).score,100);

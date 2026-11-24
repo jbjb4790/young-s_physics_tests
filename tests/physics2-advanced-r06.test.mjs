@@ -30,7 +30,7 @@ test('기존 46개 시험 내용 불변: 물리2심화 총괄에 6회 링크만 
  for(const [id,expected] of Object.entries(base.catalogExamHashes)){
   if(id==='physics2-basic-r02'||id==='physics2-basic-r03')continue; // r02 activated in v3.7.15; r03 activated in v3.7.16
   const e=clone(catalog.exams.find(e=>e.examId===id));assert.ok(e,id);
-  if(id==='physics2-advanced-total')e.historyExamIds=e.historyExamIds.filter(x=>x!=='physics2-advanced-r06');
+  if(id==='physics2-advanced-total')e.historyExamIds=e.historyExamIds.filter(x=>x!=='physics2-advanced-r06'&&x!=='physics2-advanced-r07');
   assert.equal(objectSha(e),expected,id);
  }
 });
@@ -44,14 +44,14 @@ test('기존 29개 독립 문항은행 JSON과 서버·로고·학생링크 등 
 test('기존 3개 HTML은 변경된 JS 캐시쿼리만 갱신, 마크업 그대로',()=>{
  for(const [f,expected] of Object.entries(base.htmlBaseline)){
   const prior={catalog:'3.7.12-emw-20261110',core:'3.7.5',api:f.endsWith('index.html')?'3.6.5':'3.6.3',app:'3.7.13',report:'3.7.12',portal:'3.7.8'};
-  const modified=read(f).replace(/(catalog|core|api|app|report|portal)\.js\?v=3\.7\.17-r03-fix/g,(_,name)=>name+'.js?v='+prior[name]);
+  const modified=read(f).replace('catalog.js?v=3.7.18-r07','catalog.js?v=3.7.17-r03-fix').replace(/(catalog|core|api|app|report|portal)\.js\?v=3\.7\.17-r03-fix/g,(_,name)=>name+'.js?v='+prior[name]);
   assert.equal(crypto.createHash('sha256').update(modified).digest('hex'),expected,f);
  }
 });
 
 test('심화 총괄 연결범위 2,3,4구형/개정,5,6 및 16회 신구 분리 보존',()=>{
- assert.deepEqual(catalog.operatingPolicy.weeklyRounds['physics2-advanced'],[2,3,4,5,6]);
- const total=YP.getExam('physics2-advanced-total');assert.deepEqual(total.historyExamIds.slice(-2),['physics2-advanced-r05','physics2-advanced-r06']);assert.equal(total.status,'coming-soon');
+ assert.deepEqual(catalog.operatingPolicy.weeklyRounds['physics2-advanced'],[2,3,4,5,6,7]);
+ const total=YP.getExam('physics2-advanced-total');assert.deepEqual(total.historyExamIds.slice(-3),['physics2-advanced-r05','physics2-advanced-r06','physics2-advanced-r07']);assert.equal(total.status,'coming-soon');
  assert.equal(YP.getExam('physics2-advanced-r04-v2').replacesExamId,'physics2-advanced-r04');
  assert.equal(YP.getExam('physics1-basic-r16-v2').replacesExamId,'physics1-basic-r16');
  assert.equal(YP.getExam('physics2-basic-total-electromagnetism').status,'ready');
@@ -98,11 +98,11 @@ test('Q6 접선속력 √(3GM/2R), E−GMm/4R, 장반지름2R, 원일3R',()=>{co
 test('Q7 네 위성 인접 두 개+정반대 한 개의 구심 방향 성분 모두 합산',()=>{const G=3,M=11,m=5,r=7,center=G*M*m/r**2,opp=G*m*m/(4*r**2),neighbors=G*m*m/(Math.SQRT2*r**2);const omega2=(center+opp+neighbors)/(m*r),fromEffective=G*(M+m*(1/4+1/Math.SQRT2))/r**3;approx(omega2,fromEffective);approx(2*Math.PI/Math.sqrt(omega2),2*Math.PI*Math.sqrt(r**3/(G*(M+m*(1/4+1/Math.SQRT2)))));assert.match(exam.questions[6].answer,/1\/√2/);assert.match(exam.questions[6].answer,/r³/);assert.doesNotMatch(exam.questions[6].answer,/R³/)});
 
 test('47시험·30준비완료·308문항, 독립 문제은행과 catalog.js 일치',()=>{
- assert.equal(catalog.exams.length,48);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,32);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,326);
+ assert.equal(catalog.exams.length,49);assert.equal(catalog.exams.filter(e=>e.status==='ready').length,33);assert.equal(catalog.exams.filter(e=>e.status==='ready').flatMap(e=>e.questions||[]).length,333);
  const js={window:{}};vm.createContext(js);vm.runInContext(read('site/assets/data/catalog.js'),js);
  assert.deepEqual(clone(js.window.YP_CATALOG),catalog);assert.deepEqual(JSON.parse(read('site/assets/data/questions/physics2-advanced-r06.json')),exam);
- assert.equal(JSON.parse(read('package.json')).version,'3.7.17');assert.equal(catalog.featureVersion,'3.7.17-r03-numbering-fix');
- for(const p of ['index.html','report.html','portal.html'])assert.match(read('site/'+p),/catalog\.js\?v=3\.7\.17/);
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.18');assert.equal(catalog.featureVersion,'3.7.18-physics2-advanced-r07');
+ for(const p of ['index.html','report.html','portal.html'])assert.match(read('site/'+p),/catalog\.js\?v=3\.7\.18-r07/);
 });
 
 

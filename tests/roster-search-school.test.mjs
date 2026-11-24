@@ -28,7 +28,7 @@ function ui(){
 }
 test('v3.7.13: catalog/모든 시험·PDF·PNG 및 서버·API·링크·포털 바이트 불변',()=>{
  for(const [p,h] of Object.entries(snap.unchangedProduction))if(!['site/report.html', 'site/portal.html', 'site/assets/data/catalog.json', 'site/assets/data/catalog.js', 'apps-script/Code.gs', 'site/assets/core.js', 'site/assets/api.js', 'site/assets/app.js', 'site/assets/report.js', 'site/assets/portal.js'].includes(p))assert.equal(crypto.createHash('sha256').update(fs.readFileSync(new URL(p,root))).digest('hex'),h,p);
- assert.equal(JSON.parse(read('package.json')).version,'3.7.17');assert.equal(catalog.featureVersion,'3.7.17-r03-numbering-fix');
+ assert.equal(JSON.parse(read('package.json')).version,'3.7.18');assert.equal(catalog.featureVersion,'3.7.18-physics2-advanced-r07');
 });
 test('검색: 부분 이름, 공백, 학교명, 동명이인 구별; 빈 검색 전체 표시',()=>{const {h}=ui(),s=h.state.students;assert.equal(h.rosterStudentMatches(s[0],'민수'),true);assert.equal(h.rosterStudentMatches(s[0],'김 민수'),true);assert.equal(h.rosterStudentMatches(s[0],'김민수 가상가고'),true);assert.equal(h.rosterStudentMatches(s[1],'김민수 가상가고'),false);assert.equal(h.rosterStudentMatches(s[0],''),true);assert.equal(h.rosterStudentMatches(s[0],'없는학생'),false)});
 test('현재 반 검색과 전체 학생 검색은 각 범위의 StudentId만 표시',()=>{const {h,node}=ui();node('classStudentSearch').value='김민수';h.renderClassRoster();assert.match(node('classStudentGrid').innerHTML,/stu_000001/);assert.doesNotMatch(node('classStudentGrid').innerHTML,/stu_000002/);node('classStudentSearchScope').value='all';h.renderClassRoster();assert.match(node('classStudentGrid').innerHTML,/stu_000002/);assert.match(node('classStudentGrid').innerHTML,/가상나고/)});
